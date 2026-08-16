@@ -31,6 +31,24 @@ namespace UI
             this.columnEquipo_380_jh = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblEstado_380_jh = new System.Windows.Forms.Label();
             this.btnActualizar_380_jh = new System.Windows.Forms.Button();
+            this.grpFiltros_380_jh = new System.Windows.Forms.GroupBox();
+            this.lblFechaDesde_380_jh = new System.Windows.Forms.Label();
+            this.dtpFechaDesde_380_jh = new System.Windows.Forms.DateTimePicker();
+            this.lblFechaHasta_380_jh = new System.Windows.Forms.Label();
+            this.dtpFechaHasta_380_jh = new System.Windows.Forms.DateTimePicker();
+            this.lblUsuarioFiltro_380_jh = new System.Windows.Forms.Label();
+            this.txtUsuarioFiltro_380_jh = new System.Windows.Forms.TextBox();
+            this.lblModuloFiltro_380_jh = new System.Windows.Forms.Label();
+            this.cmbModuloFiltro_380_jh = new System.Windows.Forms.ComboBox();
+            this.lblAccionFiltro_380_jh = new System.Windows.Forms.Label();
+            this.cmbAccionFiltro_380_jh = new System.Windows.Forms.ComboBox();
+            this.lblNivelFiltro_380_jh = new System.Windows.Forms.Label();
+            this.cmbNivelFiltro_380_jh = new System.Windows.Forms.ComboBox();
+            this.lblDescripcionFiltro_380_jh = new System.Windows.Forms.Label();
+            this.txtDescripcionFiltro_380_jh = new System.Windows.Forms.TextBox();
+            this.btnBuscar_380_jh = new System.Windows.Forms.Button();
+            this.btnLimpiarFiltros_380_jh = new System.Windows.Forms.Button();
+            this.grpFiltros_380_jh.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -73,9 +91,9 @@ namespace UI
             this.listViewBitacora_380_jh.FullRowSelect = true;
             this.listViewBitacora_380_jh.GridLines = true;
             this.listViewBitacora_380_jh.HideSelection = false;
-            this.listViewBitacora_380_jh.Location = new System.Drawing.Point(24, 97);
+            this.listViewBitacora_380_jh.Location = new System.Drawing.Point(24, 210);
             this.listViewBitacora_380_jh.Name = "listViewBitacora";
-            this.listViewBitacora_380_jh.Size = new System.Drawing.Size(852, 354);
+            this.listViewBitacora_380_jh.Size = new System.Drawing.Size(852, 241);
             this.listViewBitacora_380_jh.TabIndex = 2;
             this.listViewBitacora_380_jh.UseCompatibleStateImageBehavior = false;
             this.listViewBitacora_380_jh.View = System.Windows.Forms.View.Details;
@@ -152,6 +170,184 @@ namespace UI
             this.btnActualizar_380_jh.Text = "Actualizar";
             this.btnActualizar_380_jh.UseVisualStyleBackColor = false;
             this.btnActualizar_380_jh.Click += new System.EventHandler(this.btnActualizar_Click_380_jh);
+            //
+            // grpFiltros
+            //
+            this.grpFiltros_380_jh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpFiltros_380_jh.Controls.Add(this.lblFechaDesde_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.dtpFechaDesde_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.lblFechaHasta_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.dtpFechaHasta_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.lblUsuarioFiltro_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.txtUsuarioFiltro_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.lblModuloFiltro_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.cmbModuloFiltro_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.lblAccionFiltro_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.cmbAccionFiltro_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.lblNivelFiltro_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.cmbNivelFiltro_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.lblDescripcionFiltro_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.txtDescripcionFiltro_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.btnBuscar_380_jh);
+            this.grpFiltros_380_jh.Controls.Add(this.btnLimpiarFiltros_380_jh);
+            this.grpFiltros_380_jh.Location = new System.Drawing.Point(24, 86);
+            this.grpFiltros_380_jh.Name = "grpFiltros";
+            this.grpFiltros_380_jh.Size = new System.Drawing.Size(852, 112);
+            this.grpFiltros_380_jh.TabIndex = 5;
+            this.grpFiltros_380_jh.TabStop = false;
+            this.grpFiltros_380_jh.Text = "Filtros";
+            //
+            // lblFechaDesde
+            //
+            this.lblFechaDesde_380_jh.AutoSize = true;
+            this.lblFechaDesde_380_jh.Location = new System.Drawing.Point(12, 25);
+            this.lblFechaDesde_380_jh.Name = "lblFechaDesde";
+            this.lblFechaDesde_380_jh.Size = new System.Drawing.Size(43, 15);
+            this.lblFechaDesde_380_jh.TabIndex = 0;
+            this.lblFechaDesde_380_jh.Text = "Desde";
+            //
+            // dtpFechaDesde
+            //
+            this.dtpFechaDesde_380_jh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaDesde_380_jh.Location = new System.Drawing.Point(58, 20);
+            this.dtpFechaDesde_380_jh.Name = "dtpFechaDesde";
+            this.dtpFechaDesde_380_jh.ShowCheckBox = true;
+            this.dtpFechaDesde_380_jh.Size = new System.Drawing.Size(105, 23);
+            this.dtpFechaDesde_380_jh.TabIndex = 1;
+            //
+            // lblFechaHasta
+            //
+            this.lblFechaHasta_380_jh.AutoSize = true;
+            this.lblFechaHasta_380_jh.Location = new System.Drawing.Point(173, 25);
+            this.lblFechaHasta_380_jh.Name = "lblFechaHasta";
+            this.lblFechaHasta_380_jh.Size = new System.Drawing.Size(38, 15);
+            this.lblFechaHasta_380_jh.TabIndex = 2;
+            this.lblFechaHasta_380_jh.Text = "Hasta";
+            //
+            // dtpFechaHasta
+            //
+            this.dtpFechaHasta_380_jh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaHasta_380_jh.Location = new System.Drawing.Point(215, 20);
+            this.dtpFechaHasta_380_jh.Name = "dtpFechaHasta";
+            this.dtpFechaHasta_380_jh.ShowCheckBox = true;
+            this.dtpFechaHasta_380_jh.Size = new System.Drawing.Size(105, 23);
+            this.dtpFechaHasta_380_jh.TabIndex = 3;
+            //
+            // lblUsuarioFiltro
+            //
+            this.lblUsuarioFiltro_380_jh.AutoSize = true;
+            this.lblUsuarioFiltro_380_jh.Location = new System.Drawing.Point(332, 25);
+            this.lblUsuarioFiltro_380_jh.Name = "lblUsuarioFiltro";
+            this.lblUsuarioFiltro_380_jh.Size = new System.Drawing.Size(47, 15);
+            this.lblUsuarioFiltro_380_jh.TabIndex = 4;
+            this.lblUsuarioFiltro_380_jh.Text = "Usuario";
+            //
+            // txtUsuarioFiltro
+            //
+            this.txtUsuarioFiltro_380_jh.Location = new System.Drawing.Point(385, 20);
+            this.txtUsuarioFiltro_380_jh.Name = "txtUsuarioFiltro";
+            this.txtUsuarioFiltro_380_jh.Size = new System.Drawing.Size(145, 23);
+            this.txtUsuarioFiltro_380_jh.TabIndex = 5;
+            //
+            // btnBuscar
+            //
+            this.btnBuscar_380_jh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
+            this.btnBuscar_380_jh.FlatAppearance.BorderSize = 0;
+            this.btnBuscar_380_jh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar_380_jh.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnBuscar_380_jh.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar_380_jh.Location = new System.Drawing.Point(540, 18);
+            this.btnBuscar_380_jh.Name = "btnBuscar";
+            this.btnBuscar_380_jh.Size = new System.Drawing.Size(94, 27);
+            this.btnBuscar_380_jh.TabIndex = 6;
+            this.btnBuscar_380_jh.Text = "Buscar";
+            this.btnBuscar_380_jh.UseVisualStyleBackColor = false;
+            this.btnBuscar_380_jh.Click += new System.EventHandler(this.btnBuscar_Click_380_jh);
+            //
+            // btnLimpiarFiltros
+            //
+            this.btnLimpiarFiltros_380_jh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
+            this.btnLimpiarFiltros_380_jh.FlatAppearance.BorderSize = 0;
+            this.btnLimpiarFiltros_380_jh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarFiltros_380_jh.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnLimpiarFiltros_380_jh.ForeColor = System.Drawing.Color.White;
+            this.btnLimpiarFiltros_380_jh.Location = new System.Drawing.Point(640, 18);
+            this.btnLimpiarFiltros_380_jh.Name = "btnLimpiarFiltros";
+            this.btnLimpiarFiltros_380_jh.Size = new System.Drawing.Size(105, 27);
+            this.btnLimpiarFiltros_380_jh.TabIndex = 7;
+            this.btnLimpiarFiltros_380_jh.Text = "Limpiar";
+            this.btnLimpiarFiltros_380_jh.UseVisualStyleBackColor = false;
+            this.btnLimpiarFiltros_380_jh.Click += new System.EventHandler(this.btnLimpiarFiltros_Click_380_jh);
+            //
+            // lblModuloFiltro
+            //
+            this.lblModuloFiltro_380_jh.AutoSize = true;
+            this.lblModuloFiltro_380_jh.Location = new System.Drawing.Point(12, 72);
+            this.lblModuloFiltro_380_jh.Name = "lblModuloFiltro";
+            this.lblModuloFiltro_380_jh.Size = new System.Drawing.Size(49, 15);
+            this.lblModuloFiltro_380_jh.TabIndex = 8;
+            this.lblModuloFiltro_380_jh.Text = "Modulo";
+            //
+            // cmbModuloFiltro
+            //
+            this.cmbModuloFiltro_380_jh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbModuloFiltro_380_jh.FormattingEnabled = true;
+            this.cmbModuloFiltro_380_jh.Location = new System.Drawing.Point(66, 68);
+            this.cmbModuloFiltro_380_jh.Name = "cmbModuloFiltro";
+            this.cmbModuloFiltro_380_jh.Size = new System.Drawing.Size(105, 23);
+            this.cmbModuloFiltro_380_jh.TabIndex = 9;
+            //
+            // lblAccionFiltro
+            //
+            this.lblAccionFiltro_380_jh.AutoSize = true;
+            this.lblAccionFiltro_380_jh.Location = new System.Drawing.Point(185, 72);
+            this.lblAccionFiltro_380_jh.Name = "lblAccionFiltro";
+            this.lblAccionFiltro_380_jh.Size = new System.Drawing.Size(43, 15);
+            this.lblAccionFiltro_380_jh.TabIndex = 10;
+            this.lblAccionFiltro_380_jh.Text = "Accion";
+            //
+            // cmbAccionFiltro
+            //
+            this.cmbAccionFiltro_380_jh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAccionFiltro_380_jh.FormattingEnabled = true;
+            this.cmbAccionFiltro_380_jh.Location = new System.Drawing.Point(233, 68);
+            this.cmbAccionFiltro_380_jh.Name = "cmbAccionFiltro";
+            this.cmbAccionFiltro_380_jh.Size = new System.Drawing.Size(115, 23);
+            this.cmbAccionFiltro_380_jh.TabIndex = 11;
+            //
+            // lblNivelFiltro
+            //
+            this.lblNivelFiltro_380_jh.AutoSize = true;
+            this.lblNivelFiltro_380_jh.Location = new System.Drawing.Point(360, 72);
+            this.lblNivelFiltro_380_jh.Name = "lblNivelFiltro";
+            this.lblNivelFiltro_380_jh.Size = new System.Drawing.Size(35, 15);
+            this.lblNivelFiltro_380_jh.TabIndex = 12;
+            this.lblNivelFiltro_380_jh.Text = "Nivel";
+            //
+            // cmbNivelFiltro
+            //
+            this.cmbNivelFiltro_380_jh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNivelFiltro_380_jh.FormattingEnabled = true;
+            this.cmbNivelFiltro_380_jh.Location = new System.Drawing.Point(400, 68);
+            this.cmbNivelFiltro_380_jh.Name = "cmbNivelFiltro";
+            this.cmbNivelFiltro_380_jh.Size = new System.Drawing.Size(105, 23);
+            this.cmbNivelFiltro_380_jh.TabIndex = 13;
+            //
+            // lblDescripcionFiltro
+            //
+            this.lblDescripcionFiltro_380_jh.AutoSize = true;
+            this.lblDescripcionFiltro_380_jh.Location = new System.Drawing.Point(518, 72);
+            this.lblDescripcionFiltro_380_jh.Name = "lblDescripcionFiltro";
+            this.lblDescripcionFiltro_380_jh.Size = new System.Drawing.Size(69, 15);
+            this.lblDescripcionFiltro_380_jh.TabIndex = 14;
+            this.lblDescripcionFiltro_380_jh.Text = "Descripcion";
+            //
+            // txtDescripcionFiltro
+            //
+            this.txtDescripcionFiltro_380_jh.Location = new System.Drawing.Point(590, 68);
+            this.txtDescripcionFiltro_380_jh.Name = "txtDescripcionFiltro";
+            this.txtDescripcionFiltro_380_jh.Size = new System.Drawing.Size(241, 23);
+            this.txtDescripcionFiltro_380_jh.TabIndex = 15;
             // 
             // BitacoraView
             // 
@@ -159,12 +355,15 @@ namespace UI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.btnActualizar_380_jh);
+            this.Controls.Add(this.grpFiltros_380_jh);
             this.Controls.Add(this.lblEstado_380_jh);
             this.Controls.Add(this.listViewBitacora_380_jh);
             this.Controls.Add(this.lblDescripcion_380_jh);
             this.Controls.Add(this.lblTitulo_380_jh);
             this.Name = "BitacoraView";
             this.Size = new System.Drawing.Size(900, 520);
+            this.grpFiltros_380_jh.ResumeLayout(false);
+            this.grpFiltros_380_jh.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,5 +385,22 @@ namespace UI
         private System.Windows.Forms.ColumnHeader columnEquipo_380_jh;
         private System.Windows.Forms.Label lblEstado_380_jh;
         private System.Windows.Forms.Button btnActualizar_380_jh;
+        private System.Windows.Forms.GroupBox grpFiltros_380_jh;
+        private System.Windows.Forms.Label lblFechaDesde_380_jh;
+        private System.Windows.Forms.DateTimePicker dtpFechaDesde_380_jh;
+        private System.Windows.Forms.Label lblFechaHasta_380_jh;
+        private System.Windows.Forms.DateTimePicker dtpFechaHasta_380_jh;
+        private System.Windows.Forms.Label lblUsuarioFiltro_380_jh;
+        private System.Windows.Forms.TextBox txtUsuarioFiltro_380_jh;
+        private System.Windows.Forms.Label lblModuloFiltro_380_jh;
+        private System.Windows.Forms.ComboBox cmbModuloFiltro_380_jh;
+        private System.Windows.Forms.Label lblAccionFiltro_380_jh;
+        private System.Windows.Forms.ComboBox cmbAccionFiltro_380_jh;
+        private System.Windows.Forms.Label lblNivelFiltro_380_jh;
+        private System.Windows.Forms.ComboBox cmbNivelFiltro_380_jh;
+        private System.Windows.Forms.Label lblDescripcionFiltro_380_jh;
+        private System.Windows.Forms.TextBox txtDescripcionFiltro_380_jh;
+        private System.Windows.Forms.Button btnBuscar_380_jh;
+        private System.Windows.Forms.Button btnLimpiarFiltros_380_jh;
     }
 }

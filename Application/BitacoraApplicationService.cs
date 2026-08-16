@@ -20,7 +20,12 @@ namespace Application
 
         public List<BitacoraRegistro_380_jh> Listar_380_jh()
         {
-            return _bitacoraRepository_380_jh.Listar_380_jh();
+            return Listar_380_jh(null);
+        }
+
+        public List<BitacoraRegistro_380_jh> Listar_380_jh(BitacoraFiltro_380_jh filtro)
+        {
+            return _bitacoraRepository_380_jh.Listar_380_jh(filtro);
         }
     }
 }

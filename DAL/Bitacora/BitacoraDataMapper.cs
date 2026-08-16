@@ -64,6 +64,13 @@ namespace DAL
 
         public List<BitacoraRegistro_380_jh> Listar_380_jh()
         {
+            return Listar_380_jh(null);
+        }
+
+        public List<BitacoraRegistro_380_jh> Listar_380_jh(BitacoraFiltro_380_jh filtro)
+        {
+            filtro = filtro ?? new BitacoraFiltro_380_jh();
+
             const string sql = @"
                 SELECT
                     id_bitacora,
@@ -76,12 +83,30 @@ namespace DAL
                     equipo,
                     fecha_evento
                 FROM dbo.Bitacora
+                WHERE (@fecha_desde IS NULL OR fecha_evento >= @fecha_desde)
+                  AND (@fecha_hasta IS NULL OR fecha_evento < DATEADD(day, 1, @fecha_hasta))
+                  AND (@usuario IS NULL OR identificador_usuario LIKE '%' + @usuario + '%')
+                  AND (@modulo IS NULL OR modulo IN (@modulo, REPLACE(@modulo, '_380_jh', '')))
+                  AND (@accion IS NULL OR accion IN (@accion, REPLACE(@accion, '_380_jh', '')))
+                  AND (@nivel IS NULL OR nivel IN (@nivel, REPLACE(@nivel, '_380_jh', '')))
+                  AND (@descripcion IS NULL OR descripcion LIKE '%' + @descripcion + '%')
                 ORDER BY fecha_evento DESC, id_bitacora DESC";
+
+            List<SqlParameter> parametros = new List<SqlParameter>
+            {
+                CrearParametro_380_jh("@fecha_desde", filtro.FechaDesde_380_jh),
+                CrearParametro_380_jh("@fecha_hasta", filtro.FechaHasta_380_jh),
+                CrearParametro_380_jh("@usuario", filtro.Usuario_380_jh),
+                CrearParametro_380_jh("@modulo", filtro.Modulo_380_jh),
+                CrearParametro_380_jh("@accion", filtro.Accion_380_jh),
+                CrearParametro_380_jh("@nivel", filtro.Nivel_380_jh),
+                CrearParametro_380_jh("@descripcion", filtro.Descripcion_380_jh)
+            };
 
             try
             {
                 _databaseContext_380_jh.Abrir_380_jh();
-                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql);
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
                 List<BitacoraRegistro_380_jh> registros = new List<BitacoraRegistro_380_jh>();
 
                 foreach (DataRow fila in tabla.Rows)
@@ -128,6 +153,16 @@ namespace DAL
             {
                 ParameterName = nombre,
                 Value = valor,
+                DbType = DbType.DateTime
+            };
+        }
+
+        private static SqlParameter CrearParametro_380_jh(string nombre, DateTime? valor)
+        {
+            return new SqlParameter
+            {
+                ParameterName = nombre,
+                Value = valor.HasValue ? (object)valor.Value : DBNull.Value,
                 DbType = DbType.DateTime
             };
         }

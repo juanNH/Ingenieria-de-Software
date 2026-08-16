@@ -31,7 +31,12 @@ namespace Repository
 
         public List<BitacoraRegistro_380_jh> Listar_380_jh()
         {
-            return _bitacoraDataMapper_380_jh.Listar_380_jh();
+            return Listar_380_jh(null);
+        }
+
+        public List<BitacoraRegistro_380_jh> Listar_380_jh(BitacoraFiltro_380_jh filtro)
+        {
+            return _bitacoraDataMapper_380_jh.Listar_380_jh(filtro);
         }
 
     }
