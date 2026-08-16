@@ -6,25 +6,25 @@ using Domain;
 
 namespace DAL
 {
-    public class UsuarioDataMapper
+    public class UsuarioDataMapper_380_jh
     {
-        private readonly DatabaseContext _databaseContext;
+        private readonly DatabaseContext_380_jh _databaseContext_380_jh;
 
-        public UsuarioDataMapper()
-            : this(new DatabaseContext())
+        public UsuarioDataMapper_380_jh()
+            : this(new DatabaseContext_380_jh())
         {
         }
 
-        public UsuarioDataMapper(DatabaseContext databaseContext)
+        public UsuarioDataMapper_380_jh(DatabaseContext_380_jh databaseContext)
         {
-            _databaseContext = databaseContext;
+            _databaseContext_380_jh = databaseContext;
         }
 
-        public CodigoRegistroUsuario Insertar(Usuario usuario)
+        public CodigoRegistroUsuario_380_jh Insertar_380_jh(Usuario_380_jh usuario)
         {
             if (usuario == null)
             {
-                return CodigoRegistroUsuario.DatosInvalidos;
+                return CodigoRegistroUsuario_380_jh.DatosInvalidos_380_jh;
             }
 
             SqlParameter idUsuarioNuevo = new SqlParameter("@id_usuario_nuevo", SqlDbType.Int)
@@ -34,55 +34,55 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@nombre_usuario", usuario.Username),
-                _databaseContext.CrearParametro("@email", usuario.Email),
-                _databaseContext.CrearParametro("@password_hash", usuario.Password),
-                _databaseContext.CrearParametro("@nombre", usuario.Nombre),
-                _databaseContext.CrearParametro("@apellido", usuario.Apellido),
+                _databaseContext_380_jh.CrearParametro_380_jh("@nombre_usuario", usuario.Username_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@email", usuario.Email_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@password_hash", usuario.Password_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@nombre", usuario.Nombre_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@apellido", usuario.Apellido_380_jh),
                 idUsuarioNuevo
             };
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.Leer("sp_Usuario_Registrar", parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.Leer_380_jh("sp_Usuario_Registrar", parametros);
 
                 if (tabla.Rows.Count == 0)
                 {
-                    return CodigoRegistroUsuario.ErrorBaseDatos;
+                    return CodigoRegistroUsuario_380_jh.ErrorBaseDatos_380_jh;
                 }
 
                 if (tabla.Columns.Contains("codigo_resultado"))
                 {
-                    return MapearResultadoRegistro(tabla.Rows[0], usuario);
+                    return MapearResultadoRegistro_380_jh(tabla.Rows[0], usuario);
                 }
 
-                usuario.Id = Convert.ToInt32(tabla.Rows[0]["id_usuario"]);
-                usuario.IntentosLoginFallidos = tabla.Columns.Contains("intentos_login_fallidos")
+                usuario.Id_380_jh = Convert.ToInt32(tabla.Rows[0]["id_usuario"]);
+                usuario.IntentosLoginFallidos_380_jh = tabla.Columns.Contains("intentos_login_fallidos")
                     ? Convert.ToInt32(tabla.Rows[0]["intentos_login_fallidos"])
                     : 0;
-                return CodigoRegistroUsuario.Creado;
+                return CodigoRegistroUsuario_380_jh.Creado_380_jh;
             }
             catch (SqlException ex)
             {
-                return MapearErrorSqlRegistro(ex);
+                return MapearErrorSqlRegistro_380_jh(ex);
             }
             catch
             {
-                return CodigoRegistroUsuario.ErrorBaseDatos;
+                return CodigoRegistroUsuario_380_jh.ErrorBaseDatos_380_jh;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public Usuario ObtenerPorCredenciales(string identificador, string passwordHash)
+        public Usuario_380_jh ObtenerPorCredenciales_380_jh(string identificador, string passwordHash)
         {
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@identificador", identificador),
-                _databaseContext.CrearParametro("@password_hash", passwordHash)
+                _databaseContext_380_jh.CrearParametro_380_jh("@identificador", identificador),
+                _databaseContext_380_jh.CrearParametro_380_jh("@password_hash", passwordHash)
             };
 
             const string sql = @"
@@ -104,27 +104,27 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
 
                 if (tabla.Rows.Count == 0)
                 {
                     return null;
                 }
 
-                return MapearUsuario(tabla.Rows[0]);
+                return MapearUsuario_380_jh(tabla.Rows[0]);
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public bool ExistePorNombreUsuario(string username)
+        public bool ExistePorNombreUsuario_380_jh(string username)
         {
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@nombre_usuario", username)
+                _databaseContext_380_jh.CrearParametro_380_jh("@nombre_usuario", username)
             };
 
             const string sql = @"
@@ -134,21 +134,21 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
                 return tabla.Rows.Count > 0;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public Usuario ObtenerActivoPorIdentificador(string identificador)
+        public Usuario_380_jh ObtenerActivoPorIdentificador_380_jh(string identificador)
         {
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@identificador", identificador)
+                _databaseContext_380_jh.CrearParametro_380_jh("@identificador", identificador)
             };
 
             const string sql = @"
@@ -169,27 +169,27 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
 
                 if (tabla.Rows.Count == 0)
                 {
                     return null;
                 }
 
-                return MapearUsuario(tabla.Rows[0]);
+                return MapearUsuario_380_jh(tabla.Rows[0]);
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public Usuario ObtenerPorId(int id)
+        public Usuario_380_jh ObtenerPorId_380_jh(int id)
         {
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_usuario", id)
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", id)
             };
 
             const string sql = @"
@@ -209,27 +209,27 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
 
                 if (tabla.Rows.Count == 0)
                 {
                     return null;
                 }
 
-                return MapearUsuario(tabla.Rows[0]);
+                return MapearUsuario_380_jh(tabla.Rows[0]);
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public bool EstaBloqueadoPorIdentificador(string identificador)
+        public bool EstaBloqueadoPorIdentificador_380_jh(string identificador)
         {
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@identificador", identificador)
+                _databaseContext_380_jh.CrearParametro_380_jh("@identificador", identificador)
             };
 
             const string sql = @"
@@ -240,21 +240,21 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
                 return tabla.Rows.Count > 0;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public int RegistrarLoginFallidoPorIdentificador(string identificador)
+        public int RegistrarLoginFallidoPorIdentificador_380_jh(string identificador)
         {
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@identificador", identificador)
+                _databaseContext_380_jh.CrearParametro_380_jh("@identificador", identificador)
             };
 
             const string sql = @"
@@ -270,8 +270,8 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
 
                 if (tabla.Rows.Count == 0)
                 {
@@ -282,15 +282,15 @@ namespace DAL
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public int ReiniciarIntentosLoginFallidos(int idUsuario)
+        public int ReiniciarIntentosLoginFallidos_380_jh(int idUsuario)
         {
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_usuario", idUsuario)
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario)
             };
 
             const string sql = @"
@@ -300,34 +300,34 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                return _databaseContext.EscribirTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                return _databaseContext_380_jh.EscribirTexto_380_jh(sql, parametros);
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public int Editar(Usuario usuario)
+        public int Editar_380_jh(Usuario_380_jh usuario)
         {
-            if (usuario == null || usuario.Id == 0)
+            if (usuario == null || usuario.Id_380_jh == 0)
             {
                 return -1;
             }
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_usuario", usuario.Id),
-                _databaseContext.CrearParametro("@nombre_usuario", usuario.Username),
-                _databaseContext.CrearParametro("@email", usuario.Email),
-                _databaseContext.CrearParametro("@nombre", usuario.Nombre),
-                _databaseContext.CrearParametro("@apellido", usuario.Apellido),
-                _databaseContext.CrearParametro("@estado_usuario", usuario.Estado),
-                _databaseContext.CrearParametro("@password_hash", string.IsNullOrWhiteSpace(usuario.Password) ? null : usuario.Password),
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", usuario.Id_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@nombre_usuario", usuario.Username_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@email", usuario.Email_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@nombre", usuario.Nombre_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@apellido", usuario.Apellido_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@estado_usuario", usuario.Estado_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@password_hash", string.IsNullOrWhiteSpace(usuario.Password_380_jh) ? null : usuario.Password_380_jh),
                 new SqlParameter("@id_idioma", SqlDbType.Int)
                 {
-                    Value = usuario.IdiomaPreferidoId.HasValue ? (object)usuario.IdiomaPreferidoId.Value : DBNull.Value
+                    Value = usuario.IdiomaPreferidoId_380_jh.HasValue ? (object)usuario.IdiomaPreferidoId_380_jh.Value : DBNull.Value
                 }
             };
 
@@ -348,25 +348,25 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                return _databaseContext.EscribirTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                return _databaseContext_380_jh.EscribirTexto_380_jh(sql, parametros);
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public int Borrar(Usuario usuario)
+        public int Borrar_380_jh(Usuario_380_jh usuario)
         {
-            if (usuario == null || usuario.Id == 0)
+            if (usuario == null || usuario.Id_380_jh == 0)
             {
                 return -1;
             }
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_usuario", usuario.Id)
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", usuario.Id_380_jh)
             };
 
             const string sql = @"
@@ -376,16 +376,16 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                return _databaseContext.EscribirTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                return _databaseContext_380_jh.EscribirTexto_380_jh(sql, parametros);
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public List<Usuario> Listar()
+        public List<Usuario_380_jh> Listar_380_jh()
         {
             const string sql = @"
                 SELECT
@@ -404,29 +404,29 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql);
-                List<Usuario> usuarios = new List<Usuario>();
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql);
+                List<Usuario_380_jh> usuarios = new List<Usuario_380_jh>();
 
                 foreach (DataRow registro in tabla.Rows)
                 {
-                    usuarios.Add(MapearUsuario(registro));
+                    usuarios.Add(MapearUsuario_380_jh(registro));
                 }
 
                 return usuarios;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public int ActualizarIdiomaPreferido(int usuarioId, int idiomaId)
+        public int ActualizarIdiomaPreferido_380_jh(int usuarioId, int idiomaId)
         {
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_usuario", usuarioId),
-                _databaseContext.CrearParametro("@id_idioma", idiomaId)
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", usuarioId),
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_idioma", idiomaId)
             };
 
             const string sql = @"
@@ -436,23 +436,23 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                return _databaseContext.EscribirTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                return _databaseContext_380_jh.EscribirTexto_380_jh(sql, parametros);
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public int RestaurarCampo(int idUsuario, string campo, object valor)
+        public int RestaurarCampo_380_jh(int idUsuario, string campo, object valor)
         {
             if (idUsuario == 0 || string.IsNullOrWhiteSpace(campo))
             {
                 return -1;
             }
 
-            string columna = ObtenerColumnaRestaurable(campo);
+            string columna = ObtenerColumnaRestaurable_380_jh(campo);
             if (string.IsNullOrWhiteSpace(columna))
             {
                 return -1;
@@ -461,22 +461,22 @@ namespace DAL
             string sql = "UPDATE dbo.Usuario SET " + columna + " = @valor WHERE id_usuario = @id_usuario";
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_usuario", idUsuario),
-                CrearParametroRestauracion("@valor", campo, valor)
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario),
+                CrearParametroRestauracion_380_jh("@valor", campo, valor)
             };
 
             try
             {
-                _databaseContext.Abrir();
-                return _databaseContext.EscribirTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                return _databaseContext_380_jh.EscribirTexto_380_jh(sql, parametros);
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        private static Usuario MapearUsuario(DataRow registro)
+        private static Usuario_380_jh MapearUsuario_380_jh(DataRow registro)
         {
             int? idiomaPreferidoId = null;
             if (registro.Table.Columns.Contains("id_idioma") && registro["id_idioma"] != DBNull.Value)
@@ -484,62 +484,62 @@ namespace DAL
                 idiomaPreferidoId = Convert.ToInt32(registro["id_idioma"]);
             }
 
-            return new Usuario
+            return new Usuario_380_jh
             {
-                Id = Convert.ToInt32(registro["id_usuario"]),
-                Username = registro["nombre_usuario"].ToString(),
-                Email = registro["email"].ToString(),
-                Nombre = registro.Table.Columns.Contains("nombre") && registro["nombre"] != DBNull.Value
+                Id_380_jh = Convert.ToInt32(registro["id_usuario"]),
+                Username_380_jh = registro["nombre_usuario"].ToString(),
+                Email_380_jh = registro["email"].ToString(),
+                Nombre_380_jh = registro.Table.Columns.Contains("nombre") && registro["nombre"] != DBNull.Value
                     ? registro["nombre"].ToString()
                     : null,
-                Apellido = registro.Table.Columns.Contains("apellido") && registro["apellido"] != DBNull.Value
+                Apellido_380_jh = registro.Table.Columns.Contains("apellido") && registro["apellido"] != DBNull.Value
                     ? registro["apellido"].ToString()
                     : null,
-                Idioma = idiomaPreferidoId.HasValue ? idiomaPreferidoId.Value.ToString() : null,
-                IdiomaPreferidoId = idiomaPreferidoId,
-                Estado = registro.Table.Columns.Contains("estado_usuario")
+                Idioma_380_jh = idiomaPreferidoId.HasValue ? idiomaPreferidoId.Value.ToString() : null,
+                IdiomaPreferidoId_380_jh = idiomaPreferidoId,
+                Estado_380_jh = registro.Table.Columns.Contains("estado_usuario")
                     ? registro["estado_usuario"].ToString()
                     : null,
-                IntentosLoginFallidos = registro.Table.Columns.Contains("intentos_login_fallidos")
+                IntentosLoginFallidos_380_jh = registro.Table.Columns.Contains("intentos_login_fallidos")
                     ? Convert.ToInt32(registro["intentos_login_fallidos"])
                     : 0,
-                BloqueoDigitoVerificador = registro.Table.Columns.Contains("bloqueo_digitoverificador") &&
+                BloqueoDigitoVerificador_380_jh = registro.Table.Columns.Contains("bloqueo_digitoverificador") &&
                                            registro["bloqueo_digitoverificador"] != DBNull.Value &&
                                            Convert.ToBoolean(registro["bloqueo_digitoverificador"]),
-                Dvh = registro.Table.Columns.Contains("dvh") && registro["dvh"] != DBNull.Value
+                Dvh_380_jh = registro.Table.Columns.Contains("dvh") && registro["dvh"] != DBNull.Value
                     ? registro["dvh"].ToString()
                     : null
             };
         }
 
-        private static CodigoRegistroUsuario MapearResultadoRegistro(DataRow registro, Usuario usuario)
+        private static CodigoRegistroUsuario_380_jh MapearResultadoRegistro_380_jh(DataRow registro, Usuario_380_jh usuario)
         {
             string codigoResultado = registro["codigo_resultado"].ToString();
 
             switch (codigoResultado)
             {
                 case "OK":
-                    usuario.Id = Convert.ToInt32(registro["id_usuario"]);
-                    usuario.IntentosLoginFallidos = registro.Table.Columns.Contains("intentos_login_fallidos")
+                    usuario.Id_380_jh = Convert.ToInt32(registro["id_usuario"]);
+                    usuario.IntentosLoginFallidos_380_jh = registro.Table.Columns.Contains("intentos_login_fallidos")
                         ? Convert.ToInt32(registro["intentos_login_fallidos"])
                         : 0;
-                    return CodigoRegistroUsuario.Creado;
+                    return CodigoRegistroUsuario_380_jh.Creado_380_jh;
 
                 case "USUARIO_EXISTENTE":
-                    return CodigoRegistroUsuario.UsuarioExistente;
+                    return CodigoRegistroUsuario_380_jh.UsuarioExistente_380_jh;
 
                 case "EMAIL_EXISTENTE":
-                    return CodigoRegistroUsuario.EmailExistente;
+                    return CodigoRegistroUsuario_380_jh.EmailExistente_380_jh;
 
                 case "IDIOMA_DEFAULT_INEXISTENTE":
-                    return CodigoRegistroUsuario.IdiomaDefaultInexistente;
+                    return CodigoRegistroUsuario_380_jh.IdiomaDefaultInexistente_380_jh;
 
                 default:
-                    return CodigoRegistroUsuario.ErrorBaseDatos;
+                    return CodigoRegistroUsuario_380_jh.ErrorBaseDatos_380_jh;
             }
         }
 
-        private static CodigoRegistroUsuario MapearErrorSqlRegistro(SqlException ex)
+        private static CodigoRegistroUsuario_380_jh MapearErrorSqlRegistro_380_jh(SqlException ex)
         {
             if (ex.Number == 2601 || ex.Number == 2627)
             {
@@ -547,16 +547,16 @@ namespace DAL
 
                 if (mensaje.IndexOf("email", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
-                    return CodigoRegistroUsuario.EmailExistente;
+                    return CodigoRegistroUsuario_380_jh.EmailExistente_380_jh;
                 }
 
-                return CodigoRegistroUsuario.UsuarioExistente;
+                return CodigoRegistroUsuario_380_jh.UsuarioExistente_380_jh;
             }
 
-            return CodigoRegistroUsuario.ErrorBaseDatos;
+            return CodigoRegistroUsuario_380_jh.ErrorBaseDatos_380_jh;
         }
 
-        private static string ObtenerColumnaRestaurable(string campo)
+        private static string ObtenerColumnaRestaurable_380_jh(string campo)
         {
             switch (campo)
             {
@@ -589,7 +589,7 @@ namespace DAL
             }
         }
 
-        private static SqlParameter CrearParametroRestauracion(string nombre, string campo, object valor)
+        private static SqlParameter CrearParametroRestauracion_380_jh(string nombre, string campo, object valor)
         {
             SqlParameter parametro = new SqlParameter
             {

@@ -3,24 +3,24 @@ using Services;
 
 namespace UI
 {
-    public static class TranslationApplier
+    public static class TranslationApplier_380_jh
     {
-        public static void Apply(Control root)
+        public static void Apply_380_jh(Control root)
         {
             if (root == null)
             {
                 return;
             }
 
-            ApplyControl(root);
+            ApplyControl_380_jh(root);
 
             foreach (Control child in root.Controls)
             {
-                Apply(child);
+                Apply_380_jh(child);
             }
         }
 
-        public static void ApplyMenu(ToolStrip toolStrip)
+        public static void ApplyMenu_380_jh(ToolStrip toolStrip)
         {
             if (toolStrip == null)
             {
@@ -29,16 +29,16 @@ namespace UI
 
             foreach (ToolStripItem item in toolStrip.Items)
             {
-                ApplyToolStripItem(item);
+                ApplyToolStripItem_380_jh(item);
             }
         }
 
-        private static void ApplyControl(Control control)
+        private static void ApplyControl_380_jh(Control control)
         {
             string key = control.Tag as string;
             if (!string.IsNullOrWhiteSpace(key))
             {
-                control.Text = LanguageManager.Instance.Translate(key);
+                control.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(key);
             }
 
             DataGridView dataGridView = control as DataGridView;
@@ -49,7 +49,7 @@ namespace UI
                     string columnKey = column.Tag as string;
                     if (!string.IsNullOrWhiteSpace(columnKey))
                     {
-                        column.HeaderText = LanguageManager.Instance.Translate(columnKey);
+                        column.HeaderText = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(columnKey);
                     }
                 }
             }
@@ -62,18 +62,18 @@ namespace UI
                     string columnKey = column.Tag as string;
                     if (!string.IsNullOrWhiteSpace(columnKey))
                     {
-                        column.Text = LanguageManager.Instance.Translate(columnKey);
+                        column.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(columnKey);
                     }
                 }
             }
         }
 
-        private static void ApplyToolStripItem(ToolStripItem item)
+        private static void ApplyToolStripItem_380_jh(ToolStripItem item)
         {
             string key = item.Tag as string;
             if (!string.IsNullOrWhiteSpace(key))
             {
-                item.Text = LanguageManager.Instance.Translate(key);
+                item.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(key);
             }
 
             ToolStripDropDownItem dropDownItem = item as ToolStripDropDownItem;
@@ -84,7 +84,7 @@ namespace UI
 
             foreach (ToolStripItem child in dropDownItem.DropDownItems)
             {
-                ApplyToolStripItem(child);
+                ApplyToolStripItem_380_jh(child);
             }
         }
     }

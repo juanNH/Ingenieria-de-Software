@@ -3,74 +3,74 @@ using System.Collections.Generic;
 
 namespace Domain
 {
-    public class Usuario : IEntity
+    public class Usuario_380_jh : IEntity_380_jh
     {
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Idioma { get; set; }
-        public int? IdiomaPreferidoId { get; set; }
-        public string Estado { get; set; }
-        public int IntentosLoginFallidos { get; set; }
-        public bool BloqueoDigitoVerificador { get; set; }
-        public string Dvh { get; set; }
-        public List<ComponentePermiso> ComponentesPermiso { get; set; } = new List<ComponentePermiso>();
+        public int Id_380_jh { get; set; }
+        public string Username_380_jh { get; set; }
+        public string Email_380_jh { get; set; }
+        public string Password_380_jh { get; set; }
+        public string Nombre_380_jh { get; set; }
+        public string Apellido_380_jh { get; set; }
+        public string Idioma_380_jh { get; set; }
+        public int? IdiomaPreferidoId_380_jh { get; set; }
+        public string Estado_380_jh { get; set; }
+        public int IntentosLoginFallidos_380_jh { get; set; }
+        public bool BloqueoDigitoVerificador_380_jh { get; set; }
+        public string Dvh_380_jh { get; set; }
+        public List<ComponentePermiso_380_jh> ComponentesPermiso_380_jh { get; set; } = new List<ComponentePermiso_380_jh>();
 
-        public AuditoriaMemento CrearMemento()
+        public AuditoriaMemento_380_jh CrearMemento_380_jh()
         {
-            return SaveToMemento();
+            return SaveToMemento_380_jh();
         }
 
-        public AuditoriaMemento SaveToMemento()
+        public AuditoriaMemento_380_jh SaveToMemento_380_jh()
         {
-            return new AuditoriaMemento("Usuario", Id, new Dictionary<string, object>
+            return new AuditoriaMemento_380_jh("Usuario", Id_380_jh, new Dictionary<string, object>
             {
-                { "Id", Id },
-                { "Username", Username },
-                { "Email", Email },
-                { "Nombre", Nombre },
-                { "Apellido", Apellido },
-                { "Idioma", Idioma },
-                { "IdiomaPreferidoId", IdiomaPreferidoId },
-                { "Estado", Estado },
-                { "IntentosLoginFallidos", IntentosLoginFallidos },
-                { "BloqueoDigitoVerificador", BloqueoDigitoVerificador }
+                { "Id", Id_380_jh },
+                { "Username", Username_380_jh },
+                { "Email", Email_380_jh },
+                { "Nombre", Nombre_380_jh },
+                { "Apellido", Apellido_380_jh },
+                { "Idioma", Idioma_380_jh },
+                { "IdiomaPreferidoId", IdiomaPreferidoId_380_jh },
+                { "Estado", Estado_380_jh },
+                { "IntentosLoginFallidos", IntentosLoginFallidos_380_jh },
+                { "BloqueoDigitoVerificador", BloqueoDigitoVerificador_380_jh }
             });
         }
 
-        public void RestoreFromMemento(AuditoriaMemento memento)
+        public void RestoreFromMemento_380_jh(AuditoriaMemento_380_jh memento)
         {
-            if (memento == null || memento.Entidad != "Usuario")
+            if (memento == null || memento.Entidad_380_jh != "Usuario")
             {
                 return;
             }
 
-            IReadOnlyDictionary<string, object> estado = memento.GetSavedMemento();
-            Id = ObtenerValor<int>(estado, "Id", Id);
-            Username = ObtenerValor<string>(estado, "Username", Username);
-            Email = ObtenerValor<string>(estado, "Email", Email);
-            Nombre = ObtenerValor<string>(estado, "Nombre", Nombre);
-            Apellido = ObtenerValor<string>(estado, "Apellido", Apellido);
-            Idioma = ObtenerValor<string>(estado, "Idioma", Idioma);
-            IdiomaPreferidoId = ObtenerValor<int?>(estado, "IdiomaPreferidoId", IdiomaPreferidoId);
-            Estado = ObtenerValor<string>(estado, "Estado", Estado);
-            IntentosLoginFallidos = ObtenerValor<int>(estado, "IntentosLoginFallidos", IntentosLoginFallidos);
-            BloqueoDigitoVerificador = ObtenerValor<bool>(estado, "BloqueoDigitoVerificador", BloqueoDigitoVerificador);
+            IReadOnlyDictionary<string, object> estado = memento.GetSavedMemento_380_jh();
+            Id_380_jh = ObtenerValor_380_jh<int>(estado, "Id", Id_380_jh);
+            Username_380_jh = ObtenerValor_380_jh<string>(estado, "Username", Username_380_jh);
+            Email_380_jh = ObtenerValor_380_jh<string>(estado, "Email", Email_380_jh);
+            Nombre_380_jh = ObtenerValor_380_jh<string>(estado, "Nombre", Nombre_380_jh);
+            Apellido_380_jh = ObtenerValor_380_jh<string>(estado, "Apellido", Apellido_380_jh);
+            Idioma_380_jh = ObtenerValor_380_jh<string>(estado, "Idioma", Idioma_380_jh);
+            IdiomaPreferidoId_380_jh = ObtenerValor_380_jh<int?>(estado, "IdiomaPreferidoId", IdiomaPreferidoId_380_jh);
+            Estado_380_jh = ObtenerValor_380_jh<string>(estado, "Estado", Estado_380_jh);
+            IntentosLoginFallidos_380_jh = ObtenerValor_380_jh<int>(estado, "IntentosLoginFallidos", IntentosLoginFallidos_380_jh);
+            BloqueoDigitoVerificador_380_jh = ObtenerValor_380_jh<bool>(estado, "BloqueoDigitoVerificador", BloqueoDigitoVerificador_380_jh);
         }
 
-        public bool TienePermiso(string codigoPermiso)
+        public bool TienePermiso_380_jh(string codigoPermiso)
         {
-            if (ComponentesPermiso == null || string.IsNullOrWhiteSpace(codigoPermiso))
+            if (ComponentesPermiso_380_jh == null || string.IsNullOrWhiteSpace(codigoPermiso))
             {
                 return false;
             }
 
-            foreach (ComponentePermiso componente in ComponentesPermiso)
+            foreach (ComponentePermiso_380_jh componente in ComponentesPermiso_380_jh)
             {
-                if (componente.TienePermiso(codigoPermiso))
+                if (componente.TienePermiso_380_jh(codigoPermiso))
                 {
                     return true;
                 }
@@ -81,22 +81,22 @@ namespace Domain
 
         public override string ToString()
         {
-            string nombreCompleto = $"{Nombre} {Apellido}".Trim();
+            string nombreCompleto = $"{Nombre_380_jh} {Apellido_380_jh}".Trim();
 
             if (!string.IsNullOrWhiteSpace(nombreCompleto))
             {
                 return nombreCompleto;
             }
 
-            if (!string.IsNullOrWhiteSpace(Username))
+            if (!string.IsNullOrWhiteSpace(Username_380_jh))
             {
-                return Username;
+                return Username_380_jh;
             }
 
-            return Email ?? string.Empty;
+            return Email_380_jh ?? string.Empty;
         }
 
-        private static T ObtenerValor<T>(IReadOnlyDictionary<string, object> estado, string campo, T valorActual)
+        private static T ObtenerValor_380_jh<T>(IReadOnlyDictionary<string, object> estado, string campo, T valorActual)
         {
             if (estado == null || !estado.ContainsKey(campo) || estado[campo] == null)
             {

@@ -3,64 +3,64 @@ using System.Collections.Generic;
 
 namespace Domain
 {
-    public class FamiliaPermiso : ComponentePermiso
+    public class FamiliaPermiso_380_jh : ComponentePermiso_380_jh
     {
-        private readonly List<ComponentePermiso> _hijos = new List<ComponentePermiso>();
+        private readonly List<ComponentePermiso_380_jh> _hijos_380_jh = new List<ComponentePermiso_380_jh>();
 
-        public override TipoComponentePermiso Tipo
+        public override TipoComponentePermiso_380_jh Tipo_380_jh
         {
-            get { return TipoComponentePermiso.Familia; }
+            get { return TipoComponentePermiso_380_jh.Familia_380_jh; }
         }
 
-        public override void Agregar(ComponentePermiso componente)
+        public override void Agregar_380_jh(ComponentePermiso_380_jh componente)
         {
             if (componente == null)
             {
                 return;
             }
 
-            foreach (ComponentePermiso hijo in _hijos)
+            foreach (ComponentePermiso_380_jh hijo in _hijos_380_jh)
             {
-                if (hijo.Id == componente.Id && componente.Id != 0)
+                if (hijo.Id_380_jh == componente.Id_380_jh && componente.Id_380_jh != 0)
                 {
                     return;
                 }
             }
 
-            if (componente.Id == 0)
+            if (componente.Id_380_jh == 0)
             {
-                _hijos.Add(componente);
+                _hijos_380_jh.Add(componente);
                 return;
             }
 
-            _hijos.Add(componente);
+            _hijos_380_jh.Add(componente);
         }
 
-        public override void Quitar(ComponentePermiso componente)
+        public override void Quitar_380_jh(ComponentePermiso_380_jh componente)
         {
             if (componente == null)
             {
                 return;
             }
 
-            _hijos.RemoveAll(h => h.Id == componente.Id);
+            _hijos_380_jh.RemoveAll(h => h.Id_380_jh == componente.Id_380_jh);
         }
 
-        public override IReadOnlyList<ComponentePermiso> ObtenerHijos()
+        public override IReadOnlyList<ComponentePermiso_380_jh> ObtenerHijos_380_jh()
         {
-            return _hijos.AsReadOnly();
+            return _hijos_380_jh.AsReadOnly();
         }
 
-        public override bool TienePermiso(string codigoPermiso)
+        public override bool TienePermiso_380_jh(string codigoPermiso)
         {
             if (string.IsNullOrWhiteSpace(codigoPermiso))
             {
                 return false;
             }
 
-            foreach (ComponentePermiso hijo in _hijos)
+            foreach (ComponentePermiso_380_jh hijo in _hijos_380_jh)
             {
-                if (hijo.TienePermiso(codigoPermiso))
+                if (hijo.TienePermiso_380_jh(codigoPermiso))
                 {
                     return true;
                 }
@@ -69,36 +69,36 @@ namespace Domain
             return false;
         }
 
-        public bool PuedeAgregar(ComponentePermiso candidato)
+        public bool PuedeAgregar_380_jh(ComponentePermiso_380_jh candidato)
         {
             if (candidato == null)
             {
                 return false;
             }
 
-            if (Id != 0 && candidato.Id == Id)
+            if (Id_380_jh != 0 && candidato.Id_380_jh == Id_380_jh)
             {
                 return false;
             }
 
-            return !Contiene(candidato, Id);
+            return !Contiene_380_jh(candidato, Id_380_jh);
         }
 
-        private static bool Contiene(ComponentePermiso componente, int idBuscado)
+        private static bool Contiene_380_jh(ComponentePermiso_380_jh componente, int idBuscado)
         {
             if (componente == null || idBuscado == 0)
             {
                 return false;
             }
 
-            if (componente.Id == idBuscado)
+            if (componente.Id_380_jh == idBuscado)
             {
                 return true;
             }
 
-            foreach (ComponentePermiso hijo in componente.ObtenerHijos())
+            foreach (ComponentePermiso_380_jh hijo in componente.ObtenerHijos_380_jh())
             {
-                if (Contiene(hijo, idBuscado))
+                if (Contiene_380_jh(hijo, idBuscado))
                 {
                     return true;
                 }

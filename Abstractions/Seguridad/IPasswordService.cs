@@ -1,7 +1,7 @@
 namespace Abstractions
 {
-    public interface IPasswordService
+    public interface IPasswordService_380_jh
     {
-        string Hash(string plainTextPassword);
+        string Hash_380_jh(string plainTextPassword);
     }
 }

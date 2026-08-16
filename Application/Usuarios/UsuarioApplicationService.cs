@@ -7,112 +7,112 @@ using Services;
 
 namespace Application
 {
-    public class UsuarioApplicationService
+    public class UsuarioApplicationService_380_jh
     {
-        private readonly UsuarioRepository _usuarioRepository;
-        private readonly PermisoRepository _permisoRepository;
-        private readonly BitacoraRepository _bitacoraRepository;
-        private readonly AuditoriaApplicationService _auditoriaService;
-        private readonly DigitoVerificadorApplicationService _digitoVerificadorService;
-        private readonly PlainTextPasswordService _passwordService;
-        private readonly JavaScriptSerializer _serializer;
-        private BitacoraFactory _bitacoraFactory;
+        private readonly UsuarioRepository_380_jh _usuarioRepository_380_jh;
+        private readonly PermisoRepository_380_jh _permisoRepository_380_jh;
+        private readonly BitacoraRepository_380_jh _bitacoraRepository_380_jh;
+        private readonly AuditoriaApplicationService_380_jh _auditoriaService_380_jh;
+        private readonly DigitoVerificadorApplicationService_380_jh _digitoVerificadorService_380_jh;
+        private readonly PlainTextPasswordService_380_jh _passwordService_380_jh;
+        private readonly JavaScriptSerializer _serializer_380_jh;
+        private BitacoraFactory_380_jh _bitacoraFactory_380_jh;
 
-        public UsuarioApplicationService()
-            : this(new UsuarioRepository(), new PermisoRepository(), new BitacoraRepository(), new AuditoriaApplicationService(), new DigitoVerificadorApplicationService(), new PlainTextPasswordService())
+        public UsuarioApplicationService_380_jh()
+            : this(new UsuarioRepository_380_jh(), new PermisoRepository_380_jh(), new BitacoraRepository_380_jh(), new AuditoriaApplicationService_380_jh(), new DigitoVerificadorApplicationService_380_jh(), new PlainTextPasswordService_380_jh())
         {
         }
 
-        public UsuarioApplicationService(
-            UsuarioRepository usuarioRepository,
-            PermisoRepository permisoRepository,
-            BitacoraRepository bitacoraRepository,
-            PlainTextPasswordService passwordService)
-            : this(usuarioRepository, permisoRepository, bitacoraRepository, new AuditoriaApplicationService(), new DigitoVerificadorApplicationService(), passwordService)
+        public UsuarioApplicationService_380_jh(
+            UsuarioRepository_380_jh usuarioRepository,
+            PermisoRepository_380_jh permisoRepository,
+            BitacoraRepository_380_jh bitacoraRepository,
+            PlainTextPasswordService_380_jh passwordService)
+            : this(usuarioRepository, permisoRepository, bitacoraRepository, new AuditoriaApplicationService_380_jh(), new DigitoVerificadorApplicationService_380_jh(), passwordService)
         {
         }
 
-        public UsuarioApplicationService(
-            UsuarioRepository usuarioRepository,
-            PermisoRepository permisoRepository,
-            BitacoraRepository bitacoraRepository,
-            AuditoriaApplicationService auditoriaService,
-            PlainTextPasswordService passwordService)
-            : this(usuarioRepository, permisoRepository, bitacoraRepository, auditoriaService, new DigitoVerificadorApplicationService(), passwordService)
+        public UsuarioApplicationService_380_jh(
+            UsuarioRepository_380_jh usuarioRepository,
+            PermisoRepository_380_jh permisoRepository,
+            BitacoraRepository_380_jh bitacoraRepository,
+            AuditoriaApplicationService_380_jh auditoriaService,
+            PlainTextPasswordService_380_jh passwordService)
+            : this(usuarioRepository, permisoRepository, bitacoraRepository, auditoriaService, new DigitoVerificadorApplicationService_380_jh(), passwordService)
         {
         }
 
-        public UsuarioApplicationService(
-            UsuarioRepository usuarioRepository,
-            PermisoRepository permisoRepository,
-            BitacoraRepository bitacoraRepository,
-            AuditoriaApplicationService auditoriaService,
-            DigitoVerificadorApplicationService digitoVerificadorService,
-            PlainTextPasswordService passwordService)
+        public UsuarioApplicationService_380_jh(
+            UsuarioRepository_380_jh usuarioRepository,
+            PermisoRepository_380_jh permisoRepository,
+            BitacoraRepository_380_jh bitacoraRepository,
+            AuditoriaApplicationService_380_jh auditoriaService,
+            DigitoVerificadorApplicationService_380_jh digitoVerificadorService,
+            PlainTextPasswordService_380_jh passwordService)
         {
-            _usuarioRepository = usuarioRepository;
-            _permisoRepository = permisoRepository;
-            _bitacoraRepository = bitacoraRepository;
-            _auditoriaService = auditoriaService;
-            _digitoVerificadorService = digitoVerificadorService;
-            _passwordService = passwordService;
-            _serializer = new JavaScriptSerializer();
+            _usuarioRepository_380_jh = usuarioRepository;
+            _permisoRepository_380_jh = permisoRepository;
+            _bitacoraRepository_380_jh = bitacoraRepository;
+            _auditoriaService_380_jh = auditoriaService;
+            _digitoVerificadorService_380_jh = digitoVerificadorService;
+            _passwordService_380_jh = passwordService;
+            _serializer_380_jh = new JavaScriptSerializer();
         }
 
         //Registrar el usuario
-        public CodigoRegistroUsuario CrearUsuario(Usuario nuevoUsuario)
+        public CodigoRegistroUsuario_380_jh CrearUsuario_380_jh(Usuario_380_jh nuevoUsuario)
         {
             if (nuevoUsuario == null ||
-                string.IsNullOrWhiteSpace(nuevoUsuario.Username) ||
-                string.IsNullOrWhiteSpace(nuevoUsuario.Email) ||
-                string.IsNullOrWhiteSpace(nuevoUsuario.Password))
+                string.IsNullOrWhiteSpace(nuevoUsuario.Username_380_jh) ||
+                string.IsNullOrWhiteSpace(nuevoUsuario.Email_380_jh) ||
+                string.IsNullOrWhiteSpace(nuevoUsuario.Password_380_jh))
             {
-                return CodigoRegistroUsuario.DatosInvalidos;
+                return CodigoRegistroUsuario_380_jh.DatosInvalidos_380_jh;
             }
 
-            if (!EsFormatoEmailValido(nuevoUsuario.Email))
+            if (!EsFormatoEmailValido_380_jh(nuevoUsuario.Email_380_jh))
             {
-                return CodigoRegistroUsuario.EmailInvalido;
+                return CodigoRegistroUsuario_380_jh.EmailInvalido_380_jh;
             }
 
             //Aplicacion del hash
-            Usuario usuarioProtegido = new Usuario
+            Usuario_380_jh usuarioProtegido = new Usuario_380_jh
             {
-                Id = nuevoUsuario.Id,
-                Username = nuevoUsuario.Username.Trim(),
-                Email = nuevoUsuario.Email.Trim(),
-                Password = _passwordService.Hash(nuevoUsuario.Password),
-                Nombre = string.IsNullOrWhiteSpace(nuevoUsuario.Nombre) ? null : nuevoUsuario.Nombre.Trim(),
-                Apellido = string.IsNullOrWhiteSpace(nuevoUsuario.Apellido) ? null : nuevoUsuario.Apellido.Trim(),
-                Idioma = nuevoUsuario.Idioma,
-                IdiomaPreferidoId = nuevoUsuario.IdiomaPreferidoId,
-                Estado = "ACTIVO"
+                Id_380_jh = nuevoUsuario.Id_380_jh,
+                Username_380_jh = nuevoUsuario.Username_380_jh.Trim(),
+                Email_380_jh = nuevoUsuario.Email_380_jh.Trim(),
+                Password_380_jh = _passwordService_380_jh.Hash_380_jh(nuevoUsuario.Password_380_jh),
+                Nombre_380_jh = string.IsNullOrWhiteSpace(nuevoUsuario.Nombre_380_jh) ? null : nuevoUsuario.Nombre_380_jh.Trim(),
+                Apellido_380_jh = string.IsNullOrWhiteSpace(nuevoUsuario.Apellido_380_jh) ? null : nuevoUsuario.Apellido_380_jh.Trim(),
+                Idioma_380_jh = nuevoUsuario.Idioma_380_jh,
+                IdiomaPreferidoId_380_jh = nuevoUsuario.IdiomaPreferidoId_380_jh,
+                Estado_380_jh = "ACTIVO"
             };
 
             //Registro de la falla al ingresar REGISTRO
-            CodigoRegistroUsuario resultado = _usuarioRepository.Crear(usuarioProtegido);
-            this._bitacoraFactory = new RegistroFallidoBitacoraFactory();
+            CodigoRegistroUsuario_380_jh resultado = _usuarioRepository_380_jh.Crear_380_jh(usuarioProtegido);
+            this._bitacoraFactory_380_jh = new RegistroFallidoBitacoraFactory_380_jh();
 
-            if (resultado == CodigoRegistroUsuario.Creado)
+            if (resultado == CodigoRegistroUsuario_380_jh.Creado_380_jh)
             {
-                _digitoVerificadorService.RecalcularUsuarios();
-                _auditoriaService.RegistrarAlta(usuarioProtegido.CrearMemento());
+                _digitoVerificadorService_380_jh.RecalcularUsuarios_380_jh();
+                _auditoriaService_380_jh.RegistrarAlta_380_jh(usuarioProtegido.CrearMemento_380_jh());
             }
 
-            if (resultado == CodigoRegistroUsuario.UsuarioExistente)
+            if (resultado == CodigoRegistroUsuario_380_jh.UsuarioExistente_380_jh)
             {
-                RegistrarRegistroFallido(usuarioProtegido.Username, "Intento de registro con usuario existente.");
+                RegistrarRegistroFallido_380_jh(usuarioProtegido.Username_380_jh, "Intento de registro con usuario existente.");
             }
-            else if (resultado == CodigoRegistroUsuario.EmailExistente)
+            else if (resultado == CodigoRegistroUsuario_380_jh.EmailExistente_380_jh)
             {
-                RegistrarRegistroFallido(usuarioProtegido.Email, "Intento de registro con email existente.");
+                RegistrarRegistroFallido_380_jh(usuarioProtegido.Email_380_jh, "Intento de registro con email existente.");
             }
 
             return resultado;
         }
 
         //LOGIN registro de falla
-        public Usuario Login(string username, string password)
+        public Usuario_380_jh Login_380_jh(string username, string password)
         {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
@@ -120,175 +120,175 @@ namespace Application
             }
 
             string identificador = username.Trim();
-            string passwordProtegida = _passwordService.Hash(password);
-            bool integridadUsuariosValida = _digitoVerificadorService.VerificarUsuarios();
-            Usuario usuario = _usuarioRepository.ObtenerPorCredenciales(identificador, passwordProtegida);
+            string passwordProtegida = _passwordService_380_jh.Hash_380_jh(password);
+            bool integridadUsuariosValida = _digitoVerificadorService_380_jh.VerificarUsuarios_380_jh();
+            Usuario_380_jh usuario = _usuarioRepository_380_jh.ObtenerPorCredenciales_380_jh(identificador, passwordProtegida);
 
             if (usuario == null)
             {
                 if (integridadUsuariosValida)
                 {
-                    Usuario usuarioExistente = _usuarioRepository.ObtenerActivoPorIdentificador(identificador);
+                    Usuario_380_jh usuarioExistente = _usuarioRepository_380_jh.ObtenerActivoPorIdentificador_380_jh(identificador);
 
                     if (usuarioExistente != null)
                     {
-                        int intentosFallidos = _usuarioRepository.RegistrarLoginFallidoPorIdentificador(identificador);
-                        _digitoVerificadorService.RecalcularUsuarioYDvv(usuarioExistente.Id);
-                        this._bitacoraFactory = new LoginFallidoBitacoraFactory();
+                        int intentosFallidos = _usuarioRepository_380_jh.RegistrarLoginFallidoPorIdentificador_380_jh(identificador);
+                        _digitoVerificadorService_380_jh.RecalcularUsuarioYDvv_380_jh(usuarioExistente.Id_380_jh);
+                        this._bitacoraFactory_380_jh = new LoginFallidoBitacoraFactory_380_jh();
                         string descripcion = intentosFallidos >= 3
                             ? "Intento de login con contrasena incorrecta. Usuario deshabilitado por alcanzar 3 intentos fallidos."
                             : "Intento de login con contrasena incorrecta.";
 
-                        RegistrarLoginFallido(usuarioExistente, descripcion);
+                        RegistrarLoginFallido_380_jh(usuarioExistente, descripcion);
                     }
                 }
 
                 return null;
             }
 
-            usuario.ComponentesPermiso = _permisoRepository.ListarAsignadosPorUsuario(usuario.Id);
+            usuario.ComponentesPermiso_380_jh = _permisoRepository_380_jh.ListarAsignadosPorUsuario_380_jh(usuario.Id_380_jh);
 
-            if (!integridadUsuariosValida && !EsAdministrador(usuario))
+            if (!integridadUsuariosValida && !EsAdministrador_380_jh(usuario))
             {
                 return null;
             }
 
-            _usuarioRepository.ReiniciarIntentosLoginFallidos(usuario.Id);
-            _digitoVerificadorService.RecalcularUsuarioYDvv(usuario.Id);
-            usuario.IntentosLoginFallidos = 0;
+            _usuarioRepository_380_jh.ReiniciarIntentosLoginFallidos_380_jh(usuario.Id_380_jh);
+            _digitoVerificadorService_380_jh.RecalcularUsuarioYDvv_380_jh(usuario.Id_380_jh);
+            usuario.IntentosLoginFallidos_380_jh = 0;
 
-            this._bitacoraFactory = new LoginExitosoBitacoraFactory();
-            RegistrarLoginExitoso(usuario, "Login exitoso.");
+            this._bitacoraFactory_380_jh = new LoginExitosoBitacoraFactory_380_jh();
+            RegistrarLoginExitoso_380_jh(usuario, "Login exitoso.");
             return usuario;
         }
 
-        public bool ExisteUsuario(string username)
+        public bool ExisteUsuario_380_jh(string username)
         {
-            return _usuarioRepository.Existe(username);
+            return _usuarioRepository_380_jh.Existe_380_jh(username);
         }
 
-        public bool EstaBloqueado(string username)
+        public bool EstaBloqueado_380_jh(string username)
         {
             if (string.IsNullOrWhiteSpace(username))
             {
                 return false;
             }
 
-            return _usuarioRepository.EstaBloqueadoPorIdentificador(username.Trim());
+            return _usuarioRepository_380_jh.EstaBloqueadoPorIdentificador_380_jh(username.Trim());
         }
 
-        public void Grabar(Usuario usuario)
+        public void Grabar_380_jh(Usuario_380_jh usuario)
         {
-            _usuarioRepository.Guardar(usuario);
-            _digitoVerificadorService.RecalcularUsuarios();
+            _usuarioRepository_380_jh.Guardar_380_jh(usuario);
+            _digitoVerificadorService_380_jh.RecalcularUsuarios_380_jh();
         }
 
-        public bool ModificarUsuario(Usuario usuario)
+        public bool ModificarUsuario_380_jh(Usuario_380_jh usuario)
         {
             if (usuario == null ||
-                usuario.Id == 0 ||
-                string.IsNullOrWhiteSpace(usuario.Username) ||
-                string.IsNullOrWhiteSpace(usuario.Email))
+                usuario.Id_380_jh == 0 ||
+                string.IsNullOrWhiteSpace(usuario.Username_380_jh) ||
+                string.IsNullOrWhiteSpace(usuario.Email_380_jh))
             {
                 return false;
             }
 
-            if (!EsFormatoEmailValido(usuario.Email))
+            if (!EsFormatoEmailValido_380_jh(usuario.Email_380_jh))
             {
                 return false;
             }
 
-            Usuario usuarioNormalizado = new Usuario
+            Usuario_380_jh usuarioNormalizado = new Usuario_380_jh
             {
-                Id = usuario.Id,
-                Username = usuario.Username.Trim(),
-                Email = usuario.Email.Trim(),
-                Password = string.IsNullOrWhiteSpace(usuario.Password) ? null : _passwordService.Hash(usuario.Password),
-                Nombre = string.IsNullOrWhiteSpace(usuario.Nombre) ? null : usuario.Nombre.Trim(),
-                Apellido = string.IsNullOrWhiteSpace(usuario.Apellido) ? null : usuario.Apellido.Trim(),
-                Idioma = usuario.Idioma,
-                IdiomaPreferidoId = usuario.IdiomaPreferidoId,
-                Estado = string.IsNullOrWhiteSpace(usuario.Estado) ? "ACTIVO" : usuario.Estado.Trim()
+                Id_380_jh = usuario.Id_380_jh,
+                Username_380_jh = usuario.Username_380_jh.Trim(),
+                Email_380_jh = usuario.Email_380_jh.Trim(),
+                Password_380_jh = string.IsNullOrWhiteSpace(usuario.Password_380_jh) ? null : _passwordService_380_jh.Hash_380_jh(usuario.Password_380_jh),
+                Nombre_380_jh = string.IsNullOrWhiteSpace(usuario.Nombre_380_jh) ? null : usuario.Nombre_380_jh.Trim(),
+                Apellido_380_jh = string.IsNullOrWhiteSpace(usuario.Apellido_380_jh) ? null : usuario.Apellido_380_jh.Trim(),
+                Idioma_380_jh = usuario.Idioma_380_jh,
+                IdiomaPreferidoId_380_jh = usuario.IdiomaPreferidoId_380_jh,
+                Estado_380_jh = string.IsNullOrWhiteSpace(usuario.Estado_380_jh) ? "ACTIVO" : usuario.Estado_380_jh.Trim()
             };
 
-            Usuario usuarioAnterior = _usuarioRepository.ObtenerPorId(usuarioNormalizado.Id);
+            Usuario_380_jh usuarioAnterior = _usuarioRepository_380_jh.ObtenerPorId_380_jh(usuarioNormalizado.Id_380_jh);
 
             if (usuarioAnterior == null)
             {
                 return false;
             }
 
-            AuditoriaMemento estadoAnterior = usuarioAnterior.CrearMemento();
-            bool modificado = _usuarioRepository.Modificar(usuarioNormalizado);
+            AuditoriaMemento_380_jh estadoAnterior = usuarioAnterior.CrearMemento_380_jh();
+            bool modificado = _usuarioRepository_380_jh.Modificar_380_jh(usuarioNormalizado);
 
             if (!modificado)
             {
                 return false;
             }
 
-            _digitoVerificadorService.RecalcularUsuarios();
-            Usuario usuarioPosterior = _usuarioRepository.ObtenerPorId(usuarioNormalizado.Id);
+            _digitoVerificadorService_380_jh.RecalcularUsuarios_380_jh();
+            Usuario_380_jh usuarioPosterior = _usuarioRepository_380_jh.ObtenerPorId_380_jh(usuarioNormalizado.Id_380_jh);
 
             if (usuarioPosterior != null)
             {
-                _auditoriaService.RegistrarModificacion(estadoAnterior, usuarioPosterior.CrearMemento());
+                _auditoriaService_380_jh.RegistrarModificacion_380_jh(estadoAnterior, usuarioPosterior.CrearMemento_380_jh());
             }
 
             return true;
         }
 
-        public void Borrar(Usuario usuario)
+        public void Borrar_380_jh(Usuario_380_jh usuario)
         {
-            _usuarioRepository.Borrar(usuario);
-            _digitoVerificadorService.RecalcularUsuarios();
+            _usuarioRepository_380_jh.Borrar_380_jh(usuario);
+            _digitoVerificadorService_380_jh.RecalcularUsuarios_380_jh();
         }
 
-        public bool InhabilitarUsuario(Usuario usuario)
+        public bool InhabilitarUsuario_380_jh(Usuario_380_jh usuario)
         {
-            if (usuario == null || usuario.Id == 0)
+            if (usuario == null || usuario.Id_380_jh == 0)
             {
                 return false;
             }
 
-            Usuario usuarioAnterior = _usuarioRepository.ObtenerPorId(usuario.Id);
-            bool inhabilitado = _usuarioRepository.Inhabilitar(usuario);
+            Usuario_380_jh usuarioAnterior = _usuarioRepository_380_jh.ObtenerPorId_380_jh(usuario.Id_380_jh);
+            bool inhabilitado = _usuarioRepository_380_jh.Inhabilitar_380_jh(usuario);
 
             if (inhabilitado)
             {
-                _digitoVerificadorService.RecalcularUsuarios();
-                Usuario usuarioPosterior = _usuarioRepository.ObtenerPorId(usuario.Id);
+                _digitoVerificadorService_380_jh.RecalcularUsuarios_380_jh();
+                Usuario_380_jh usuarioPosterior = _usuarioRepository_380_jh.ObtenerPorId_380_jh(usuario.Id_380_jh);
                 if (usuarioAnterior != null && usuarioPosterior != null)
                 {
-                    _auditoriaService.RegistrarCambio(usuarioAnterior.CrearMemento(), usuarioPosterior.CrearMemento(), "DISABLE");
+                    _auditoriaService_380_jh.RegistrarCambio_380_jh(usuarioAnterior.CrearMemento_380_jh(), usuarioPosterior.CrearMemento_380_jh(), "DISABLE");
                 }
             }
 
             return inhabilitado;
         }
 
-        public List<Usuario> Listar()
+        public List<Usuario_380_jh> Listar_380_jh()
         {
-            return _usuarioRepository.Listar();
+            return _usuarioRepository_380_jh.Listar_380_jh();
         }
 
-        public bool RecalcularDigitosVerificadoresUsuarios()
+        public bool RecalcularDigitosVerificadoresUsuarios_380_jh()
         {
-            return _digitoVerificadorService.RecalcularUsuarios();
+            return _digitoVerificadorService_380_jh.RecalcularUsuarios_380_jh();
         }
 
-        public bool HayBloqueoDigitoVerificador()
+        public bool HayBloqueoDigitoVerificador_380_jh()
         {
-            return !_digitoVerificadorService.VerificarUsuarios() ||
-                   _digitoVerificadorService.HayBloqueoUsuarios();
+            return !_digitoVerificadorService_380_jh.VerificarUsuarios_380_jh() ||
+                   _digitoVerificadorService_380_jh.HayBloqueoUsuarios_380_jh();
         }
 
-        public bool RestaurarCampoDesdeAuditoria(AuditoriaRegistro auditoria, string campo)
+        public bool RestaurarCampoDesdeAuditoria_380_jh(AuditoriaRegistro_380_jh auditoria, string campo)
         {
             if (auditoria == null ||
-                auditoria.Entidad != "Usuario" ||
-                auditoria.IdEntidad == 0 ||
+                auditoria.Entidad_380_jh != "Usuario" ||
+                auditoria.IdEntidad_380_jh == 0 ||
                 string.IsNullOrWhiteSpace(campo) ||
-                string.IsNullOrWhiteSpace(auditoria.EstadoAnteriorJson))
+                string.IsNullOrWhiteSpace(auditoria.EstadoAnteriorJson_380_jh))
             {
                 return false;
             }
@@ -296,7 +296,7 @@ namespace Application
             Dictionary<string, object> estadoAnterior;
             try
             {
-                estadoAnterior = _serializer.Deserialize<Dictionary<string, object>>(auditoria.EstadoAnteriorJson);
+                estadoAnterior = _serializer_380_jh.Deserialize<Dictionary<string, object>>(auditoria.EstadoAnteriorJson_380_jh);
             }
             catch
             {
@@ -309,80 +309,80 @@ namespace Application
             }
 
             object valorAnterior = estadoAnterior[campo];
-            if (!EsCampoRestaurable(campo) || !EsValorRestaurableValido(campo, valorAnterior))
+            if (!EsCampoRestaurable_380_jh(campo) || !EsValorRestaurableValido_380_jh(campo, valorAnterior))
             {
                 return false;
             }
 
-            Usuario usuarioAnterior = _usuarioRepository.ObtenerPorId(auditoria.IdEntidad);
+            Usuario_380_jh usuarioAnterior = _usuarioRepository_380_jh.ObtenerPorId_380_jh(auditoria.IdEntidad_380_jh);
             if (usuarioAnterior == null)
             {
                 return false;
             }
 
-            AuditoriaMemento estadoActual = usuarioAnterior.CrearMemento();
-            bool restaurado = _usuarioRepository.RestaurarCampo(auditoria.IdEntidad, campo, valorAnterior);
+            AuditoriaMemento_380_jh estadoActual = usuarioAnterior.CrearMemento_380_jh();
+            bool restaurado = _usuarioRepository_380_jh.RestaurarCampo_380_jh(auditoria.IdEntidad_380_jh, campo, valorAnterior);
             if (!restaurado)
             {
                 return false;
             }
 
-            _digitoVerificadorService.RecalcularUsuarios();
+            _digitoVerificadorService_380_jh.RecalcularUsuarios_380_jh();
 
-            Usuario usuarioRestaurado = _usuarioRepository.ObtenerPorId(auditoria.IdEntidad);
+            Usuario_380_jh usuarioRestaurado = _usuarioRepository_380_jh.ObtenerPorId_380_jh(auditoria.IdEntidad_380_jh);
             if (usuarioRestaurado != null)
             {
-                _auditoriaService.RegistrarCambio(estadoActual, usuarioRestaurado.CrearMemento(), "RESTORE_FIELD");
+                _auditoriaService_380_jh.RegistrarCambio_380_jh(estadoActual, usuarioRestaurado.CrearMemento_380_jh(), "RESTORE_FIELD");
             }
 
             return true;
         }
 
-        private void RegistrarLoginFallido(Usuario usuario, string descripcion)
+        private void RegistrarLoginFallido_380_jh(Usuario_380_jh usuario, string descripcion)
         {
             if (usuario == null)
             {
                 return;
             }
 
-            IBitacoraEvento evento = _bitacoraFactory.Crear(NormalizarIdentificador(usuario.Username), descripcion);
-            evento.IdUsuario = usuario.Id;
-            _bitacoraRepository.Registrar(evento);
+            IBitacoraEvento_380_jh evento = _bitacoraFactory_380_jh.Crear_380_jh(NormalizarIdentificador_380_jh(usuario.Username_380_jh), descripcion);
+            evento.IdUsuario_380_jh = usuario.Id_380_jh;
+            _bitacoraRepository_380_jh.Registrar_380_jh(evento);
         }
 
-        private void RegistrarLoginExitoso(Usuario usuario, string descripcion)
+        private void RegistrarLoginExitoso_380_jh(Usuario_380_jh usuario, string descripcion)
         {
             if (usuario == null)
             {
                 return;
             }
 
-            IBitacoraEvento evento = _bitacoraFactory.Crear(NormalizarIdentificador(usuario.Username), descripcion);
-            evento.IdUsuario = usuario.Id;
-            _bitacoraRepository.Registrar(evento);
+            IBitacoraEvento_380_jh evento = _bitacoraFactory_380_jh.Crear_380_jh(NormalizarIdentificador_380_jh(usuario.Username_380_jh), descripcion);
+            evento.IdUsuario_380_jh = usuario.Id_380_jh;
+            _bitacoraRepository_380_jh.Registrar_380_jh(evento);
         }
 
-        private void RegistrarRegistroFallido(string identificador, string descripcion)
+        private void RegistrarRegistroFallido_380_jh(string identificador, string descripcion)
         {
-            IBitacoraEvento evento = _bitacoraFactory.Crear(NormalizarIdentificador(identificador), descripcion);
-            _bitacoraRepository.Registrar(evento);
+            IBitacoraEvento_380_jh evento = _bitacoraFactory_380_jh.Crear_380_jh(NormalizarIdentificador_380_jh(identificador), descripcion);
+            _bitacoraRepository_380_jh.Registrar_380_jh(evento);
         }
 
-        private static string NormalizarIdentificador(string username)
+        private static string NormalizarIdentificador_380_jh(string username)
         {
             return string.IsNullOrWhiteSpace(username) ? null : username.Trim();
         }
 
-        private static bool EsAdministrador(Usuario usuario)
+        private static bool EsAdministrador_380_jh(Usuario_380_jh usuario)
         {
-            if (usuario == null || usuario.ComponentesPermiso == null)
+            if (usuario == null || usuario.ComponentesPermiso_380_jh == null)
             {
                 return false;
             }
 
-            foreach (ComponentePermiso componente in usuario.ComponentesPermiso)
+            foreach (ComponentePermiso_380_jh componente in usuario.ComponentesPermiso_380_jh)
             {
-                if (EsComponenteAdministrador(componente))
+                if (EsComponenteAdministrador_380_jh(componente))
                 {
                     return true;
                 }
@@ -391,21 +391,21 @@ namespace Application
             return false;
         }
 
-        private static bool EsComponenteAdministrador(ComponentePermiso componente)
+        private static bool EsComponenteAdministrador_380_jh(ComponentePermiso_380_jh componente)
         {
             if (componente == null)
             {
                 return false;
             }
 
-            if (componente.Codigo == PermisosSistema.Administrador)
+            if (componente.Codigo_380_jh == PermisosSistema_380_jh.Administrador_380_jh)
             {
                 return true;
             }
 
-            foreach (ComponentePermiso hijo in componente.ObtenerHijos())
+            foreach (ComponentePermiso_380_jh hijo in componente.ObtenerHijos_380_jh())
             {
-                if (EsComponenteAdministrador(hijo))
+                if (EsComponenteAdministrador_380_jh(hijo))
                 {
                     return true;
                 }
@@ -414,12 +414,12 @@ namespace Application
             return false;
         }
 
-        public bool EsEmailValido(string email)
+        public bool EsEmailValido_380_jh(string email)
         {
-            return EsFormatoEmailValido(email);
+            return EsFormatoEmailValido_380_jh(email);
         }
 
-        private static bool EsFormatoEmailValido(string email)
+        private static bool EsFormatoEmailValido_380_jh(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
             {
@@ -439,7 +439,7 @@ namespace Application
             }
         }
 
-        private static bool EsCampoRestaurable(string campo)
+        private static bool EsCampoRestaurable_380_jh(string campo)
         {
             switch (campo)
             {
@@ -458,7 +458,7 @@ namespace Application
             }
         }
 
-        private static bool EsValorRestaurableValido(string campo, object valor)
+        private static bool EsValorRestaurableValido_380_jh(string campo, object valor)
         {
             switch (campo)
             {
@@ -466,7 +466,7 @@ namespace Application
                     return valor != null && !string.IsNullOrWhiteSpace(valor.ToString());
 
                 case "Email":
-                    return valor != null && EsFormatoEmailValido(valor.ToString());
+                    return valor != null && EsFormatoEmailValido_380_jh(valor.ToString());
 
                 case "Estado":
                     string estado = valor == null ? null : valor.ToString();

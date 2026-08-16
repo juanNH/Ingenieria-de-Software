@@ -1,9 +1,9 @@
 namespace Domain
 {
-    public class AuditoriaCambio
+    public class AuditoriaCambio_380_jh
     {
-        public string Campo { get; set; }
-        public object ValorAnterior { get; set; }
-        public object ValorNuevo { get; set; }
+        public string Campo_380_jh { get; set; }
+        public object ValorAnterior_380_jh { get; set; }
+        public object ValorNuevo_380_jh { get; set; }
     }
 }

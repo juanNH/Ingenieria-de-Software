@@ -1,7 +1,7 @@
 namespace Abstractions
 {
-    public enum BitacoraModulo
+    public enum BitacoraModulo_380_jh
     {
-        Seguridad
+        Seguridad_380_jh
     }
 }

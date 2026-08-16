@@ -1,8 +1,8 @@
 namespace Domain
 {
-    public enum TipoComponentePermiso
+    public enum TipoComponentePermiso_380_jh
     {
-        Familia,
-        Permiso
+        Familia_380_jh,
+        Permiso_380_jh
     }
 }

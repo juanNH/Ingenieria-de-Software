@@ -5,110 +5,110 @@ using Repository;
 
 namespace Services
 {
-    public class LanguageManager : IObservableLanguage
+    public class LanguageManager_380_jh : IObservableLanguage_380_jh
     {
-        private static readonly Lazy<LanguageManager> LazyInstance =
-            new Lazy<LanguageManager>(() => new LanguageManager());
+        private static readonly Lazy<LanguageManager_380_jh> LazyInstance_380_jh =
+            new Lazy<LanguageManager_380_jh>(() => new LanguageManager_380_jh());
 
-        private readonly List<IObserverLanguage> _observers = new List<IObserverLanguage>();
-        private readonly LanguageRepository _languageRepository;
-        private readonly TranslationService _translationService;
-        private readonly UsuarioRepository _usuarioRepository;
+        private readonly List<IObserverLanguage_380_jh> _observers_380_jh = new List<IObserverLanguage_380_jh>();
+        private readonly LanguageRepository_380_jh _languageRepository_380_jh;
+        private readonly TranslationService_380_jh _translationService_380_jh;
+        private readonly UsuarioRepository_380_jh _usuarioRepository_380_jh;
 
-        public static LanguageManager Instance
+        public static LanguageManager_380_jh Instance_380_jh
         {
-            get { return LazyInstance.Value; }
+            get { return LazyInstance_380_jh.Value; }
         }
 
-        public Idioma CurrentLanguage { get; private set; }
+        public Idioma_380_jh CurrentLanguage_380_jh { get; private set; }
 
-        public LanguageManager()
-            : this(new LanguageRepository(), new TranslationService(), new UsuarioRepository())
+        public LanguageManager_380_jh()
+            : this(new LanguageRepository_380_jh(), new TranslationService_380_jh(), new UsuarioRepository_380_jh())
         {
         }
 
-        public LanguageManager(
-            LanguageRepository languageRepository,
-            TranslationService translationService,
-            UsuarioRepository usuarioRepository)
+        public LanguageManager_380_jh(
+            LanguageRepository_380_jh languageRepository,
+            TranslationService_380_jh translationService,
+            UsuarioRepository_380_jh usuarioRepository)
         {
-            _languageRepository = languageRepository;
-            _translationService = translationService;
-            _usuarioRepository = usuarioRepository;
+            _languageRepository_380_jh = languageRepository;
+            _translationService_380_jh = translationService;
+            _usuarioRepository_380_jh = usuarioRepository;
         }
 
-        public void Initialize(Usuario usuario)
+        public void Initialize_380_jh(Usuario_380_jh usuario)
         {
-            Idioma idioma = null;
+            Idioma_380_jh idioma = null;
 
-            if (usuario != null && usuario.IdiomaPreferidoId.HasValue)
+            if (usuario != null && usuario.IdiomaPreferidoId_380_jh.HasValue)
             {
-                idioma = _languageRepository.ObtenerPorId(usuario.IdiomaPreferidoId.Value);
+                idioma = _languageRepository_380_jh.ObtenerPorId_380_jh(usuario.IdiomaPreferidoId_380_jh.Value);
             }
 
-            if (idioma == null || !idioma.Activo)
+            if (idioma == null || !idioma.Activo_380_jh)
             {
-                idioma = _languageRepository.ObtenerDefault();
+                idioma = _languageRepository_380_jh.ObtenerDefault_380_jh();
             }
 
-            CurrentLanguage = idioma;
-            Notify();
+            CurrentLanguage_380_jh = idioma;
+            Notify_380_jh();
         }
 
-        public void ChangeLanguage(Idioma idioma, Usuario usuario)
+        public void ChangeLanguage_380_jh(Idioma_380_jh idioma, Usuario_380_jh usuario)
         {
-            if (idioma == null || idioma.Id == 0 || !idioma.Activo)
-            {
-                return;
-            }
-
-            CurrentLanguage = idioma;
-
-            if (usuario != null && usuario.Id > 0)
-            {
-                usuario.IdiomaPreferidoId = idioma.Id;
-                usuario.Idioma = idioma.Id.ToString();
-                _usuarioRepository.ActualizarIdiomaPreferido(usuario.Id, idioma.Id);
-            }
-
-            Notify();
-        }
-
-        public string Translate(string key)
-        {
-            return _translationService.Translate(key, CurrentLanguage);
-        }
-
-        public List<Idioma> ListarIdiomasActivos()
-        {
-            return _languageRepository.Listar(true);
-        }
-
-        public void Attach(IObserverLanguage observer)
-        {
-            if (observer == null || _observers.Contains(observer))
+            if (idioma == null || idioma.Id_380_jh == 0 || !idioma.Activo_380_jh)
             {
                 return;
             }
 
-            _observers.Add(observer);
+            CurrentLanguage_380_jh = idioma;
+
+            if (usuario != null && usuario.Id_380_jh > 0)
+            {
+                usuario.IdiomaPreferidoId_380_jh = idioma.Id_380_jh;
+                usuario.Idioma_380_jh = idioma.Id_380_jh.ToString();
+                _usuarioRepository_380_jh.ActualizarIdiomaPreferido_380_jh(usuario.Id_380_jh, idioma.Id_380_jh);
+            }
+
+            Notify_380_jh();
         }
 
-        public void Detach(IObserverLanguage observer)
+        public string Translate_380_jh(string key)
+        {
+            return _translationService_380_jh.Translate_380_jh(key, CurrentLanguage_380_jh);
+        }
+
+        public List<Idioma_380_jh> ListarIdiomasActivos_380_jh()
+        {
+            return _languageRepository_380_jh.Listar_380_jh(true);
+        }
+
+        public void Attach_380_jh(IObserverLanguage_380_jh observer)
+        {
+            if (observer == null || _observers_380_jh.Contains(observer))
+            {
+                return;
+            }
+
+            _observers_380_jh.Add(observer);
+        }
+
+        public void Detach_380_jh(IObserverLanguage_380_jh observer)
         {
             if (observer == null)
             {
                 return;
             }
 
-            _observers.Remove(observer);
+            _observers_380_jh.Remove(observer);
         }
 
-        public void Notify()
+        public void Notify_380_jh()
         {
-            foreach (IObserverLanguage observer in _observers.ToArray())
+            foreach (IObserverLanguage_380_jh observer in _observers_380_jh.ToArray())
             {
-                observer.OnLanguageChanged(CurrentLanguage);
+                observer.OnLanguageChanged_380_jh(CurrentLanguage_380_jh);
             }
         }
     }

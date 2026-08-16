@@ -4,23 +4,23 @@ using Repository;
 
 namespace Application
 {
-    public class BitacoraApplicationService
+    public class BitacoraApplicationService_380_jh
     {
-        private readonly BitacoraRepository _bitacoraRepository;
+        private readonly BitacoraRepository_380_jh _bitacoraRepository_380_jh;
 
-        public BitacoraApplicationService()
-            : this(new BitacoraRepository())
+        public BitacoraApplicationService_380_jh()
+            : this(new BitacoraRepository_380_jh())
         {
         }
 
-        public BitacoraApplicationService(BitacoraRepository bitacoraRepository)
+        public BitacoraApplicationService_380_jh(BitacoraRepository_380_jh bitacoraRepository)
         {
-            _bitacoraRepository = bitacoraRepository;
+            _bitacoraRepository_380_jh = bitacoraRepository;
         }
 
-        public List<BitacoraRegistro> Listar()
+        public List<BitacoraRegistro_380_jh> Listar_380_jh()
         {
-            return _bitacoraRepository.Listar();
+            return _bitacoraRepository_380_jh.Listar_380_jh();
         }
     }
 }

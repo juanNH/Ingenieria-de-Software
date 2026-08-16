@@ -1,9 +1,9 @@
 namespace Services
 {
-    public interface IObservableLanguage
+    public interface IObservableLanguage_380_jh
     {
-        void Attach(IObserverLanguage observer);
-        void Detach(IObserverLanguage observer);
-        void Notify();
+        void Attach_380_jh(IObserverLanguage_380_jh observer);
+        void Detach_380_jh(IObserverLanguage_380_jh observer);
+        void Notify_380_jh();
     }
 }

@@ -6,30 +6,30 @@ using Domain;
 
 namespace DAL
 {
-    public class PermisoDataMapper
+    public class PermisoDataMapper_380_jh
     {
-        private readonly DatabaseContext _databaseContext;
+        private readonly DatabaseContext_380_jh _databaseContext_380_jh;
 
-        public PermisoDataMapper()
-            : this(new DatabaseContext())
+        public PermisoDataMapper_380_jh()
+            : this(new DatabaseContext_380_jh())
         {
         }
 
-        public PermisoDataMapper(DatabaseContext databaseContext)
+        public PermisoDataMapper_380_jh(DatabaseContext_380_jh databaseContext)
         {
-            _databaseContext = databaseContext;
+            _databaseContext_380_jh = databaseContext;
         }
 
-        public List<ComponentePermiso> ListarAsignadosPorUsuario(int idUsuario)
+        public List<ComponentePermiso_380_jh> ListarAsignadosPorUsuario_380_jh(int idUsuario)
         {
             try
             {
-                _databaseContext.Abrir();
-                Dictionary<int, ComponentePermiso> componentes = CargarComponentes();
-                CargarRelaciones(componentes);
+                _databaseContext_380_jh.Abrir_380_jh();
+                Dictionary<int, ComponentePermiso_380_jh> componentes = CargarComponentes_380_jh();
+                CargarRelaciones_380_jh(componentes);
 
-                List<int> idsAsignados = CargarIdsAsignados(idUsuario);
-                List<ComponentePermiso> asignados = new List<ComponentePermiso>();
+                List<int> idsAsignados = CargarIdsAsignados_380_jh(idUsuario);
+                List<ComponentePermiso_380_jh> asignados = new List<ComponentePermiso_380_jh>();
                 foreach (int idAsignado in idsAsignados)
                 {
                     if (componentes.ContainsKey(idAsignado))
@@ -42,80 +42,80 @@ namespace DAL
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public List<ComponentePermiso> ListarArbolCompleto()
+        public List<ComponentePermiso_380_jh> ListarArbolCompleto_380_jh()
         {
             try
             {
-                _databaseContext.Abrir();
-                Dictionary<int, ComponentePermiso> componentes = CargarComponentes();
-                HashSet<int> idsHijos = CargarRelaciones(componentes);
-                List<ComponentePermiso> raices = new List<ComponentePermiso>();
+                _databaseContext_380_jh.Abrir_380_jh();
+                Dictionary<int, ComponentePermiso_380_jh> componentes = CargarComponentes_380_jh();
+                HashSet<int> idsHijos = CargarRelaciones_380_jh(componentes);
+                List<ComponentePermiso_380_jh> raices = new List<ComponentePermiso_380_jh>();
 
-                foreach (ComponentePermiso componente in componentes.Values)
+                foreach (ComponentePermiso_380_jh componente in componentes.Values)
                 {
-                    if (!idsHijos.Contains(componente.Id))
+                    if (!idsHijos.Contains(componente.Id_380_jh))
                     {
                         raices.Add(componente);
                     }
                 }
 
-                OrdenarPorNombre(raices);
+                OrdenarPorNombre_380_jh(raices);
                 return raices;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public List<ComponentePermiso> ListarComponentes()
+        public List<ComponentePermiso_380_jh> ListarComponentes_380_jh()
         {
             try
             {
-                _databaseContext.Abrir();
-                List<ComponentePermiso> componentes = new List<ComponentePermiso>(CargarComponentes().Values);
-                componentes.Sort(CompararPorTipoYNombre);
+                _databaseContext_380_jh.Abrir_380_jh();
+                List<ComponentePermiso_380_jh> componentes = new List<ComponentePermiso_380_jh>(CargarComponentes_380_jh().Values);
+                componentes.Sort(CompararPorTipoYNombre_380_jh);
                 return componentes;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public List<ComponentePermiso> ListarFamilias()
+        public List<ComponentePermiso_380_jh> ListarFamilias_380_jh()
         {
             try
             {
-                _databaseContext.Abrir();
-                List<ComponentePermiso> familias = new List<ComponentePermiso>(CargarComponentesPorTipo("FAMILIA").Values);
-                OrdenarPorNombre(familias);
+                _databaseContext_380_jh.Abrir_380_jh();
+                List<ComponentePermiso_380_jh> familias = new List<ComponentePermiso_380_jh>(CargarComponentesPorTipo_380_jh("FAMILIA").Values);
+                OrdenarPorNombre_380_jh(familias);
                 return familias;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public List<int> ListarIdsComponentesAsignadosPorUsuario(int idUsuario)
+        public List<int> ListarIdsComponentesAsignadosPorUsuario_380_jh(int idUsuario)
         {
             try
             {
-                _databaseContext.Abrir();
-                return CargarIdsAsignados(idUsuario);
+                _databaseContext_380_jh.Abrir_380_jh();
+                return CargarIdsAsignados_380_jh(idUsuario);
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public bool CrearFamilia(string codigo, string nombre, string descripcion)
+        public bool CrearFamilia_380_jh(string codigo, string nombre, string descripcion)
         {
             const string sql = @"
                 IF EXISTS (
@@ -167,44 +167,44 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@codigo", codigo),
-                _databaseContext.CrearParametro("@nombre", nombre),
-                _databaseContext.CrearParametro("@descripcion", descripcion)
+                _databaseContext_380_jh.CrearParametro_380_jh("@codigo", codigo),
+                _databaseContext_380_jh.CrearParametro_380_jh("@nombre", nombre),
+                _databaseContext_380_jh.CrearParametro_380_jh("@descripcion", descripcion)
             };
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
                 return tabla.Rows.Count > 0 && Convert.ToInt32(tabla.Rows[0]["resultado"]) == 1;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public string AgregarRelacion(int idPadre, int idHijo)
+        public string AgregarRelacion_380_jh(int idPadre, int idHijo)
         {
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_padre", idPadre),
-                _databaseContext.CrearParametro("@id_hijo", idHijo)
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_padre", idPadre),
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_hijo", idHijo)
             };
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.Leer("sp_ComponentePermiso_AgregarRelacion", parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.Leer_380_jh("sp_ComponentePermiso_AgregarRelacion", parametros);
                 return tabla.Rows.Count == 0 ? "ERROR" : tabla.Rows[0]["codigo_resultado"].ToString();
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public bool QuitarRelacion(int idPadre, int idHijo)
+        public bool QuitarRelacion_380_jh(int idPadre, int idHijo)
         {
             const string sql = @"
                 DELETE FROM dbo.ComponentePermisoRelacion
@@ -213,22 +213,22 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_padre", idPadre),
-                _databaseContext.CrearParametro("@id_hijo", idHijo)
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_padre", idPadre),
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_hijo", idHijo)
             };
 
             try
             {
-                _databaseContext.Abrir();
-                return _databaseContext.EscribirTexto(sql, parametros) >= 0;
+                _databaseContext_380_jh.Abrir_380_jh();
+                return _databaseContext_380_jh.EscribirTexto_380_jh(sql, parametros) >= 0;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public bool GuardarComponentesUsuario(int idUsuario, List<int> idsComponentes)
+        public bool GuardarComponentesUsuario_380_jh(int idUsuario, List<int> idsComponentes)
         {
             const string desactivarSql = @"
                 UPDATE dbo.UsuarioComponentePermiso
@@ -266,17 +266,17 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                _databaseContext.IniciarTx();
+                _databaseContext_380_jh.Abrir_380_jh();
+                _databaseContext_380_jh.IniciarTx_380_jh();
 
                 List<SqlParameter> parametrosUsuario = new List<SqlParameter>
                 {
-                    _databaseContext.CrearParametro("@id_usuario", idUsuario)
+                    _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario)
                 };
 
-                if (_databaseContext.EscribirTexto(desactivarSql, parametrosUsuario) < 0)
+                if (_databaseContext_380_jh.EscribirTexto_380_jh(desactivarSql, parametrosUsuario) < 0)
                 {
-                    _databaseContext.Deshacer();
+                    _databaseContext_380_jh.Deshacer_380_jh();
                     return false;
                 }
 
@@ -284,32 +284,32 @@ namespace DAL
                 {
                     List<SqlParameter> parametros = new List<SqlParameter>
                     {
-                        _databaseContext.CrearParametro("@id_usuario", idUsuario),
-                        _databaseContext.CrearParametro("@id_componente", idComponente)
+                        _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario),
+                        _databaseContext_380_jh.CrearParametro_380_jh("@id_componente", idComponente)
                     };
 
-                    if (_databaseContext.EscribirTexto(guardarSql, parametros) < 0)
+                    if (_databaseContext_380_jh.EscribirTexto_380_jh(guardarSql, parametros) < 0)
                     {
-                        _databaseContext.Deshacer();
+                        _databaseContext_380_jh.Deshacer_380_jh();
                         return false;
                     }
                 }
 
-                _databaseContext.Confirmar();
+                _databaseContext_380_jh.Confirmar_380_jh();
                 return true;
             }
             catch
             {
-                _databaseContext.Deshacer();
+                _databaseContext_380_jh.Deshacer_380_jh();
                 return false;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public bool PuedeAgregarRelacion(int idPadre, int idHijo)
+        public bool PuedeAgregarRelacion_380_jh(int idPadre, int idHijo)
         {
             if (idPadre == idHijo)
             {
@@ -336,22 +336,22 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
+                _databaseContext_380_jh.Abrir_380_jh();
                 List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>
                 {
-                    _databaseContext.CrearParametro("@id_padre", idPadre),
-                    _databaseContext.CrearParametro("@id_hijo", idHijo)
+                    _databaseContext_380_jh.CrearParametro_380_jh("@id_padre", idPadre),
+                    _databaseContext_380_jh.CrearParametro_380_jh("@id_hijo", idHijo)
                 };
 
-                return _databaseContext.LeerTexto(sql, parametros).Rows.Count == 0;
+                return _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros).Rows.Count == 0;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        private Dictionary<int, ComponentePermiso> CargarComponentes()
+        private Dictionary<int, ComponentePermiso_380_jh> CargarComponentes_380_jh()
         {
             const string sql = @"
                 SELECT
@@ -365,19 +365,19 @@ namespace DAL
                 WHERE UPPER(estado_componente) = 'ACTIVO'
                 ORDER BY nombre";
 
-            DataTable tabla = _databaseContext.LeerTexto(sql);
-            Dictionary<int, ComponentePermiso> componentes = new Dictionary<int, ComponentePermiso>();
+            DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql);
+            Dictionary<int, ComponentePermiso_380_jh> componentes = new Dictionary<int, ComponentePermiso_380_jh>();
 
             foreach (DataRow fila in tabla.Rows)
             {
-                ComponentePermiso componente = CrearComponente(fila);
-                componentes[componente.Id] = componente;
+                ComponentePermiso_380_jh componente = CrearComponente_380_jh(fila);
+                componentes[componente.Id_380_jh] = componente;
             }
 
             return componentes;
         }
 
-        private Dictionary<int, ComponentePermiso> CargarComponentesPorTipo(string tipo)
+        private Dictionary<int, ComponentePermiso_380_jh> CargarComponentesPorTipo_380_jh(string tipo)
         {
             const string sql = @"
                 SELECT
@@ -394,22 +394,22 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@tipo", tipo)
+                _databaseContext_380_jh.CrearParametro_380_jh("@tipo", tipo)
             };
 
-            DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
-            Dictionary<int, ComponentePermiso> componentes = new Dictionary<int, ComponentePermiso>();
+            DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
+            Dictionary<int, ComponentePermiso_380_jh> componentes = new Dictionary<int, ComponentePermiso_380_jh>();
 
             foreach (DataRow fila in tabla.Rows)
             {
-                ComponentePermiso componente = CrearComponente(fila);
-                componentes[componente.Id] = componente;
+                ComponentePermiso_380_jh componente = CrearComponente_380_jh(fila);
+                componentes[componente.Id_380_jh] = componente;
             }
 
             return componentes;
         }
 
-        private HashSet<int> CargarRelaciones(Dictionary<int, ComponentePermiso> componentes)
+        private HashSet<int> CargarRelaciones_380_jh(Dictionary<int, ComponentePermiso_380_jh> componentes)
         {
             const string sql = @"
                 SELECT r.id_padre, r.id_hijo
@@ -421,7 +421,7 @@ namespace DAL
                 WHERE UPPER(padre.estado_componente) = 'ACTIVO'
                   AND UPPER(hijo.estado_componente) = 'ACTIVO'";
 
-            DataTable tabla = _databaseContext.LeerTexto(sql);
+            DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql);
             HashSet<int> idsHijos = new HashSet<int>();
 
             foreach (DataRow fila in tabla.Rows)
@@ -434,20 +434,20 @@ namespace DAL
                     continue;
                 }
 
-                FamiliaPermiso padre = componentes[idPadre] as FamiliaPermiso;
+                FamiliaPermiso_380_jh padre = componentes[idPadre] as FamiliaPermiso_380_jh;
                 if (padre == null)
                 {
                     continue;
                 }
 
-                padre.Agregar(componentes[idHijo]);
+                padre.Agregar_380_jh(componentes[idHijo]);
                 idsHijos.Add(idHijo);
             }
 
             return idsHijos;
         }
 
-        private List<int> CargarIdsAsignados(int idUsuario)
+        private List<int> CargarIdsAsignados_380_jh(int idUsuario)
         {
             const string sql = @"
                 SELECT uc.id_componente
@@ -461,10 +461,10 @@ namespace DAL
 
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_usuario", idUsuario)
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario)
             };
 
-            DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
+            DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
             List<int> ids = new List<int>();
 
             foreach (DataRow fila in tabla.Rows)
@@ -475,39 +475,39 @@ namespace DAL
             return ids;
         }
 
-        private static ComponentePermiso CrearComponente(DataRow fila)
+        private static ComponentePermiso_380_jh CrearComponente_380_jh(DataRow fila)
         {
             string tipo = fila["tipo"].ToString();
-            ComponentePermiso componente = string.Equals(tipo, "FAMILIA", StringComparison.OrdinalIgnoreCase)
-                ? (ComponentePermiso)new FamiliaPermiso()
-                : new Permiso();
+            ComponentePermiso_380_jh componente = string.Equals(tipo, "FAMILIA", StringComparison.OrdinalIgnoreCase)
+                ? (ComponentePermiso_380_jh)new FamiliaPermiso_380_jh()
+                : new Permiso_380_jh();
 
-            componente.Id = Convert.ToInt32(fila["id_componente"]);
-            componente.Codigo = fila["codigo"].ToString();
-            componente.Nombre = fila["nombre"].ToString();
-            componente.Descripcion = fila["descripcion"] == DBNull.Value ? null : fila["descripcion"].ToString();
-            componente.Estado = fila["estado_componente"].ToString();
+            componente.Id_380_jh = Convert.ToInt32(fila["id_componente"]);
+            componente.Codigo_380_jh = fila["codigo"].ToString();
+            componente.Nombre_380_jh = fila["nombre"].ToString();
+            componente.Descripcion_380_jh = fila["descripcion"] == DBNull.Value ? null : fila["descripcion"].ToString();
+            componente.Estado_380_jh = fila["estado_componente"].ToString();
 
             return componente;
         }
 
-        private static void OrdenarPorNombre(List<ComponentePermiso> componentes)
+        private static void OrdenarPorNombre_380_jh(List<ComponentePermiso_380_jh> componentes)
         {
-            componentes.Sort(delegate (ComponentePermiso primero, ComponentePermiso segundo)
+            componentes.Sort(delegate (ComponentePermiso_380_jh primero, ComponentePermiso_380_jh segundo)
             {
-                return string.Compare(primero.Nombre, segundo.Nombre, StringComparison.OrdinalIgnoreCase);
+                return string.Compare(primero.Nombre_380_jh, segundo.Nombre_380_jh, StringComparison.OrdinalIgnoreCase);
             });
         }
 
-        private static int CompararPorTipoYNombre(ComponentePermiso primero, ComponentePermiso segundo)
+        private static int CompararPorTipoYNombre_380_jh(ComponentePermiso_380_jh primero, ComponentePermiso_380_jh segundo)
         {
-            int comparacionTipo = primero.Tipo.CompareTo(segundo.Tipo);
+            int comparacionTipo = primero.Tipo_380_jh.CompareTo(segundo.Tipo_380_jh);
             if (comparacionTipo != 0)
             {
                 return comparacionTipo;
             }
 
-            return string.Compare(primero.Nombre, segundo.Nombre, StringComparison.OrdinalIgnoreCase);
+            return string.Compare(primero.Nombre_380_jh, segundo.Nombre_380_jh, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

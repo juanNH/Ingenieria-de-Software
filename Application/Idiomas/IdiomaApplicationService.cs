@@ -4,129 +4,129 @@ using Repository;
 
 namespace Application
 {
-    public class IdiomaApplicationService
+    public class IdiomaApplicationService_380_jh
     {
-        private readonly LanguageRepository _languageRepository;
-        private readonly TranslationRepository _translationRepository;
-        private readonly AuditoriaApplicationService _auditoriaService;
+        private readonly LanguageRepository_380_jh _languageRepository_380_jh;
+        private readonly TranslationRepository_380_jh _translationRepository_380_jh;
+        private readonly AuditoriaApplicationService_380_jh _auditoriaService_380_jh;
 
-        public IdiomaApplicationService()
-            : this(new LanguageRepository(), new TranslationRepository(), new AuditoriaApplicationService())
+        public IdiomaApplicationService_380_jh()
+            : this(new LanguageRepository_380_jh(), new TranslationRepository_380_jh(), new AuditoriaApplicationService_380_jh())
         {
         }
 
-        public IdiomaApplicationService(
-            LanguageRepository languageRepository,
-            TranslationRepository translationRepository)
-            : this(languageRepository, translationRepository, new AuditoriaApplicationService())
+        public IdiomaApplicationService_380_jh(
+            LanguageRepository_380_jh languageRepository,
+            TranslationRepository_380_jh translationRepository)
+            : this(languageRepository, translationRepository, new AuditoriaApplicationService_380_jh())
         {
         }
 
-        public IdiomaApplicationService(
-            LanguageRepository languageRepository,
-            TranslationRepository translationRepository,
-            AuditoriaApplicationService auditoriaService)
+        public IdiomaApplicationService_380_jh(
+            LanguageRepository_380_jh languageRepository,
+            TranslationRepository_380_jh translationRepository,
+            AuditoriaApplicationService_380_jh auditoriaService)
         {
-            _languageRepository = languageRepository;
-            _translationRepository = translationRepository;
-            _auditoriaService = auditoriaService;
+            _languageRepository_380_jh = languageRepository;
+            _translationRepository_380_jh = translationRepository;
+            _auditoriaService_380_jh = auditoriaService;
         }
 
-        public List<Idioma> ListarIdiomas(bool soloActivos)
+        public List<Idioma_380_jh> ListarIdiomas_380_jh(bool soloActivos)
         {
-            return _languageRepository.Listar(soloActivos);
+            return _languageRepository_380_jh.Listar_380_jh(soloActivos);
         }
 
-        public bool GuardarIdioma(Idioma idioma, int? idUsuarioResponsable, string motivo)
+        public bool GuardarIdioma_380_jh(Idioma_380_jh idioma, int? idUsuarioResponsable, string motivo)
         {
             if (idioma == null ||
-                string.IsNullOrWhiteSpace(idioma.Codigo) ||
-                string.IsNullOrWhiteSpace(idioma.Nombre))
+                string.IsNullOrWhiteSpace(idioma.Codigo_380_jh) ||
+                string.IsNullOrWhiteSpace(idioma.Nombre_380_jh))
             {
                 return false;
             }
 
-            idioma.Codigo = idioma.Codigo.Trim();
-            idioma.Nombre = idioma.Nombre.Trim();
+            idioma.Codigo_380_jh = idioma.Codigo_380_jh.Trim();
+            idioma.Nombre_380_jh = idioma.Nombre_380_jh.Trim();
 
-            if (idioma.Id == 0)
+            if (idioma.Id_380_jh == 0)
             {
-                bool creado = _languageRepository.Crear(idioma, idUsuarioResponsable) > 0;
+                bool creado = _languageRepository_380_jh.Crear_380_jh(idioma, idUsuarioResponsable) > 0;
                 if (creado)
                 {
-                    _auditoriaService.RegistrarAlta(idioma.SaveToMemento());
+                    _auditoriaService_380_jh.RegistrarAlta_380_jh(idioma.SaveToMemento_380_jh());
                 }
 
                 return creado;
             }
 
-            Idioma idiomaAnterior = _languageRepository.ObtenerPorId(idioma.Id);
-            bool actualizado = _languageRepository.Actualizar(idioma, idUsuarioResponsable, motivo);
+            Idioma_380_jh idiomaAnterior = _languageRepository_380_jh.ObtenerPorId_380_jh(idioma.Id_380_jh);
+            bool actualizado = _languageRepository_380_jh.Actualizar_380_jh(idioma, idUsuarioResponsable, motivo);
 
             if (actualizado)
             {
-                Idioma idiomaNuevo = _languageRepository.ObtenerPorId(idioma.Id);
+                Idioma_380_jh idiomaNuevo = _languageRepository_380_jh.ObtenerPorId_380_jh(idioma.Id_380_jh);
                 if (idiomaAnterior != null && idiomaNuevo != null)
                 {
-                    _auditoriaService.RegistrarModificacion(idiomaAnterior.SaveToMemento(), idiomaNuevo.SaveToMemento());
+                    _auditoriaService_380_jh.RegistrarModificacion_380_jh(idiomaAnterior.SaveToMemento_380_jh(), idiomaNuevo.SaveToMemento_380_jh());
                 }
             }
 
             return actualizado;
         }
 
-        public List<Etiqueta> ListarEtiquetas()
+        public List<Etiqueta_380_jh> ListarEtiquetas_380_jh()
         {
-            return _translationRepository.ListarEtiquetas();
+            return _translationRepository_380_jh.ListarEtiquetas_380_jh();
         }
 
-        public bool CrearEtiqueta(Etiqueta etiqueta)
+        public bool CrearEtiqueta_380_jh(Etiqueta_380_jh etiqueta)
         {
-            if (etiqueta == null || string.IsNullOrWhiteSpace(etiqueta.Key))
+            if (etiqueta == null || string.IsNullOrWhiteSpace(etiqueta.Key_380_jh))
             {
                 return false;
             }
 
-            etiqueta.Key = etiqueta.Key.Trim();
-            etiqueta.Descripcion = string.IsNullOrWhiteSpace(etiqueta.Descripcion)
+            etiqueta.Key_380_jh = etiqueta.Key_380_jh.Trim();
+            etiqueta.Descripcion_380_jh = string.IsNullOrWhiteSpace(etiqueta.Descripcion_380_jh)
                 ? null
-                : etiqueta.Descripcion.Trim();
+                : etiqueta.Descripcion_380_jh.Trim();
 
-            bool creada = _translationRepository.CrearEtiqueta(etiqueta) > 0;
+            bool creada = _translationRepository_380_jh.CrearEtiqueta_380_jh(etiqueta) > 0;
             if (creada)
             {
-                _auditoriaService.RegistrarAlta(etiqueta.SaveToMemento());
+                _auditoriaService_380_jh.RegistrarAlta_380_jh(etiqueta.SaveToMemento_380_jh());
             }
 
             return creada;
         }
 
-        public bool GuardarTraduccion(Traduccion traduccion)
+        public bool GuardarTraduccion_380_jh(Traduccion_380_jh traduccion)
         {
             if (traduccion == null ||
-                traduccion.EtiquetaId == 0 ||
-                traduccion.IdiomaId == 0 ||
-                string.IsNullOrWhiteSpace(traduccion.Texto))
+                traduccion.EtiquetaId_380_jh == 0 ||
+                traduccion.IdiomaId_380_jh == 0 ||
+                string.IsNullOrWhiteSpace(traduccion.Texto_380_jh))
             {
                 return false;
             }
 
-            traduccion.Texto = traduccion.Texto.Trim();
-            Traduccion traduccionAnterior = _translationRepository.ObtenerTraduccion(traduccion.EtiquetaId, traduccion.IdiomaId);
-            bool guardada = _translationRepository.GuardarTraduccion(traduccion);
+            traduccion.Texto_380_jh = traduccion.Texto_380_jh.Trim();
+            Traduccion_380_jh traduccionAnterior = _translationRepository_380_jh.ObtenerTraduccion_380_jh(traduccion.EtiquetaId_380_jh, traduccion.IdiomaId_380_jh);
+            bool guardada = _translationRepository_380_jh.GuardarTraduccion_380_jh(traduccion);
 
             if (guardada)
             {
-                Traduccion traduccionNueva = _translationRepository.ObtenerTraduccion(traduccion.EtiquetaId, traduccion.IdiomaId);
+                Traduccion_380_jh traduccionNueva = _translationRepository_380_jh.ObtenerTraduccion_380_jh(traduccion.EtiquetaId_380_jh, traduccion.IdiomaId_380_jh);
                 if (traduccionNueva != null)
                 {
                     if (traduccionAnterior == null)
                     {
-                        _auditoriaService.RegistrarAlta(traduccionNueva.SaveToMemento());
+                        _auditoriaService_380_jh.RegistrarAlta_380_jh(traduccionNueva.SaveToMemento_380_jh());
                     }
                     else
                     {
-                        _auditoriaService.RegistrarModificacion(traduccionAnterior.SaveToMemento(), traduccionNueva.SaveToMemento());
+                        _auditoriaService_380_jh.RegistrarModificacion_380_jh(traduccionAnterior.SaveToMemento_380_jh(), traduccionNueva.SaveToMemento_380_jh());
                     }
                 }
             }
@@ -134,7 +134,7 @@ namespace Application
             return guardada;
         }
 
-        public bool GuardarTraduccionDetectada(string key, string descripcion, int idiomaId, string texto)
+        public bool GuardarTraduccionDetectada_380_jh(string key, string descripcion, int idiomaId, string texto)
         {
             if (string.IsNullOrWhiteSpace(key) ||
                 idiomaId == 0 ||
@@ -147,10 +147,10 @@ namespace Application
             texto = texto.Trim();
             descripcion = string.IsNullOrWhiteSpace(descripcion) ? null : descripcion.Trim();
 
-            Etiqueta etiqueta = null;
-            foreach (Etiqueta item in _translationRepository.ListarEtiquetas())
+            Etiqueta_380_jh etiqueta = null;
+            foreach (Etiqueta_380_jh item in _translationRepository_380_jh.ListarEtiquetas_380_jh())
             {
-                if (string.Equals(item.Key, key, System.StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(item.Key_380_jh, key, System.StringComparison.OrdinalIgnoreCase))
                 {
                     etiqueta = item;
                     break;
@@ -159,43 +159,43 @@ namespace Application
 
             if (etiqueta == null)
             {
-                etiqueta = new Etiqueta
+                etiqueta = new Etiqueta_380_jh
                 {
-                    Key = key,
-                    Descripcion = descripcion
+                    Key_380_jh = key,
+                    Descripcion_380_jh = descripcion
                 };
 
-                if (_translationRepository.CrearEtiqueta(etiqueta) <= 0)
+                if (_translationRepository_380_jh.CrearEtiqueta_380_jh(etiqueta) <= 0)
                 {
                     return false;
                 }
 
-                _auditoriaService.RegistrarAlta(etiqueta.SaveToMemento());
+                _auditoriaService_380_jh.RegistrarAlta_380_jh(etiqueta.SaveToMemento_380_jh());
             }
 
-            Traduccion traduccion = new Traduccion
+            Traduccion_380_jh traduccion = new Traduccion_380_jh
             {
-                EtiquetaId = etiqueta.Id,
-                IdiomaId = idiomaId,
-                Texto = texto
+                EtiquetaId_380_jh = etiqueta.Id_380_jh,
+                IdiomaId_380_jh = idiomaId,
+                Texto_380_jh = texto
             };
 
-            return GuardarTraduccion(traduccion);
+            return GuardarTraduccion_380_jh(traduccion);
         }
 
-        public List<Traduccion> ListarTraducciones()
+        public List<Traduccion_380_jh> ListarTraducciones_380_jh()
         {
-            return _translationRepository.ListarTraducciones();
+            return _translationRepository_380_jh.ListarTraducciones_380_jh();
         }
 
-        public Traduccion ObtenerTraduccion(int etiquetaId, int idiomaId)
+        public Traduccion_380_jh ObtenerTraduccion_380_jh(int etiquetaId, int idiomaId)
         {
             if (etiquetaId == 0 || idiomaId == 0)
             {
                 return null;
             }
 
-            return _translationRepository.ObtenerTraduccion(etiquetaId, idiomaId);
+            return _translationRepository_380_jh.ObtenerTraduccion_380_jh(etiquetaId, idiomaId);
         }
     }
 }

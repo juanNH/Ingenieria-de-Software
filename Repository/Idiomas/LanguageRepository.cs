@@ -4,43 +4,43 @@ using Domain;
 
 namespace Repository
 {
-    public class LanguageRepository
+    public class LanguageRepository_380_jh
     {
-        private readonly IdiomaDataMapper _idiomaDataMapper;
+        private readonly IdiomaDataMapper_380_jh _idiomaDataMapper_380_jh;
 
-        public LanguageRepository()
-            : this(new IdiomaDataMapper())
+        public LanguageRepository_380_jh()
+            : this(new IdiomaDataMapper_380_jh())
         {
         }
 
-        public LanguageRepository(IdiomaDataMapper idiomaDataMapper)
+        public LanguageRepository_380_jh(IdiomaDataMapper_380_jh idiomaDataMapper)
         {
-            _idiomaDataMapper = idiomaDataMapper;
+            _idiomaDataMapper_380_jh = idiomaDataMapper;
         }
 
-        public int Crear(Idioma idioma, int? idUsuarioResponsable)
+        public int Crear_380_jh(Idioma_380_jh idioma, int? idUsuarioResponsable)
         {
-            return _idiomaDataMapper.Crear(idioma, idUsuarioResponsable);
+            return _idiomaDataMapper_380_jh.Crear_380_jh(idioma, idUsuarioResponsable);
         }
 
-        public bool Actualizar(Idioma idioma, int? idUsuarioResponsable, string motivo)
+        public bool Actualizar_380_jh(Idioma_380_jh idioma, int? idUsuarioResponsable, string motivo)
         {
-            return _idiomaDataMapper.Actualizar(idioma, idUsuarioResponsable, motivo);
+            return _idiomaDataMapper_380_jh.Actualizar_380_jh(idioma, idUsuarioResponsable, motivo);
         }
 
-        public Idioma ObtenerPorId(int id)
+        public Idioma_380_jh ObtenerPorId_380_jh(int id)
         {
-            return _idiomaDataMapper.ObtenerPorId(id);
+            return _idiomaDataMapper_380_jh.ObtenerPorId_380_jh(id);
         }
 
-        public Idioma ObtenerDefault()
+        public Idioma_380_jh ObtenerDefault_380_jh()
         {
-            return _idiomaDataMapper.ObtenerDefault();
+            return _idiomaDataMapper_380_jh.ObtenerDefault_380_jh();
         }
 
-        public List<Idioma> Listar(bool soloActivos)
+        public List<Idioma_380_jh> Listar_380_jh(bool soloActivos)
         {
-            return _idiomaDataMapper.Listar(soloActivos);
+            return _idiomaDataMapper_380_jh.Listar_380_jh(soloActivos);
         }
     }
 }

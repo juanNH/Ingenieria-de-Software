@@ -2,38 +2,38 @@ using Repository;
 
 namespace Application
 {
-    public class DigitoVerificadorApplicationService
+    public class DigitoVerificadorApplicationService_380_jh
     {
-        private readonly DigitoVerificadorRepository _digitoVerificadorRepository;
+        private readonly DigitoVerificadorRepository_380_jh _digitoVerificadorRepository_380_jh;
 
-        public DigitoVerificadorApplicationService()
-            : this(new DigitoVerificadorRepository())
+        public DigitoVerificadorApplicationService_380_jh()
+            : this(new DigitoVerificadorRepository_380_jh())
         {
         }
 
-        public DigitoVerificadorApplicationService(DigitoVerificadorRepository digitoVerificadorRepository)
+        public DigitoVerificadorApplicationService_380_jh(DigitoVerificadorRepository_380_jh digitoVerificadorRepository)
         {
-            _digitoVerificadorRepository = digitoVerificadorRepository;
+            _digitoVerificadorRepository_380_jh = digitoVerificadorRepository;
         }
 
-        public bool VerificarUsuarios()
+        public bool VerificarUsuarios_380_jh()
         {
-            return _digitoVerificadorRepository.VerificarUsuarios();
+            return _digitoVerificadorRepository_380_jh.VerificarUsuarios_380_jh();
         }
 
-        public bool RecalcularUsuarios()
+        public bool RecalcularUsuarios_380_jh()
         {
-            return _digitoVerificadorRepository.RecalcularUsuarios();
+            return _digitoVerificadorRepository_380_jh.RecalcularUsuarios_380_jh();
         }
 
-        public bool RecalcularUsuarioYDvv(int idUsuario)
+        public bool RecalcularUsuarioYDvv_380_jh(int idUsuario)
         {
-            return _digitoVerificadorRepository.RecalcularUsuarioYDvv(idUsuario);
+            return _digitoVerificadorRepository_380_jh.RecalcularUsuarioYDvv_380_jh(idUsuario);
         }
 
-        public bool HayBloqueoUsuarios()
+        public bool HayBloqueoUsuarios_380_jh()
         {
-            return _digitoVerificadorRepository.HayBloqueoUsuarios();
+            return _digitoVerificadorRepository_380_jh.HayBloqueoUsuarios_380_jh();
         }
     }
 }

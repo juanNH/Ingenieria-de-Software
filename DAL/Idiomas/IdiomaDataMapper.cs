@@ -6,21 +6,21 @@ using Domain;
 
 namespace DAL
 {
-    public class IdiomaDataMapper
+    public class IdiomaDataMapper_380_jh
     {
-        private readonly DatabaseContext _databaseContext;
+        private readonly DatabaseContext_380_jh _databaseContext_380_jh;
 
-        public IdiomaDataMapper()
-            : this(new DatabaseContext())
+        public IdiomaDataMapper_380_jh()
+            : this(new DatabaseContext_380_jh())
         {
         }
 
-        public IdiomaDataMapper(DatabaseContext databaseContext)
+        public IdiomaDataMapper_380_jh(DatabaseContext_380_jh databaseContext)
         {
-            _databaseContext = databaseContext;
+            _databaseContext_380_jh = databaseContext;
         }
 
-        public int Crear(Idioma idioma, int? idUsuarioResponsable)
+        public int Crear_380_jh(Idioma_380_jh idioma, int? idUsuarioResponsable)
         {
             if (idioma == null)
             {
@@ -34,40 +34,40 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@codigo", idioma.Codigo),
-                _databaseContext.CrearParametro("@nombre", idioma.Nombre),
-                _databaseContext.CrearParametro("@estado_idioma", EstadoDesdeActivo(idioma.Activo))
+                _databaseContext_380_jh.CrearParametro_380_jh("@codigo", idioma.Codigo_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@nombre", idioma.Nombre_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@estado_idioma", EstadoDesdeActivo_380_jh(idioma.Activo_380_jh))
             };
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
                 if (tabla.Rows.Count == 0)
                 {
                     return -1;
                 }
 
-                idioma.Id = Convert.ToInt32(tabla.Rows[0]["id_idioma"]);
-                RegistrarHistorialEnConexion(idioma.Id, null, EstadoDesdeActivo(idioma.Activo), "Alta de idioma", idUsuarioResponsable);
-                return idioma.Id;
+                idioma.Id_380_jh = Convert.ToInt32(tabla.Rows[0]["id_idioma"]);
+                RegistrarHistorialEnConexion_380_jh(idioma.Id_380_jh, null, EstadoDesdeActivo_380_jh(idioma.Activo_380_jh), "Alta de idioma", idUsuarioResponsable);
+                return idioma.Id_380_jh;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public bool Actualizar(Idioma idioma, int? idUsuarioResponsable, string motivo)
+        public bool Actualizar_380_jh(Idioma_380_jh idioma, int? idUsuarioResponsable, string motivo)
         {
-            if (idioma == null || idioma.Id == 0)
+            if (idioma == null || idioma.Id_380_jh == 0)
             {
                 return false;
             }
 
-            Idioma idiomaActual = ObtenerPorId(idioma.Id);
-            string estadoAnterior = idiomaActual == null ? null : EstadoDesdeActivo(idiomaActual.Activo);
-            string estadoNuevo = EstadoDesdeActivo(idioma.Activo);
+            Idioma_380_jh idiomaActual = ObtenerPorId_380_jh(idioma.Id_380_jh);
+            string estadoAnterior = idiomaActual == null ? null : EstadoDesdeActivo_380_jh(idiomaActual.Activo_380_jh);
+            string estadoNuevo = EstadoDesdeActivo_380_jh(idioma.Activo_380_jh);
 
             const string sql = @"
                 UPDATE dbo.Idioma
@@ -78,30 +78,30 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_idioma", idioma.Id),
-                _databaseContext.CrearParametro("@codigo", idioma.Codigo),
-                _databaseContext.CrearParametro("@nombre", idioma.Nombre),
-                _databaseContext.CrearParametro("@estado_idioma", estadoNuevo)
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_idioma", idioma.Id_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@codigo", idioma.Codigo_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@nombre", idioma.Nombre_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@estado_idioma", estadoNuevo)
             };
 
             try
             {
-                _databaseContext.Abrir();
-                int afectados = _databaseContext.EscribirTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                int afectados = _databaseContext_380_jh.EscribirTexto_380_jh(sql, parametros);
                 if (afectados > 0 && estadoAnterior != estadoNuevo)
                 {
-                    RegistrarHistorialEnConexion(idioma.Id, estadoAnterior, estadoNuevo, motivo, idUsuarioResponsable);
+                    RegistrarHistorialEnConexion_380_jh(idioma.Id_380_jh, estadoAnterior, estadoNuevo, motivo, idUsuarioResponsable);
                 }
 
                 return afectados > 0;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public Idioma ObtenerPorId(int id)
+        public Idioma_380_jh ObtenerPorId_380_jh(int id)
         {
             const string sql = @"
                 SELECT id_idioma, codigo, nombre, estado_idioma
@@ -110,22 +110,22 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_idioma", id)
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_idioma", id)
             };
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
-                return tabla.Rows.Count == 0 ? null : Mapear(tabla.Rows[0]);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
+                return tabla.Rows.Count == 0 ? null : Mapear_380_jh(tabla.Rows[0]);
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public Idioma ObtenerDefault()
+        public Idioma_380_jh ObtenerDefault_380_jh()
         {
             const string sql = @"
                 SELECT TOP (1) id_idioma, codigo, nombre, estado_idioma
@@ -135,17 +135,17 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql);
-                return tabla.Rows.Count == 0 ? null : Mapear(tabla.Rows[0]);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql);
+                return tabla.Rows.Count == 0 ? null : Mapear_380_jh(tabla.Rows[0]);
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public List<Idioma> Listar(bool soloActivos)
+        public List<Idioma_380_jh> Listar_380_jh(bool soloActivos)
         {
             string filtro = soloActivos ? "WHERE estado_idioma IN ('Activo', 'ACTIVO')" : string.Empty;
             string sql = @"
@@ -156,24 +156,24 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql);
-                List<Idioma> idiomas = new List<Idioma>();
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql);
+                List<Idioma_380_jh> idiomas = new List<Idioma_380_jh>();
 
                 foreach (DataRow registro in tabla.Rows)
                 {
-                    idiomas.Add(Mapear(registro));
+                    idiomas.Add(Mapear_380_jh(registro));
                 }
 
                 return idiomas;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        private void RegistrarHistorialEnConexion(int idiomaId, string estadoAnterior, string estadoNuevo, string motivo, int? idUsuarioResponsable)
+        private void RegistrarHistorialEnConexion_380_jh(int idiomaId, string estadoAnterior, string estadoNuevo, string motivo, int? idUsuarioResponsable)
         {
             const string sql = @"
                 IF OBJECT_ID('dbo.IdiomaEstadoHistorial', 'U') IS NOT NULL
@@ -186,36 +186,36 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_idioma", idiomaId),
-                _databaseContext.CrearParametro("@estado_anterior", estadoAnterior),
-                _databaseContext.CrearParametro("@estado_nuevo", estadoNuevo),
-                _databaseContext.CrearParametro("@motivo", motivo),
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_idioma", idiomaId),
+                _databaseContext_380_jh.CrearParametro_380_jh("@estado_anterior", estadoAnterior),
+                _databaseContext_380_jh.CrearParametro_380_jh("@estado_nuevo", estadoNuevo),
+                _databaseContext_380_jh.CrearParametro_380_jh("@motivo", motivo),
                 new SqlParameter("@id_usuario_responsable", SqlDbType.Int)
                 {
                     Value = idUsuarioResponsable.HasValue ? (object)idUsuarioResponsable.Value : DBNull.Value
                 }
             };
 
-            _databaseContext.EscribirTexto(sql, parametros);
+            _databaseContext_380_jh.EscribirTexto_380_jh(sql, parametros);
         }
 
-        private static Idioma Mapear(DataRow registro)
+        private static Idioma_380_jh Mapear_380_jh(DataRow registro)
         {
-            return new Idioma
+            return new Idioma_380_jh
             {
-                Id = Convert.ToInt32(registro["id_idioma"]),
-                Codigo = registro["codigo"].ToString(),
-                Nombre = registro["nombre"].ToString(),
-                Activo = EsActivo(registro["estado_idioma"].ToString())
+                Id_380_jh = Convert.ToInt32(registro["id_idioma"]),
+                Codigo_380_jh = registro["codigo"].ToString(),
+                Nombre_380_jh = registro["nombre"].ToString(),
+                Activo_380_jh = EsActivo_380_jh(registro["estado_idioma"].ToString())
             };
         }
 
-        private static string EstadoDesdeActivo(bool activo)
+        private static string EstadoDesdeActivo_380_jh(bool activo)
         {
             return activo ? "Activo" : "Inactivo";
         }
 
-        private static bool EsActivo(string estado)
+        private static bool EsActivo_380_jh(string estado)
         {
             return string.Equals(estado, "Activo", StringComparison.OrdinalIgnoreCase) ||
                    string.Equals(estado, "ACTIVO", StringComparison.OrdinalIgnoreCase);

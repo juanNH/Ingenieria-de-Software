@@ -6,21 +6,21 @@ using Domain;
 
 namespace DAL
 {
-    public class BitacoraDataMapper
+    public class BitacoraDataMapper_380_jh
     {
-        private readonly DatabaseContext _databaseContext;
+        private readonly DatabaseContext_380_jh _databaseContext_380_jh;
 
-        public BitacoraDataMapper()
-            : this(new DatabaseContext())
+        public BitacoraDataMapper_380_jh()
+            : this(new DatabaseContext_380_jh())
         {
         }
 
-        public BitacoraDataMapper(DatabaseContext databaseContext)
+        public BitacoraDataMapper_380_jh(DatabaseContext_380_jh databaseContext)
         {
-            _databaseContext = databaseContext;
+            _databaseContext_380_jh = databaseContext;
         }
 
-        public int Insertar(BitacoraRegistro bitacora)
+        public int Insertar_380_jh(BitacoraRegistro_380_jh bitacora)
         {
             if (bitacora == null)
             {
@@ -29,28 +29,28 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                CrearParametro("@id_usuario", bitacora.IdUsuario),
-                CrearParametro("@identificador_usuario", bitacora.IdentificadorUsuario),
-                CrearParametro("@modulo", bitacora.Modulo),
-                CrearParametro("@accion", bitacora.Accion),
-                CrearParametro("@nivel", bitacora.Nivel),
-                CrearParametro("@descripcion", bitacora.Descripcion),
-                CrearParametro("@equipo", bitacora.Equipo),
-                CrearParametro("@fecha_evento", bitacora.Fecha)
+                CrearParametro_380_jh("@id_usuario", bitacora.IdUsuario_380_jh),
+                CrearParametro_380_jh("@identificador_usuario", bitacora.IdentificadorUsuario_380_jh),
+                CrearParametro_380_jh("@modulo", bitacora.Modulo_380_jh),
+                CrearParametro_380_jh("@accion", bitacora.Accion_380_jh),
+                CrearParametro_380_jh("@nivel", bitacora.Nivel_380_jh),
+                CrearParametro_380_jh("@descripcion", bitacora.Descripcion_380_jh),
+                CrearParametro_380_jh("@equipo", bitacora.Equipo_380_jh),
+                CrearParametro_380_jh("@fecha_evento", bitacora.Fecha_380_jh)
             };
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.Leer("sp_Bitacora_Registrar", parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.Leer_380_jh("sp_Bitacora_Registrar", parametros);
 
                 if (tabla.Rows.Count == 0)
                 {
                     return -1;
                 }
 
-                bitacora.Id = Convert.ToInt32(tabla.Rows[0]["id_bitacora"]);
-                return bitacora.Id;
+                bitacora.Id_380_jh = Convert.ToInt32(tabla.Rows[0]["id_bitacora"]);
+                return bitacora.Id_380_jh;
             }
             catch
             {
@@ -58,11 +58,11 @@ namespace DAL
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public List<BitacoraRegistro> Listar()
+        public List<BitacoraRegistro_380_jh> Listar_380_jh()
         {
             const string sql = @"
                 SELECT
@@ -80,29 +80,29 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql);
-                List<BitacoraRegistro> registros = new List<BitacoraRegistro>();
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql);
+                List<BitacoraRegistro_380_jh> registros = new List<BitacoraRegistro_380_jh>();
 
                 foreach (DataRow fila in tabla.Rows)
                 {
-                    registros.Add(MapearBitacora(fila));
+                    registros.Add(MapearBitacora_380_jh(fila));
                 }
 
                 return registros;
             }
             catch
             {
-                return new List<BitacoraRegistro>();
+                return new List<BitacoraRegistro_380_jh>();
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
         #region CreacParametros
-        private static SqlParameter CrearParametro(string nombre, string valor)
+        private static SqlParameter CrearParametro_380_jh(string nombre, string valor)
         {
             return new SqlParameter
             {
@@ -112,7 +112,7 @@ namespace DAL
             };
         }
 
-        private static SqlParameter CrearParametro(string nombre, int? valor)
+        private static SqlParameter CrearParametro_380_jh(string nombre, int? valor)
         {
             return new SqlParameter
             {
@@ -122,7 +122,7 @@ namespace DAL
             };
         }
 
-        private static SqlParameter CrearParametro(string nombre, DateTime valor)
+        private static SqlParameter CrearParametro_380_jh(string nombre, DateTime valor)
         {
             return new SqlParameter
             {
@@ -132,19 +132,19 @@ namespace DAL
             };
         }
         #endregion
-        private static BitacoraRegistro MapearBitacora(DataRow fila)
+        private static BitacoraRegistro_380_jh MapearBitacora_380_jh(DataRow fila)
         {
-            return new BitacoraRegistro
+            return new BitacoraRegistro_380_jh
             {
-                Id = Convert.ToInt32(fila["id_bitacora"]),
-                IdUsuario = fila["id_usuario"] == DBNull.Value ? (int?)null : Convert.ToInt32(fila["id_usuario"]),
-                IdentificadorUsuario = fila["identificador_usuario"] == DBNull.Value ? null : fila["identificador_usuario"].ToString(),
-                Modulo = fila["modulo"].ToString(),
-                Accion = fila["accion"].ToString(),
-                Nivel = fila["nivel"].ToString(),
-                Descripcion = fila["descripcion"] == DBNull.Value ? null : fila["descripcion"].ToString(),
-                Equipo = fila["equipo"] == DBNull.Value ? null : fila["equipo"].ToString(),
-                Fecha = Convert.ToDateTime(fila["fecha_evento"])
+                Id_380_jh = Convert.ToInt32(fila["id_bitacora"]),
+                IdUsuario_380_jh = fila["id_usuario"] == DBNull.Value ? (int?)null : Convert.ToInt32(fila["id_usuario"]),
+                IdentificadorUsuario_380_jh = fila["identificador_usuario"] == DBNull.Value ? null : fila["identificador_usuario"].ToString(),
+                Modulo_380_jh = fila["modulo"].ToString(),
+                Accion_380_jh = fila["accion"].ToString(),
+                Nivel_380_jh = fila["nivel"].ToString(),
+                Descripcion_380_jh = fila["descripcion"] == DBNull.Value ? null : fila["descripcion"].ToString(),
+                Equipo_380_jh = fila["equipo"] == DBNull.Value ? null : fila["equipo"].ToString(),
+                Fecha_380_jh = Convert.ToDateTime(fila["fecha_evento"])
             };
         }
     }

@@ -1,7 +1,7 @@
 namespace Abstractions
 {
-    public interface IEntity
+    public interface IEntity_380_jh
     {
-        int Id { get; set; }
+        int Id_380_jh { get; set; }
     }
 }

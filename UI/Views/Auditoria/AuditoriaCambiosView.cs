@@ -9,57 +9,57 @@ using Services;
 
 namespace UI
 {
-    public class AuditoriaCambiosView : LocalizedUserControl
+    public class AuditoriaCambiosView_380_jh : LocalizedUserControl_380_jh
     {
-        private readonly AuditoriaApplicationService _auditoriaService;
-        private readonly UsuarioApplicationService _usuarioService;
-        private readonly JavaScriptSerializer _serializer = new JavaScriptSerializer();
+        private readonly AuditoriaApplicationService_380_jh _auditoriaService_380_jh;
+        private readonly UsuarioApplicationService_380_jh _usuarioService_380_jh;
+        private readonly JavaScriptSerializer _serializer_380_jh = new JavaScriptSerializer();
 
-        private Label lblTitulo;
-        private Label lblDescripcion;
-        private Label lblUsuarioAuditado;
-        private ComboBox cmbUsuarios;
-        private Button btnActualizar;
-        private Button btnRestaurarCampo;
-        private ListView listViewCambios;
-        private ColumnHeader columnId;
-        private ColumnHeader columnFecha;
-        private ColumnHeader columnEntidad;
-        private ColumnHeader columnEntidadId;
-        private ColumnHeader columnActor;
-        private ColumnHeader columnCampo;
-        private ColumnHeader columnValorAnterior;
-        private ColumnHeader columnValorNuevo;
-        private Label lblEstado;
-        private Label lblEstadoAnterior;
-        private Label lblEstadoNuevo;
-        private TextBox txtEstadoAnterior;
-        private TextBox txtEstadoNuevo;
+        private Label lblTitulo_380_jh;
+        private Label lblDescripcion_380_jh;
+        private Label lblUsuarioAuditado_380_jh;
+        private ComboBox cmbUsuarios_380_jh;
+        private Button btnActualizar_380_jh;
+        private Button btnRestaurarCampo_380_jh;
+        private ListView listViewCambios_380_jh;
+        private ColumnHeader columnId_380_jh;
+        private ColumnHeader columnFecha_380_jh;
+        private ColumnHeader columnEntidad_380_jh;
+        private ColumnHeader columnEntidadId_380_jh;
+        private ColumnHeader columnActor_380_jh;
+        private ColumnHeader columnCampo_380_jh;
+        private ColumnHeader columnValorAnterior_380_jh;
+        private ColumnHeader columnValorNuevo_380_jh;
+        private Label lblEstado_380_jh;
+        private Label lblEstadoAnterior_380_jh;
+        private Label lblEstadoNuevo_380_jh;
+        private TextBox txtEstadoAnterior_380_jh;
+        private TextBox txtEstadoNuevo_380_jh;
 
-        private List<Usuario> _usuarios = new List<Usuario>();
-        private List<AuditoriaRegistro> _registros = new List<AuditoriaRegistro>();
-        private int _cantidadCambios;
+        private List<Usuario_380_jh> _usuarios_380_jh = new List<Usuario_380_jh>();
+        private List<AuditoriaRegistro_380_jh> _registros_380_jh = new List<AuditoriaRegistro_380_jh>();
+        private int _cantidadCambios_380_jh;
 
-        public AuditoriaCambiosView()
-            : this(new AuditoriaApplicationService(), new UsuarioApplicationService())
+        public AuditoriaCambiosView_380_jh()
+            : this(new AuditoriaApplicationService_380_jh(), new UsuarioApplicationService_380_jh())
         {
         }
 
-        public AuditoriaCambiosView(AuditoriaApplicationService auditoriaService, UsuarioApplicationService usuarioService)
+        public AuditoriaCambiosView_380_jh(AuditoriaApplicationService_380_jh auditoriaService, UsuarioApplicationService_380_jh usuarioService)
         {
-            _auditoriaService = auditoriaService;
-            _usuarioService = usuarioService;
-            ConstruirInterfaz();
-            ConfigurarTraducciones();
-            CargarUsuarios();
+            _auditoriaService_380_jh = auditoriaService;
+            _usuarioService_380_jh = usuarioService;
+            ConstruirInterfaz_380_jh();
+            ConfigurarTraducciones_380_jh();
+            CargarUsuarios_380_jh();
         }
 
-        private void ConstruirInterfaz()
+        private void ConstruirInterfaz_380_jh()
         {
             BackColor = Color.White;
             Size = new Size(900, 520);
 
-            lblTitulo = new Label
+            lblTitulo_380_jh = new Label
             {
                 AutoSize = true,
                 Font = new Font("Segoe UI", 18F, FontStyle.Bold),
@@ -67,7 +67,7 @@ namespace UI
                 Text = "Auditoria de cambios"
             };
 
-            lblDescripcion = new Label
+            lblDescripcion_380_jh = new Label
             {
                 AutoSize = true,
                 Font = new Font("Segoe UI", 10F),
@@ -76,7 +76,7 @@ namespace UI
                 Text = "Historial de cambios registrados sobre entidades auditadas."
             };
 
-            lblUsuarioAuditado = new Label
+            lblUsuarioAuditado_380_jh = new Label
             {
                 AutoSize = true,
                 Font = new Font("Segoe UI", 9F),
@@ -84,16 +84,16 @@ namespace UI
                 Text = "Usuario auditado"
             };
 
-            cmbUsuarios = new ComboBox
+            cmbUsuarios_380_jh = new ComboBox
             {
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 Font = new Font("Segoe UI", 9F),
                 Location = new Point(138, 97),
                 Size = new Size(260, 23)
             };
-            cmbUsuarios.SelectedIndexChanged += cmbUsuarios_SelectedIndexChanged;
+            cmbUsuarios_380_jh.SelectedIndexChanged += cmbUsuarios_SelectedIndexChanged_380_jh;
 
-            btnActualizar = new Button
+            btnActualizar_380_jh = new Button
             {
                 Anchor = AnchorStyles.Top | AnchorStyles.Right,
                 BackColor = Color.FromArgb(0, 123, 255),
@@ -105,10 +105,10 @@ namespace UI
                 Text = "Actualizar",
                 UseVisualStyleBackColor = false
             };
-            btnActualizar.FlatAppearance.BorderSize = 0;
-            btnActualizar.Click += btnActualizar_Click;
+            btnActualizar_380_jh.FlatAppearance.BorderSize = 0;
+            btnActualizar_380_jh.Click += btnActualizar_Click_380_jh;
 
-            btnRestaurarCampo = new Button
+            btnRestaurarCampo_380_jh = new Button
             {
                 Anchor = AnchorStyles.Top | AnchorStyles.Right,
                 BackColor = Color.FromArgb(25, 135, 84),
@@ -121,10 +121,10 @@ namespace UI
                 Text = "Restaurar campo",
                 UseVisualStyleBackColor = false
             };
-            btnRestaurarCampo.FlatAppearance.BorderSize = 0;
-            btnRestaurarCampo.Click += btnRestaurarCampo_Click;
+            btnRestaurarCampo_380_jh.FlatAppearance.BorderSize = 0;
+            btnRestaurarCampo_380_jh.Click += btnRestaurarCampo_Click_380_jh;
 
-            listViewCambios = new ListView
+            listViewCambios_380_jh = new ListView
             {
                 Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom,
                 Font = new Font("Segoe UI", 9F),
@@ -136,30 +136,30 @@ namespace UI
                 UseCompatibleStateImageBehavior = false,
                 View = View.Details
             };
-            listViewCambios.SelectedIndexChanged += listViewCambios_SelectedIndexChanged;
+            listViewCambios_380_jh.SelectedIndexChanged += listViewCambios_SelectedIndexChanged_380_jh;
 
-            columnId = new ColumnHeader { Text = "Id", Width = 55 };
-            columnFecha = new ColumnHeader { Text = "Fecha", Width = 135 };
-            columnEntidad = new ColumnHeader { Text = "Entidad", Width = 85 };
-            columnEntidadId = new ColumnHeader { Text = "Id entidad", Width = 75 };
-            columnActor = new ColumnHeader { Text = "Usuario", Width = 120 };
-            columnCampo = new ColumnHeader { Text = "Campo", Width = 130 };
-            columnValorAnterior = new ColumnHeader { Text = "Valor anterior", Width = 170 };
-            columnValorNuevo = new ColumnHeader { Text = "Valor nuevo", Width = 170 };
+            columnId_380_jh = new ColumnHeader { Text = "Id", Width = 55 };
+            columnFecha_380_jh = new ColumnHeader { Text = "Fecha", Width = 135 };
+            columnEntidad_380_jh = new ColumnHeader { Text = "Entidad", Width = 85 };
+            columnEntidadId_380_jh = new ColumnHeader { Text = "Id entidad", Width = 75 };
+            columnActor_380_jh = new ColumnHeader { Text = "Usuario", Width = 120 };
+            columnCampo_380_jh = new ColumnHeader { Text = "Campo", Width = 130 };
+            columnValorAnterior_380_jh = new ColumnHeader { Text = "Valor anterior", Width = 170 };
+            columnValorNuevo_380_jh = new ColumnHeader { Text = "Valor nuevo", Width = 170 };
 
-            listViewCambios.Columns.AddRange(new[]
+            listViewCambios_380_jh.Columns.AddRange(new[]
             {
-                columnId,
-                columnFecha,
-                columnEntidad,
-                columnEntidadId,
-                columnActor,
-                columnCampo,
-                columnValorAnterior,
-                columnValorNuevo
+                columnId_380_jh,
+                columnFecha_380_jh,
+                columnEntidad_380_jh,
+                columnEntidadId_380_jh,
+                columnActor_380_jh,
+                columnCampo_380_jh,
+                columnValorAnterior_380_jh,
+                columnValorNuevo_380_jh
             });
 
-            lblEstadoAnterior = new Label
+            lblEstadoAnterior_380_jh = new Label
             {
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Left,
                 AutoSize = true,
@@ -168,7 +168,7 @@ namespace UI
                 Text = "Estado anterior"
             };
 
-            lblEstadoNuevo = new Label
+            lblEstadoNuevo_380_jh = new Label
             {
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Left,
                 AutoSize = true,
@@ -177,10 +177,10 @@ namespace UI
                 Text = "Estado nuevo"
             };
 
-            txtEstadoAnterior = CrearTextBoxEstado(new Point(24, 398));
-            txtEstadoNuevo = CrearTextBoxEstado(new Point(456, 398));
+            txtEstadoAnterior_380_jh = CrearTextBoxEstado_380_jh(new Point(24, 398));
+            txtEstadoNuevo_380_jh = CrearTextBoxEstado_380_jh(new Point(456, 398));
 
-            lblEstado = new Label
+            lblEstado_380_jh = new Label
             {
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Left,
                 AutoSize = true,
@@ -190,21 +190,21 @@ namespace UI
                 Text = "No hay cambios registrados."
             };
 
-            Controls.Add(lblTitulo);
-            Controls.Add(lblDescripcion);
-            Controls.Add(lblUsuarioAuditado);
-            Controls.Add(cmbUsuarios);
-            Controls.Add(btnRestaurarCampo);
-            Controls.Add(btnActualizar);
-            Controls.Add(listViewCambios);
-            Controls.Add(lblEstadoAnterior);
-            Controls.Add(lblEstadoNuevo);
-            Controls.Add(txtEstadoAnterior);
-            Controls.Add(txtEstadoNuevo);
-            Controls.Add(lblEstado);
+            Controls.Add(lblTitulo_380_jh);
+            Controls.Add(lblDescripcion_380_jh);
+            Controls.Add(lblUsuarioAuditado_380_jh);
+            Controls.Add(cmbUsuarios_380_jh);
+            Controls.Add(btnRestaurarCampo_380_jh);
+            Controls.Add(btnActualizar_380_jh);
+            Controls.Add(listViewCambios_380_jh);
+            Controls.Add(lblEstadoAnterior_380_jh);
+            Controls.Add(lblEstadoNuevo_380_jh);
+            Controls.Add(txtEstadoAnterior_380_jh);
+            Controls.Add(txtEstadoNuevo_380_jh);
+            Controls.Add(lblEstado_380_jh);
         }
 
-        private static TextBox CrearTextBoxEstado(Point location)
+        private static TextBox CrearTextBoxEstado_380_jh(Point location)
         {
             return new TextBox
             {
@@ -218,150 +218,150 @@ namespace UI
             };
         }
 
-        private void ConfigurarTraducciones()
+        private void ConfigurarTraducciones_380_jh()
         {
-            lblTitulo.Tag = "CHANGE_AUDIT_TITLE";
-            lblDescripcion.Tag = "CHANGE_AUDIT_DESCRIPTION";
-            lblUsuarioAuditado.Tag = "CHANGE_AUDIT_USER";
-            btnActualizar.Tag = "BTN_REFRESH";
-            columnId.Tag = "GRID_ID";
-            columnFecha.Tag = "GRID_DATE";
-            columnEntidad.Tag = "GRID_ENTITY";
-            columnEntidadId.Tag = "GRID_ENTITY_ID";
-            columnActor.Tag = "GRID_USER";
-            columnCampo.Tag = "GRID_FIELD";
-            columnValorAnterior.Tag = "GRID_OLD_VALUE";
-            columnValorNuevo.Tag = "GRID_NEW_VALUE";
-            lblEstadoAnterior.Tag = "CHANGE_AUDIT_PREVIOUS_STATE";
-            lblEstadoNuevo.Tag = "CHANGE_AUDIT_NEW_STATE";
+            lblTitulo_380_jh.Tag = "CHANGE_AUDIT_TITLE";
+            lblDescripcion_380_jh.Tag = "CHANGE_AUDIT_DESCRIPTION";
+            lblUsuarioAuditado_380_jh.Tag = "CHANGE_AUDIT_USER";
+            btnActualizar_380_jh.Tag = "BTN_REFRESH";
+            columnId_380_jh.Tag = "GRID_ID";
+            columnFecha_380_jh.Tag = "GRID_DATE";
+            columnEntidad_380_jh.Tag = "GRID_ENTITY";
+            columnEntidadId_380_jh.Tag = "GRID_ENTITY_ID";
+            columnActor_380_jh.Tag = "GRID_USER";
+            columnCampo_380_jh.Tag = "GRID_FIELD";
+            columnValorAnterior_380_jh.Tag = "GRID_OLD_VALUE";
+            columnValorNuevo_380_jh.Tag = "GRID_NEW_VALUE";
+            lblEstadoAnterior_380_jh.Tag = "CHANGE_AUDIT_PREVIOUS_STATE";
+            lblEstadoNuevo_380_jh.Tag = "CHANGE_AUDIT_NEW_STATE";
         }
 
-        protected override void ApplyTranslations()
+        protected override void ApplyTranslations_380_jh()
         {
-            base.ApplyTranslations();
-            ActualizarEstado();
+            base.ApplyTranslations_380_jh();
+            ActualizarEstado_380_jh();
         }
 
-        private void CargarUsuarios()
+        private void CargarUsuarios_380_jh()
         {
-            _usuarios = _usuarioService.Listar();
-            _usuarios.Insert(0, new Usuario
+            _usuarios_380_jh = _usuarioService_380_jh.Listar_380_jh();
+            _usuarios_380_jh.Insert(0, new Usuario_380_jh
             {
-                Id = 0,
-                Username = "Todos los usuarios",
-                Nombre = "Todos los usuarios"
+                Id_380_jh = 0,
+                Username_380_jh = "Todos los usuarios",
+                Nombre_380_jh = "Todos los usuarios"
             });
 
-            cmbUsuarios.DataSource = null;
-            cmbUsuarios.DisplayMember = "Username";
-            cmbUsuarios.ValueMember = "Id";
-            cmbUsuarios.DataSource = _usuarios;
+            cmbUsuarios_380_jh.DataSource = null;
+            cmbUsuarios_380_jh.DisplayMember = "Username";
+            cmbUsuarios_380_jh.ValueMember = "Id";
+            cmbUsuarios_380_jh.DataSource = _usuarios_380_jh;
 
-            if (_usuarios.Count > 0)
+            if (_usuarios_380_jh.Count > 0)
             {
-                cmbUsuarios.SelectedIndex = 0;
-                CargarAuditoria(_usuarios[0].Id);
+                cmbUsuarios_380_jh.SelectedIndex = 0;
+                CargarAuditoria_380_jh(_usuarios_380_jh[0].Id_380_jh);
             }
             else
             {
-                LimpiarCambios();
+                LimpiarCambios_380_jh();
             }
         }
 
-        private void cmbUsuarios_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbUsuarios_SelectedIndexChanged_380_jh(object sender, EventArgs e)
         {
-            Usuario usuario = cmbUsuarios.SelectedItem as Usuario;
+            Usuario_380_jh usuario = cmbUsuarios_380_jh.SelectedItem as Usuario_380_jh;
             if (usuario != null)
             {
-                CargarAuditoria(usuario.Id);
+                CargarAuditoria_380_jh(usuario.Id_380_jh);
             }
         }
 
-        private void btnActualizar_Click(object sender, EventArgs e)
+        private void btnActualizar_Click_380_jh(object sender, EventArgs e)
         {
-            Usuario usuario = cmbUsuarios.SelectedItem as Usuario;
+            Usuario_380_jh usuario = cmbUsuarios_380_jh.SelectedItem as Usuario_380_jh;
             if (usuario != null)
             {
-                CargarAuditoria(usuario.Id);
+                CargarAuditoria_380_jh(usuario.Id_380_jh);
             }
         }
 
-        private void CargarAuditoria(int usuarioId)
+        private void CargarAuditoria_380_jh(int usuarioId)
         {
-            _registros = usuarioId == 0
-                ? _auditoriaService.ListarTodos()
-                : _auditoriaService.ListarHistorial("Usuario", usuarioId);
-            listViewCambios.BeginUpdate();
-            listViewCambios.Items.Clear();
+            _registros_380_jh = usuarioId == 0
+                ? _auditoriaService_380_jh.ListarTodos_380_jh()
+                : _auditoriaService_380_jh.ListarHistorial_380_jh("Usuario", usuarioId);
+            listViewCambios_380_jh.BeginUpdate();
+            listViewCambios_380_jh.Items.Clear();
 
-            foreach (AuditoriaRegistro registro in _registros)
+            foreach (AuditoriaRegistro_380_jh registro in _registros_380_jh)
             {
-                List<AuditoriaCambio> cambios = DeserializarCambios(registro.CambiosJson);
+                List<AuditoriaCambio_380_jh> cambios = DeserializarCambios_380_jh(registro.CambiosJson_380_jh);
 
-                foreach (AuditoriaCambio cambio in cambios)
+                foreach (AuditoriaCambio_380_jh cambio in cambios)
                 {
-                    ListViewItem item = new ListViewItem(registro.Id.ToString());
-                    item.SubItems.Add(registro.FechaEvento.ToString("dd/MM/yyyy HH:mm:ss"));
-                    item.SubItems.Add(registro.Entidad ?? string.Empty);
-                    item.SubItems.Add(registro.IdEntidad.ToString());
-                    item.SubItems.Add(registro.IdentificadorUsuarioActor ?? string.Empty);
-                    item.SubItems.Add(cambio.Campo ?? string.Empty);
-                    item.SubItems.Add(FormatearValor(cambio.ValorAnterior));
-                    item.SubItems.Add(FormatearValor(cambio.ValorNuevo));
-                    item.Tag = new CambioAuditoriaSeleccionado
+                    ListViewItem item = new ListViewItem(registro.Id_380_jh.ToString());
+                    item.SubItems.Add(registro.FechaEvento_380_jh.ToString("dd/MM/yyyy HH:mm:ss"));
+                    item.SubItems.Add(registro.Entidad_380_jh ?? string.Empty);
+                    item.SubItems.Add(registro.IdEntidad_380_jh.ToString());
+                    item.SubItems.Add(registro.IdentificadorUsuarioActor_380_jh ?? string.Empty);
+                    item.SubItems.Add(cambio.Campo_380_jh ?? string.Empty);
+                    item.SubItems.Add(FormatearValor_380_jh(cambio.ValorAnterior_380_jh));
+                    item.SubItems.Add(FormatearValor_380_jh(cambio.ValorNuevo_380_jh));
+                    item.Tag = new CambioAuditoriaSeleccionado_380_jh
                     {
-                        Registro = registro,
-                        Cambio = cambio
+                        Registro_380_jh = registro,
+                        Cambio_380_jh = cambio
                     };
-                    listViewCambios.Items.Add(item);
+                    listViewCambios_380_jh.Items.Add(item);
                 }
             }
 
-            listViewCambios.EndUpdate();
-            _cantidadCambios = listViewCambios.Items.Count;
-            LimpiarDetalle();
-            ActualizarEstado();
+            listViewCambios_380_jh.EndUpdate();
+            _cantidadCambios_380_jh = listViewCambios_380_jh.Items.Count;
+            LimpiarDetalle_380_jh();
+            ActualizarEstado_380_jh();
         }
 
-        private void listViewCambios_SelectedIndexChanged(object sender, EventArgs e)
+        private void listViewCambios_SelectedIndexChanged_380_jh(object sender, EventArgs e)
         {
-            if (listViewCambios.SelectedItems.Count == 0)
+            if (listViewCambios_380_jh.SelectedItems.Count == 0)
             {
-                LimpiarDetalle();
-                btnRestaurarCampo.Enabled = false;
+                LimpiarDetalle_380_jh();
+                btnRestaurarCampo_380_jh.Enabled = false;
                 return;
             }
 
-            CambioAuditoriaSeleccionado seleccion = listViewCambios.SelectedItems[0].Tag as CambioAuditoriaSeleccionado;
-            if (seleccion == null || seleccion.Registro == null)
+            CambioAuditoriaSeleccionado_380_jh seleccion = listViewCambios_380_jh.SelectedItems[0].Tag as CambioAuditoriaSeleccionado_380_jh;
+            if (seleccion == null || seleccion.Registro_380_jh == null)
             {
-                LimpiarDetalle();
-                btnRestaurarCampo.Enabled = false;
+                LimpiarDetalle_380_jh();
+                btnRestaurarCampo_380_jh.Enabled = false;
                 return;
             }
 
-            AuditoriaRegistro registro = seleccion.Registro;
-            txtEstadoAnterior.Text = registro.EstadoAnteriorJson ?? string.Empty;
-            txtEstadoNuevo.Text = registro.EstadoNuevoJson ?? string.Empty;
-            btnRestaurarCampo.Enabled = registro.Entidad == "Usuario" &&
-                                        seleccion.Cambio != null &&
-                                        EsCampoRestaurable(seleccion.Cambio.Campo);
+            AuditoriaRegistro_380_jh registro = seleccion.Registro_380_jh;
+            txtEstadoAnterior_380_jh.Text = registro.EstadoAnteriorJson_380_jh ?? string.Empty;
+            txtEstadoNuevo_380_jh.Text = registro.EstadoNuevoJson_380_jh ?? string.Empty;
+            btnRestaurarCampo_380_jh.Enabled = registro.Entidad_380_jh == "Usuario" &&
+                                        seleccion.Cambio_380_jh != null &&
+                                        EsCampoRestaurable_380_jh(seleccion.Cambio_380_jh.Campo_380_jh);
         }
 
-        private void btnRestaurarCampo_Click(object sender, EventArgs e)
+        private void btnRestaurarCampo_Click_380_jh(object sender, EventArgs e)
         {
-            if (listViewCambios.SelectedItems.Count == 0)
+            if (listViewCambios_380_jh.SelectedItems.Count == 0)
             {
                 return;
             }
 
-            CambioAuditoriaSeleccionado seleccion = listViewCambios.SelectedItems[0].Tag as CambioAuditoriaSeleccionado;
-            if (seleccion == null || seleccion.Registro == null || seleccion.Cambio == null)
+            CambioAuditoriaSeleccionado_380_jh seleccion = listViewCambios_380_jh.SelectedItems[0].Tag as CambioAuditoriaSeleccionado_380_jh;
+            if (seleccion == null || seleccion.Registro_380_jh == null || seleccion.Cambio_380_jh == null)
             {
                 return;
             }
 
-            string campo = seleccion.Cambio.Campo;
+            string campo = seleccion.Cambio_380_jh.Campo_380_jh;
             DialogResult confirmacion = MessageBox.Show(
                 "Se restaurara el campo seleccionado al valor anterior. Deseas continuar?",
                 "Restaurar campo",
@@ -373,81 +373,81 @@ namespace UI
                 return;
             }
 
-            bool restaurado = _usuarioService.RestaurarCampoDesdeAuditoria(seleccion.Registro, campo);
+            bool restaurado = _usuarioService_380_jh.RestaurarCampoDesdeAuditoria_380_jh(seleccion.Registro_380_jh, campo);
             MessageBox.Show(restaurado
                 ? "Campo restaurado correctamente."
                 : "No se pudo restaurar el campo seleccionado.");
 
-            Usuario usuario = cmbUsuarios.SelectedItem as Usuario;
-            CargarUsuarios();
+            Usuario_380_jh usuario = cmbUsuarios_380_jh.SelectedItem as Usuario_380_jh;
+            CargarUsuarios_380_jh();
 
             if (usuario != null)
             {
-                SeleccionarUsuario(usuario.Id);
+                SeleccionarUsuario_380_jh(usuario.Id_380_jh);
             }
         }
 
-        private List<AuditoriaCambio> DeserializarCambios(string cambiosJson)
+        private List<AuditoriaCambio_380_jh> DeserializarCambios_380_jh(string cambiosJson)
         {
             if (string.IsNullOrWhiteSpace(cambiosJson))
             {
-                return new List<AuditoriaCambio>();
+                return new List<AuditoriaCambio_380_jh>();
             }
 
             try
             {
-                return _serializer.Deserialize<List<AuditoriaCambio>>(cambiosJson) ?? new List<AuditoriaCambio>();
+                return _serializer_380_jh.Deserialize<List<AuditoriaCambio_380_jh>>(cambiosJson) ?? new List<AuditoriaCambio_380_jh>();
             }
             catch
             {
-                return new List<AuditoriaCambio>();
+                return new List<AuditoriaCambio_380_jh>();
             }
         }
 
-        private static string FormatearValor(object valor)
+        private static string FormatearValor_380_jh(object valor)
         {
             return valor == null ? string.Empty : valor.ToString();
         }
 
-        private void LimpiarCambios()
+        private void LimpiarCambios_380_jh()
         {
-            _registros = new List<AuditoriaRegistro>();
-            listViewCambios.Items.Clear();
-            _cantidadCambios = 0;
-            LimpiarDetalle();
-            ActualizarEstado();
+            _registros_380_jh = new List<AuditoriaRegistro_380_jh>();
+            listViewCambios_380_jh.Items.Clear();
+            _cantidadCambios_380_jh = 0;
+            LimpiarDetalle_380_jh();
+            ActualizarEstado_380_jh();
         }
 
-        private void LimpiarDetalle()
+        private void LimpiarDetalle_380_jh()
         {
-            txtEstadoAnterior.Clear();
-            txtEstadoNuevo.Clear();
-            if (btnRestaurarCampo != null)
+            txtEstadoAnterior_380_jh.Clear();
+            txtEstadoNuevo_380_jh.Clear();
+            if (btnRestaurarCampo_380_jh != null)
             {
-                btnRestaurarCampo.Enabled = false;
+                btnRestaurarCampo_380_jh.Enabled = false;
             }
         }
 
-        private void ActualizarEstado()
+        private void ActualizarEstado_380_jh()
         {
-            lblEstado.Text = _cantidadCambios == 0
-                ? LanguageManager.Instance.Translate("CHANGE_AUDIT_EMPTY")
-                : string.Format(LanguageManager.Instance.Translate("CHANGE_AUDIT_COUNT"), _cantidadCambios);
+            lblEstado_380_jh.Text = _cantidadCambios_380_jh == 0
+                ? LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("CHANGE_AUDIT_EMPTY")
+                : string.Format(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("CHANGE_AUDIT_COUNT"), _cantidadCambios_380_jh);
         }
 
-        private void SeleccionarUsuario(int usuarioId)
+        private void SeleccionarUsuario_380_jh(int usuarioId)
         {
-            foreach (Usuario usuario in cmbUsuarios.Items)
+            foreach (Usuario_380_jh usuario in cmbUsuarios_380_jh.Items)
             {
-                if (usuario.Id == usuarioId)
+                if (usuario.Id_380_jh == usuarioId)
                 {
-                    cmbUsuarios.SelectedItem = usuario;
+                    cmbUsuarios_380_jh.SelectedItem = usuario;
                     return;
                 }
             }
         }
 
-        private static bool EsCampoRestaurable(string campo)
+        private static bool EsCampoRestaurable_380_jh(string campo)
         {
             switch (campo)
             {
@@ -466,10 +466,10 @@ namespace UI
             }
         }
 
-        private class CambioAuditoriaSeleccionado
+        private class CambioAuditoriaSeleccionado_380_jh
         {
-            public AuditoriaRegistro Registro { get; set; }
-            public AuditoriaCambio Cambio { get; set; }
+            public AuditoriaRegistro_380_jh Registro_380_jh { get; set; }
+            public AuditoriaCambio_380_jh Cambio_380_jh { get; set; }
         }
     }
 }

@@ -22,15 +22,15 @@ namespace UI.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
+    internal class Resources_380_jh
     {
 
-        private static global::System.Resources.ResourceManager resourceMan;
+        private static global::System.Resources.ResourceManager resourceMan_380_jh;
 
-        private static global::System.Globalization.CultureInfo resourceCulture;
+        private static global::System.Globalization.CultureInfo resourceCulture_380_jh;
 
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
+        internal Resources_380_jh()
         {
         }
 
@@ -38,16 +38,16 @@ namespace UI.Properties
         ///   Devuelve la instancia ResourceManager almacenada en caché utilizada por esta clase.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
+        internal static global::System.Resources.ResourceManager ResourceManager_380_jh
         {
             get
             {
-                if ((resourceMan == null))
+                if ((resourceMan_380_jh == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("UI.Properties.Resources", typeof(Resources).Assembly);
-                    resourceMan = temp;
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("UI.Properties.Resources", typeof(Resources_380_jh).Assembly);
+                    resourceMan_380_jh = temp;
                 }
-                return resourceMan;
+                return resourceMan_380_jh;
             }
         }
 
@@ -56,15 +56,15 @@ namespace UI.Properties
         ///   búsquedas de recursos usando esta clase de recursos fuertemente tipados.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
+        internal static global::System.Globalization.CultureInfo Culture_380_jh
         {
             get
             {
-                return resourceCulture;
+                return resourceCulture_380_jh;
             }
             set
             {
-                resourceCulture = value;
+                resourceCulture_380_jh = value;
             }
         }
     }

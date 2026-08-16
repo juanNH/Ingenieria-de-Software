@@ -1,9 +1,9 @@
 namespace Abstractions
 {
-    public enum BitacoraNivel
+    public enum BitacoraNivel_380_jh
     {
-        Informacion,
-        Advertencia,
-        Error
+        Informacion_380_jh,
+        Advertencia_380_jh,
+        Error_380_jh
     }
 }

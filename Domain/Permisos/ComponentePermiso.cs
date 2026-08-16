@@ -3,37 +3,37 @@ using Abstractions;
 
 namespace Domain
 {
-    public abstract class ComponentePermiso : IEntity
+    public abstract class ComponentePermiso_380_jh : IEntity_380_jh
     {
-        public int Id { get; set; }
-        public string Codigo { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public string Estado { get; set; }
+        public int Id_380_jh { get; set; }
+        public string Codigo_380_jh { get; set; }
+        public string Nombre_380_jh { get; set; }
+        public string Descripcion_380_jh { get; set; }
+        public string Estado_380_jh { get; set; }
 
-        public abstract TipoComponentePermiso Tipo { get; }
+        public abstract TipoComponentePermiso_380_jh Tipo_380_jh { get; }
 
-        public abstract void Agregar(ComponentePermiso componente);
-        public abstract void Quitar(ComponentePermiso componente);
-        public abstract IReadOnlyList<ComponentePermiso> ObtenerHijos();
-        public abstract bool TienePermiso(string codigoPermiso);
+        public abstract void Agregar_380_jh(ComponentePermiso_380_jh componente);
+        public abstract void Quitar_380_jh(ComponentePermiso_380_jh componente);
+        public abstract IReadOnlyList<ComponentePermiso_380_jh> ObtenerHijos_380_jh();
+        public abstract bool TienePermiso_380_jh(string codigoPermiso);
 
-        public AuditoriaMemento SaveToMemento()
+        public AuditoriaMemento_380_jh SaveToMemento_380_jh()
         {
-            return new AuditoriaMemento("ComponentePermiso", Id, new Dictionary<string, object>
+            return new AuditoriaMemento_380_jh("ComponentePermiso", Id_380_jh, new Dictionary<string, object>
             {
-                { "Id", Id },
-                { "Codigo", Codigo },
-                { "Nombre", Nombre },
-                { "Descripcion", Descripcion },
-                { "Estado", Estado },
-                { "Tipo", Tipo.ToString() }
+                { "Id", Id_380_jh },
+                { "Codigo", Codigo_380_jh },
+                { "Nombre", Nombre_380_jh },
+                { "Descripcion", Descripcion_380_jh },
+                { "Estado", Estado_380_jh },
+                { "Tipo", Tipo_380_jh.ToString() }
             });
         }
 
         public override string ToString()
         {
-            return string.IsNullOrWhiteSpace(Nombre) ? Codigo : Nombre;
+            return string.IsNullOrWhiteSpace(Nombre_380_jh) ? Codigo_380_jh : Nombre_380_jh;
         }
     }
 }

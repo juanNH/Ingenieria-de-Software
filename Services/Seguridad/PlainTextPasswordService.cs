@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Services
 {
-    public class PlainTextPasswordService : IPasswordService
+    public class PlainTextPasswordService_380_jh : IPasswordService_380_jh
     {
         //Logica de hash
-        public string Hash(string plainTextPassword)
+        public string Hash_380_jh(string plainTextPassword)
         {
             if (string.IsNullOrEmpty(plainTextPassword))
                 return string.Empty;

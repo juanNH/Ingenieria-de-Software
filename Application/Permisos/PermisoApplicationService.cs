@@ -5,80 +5,80 @@ using Repository;
 
 namespace Application
 {
-    public class PermisoApplicationService
+    public class PermisoApplicationService_380_jh
     {
-        private readonly PermisoRepository _permisoRepository;
-        private readonly AuditoriaApplicationService _auditoriaService;
+        private readonly PermisoRepository_380_jh _permisoRepository_380_jh;
+        private readonly AuditoriaApplicationService_380_jh _auditoriaService_380_jh;
 
-        public PermisoApplicationService()
-            : this(new PermisoRepository(), new AuditoriaApplicationService())
+        public PermisoApplicationService_380_jh()
+            : this(new PermisoRepository_380_jh(), new AuditoriaApplicationService_380_jh())
         {
         }
 
-        public PermisoApplicationService(PermisoRepository permisoRepository)
-            : this(permisoRepository, new AuditoriaApplicationService())
+        public PermisoApplicationService_380_jh(PermisoRepository_380_jh permisoRepository)
+            : this(permisoRepository, new AuditoriaApplicationService_380_jh())
         {
         }
 
-        public PermisoApplicationService(PermisoRepository permisoRepository, AuditoriaApplicationService auditoriaService)
+        public PermisoApplicationService_380_jh(PermisoRepository_380_jh permisoRepository, AuditoriaApplicationService_380_jh auditoriaService)
         {
-            _permisoRepository = permisoRepository;
-            _auditoriaService = auditoriaService;
+            _permisoRepository_380_jh = permisoRepository;
+            _auditoriaService_380_jh = auditoriaService;
         }
 
-        public List<ComponentePermiso> ListarAsignadosPorUsuario(int idUsuario)
+        public List<ComponentePermiso_380_jh> ListarAsignadosPorUsuario_380_jh(int idUsuario)
         {
-            return _permisoRepository.ListarAsignadosPorUsuario(idUsuario);
+            return _permisoRepository_380_jh.ListarAsignadosPorUsuario_380_jh(idUsuario);
         }
 
-        public List<ComponentePermiso> ListarArbolCompleto()
+        public List<ComponentePermiso_380_jh> ListarArbolCompleto_380_jh()
         {
-            return _permisoRepository.ListarArbolCompleto();
+            return _permisoRepository_380_jh.ListarArbolCompleto_380_jh();
         }
 
-        public List<ComponentePermiso> ListarComponentes()
+        public List<ComponentePermiso_380_jh> ListarComponentes_380_jh()
         {
-            return _permisoRepository.ListarComponentes();
+            return _permisoRepository_380_jh.ListarComponentes_380_jh();
         }
 
-        public List<ComponentePermiso> ListarFamilias()
+        public List<ComponentePermiso_380_jh> ListarFamilias_380_jh()
         {
-            return _permisoRepository.ListarFamilias();
+            return _permisoRepository_380_jh.ListarFamilias_380_jh();
         }
 
-        public List<int> ListarIdsComponentesAsignadosPorUsuario(int idUsuario)
+        public List<int> ListarIdsComponentesAsignadosPorUsuario_380_jh(int idUsuario)
         {
-            return _permisoRepository.ListarIdsComponentesAsignadosPorUsuario(idUsuario);
+            return _permisoRepository_380_jh.ListarIdsComponentesAsignadosPorUsuario_380_jh(idUsuario);
         }
 
-        public bool CrearFamilia(string codigo, string nombre, string descripcion)
+        public bool CrearFamilia_380_jh(string codigo, string nombre, string descripcion)
         {
             if (string.IsNullOrWhiteSpace(nombre))
             {
                 return false;
             }
 
-            string codigoNormalizado = NormalizarCodigo(string.IsNullOrWhiteSpace(codigo) ? nombre : codigo);
+            string codigoNormalizado = NormalizarCodigo_380_jh(string.IsNullOrWhiteSpace(codigo) ? nombre : codigo);
             if (string.IsNullOrWhiteSpace(codigoNormalizado))
             {
                 return false;
             }
 
-            ComponentePermiso componenteAnterior = BuscarComponentePorCodigo(codigoNormalizado);
-            bool guardado = _permisoRepository.CrearFamilia(codigoNormalizado, nombre.Trim(), descripcion);
+            ComponentePermiso_380_jh componenteAnterior = BuscarComponentePorCodigo_380_jh(codigoNormalizado);
+            bool guardado = _permisoRepository_380_jh.CrearFamilia_380_jh(codigoNormalizado, nombre.Trim(), descripcion);
 
             if (guardado)
             {
-                ComponentePermiso componenteNuevo = BuscarComponentePorCodigo(codigoNormalizado);
+                ComponentePermiso_380_jh componenteNuevo = BuscarComponentePorCodigo_380_jh(codigoNormalizado);
                 if (componenteNuevo != null)
                 {
                     if (componenteAnterior == null)
                     {
-                        _auditoriaService.RegistrarAlta(componenteNuevo.SaveToMemento());
+                        _auditoriaService_380_jh.RegistrarAlta_380_jh(componenteNuevo.SaveToMemento_380_jh());
                     }
                     else
                     {
-                        _auditoriaService.RegistrarModificacion(componenteAnterior.SaveToMemento(), componenteNuevo.SaveToMemento());
+                        _auditoriaService_380_jh.RegistrarModificacion_380_jh(componenteAnterior.SaveToMemento_380_jh(), componenteNuevo.SaveToMemento_380_jh());
                     }
                 }
             }
@@ -86,74 +86,74 @@ namespace Application
             return guardado;
         }
 
-        public string AgregarRelacion(int idPadre, int idHijo)
+        public string AgregarRelacion_380_jh(int idPadre, int idHijo)
         {
             if (idPadre == 0 || idHijo == 0)
             {
                 return "DATOS_INVALIDOS";
             }
 
-            string resultado = _permisoRepository.AgregarRelacion(idPadre, idHijo);
+            string resultado = _permisoRepository_380_jh.AgregarRelacion_380_jh(idPadre, idHijo);
             if (resultado == "OK")
             {
-                _auditoriaService.RegistrarSnapshot(
+                _auditoriaService_380_jh.RegistrarSnapshot_380_jh(
                     "ComponentePermisoRelacion",
-                    CrearIdRelacion(idPadre, idHijo),
+                    CrearIdRelacion_380_jh(idPadre, idHijo),
                     "CREATE",
-                    CrearEstadoRelacion(idPadre, idHijo));
+                    CrearEstadoRelacion_380_jh(idPadre, idHijo));
             }
 
             return resultado;
         }
 
-        public bool QuitarRelacion(int idPadre, int idHijo)
+        public bool QuitarRelacion_380_jh(int idPadre, int idHijo)
         {
             if (idPadre == 0 || idHijo == 0)
             {
                 return false;
             }
 
-            bool quitada = _permisoRepository.QuitarRelacion(idPadre, idHijo);
+            bool quitada = _permisoRepository_380_jh.QuitarRelacion_380_jh(idPadre, idHijo);
             if (quitada)
             {
-                _auditoriaService.RegistrarSnapshot(
+                _auditoriaService_380_jh.RegistrarSnapshot_380_jh(
                     "ComponentePermisoRelacion",
-                    CrearIdRelacion(idPadre, idHijo),
+                    CrearIdRelacion_380_jh(idPadre, idHijo),
                     "DELETE",
-                    CrearEstadoRelacion(idPadre, idHijo));
+                    CrearEstadoRelacion_380_jh(idPadre, idHijo));
             }
 
             return quitada;
         }
 
-        public bool GuardarComponentesUsuario(int idUsuario, List<int> idsComponentes)
+        public bool GuardarComponentesUsuario_380_jh(int idUsuario, List<int> idsComponentes)
         {
             if (idUsuario == 0)
             {
                 return false;
             }
 
-            List<int> idsAnteriores = _permisoRepository.ListarIdsComponentesAsignadosPorUsuario(idUsuario);
-            bool guardado = _permisoRepository.GuardarComponentesUsuario(idUsuario, idsComponentes);
+            List<int> idsAnteriores = _permisoRepository_380_jh.ListarIdsComponentesAsignadosPorUsuario_380_jh(idUsuario);
+            bool guardado = _permisoRepository_380_jh.GuardarComponentesUsuario_380_jh(idUsuario, idsComponentes);
 
             if (guardado)
             {
-                List<int> idsNuevos = _permisoRepository.ListarIdsComponentesAsignadosPorUsuario(idUsuario);
-                _auditoriaService.RegistrarCambio(
-                    CrearMementoComponentesUsuario(idUsuario, idsAnteriores),
-                    CrearMementoComponentesUsuario(idUsuario, idsNuevos),
+                List<int> idsNuevos = _permisoRepository_380_jh.ListarIdsComponentesAsignadosPorUsuario_380_jh(idUsuario);
+                _auditoriaService_380_jh.RegistrarCambio_380_jh(
+                    CrearMementoComponentesUsuario_380_jh(idUsuario, idsAnteriores),
+                    CrearMementoComponentesUsuario_380_jh(idUsuario, idsNuevos),
                     "UPDATE");
             }
 
             return guardado;
         }
 
-        public bool PuedeAgregarRelacion(int idPadre, int idHijo)
+        public bool PuedeAgregarRelacion_380_jh(int idPadre, int idHijo)
         {
-            return _permisoRepository.PuedeAgregarRelacion(idPadre, idHijo);
+            return _permisoRepository_380_jh.PuedeAgregarRelacion_380_jh(idPadre, idHijo);
         }
 
-        private static string NormalizarCodigo(string texto)
+        private static string NormalizarCodigo_380_jh(string texto)
         {
             if (string.IsNullOrWhiteSpace(texto))
             {
@@ -177,11 +177,11 @@ namespace Application
             return builder.ToString().Trim('_');
         }
 
-        private ComponentePermiso BuscarComponentePorCodigo(string codigo)
+        private ComponentePermiso_380_jh BuscarComponentePorCodigo_380_jh(string codigo)
         {
-            foreach (ComponentePermiso componente in _permisoRepository.ListarComponentes())
+            foreach (ComponentePermiso_380_jh componente in _permisoRepository_380_jh.ListarComponentes_380_jh())
             {
-                if (componente.Codigo == codigo)
+                if (componente.Codigo_380_jh == codigo)
                 {
                     return componente;
                 }
@@ -190,12 +190,12 @@ namespace Application
             return null;
         }
 
-        private static int CrearIdRelacion(int idPadre, int idHijo)
+        private static int CrearIdRelacion_380_jh(int idPadre, int idHijo)
         {
             return (idPadre * 100000) + idHijo;
         }
 
-        private static Dictionary<string, object> CrearEstadoRelacion(int idPadre, int idHijo)
+        private static Dictionary<string, object> CrearEstadoRelacion_380_jh(int idPadre, int idHijo)
         {
             return new Dictionary<string, object>
             {
@@ -204,14 +204,14 @@ namespace Application
             };
         }
 
-        private static AuditoriaMemento CrearMementoComponentesUsuario(int idUsuario, List<int> idsComponentes)
+        private static AuditoriaMemento_380_jh CrearMementoComponentesUsuario_380_jh(int idUsuario, List<int> idsComponentes)
         {
             List<int> idsOrdenados = idsComponentes == null
                 ? new List<int>()
                 : new List<int>(idsComponentes);
             idsOrdenados.Sort();
 
-            return new AuditoriaMemento("UsuarioComponentePermiso", idUsuario, new Dictionary<string, object>
+            return new AuditoriaMemento_380_jh("UsuarioComponentePermiso", idUsuario, new Dictionary<string, object>
             {
                 { "IdUsuario", idUsuario },
                 { "IdsComponentes", string.Join(",", idsOrdenados) }

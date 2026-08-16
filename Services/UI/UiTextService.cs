@@ -1,8 +1,8 @@
 namespace Services
 {
-    public class UiTextService
+    public class UiTextService_380_jh
     {
-        public string BuildWelcomeMessage(string nombreVisible)
+        public string BuildWelcomeMessage_380_jh(string nombreVisible)
         {
             return $"Bienvenido {nombreVisible}.";
         }

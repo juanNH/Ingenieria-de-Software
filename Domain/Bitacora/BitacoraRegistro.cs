@@ -2,31 +2,31 @@ using System;
 
 namespace Domain
 {
-    public class BitacoraRegistro
+    public class BitacoraRegistro_380_jh
     {
-        public int Id { get; set; }
-        public int? IdUsuario { get; set; }
-        public string IdentificadorUsuario { get; set; }
-        public string Modulo { get; set; }
-        public string Accion { get; set; }
-        public string Nivel { get; set; }
-        public string Descripcion { get; set; }
-        public string Equipo { get; set; }
-        public DateTime Fecha { get; set; }
+        public int Id_380_jh { get; set; }
+        public int? IdUsuario_380_jh { get; set; }
+        public string IdentificadorUsuario_380_jh { get; set; }
+        public string Modulo_380_jh { get; set; }
+        public string Accion_380_jh { get; set; }
+        public string Nivel_380_jh { get; set; }
+        public string Descripcion_380_jh { get; set; }
+        public string Equipo_380_jh { get; set; }
+        public DateTime Fecha_380_jh { get; set; }
 
-        public AuditoriaMemento SaveToMemento()
+        public AuditoriaMemento_380_jh SaveToMemento_380_jh()
         {
-            return new AuditoriaMemento("Bitacora", Id, new System.Collections.Generic.Dictionary<string, object>
+            return new AuditoriaMemento_380_jh("Bitacora", Id_380_jh, new System.Collections.Generic.Dictionary<string, object>
             {
-                { "Id", Id },
-                { "IdUsuario", IdUsuario },
-                { "IdentificadorUsuario", IdentificadorUsuario },
-                { "Modulo", Modulo },
-                { "Accion", Accion },
-                { "Nivel", Nivel },
-                { "Descripcion", Descripcion },
-                { "Equipo", Equipo },
-                { "Fecha", Fecha }
+                { "Id", Id_380_jh },
+                { "IdUsuario", IdUsuario_380_jh },
+                { "IdentificadorUsuario", IdentificadorUsuario_380_jh },
+                { "Modulo", Modulo_380_jh },
+                { "Accion", Accion_380_jh },
+                { "Nivel", Nivel_380_jh },
+                { "Descripcion", Descripcion_380_jh },
+                { "Equipo", Equipo_380_jh },
+                { "Fecha", Fecha_380_jh }
             });
         }
     }

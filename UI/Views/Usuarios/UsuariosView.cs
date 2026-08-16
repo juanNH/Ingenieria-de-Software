@@ -8,146 +8,146 @@ using Services;
 
 namespace UI
 {
-    public partial class UsuariosView : LocalizedUserControl
+    public partial class UsuariosView_380_jh : LocalizedUserControl_380_jh
     {
-        private readonly UsuarioApplicationService _usuarioService;
-        private readonly PermisoApplicationService _permisoService;
-        private readonly AutorizacionApplicationService _autorizacionService;
-        private List<Usuario> _usuarios;
-        private List<ComponentePermiso> _familiasDisponibles;
-        private Usuario _usuarioSeleccionado;
-        private bool _preparandoFormulario;
-        private GroupBox groupBoxRolesUsuario;
-        private Label lblRolesInfo;
-        private ComboBox cmbRolUsuario;
-        private Button btnGuardarRoles;
-        private Button btnRecalcularDigitos;
+        private readonly UsuarioApplicationService_380_jh _usuarioService_380_jh;
+        private readonly PermisoApplicationService_380_jh _permisoService_380_jh;
+        private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
+        private List<Usuario_380_jh> _usuarios_380_jh;
+        private List<ComponentePermiso_380_jh> _familiasDisponibles_380_jh;
+        private Usuario_380_jh _usuarioSeleccionado_380_jh;
+        private bool _preparandoFormulario_380_jh;
+        private GroupBox groupBoxRolesUsuario_380_jh;
+        private Label lblRolesInfo_380_jh;
+        private ComboBox cmbRolUsuario_380_jh;
+        private Button btnGuardarRoles_380_jh;
+        private Button btnRecalcularDigitos_380_jh;
 
-        public UsuariosView()
-            : this(new UsuarioApplicationService())
+        public UsuariosView_380_jh()
+            : this(new UsuarioApplicationService_380_jh())
         {
         }
 
-        public UsuariosView(UsuarioApplicationService usuarioService)
+        public UsuariosView_380_jh(UsuarioApplicationService_380_jh usuarioService)
         {
-            _usuarioService = usuarioService;
-            _permisoService = new PermisoApplicationService();
-            _autorizacionService = new AutorizacionApplicationService();
-            InitializeComponent();
-            ConfigurarTraducciones();
-            ConfigurarGrilla();
-            ConfigurarAsignacionRoles();
-            ConfigurarPermisos();
-            CargarUsuarios();
-            CargarRolesDisponibles();
-            PrepararNuevoUsuario();
+            _usuarioService_380_jh = usuarioService;
+            _permisoService_380_jh = new PermisoApplicationService_380_jh();
+            _autorizacionService_380_jh = new AutorizacionApplicationService_380_jh();
+            InitializeComponent_380_jh();
+            ConfigurarTraducciones_380_jh();
+            ConfigurarGrilla_380_jh();
+            ConfigurarAsignacionRoles_380_jh();
+            ConfigurarPermisos_380_jh();
+            CargarUsuarios_380_jh();
+            CargarRolesDisponibles_380_jh();
+            PrepararNuevoUsuario_380_jh();
         }
 
-        private void ConfigurarTraducciones()
+        private void ConfigurarTraducciones_380_jh()
         {
-            lblTitulo.Tag = "USERS_TITLE";
-            lblDescripcion.Tag = "USERS_DESCRIPTION";
-            groupBoxDetalle.Tag = "USERS_DETAIL";
-            lblUsuario.Tag = "FIELD_USER";
-            lblEmail.Tag = "FIELD_EMAIL";
-            lblNombre.Tag = "FIELD_NAME";
-            lblApellido.Tag = "FIELD_LASTNAME";
-            lblPassword.Tag = "FIELD_NEW_PASSWORD";
-            lblEstado.Tag = "FIELD_STATUS";
-            btnNuevo.Tag = "BTN_NEW";
-            btnInhabilitar.Tag = "BTN_DISABLE";
-            columnId.Tag = "GRID_ID";
-            columnUsuario.Tag = "GRID_USER";
-            columnEmail.Tag = "GRID_EMAIL";
-            columnEstado.Tag = "GRID_STATUS";
-            columnBloqueoDigitoVerificador.Tag = "GRID_DV_BLOCK";
+            lblTitulo_380_jh.Tag = "USERS_TITLE";
+            lblDescripcion_380_jh.Tag = "USERS_DESCRIPTION";
+            groupBoxDetalle_380_jh.Tag = "USERS_DETAIL";
+            lblUsuario_380_jh.Tag = "FIELD_USER";
+            lblEmail_380_jh.Tag = "FIELD_EMAIL";
+            lblNombre_380_jh.Tag = "FIELD_NAME";
+            lblApellido_380_jh.Tag = "FIELD_LASTNAME";
+            lblPassword_380_jh.Tag = "FIELD_NEW_PASSWORD";
+            lblEstado_380_jh.Tag = "FIELD_STATUS";
+            btnNuevo_380_jh.Tag = "BTN_NEW";
+            btnInhabilitar_380_jh.Tag = "BTN_DISABLE";
+            columnId_380_jh.Tag = "GRID_ID";
+            columnUsuario_380_jh.Tag = "GRID_USER";
+            columnEmail_380_jh.Tag = "GRID_EMAIL";
+            columnEstado_380_jh.Tag = "GRID_STATUS";
+            columnBloqueoDigitoVerificador_380_jh.Tag = "GRID_DV_BLOCK";
         }
 
-        private void ConfigurarGrilla()
+        private void ConfigurarGrilla_380_jh()
         {
-            dgvUsuarios.AutoGenerateColumns = false;
-            columnId.Width = 45;
-            columnUsuario.Width = 90;
-            columnEmail.MinimumWidth = 110;
-            columnEstado.Width = 70;
-            columnBloqueoDigitoVerificador.Width = 75;
-            cmbEstado.Items.AddRange(new object[] { "ACTIVO", "INACTIVO" });
+            dgvUsuarios_380_jh.AutoGenerateColumns = false;
+            columnId_380_jh.Width = 45;
+            columnUsuario_380_jh.Width = 90;
+            columnEmail_380_jh.MinimumWidth = 110;
+            columnEstado_380_jh.Width = 70;
+            columnBloqueoDigitoVerificador_380_jh.Width = 75;
+            cmbEstado_380_jh.Items.AddRange(new object[] { "ACTIVO", "INACTIVO" });
         }
 
-        protected override void ApplyTranslations()
+        protected override void ApplyTranslations_380_jh()
         {
-            base.ApplyTranslations();
-            if (btnRecalcularDigitos != null)
+            base.ApplyTranslations_380_jh();
+            if (btnRecalcularDigitos_380_jh != null)
             {
-                btnRecalcularDigitos.Text = LanguageManager.Instance.Translate("BTN_RECALCULATE_DV");
+                btnRecalcularDigitos_380_jh.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("BTN_RECALCULATE_DV");
             }
 
-            ActualizarEstadoRolesUsuario();
+            ActualizarEstadoRolesUsuario_380_jh();
         }
 
-        private void CargarUsuarios()
+        private void CargarUsuarios_380_jh()
         {
-            _usuarios = _usuarioService.Listar();
-            dgvUsuarios.DataSource = null;
-            dgvUsuarios.DataSource = _usuarios;
+            _usuarios_380_jh = _usuarioService_380_jh.Listar_380_jh();
+            dgvUsuarios_380_jh.DataSource = null;
+            dgvUsuarios_380_jh.DataSource = _usuarios_380_jh;
         }
 
-        private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
+        private void dgvUsuarios_SelectionChanged_380_jh(object sender, EventArgs e)
         {
-            if (_preparandoFormulario)
-            {
-                return;
-            }
-
-            if (dgvUsuarios.CurrentRow == null)
+            if (_preparandoFormulario_380_jh)
             {
                 return;
             }
 
-            Usuario usuario = dgvUsuarios.CurrentRow.DataBoundItem as Usuario;
+            if (dgvUsuarios_380_jh.CurrentRow == null)
+            {
+                return;
+            }
+
+            Usuario_380_jh usuario = dgvUsuarios_380_jh.CurrentRow.DataBoundItem as Usuario_380_jh;
             if (usuario == null)
             {
                 return;
             }
 
-            _usuarioSeleccionado = usuario;
-            txtUsuario.Text = usuario.Username;
-            txtEmail.Text = usuario.Email;
-            txtNombre.Text = usuario.Nombre;
-            txtApellido.Text = usuario.Apellido;
-            txtPassword.Text = string.Empty;
-            cmbEstado.SelectedItem = string.IsNullOrWhiteSpace(usuario.Estado) ? "ACTIVO" : usuario.Estado;
-            lblModo.Tag = "USERS_EDIT_MODE";
-            lblModo.Text = LanguageManager.Instance.Translate("USERS_EDIT_MODE");
-            btnGuardar.Tag = "BTN_SAVE";
-            btnGuardar.Text = LanguageManager.Instance.Translate("BTN_SAVE");
-            btnGuardar.Enabled = _autorizacionService.TienePermiso(PermisosSistema.UsuarioEditar);
-            btnInhabilitar.Enabled = _autorizacionService.TienePermiso(PermisosSistema.UsuarioInhabilitar) &&
-                                     usuario.Id > 0 &&
-                                     usuario.Estado != "INACTIVO";
-            CargarRolesUsuario(usuario.Id);
-            ActualizarEstadoRolesUsuario();
+            _usuarioSeleccionado_380_jh = usuario;
+            txtUsuario_380_jh.Text = usuario.Username_380_jh;
+            txtEmail_380_jh.Text = usuario.Email_380_jh;
+            txtNombre_380_jh.Text = usuario.Nombre_380_jh;
+            txtApellido_380_jh.Text = usuario.Apellido_380_jh;
+            txtPassword_380_jh.Text = string.Empty;
+            cmbEstado_380_jh.SelectedItem = string.IsNullOrWhiteSpace(usuario.Estado_380_jh) ? "ACTIVO" : usuario.Estado_380_jh;
+            lblModo_380_jh.Tag = "USERS_EDIT_MODE";
+            lblModo_380_jh.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("USERS_EDIT_MODE");
+            btnGuardar_380_jh.Tag = "BTN_SAVE";
+            btnGuardar_380_jh.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("BTN_SAVE");
+            btnGuardar_380_jh.Enabled = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioEditar_380_jh);
+            btnInhabilitar_380_jh.Enabled = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioInhabilitar_380_jh) &&
+                                     usuario.Id_380_jh > 0 &&
+                                     usuario.Estado_380_jh != "INACTIVO";
+            CargarRolesUsuario_380_jh(usuario.Id_380_jh);
+            ActualizarEstadoRolesUsuario_380_jh();
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private void btnNuevo_Click_380_jh(object sender, EventArgs e)
         {
-            PrepararNuevoUsuario();
+            PrepararNuevoUsuario_380_jh();
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void btnGuardar_Click_380_jh(object sender, EventArgs e)
         {
-            if (_usuarioSeleccionado == null)
+            if (_usuarioSeleccionado_380_jh == null)
             {
-                CrearUsuario();
+                CrearUsuario_380_jh();
                 return;
             }
 
-            ModificarUsuario();
+            ModificarUsuario_380_jh();
         }
 
-        private void btnInhabilitar_Click(object sender, EventArgs e)
+        private void btnInhabilitar_Click_380_jh(object sender, EventArgs e)
         {
-            if (_usuarioSeleccionado == null)
+            if (_usuarioSeleccionado_380_jh == null)
             {
                 MessageBox.Show("Selecciona un usuario para inhabilitar.");
                 return;
@@ -164,85 +164,85 @@ namespace UI
                 return;
             }
 
-            bool resultado = _usuarioService.InhabilitarUsuario(_usuarioSeleccionado);
+            bool resultado = _usuarioService_380_jh.InhabilitarUsuario_380_jh(_usuarioSeleccionado_380_jh);
             MessageBox.Show(resultado ? "Usuario inhabilitado correctamente." : "No se pudo inhabilitar el usuario.");
-            CargarUsuarios();
-            PrepararNuevoUsuario();
+            CargarUsuarios_380_jh();
+            PrepararNuevoUsuario_380_jh();
         }
 
-        private void CrearUsuario()
+        private void CrearUsuario_380_jh()
         {
-            if (!ValidarCamposAlta())
+            if (!ValidarCamposAlta_380_jh())
             {
                 return;
             }
 
-            Usuario usuario = CrearUsuarioDesdeFormulario();
-            CodigoRegistroUsuario resultado = _usuarioService.CrearUsuario(usuario);
+            Usuario_380_jh usuario = CrearUsuarioDesdeFormulario_380_jh();
+            CodigoRegistroUsuario_380_jh resultado = _usuarioService_380_jh.CrearUsuario_380_jh(usuario);
 
-            if (resultado == CodigoRegistroUsuario.Creado)
+            if (resultado == CodigoRegistroUsuario_380_jh.Creado_380_jh)
             {
                 MessageBox.Show("Usuario creado correctamente.");
-                CargarUsuarios();
-                PrepararNuevoUsuario();
+                CargarUsuarios_380_jh();
+                PrepararNuevoUsuario_380_jh();
                 return;
             }
 
-            MessageBox.Show(ObtenerMensajeRegistro(resultado));
+            MessageBox.Show(ObtenerMensajeRegistro_380_jh(resultado));
         }
 
-        private void ModificarUsuario()
+        private void ModificarUsuario_380_jh()
         {
-            if (!ValidarCamposModificacion())
+            if (!ValidarCamposModificacion_380_jh())
             {
                 return;
             }
 
-            Usuario usuario = CrearUsuarioDesdeFormulario();
-            usuario.Id = _usuarioSeleccionado.Id;
+            Usuario_380_jh usuario = CrearUsuarioDesdeFormulario_380_jh();
+            usuario.Id_380_jh = _usuarioSeleccionado_380_jh.Id_380_jh;
 
-            bool resultado = _usuarioService.ModificarUsuario(usuario);
+            bool resultado = _usuarioService_380_jh.ModificarUsuario_380_jh(usuario);
             MessageBox.Show(resultado ? "Usuario modificado correctamente." : "No se pudo modificar el usuario.");
-            CargarUsuarios();
-            PrepararNuevoUsuario();
+            CargarUsuarios_380_jh();
+            PrepararNuevoUsuario_380_jh();
         }
 
-        private Usuario CrearUsuarioDesdeFormulario()
+        private Usuario_380_jh CrearUsuarioDesdeFormulario_380_jh()
         {
-            return new Usuario
+            return new Usuario_380_jh
             {
-                Username = txtUsuario.Text.Trim(),
-                Email = txtEmail.Text.Trim(),
-                Password = txtPassword.Text,
-                Nombre = txtNombre.Text.Trim(),
-                Apellido = txtApellido.Text.Trim(),
-                Estado = cmbEstado.SelectedItem == null ? "ACTIVO" : cmbEstado.SelectedItem.ToString()
+                Username_380_jh = txtUsuario_380_jh.Text.Trim(),
+                Email_380_jh = txtEmail_380_jh.Text.Trim(),
+                Password_380_jh = txtPassword_380_jh.Text,
+                Nombre_380_jh = txtNombre_380_jh.Text.Trim(),
+                Apellido_380_jh = txtApellido_380_jh.Text.Trim(),
+                Estado_380_jh = cmbEstado_380_jh.SelectedItem == null ? "ACTIVO" : cmbEstado_380_jh.SelectedItem.ToString()
             };
         }
 
-        private bool ValidarCamposAlta()
+        private bool ValidarCamposAlta_380_jh()
         {
-            if (string.IsNullOrWhiteSpace(txtPassword.Text) ||
-                string.IsNullOrWhiteSpace(txtUsuario.Text) ||
-                string.IsNullOrWhiteSpace(txtEmail.Text))
+            if (string.IsNullOrWhiteSpace(txtPassword_380_jh.Text) ||
+                string.IsNullOrWhiteSpace(txtUsuario_380_jh.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail_380_jh.Text))
             {
                 MessageBox.Show("Completa usuario, email y contrasena para crear.");
                 return false;
             }
 
-            return ValidarCamposModificacion();
+            return ValidarCamposModificacion_380_jh();
         }
 
-        private bool ValidarCamposModificacion()
+        private bool ValidarCamposModificacion_380_jh()
         {
-            if (string.IsNullOrWhiteSpace(txtUsuario.Text) ||
-                string.IsNullOrWhiteSpace(txtEmail.Text))
+            if (string.IsNullOrWhiteSpace(txtUsuario_380_jh.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail_380_jh.Text))
             {
                 MessageBox.Show("Completa usuario y email.");
                 return false;
             }
 
-            if (!_usuarioService.EsEmailValido(txtEmail.Text))
+            if (!_usuarioService_380_jh.EsEmailValido_380_jh(txtEmail_380_jh.Text))
             {
                 MessageBox.Show("Ingresa un email valido.");
                 return false;
@@ -251,47 +251,47 @@ namespace UI
             return true;
         }
 
-        private void PrepararNuevoUsuario()
+        private void PrepararNuevoUsuario_380_jh()
         {
-            _preparandoFormulario = true;
-            _usuarioSeleccionado = null;
-            dgvUsuarios.ClearSelection();
-            txtUsuario.Clear();
-            txtEmail.Clear();
-            txtNombre.Clear();
-            txtApellido.Clear();
-            txtPassword.Clear();
-            cmbEstado.SelectedItem = "ACTIVO";
-            lblModo.Tag = "USERS_CREATE_MODE";
-            lblModo.Text = LanguageManager.Instance.Translate("USERS_CREATE_MODE");
-            btnGuardar.Tag = "BTN_CREATE";
-            btnGuardar.Text = LanguageManager.Instance.Translate("BTN_CREATE");
-            btnGuardar.Enabled = _autorizacionService.TienePermiso(PermisosSistema.UsuarioCrear);
-            btnInhabilitar.Enabled = false;
-            LimpiarRolesUsuario();
-            ActualizarEstadoRolesUsuario();
-            txtUsuario.Focus();
-            _preparandoFormulario = false;
+            _preparandoFormulario_380_jh = true;
+            _usuarioSeleccionado_380_jh = null;
+            dgvUsuarios_380_jh.ClearSelection();
+            txtUsuario_380_jh.Clear();
+            txtEmail_380_jh.Clear();
+            txtNombre_380_jh.Clear();
+            txtApellido_380_jh.Clear();
+            txtPassword_380_jh.Clear();
+            cmbEstado_380_jh.SelectedItem = "ACTIVO";
+            lblModo_380_jh.Tag = "USERS_CREATE_MODE";
+            lblModo_380_jh.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("USERS_CREATE_MODE");
+            btnGuardar_380_jh.Tag = "BTN_CREATE";
+            btnGuardar_380_jh.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("BTN_CREATE");
+            btnGuardar_380_jh.Enabled = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioCrear_380_jh);
+            btnInhabilitar_380_jh.Enabled = false;
+            LimpiarRolesUsuario_380_jh();
+            ActualizarEstadoRolesUsuario_380_jh();
+            txtUsuario_380_jh.Focus();
+            _preparandoFormulario_380_jh = false;
         }
 
-        private void ConfigurarPermisos()
+        private void ConfigurarPermisos_380_jh()
         {
-            btnNuevo.Visible = _autorizacionService.TienePermiso(PermisosSistema.UsuarioCrear);
-            btnGuardar.Visible = _autorizacionService.TienePermiso(PermisosSistema.UsuarioCrear) ||
-                                 _autorizacionService.TienePermiso(PermisosSistema.UsuarioEditar);
-            btnInhabilitar.Visible = _autorizacionService.TienePermiso(PermisosSistema.UsuarioInhabilitar);
-            btnGuardarRoles.Visible = _autorizacionService.TienePermiso(PermisosSistema.UsuarioEditar);
-            btnRecalcularDigitos.Visible = _autorizacionService.TienePermiso(PermisosSistema.UsuarioEditar);
-            ActualizarEstadoRolesUsuario();
+            btnNuevo_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioCrear_380_jh);
+            btnGuardar_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioCrear_380_jh) ||
+                                 _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioEditar_380_jh);
+            btnInhabilitar_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioInhabilitar_380_jh);
+            btnGuardarRoles_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioEditar_380_jh);
+            btnRecalcularDigitos_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioEditar_380_jh);
+            ActualizarEstadoRolesUsuario_380_jh();
         }
 
-        private void ConfigurarAsignacionRoles()
+        private void ConfigurarAsignacionRoles_380_jh()
         {
-            dgvUsuarios.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-            dgvUsuarios.Location = new Point(24, 98);
-            dgvUsuarios.Size = new Size(390, 390);
+            dgvUsuarios_380_jh.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            dgvUsuarios_380_jh.Location = new Point(24, 98);
+            dgvUsuarios_380_jh.Size = new Size(390, 390);
 
-            btnRecalcularDigitos = new Button
+            btnRecalcularDigitos_380_jh = new Button
             {
                 BackColor = Color.FromArgb(13, 110, 253),
                 FlatStyle = FlatStyle.Flat,
@@ -300,12 +300,12 @@ namespace UI
                 Location = new Point(424, 54),
                 Size = new Size(120, 31),
                 Tag = "BTN_RECALCULATE_DV",
-                Text = LanguageManager.Instance.Translate("BTN_RECALCULATE_DV"),
+                Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("BTN_RECALCULATE_DV"),
                 UseVisualStyleBackColor = false
             };
-            btnRecalcularDigitos.Click += btnRecalcularDigitos_Click;
+            btnRecalcularDigitos_380_jh.Click += btnRecalcularDigitos_Click_380_jh;
 
-            groupBoxRolesUsuario = new GroupBox
+            groupBoxRolesUsuario_380_jh = new GroupBox
             {
                 Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold),
                 Location = new Point(424, 98),
@@ -314,7 +314,7 @@ namespace UI
                 Text = "Roles"
             };
 
-            lblRolesInfo = new Label
+            lblRolesInfo_380_jh = new Label
             {
                 AutoSize = false,
                 Font = new Font("Segoe UI", 8.5F),
@@ -325,7 +325,7 @@ namespace UI
                 Text = "Selecciona un usuario para asignarle un rol."
             };
 
-            cmbRolUsuario = new ComboBox
+            cmbRolUsuario_380_jh = new ComboBox
             {
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 Font = new Font("Segoe UI", 9F),
@@ -333,7 +333,7 @@ namespace UI
                 Size = new Size(100, 23)
             };
 
-            btnGuardarRoles = new Button
+            btnGuardarRoles_380_jh = new Button
             {
                 BackColor = Color.FromArgb(25, 135, 84),
                 FlatStyle = FlatStyle.Flat,
@@ -345,107 +345,107 @@ namespace UI
                 Text = "Guardar",
                 UseVisualStyleBackColor = false
             };
-            btnGuardarRoles.Click += btnGuardarRoles_Click;
+            btnGuardarRoles_380_jh.Click += btnGuardarRoles_Click_380_jh;
 
-            groupBoxRolesUsuario.Controls.Add(lblRolesInfo);
-            groupBoxRolesUsuario.Controls.Add(cmbRolUsuario);
-            groupBoxRolesUsuario.Controls.Add(btnGuardarRoles);
-            Controls.Add(btnRecalcularDigitos);
-            Controls.Add(groupBoxRolesUsuario);
+            groupBoxRolesUsuario_380_jh.Controls.Add(lblRolesInfo_380_jh);
+            groupBoxRolesUsuario_380_jh.Controls.Add(cmbRolUsuario_380_jh);
+            groupBoxRolesUsuario_380_jh.Controls.Add(btnGuardarRoles_380_jh);
+            Controls.Add(btnRecalcularDigitos_380_jh);
+            Controls.Add(groupBoxRolesUsuario_380_jh);
         }
 
-        private void CargarRolesDisponibles()
+        private void CargarRolesDisponibles_380_jh()
         {
-            _familiasDisponibles = _permisoService.ListarFamilias();
-            LimpiarRolesUsuario();
-            ActualizarEstadoRolesUsuario();
+            _familiasDisponibles_380_jh = _permisoService_380_jh.ListarFamilias_380_jh();
+            LimpiarRolesUsuario_380_jh();
+            ActualizarEstadoRolesUsuario_380_jh();
         }
 
-        private void CargarRolesUsuario(int idUsuario)
+        private void CargarRolesUsuario_380_jh(int idUsuario)
         {
-            if (_familiasDisponibles == null)
+            if (_familiasDisponibles_380_jh == null)
             {
-                CargarRolesDisponibles();
+                CargarRolesDisponibles_380_jh();
             }
 
-            List<int> idsAsignados = _permisoService.ListarIdsComponentesAsignadosPorUsuario(idUsuario);
+            List<int> idsAsignados = _permisoService_380_jh.ListarIdsComponentesAsignadosPorUsuario_380_jh(idUsuario);
 
-            cmbRolUsuario.DataSource = null;
-            cmbRolUsuario.DataSource = _familiasDisponibles;
+            cmbRolUsuario_380_jh.DataSource = null;
+            cmbRolUsuario_380_jh.DataSource = _familiasDisponibles_380_jh;
 
-            ComponentePermiso rolAsignado = null;
-            foreach (ComponentePermiso familia in _familiasDisponibles)
+            ComponentePermiso_380_jh rolAsignado = null;
+            foreach (ComponentePermiso_380_jh familia in _familiasDisponibles_380_jh)
             {
-                if (idsAsignados.Contains(familia.Id))
+                if (idsAsignados.Contains(familia.Id_380_jh))
                 {
                     rolAsignado = familia;
                     break;
                 }
             }
 
-            cmbRolUsuario.SelectedItem = rolAsignado;
-            ActualizarEstadoRolesUsuario();
+            cmbRolUsuario_380_jh.SelectedItem = rolAsignado;
+            ActualizarEstadoRolesUsuario_380_jh();
         }
 
-        private void LimpiarRolesUsuario()
+        private void LimpiarRolesUsuario_380_jh()
         {
-            cmbRolUsuario.DataSource = null;
+            cmbRolUsuario_380_jh.DataSource = null;
 
-            if (_familiasDisponibles == null)
+            if (_familiasDisponibles_380_jh == null)
             {
                 return;
             }
 
-            cmbRolUsuario.DataSource = _familiasDisponibles;
-            cmbRolUsuario.SelectedIndex = -1;
+            cmbRolUsuario_380_jh.DataSource = _familiasDisponibles_380_jh;
+            cmbRolUsuario_380_jh.SelectedIndex = -1;
         }
 
-        private void ActualizarEstadoRolesUsuario()
+        private void ActualizarEstadoRolesUsuario_380_jh()
         {
-            if (cmbRolUsuario == null || btnGuardarRoles == null || lblRolesInfo == null)
+            if (cmbRolUsuario_380_jh == null || btnGuardarRoles_380_jh == null || lblRolesInfo_380_jh == null)
             {
                 return;
             }
 
-            bool puedeEditar = _autorizacionService.TienePermiso(PermisosSistema.UsuarioEditar);
-            bool hayUsuarioSeleccionado = _usuarioSeleccionado != null && _usuarioSeleccionado.Id > 0;
-            bool hayRoles = cmbRolUsuario.Items.Count > 0;
+            bool puedeEditar = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioEditar_380_jh);
+            bool hayUsuarioSeleccionado = _usuarioSeleccionado_380_jh != null && _usuarioSeleccionado_380_jh.Id_380_jh > 0;
+            bool hayRoles = cmbRolUsuario_380_jh.Items.Count > 0;
 
-            cmbRolUsuario.Enabled = puedeEditar && hayUsuarioSeleccionado && hayRoles;
-            btnGuardarRoles.Enabled = puedeEditar && hayUsuarioSeleccionado && hayRoles;
+            cmbRolUsuario_380_jh.Enabled = puedeEditar && hayUsuarioSeleccionado && hayRoles;
+            btnGuardarRoles_380_jh.Enabled = puedeEditar && hayUsuarioSeleccionado && hayRoles;
 
             if (!puedeEditar)
             {
-                lblRolesInfo.Text = LanguageManager.Instance.Translate("USER_ROLE_EDIT_DENIED");
+                lblRolesInfo_380_jh.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("USER_ROLE_EDIT_DENIED");
                 return;
             }
 
             if (!hayRoles)
             {
-                lblRolesInfo.Text = LanguageManager.Instance.Translate("USER_ROLE_EMPTY");
+                lblRolesInfo_380_jh.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("USER_ROLE_EMPTY");
                 return;
             }
 
-            lblRolesInfo.Text = hayUsuarioSeleccionado
-                ? LanguageManager.Instance.Translate("USER_ROLE_SELECT_ONE")
-                : LanguageManager.Instance.Translate("USER_ROLE_SELECT_HELP");
+            lblRolesInfo_380_jh.Text = hayUsuarioSeleccionado
+                ? LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("USER_ROLE_SELECT_ONE")
+                : LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("USER_ROLE_SELECT_HELP");
         }
 
-        private void btnGuardarRoles_Click(object sender, EventArgs e)
+        private void btnGuardarRoles_Click_380_jh(object sender, EventArgs e)
         {
-            if (_usuarioSeleccionado == null)
+            if (_usuarioSeleccionado_380_jh == null)
             {
                 MessageBox.Show("Selecciona un usuario para asignarle roles.");
                 return;
             }
 
-            if (!_autorizacionService.TienePermiso(PermisosSistema.UsuarioEditar))
+            if (!_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioEditar_380_jh))
             {
                 MessageBox.Show("No tenes permisos para modificar roles de usuarios.");
                 return;
             }
 
-            ComponentePermiso rolSeleccionado = cmbRolUsuario.SelectedItem as ComponentePermiso;
+            ComponentePermiso_380_jh rolSeleccionado = cmbRolUsuario_380_jh.SelectedItem as ComponentePermiso_380_jh;
 
             if (rolSeleccionado == null)
             {
@@ -453,20 +453,20 @@ namespace UI
                 return;
             }
 
-            List<int> idsSeleccionados = new List<int> { rolSeleccionado.Id };
+            List<int> idsSeleccionados = new List<int> { rolSeleccionado.Id_380_jh };
 
-            bool guardado = _permisoService.GuardarComponentesUsuario(_usuarioSeleccionado.Id, idsSeleccionados);
+            bool guardado = _permisoService_380_jh.GuardarComponentesUsuario_380_jh(_usuarioSeleccionado_380_jh.Id_380_jh, idsSeleccionados);
             MessageBox.Show(guardado ? "Rol asignado correctamente." : "No se pudo asignar el rol.");
 
             if (guardado)
             {
-                CargarRolesUsuario(_usuarioSeleccionado.Id);
+                CargarRolesUsuario_380_jh(_usuarioSeleccionado_380_jh.Id_380_jh);
             }
         }
 
-        private void btnRecalcularDigitos_Click(object sender, EventArgs e)
+        private void btnRecalcularDigitos_Click_380_jh(object sender, EventArgs e)
         {
-            if (!_autorizacionService.TienePermiso(PermisosSistema.UsuarioEditar))
+            if (!_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioEditar_380_jh))
             {
                 MessageBox.Show("No tenes permisos para recalcular digitos verificadores.");
                 return;
@@ -483,32 +483,32 @@ namespace UI
                 return;
             }
 
-            bool recalculado = _usuarioService.RecalcularDigitosVerificadoresUsuarios();
+            bool recalculado = _usuarioService_380_jh.RecalcularDigitosVerificadoresUsuarios_380_jh();
             MessageBox.Show(recalculado
                 ? "Digitos verificadores recalculados correctamente."
                 : "No se pudieron recalcular los digitos verificadores.");
 
-            CargarUsuarios();
-            PrepararNuevoUsuario();
+            CargarUsuarios_380_jh();
+            PrepararNuevoUsuario_380_jh();
         }
 
-        private static string ObtenerMensajeRegistro(CodigoRegistroUsuario resultado)
+        private static string ObtenerMensajeRegistro_380_jh(CodigoRegistroUsuario_380_jh resultado)
         {
             switch (resultado)
             {
-                case CodigoRegistroUsuario.DatosInvalidos:
+                case CodigoRegistroUsuario_380_jh.DatosInvalidos_380_jh:
                     return "Completa todos los campos obligatorios.";
 
-                case CodigoRegistroUsuario.EmailInvalido:
+                case CodigoRegistroUsuario_380_jh.EmailInvalido_380_jh:
                     return "Ingresa un email valido.";
 
-                case CodigoRegistroUsuario.UsuarioExistente:
+                case CodigoRegistroUsuario_380_jh.UsuarioExistente_380_jh:
                     return "Ya existe un usuario con ese nombre.";
 
-                case CodigoRegistroUsuario.EmailExistente:
+                case CodigoRegistroUsuario_380_jh.EmailExistente_380_jh:
                     return "Ya existe un usuario con ese email.";
 
-                case CodigoRegistroUsuario.IdiomaDefaultInexistente:
+                case CodigoRegistroUsuario_380_jh.IdiomaDefaultInexistente_380_jh:
                     return "No se pudo crear el usuario porque falta el idioma default.";
 
                 default:

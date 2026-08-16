@@ -4,34 +4,34 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-    public class BitacoraRepository
+    public class BitacoraRepository_380_jh
     {
-        private readonly BitacoraDataMapper _bitacoraDataMapper;
+        private readonly BitacoraDataMapper_380_jh _bitacoraDataMapper_380_jh;
 
-        public BitacoraRepository()
-            : this(new BitacoraDataMapper())
+        public BitacoraRepository_380_jh()
+            : this(new BitacoraDataMapper_380_jh())
         {
         }
 
-        public BitacoraRepository(BitacoraDataMapper bitacoraDataMapper)
+        public BitacoraRepository_380_jh(BitacoraDataMapper_380_jh bitacoraDataMapper)
         {
-            _bitacoraDataMapper = bitacoraDataMapper;
+            _bitacoraDataMapper_380_jh = bitacoraDataMapper;
         }
 
-        public bool Registrar(IBitacoraEvento bitacora)
+        public bool Registrar_380_jh(IBitacoraEvento_380_jh bitacora)
         {
             if (bitacora == null)
             {
                 return false;
             }
 
-            BitacoraRegistro registro = BitacoraRegistroMapper.Mapear(bitacora);
-            return _bitacoraDataMapper.Insertar(registro) > 0;
+            BitacoraRegistro_380_jh registro = BitacoraRegistroMapper_380_jh.Mapear_380_jh(bitacora);
+            return _bitacoraDataMapper_380_jh.Insertar_380_jh(registro) > 0;
         }
 
-        public List<BitacoraRegistro> Listar()
+        public List<BitacoraRegistro_380_jh> Listar_380_jh()
         {
-            return _bitacoraDataMapper.Listar();
+            return _bitacoraDataMapper_380_jh.Listar_380_jh();
         }
 
     }

@@ -2,25 +2,25 @@ using Abstractions;
 
 namespace Domain
 {
-    public class Etiqueta : IEntity
+    public class Etiqueta_380_jh : IEntity_380_jh
     {
-        public int Id { get; set; }
-        public string Key { get; set; }
-        public string Descripcion { get; set; }
+        public int Id_380_jh { get; set; }
+        public string Key_380_jh { get; set; }
+        public string Descripcion_380_jh { get; set; }
 
-        public AuditoriaMemento SaveToMemento()
+        public AuditoriaMemento_380_jh SaveToMemento_380_jh()
         {
-            return new AuditoriaMemento("Etiqueta", Id, new System.Collections.Generic.Dictionary<string, object>
+            return new AuditoriaMemento_380_jh("Etiqueta", Id_380_jh, new System.Collections.Generic.Dictionary<string, object>
             {
-                { "Id", Id },
-                { "Key", Key },
-                { "Descripcion", Descripcion }
+                { "Id", Id_380_jh },
+                { "Key", Key_380_jh },
+                { "Descripcion", Descripcion_380_jh }
             });
         }
 
         public override string ToString()
         {
-            return Key ?? string.Empty;
+            return Key_380_jh ?? string.Empty;
         }
     }
 }

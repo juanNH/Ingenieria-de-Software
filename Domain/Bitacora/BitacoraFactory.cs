@@ -2,18 +2,18 @@ using System;
 
 namespace Domain
 {
-    public abstract class BitacoraFactory
+    public abstract class BitacoraFactory_380_jh
     {
-        public IBitacoraEvento Crear(string identificadorUsuario, string descripcion)
+        public IBitacoraEvento_380_jh Crear_380_jh(string identificadorUsuario, string descripcion)
         {
-            IBitacoraEvento evento = CrearEvento();
-            evento.IdentificadorUsuario = identificadorUsuario;
-            evento.Descripcion = descripcion;
-            evento.Equipo = Environment.MachineName;
-            evento.Fecha = DateTime.Now;
+            IBitacoraEvento_380_jh evento = CrearEvento_380_jh();
+            evento.IdentificadorUsuario_380_jh = identificadorUsuario;
+            evento.Descripcion_380_jh = descripcion;
+            evento.Equipo_380_jh = Environment.MachineName;
+            evento.Fecha_380_jh = DateTime.Now;
             return evento;
         }
 
-        protected abstract IBitacoraEvento CrearEvento();
+        protected abstract IBitacoraEvento_380_jh CrearEvento_380_jh();
     }
 }

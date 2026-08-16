@@ -2,62 +2,62 @@ using System;
 
 namespace Domain
 {
-    public sealed class Sesion
+    public sealed class Sesion_380_jh
     {
-        private static readonly Sesion _instance = new Sesion();
-        private static readonly object _lock = new object();
+        private static readonly Sesion_380_jh _instance_380_jh = new Sesion_380_jh();
+        private static readonly object _lock_380_jh = new object();
 
-        private Usuario _usuario;
-        private DateTime _fechaInicio;
+        private Usuario_380_jh _usuario_380_jh;
+        private DateTime _fechaInicio_380_jh;
 
-        private Sesion()
+        private Sesion_380_jh()
         {
         }
 
-        public static Sesion ObtenerInstancia()
+        public static Sesion_380_jh ObtenerInstancia_380_jh()
         {
-            return _instance;
+            return _instance_380_jh;
         }
 
-        public void IniciarSesion(Usuario usuario)
+        public void IniciarSesion_380_jh(Usuario_380_jh usuario)
         {
-            lock (_lock)
+            lock (_lock_380_jh)
             {
-                _usuario = usuario;
-                _fechaInicio = DateTime.Now;
+                _usuario_380_jh = usuario;
+                _fechaInicio_380_jh = DateTime.Now;
             }
         }
 
-        public Usuario ObtenerUsuario()
+        public Usuario_380_jh ObtenerUsuario_380_jh()
         {
-            lock (_lock)
+            lock (_lock_380_jh)
             {
-                return _usuario;
+                return _usuario_380_jh;
             }
         }
 
-        public DateTime ObtenerFechaInicio()
+        public DateTime ObtenerFechaInicio_380_jh()
         {
-            lock (_lock)
+            lock (_lock_380_jh)
             {
-                return _fechaInicio;
+                return _fechaInicio_380_jh;
             }
         }
 
-        public bool HaySesionActiva()
+        public bool HaySesionActiva_380_jh()
         {
-            lock (_lock)
+            lock (_lock_380_jh)
             {
-                return _usuario != null;
+                return _usuario_380_jh != null;
             }
         }
 
-        public void Logout()
+        public void Logout_380_jh()
         {
-            lock (_lock)
+            lock (_lock_380_jh)
             {
-                _usuario = null;
-                _fechaInicio = DateTime.MinValue;
+                _usuario_380_jh = null;
+                _fechaInicio_380_jh = DateTime.MinValue;
             }
         }
     }

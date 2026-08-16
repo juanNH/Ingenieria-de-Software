@@ -6,21 +6,21 @@ using Domain;
 
 namespace DAL
 {
-    public class AuditoriaDataMapper
+    public class AuditoriaDataMapper_380_jh
     {
-        private readonly DatabaseContext _databaseContext;
+        private readonly DatabaseContext_380_jh _databaseContext_380_jh;
 
-        public AuditoriaDataMapper()
-            : this(new DatabaseContext())
+        public AuditoriaDataMapper_380_jh()
+            : this(new DatabaseContext_380_jh())
         {
         }
 
-        public AuditoriaDataMapper(DatabaseContext databaseContext)
+        public AuditoriaDataMapper_380_jh(DatabaseContext_380_jh databaseContext)
         {
-            _databaseContext = databaseContext;
+            _databaseContext_380_jh = databaseContext;
         }
 
-        public int Insertar(AuditoriaRegistro auditoria)
+        public int Insertar_380_jh(AuditoriaRegistro_380_jh auditoria)
         {
             if (auditoria == null)
             {
@@ -29,15 +29,15 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                CrearParametro("@entidad", auditoria.Entidad),
-                CrearParametro("@id_entidad", auditoria.IdEntidad),
-                CrearParametro("@accion", auditoria.Accion),
-                CrearParametro("@id_usuario_actor", auditoria.IdUsuarioActor),
-                CrearParametro("@identificador_usuario_actor", auditoria.IdentificadorUsuarioActor),
-                CrearParametro("@fecha_evento", auditoria.FechaEvento),
-                CrearParametro("@estado_anterior_json", auditoria.EstadoAnteriorJson),
-                CrearParametro("@estado_nuevo_json", auditoria.EstadoNuevoJson),
-                CrearParametro("@cambios_json", auditoria.CambiosJson)
+                CrearParametro_380_jh("@entidad", auditoria.Entidad_380_jh),
+                CrearParametro_380_jh("@id_entidad", auditoria.IdEntidad_380_jh),
+                CrearParametro_380_jh("@accion", auditoria.Accion_380_jh),
+                CrearParametro_380_jh("@id_usuario_actor", auditoria.IdUsuarioActor_380_jh),
+                CrearParametro_380_jh("@identificador_usuario_actor", auditoria.IdentificadorUsuarioActor_380_jh),
+                CrearParametro_380_jh("@fecha_evento", auditoria.FechaEvento_380_jh),
+                CrearParametro_380_jh("@estado_anterior_json", auditoria.EstadoAnteriorJson_380_jh),
+                CrearParametro_380_jh("@estado_nuevo_json", auditoria.EstadoNuevoJson_380_jh),
+                CrearParametro_380_jh("@cambios_json", auditoria.CambiosJson_380_jh)
             };
 
             const string sql = @"
@@ -69,16 +69,16 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
 
                 if (tabla.Rows.Count == 0)
                 {
                     return -1;
                 }
 
-                auditoria.Id = Convert.ToInt32(tabla.Rows[0]["id_auditoria"]);
-                return auditoria.Id;
+                auditoria.Id_380_jh = Convert.ToInt32(tabla.Rows[0]["id_auditoria"]);
+                return auditoria.Id_380_jh;
             }
             catch
             {
@@ -86,16 +86,16 @@ namespace DAL
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public List<AuditoriaRegistro> ListarPorEntidad(string entidad, int idEntidad)
+        public List<AuditoriaRegistro_380_jh> ListarPorEntidad_380_jh(string entidad, int idEntidad)
         {
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                CrearParametro("@entidad", entidad),
-                CrearParametro("@id_entidad", idEntidad)
+                CrearParametro_380_jh("@entidad", entidad),
+                CrearParametro_380_jh("@id_entidad", idEntidad)
             };
 
             const string sql = @"
@@ -117,28 +117,28 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
-                List<AuditoriaRegistro> registros = new List<AuditoriaRegistro>();
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
+                List<AuditoriaRegistro_380_jh> registros = new List<AuditoriaRegistro_380_jh>();
 
                 foreach (DataRow fila in tabla.Rows)
                 {
-                    registros.Add(MapearAuditoria(fila));
+                    registros.Add(MapearAuditoria_380_jh(fila));
                 }
 
                 return registros;
             }
             catch
             {
-                return new List<AuditoriaRegistro>();
+                return new List<AuditoriaRegistro_380_jh>();
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public List<AuditoriaRegistro> ListarTodos()
+        public List<AuditoriaRegistro_380_jh> ListarTodos_380_jh()
         {
             const string sql = @"
                 SELECT
@@ -157,28 +157,28 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                DataTable tabla = _databaseContext.LeerTexto(sql);
-                List<AuditoriaRegistro> registros = new List<AuditoriaRegistro>();
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql);
+                List<AuditoriaRegistro_380_jh> registros = new List<AuditoriaRegistro_380_jh>();
 
                 foreach (DataRow fila in tabla.Rows)
                 {
-                    registros.Add(MapearAuditoria(fila));
+                    registros.Add(MapearAuditoria_380_jh(fila));
                 }
 
                 return registros;
             }
             catch
             {
-                return new List<AuditoriaRegistro>();
+                return new List<AuditoriaRegistro_380_jh>();
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        private static SqlParameter CrearParametro(string nombre, string valor)
+        private static SqlParameter CrearParametro_380_jh(string nombre, string valor)
         {
             return new SqlParameter
             {
@@ -188,7 +188,7 @@ namespace DAL
             };
         }
 
-        private static SqlParameter CrearParametro(string nombre, int valor)
+        private static SqlParameter CrearParametro_380_jh(string nombre, int valor)
         {
             return new SqlParameter
             {
@@ -198,7 +198,7 @@ namespace DAL
             };
         }
 
-        private static SqlParameter CrearParametro(string nombre, int? valor)
+        private static SqlParameter CrearParametro_380_jh(string nombre, int? valor)
         {
             return new SqlParameter
             {
@@ -208,7 +208,7 @@ namespace DAL
             };
         }
 
-        private static SqlParameter CrearParametro(string nombre, DateTime valor)
+        private static SqlParameter CrearParametro_380_jh(string nombre, DateTime valor)
         {
             return new SqlParameter
             {
@@ -218,20 +218,20 @@ namespace DAL
             };
         }
 
-        private static AuditoriaRegistro MapearAuditoria(DataRow fila)
+        private static AuditoriaRegistro_380_jh MapearAuditoria_380_jh(DataRow fila)
         {
-            return new AuditoriaRegistro
+            return new AuditoriaRegistro_380_jh
             {
-                Id = Convert.ToInt32(fila["id_auditoria"]),
-                Entidad = fila["entidad"].ToString(),
-                IdEntidad = Convert.ToInt32(fila["id_entidad"]),
-                Accion = fila["accion"].ToString(),
-                IdUsuarioActor = fila["id_usuario_actor"] == DBNull.Value ? (int?)null : Convert.ToInt32(fila["id_usuario_actor"]),
-                IdentificadorUsuarioActor = fila["identificador_usuario_actor"] == DBNull.Value ? null : fila["identificador_usuario_actor"].ToString(),
-                FechaEvento = Convert.ToDateTime(fila["fecha_evento"]),
-                EstadoAnteriorJson = fila["estado_anterior_json"] == DBNull.Value ? null : fila["estado_anterior_json"].ToString(),
-                EstadoNuevoJson = fila["estado_nuevo_json"] == DBNull.Value ? null : fila["estado_nuevo_json"].ToString(),
-                CambiosJson = fila["cambios_json"] == DBNull.Value ? null : fila["cambios_json"].ToString()
+                Id_380_jh = Convert.ToInt32(fila["id_auditoria"]),
+                Entidad_380_jh = fila["entidad"].ToString(),
+                IdEntidad_380_jh = Convert.ToInt32(fila["id_entidad"]),
+                Accion_380_jh = fila["accion"].ToString(),
+                IdUsuarioActor_380_jh = fila["id_usuario_actor"] == DBNull.Value ? (int?)null : Convert.ToInt32(fila["id_usuario_actor"]),
+                IdentificadorUsuarioActor_380_jh = fila["identificador_usuario_actor"] == DBNull.Value ? null : fila["identificador_usuario_actor"].ToString(),
+                FechaEvento_380_jh = Convert.ToDateTime(fila["fecha_evento"]),
+                EstadoAnteriorJson_380_jh = fila["estado_anterior_json"] == DBNull.Value ? null : fila["estado_anterior_json"].ToString(),
+                EstadoNuevoJson_380_jh = fila["estado_nuevo_json"] == DBNull.Value ? null : fila["estado_nuevo_json"].ToString(),
+                CambiosJson_380_jh = fila["cambios_json"] == DBNull.Value ? null : fila["cambios_json"].ToString()
             };
         }
     }

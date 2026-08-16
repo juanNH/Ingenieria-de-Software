@@ -4,43 +4,43 @@ using System.Collections.Generic;
 
 namespace Repository
 {
-    public class AuditoriaRepository
+    public class AuditoriaRepository_380_jh
     {
-        private readonly AuditoriaDataMapper _auditoriaDataMapper;
+        private readonly AuditoriaDataMapper_380_jh _auditoriaDataMapper_380_jh;
 
-        public AuditoriaRepository()
-            : this(new AuditoriaDataMapper())
+        public AuditoriaRepository_380_jh()
+            : this(new AuditoriaDataMapper_380_jh())
         {
         }
 
-        public AuditoriaRepository(AuditoriaDataMapper auditoriaDataMapper)
+        public AuditoriaRepository_380_jh(AuditoriaDataMapper_380_jh auditoriaDataMapper)
         {
-            _auditoriaDataMapper = auditoriaDataMapper;
+            _auditoriaDataMapper_380_jh = auditoriaDataMapper;
         }
 
-        public bool Registrar(AuditoriaRegistro auditoria)
+        public bool Registrar_380_jh(AuditoriaRegistro_380_jh auditoria)
         {
             if (auditoria == null)
             {
                 return false;
             }
 
-            return _auditoriaDataMapper.Insertar(auditoria) > 0;
+            return _auditoriaDataMapper_380_jh.Insertar_380_jh(auditoria) > 0;
         }
 
-        public List<AuditoriaRegistro> ListarPorEntidad(string entidad, int idEntidad)
+        public List<AuditoriaRegistro_380_jh> ListarPorEntidad_380_jh(string entidad, int idEntidad)
         {
             if (string.IsNullOrWhiteSpace(entidad) || idEntidad == 0)
             {
-                return new List<AuditoriaRegistro>();
+                return new List<AuditoriaRegistro_380_jh>();
             }
 
-            return _auditoriaDataMapper.ListarPorEntidad(entidad.Trim(), idEntidad);
+            return _auditoriaDataMapper_380_jh.ListarPorEntidad_380_jh(entidad.Trim(), idEntidad);
         }
 
-        public List<AuditoriaRegistro> ListarTodos()
+        public List<AuditoriaRegistro_380_jh> ListarTodos_380_jh()
         {
-            return _auditoriaDataMapper.ListarTodos();
+            return _auditoriaDataMapper_380_jh.ListarTodos_380_jh();
         }
     }
 }

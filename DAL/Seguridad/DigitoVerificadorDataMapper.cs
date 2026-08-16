@@ -8,57 +8,57 @@ using System.Text;
 
 namespace DAL
 {
-    public class DigitoVerificadorDataMapper
+    public class DigitoVerificadorDataMapper_380_jh
     {
-        private const string EntidadUsuario = "Usuario";
-        private readonly DatabaseContext _databaseContext;
+        private const string EntidadUsuario_380_jh = "Usuario";
+        private readonly DatabaseContext_380_jh _databaseContext_380_jh;
 
-        public DigitoVerificadorDataMapper()
-            : this(new DatabaseContext())
+        public DigitoVerificadorDataMapper_380_jh()
+            : this(new DatabaseContext_380_jh())
         {
         }
 
-        public DigitoVerificadorDataMapper(DatabaseContext databaseContext)
+        public DigitoVerificadorDataMapper_380_jh(DatabaseContext_380_jh databaseContext)
         {
-            _databaseContext = databaseContext;
+            _databaseContext_380_jh = databaseContext;
         }
 
-        public bool VerificarUsuarios()
+        public bool VerificarUsuarios_380_jh()
         {
             try
             {
-                _databaseContext.Abrir();
-                List<UsuarioDigitoRegistro> usuarios = LeerUsuariosEnConexion();
+                _databaseContext_380_jh.Abrir_380_jh();
+                List<UsuarioDigitoRegistro_380_jh> usuarios = LeerUsuariosEnConexion_380_jh();
 
                 if (usuarios.Count == 0)
                 {
-                    GuardarDvvEnConexion(CalcularHash(string.Empty));
+                    GuardarDvvEnConexion_380_jh(CalcularHash_380_jh(string.Empty));
                     return true;
                 }
 
-                string dvvRegistrado = ObtenerDvvEnConexion();
-                if (string.IsNullOrWhiteSpace(dvvRegistrado) || TodosSinDvh(usuarios))
+                string dvvRegistrado = ObtenerDvvEnConexion_380_jh();
+                if (string.IsNullOrWhiteSpace(dvvRegistrado) || TodosSinDvh_380_jh(usuarios))
                 {
-                    RecalcularUsuariosEnConexion(usuarios);
+                    RecalcularUsuariosEnConexion_380_jh(usuarios);
                     return true;
                 }
 
                 bool integridadValida = true;
                 List<string> dvhCalculados = new List<string>();
 
-                foreach (UsuarioDigitoRegistro usuario in usuarios)
+                foreach (UsuarioDigitoRegistro_380_jh usuario in usuarios)
                 {
-                    string dvhCalculado = CalcularDvh(usuario);
+                    string dvhCalculado = CalcularDvh_380_jh(usuario);
                     dvhCalculados.Add(dvhCalculado);
 
-                    if (!string.Equals(usuario.Dvh, dvhCalculado, StringComparison.OrdinalIgnoreCase))
+                    if (!string.Equals(usuario.Dvh_380_jh, dvhCalculado, StringComparison.OrdinalIgnoreCase))
                     {
-                        MarcarBloqueoEnConexion(usuario.IdUsuario, true);
+                        MarcarBloqueoEnConexion_380_jh(usuario.IdUsuario_380_jh, true);
                         integridadValida = false;
                     }
                 }
 
-                string dvvCalculado = CalcularDvv(dvhCalculados);
+                string dvvCalculado = CalcularDvv_380_jh(dvhCalculados);
                 if (!string.Equals(dvvRegistrado, dvvCalculado, StringComparison.OrdinalIgnoreCase))
                 {
                     integridadValida = false;
@@ -68,16 +68,16 @@ namespace DAL
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public bool RecalcularUsuarios()
+        public bool RecalcularUsuarios_380_jh()
         {
             try
             {
-                _databaseContext.Abrir();
-                RecalcularUsuariosEnConexion(LeerUsuariosEnConexion());
+                _databaseContext_380_jh.Abrir_380_jh();
+                RecalcularUsuariosEnConexion_380_jh(LeerUsuariosEnConexion_380_jh());
                 return true;
             }
             catch
@@ -86,24 +86,24 @@ namespace DAL
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public bool RecalcularUsuarioYDvv(int idUsuario)
+        public bool RecalcularUsuarioYDvv_380_jh(int idUsuario)
         {
             try
             {
-                _databaseContext.Abrir();
-                UsuarioDigitoRegistro usuario = LeerUsuarioEnConexion(idUsuario);
+                _databaseContext_380_jh.Abrir_380_jh();
+                UsuarioDigitoRegistro_380_jh usuario = LeerUsuarioEnConexion_380_jh(idUsuario);
                 if (usuario == null)
                 {
                     return false;
                 }
 
-                ActualizarDvhEnConexion(usuario.IdUsuario, CalcularDvh(usuario), usuario.BloqueoDigitoVerificador);
-                List<UsuarioDigitoRegistro> usuarios = LeerUsuariosEnConexion();
-                GuardarDvvEnConexion(CalcularDvvDesdeUsuarios(usuarios));
+                ActualizarDvhEnConexion_380_jh(usuario.IdUsuario_380_jh, CalcularDvh_380_jh(usuario), usuario.BloqueoDigitoVerificador_380_jh);
+                List<UsuarioDigitoRegistro_380_jh> usuarios = LeerUsuariosEnConexion_380_jh();
+                GuardarDvvEnConexion_380_jh(CalcularDvvDesdeUsuarios_380_jh(usuarios));
                 return true;
             }
             catch
@@ -112,11 +112,11 @@ namespace DAL
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        public bool HayBloqueoUsuarios()
+        public bool HayBloqueoUsuarios_380_jh()
         {
             const string sql = @"
                 SELECT TOP (1) id_usuario
@@ -125,30 +125,30 @@ namespace DAL
 
             try
             {
-                _databaseContext.Abrir();
-                return _databaseContext.LeerTexto(sql).Rows.Count > 0;
+                _databaseContext_380_jh.Abrir_380_jh();
+                return _databaseContext_380_jh.LeerTexto_380_jh(sql).Rows.Count > 0;
             }
             finally
             {
-                _databaseContext.Cerrar();
+                _databaseContext_380_jh.Cerrar_380_jh();
             }
         }
 
-        private void RecalcularUsuariosEnConexion(List<UsuarioDigitoRegistro> usuarios)
+        private void RecalcularUsuariosEnConexion_380_jh(List<UsuarioDigitoRegistro_380_jh> usuarios)
         {
             List<string> dvhs = new List<string>();
 
-            foreach (UsuarioDigitoRegistro usuario in usuarios)
+            foreach (UsuarioDigitoRegistro_380_jh usuario in usuarios)
             {
-                string dvh = CalcularDvh(usuario);
+                string dvh = CalcularDvh_380_jh(usuario);
                 dvhs.Add(dvh);
-                ActualizarDvhEnConexion(usuario.IdUsuario, dvh, false);
+                ActualizarDvhEnConexion_380_jh(usuario.IdUsuario_380_jh, dvh, false);
             }
 
-            GuardarDvvEnConexion(CalcularDvv(dvhs));
+            GuardarDvvEnConexion_380_jh(CalcularDvv_380_jh(dvhs));
         }
 
-        private List<UsuarioDigitoRegistro> LeerUsuariosEnConexion()
+        private List<UsuarioDigitoRegistro_380_jh> LeerUsuariosEnConexion_380_jh()
         {
             const string sql = @"
                 SELECT
@@ -166,18 +166,18 @@ namespace DAL
                 FROM dbo.Usuario
                 ORDER BY id_usuario";
 
-            DataTable tabla = _databaseContext.LeerTexto(sql);
-            List<UsuarioDigitoRegistro> usuarios = new List<UsuarioDigitoRegistro>();
+            DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql);
+            List<UsuarioDigitoRegistro_380_jh> usuarios = new List<UsuarioDigitoRegistro_380_jh>();
 
             foreach (DataRow fila in tabla.Rows)
             {
-                usuarios.Add(Mapear(fila));
+                usuarios.Add(Mapear_380_jh(fila));
             }
 
             return usuarios;
         }
 
-        private UsuarioDigitoRegistro LeerUsuarioEnConexion(int idUsuario)
+        private UsuarioDigitoRegistro_380_jh LeerUsuarioEnConexion_380_jh(int idUsuario)
         {
             const string sql = @"
                 SELECT TOP (1)
@@ -197,14 +197,14 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_usuario", idUsuario)
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario)
             };
 
-            DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
-            return tabla.Rows.Count == 0 ? null : Mapear(tabla.Rows[0]);
+            DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
+            return tabla.Rows.Count == 0 ? null : Mapear_380_jh(tabla.Rows[0]);
         }
 
-        private void ActualizarDvhEnConexion(int idUsuario, string dvh, bool bloqueoDigitoVerificador)
+        private void ActualizarDvhEnConexion_380_jh(int idUsuario, string dvh, bool bloqueoDigitoVerificador)
         {
             const string sql = @"
                 UPDATE dbo.Usuario
@@ -214,18 +214,18 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_usuario", idUsuario),
-                _databaseContext.CrearParametro("@dvh", dvh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario),
+                _databaseContext_380_jh.CrearParametro_380_jh("@dvh", dvh),
                 new SqlParameter("@bloqueo_digitoverificador", SqlDbType.Bit)
                 {
                     Value = bloqueoDigitoVerificador
                 }
             };
 
-            _databaseContext.EscribirTexto(sql, parametros);
+            _databaseContext_380_jh.EscribirTexto_380_jh(sql, parametros);
         }
 
-        private void MarcarBloqueoEnConexion(int idUsuario, bool bloqueo)
+        private void MarcarBloqueoEnConexion_380_jh(int idUsuario, bool bloqueo)
         {
             const string sql = @"
                 UPDATE dbo.Usuario
@@ -234,17 +234,17 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@id_usuario", idUsuario),
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario),
                 new SqlParameter("@bloqueo_digitoverificador", SqlDbType.Bit)
                 {
                     Value = bloqueo
                 }
             };
 
-            _databaseContext.EscribirTexto(sql, parametros);
+            _databaseContext_380_jh.EscribirTexto_380_jh(sql, parametros);
         }
 
-        private string ObtenerDvvEnConexion()
+        private string ObtenerDvvEnConexion_380_jh()
         {
             const string sql = @"
                 SELECT TOP (1) dvv
@@ -253,14 +253,14 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@entidad", EntidadUsuario)
+                _databaseContext_380_jh.CrearParametro_380_jh("@entidad", EntidadUsuario_380_jh)
             };
 
-            DataTable tabla = _databaseContext.LeerTexto(sql, parametros);
+            DataTable tabla = _databaseContext_380_jh.LeerTexto_380_jh(sql, parametros);
             return tabla.Rows.Count == 0 ? null : tabla.Rows[0]["dvv"].ToString();
         }
 
-        private void GuardarDvvEnConexion(string dvv)
+        private void GuardarDvvEnConexion_380_jh(string dvv)
         {
             const string sql = @"
                 MERGE dbo.DigitoVerificadorVertical AS destino
@@ -275,18 +275,18 @@ namespace DAL
 
             List<SqlParameter> parametros = new List<SqlParameter>
             {
-                _databaseContext.CrearParametro("@entidad", EntidadUsuario),
-                _databaseContext.CrearParametro("@dvv", dvv)
+                _databaseContext_380_jh.CrearParametro_380_jh("@entidad", EntidadUsuario_380_jh),
+                _databaseContext_380_jh.CrearParametro_380_jh("@dvv", dvv)
             };
 
-            _databaseContext.EscribirTexto(sql, parametros);
+            _databaseContext_380_jh.EscribirTexto_380_jh(sql, parametros);
         }
 
-        private static bool TodosSinDvh(List<UsuarioDigitoRegistro> usuarios)
+        private static bool TodosSinDvh_380_jh(List<UsuarioDigitoRegistro_380_jh> usuarios)
         {
-            foreach (UsuarioDigitoRegistro usuario in usuarios)
+            foreach (UsuarioDigitoRegistro_380_jh usuario in usuarios)
             {
-                if (!string.IsNullOrWhiteSpace(usuario.Dvh))
+                if (!string.IsNullOrWhiteSpace(usuario.Dvh_380_jh))
                 {
                     return false;
                 }
@@ -295,19 +295,19 @@ namespace DAL
             return true;
         }
 
-        private static string CalcularDvvDesdeUsuarios(List<UsuarioDigitoRegistro> usuarios)
+        private static string CalcularDvvDesdeUsuarios_380_jh(List<UsuarioDigitoRegistro_380_jh> usuarios)
         {
             List<string> dvhs = new List<string>();
 
-            foreach (UsuarioDigitoRegistro usuario in usuarios)
+            foreach (UsuarioDigitoRegistro_380_jh usuario in usuarios)
             {
-                dvhs.Add(string.IsNullOrWhiteSpace(usuario.Dvh) ? CalcularDvh(usuario) : usuario.Dvh);
+                dvhs.Add(string.IsNullOrWhiteSpace(usuario.Dvh_380_jh) ? CalcularDvh_380_jh(usuario) : usuario.Dvh_380_jh);
             }
 
-            return CalcularDvv(dvhs);
+            return CalcularDvv_380_jh(dvhs);
         }
 
-        private static string CalcularDvv(List<string> dvhs)
+        private static string CalcularDvv_380_jh(List<string> dvhs)
         {
             StringBuilder builder = new StringBuilder();
 
@@ -317,28 +317,28 @@ namespace DAL
                 builder.Append("|");
             }
 
-            return CalcularHash(builder.ToString());
+            return CalcularHash_380_jh(builder.ToString());
         }
 
-        private static string CalcularDvh(UsuarioDigitoRegistro usuario)
+        private static string CalcularDvh_380_jh(UsuarioDigitoRegistro_380_jh usuario)
         {
             string datos = string.Join("|", new[]
             {
-                usuario.IdUsuario.ToString(CultureInfo.InvariantCulture),
-                usuario.IdIdioma.HasValue ? usuario.IdIdioma.Value.ToString(CultureInfo.InvariantCulture) : string.Empty,
-                usuario.NombreUsuario ?? string.Empty,
-                usuario.Email ?? string.Empty,
-                usuario.PasswordHash ?? string.Empty,
-                usuario.Nombre ?? string.Empty,
-                usuario.Apellido ?? string.Empty,
-                usuario.EstadoUsuario ?? string.Empty,
-                usuario.IntentosLoginFallidos.ToString(CultureInfo.InvariantCulture)
+                usuario.IdUsuario_380_jh.ToString(CultureInfo.InvariantCulture),
+                usuario.IdIdioma_380_jh.HasValue ? usuario.IdIdioma_380_jh.Value.ToString(CultureInfo.InvariantCulture) : string.Empty,
+                usuario.NombreUsuario_380_jh ?? string.Empty,
+                usuario.Email_380_jh ?? string.Empty,
+                usuario.PasswordHash_380_jh ?? string.Empty,
+                usuario.Nombre_380_jh ?? string.Empty,
+                usuario.Apellido_380_jh ?? string.Empty,
+                usuario.EstadoUsuario_380_jh ?? string.Empty,
+                usuario.IntentosLoginFallidos_380_jh.ToString(CultureInfo.InvariantCulture)
             });
 
-            return CalcularHash(datos);
+            return CalcularHash_380_jh(datos);
         }
 
-        private static string CalcularHash(string texto)
+        private static string CalcularHash_380_jh(string texto)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
@@ -354,38 +354,38 @@ namespace DAL
             }
         }
 
-        private static UsuarioDigitoRegistro Mapear(DataRow fila)
+        private static UsuarioDigitoRegistro_380_jh Mapear_380_jh(DataRow fila)
         {
-            return new UsuarioDigitoRegistro
+            return new UsuarioDigitoRegistro_380_jh
             {
-                IdUsuario = Convert.ToInt32(fila["id_usuario"]),
-                IdIdioma = fila["id_idioma"] == DBNull.Value ? (int?)null : Convert.ToInt32(fila["id_idioma"]),
-                NombreUsuario = fila["nombre_usuario"].ToString(),
-                Email = fila["email"].ToString(),
-                PasswordHash = fila["password_hash"].ToString(),
-                Nombre = fila["nombre"] == DBNull.Value ? null : fila["nombre"].ToString(),
-                Apellido = fila["apellido"] == DBNull.Value ? null : fila["apellido"].ToString(),
-                EstadoUsuario = fila["estado_usuario"].ToString(),
-                IntentosLoginFallidos = Convert.ToInt32(fila["intentos_login_fallidos"]),
-                BloqueoDigitoVerificador = fila["bloqueo_digitoverificador"] != DBNull.Value &&
+                IdUsuario_380_jh = Convert.ToInt32(fila["id_usuario"]),
+                IdIdioma_380_jh = fila["id_idioma"] == DBNull.Value ? (int?)null : Convert.ToInt32(fila["id_idioma"]),
+                NombreUsuario_380_jh = fila["nombre_usuario"].ToString(),
+                Email_380_jh = fila["email"].ToString(),
+                PasswordHash_380_jh = fila["password_hash"].ToString(),
+                Nombre_380_jh = fila["nombre"] == DBNull.Value ? null : fila["nombre"].ToString(),
+                Apellido_380_jh = fila["apellido"] == DBNull.Value ? null : fila["apellido"].ToString(),
+                EstadoUsuario_380_jh = fila["estado_usuario"].ToString(),
+                IntentosLoginFallidos_380_jh = Convert.ToInt32(fila["intentos_login_fallidos"]),
+                BloqueoDigitoVerificador_380_jh = fila["bloqueo_digitoverificador"] != DBNull.Value &&
                                            Convert.ToBoolean(fila["bloqueo_digitoverificador"]),
-                Dvh = fila["dvh"] == DBNull.Value ? null : fila["dvh"].ToString()
+                Dvh_380_jh = fila["dvh"] == DBNull.Value ? null : fila["dvh"].ToString()
             };
         }
 
-        private class UsuarioDigitoRegistro
+        private class UsuarioDigitoRegistro_380_jh
         {
-            public int IdUsuario { get; set; }
-            public int? IdIdioma { get; set; }
-            public string NombreUsuario { get; set; }
-            public string Email { get; set; }
-            public string PasswordHash { get; set; }
-            public string Nombre { get; set; }
-            public string Apellido { get; set; }
-            public string EstadoUsuario { get; set; }
-            public int IntentosLoginFallidos { get; set; }
-            public bool BloqueoDigitoVerificador { get; set; }
-            public string Dvh { get; set; }
+            public int IdUsuario_380_jh { get; set; }
+            public int? IdIdioma_380_jh { get; set; }
+            public string NombreUsuario_380_jh { get; set; }
+            public string Email_380_jh { get; set; }
+            public string PasswordHash_380_jh { get; set; }
+            public string Nombre_380_jh { get; set; }
+            public string Apellido_380_jh { get; set; }
+            public string EstadoUsuario_380_jh { get; set; }
+            public int IntentosLoginFallidos_380_jh { get; set; }
+            public bool BloqueoDigitoVerificador_380_jh { get; set; }
+            public string Dvh_380_jh { get; set; }
         }
     }
 }

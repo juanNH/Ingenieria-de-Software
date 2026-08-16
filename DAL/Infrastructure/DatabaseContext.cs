@@ -8,56 +8,56 @@ using System.Xml.Linq;
 
 namespace DAL
 {
-    public class DatabaseContext
+    public class DatabaseContext_380_jh
     {
-        private static readonly string ConnectionString = ResolveConnectionString();
+        private static readonly string ConnectionString_380_jh = ResolveConnectionString_380_jh();
 
-        public SqlConnection Conexion { get; private set; }
-        public SqlTransaction Transaccion { get; private set; }
+        public SqlConnection Conexion_380_jh { get; private set; }
+        public SqlTransaction Transaccion_380_jh { get; private set; }
 
-        public void Abrir()
+        public void Abrir_380_jh()
         {
-            Conexion = new SqlConnection(ConnectionString);
-            Conexion.Open();
+            Conexion_380_jh = new SqlConnection(ConnectionString_380_jh);
+            Conexion_380_jh.Open();
         }
 
-        public void Cerrar()
+        public void Cerrar_380_jh()
         {
-            if (Conexion != null)
+            if (Conexion_380_jh != null)
             {
-                Conexion.Close();
-                Conexion = null;
+                Conexion_380_jh.Close();
+                Conexion_380_jh = null;
             }
         }
 
         #region Transaccion
-        public void IniciarTx()
+        public void IniciarTx_380_jh()
         {
-            if (Conexion != null)
+            if (Conexion_380_jh != null)
             {
-                Transaccion = Conexion.BeginTransaction();
+                Transaccion_380_jh = Conexion_380_jh.BeginTransaction();
             }
         }
 
-        public void Confirmar()
+        public void Confirmar_380_jh()
         {
-            if (Transaccion != null)
+            if (Transaccion_380_jh != null)
             {
-                Transaccion.Commit();
-                Transaccion = null;
+                Transaccion_380_jh.Commit();
+                Transaccion_380_jh = null;
             }
         }
 
-        public void Deshacer()
+        public void Deshacer_380_jh()
         {
-            if (Transaccion != null)
+            if (Transaccion_380_jh != null)
             {
-                Transaccion.Rollback();
-                Transaccion = null;
+                Transaccion_380_jh.Rollback();
+                Transaccion_380_jh = null;
             }
         }
         #endregion
-        public SqlParameter CrearParametro(string nombre, string valor)
+        public SqlParameter CrearParametro_380_jh(string nombre, string valor)
         {
             return new SqlParameter
             {
@@ -67,7 +67,7 @@ namespace DAL
             };
         }
 
-        public SqlParameter CrearParametro(string nombre, int valor)
+        public SqlParameter CrearParametro_380_jh(string nombre, int valor)
         {
             return new SqlParameter
             {
@@ -77,9 +77,9 @@ namespace DAL
             };
         }
 
-        public int Escribir(string sql, List<SqlParameter> parametros = null)
+        public int Escribir_380_jh(string sql, List<SqlParameter> parametros = null)
         {
-            using (SqlCommand comando = CrearComando(sql, parametros))
+            using (SqlCommand comando = CrearComando_380_jh(sql, parametros))
             {
                 try
                 {
@@ -92,9 +92,9 @@ namespace DAL
             }
         }
 
-        public int EscribirTexto(string sql, List<SqlParameter> parametros = null)
+        public int EscribirTexto_380_jh(string sql, List<SqlParameter> parametros = null)
         {
-            using (SqlCommand comando = CrearComando(sql, parametros, CommandType.Text))
+            using (SqlCommand comando = CrearComando_380_jh(sql, parametros, CommandType.Text))
             {
                 try
                 {
@@ -107,38 +107,38 @@ namespace DAL
             }
         }
 
-        public DataTable Leer(string sql, List<SqlParameter> parametros = null)
+        public DataTable Leer_380_jh(string sql, List<SqlParameter> parametros = null)
         {
             using (SqlDataAdapter adaptador = new SqlDataAdapter())
             {
                 DataTable tabla = new DataTable();
-                adaptador.SelectCommand = CrearComando(sql, parametros);
+                adaptador.SelectCommand = CrearComando_380_jh(sql, parametros);
                 adaptador.Fill(tabla);
                 return tabla;
             }
         }
 
-        public DataTable LeerTexto(string sql, List<SqlParameter> parametros = null)
+        public DataTable LeerTexto_380_jh(string sql, List<SqlParameter> parametros = null)
         {
             using (SqlDataAdapter adaptador = new SqlDataAdapter())
             {
                 DataTable tabla = new DataTable();
-                adaptador.SelectCommand = CrearComando(sql, parametros, CommandType.Text);
+                adaptador.SelectCommand = CrearComando_380_jh(sql, parametros, CommandType.Text);
                 adaptador.Fill(tabla);
                 return tabla;
             }
         }
 
-        private SqlCommand CrearComando(string sql, List<SqlParameter> parametros = null, CommandType commandType = CommandType.StoredProcedure)
+        private SqlCommand CrearComando_380_jh(string sql, List<SqlParameter> parametros = null, CommandType commandType = CommandType.StoredProcedure)
         {
-            SqlCommand comando = new SqlCommand(sql, Conexion)
+            SqlCommand comando = new SqlCommand(sql, Conexion_380_jh)
             {
                 CommandType = commandType
             };
 
-            if (Transaccion != null)
+            if (Transaccion_380_jh != null)
             {
-                comando.Transaction = Transaccion;
+                comando.Transaction = Transaccion_380_jh;
             }
 
             if (parametros != null && parametros.Count > 0)
@@ -149,9 +149,9 @@ namespace DAL
             return comando;
         }
 
-        private static string ResolveConnectionString()
+        private static string ResolveConnectionString_380_jh()
         {
-            string localConnectionString = ReadLocalConnectionString();
+            string localConnectionString = ReadLocalConnectionString_380_jh();
             if (!string.IsNullOrWhiteSpace(localConnectionString))
             {
                 return localConnectionString;
@@ -160,7 +160,7 @@ namespace DAL
             return ConfigurationManager.ConnectionStrings["TecniSalud"]?.ConnectionString;
         }
 
-        private static string ReadLocalConnectionString()
+        private static string ReadLocalConnectionString_380_jh()
         {
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string[] candidatePaths =

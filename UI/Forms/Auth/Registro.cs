@@ -5,71 +5,71 @@ using Domain;
 
 namespace UI
 {
-    public partial class Registro : Form
+    public partial class Registro_380_jh : Form
     {
-        private readonly UsuarioApplicationService _usuarioService;
+        private readonly UsuarioApplicationService_380_jh _usuarioService_380_jh;
 
-        public string UsuarioRegistrado { get; private set; }
+        public string UsuarioRegistrado_380_jh { get; private set; }
 
-        public Registro(UsuarioApplicationService usuarioService)
+        public Registro_380_jh(UsuarioApplicationService_380_jh usuarioService)
         {
-            _usuarioService = usuarioService;
-            InitializeComponent();
+            _usuarioService_380_jh = usuarioService;
+            InitializeComponent_380_jh();
         }
 
-        private void btnCrearCuenta_Click(object sender, EventArgs e)
+        private void btnCrearCuenta_Click_380_jh(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtUser.Text) ||
-                string.IsNullOrWhiteSpace(txtEmail.Text) ||
-                string.IsNullOrWhiteSpace(txtPass.Text) ||
-                string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtApellido.Text))
+            if (string.IsNullOrWhiteSpace(txtUser_380_jh.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail_380_jh.Text) ||
+                string.IsNullOrWhiteSpace(txtPass_380_jh.Text) ||
+                string.IsNullOrWhiteSpace(txtNombre_380_jh.Text) ||
+                string.IsNullOrWhiteSpace(txtApellido_380_jh.Text))
             {
                 MessageBox.Show("Completa todos los campos para registrarte.");
                 return;
             }
 
-            Usuario nuevo = new Usuario
+            Usuario_380_jh nuevo = new Usuario_380_jh
             {
-                Username = txtUser.Text.Trim(),
-                Email = txtEmail.Text.Trim(),
-                Password = txtPass.Text,
-                Nombre = txtNombre.Text.Trim(),
-                Apellido = txtApellido.Text.Trim()
+                Username_380_jh = txtUser_380_jh.Text.Trim(),
+                Email_380_jh = txtEmail_380_jh.Text.Trim(),
+                Password_380_jh = txtPass_380_jh.Text,
+                Nombre_380_jh = txtNombre_380_jh.Text.Trim(),
+                Apellido_380_jh = txtApellido_380_jh.Text.Trim()
             };
 
-            CodigoRegistroUsuario resultado = _usuarioService.CrearUsuario(nuevo);
+            CodigoRegistroUsuario_380_jh resultado = _usuarioService_380_jh.CrearUsuario_380_jh(nuevo);
 
-            if (resultado == CodigoRegistroUsuario.Creado)
+            if (resultado == CodigoRegistroUsuario_380_jh.Creado_380_jh)
             {
-                UsuarioRegistrado = nuevo.Username;
+                UsuarioRegistrado_380_jh = nuevo.Username_380_jh;
                 MessageBox.Show("Usuario registrado con exito.");
                 DialogResult = DialogResult.OK;
                 Close();
             }
             else
             {
-                MessageBox.Show(ObtenerMensajeRegistro(resultado));
+                MessageBox.Show(ObtenerMensajeRegistro_380_jh(resultado));
             }
         }
 
-        private static string ObtenerMensajeRegistro(CodigoRegistroUsuario resultado)
+        private static string ObtenerMensajeRegistro_380_jh(CodigoRegistroUsuario_380_jh resultado)
         {
             switch (resultado)
             {
-                case CodigoRegistroUsuario.DatosInvalidos:
+                case CodigoRegistroUsuario_380_jh.DatosInvalidos_380_jh:
                     return "Completa todos los campos para registrarte.";
 
-                case CodigoRegistroUsuario.EmailInvalido:
+                case CodigoRegistroUsuario_380_jh.EmailInvalido_380_jh:
                     return "Ingresa un email valido.";
 
-                case CodigoRegistroUsuario.UsuarioExistente:
+                case CodigoRegistroUsuario_380_jh.UsuarioExistente_380_jh:
                     return "Ya existe un usuario con ese nombre.";
 
-                case CodigoRegistroUsuario.EmailExistente:
+                case CodigoRegistroUsuario_380_jh.EmailExistente_380_jh:
                     return "Ya existe un usuario con ese email.";
 
-                case CodigoRegistroUsuario.IdiomaDefaultInexistente:
+                case CodigoRegistroUsuario_380_jh.IdiomaDefaultInexistente_380_jh:
                     return "No se pudo registrar el usuario porque falta el idioma default.";
 
                 default:
@@ -77,7 +77,7 @@ namespace UI
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancelar_Click_380_jh(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
