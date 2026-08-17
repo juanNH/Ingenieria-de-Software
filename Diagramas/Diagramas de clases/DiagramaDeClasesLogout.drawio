@@ -8,7 +8,7 @@
           <mxGeometry height="520" width="420" x="40" y="40" as="geometry" />
         </mxCell>
         <mxCell id="pkg-domain" parent="1" style="shape=folder;fontStyle=1;tabWidth=100;tabHeight=28;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
-          <mxGeometry height="520" width="420" x="520" y="40" as="geometry" />
+          <mxGeometry height="600" width="420" x="520" y="40" as="geometry" />
         </mxCell>
         <mxCell id="pkg-application" parent="1" style="shape=folder;fontStyle=1;tabWidth=120;tabHeight=28;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
           <mxGeometry height="290" width="330" x="980" y="330" as="geometry" />
@@ -73,15 +73,24 @@
         <mxCell id="UsuarioService-op" parent="UsuarioService" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ RecalcularDigitosVerificadoresUsuarios(): bool" vertex="1">
           <mxGeometry height="50" width="260" y="80" as="geometry" />
         </mxCell>
-        <mxCell id="note" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;" value="Logout real: MainForm recalcula los digitos verificadores de usuarios, limpia Sesion mediante Logout(), devuelve DialogResult.Retry y Program vuelve a mostrar Login." vertex="1">
-          <mxGeometry height="130" width="330" x="980" y="160" as="geometry" />
+        <mxCell id="edge-program-main" edge="1" parent="1" source="Program" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="MainForm" value="&amp;lt;&amp;lt;create/run&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="edge-program-main" edge="1" parent="1" source="Program" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="MainForm" value="&amp;lt;&amp;lt;create/run&amp;gt;&amp;gt;"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-main-sesion" edge="1" parent="1" source="MainForm" style="endArrow=open;endFill=0;html=1;rounded=0;" target="Sesion" value="Logout()"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-main-usuario-service" edge="1" parent="1" source="MainForm" style="endArrow=open;endFill=0;html=1;rounded=0;" target="UsuarioService" value="RecalcularDigitosVerificadoresUsuarios()"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-sesion-usuario" edge="1" parent="1" source="Sesion" style="endArrow=open;endFill=0;html=1;rounded=0;" target="Usuario" value="+ Usuario"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-main-program" edge="1" parent="1" source="MainForm" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="Program" value="DialogResult.Retry"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-program-login" edge="1" parent="1" source="Program" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="Login" value="&amp;lt;&amp;lt;create&amp;gt;&amp;gt;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="edge-main-sesion" edge="1" parent="1" source="MainForm" style="endArrow=open;endFill=0;html=1;rounded=0;" target="Sesion" value="Logout()">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-main-usuario-service" edge="1" parent="1" source="MainForm" style="endArrow=open;endFill=0;html=1;rounded=0;" target="UsuarioService" value="RecalcularDigitosVerificadoresUsuarios()">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-sesion-usuario" edge="1" parent="1" source="Sesion" style="endArrow=open;endFill=0;html=1;rounded=0;" target="Usuario" value="+ Usuario">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-main-program" edge="1" parent="1" source="MainForm" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="Program" value="DialogResult.Retry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-program-login" edge="1" parent="1" source="Program" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="Login" value="&amp;lt;&amp;lt;create&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

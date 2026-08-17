@@ -1,0 +1,157 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="CDU Restaurar cambios" id="clases-restaurar-cambios">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1800" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pkg-ui" parent="1" style="shape=folder;fontStyle=1;tabWidth=70;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
+          <mxGeometry height="560" width="330" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-app" parent="1" style="shape=folder;fontStyle=1;tabWidth=120;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
+          <mxGeometry height="560" width="360" x="410" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-repo" parent="1" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
+          <mxGeometry height="560" width="330" x="810" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-dal" parent="1" style="shape=folder;fontStyle=1;tabWidth=70;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
+          <mxGeometry height="560" width="330" x="1180" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-domain" parent="1" style="shape=folder;fontStyle=1;tabWidth=90;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
+          <mxGeometry height="330" width="1150" x="220" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-ui-tab-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" value="UI" vertex="1">
+          <mxGeometry height="20" width="58" x="46" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-app-tab-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" value="Application" vertex="1">
+          <mxGeometry height="20" width="108" x="416" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-repo-tab-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" value="Repository" vertex="1">
+          <mxGeometry height="20" width="98" x="816" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-dal-tab-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" value="DAL" vertex="1">
+          <mxGeometry height="20" width="58" x="1186" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-domain-tab-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" value="Domain" vertex="1">
+          <mxGeometry height="20" width="78" x="226" y="684" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaView" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="AuditoriaCambiosView" vertex="1">
+          <mxGeometry height="360" width="260" x="75" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaViewAttr" parent="AuditoriaView" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="- _auditoriaService: AuditoriaApplicationService&lt;br/&gt;- _usuarioService: UsuarioApplicationService&lt;br/&gt;- _serializer: JavaScriptSerializer&lt;br/&gt;- _usuarios: List&amp;lt;Usuario&amp;gt;&lt;br/&gt;- _registros: List&amp;lt;AuditoriaRegistro&amp;gt;" vertex="1">
+          <mxGeometry height="105" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaViewOp" parent="AuditoriaView" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="+ AuditoriaCambiosView()&lt;br/&gt;- CargarUsuarios(): void&lt;br/&gt;- CargarAuditoria(usuarioId): void&lt;br/&gt;- listViewCambios_SelectedIndexChanged(sender, e): void&lt;br/&gt;- btnRestaurarCampo_Click(sender, e): void&lt;br/&gt;- DeserializarCambios(cambiosJson): List&amp;lt;AuditoriaCambio&amp;gt;&lt;br/&gt;- EsCampoRestaurable(campo): bool" vertex="1">
+          <mxGeometry height="225" width="260" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaService" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="AuditoriaApplicationService" vertex="1">
+          <mxGeometry height="230" width="290" x="445" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaServiceAttr" parent="AuditoriaService" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="- _auditoriaRepository: AuditoriaRepository&lt;br/&gt;- _serializer: JavaScriptSerializer" vertex="1">
+          <mxGeometry height="60" width="290" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaServiceOp" parent="AuditoriaService" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="+ ListarTodos(): List&amp;lt;AuditoriaRegistro&amp;gt;&lt;br/&gt;+ ListarHistorial(entidad, idEntidad): List&amp;lt;AuditoriaRegistro&amp;gt;&lt;br/&gt;+ RegistrarCambio(estadoAnterior, estadoNuevo, accion): bool&lt;br/&gt;- CalcularCambios(estadoAnterior, estadoNuevo): List&amp;lt;AuditoriaCambio&amp;gt;" vertex="1">
+          <mxGeometry height="140" width="290" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="UsuarioService" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="UsuarioApplicationService" vertex="1">
+          <mxGeometry height="210" width="290" x="445" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="UsuarioServiceAttr" parent="UsuarioService" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="- _usuarioRepository: UsuarioRepository&lt;br/&gt;- _auditoriaService: AuditoriaApplicationService&lt;br/&gt;- _digitoVerificadorService: DigitoVerificadorApplicationService&lt;br/&gt;- _serializer: JavaScriptSerializer" vertex="1">
+          <mxGeometry height="90" width="290" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UsuarioServiceOp" parent="UsuarioService" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="+ Listar(): List&amp;lt;Usuario&amp;gt;&lt;br/&gt;+ RestaurarCampoDesdeAuditoria(auditoria, campo): bool&lt;br/&gt;- EsCampoRestaurable(campo): bool&lt;br/&gt;- EsValorRestaurableValido(campo, valor): bool" vertex="1">
+          <mxGeometry height="90" width="290" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaRepo" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="AuditoriaRepository" vertex="1">
+          <mxGeometry height="180" width="250" x="845" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaRepoAttr" parent="AuditoriaRepo" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="- _auditoriaDataMapper: AuditoriaDataMapper" vertex="1">
+          <mxGeometry height="45" width="250" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaRepoOp" parent="AuditoriaRepo" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="+ Registrar(auditoria): bool&lt;br/&gt;+ ListarPorEntidad(entidad, idEntidad): List&amp;lt;AuditoriaRegistro&amp;gt;&lt;br/&gt;+ ListarTodos(): List&amp;lt;AuditoriaRegistro&amp;gt;" vertex="1">
+          <mxGeometry height="105" width="250" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="UsuarioRepo" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="UsuarioRepository" vertex="1">
+          <mxGeometry height="170" width="250" x="845" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="UsuarioRepoAttr" parent="UsuarioRepo" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="- _usuarioDataMapper: UsuarioDataMapper" vertex="1">
+          <mxGeometry height="45" width="250" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UsuarioRepoOp" parent="UsuarioRepo" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="+ Listar(): List&amp;lt;Usuario&amp;gt;&lt;br/&gt;+ ObtenerPorId(id): Usuario&lt;br/&gt;+ RestaurarCampo(idUsuario, campo, valor): bool" vertex="1">
+          <mxGeometry height="95" width="250" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaMapper" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="AuditoriaDataMapper" vertex="1">
+          <mxGeometry height="180" width="250" x="1215" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaMapperAttr" parent="AuditoriaMapper" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="- _databaseContext: DatabaseContext" vertex="1">
+          <mxGeometry height="45" width="250" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaMapperOp" parent="AuditoriaMapper" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="+ Insertar(auditoria): int&lt;br/&gt;+ ListarPorEntidad(entidad, idEntidad): List&amp;lt;AuditoriaRegistro&amp;gt;&lt;br/&gt;+ ListarTodos(): List&amp;lt;AuditoriaRegistro&amp;gt;" vertex="1">
+          <mxGeometry height="105" width="250" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="UsuarioMapper" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="UsuarioDataMapper" vertex="1">
+          <mxGeometry height="170" width="250" x="1215" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="UsuarioMapperAttr" parent="UsuarioMapper" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="- _databaseContext: DatabaseContext" vertex="1">
+          <mxGeometry height="45" width="250" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UsuarioMapperOp" parent="UsuarioMapper" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="+ ObtenerPorId(id): Usuario&lt;br/&gt;+ Listar(): List&amp;lt;Usuario&amp;gt;&lt;br/&gt;+ RestaurarCampo(idUsuario, campo, valor): int&lt;br/&gt;- CrearParametroRestauracion(nombre, campo, valor): SqlParameter" vertex="1">
+          <mxGeometry height="95" width="250" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaRegistro" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="AuditoriaRegistro" vertex="1">
+          <mxGeometry height="210" width="240" x="270" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaRegistroAttr" parent="AuditoriaRegistro" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="+ Id: int&lt;br/&gt;+ Entidad: string&lt;br/&gt;+ IdEntidad: int&lt;br/&gt;+ Accion: string&lt;br/&gt;+ IdUsuarioActor: int?&lt;br/&gt;+ IdentificadorUsuarioActor: string&lt;br/&gt;+ FechaEvento: DateTime&lt;br/&gt;+ EstadoAnteriorJson: string&lt;br/&gt;+ EstadoNuevoJson: string&lt;br/&gt;+ CambiosJson: string" vertex="1">
+          <mxGeometry height="180" width="240" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaCambio" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="AuditoriaCambio" vertex="1">
+          <mxGeometry height="130" width="210" x="560" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="AuditoriaCambioAttr" parent="AuditoriaCambio" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="+ Campo: string&lt;br/&gt;+ ValorAnterior: object&lt;br/&gt;+ ValorNuevo: object" vertex="1">
+          <mxGeometry height="100" width="210" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Usuario" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="Usuario" vertex="1">
+          <mxGeometry height="210" width="240" x="820" y="745" as="geometry" />
+        </mxCell>
+        <mxCell id="UsuarioAttr" parent="Usuario" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="+ Id: int&lt;br/&gt;+ Username: string&lt;br/&gt;+ Email: string&lt;br/&gt;+ Nombre: string&lt;br/&gt;+ Apellido: string&lt;br/&gt;+ IdiomaPreferidoId: int?&lt;br/&gt;+ Estado: string&lt;br/&gt;+ IntentosLoginFallidos: int&lt;br/&gt;+ BloqueoDigitoVerificador: bool&lt;br/&gt;+ Dvh: string" vertex="1">
+          <mxGeometry height="180" width="240" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DigitoService" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="DigitoVerificadorApplicationService" vertex="1">
+          <mxGeometry height="110" width="230" x="1100" y="755" as="geometry" />
+        </mxCell>
+        <mxCell id="DigitoServiceOp" parent="DigitoService" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" value="+ RecalcularUsuarios(): bool&lt;br/&gt;+ RecalcularUsuarioYDvv(idUsuario): bool&lt;br/&gt;+ VerificarUsuarios(): bool" vertex="1">
+          <mxGeometry height="80" width="230" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="e-view-audit-service" edge="1" parent="1" source="AuditoriaView" style="endArrow=open;endFill=0;html=1;" target="AuditoriaService" value="- _auditoriaService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-view-user-service" edge="1" parent="1" source="AuditoriaView" style="endArrow=open;endFill=0;html=1;" target="UsuarioService" value="- _usuarioService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-audit-service-repo" edge="1" parent="1" source="AuditoriaService" style="endArrow=open;endFill=0;html=1;" target="AuditoriaRepo" value="- _auditoriaRepository">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-user-service-repo" edge="1" parent="1" source="UsuarioService" style="endArrow=open;endFill=0;html=1;" target="UsuarioRepo" value="- _usuarioRepository">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-audit-repo-mapper" edge="1" parent="1" source="AuditoriaRepo" style="endArrow=open;endFill=0;html=1;" target="AuditoriaMapper" value="- _auditoriaDataMapper">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-user-repo-mapper" edge="1" parent="1" source="UsuarioRepo" style="endArrow=open;endFill=0;html=1;" target="UsuarioMapper" value="- _usuarioDataMapper">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-view-registro" edge="1" parent="1" source="AuditoriaView" style="endArrow=open;endFill=0;html=1;dashed=1;" target="AuditoriaRegistro" value="muestra">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-view-cambio" edge="1" parent="1" source="AuditoriaView" style="endArrow=open;endFill=0;html=1;dashed=1;" target="AuditoriaCambio" value="deserializa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-user-service-usuario" edge="1" parent="1" source="UsuarioService" style="endArrow=open;endFill=0;html=1;dashed=1;" target="Usuario" value="restaura campo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-user-service-dv" edge="1" parent="1" source="UsuarioService" style="endArrow=open;endFill=0;html=1;" target="DigitoService" value="recalcula DV">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
