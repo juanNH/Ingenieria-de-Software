@@ -94,7 +94,7 @@ namespace UI
             // 
             // columnId
             // 
-            this.columnId_380_jh.DataPropertyName = "Id";
+            this.columnId_380_jh.DataPropertyName = "Id_380_jh";
             this.columnId_380_jh.HeaderText = "Id";
             this.columnId_380_jh.Name = "columnId";
             this.columnId_380_jh.ReadOnly = true;
@@ -102,7 +102,7 @@ namespace UI
             // 
             // columnUsuario
             // 
-            this.columnUsuario_380_jh.DataPropertyName = "Username";
+            this.columnUsuario_380_jh.DataPropertyName = "Username_380_jh";
             this.columnUsuario_380_jh.HeaderText = "Usuario";
             this.columnUsuario_380_jh.Name = "columnUsuario";
             this.columnUsuario_380_jh.ReadOnly = true;
@@ -111,14 +111,14 @@ namespace UI
             // columnEmail
             // 
             this.columnEmail_380_jh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnEmail_380_jh.DataPropertyName = "Email";
+            this.columnEmail_380_jh.DataPropertyName = "Email_380_jh";
             this.columnEmail_380_jh.HeaderText = "Email";
             this.columnEmail_380_jh.Name = "columnEmail";
             this.columnEmail_380_jh.ReadOnly = true;
             // 
             // columnEstado
             // 
-            this.columnEstado_380_jh.DataPropertyName = "Estado";
+            this.columnEstado_380_jh.DataPropertyName = "Estado_380_jh";
             this.columnEstado_380_jh.HeaderText = "Estado";
             this.columnEstado_380_jh.Name = "columnEstado";
             this.columnEstado_380_jh.ReadOnly = true;
@@ -126,7 +126,7 @@ namespace UI
             // 
             // columnBloqueoDigitoVerificador
             // 
-            this.columnBloqueoDigitoVerificador_380_jh.DataPropertyName = "BloqueoDigitoVerificador";
+            this.columnBloqueoDigitoVerificador_380_jh.DataPropertyName = "BloqueoDigitoVerificador_380_jh";
             this.columnBloqueoDigitoVerificador_380_jh.HeaderText = "Bloqueo DV";
             this.columnBloqueoDigitoVerificador_380_jh.Name = "columnBloqueoDigitoVerificador";
             this.columnBloqueoDigitoVerificador_380_jh.ReadOnly = true;

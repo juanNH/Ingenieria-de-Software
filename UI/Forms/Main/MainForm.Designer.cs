@@ -137,14 +137,15 @@ namespace UI
             // lblIdioma
             // 
             this.lblIdioma_380_jh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblIdioma_380_jh.AutoSize = true;
+            this.lblIdioma_380_jh.AutoSize = false;
             this.lblIdioma_380_jh.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblIdioma_380_jh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
-            this.lblIdioma_380_jh.Location = new System.Drawing.Point(756, 16);
+            this.lblIdioma_380_jh.Location = new System.Drawing.Point(655, 13);
             this.lblIdioma_380_jh.Name = "lblIdioma";
-            this.lblIdioma_380_jh.Size = new System.Drawing.Size(46, 15);
+            this.lblIdioma_380_jh.Size = new System.Drawing.Size(155, 23);
             this.lblIdioma_380_jh.TabIndex = 1;
             this.lblIdioma_380_jh.Text = "Idioma";
+            this.lblIdioma_380_jh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblUsuario
             // 

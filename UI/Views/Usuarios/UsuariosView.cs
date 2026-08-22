@@ -70,7 +70,7 @@ namespace UI
             columnUsuario_380_jh.Width = 90;
             columnEmail_380_jh.MinimumWidth = 110;
             columnEstado_380_jh.Width = 70;
-            columnBloqueoDigitoVerificador_380_jh.Width = 75;
+            columnBloqueoDigitoVerificador_380_jh.Width = 105;
             cmbEstado_380_jh.Items.AddRange(new object[] { "ACTIVO", "INACTIVO" });
         }
 
@@ -298,7 +298,7 @@ namespace UI
                 Font = new Font("Segoe UI Semibold", 8.5F, FontStyle.Bold),
                 ForeColor = Color.White,
                 Location = new Point(424, 54),
-                Size = new Size(120, 31),
+                Size = new Size(145, 31),
                 Tag = "BTN_RECALCULATE_DV",
                 Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("BTN_RECALCULATE_DV"),
                 UseVisualStyleBackColor = false

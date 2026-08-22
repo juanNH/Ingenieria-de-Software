@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Roles banco de sangre" id="roles-banco-sangre">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1500" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="titulo" value="Diagrama de roles — Sistema de Gestión de Banco de Sangre" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=20;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="300" y="30" width="800" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sistema" value="&lt;b&gt;Sistema de Gestión de Banco de Sangre&lt;/b&gt;&lt;br&gt;&lt;br&gt;Registro, clasificación, inventario, solicitudes, entrega y trazabilidad" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="520" y="340" width="460" height="170" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rol-donante" value="&lt;b&gt;Donante&lt;/b&gt;&lt;br&gt;Participa en la donación; no necesariamente utiliza el sistema" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="50" y="110" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="rol-extraccion" value="&lt;b&gt;Personal de extracción&lt;/b&gt;&lt;br&gt;Informa los datos de la donación realizada" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="50" y="250" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="rol-operador" value="&lt;b&gt;Operador del banco de sangre&lt;/b&gt;&lt;br&gt;Registra donantes, unidades, movimientos, inventario y solicitudes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="50" y="390" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="rol-responsable" value="&lt;b&gt;Personal responsable&lt;/b&gt;&lt;br&gt;Revisa la información y libera, bloquea o descarta unidades" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="50" y="540" width="300" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rol-solicitante" value="&lt;b&gt;Servicio o profesional solicitante&lt;/b&gt;&lt;br&gt;Solicita, recibe y confirma la utilización de unidades" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="150" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="rol-administrador" value="&lt;b&gt;Administrador&lt;/b&gt;&lt;br&gt;Administra usuarios, roles y permisos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="350" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="rol-auditor" value="&lt;b&gt;Auditor&lt;/b&gt;&lt;br&gt;Consulta bitácora, reportes y trazabilidad de las operaciones" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="540" width="300" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rel-donante" value="Participa en donaciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#d79b00;" edge="1" parent="1" source="rol-donante" target="sistema">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-extraccion" value="Informa donación" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#d6b656;" edge="1" parent="1" source="rol-extraccion" target="sistema">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-operador" value="Gestiona operación diaria" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#82b366;" edge="1" parent="1" source="rol-operador" target="sistema">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-responsable" value="Clasifica y libera unidades" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#9673a6;" edge="1" parent="1" source="rol-responsable" target="sistema">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-solicitante" value="Solicita y recibe unidades" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#b85450;" edge="1" parent="1" source="rol-solicitante" target="sistema">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-administrador" value="Administra acceso" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#6c8ebf;" edge="1" parent="1" source="rol-administrador" target="sistema">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-auditor" value="Consulta trazabilidad" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;strokeColor=#666666;" edge="1" parent="1" source="rol-auditor" target="sistema">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="nota" value="La aplicación registra y controla la información operativa. La evaluación clínica y las decisiones transfusionales permanecen bajo responsabilidad del personal autorizado." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;align=left;" vertex="1" parent="1">
+          <mxGeometry x="360" y="720" width="900" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

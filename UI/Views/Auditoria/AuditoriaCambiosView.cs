@@ -253,8 +253,8 @@ namespace UI
             });
 
             cmbUsuarios_380_jh.DataSource = null;
-            cmbUsuarios_380_jh.DisplayMember = "Username";
-            cmbUsuarios_380_jh.ValueMember = "Id";
+            cmbUsuarios_380_jh.DisplayMember = "Username_380_jh";
+            cmbUsuarios_380_jh.ValueMember = "Id_380_jh";
             cmbUsuarios_380_jh.DataSource = _usuarios_380_jh;
 
             if (_usuarios_380_jh.Count > 0)
@@ -396,12 +396,46 @@ namespace UI
 
             try
             {
-                return _serializer_380_jh.Deserialize<List<AuditoriaCambio_380_jh>>(cambiosJson) ?? new List<AuditoriaCambio_380_jh>();
+                List<Dictionary<string, object>> cambiosJsonDeserializados =
+                    _serializer_380_jh.Deserialize<List<Dictionary<string, object>>>(cambiosJson);
+                List<AuditoriaCambio_380_jh> cambios = new List<AuditoriaCambio_380_jh>();
+                if (cambiosJsonDeserializados == null)
+                {
+                    return cambios;
+                }
+
+                foreach (Dictionary<string, object> cambioJson in cambiosJsonDeserializados)
+                {
+                    cambios.Add(new AuditoriaCambio_380_jh
+                    {
+                        Campo_380_jh = ObtenerValorCambio_380_jh(cambioJson, "Campo_380_jh", "Campo") as string,
+                        ValorAnterior_380_jh = ObtenerValorCambio_380_jh(cambioJson, "ValorAnterior_380_jh", "ValorAnterior"),
+                        ValorNuevo_380_jh = ObtenerValorCambio_380_jh(cambioJson, "ValorNuevo_380_jh", "ValorNuevo")
+                    });
+                }
+
+                return cambios;
             }
             catch
             {
                 return new List<AuditoriaCambio_380_jh>();
             }
+        }
+
+        private static object ObtenerValorCambio_380_jh(Dictionary<string, object> cambioJson, string nombreNuevo, string nombreAnterior)
+        {
+            if (cambioJson == null)
+            {
+                return null;
+            }
+
+            object valor;
+            if (cambioJson.TryGetValue(nombreNuevo, out valor))
+            {
+                return valor;
+            }
+
+            return cambioJson.TryGetValue(nombreAnterior, out valor) ? valor : null;
         }
 
         private static string FormatearValor_380_jh(object valor)

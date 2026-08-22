@@ -144,8 +144,8 @@ namespace UI
             _cargandoIdiomas_380_jh = true;
             List<Idioma_380_jh> idiomas = LanguageManager_380_jh.Instance_380_jh.ListarIdiomasActivos_380_jh();
             cmbIdiomas_380_jh.DataSource = null;
-            cmbIdiomas_380_jh.DisplayMember = "Nombre";
-            cmbIdiomas_380_jh.ValueMember = "Id";
+            cmbIdiomas_380_jh.DisplayMember = "Nombre_380_jh";
+            cmbIdiomas_380_jh.ValueMember = "Id_380_jh";
             cmbIdiomas_380_jh.DataSource = idiomas;
             _cargandoIdiomas_380_jh = false;
             SeleccionarIdiomaActual_380_jh();

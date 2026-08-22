@@ -76,10 +76,10 @@ namespace UI
             dgvIdiomas_380_jh.MultiSelect = false;
             dgvIdiomas_380_jh.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvIdiomas_380_jh.RowHeadersVisible = false;
-            dgvIdiomas_380_jh.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id", Width = 55, Tag = "GRID_ID" });
-            dgvIdiomas_380_jh.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Codigo", HeaderText = "Codigo", Width = 90, Tag = "LANGUAGE_CODE" });
-            dgvIdiomas_380_jh.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nombre", HeaderText = "Nombre", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, Tag = "FIELD_NAME" });
-            dgvIdiomas_380_jh.Columns.Add(new DataGridViewCheckBoxColumn { DataPropertyName = "Activo", HeaderText = "Activo", Width = 70, Tag = "LANGUAGE_ACTIVE" });
+            dgvIdiomas_380_jh.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Id_380_jh", HeaderText = "Id", Width = 55, Tag = "GRID_ID" });
+            dgvIdiomas_380_jh.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Codigo_380_jh", HeaderText = "Codigo", Width = 90, Tag = "LANGUAGE_CODE" });
+            dgvIdiomas_380_jh.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nombre_380_jh", HeaderText = "Nombre", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, Tag = "FIELD_NAME" });
+            dgvIdiomas_380_jh.Columns.Add(new DataGridViewCheckBoxColumn { DataPropertyName = "Activo_380_jh", HeaderText = "Activo", Width = 70, Tag = "LANGUAGE_ACTIVE" });
             dgvIdiomas_380_jh.SelectionChanged += dgvIdiomas_SelectionChanged_380_jh;
 
             lblComponentes_380_jh.SetBounds(24, 282, 178, 22);
@@ -188,8 +188,8 @@ namespace UI
             dgvIdiomas_380_jh.DataSource = _idiomas_380_jh;
 
             cmbIdiomas_380_jh.DataSource = null;
-            cmbIdiomas_380_jh.DisplayMember = "Nombre";
-            cmbIdiomas_380_jh.ValueMember = "Id";
+            cmbIdiomas_380_jh.DisplayMember = "Nombre_380_jh";
+            cmbIdiomas_380_jh.ValueMember = "Id_380_jh";
             cmbIdiomas_380_jh.DataSource = new List<Idioma_380_jh>(_idiomas_380_jh);
             _cargandoDatos_380_jh = false;
         }
