@@ -1,67 +1,147 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Roles y permisos" id="roles-permisos-uml">
-    <mxGraphModel dx="1500" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2325" dy="1395" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2635" pageHeight="1705" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-
-        <mxCell id="pkg-ui" value="" style="shape=folder;fontStyle=1;tabWidth=70;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" vertex="1" parent="1"><mxGeometry x="40" y="40" width="330" height="560" as="geometry" /></mxCell>
-        <mxCell id="pkg-app" value="" style="shape=folder;fontStyle=1;tabWidth=120;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" vertex="1" parent="1"><mxGeometry x="410" y="40" width="360" height="560" as="geometry" /></mxCell>
-        <mxCell id="pkg-repo" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" vertex="1" parent="1"><mxGeometry x="810" y="40" width="330" height="560" as="geometry" /></mxCell>
-        <mxCell id="pkg-dal" value="" style="shape=folder;fontStyle=1;tabWidth=70;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" vertex="1" parent="1"><mxGeometry x="1180" y="40" width="360" height="560" as="geometry" /></mxCell>
-        <mxCell id="pkg-domain" value="" style="shape=folder;fontStyle=1;tabWidth=90;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" vertex="1" parent="1"><mxGeometry x="180" y="680" width="1110" height="350" as="geometry" /></mxCell>
-        <mxCell id="pkg-services" value="" style="shape=folder;fontStyle=1;tabWidth=95;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" vertex="1" parent="1"><mxGeometry x="1320" y="680" width="250" height="210" as="geometry" /></mxCell>
-
-        <mxCell id="pkg-ui-label" value="UI" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" vertex="1" parent="1"><mxGeometry x="46" y="44" width="58" height="20" as="geometry" /></mxCell>
-        <mxCell id="pkg-app-label" value="Application" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" vertex="1" parent="1"><mxGeometry x="416" y="44" width="108" height="20" as="geometry" /></mxCell>
-        <mxCell id="pkg-repo-label" value="Repository" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" vertex="1" parent="1"><mxGeometry x="816" y="44" width="98" height="20" as="geometry" /></mxCell>
-        <mxCell id="pkg-dal-label" value="DAL" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" vertex="1" parent="1"><mxGeometry x="1186" y="44" width="58" height="20" as="geometry" /></mxCell>
-        <mxCell id="pkg-domain-label" value="Domain" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" vertex="1" parent="1"><mxGeometry x="186" y="684" width="78" height="20" as="geometry" /></mxCell>
-        <mxCell id="pkg-services-label" value="Services" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" vertex="1" parent="1"><mxGeometry x="1326" y="684" width="84" height="20" as="geometry" /></mxCell>
-
-        <mxCell id="RolesView" value="RolesView" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1"><mxGeometry x="75" y="120" width="260" height="420" as="geometry" /></mxCell>
-        <mxCell id="RolesViewAttr" value="- _permisoService: PermisoApplicationService&lt;br/&gt;- _autorizacionService: AutorizacionApplicationService&lt;br/&gt;- txtCodigoRol: TextBox&lt;br/&gt;- txtNombreRol: TextBox&lt;br/&gt;- txtDescripcionRol: TextBox&lt;br/&gt;- lblFamiliaSeleccionada: Label&lt;br/&gt;- cmbComponenteHijo: ComboBox&lt;br/&gt;- btnCrearRol: Button&lt;br/&gt;- btnAgregarHijo: Button&lt;br/&gt;- btnQuitarHijo: Button" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="RolesView"><mxGeometry y="30" width="260" height="175" as="geometry" /></mxCell>
-        <mxCell id="RolesViewOp" value="+ RolesView()&lt;br/&gt;- CargarArbol(): void&lt;br/&gt;- ConfigurarAdministracion(): void&lt;br/&gt;- CargarCombos(): void&lt;br/&gt;- btnCrearRol_Click(sender, e): void&lt;br/&gt;- btnAgregarHijo_Click(sender, e): void&lt;br/&gt;- btnQuitarHijo_Click(sender, e): void&lt;br/&gt;- ObtenerFamiliaSeleccionada(): ComponentePermiso&lt;br/&gt;- ActualizarAccionesSeleccionadas(): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="RolesView"><mxGeometry y="205" width="260" height="215" as="geometry" /></mxCell>
-
-        <mxCell id="PermisoService" value="PermisoApplicationService" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1"><mxGeometry x="455" y="100" width="270" height="430" as="geometry" /></mxCell>
-        <mxCell id="PermisoServiceAttr" value="- _permisoRepository: PermisoRepository&lt;br/&gt;- _auditoriaService: AuditoriaApplicationService" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisoService"><mxGeometry y="30" width="270" height="60" as="geometry" /></mxCell>
-        <mxCell id="PermisoServiceOp" value="+ ListarAsignadosPorUsuario(idUsuario): List&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ ListarArbolCompleto(): List&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ ListarComponentes(): List&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ ListarFamilias(): List&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ ListarIdsComponentesAsignadosPorUsuario(idUsuario): List&amp;lt;int&amp;gt;&lt;br/&gt;+ CrearFamilia(codigo, nombre, descripcion): bool&lt;br/&gt;+ AgregarRelacion(idPadre, idHijo): string&lt;br/&gt;+ QuitarRelacion(idPadre, idHijo): bool&lt;br/&gt;+ GuardarComponentesUsuario(idUsuario, idsComponentes): bool&lt;br/&gt;+ PuedeAgregarRelacion(idPadre, idHijo): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisoService"><mxGeometry y="90" width="270" height="340" as="geometry" /></mxCell>
-
-        <mxCell id="PermisoRepo" value="PermisoRepository" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1"><mxGeometry x="845" y="120" width="260" height="360" as="geometry" /></mxCell>
-        <mxCell id="PermisoRepoAttr" value="- _permisoDataMapper: PermisoDataMapper" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisoRepo"><mxGeometry y="30" width="260" height="45" as="geometry" /></mxCell>
-        <mxCell id="PermisoRepoOp" value="+ ListarAsignadosPorUsuario(idUsuario): List&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ ListarArbolCompleto(): List&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ ListarComponentes(): List&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ ListarFamilias(): List&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ ListarIdsComponentesAsignadosPorUsuario(idUsuario): List&amp;lt;int&amp;gt;&lt;br/&gt;+ CrearFamilia(codigo, nombre, descripcion): bool&lt;br/&gt;+ AgregarRelacion(idPadre, idHijo): string&lt;br/&gt;+ QuitarRelacion(idPadre, idHijo): bool&lt;br/&gt;+ GuardarComponentesUsuario(idUsuario, idsComponentes): bool&lt;br/&gt;+ PuedeAgregarRelacion(idPadre, idHijo): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisoRepo"><mxGeometry y="75" width="260" height="285" as="geometry" /></mxCell>
-
-        <mxCell id="PermisoMapper" value="PermisoDataMapper" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1"><mxGeometry x="1225" y="100" width="270" height="430" as="geometry" /></mxCell>
-        <mxCell id="PermisoMapperAttr" value="- _databaseContext: DatabaseContext" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisoMapper"><mxGeometry y="30" width="270" height="45" as="geometry" /></mxCell>
-        <mxCell id="PermisoMapperOp" value="+ ListarAsignadosPorUsuario(idUsuario): List&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ ListarArbolCompleto(): List&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ ListarComponentes(): List&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ ListarFamilias(): List&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ ListarIdsComponentesAsignadosPorUsuario(idUsuario): List&amp;lt;int&amp;gt;&lt;br/&gt;+ CrearFamilia(codigo, nombre, descripcion): bool&lt;br/&gt;+ AgregarRelacion(idPadre, idHijo): string&lt;br/&gt;+ QuitarRelacion(idPadre, idHijo): bool&lt;br/&gt;+ GuardarComponentesUsuario(idUsuario, idsComponentes): bool&lt;br/&gt;+ PuedeAgregarRelacion(idPadre, idHijo): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisoMapper"><mxGeometry y="75" width="270" height="355" as="geometry" /></mxCell>
-
-        <mxCell id="ComponentePermiso" value="&amp;lt;&amp;lt;abstract&amp;gt;&amp;gt;&lt;br/&gt;ComponentePermiso" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=46;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1"><mxGeometry x="230" y="760" width="280" height="230" as="geometry" /></mxCell>
-        <mxCell id="ComponentePermisoAttr" value="+ Id: int&lt;br/&gt;+ Codigo: string&lt;br/&gt;+ Nombre: string&lt;br/&gt;+ Descripcion: string&lt;br/&gt;+ Estado: string&lt;br/&gt;+ Tipo: TipoComponentePermiso" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="ComponentePermiso"><mxGeometry y="46" width="280" height="105" as="geometry" /></mxCell>
-        <mxCell id="ComponentePermisoOp" value="+ Agregar(componente): void&lt;br/&gt;+ Quitar(componente): void&lt;br/&gt;+ ObtenerHijos(): IReadOnlyList&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ TienePermiso(codigoPermiso): bool&lt;br/&gt;+ SaveToMemento(): AuditoriaMemento" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="ComponentePermiso"><mxGeometry y="151" width="280" height="79" as="geometry" /></mxCell>
-
-        <mxCell id="FamiliaPermiso" value="FamiliaPermiso" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1"><mxGeometry x="570" y="760" width="250" height="210" as="geometry" /></mxCell>
-        <mxCell id="FamiliaAttr" value="- _hijos: List&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ Tipo: TipoComponentePermiso" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="FamiliaPermiso"><mxGeometry y="30" width="250" height="55" as="geometry" /></mxCell>
-        <mxCell id="FamiliaOp" value="+ Agregar(componente): void&lt;br/&gt;+ Quitar(componente): void&lt;br/&gt;+ ObtenerHijos(): IReadOnlyList&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ TienePermiso(codigoPermiso): bool&lt;br/&gt;+ PuedeAgregar(candidato): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="FamiliaPermiso"><mxGeometry y="85" width="250" height="125" as="geometry" /></mxCell>
-
-        <mxCell id="Permiso" value="Permiso" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1"><mxGeometry x="880" y="760" width="230" height="160" as="geometry" /></mxCell>
-        <mxCell id="PermisoAttr" value="+ Tipo: TipoComponentePermiso" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="Permiso"><mxGeometry y="30" width="230" height="35" as="geometry" /></mxCell>
-        <mxCell id="PermisoOp" value="+ Agregar(componente): void&lt;br/&gt;+ Quitar(componente): void&lt;br/&gt;+ ObtenerHijos(): IReadOnlyList&amp;lt;ComponentePermiso&amp;gt;&lt;br/&gt;+ TienePermiso(codigoPermiso): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="Permiso"><mxGeometry y="65" width="230" height="95" as="geometry" /></mxCell>
-
-        <mxCell id="PermisosSistema" value="PermisosSistema" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1"><mxGeometry x="1160" y="760" width="105" height="190" as="geometry" /></mxCell>
-        <mxCell id="PermisosSistemaAttr" value="+ Administrador&lt;br/&gt;+ BitacoraVer&lt;br/&gt;+ AuditoriaCambiosVer&lt;br/&gt;+ UsuarioVer/Crear/Editar&lt;br/&gt;+ RolVer/Crear/Editar&lt;br/&gt;+ PermisoVer/Asignar&lt;br/&gt;+ IdiomaVer/Crear/Editar&lt;br/&gt;+ TraduccionVer/Editar" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisosSistema"><mxGeometry y="30" width="105" height="160" as="geometry" /></mxCell>
-
-        <mxCell id="AutorizacionService" value="AutorizacionApplicationService" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=30;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1"><mxGeometry x="1345" y="750" width="200" height="90" as="geometry" /></mxCell>
-        <mxCell id="AutorizacionServiceOp" value="+ TienePermiso(codigoPermiso): bool&lt;br/&gt;+ TienePermiso(usuario, codigoPermiso): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="AutorizacionService"><mxGeometry y="30" width="200" height="60" as="geometry" /></mxCell>
-
-        <mxCell id="e-view-service" edge="1" parent="1" source="RolesView" target="PermisoService" value="- _permisoService" style="endArrow=open;endFill=0;html=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e-view-auth" edge="1" parent="1" source="RolesView" target="AutorizacionService" value="- _autorizacionService" style="endArrow=open;endFill=0;html=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e-service-repo" edge="1" parent="1" source="PermisoService" target="PermisoRepo" value="- _permisoRepository" style="endArrow=open;endFill=0;html=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e-repo-mapper" edge="1" parent="1" source="PermisoRepo" target="PermisoMapper" value="- _permisoDataMapper" style="endArrow=open;endFill=0;html=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e-service-domain" edge="1" parent="1" source="PermisoService" target="ComponentePermiso" value="usa" style="endArrow=open;endFill=0;html=1;dashed=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e-auth-domain" edge="1" parent="1" source="AutorizacionService" target="ComponentePermiso" value="TienePermiso()" style="endArrow=open;endFill=0;html=1;dashed=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e-familia-base" edge="1" parent="1" source="FamiliaPermiso" target="ComponentePermiso" value="hereda" style="endArrow=block;endFill=0;html=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e-permiso-base" edge="1" parent="1" source="Permiso" target="ComponentePermiso" value="hereda" style="endArrow=block;endFill=0;html=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="e-familia-composite" edge="1" parent="1" source="FamiliaPermiso" target="ComponentePermiso" value="0..*" style="endArrow=diamondThin;endFill=1;html=1;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pkg-ui" value="" style="shape=folder;fontStyle=1;tabWidth=70;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" vertex="1" parent="1">
+          <mxGeometry x="62" y="62" width="512" height="868" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-app" value="" style="shape=folder;fontStyle=1;tabWidth=120;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" vertex="1" parent="1">
+          <mxGeometry x="636" y="62" width="558" height="868" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-repo" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" vertex="1" parent="1">
+          <mxGeometry x="1256" y="62" width="512" height="868" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-dal" value="" style="shape=folder;fontStyle=1;tabWidth=70;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" vertex="1" parent="1">
+          <mxGeometry x="1829" y="62" width="558" height="868" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-domain" value="" style="shape=folder;fontStyle=1;tabWidth=90;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" vertex="1" parent="1">
+          <mxGeometry x="279" y="1054" width="1852" height="542" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-services" value="" style="shape=folder;fontStyle=1;tabWidth=95;tabHeight=28;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;" vertex="1" parent="1">
+          <mxGeometry x="2046" y="1054" width="399" height="326" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-ui-label" value="UI" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" vertex="1" parent="1">
+          <mxGeometry x="62" y="62" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-app-label" value="Application" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" vertex="1" parent="1">
+          <mxGeometry x="636" y="62" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-repo-label" value="Repository" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" vertex="1" parent="1">
+          <mxGeometry x="1256" y="62" width="110" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-dal-label" value="DAL" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" vertex="1" parent="1">
+          <mxGeometry x="1829" y="62" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-domain-label" value="Domain" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" vertex="1" parent="1">
+          <mxGeometry x="279" y="1054" width="90" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-services-label" value="Services" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" vertex="1" parent="1">
+          <mxGeometry x="2046" y="1054" width="95" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="RolesView_380_jh" value="RolesView_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=48;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1">
+          <mxGeometry x="116" y="186" width="414" height="651" as="geometry" />
+        </mxCell>
+        <mxCell id="RolesViewAttr" value="- _permisoService_380_jh: PermisoApplicationService_380_jh&lt;br/&gt;- _autorizacionService_380_jh: AutorizacionApplicationService_380_jh&lt;br/&gt;- txtCodigoRol_380_jh: TextBox&lt;br/&gt;- txtNombreRol_380_jh: TextBox&lt;br/&gt;- txtDescripcionRol_380_jh: TextBox&lt;br/&gt;- lblFamiliaSeleccionada_380_jh: Label&lt;br/&gt;- cmbComponenteHijo_380_jh: ComboBox&lt;br/&gt;- btnCrearRol_380_jh: Button&lt;br/&gt;- btnAgregarHijo_380_jh: Button&lt;br/&gt;- btnQuitarHijo_380_jh: Button" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="RolesView_380_jh">
+          <mxGeometry y="46" width="414" height="271" as="geometry" />
+        </mxCell>
+        <mxCell id="RolesViewOp" value="+ RolesView_380_jh()&lt;br/&gt;- CargarArbol_380_jh(): void&lt;br/&gt;- ConfigurarAdministracion_380_jh(): void&lt;br/&gt;- CargarCombos_380_jh(): void&lt;br/&gt;- btnCrearRol_Click_380_jh(sender, e): void&lt;br/&gt;- btnAgregarHijo_Click_380_jh(sender, e): void&lt;br/&gt;- btnQuitarHijo_Click_380_jh(sender, e): void&lt;br/&gt;- ObtenerFamiliaSeleccionada_380_jh(): ComponentePermiso_380_jh&lt;br/&gt;- ActualizarAccionesSeleccionadas_380_jh(): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="RolesView_380_jh">
+          <mxGeometry y="318" width="414" height="333" as="geometry" />
+        </mxCell>
+        <mxCell id="PermisoService" value="PermisoApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=48;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1">
+          <mxGeometry x="705" y="155" width="418" height="667" as="geometry" />
+        </mxCell>
+        <mxCell id="PermisoServiceAttr" value="- _permisoRepository_380_jh: PermisoRepository_380_jh&lt;br/&gt;- _auditoriaService_380_jh: AuditoriaApplicationService_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisoService">
+          <mxGeometry y="46" width="418" height="93" as="geometry" />
+        </mxCell>
+        <mxCell id="PermisoServiceOp" value="+ ListarAsignadosPorUsuario_380_jh(idUsuario): List&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ ListarArbolCompleto_380_jh(): List&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ ListarComponentes_380_jh(): List&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ ListarFamilias_380_jh(): List&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ ListarIdsComponentesAsignadosPorUsuario_380_jh(idUsuario): List&amp;lt;int&amp;gt;&lt;br/&gt;+ CrearFamilia_380_jh(codigo, nombre, descripcion): bool&lt;br/&gt;+ AgregarRelacion_380_jh(idPadre, idHijo): string&lt;br/&gt;+ QuitarRelacion_380_jh(idPadre, idHijo): bool&lt;br/&gt;+ GuardarComponentesUsuario_380_jh(idUsuario, idsComponentes): bool&lt;br/&gt;+ PuedeAgregarRelacion_380_jh(idPadre, idHijo): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisoService">
+          <mxGeometry y="140" width="418" height="527" as="geometry" />
+        </mxCell>
+        <mxCell id="PermisoRepo" value="PermisoRepository_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=48;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="186" width="408" height="558" as="geometry" />
+        </mxCell>
+        <mxCell id="PermisoRepoAttr" value="- _permisoDataMapper_380_jh: PermisoDataMapper_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisoRepo">
+          <mxGeometry y="46" width="408" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PermisoRepoOp" value="+ ListarAsignadosPorUsuario_380_jh(idUsuario): List&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ ListarArbolCompleto_380_jh(): List&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ ListarComponentes_380_jh(): List&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ ListarFamilias_380_jh(): List&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ ListarIdsComponentesAsignadosPorUsuario_380_jh(idUsuario): List&amp;lt;int&amp;gt;&lt;br/&gt;+ CrearFamilia_380_jh(codigo, nombre, descripcion): bool&lt;br/&gt;+ AgregarRelacion_380_jh(idPadre, idHijo): string&lt;br/&gt;+ QuitarRelacion_380_jh(idPadre, idHijo): bool&lt;br/&gt;+ GuardarComponentesUsuario_380_jh(idUsuario, idsComponentes): bool&lt;br/&gt;+ PuedeAgregarRelacion_380_jh(idPadre, idHijo): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisoRepo">
+          <mxGeometry y="116" width="408" height="442" as="geometry" />
+        </mxCell>
+        <mxCell id="PermisoMapper" value="PermisoDataMapper_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=48;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1">
+          <mxGeometry x="1899" y="155" width="418" height="666" as="geometry" />
+        </mxCell>
+        <mxCell id="PermisoMapperAttr" value="- _databaseContext_380_jh: DatabaseContext_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisoMapper">
+          <mxGeometry y="46" width="418" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="PermisoMapperOp" value="+ ListarAsignadosPorUsuario_380_jh(idUsuario): List&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ ListarArbolCompleto_380_jh(): List&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ ListarComponentes_380_jh(): List&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ ListarFamilias_380_jh(): List&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ ListarIdsComponentesAsignadosPorUsuario_380_jh(idUsuario): List&amp;lt;int&amp;gt;&lt;br/&gt;+ CrearFamilia_380_jh(codigo, nombre, descripcion): bool&lt;br/&gt;+ AgregarRelacion_380_jh(idPadre, idHijo): string&lt;br/&gt;+ QuitarRelacion_380_jh(idPadre, idHijo): bool&lt;br/&gt;+ GuardarComponentesUsuario_380_jh(idUsuario, idsComponentes): bool&lt;br/&gt;+ PuedeAgregarRelacion_380_jh(idPadre, idHijo): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisoMapper">
+          <mxGeometry y="116" width="418" height="550" as="geometry" />
+        </mxCell>
+        <mxCell id="ComponentePermiso_380_jh" value="&amp;lt;&amp;lt;abstract&amp;gt;&amp;gt;&lt;br/&gt;ComponentePermiso_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=72;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1">
+          <mxGeometry x="356" y="1178" width="434" height="356" as="geometry" />
+        </mxCell>
+        <mxCell id="ComponentePermisoAttr" value="+ Id_380_jh: int&lt;br/&gt;+ Codigo_380_jh: string&lt;br/&gt;+ Nombre_380_jh: string&lt;br/&gt;+ Descripcion_380_jh: string&lt;br/&gt;+ Estado_380_jh: string&lt;br/&gt;+ Tipo_380_jh: TipoComponentePermiso_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="ComponentePermiso_380_jh">
+          <mxGeometry y="71" width="434" height="163" as="geometry" />
+        </mxCell>
+        <mxCell id="ComponentePermisoOp" value="+ Agregar_380_jh(componente): void&lt;br/&gt;+ Quitar_380_jh(componente): void&lt;br/&gt;+ ObtenerHijos_380_jh(): IReadOnlyList&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ TienePermiso_380_jh(codigoPermiso): bool&lt;br/&gt;+ SaveToMemento_380_jh(): AuditoriaMemento_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="ComponentePermiso_380_jh">
+          <mxGeometry y="234" width="434" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="FamiliaPermiso_380_jh" value="FamiliaPermiso_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=48;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1">
+          <mxGeometry x="884" y="1178" width="388" height="326" as="geometry" />
+        </mxCell>
+        <mxCell id="FamiliaAttr" value="- _hijos_380_jh: List&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ Tipo_380_jh: TipoComponentePermiso_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="FamiliaPermiso_380_jh">
+          <mxGeometry y="46" width="388" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="FamiliaOp" value="+ Agregar_380_jh(componente): void&lt;br/&gt;+ Quitar_380_jh(componente): void&lt;br/&gt;+ ObtenerHijos_380_jh(): IReadOnlyList&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ TienePermiso_380_jh(codigoPermiso): bool&lt;br/&gt;+ PuedeAgregar_380_jh(candidato): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="FamiliaPermiso_380_jh">
+          <mxGeometry y="132" width="388" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="Permiso_380_jh" value="Permiso_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=48;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1">
+          <mxGeometry x="1364" y="1178" width="356" height="248" as="geometry" />
+        </mxCell>
+        <mxCell id="PermisoAttr" value="+ Tipo_380_jh: TipoComponentePermiso_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="Permiso_380_jh">
+          <mxGeometry y="46" width="356" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="PermisoOp" value="+ Agregar_380_jh(componente): void&lt;br/&gt;+ Quitar_380_jh(componente): void&lt;br/&gt;+ ObtenerHijos_380_jh(): IReadOnlyList&amp;lt;ComponentePermiso_380_jh&amp;gt;&lt;br/&gt;+ TienePermiso_380_jh(codigoPermiso): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="Permiso_380_jh">
+          <mxGeometry y="101" width="356" height="147" as="geometry" />
+        </mxCell>
+        <mxCell id="PermisosSistema_380_jh" value="PermisosSistema_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=48;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1">
+          <mxGeometry x="1798" y="1178" width="293" height="294" as="geometry" />
+        </mxCell>
+        <mxCell id="PermisosSistemaAttr" value="+ Administrador_380_jh&lt;br/&gt;+ BitacoraVer_380_jh&lt;br/&gt;+ AuditoriaCambiosVer_380_jh&lt;br/&gt;+ UsuarioVer_380_jh/Crear_380_jh/Editar_380_jh&lt;br/&gt;+ RolVer_380_jh/Crear_380_jh/Editar_380_jh&lt;br/&gt;+ PermisoVer_380_jh/Asignar&lt;br/&gt;+ IdiomaVer_380_jh/Crear_380_jh/Editar_380_jh&lt;br/&gt;+ TraduccionVer_380_jh/Editar_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="PermisosSistema_380_jh">
+          <mxGeometry y="46" width="293" height="248" as="geometry" />
+        </mxCell>
+        <mxCell id="AutorizacionService" value="AutorizacionApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;startSize=48;html=1;fillColor=#ffffff;strokeColor=#343a40;" vertex="1" parent="1">
+          <mxGeometry x="2111" y="1162" width="320" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="AutorizacionServiceOp" value="+ TienePermiso_380_jh(codigoPermiso): bool&lt;br/&gt;+ TienePermiso_380_jh(usuario, codigoPermiso): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;html=1;" vertex="1" parent="AutorizacionService">
+          <mxGeometry y="46" width="320" height="93" as="geometry" />
+        </mxCell>
+        <mxCell id="e-view-service" edge="1" parent="1" source="RolesView_380_jh" target="PermisoService" value="- _permisoService_380_jh" style="endArrow=open;endFill=0;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-view-auth" edge="1" parent="1" source="RolesView_380_jh" target="AutorizacionService" value="- _autorizacionService_380_jh" style="endArrow=open;endFill=0;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-service-repo" edge="1" parent="1" source="PermisoService" target="PermisoRepo" value="- _permisoRepository_380_jh" style="endArrow=open;endFill=0;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-repo-mapper" edge="1" parent="1" source="PermisoRepo" target="PermisoMapper" value="- _permisoDataMapper_380_jh" style="endArrow=open;endFill=0;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-service-domain" edge="1" parent="1" source="PermisoService" target="ComponentePermiso_380_jh" value="usa" style="endArrow=open;endFill=0;html=1;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-auth-domain" edge="1" parent="1" source="AutorizacionService" target="ComponentePermiso_380_jh" value="TienePermiso_380_jh()" style="endArrow=open;endFill=0;html=1;dashed=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-familia-base" edge="1" parent="1" source="FamiliaPermiso_380_jh" target="ComponentePermiso_380_jh" value="hereda" style="endArrow=block;endFill=0;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-permiso-base" edge="1" parent="1" source="Permiso_380_jh" target="ComponentePermiso_380_jh" value="hereda" style="endArrow=block;endFill=0;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-familia-composite" edge="1" parent="1" source="FamiliaPermiso_380_jh" target="ComponentePermiso_380_jh" value="0..*" style="endArrow=diamondThin;endFill=1;html=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

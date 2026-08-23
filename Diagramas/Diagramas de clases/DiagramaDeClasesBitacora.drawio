@@ -1,121 +1,141 @@
 <mxfile host="app.diagrams.net">
-  <diagram name="CDU-03 Bitacora" id="cdu03-bitacora-uml">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1800" pageHeight="1200" math="0" shadow="0">
+  <diagram name="CDU-03 Bitacora_380_jh" id="cdu03-bitacora-uml">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="2790" pageHeight="1860" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="pkg-ui" parent="1" style="shape=folder;fontStyle=1;tabWidth=80;tabHeight=28;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
-          <mxGeometry height="620" width="340" x="40" y="40" as="geometry" />
+          <mxGeometry height="961" width="527" x="62" y="62" as="geometry" />
         </mxCell>
         <mxCell id="pkg-application" parent="1" style="shape=folder;fontStyle=1;tabWidth=120;tabHeight=28;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
-          <mxGeometry height="620" width="340" x="430" y="40" as="geometry" />
+          <mxGeometry height="961" width="527" x="666" y="62" as="geometry" />
         </mxCell>
         <mxCell id="pkg-repository" parent="1" style="shape=folder;fontStyle=1;tabWidth=120;tabHeight=28;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
-          <mxGeometry height="620" width="340" x="820" y="40" as="geometry" />
+          <mxGeometry height="961" width="527" x="1271" y="62" as="geometry" />
         </mxCell>
         <mxCell id="pkg-dal" parent="1" style="shape=folder;fontStyle=1;tabWidth=80;tabHeight=28;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
-          <mxGeometry height="620" width="340" x="1210" y="40" as="geometry" />
+          <mxGeometry height="1016" width="527" x="1876" y="62" as="geometry" />
         </mxCell>
         <mxCell id="pkg-domain" parent="1" style="shape=folder;fontStyle=1;tabWidth=100;tabHeight=28;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
-          <mxGeometry height="360" width="930" x="430" y="740" as="geometry" />
+          <mxGeometry height="558" width="1442" x="666" y="1147" as="geometry" />
         </mxCell>
         <mxCell id="lbl-ui" parent="1" style="text;whiteSpace=wrap;html=1;" value="UI" vertex="1">
-          <mxGeometry height="40" width="50" x="50" y="40" as="geometry" />
+          <mxGeometry height="28" width="80" x="62" y="62" as="geometry" />
         </mxCell>
         <mxCell id="lbl-app" parent="1" style="text;whiteSpace=wrap;html=1;" value="Application" vertex="1">
-          <mxGeometry height="40" width="90" x="450" y="40" as="geometry" />
+          <mxGeometry height="28" width="120" x="666" y="62" as="geometry" />
         </mxCell>
         <mxCell id="lbl-repo" parent="1" style="text;whiteSpace=wrap;html=1;" value="Repository" vertex="1">
-          <mxGeometry height="40" width="90" x="830" y="40" as="geometry" />
+          <mxGeometry height="28" width="120" x="1271" y="62" as="geometry" />
         </mxCell>
         <mxCell id="lbl-dal" parent="1" style="text;whiteSpace=wrap;html=1;" value="DAL" vertex="1">
-          <mxGeometry height="40" width="60" x="1220" y="40" as="geometry" />
+          <mxGeometry height="28" width="80" x="1876" y="62" as="geometry" />
         </mxCell>
         <mxCell id="lbl-domain" parent="1" style="text;whiteSpace=wrap;html=1;" value="Domain" vertex="1">
-          <mxGeometry height="40" width="70" x="440" y="740" as="geometry" />
+          <mxGeometry height="28" width="100" x="666" y="1147" as="geometry" />
         </mxCell>
-        <mxCell id="MainForm" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="MainForm" vertex="1">
-          <mxGeometry height="155" width="270" x="75" y="120" as="geometry" />
+        <mxCell id="MainForm_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=48;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="MainForm_380_jh" vertex="1">
+          <mxGeometry height="240" width="418" x="116" y="186" as="geometry" />
         </mxCell>
-        <mxCell id="MainForm-attr" parent="MainForm" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="- contentPanel: Panel" vertex="1">
-          <mxGeometry height="36" width="270" y="30" as="geometry" />
+        <mxCell id="MainForm_380_jh-attr" parent="MainForm_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="- contentPanel_380_jh: Panel" vertex="1">
+          <mxGeometry height="56" width="418" y="46" as="geometry" />
         </mxCell>
-        <mxCell id="MainForm-op" parent="MainForm" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="- bitacoraToolStripMenuItem_Click(sender, e): void&lt;br/&gt;- ShowScreen(screen: UserControl): void" vertex="1">
-          <mxGeometry height="89" width="270" y="66" as="geometry" />
+        <mxCell id="MainForm_380_jh-op" parent="MainForm_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="- bitacoraToolStripMenuItem_Click_380_jh(sender, e): void&lt;br/&gt;- ShowScreen_380_jh(screen: UserControl): void" vertex="1">
+          <mxGeometry height="138" width="418" y="102" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraView" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="BitacoraView" vertex="1">
-          <mxGeometry height="260" width="270" x="75" y="335" as="geometry" />
+        <mxCell id="BitacoraView_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=48;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="BitacoraView_380_jh" vertex="1">
+          <mxGeometry height="403" width="418" x="116" y="519" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraView-attr" parent="BitacoraView" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="- _bitacoraService: BitacoraApplicationService&lt;br/&gt;- listViewBitacora: ListView&lt;br/&gt;- lblEstado: Label" vertex="1">
-          <mxGeometry height="82" width="270" y="30" as="geometry" />
+        <mxCell id="BitacoraView_380_jh-attr" parent="BitacoraView_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="- _bitacoraService_380_jh: BitacoraApplicationService_380_jh&lt;br/&gt;- listViewBitacora_380_jh: ListView&lt;br/&gt;- lblEstado_380_jh: Label" vertex="1">
+          <mxGeometry height="127" width="418" y="46" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraView-op" parent="BitacoraView" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ BitacoraView()&lt;br/&gt;+ BitacoraView(bitacoraService)&lt;br/&gt;- btnActualizar_Click(sender, e): void&lt;br/&gt;- CargarBitacora(): void" vertex="1">
-          <mxGeometry height="148" width="270" y="112" as="geometry" />
+        <mxCell id="BitacoraView_380_jh-op" parent="BitacoraView_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ BitacoraView_380_jh()&lt;br/&gt;+ BitacoraView_380_jh(bitacoraService)&lt;br/&gt;- btnActualizar_Click_380_jh(sender, e): void&lt;br/&gt;- CargarBitacora_380_jh(): void" vertex="1">
+          <mxGeometry height="229" width="418" y="174" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraApplicationService" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="BitacoraApplicationService" vertex="1">
-          <mxGeometry height="145" width="270" x="465" y="280" as="geometry" />
+        <mxCell id="BitacoraApplicationService_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=48;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="BitacoraApplicationService_380_jh" vertex="1">
+          <mxGeometry height="225" width="418" x="721" y="434" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraApplicationService-attr" parent="BitacoraApplicationService" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="- _bitacoraRepository: BitacoraRepository" vertex="1">
-          <mxGeometry height="36" width="270" y="30" as="geometry" />
+        <mxCell id="BitacoraApplicationService_380_jh-attr" parent="BitacoraApplicationService_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="- _bitacoraRepository_380_jh: BitacoraRepository_380_jh" vertex="1">
+          <mxGeometry height="56" width="418" y="46" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraApplicationService-op" parent="BitacoraApplicationService" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ BitacoraApplicationService()&lt;br/&gt;+ Listar(): List&amp;lt;BitacoraRegistro&amp;gt;" vertex="1">
-          <mxGeometry height="79" width="270" y="66" as="geometry" />
+        <mxCell id="BitacoraApplicationService_380_jh-op" parent="BitacoraApplicationService_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ BitacoraApplicationService_380_jh()&lt;br/&gt;+ Listar_380_jh(): List&amp;lt;BitacoraRegistro_380_jh&amp;gt;" vertex="1">
+          <mxGeometry height="122" width="418" y="102" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraRepository" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="BitacoraRepository" vertex="1">
-          <mxGeometry height="170" width="270" x="855" y="260" as="geometry" />
+        <mxCell id="BitacoraRepository_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=48;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="BitacoraRepository_380_jh" vertex="1">
+          <mxGeometry height="264" width="418" x="1325" y="403" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraRepository-attr" parent="BitacoraRepository" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="- _bitacoraDataMapper: BitacoraDataMapper" vertex="1">
-          <mxGeometry height="36" width="270" y="30" as="geometry" />
+        <mxCell id="BitacoraRepository_380_jh-attr" parent="BitacoraRepository_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="- _bitacoraDataMapper_380_jh: BitacoraDataMapper_380_jh" vertex="1">
+          <mxGeometry height="56" width="418" y="46" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraRepository-op" parent="BitacoraRepository" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Registrar(bitacora: IBitacoraEvento): bool&lt;br/&gt;+ Listar(): List&amp;lt;BitacoraRegistro&amp;gt;" vertex="1">
-          <mxGeometry height="104" width="270" y="66" as="geometry" />
+        <mxCell id="BitacoraRepository_380_jh-op" parent="BitacoraRepository_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Registrar_380_jh(bitacora: IBitacoraEvento_380_jh): bool&lt;br/&gt;+ Listar_380_jh(): List&amp;lt;BitacoraRegistro_380_jh&amp;gt;" vertex="1">
+          <mxGeometry height="161" width="418" y="102" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraDataMapper" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="BitacoraDataMapper" vertex="1">
-          <mxGeometry height="260" width="270" x="1245" y="210" as="geometry" />
+        <mxCell id="BitacoraDataMapper_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=48;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="BitacoraDataMapper_380_jh" vertex="1">
+          <mxGeometry height="403" width="418" x="1930" y="326" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraDataMapper-attr" parent="BitacoraDataMapper" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="- _databaseContext: DatabaseContext" vertex="1">
-          <mxGeometry height="36" width="270" y="30" as="geometry" />
+        <mxCell id="BitacoraDataMapper_380_jh-attr" parent="BitacoraDataMapper_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="- _databaseContext_380_jh: DatabaseContext_380_jh" vertex="1">
+          <mxGeometry height="56" width="418" y="46" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraDataMapper-op" parent="BitacoraDataMapper" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Insertar(bitacora: BitacoraRegistro): int&lt;br/&gt;+ Listar(): List&amp;lt;BitacoraRegistro&amp;gt;&lt;br/&gt;- CrearParametro(...): SqlParameter&lt;br/&gt;- MapearBitacora(fila: DataRow): BitacoraRegistro" vertex="1">
-          <mxGeometry height="194" width="270" y="66" as="geometry" />
+        <mxCell id="BitacoraDataMapper_380_jh-op" parent="BitacoraDataMapper_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Insertar_380_jh(bitacora: BitacoraRegistro_380_jh): int&lt;br/&gt;+ Listar_380_jh(): List&amp;lt;BitacoraRegistro_380_jh&amp;gt;&lt;br/&gt;- CrearParametro_380_jh(...): SqlParameter&lt;br/&gt;- MapearBitacora_380_jh(fila: DataRow): BitacoraRegistro_380_jh" vertex="1">
+          <mxGeometry height="301" width="418" y="102" as="geometry" />
         </mxCell>
-        <mxCell id="DatabaseContext" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="DatabaseContext" vertex="1">
-          <mxGeometry height="160" width="270" x="1245" y="510" as="geometry" />
+        <mxCell id="DatabaseContext_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=48;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="DatabaseContext_380_jh" vertex="1">
+          <mxGeometry height="248" width="418" x="1930" y="790" as="geometry" />
         </mxCell>
-        <mxCell id="DatabaseContext-attr" parent="DatabaseContext" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Conexion: SqlConnection&lt;br/&gt;+ Transaccion: SqlTransaction" vertex="1">
-          <mxGeometry height="50" width="270" y="30" as="geometry" />
+        <mxCell id="DatabaseContext_380_jh-attr" parent="DatabaseContext_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Conexion_380_jh: SqlConnection&lt;br/&gt;+ Transaccion_380_jh: SqlTransaction" vertex="1">
+          <mxGeometry height="78" width="418" y="46" as="geometry" />
         </mxCell>
-        <mxCell id="DatabaseContext-op" parent="DatabaseContext" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Abrir(): void&lt;br/&gt;+ Cerrar(): void&lt;br/&gt;+ LeerTexto(...): DataTable&lt;br/&gt;+ Escribir(...): int" vertex="1">
-          <mxGeometry height="80" width="270" y="80" as="geometry" />
+        <mxCell id="DatabaseContext_380_jh-op" parent="DatabaseContext_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Abrir_380_jh(): void&lt;br/&gt;+ Cerrar_380_jh(): void&lt;br/&gt;+ LeerTexto_380_jh(...): DataTable&lt;br/&gt;+ Escribir_380_jh(...): int" vertex="1">
+          <mxGeometry height="124" width="418" y="124" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraRegistro" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="BitacoraRegistro" vertex="1">
-          <mxGeometry height="220" width="260" x="465" y="820" as="geometry" />
+        <mxCell id="BitacoraRegistro_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=48;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="BitacoraRegistro_380_jh" vertex="1">
+          <mxGeometry height="341" width="403" x="721" y="1271" as="geometry" />
         </mxCell>
-        <mxCell id="BitacoraRegistro-attr" parent="BitacoraRegistro" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Id: int&lt;br/&gt;+ IdUsuario: int?&lt;br/&gt;+ IdentificadorUsuario: string&lt;br/&gt;+ Modulo: string&lt;br/&gt;+ Accion: string&lt;br/&gt;+ Nivel: string&lt;br/&gt;+ Descripcion: string&lt;br/&gt;+ Equipo: string&lt;br/&gt;+ Fecha: DateTime" vertex="1">
-          <mxGeometry height="190" width="260" y="30" as="geometry" />
+        <mxCell id="BitacoraRegistro_380_jh-attr" parent="BitacoraRegistro_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Id_380_jh: int&lt;br/&gt;+ IdUsuario_380_jh: int?&lt;br/&gt;+ IdentificadorUsuario_380_jh: string&lt;br/&gt;+ Modulo_380_jh: string&lt;br/&gt;+ Accion_380_jh: string&lt;br/&gt;+ Nivel_380_jh: string&lt;br/&gt;+ Descripcion_380_jh: string&lt;br/&gt;+ Equipo_380_jh: string&lt;br/&gt;+ Fecha_380_jh: DateTime" vertex="1">
+          <mxGeometry height="294" width="403" y="46" as="geometry" />
         </mxCell>
-        <mxCell id="IBitacoraEvento" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br/&gt;IBitacoraEvento" vertex="1">
-          <mxGeometry height="220" width="260" x="765" y="820" as="geometry" />
+        <mxCell id="IBitacoraEvento_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=72;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br/&gt;IBitacoraEvento_380_jh" vertex="1">
+          <mxGeometry height="341" width="403" x="1186" y="1271" as="geometry" />
         </mxCell>
-        <mxCell id="IBitacoraEvento-attr" parent="IBitacoraEvento" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Id: int&lt;br/&gt;+ IdUsuario: int?&lt;br/&gt;+ IdentificadorUsuario: string&lt;br/&gt;+ Modulo: BitacoraModulo&lt;br/&gt;+ Accion: BitacoraAccion&lt;br/&gt;+ Nivel: BitacoraNivel&lt;br/&gt;+ Descripcion: string&lt;br/&gt;+ Equipo: string&lt;br/&gt;+ Fecha: DateTime" vertex="1">
-          <mxGeometry height="174" width="260" y="46" as="geometry" />
+        <mxCell id="IBitacoraEvento_380_jh-attr" parent="IBitacoraEvento_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Id_380_jh: int&lt;br/&gt;+ IdUsuario_380_jh: int?&lt;br/&gt;+ IdentificadorUsuario_380_jh: string&lt;br/&gt;+ Modulo_380_jh: BitacoraModulo_380_jh&lt;br/&gt;+ Accion_380_jh: BitacoraAccion_380_jh&lt;br/&gt;+ Nivel_380_jh: BitacoraNivel_380_jh&lt;br/&gt;+ Descripcion_380_jh: string&lt;br/&gt;+ Equipo_380_jh: string&lt;br/&gt;+ Fecha_380_jh: DateTime" vertex="1">
+          <mxGeometry height="270" width="403" y="71" as="geometry" />
         </mxCell>
-        <mxCell id="Bitacora" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="Bitacora" vertex="1">
-          <mxGeometry height="220" width="260" x="1065" y="820" as="geometry" />
+        <mxCell id="Bitacora_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=48;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;" value="Bitacora_380_jh" vertex="1">
+          <mxGeometry height="341" width="403" x="1651" y="1271" as="geometry" />
         </mxCell>
-        <mxCell id="Bitacora-attr" parent="Bitacora" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Id: int&lt;br/&gt;+ IdUsuario: int?&lt;br/&gt;+ IdentificadorUsuario: string&lt;br/&gt;+ Modulo: BitacoraModulo&lt;br/&gt;+ Accion: BitacoraAccion&lt;br/&gt;+ Nivel: BitacoraNivel&lt;br/&gt;+ Descripcion: string&lt;br/&gt;+ Equipo: string&lt;br/&gt;+ Fecha: DateTime" vertex="1">
-          <mxGeometry height="190" width="260" y="30" as="geometry" />
+        <mxCell id="Bitacora_380_jh-attr" parent="Bitacora_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;" value="+ Id_380_jh: int&lt;br/&gt;+ IdUsuario_380_jh: int?&lt;br/&gt;+ IdentificadorUsuario_380_jh: string&lt;br/&gt;+ Modulo_380_jh: BitacoraModulo_380_jh&lt;br/&gt;+ Accion_380_jh: BitacoraAccion_380_jh&lt;br/&gt;+ Nivel_380_jh: BitacoraNivel_380_jh&lt;br/&gt;+ Descripcion_380_jh: string&lt;br/&gt;+ Equipo_380_jh: string&lt;br/&gt;+ Fecha_380_jh: DateTime" vertex="1">
+          <mxGeometry height="294" width="403" y="46" as="geometry" />
         </mxCell>
-        <mxCell id="edge-main-view" edge="1" parent="1" source="MainForm" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="BitacoraView" value="&amp;lt;&amp;lt;create&amp;gt;&amp;gt;"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-view-service" edge="1" parent="1" source="BitacoraView" style="endArrow=open;endFill=0;html=1;rounded=0;" target="BitacoraApplicationService" value="- _bitacoraService"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-service-repo" edge="1" parent="1" source="BitacoraApplicationService" style="endArrow=open;endFill=0;html=1;rounded=0;" target="BitacoraRepository" value="- _bitacoraRepository"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-repo-mapper" edge="1" parent="1" source="BitacoraRepository" style="endArrow=open;endFill=0;html=1;rounded=0;" target="BitacoraDataMapper" value="- _bitacoraDataMapper"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-mapper-db" edge="1" parent="1" source="BitacoraDataMapper" style="endArrow=open;endFill=0;html=1;rounded=0;" target="DatabaseContext" value="- _databaseContext"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-view-registro" edge="1" parent="1" source="BitacoraView" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="BitacoraRegistro" value="&amp;lt;&amp;lt;use&amp;gt;&amp;gt;"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-service-registro" edge="1" parent="1" source="BitacoraApplicationService" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="BitacoraRegistro" value="&amp;lt;&amp;lt;use&amp;gt;&amp;gt;"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-repo-evento" edge="1" parent="1" source="BitacoraRepository" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="IBitacoraEvento" value="&amp;lt;&amp;lt;use&amp;gt;&amp;gt;"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-bitacora-interface" edge="1" parent="1" source="Bitacora" style="endArrow=block;endFill=0;html=1;rounded=0;dashed=1;" target="IBitacoraEvento" value=""><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="edge-mapper-registro" edge="1" parent="1" source="BitacoraDataMapper" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="BitacoraRegistro" value="&amp;lt;&amp;lt;create/use&amp;gt;&amp;gt;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="edge-main-view" edge="1" parent="1" source="MainForm_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="BitacoraView_380_jh" value="&amp;lt;&amp;lt;create&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-view-service" edge="1" parent="1" source="BitacoraView_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;" target="BitacoraApplicationService_380_jh" value="- _bitacoraService_380_jh">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-service-repo" edge="1" parent="1" source="BitacoraApplicationService_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;" target="BitacoraRepository_380_jh" value="- _bitacoraRepository_380_jh">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-repo-mapper" edge="1" parent="1" source="BitacoraRepository_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;" target="BitacoraDataMapper_380_jh" value="- _bitacoraDataMapper_380_jh">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-mapper-db" edge="1" parent="1" source="BitacoraDataMapper_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;" target="DatabaseContext_380_jh" value="- _databaseContext_380_jh">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-view-registro" edge="1" parent="1" source="BitacoraView_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="BitacoraRegistro_380_jh" value="&amp;lt;&amp;lt;use&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-service-registro" edge="1" parent="1" source="BitacoraApplicationService_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="BitacoraRegistro_380_jh" value="&amp;lt;&amp;lt;use&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-repo-evento" edge="1" parent="1" source="BitacoraRepository_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="IBitacoraEvento_380_jh" value="&amp;lt;&amp;lt;use&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-bitacora-interface" edge="1" parent="1" source="Bitacora_380_jh" style="endArrow=block;endFill=0;html=1;rounded=0;dashed=1;" target="IBitacoraEvento_380_jh" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-mapper-registro" edge="1" parent="1" source="BitacoraDataMapper_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;" target="BitacoraRegistro_380_jh" value="&amp;lt;&amp;lt;create/use&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
