@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="PN1 - Entrada Comportamiento Salida" id="pn1-entrada-comportamiento-salida">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="titulo" value="PN1 — Diagrama de Entrada, Comportamiento y Salida" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=22;align=center;verticalAlign=middle;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="250" y="25" width="1100" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitulo" value="Registro y liberación de unidades — balanceado con los diagramas de roles y secuencia de roles" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;align=center;verticalAlign=middle;fontColor=#666666;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="250" y="68" width="1100" height="28" as="geometry" />
+        </mxCell>
+
+        <mxCell id="entrada" value="&lt;b&gt;&lt;u&gt;Entrada&lt;/u&gt;&lt;/b&gt;" style="swimlane;horizontal=1;startSize=52;whiteSpace=wrap;html=1;rounded=0;fillColor=#bfe3f2;swimlaneFillColor=#d9eef8;strokeColor=#6c8ebf;strokeWidth=2;fontSize=17;fontFamily=Arial;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="60" y="170" width="410" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="entrada-contenido" value="&lt;b&gt;E1.&lt;/b&gt; Datos del donante y de la donación.&lt;br&gt;&lt;br&gt;&lt;b&gt;E2.&lt;/b&gt; Fecha, cantidad y tipo de componente.&lt;br&gt;&lt;br&gt;&lt;b&gt;E3.&lt;/b&gt; Datos de clasificación: grupo sanguíneo, factor Rh, vencimiento y observaciones.&lt;br&gt;&lt;br&gt;&lt;b&gt;E4.&lt;/b&gt; Unidad clasificada para revisión.&lt;br&gt;&lt;br&gt;&lt;b&gt;E5.&lt;/b&gt; Acción de estado solicitada: liberar, bloquear o descartar." style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;fontSize=14;fontFamily=Arial;align=left;verticalAlign=top;spacingLeft=12;spacingRight=12;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="240" width="370" height="335" as="geometry" />
+        </mxCell>
+
+        <mxCell id="comportamiento" value="&lt;b&gt;&lt;u&gt;Comportamiento&lt;/u&gt;&lt;/b&gt;" style="swimlane;horizontal=1;startSize=52;whiteSpace=wrap;html=1;rounded=0;fillColor=#f4c7c3;swimlaneFillColor=#f9dedb;strokeColor=#b85450;strokeWidth=2;fontSize=17;fontFamily=Arial;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="590" y="130" width="450" height="510" as="geometry" />
+        </mxCell>
+        <mxCell id="comportamiento-contenido" value="&lt;b&gt;C1.&lt;/b&gt; Registrar la donación.&lt;br&gt;&lt;br&gt;&lt;b&gt;C2.&lt;/b&gt; Generar e identificar una o más unidades.&lt;br&gt;&lt;br&gt;&lt;b&gt;C3.&lt;/b&gt; Asignar a las unidades el estado &amp;quot;En revisión&amp;quot;.&lt;br&gt;&lt;br&gt;&lt;b&gt;C4.&lt;/b&gt; Cargar la clasificación de la unidad.&lt;br&gt;&lt;br&gt;&lt;b&gt;C5.&lt;/b&gt; Validar los datos de control.&lt;br&gt;&lt;br&gt;&lt;b&gt;C6.&lt;/b&gt; Revisar la información de la unidad.&lt;br&gt;&lt;br&gt;&lt;b&gt;C7.&lt;/b&gt; Liberar, bloquear o descartar la unidad.&lt;br&gt;&lt;br&gt;&lt;b&gt;C8.&lt;/b&gt; Impedir la liberación si faltan datos obligatorios." style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;fontSize=14;fontFamily=Arial;align=left;verticalAlign=top;spacingLeft=12;spacingRight=12;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="610" y="200" width="410" height="415" as="geometry" />
+        </mxCell>
+
+        <mxCell id="salida" value="&lt;b&gt;&lt;u&gt;Salida&lt;/u&gt;&lt;/b&gt;" style="swimlane;horizontal=1;startSize=52;whiteSpace=wrap;html=1;rounded=0;fillColor=#d8d0ed;swimlaneFillColor=#e9e4f5;strokeColor=#9673a6;strokeWidth=2;fontSize=17;fontFamily=Arial;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="170" width="380" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="salida-contenido" value="&lt;b&gt;S1.&lt;/b&gt; Notificación al donante: donación registrada.&lt;br&gt;&lt;br&gt;&lt;b&gt;S2.&lt;/b&gt; Notificación al donante: unidades en estado &amp;quot;En revisión&amp;quot;.&lt;br&gt;&lt;br&gt;&lt;b&gt;S3.&lt;/b&gt; Clasificación registrada y unidad clasificada.&lt;br&gt;&lt;br&gt;&lt;b&gt;S4.&lt;/b&gt; Unidad con estado operativo Liberada, Bloqueada o Descartada.&lt;br&gt;&lt;br&gt;&lt;b&gt;S5.&lt;/b&gt; Liberación rechazada por datos obligatorios incompletos." style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;fontSize=14;fontFamily=Arial;align=left;verticalAlign=top;spacingLeft=12;spacingRight=12;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="240" width="340" height="335" as="geometry" />
+        </mxCell>
+
+        <mxCell id="flujo-entrada" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="470" y="385" as="sourcePoint" /><mxPoint x="590" y="385" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="flujo-salida" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="1040" y="385" as="sourcePoint" /><mxPoint x="1160" y="385" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <mxCell id="balance" value="&lt;b&gt;Trazabilidad del balance&lt;/b&gt;&lt;br&gt;E1 + E2 → C1 → S1 &amp;nbsp;·&amp;nbsp; E1 + E2 → C2 + C3 → S2 &amp;nbsp;·&amp;nbsp; E3 → C4 + C5 → S3&lt;br&gt;E4 + E5 → C6 + C7 → S4 &amp;nbsp;·&amp;nbsp; E3 incompleta → C5 + C8 → S5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;strokeWidth=1;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="185" y="690" width="1230" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="roles" value="&lt;b&gt;Balance con roles:&lt;/b&gt; Personal de extracción: C1–C3 &amp;nbsp;·&amp;nbsp; Operador autorizado: C4–C5 &amp;nbsp;·&amp;nbsp; Responsable autorizado: C6–C8" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="285" y="805" width="1030" height="48" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
