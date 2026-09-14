@@ -10,7 +10,7 @@
         <mxCell id="flujo-principal" parent="1" style="swimlane;startSize=30;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;fontStyle=1;fontSize=14;fontFamily=Arial;" value="Flujo principal PN1" vertex="1">
           <mxGeometry height="1040" width="1540" x="30" y="165" as="geometry" />
         </mxCell>
-        <mxCell id="frame-registro" parent="1" style="swimlane;startSize=28;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=1.5;fontStyle=1;fontSize=13;fontFamily=Arial;" value="1. Registrar donación y generar unidades" vertex="1">
+        <mxCell id="frame-registro" parent="1" style="swimlane;startSize=28;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=1.5;fontStyle=1;fontSize=13;fontFamily=Arial;" value="1. Registrar donante, donación y generar unidades" vertex="1">
           <mxGeometry height="255" width="1500" x="50" y="195" as="geometry" />
         </mxCell>
         <mxCell id="frame-clasificar" parent="1" style="swimlane;startSize=28;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=1.5;fontStyle=1;fontSize=13;fontFamily=Arial;" value="2. Clasificar unidad" vertex="1">
@@ -94,13 +94,13 @@
         <mxCell id="act-responsable" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="" vertex="1">
           <mxGeometry height="435" width="14" x="1343" y="710" as="geometry" />
         </mxCell>
-        <mxCell id="m01" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Entrada E1–E2: Datos de donación">
+        <mxCell id="m01" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Entrada E1–E2: Datos del donante y de la donación">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="197" y="225" as="sourcePoint" />
             <mxPoint x="543" y="225" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m02" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Comportamiento C1: Registrar donación">
+        <mxCell id="m02" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Comportamiento C1: Registrar donante y donación">
           <mxGeometry relative="1" x="0.3" y="-1" as="geometry">
             <mxPoint x="12" y="-8" as="offset" />
             <Array as="points">

@@ -31,7 +31,7 @@
         <mxCell id="label-responsable" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=top;whiteSpace=wrap;" value="&lt;b&gt;Responsable autorizado&lt;/b&gt;&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="55" width="280" x="1210" y="245" as="geometry" />
         </mxCell>
-        <mxCell id="rel-donante-extraccion" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#d79b00;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Entrada E1–E2: datos de donación&lt;br&gt;Salida S1–S2: notificación">
+        <mxCell id="rel-donante-extraccion" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#d79b00;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Entrada E1–E2: datos del donante y de la donación&lt;br&gt;Salida S1–S2: notificación">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="225" y="195" as="sourcePoint" />
             <mxPoint x="545" y="195" as="targetPoint" />
@@ -52,7 +52,7 @@
         <mxCell id="tarea-donante" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8f0;strokeColor=#d79b00;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;" value="&lt;br&gt;Se presenta y realiza la donación. Proporciona los datos necesarios al personal." vertex="1">
           <mxGeometry height="115" width="280" x="85" y="355" as="geometry" />
         </mxCell>
-        <mxCell id="tarea-extraccion" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffdf2;strokeColor=#d6b656;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;" value="Registra la donación y genera una o más unidades con identificación y vencimiento." vertex="1">
+        <mxCell id="tarea-extraccion" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffdf2;strokeColor=#d6b656;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;" value="Solicita y registra los datos del donante; registra la donación y genera una o más unidades con identificación y vencimiento." vertex="1">
           <mxGeometry height="115" width="280" x="430" y="355" as="geometry" />
         </mxCell>
         <mxCell id="tarea-operador" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2fbf1;strokeColor=#82b366;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;" value="Carga componente, grupo sanguíneo, factor Rh, vencimiento y observaciones." vertex="1">
