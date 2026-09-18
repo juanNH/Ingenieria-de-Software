@@ -95,6 +95,19 @@
     <Compile Include="Views\Roles\RolesView.Designer.cs">
       <DependentUpon>RolesView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\PN1\IntegridadView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\PN1\ProteccionIntegridad.cs" />
+    <Compile Include="Views\PN1\DonantesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\PN1\DonacionesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\PN1\UnidadesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Auth\Login.resx">

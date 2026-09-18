@@ -1,4 +1,4 @@
-USE [TecniSalud];
+USE [HemovidaGest];
 GO
 
 /*
@@ -72,6 +72,13 @@ VALUES
 ('AUDIT_FILTER_ACTION', 'Filtro accion', 'Accion', 'Action'),
 ('AUDIT_FILTER_LEVEL', 'Filtro nivel', 'Nivel', 'Level'),
 ('AUDIT_FILTER_DESCRIPTION', 'Filtro descripcion', 'Descripcion', 'Description'),
+('CHANGE_AUDIT_TITLE', 'Titulo auditoria de cambios', 'Auditoría de cambios', 'Change audit'),
+('CHANGE_AUDIT_DESCRIPTION', 'Descripcion auditoria de cambios', 'Historial de cambios registrados sobre entidades auditadas.', 'History of recorded changes on audited entities.'),
+('CHANGE_AUDIT_EMPTY', 'Auditoria de cambios vacia', 'No hay cambios registrados.', 'There are no recorded changes.'),
+('CHANGE_AUDIT_COUNT', 'Cantidad de cambios', '{0} cambio(s) registrado(s).', '{0} change(s) registered.'),
+('CHANGE_AUDIT_USER', 'Usuario auditado', 'Usuario auditado', 'Audited user'),
+('CHANGE_AUDIT_PREVIOUS_STATE', 'Estado anterior', 'Estado anterior', 'Previous state'),
+('CHANGE_AUDIT_NEW_STATE', 'Estado nuevo', 'Estado nuevo', 'New state'),
 ('BITACORA_ACTION_LOGIN_FAILURE', 'Accion login fallido', 'Login fallido', 'Failed login'),
 ('BITACORA_ACTION_LOGIN_SUCCESS', 'Accion login exitoso', 'Login exitoso', 'Successful login'),
 ('BITACORA_ACTION_REGISTER_FAILURE', 'Accion registro fallido', 'Registro fallido', 'Failed registration'),
@@ -82,6 +89,7 @@ VALUES
 ('BTN_ADD', 'Boton agregar', 'Agregar', 'Add'),
 ('BTN_CREATE', 'Boton crear', 'Crear', 'Create'),
 ('BTN_CREATE_ROLE', 'Boton crear rol', 'Crear rol', 'Create role'),
+('BTN_CREATE_LABEL', 'Boton crear etiqueta', 'Crear etiqueta', 'Create label'),
 ('BTN_DISABLE', 'Boton inhabilitar', 'Inhabilitar', 'Disable'),
 ('BTN_NEW', 'Boton nuevo', 'Nuevo', 'New'),
 ('BTN_RECALCULATE_DV', 'Boton recalcular digitos verificadores', 'Recalcular DV', 'Recalculate DV'),
@@ -124,6 +132,7 @@ VALUES
 ('MAIN_TITLE', 'Titulo de la ventana principal', 'Panel principal', 'Main panel'),
 ('MAIN_USER', 'Texto de usuario autenticado', 'Usuario: {0}', 'User: {0}'),
 ('MENU_AUDIT', 'Menu bitacora', 'Bitacora', 'Audit log'),
+('MENU_PERMISSIONS', 'Menu permisos', 'Permisos', 'Permissions'),
 ('MENU_LANGUAGES', 'Menu idiomas', 'Idiomas', 'Languages'),
 ('MENU_LOGOUT', 'Menu salir', 'Salir', 'Log out'),
 ('MENU_ROLES', 'Menu roles', 'Roles', 'Roles'),
@@ -167,7 +176,78 @@ VALUES
 ('USERS_DESCRIPTION', 'Descripcion de usuarios', 'Alta, modificacion e inhabilitacion de usuarios del sistema.', 'Create, edit and disable system users.'),
 ('USERS_DETAIL', 'Detalle de usuario', 'Detalle de usuario', 'User details'),
 ('USERS_EDIT_MODE', 'Modo modificar usuario', 'Modificar usuario', 'Edit user'),
-('USERS_TITLE', 'Titulo de usuarios', 'Usuarios', 'Users');
+('USERS_TITLE', 'Titulo de usuarios', 'Usuarios', 'Users'),
+('MENU_CHANGE_AUDIT', 'Menu auditoria de cambios', 'Auditoría de cambios', 'Change audit'),
+('MENU_BLOOD_BANK', 'Menu banco de sangre', 'Banco de sangre', 'Blood bank'),
+('MENU_DONORS', 'Menu donantes', 'Donantes', 'Donors'),
+('MENU_DONATIONS', 'Menu donaciones', 'Donaciones', 'Donations'),
+('MENU_UNITS', 'Menu unidades', 'Unidades', 'Units'),
+('BITACORA_MODULE_BLOOD_BANK', 'Modulo banco de sangre', 'Banco de sangre', 'Blood bank'),
+('BITACORA_ACTION_DONOR_REGISTERED', 'Accion donante registrado', 'Donante registrado', 'Donor registered'),
+('BITACORA_ACTION_DONATION_REGISTERED', 'Accion donacion registrada', 'Donación registrada', 'Donation registered'),
+('BITACORA_ACTION_UNITS_GENERATED', 'Accion unidades generadas', 'Unidades generadas', 'Units generated'),
+('BITACORA_ACTION_UNIT_CLASSIFIED', 'Accion unidad clasificada', 'Unidad clasificada', 'Unit classified'),
+('BITACORA_ACTION_UNIT_RELEASED', 'Accion unidad liberada', 'Unidad liberada', 'Unit released'),
+('BITACORA_ACTION_UNIT_BLOCKED', 'Accion unidad bloqueada', 'Unidad bloqueada', 'Unit blocked'),
+('BITACORA_ACTION_UNIT_DISCARDED', 'Accion unidad descartada', 'Unidad descartada', 'Unit discarded'),
+('BITACORA_ACTION_OPERATION_FAILURE', 'Accion operacion fallida', 'Operación fallida', 'Operation failed'),
+('DONORS_TITLE', 'Titulo donantes', 'Donantes', 'Donors'),
+('DONORS_DESCRIPTION', 'Descripcion donantes', 'Registro y consulta de donantes habilitados.', 'Registration and lookup of active donors.'),
+('DONORS_DETAIL', 'Detalle donante', 'Datos del donante', 'Donor details'),
+('DONOR_DOCUMENT', 'Documento donante', 'Documento', 'Document'),
+('DONOR_NAME', 'Nombre donante', 'Nombre', 'First name'),
+('DONOR_LASTNAME', 'Apellido donante', 'Apellido', 'Last name'),
+('DONOR_BIRTHDATE', 'Nacimiento donante', 'Fecha de nacimiento', 'Birth date'),
+('DONOR_PHONE', 'Telefono donante', 'Teléfono', 'Phone'),
+('DONOR_EMAIL', 'Email donante', 'Email', 'Email'),
+('DONOR_ADDRESS', 'Domicilio donante', 'Domicilio', 'Address'),
+('DONOR_STATUS', 'Estado donante', 'Estado', 'Status'),
+('DONOR_REGISTERED', 'Donante registrado', 'Donante registrado correctamente.', 'Donor registered successfully.'),
+('DONOR_DUPLICATE', 'Donante duplicado', 'Ya existe un donante con ese documento.', 'A donor with that document already exists.'),
+('DONOR_INVALID', 'Donante invalido', 'Completá documento, nombre y apellido.', 'Document, first name and last name are required.'),
+('DONOR_ERROR', 'Error donante', 'No se pudo registrar el donante.', 'Could not register the donor.'),
+('DONATION_TITLE', 'Titulo donaciones', 'Donaciones', 'Donations'),
+('DONATION_DESCRIPTION', 'Descripcion donaciones', 'Registro de donaciones y generación de unidades en revisión.', 'Register donations and generate units under review.'),
+('DONATION_DETAIL', 'Detalle donacion', 'Datos de la donación', 'Donation details'),
+('DONATION_DONOR', 'Donante donacion', 'Donante', 'Donor'),
+('DONATION_DATE', 'Fecha donacion', 'Fecha de donación', 'Donation date'),
+('DONATION_QUANTITY', 'Cantidad unidades', 'Cantidad de unidades', 'Number of units'),
+('DONATION_COMPONENT', 'Componente donacion', 'Componente informado', 'Reported component'),
+('DONATION_EXPIRATION', 'Vencimiento donacion', 'Vencimiento', 'Expiration date'),
+('DONATION_OBSERVATIONS', 'Observaciones donacion', 'Observaciones', 'Notes'),
+('DONATION_REGISTERED', 'Donacion registrada', 'Donación registrada y unidades generadas.', 'Donation registered and units generated.'),
+('DONATION_INVALID', 'Donacion invalida', 'Completá los datos de la donación y verificá el vencimiento.', 'Complete the donation data and verify the expiration date.'),
+('DONATION_ERROR', 'Error donacion', 'No se pudo registrar la donación.', 'Could not register the donation.'),
+('UNITS_TITLE', 'Titulo unidades', 'Unidades', 'Units'),
+('UNITS_DESCRIPTION', 'Descripcion unidades', 'Clasificación, liberación, bloqueo y descarte de unidades.', 'Classify, release, block and discard units.'),
+('UNIT_DETAIL', 'Detalle unidad', 'Detalle de unidad', 'Unit details'),
+('UNIT_CODE', 'Codigo unidad', 'Código', 'Code'),
+('UNIT_DONOR', 'Donante unidad', 'Donante', 'Donor'),
+('UNIT_COMPONENT', 'Componente unidad', 'Componente', 'Component'),
+('UNIT_EXPIRATION', 'Vencimiento unidad', 'Vencimiento', 'Expiration'),
+('UNIT_BLOOD_GROUP', 'Grupo sanguineo', 'Grupo sanguíneo', 'Blood group'),
+('UNIT_RH', 'Factor RH', 'Factor Rh', 'Rh factor'),
+('UNIT_STATUS', 'Estado unidad', 'Estado operativo', 'Operational status'),
+('UNIT_OBSERVATIONS', 'Observaciones unidad', 'Observaciones', 'Notes'),
+('UNIT_CLASSIFY', 'Clasificar unidad', 'Clasificar', 'Classify'),
+('UNIT_RELEASE', 'Liberar unidad', 'Liberar', 'Release'),
+('UNIT_BLOCK', 'Bloquear unidad', 'Bloquear', 'Block'),
+('UNIT_DISCARD', 'Descartar unidad', 'Descartar', 'Discard'),
+('UNIT_CLASSIFIED', 'Unidad clasificada', 'Unidad clasificada correctamente.', 'Unit classified successfully.'),
+('UNIT_RELEASED', 'Unidad liberada', 'Unidad liberada correctamente.', 'Unit released successfully.'),
+('UNIT_BLOCKED', 'Unidad bloqueada', 'Unidad bloqueada correctamente.', 'Unit blocked successfully.'),
+('UNIT_DISCARDED', 'Unidad descartada', 'Unidad descartada correctamente.', 'Unit discarded successfully.'),
+('UNIT_INVALID', 'Unidad invalida', 'Completá los datos requeridos de la unidad.', 'Complete the required unit data.'),
+('UNIT_CONFLICT', 'Conflicto unidad', 'La unidad no está en un estado válido para esta operación.', 'The unit is not in a valid state for this operation.'),
+('UNIT_ERROR', 'Error unidad', 'No se pudo actualizar la unidad.', 'Could not update the unit.'),
+('UNIT_STATE_EN_REVISION', 'En revision', 'En revisión', 'Under review'),
+('UNIT_STATE_LIBERADA', 'Liberada', 'Liberada', 'Released'),
+('UNIT_STATE_BLOQUEADA', 'Bloqueada', 'Bloqueada', 'Blocked'),
+('UNIT_STATE_DESCARTADA', 'Descartada', 'Descartada', 'Discarded'),
+('STATUS_ACTIVE', 'Activo', 'Activo', 'Active'),
+('STATUS_INACTIVE', 'Inactivo', 'Inactivo', 'Inactive'),
+('BTN_REGISTER', 'Boton registrar', 'Registrar', 'Register'),
+('OPERATION_NOT_AUTHORIZED', 'Operacion no autorizada', 'No tenés permisos para realizar esta operación.', 'You are not authorized to perform this operation.');
 
 INSERT INTO dbo.Etiqueta (clave, descripcion)
 SELECT Clave, Descripcion
@@ -199,4 +279,50 @@ FROM dbo.Idioma i
 LEFT JOIN dbo.Traduccion t ON t.id_idioma = i.id_idioma
 GROUP BY i.codigo
 ORDER BY i.codigo;
+GO
+
+-- Catalogo incremental de integridad: no elimina idiomas ni traducciones personalizadas.
+DECLARE @i18n_integridad TABLE(clave VARCHAR(150), es NVARCHAR(500), en NVARCHAR(500));
+INSERT @i18n_integridad VALUES
+('MENU_INTEGRITY',N'Integridad',N'Integrity'),
+('BITACORA_MODULE_INTEGRITY',N'Integridad',N'Integrity'),
+('INTEGRITY_OK',N'Integridad: última verificación correcta.',N'Integrity: last verification passed.'),
+('INTEGRITY_BLOCKED',N'Modo solo consulta: integridad comprometida. Los datos afectados no son confiables; contactá al administrador.',N'Read-only mode: integrity compromised. Affected data is untrusted; contact the administrator.'),
+('INTEGRITY_UNAVAILABLE',N'Operaciones protegidas bloqueadas: no se pudo verificar la integridad. Revisá la conexión y las migraciones SQL.',N'Protected operations are blocked: integrity could not be verified. Check the connection and SQL migrations.'),
+('INTEGRITY_PENDING',N'Pendiente: revisar los datos y aceptar la base inicial.',N'Pending: review the data and accept the initial baseline.'),
+('INTEGRITY_DESCRIPTION',N'Se verifican filas (DVH), tablas (DVV) e historiales de los procesos protegidos. Restaurar recupera las últimas versiones verificadas; no deshace operaciones legítimas.',N'Checks rows (DVH), tables (DVV), and histories for protected processes. Restore recovers the latest verified versions; it does not undo legitimate operations.'),
+('INTEGRITY_VERIFY',N'Verificar / actualizar',N'Verify / refresh'),
+('INTEGRITY_INITIALIZE',N'Aceptar base inicial',N'Accept initial baseline'),
+('INTEGRITY_RESTORE',N'Restaurar desde historial',N'Restore from history'),
+('INTEGRITY_ENTITY',N'Entidad',N'Entity'),
+('INTEGRITY_ID',N'ID',N'ID'),
+('INTEGRITY_TYPE',N'Incidencia',N'Issue'),
+('INTEGRITY_DATE',N'Detectada',N'Detected'),
+('INTEGRITY_CURRENT',N'Registro actual (JSON; vacío si falta)',N'Current record (JSON; empty if missing)'),
+('INTEGRITY_TRUSTED',N'Última versión del historial (usar solo si es íntegro)',N'Latest history version (use only when intact)'),
+('INTEGRITY_CONFIRM_BASELINE',N'¿Aceptás los datos actuales como base inicial? Confirmá solo después de revisarlos y respaldarlos. Esta acción no corrige datos previos y se realiza una sola vez.',N'Accept current data as the initial baseline? Confirm only after reviewing and backing it up. This does not correct existing data and can only be done once.'),
+('INTEGRITY_CONFIRM_RESTORE',N'¿Restaurar todas las inconsistencias recuperables desde las últimas versiones verificadas? Se conservarán los identificadores y se auditará la operación. No se aceptarán datos alterados como válidos.',N'Restore all recoverable inconsistencies from the latest verified versions? IDs will be preserved and the operation audited. Altered data will not be accepted as valid.'),
+('INTEGRITY_RECOVERED',N'Operación completada e integridad verificada.',N'Operation completed and integrity verified.'),
+('INTEGRITY_RECOVERY_FAILED',N'No se confirmó la recuperación. Verificá nuevamente el estado y revisá la bitácora antes de reintentar.',N'Recovery was not confirmed. Verify the state again and review the log before retrying.'),
+('INTEGRITY_STALE_PREVIEW',N'Los datos cambiaron desde la revisión. Actualizá el informe antes de confirmar.',N'Data changed since the preview. Refresh the report before confirming.'),
+('INTEGRITY_BACKUP_REQUIRED',N'La fuente no permite una recuperación segura. Necesitás un backup confiable; no recalcules para ocultar el error.',N'The source cannot support safe recovery. A trusted backup is required; do not recalculate to hide the error.'),
+('INTEGRITY_TYPE_SIN_INICIALIZAR',N'Base inicial ausente o incompleta',N'Missing or incomplete baseline'),
+('INTEGRITY_TYPE_DVH',N'Dígito de fila incorrecto',N'Row checksum mismatch'),
+('INTEGRITY_TYPE_DVV',N'Dígito de tabla incorrecto',N'Table checksum mismatch'),
+('INTEGRITY_TYPE_HISTORIAL_INVALIDO',N'Historial alterado',N'Altered history'),
+('INTEGRITY_TYPE_FALTANTE',N'Registro eliminado',N'Deleted record'),
+('INTEGRITY_TYPE_SIN_VERSION',N'Registro sin versión confiable',N'Record without a trusted version'),
+('INTEGRITY_TYPE_VERSION_DIFERENTE',N'Datos distintos del historial',N'Data differs from history'),
+('BITACORA_ACTION_INTEGRITY_DETECTED',N'Error de integridad detectado',N'Integrity error detected'),
+('BITACORA_ACTION_INTEGRITY_INITIALIZED',N'Base inicial de integridad aceptada',N'Initial integrity baseline accepted'),
+('BITACORA_ACTION_INTEGRITY_RESTORED',N'Integridad restaurada',N'Integrity restored'),
+('BITACORA_ACTION_RESTORE_FAILED',N'Recuperación fallida',N'Recovery failed');
+INSERT dbo.Etiqueta(clave,descripcion)
+SELECT c.clave,c.clave FROM @i18n_integridad c
+WHERE NOT EXISTS(SELECT 1 FROM dbo.Etiqueta e WHERE e.clave=c.clave);
+INSERT dbo.Traduccion(id_etiqueta,id_idioma,texto)
+SELECT e.id_etiqueta,i.id_idioma,CASE WHEN i.codigo='en-US' THEN c.en ELSE c.es END
+FROM @i18n_integridad c JOIN dbo.Etiqueta e ON e.clave=c.clave
+CROSS JOIN dbo.Idioma i WHERE i.codigo IN ('es-AR','en-US')
+AND NOT EXISTS(SELECT 1 FROM dbo.Traduccion t WHERE t.id_etiqueta=e.id_etiqueta AND t.id_idioma=i.id_idioma);
 GO

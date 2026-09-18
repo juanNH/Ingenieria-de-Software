@@ -40,6 +40,10 @@
     <Compile Include="Idiomas\LanguageRepository.cs" />
     <Compile Include="Idiomas\TranslationRepository.cs" />
     <Compile Include="Permisos\PermisoRepository.cs" />
+    <Compile Include="PN1\DonacionRepository.cs" />
+    <Compile Include="PN1\DonanteRepository.cs" />
+    <Compile Include="PN1\IntegridadRepository.cs" />
+    <Compile Include="PN1\UnidadRepository.cs" />
     <Compile Include="Seguridad\DigitoVerificadorRepository.cs" />
     <Compile Include="Usuarios\UsuarioRepository.cs" />
   </ItemGroup>

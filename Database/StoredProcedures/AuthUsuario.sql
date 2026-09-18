@@ -1,4 +1,4 @@
-USE [TecniSalud];
+USE [HemovidaGest];
 GO
 
 IF NOT EXISTS (

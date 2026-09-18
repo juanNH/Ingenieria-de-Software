@@ -3,6 +3,8 @@ namespace Domain
     public static class PermisosSistema_380_jh
     {
         public const string Administrador_380_jh = "ADMINISTRADOR";
+        public const string IntegridadVer_380_jh = "INTEGRIDAD_VER";
+        public const string IntegridadRestaurar_380_jh = "INTEGRIDAD_RESTAURAR";
 
         public const string BitacoraVer_380_jh = "BITACORA_VER";
         public const string AuditoriaCambiosVer_380_jh = "AUDITORIA_CAMBIOS_VER";
@@ -25,5 +27,14 @@ namespace Domain
         public const string IdiomaEditar_380_jh = "IDIOMA_EDITAR";
         public const string TraduccionVer_380_jh = "TRADUCCION_VER";
         public const string TraduccionEditar_380_jh = "TRADUCCION_EDITAR";
+
+        public const string DonanteVer_380_jh = "DONANTE_VER";
+        public const string DonanteCrear_380_jh = "DONANTE_CREAR";
+        public const string DonacionCrear_380_jh = "DONACION_CREAR";
+        public const string UnidadVer_380_jh = "UNIDAD_VER";
+        public const string UnidadClasificar_380_jh = "UNIDAD_CLASIFICAR";
+        public const string UnidadLiberar_380_jh = "UNIDAD_LIBERAR";
+        public const string UnidadBloquear_380_jh = "UNIDAD_BLOQUEAR";
+        public const string UnidadDescartar_380_jh = "UNIDAD_DESCARTAR";
     }
 }

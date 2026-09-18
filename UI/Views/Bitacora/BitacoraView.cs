@@ -85,12 +85,26 @@ namespace UI
         {
             cmbModuloFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh(null, "FILTER_ALL"));
             cmbModuloFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("Seguridad_380_jh", "BITACORA_MODULE_SECURITY"));
+            cmbModuloFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("BancoSangre_380_jh", "BITACORA_MODULE_BLOOD_BANK"));
+            cmbModuloFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("Integridad_380_jh", "BITACORA_MODULE_INTEGRITY"));
             cmbModuloFiltro_380_jh.SelectedIndex = 0;
 
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh(null, "FILTER_ALL_ACTIONS"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("LoginExitoso_380_jh", "BITACORA_ACTION_LOGIN_SUCCESS"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("LoginFallido_380_jh", "BITACORA_ACTION_LOGIN_FAILURE"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("RegistroFallido_380_jh", "BITACORA_ACTION_REGISTER_FAILURE"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("DonanteRegistrado_380_jh", "BITACORA_ACTION_DONOR_REGISTERED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("DonacionRegistrada_380_jh", "BITACORA_ACTION_DONATION_REGISTERED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadesGeneradas_380_jh", "BITACORA_ACTION_UNITS_GENERATED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadClasificada_380_jh", "BITACORA_ACTION_UNIT_CLASSIFIED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadLiberada_380_jh", "BITACORA_ACTION_UNIT_RELEASED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadBloqueada_380_jh", "BITACORA_ACTION_UNIT_BLOCKED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadDescartada_380_jh", "BITACORA_ACTION_UNIT_DISCARDED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("OperacionFallida_380_jh", "BITACORA_ACTION_OPERATION_FAILURE"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("RestauracionFallida_380_jh", "BITACORA_ACTION_RESTORE_FAILED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("IntegridadRestaurada_380_jh", "BITACORA_ACTION_INTEGRITY_RESTORED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("IntegridadInicializada_380_jh", "BITACORA_ACTION_INTEGRITY_INITIALIZED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("IntegridadDetectada_380_jh", "BITACORA_ACTION_INTEGRITY_DETECTED"));
             cmbAccionFiltro_380_jh.SelectedIndex = 0;
 
             cmbNivelFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh(null, "FILTER_ALL"));
@@ -165,9 +179,9 @@ namespace UI
                 item.SubItems.Add(registro.Fecha_380_jh.ToString("dd/MM/yyyy HH:mm:ss"));
                 item.SubItems.Add(registro.IdUsuario_380_jh.HasValue ? registro.IdUsuario_380_jh.Value.ToString() : string.Empty);
                 item.SubItems.Add(registro.IdentificadorUsuario_380_jh ?? string.Empty);
-                item.SubItems.Add(registro.Modulo_380_jh ?? string.Empty);
-                item.SubItems.Add(registro.Accion_380_jh ?? string.Empty);
-                item.SubItems.Add(registro.Nivel_380_jh ?? string.Empty);
+                item.SubItems.Add(TraducirModulo_380_jh(registro.Modulo_380_jh));
+                item.SubItems.Add(TraducirAccion_380_jh(registro.Accion_380_jh));
+                item.SubItems.Add(TraducirNivel_380_jh(registro.Nivel_380_jh));
                 item.SubItems.Add(registro.Descripcion_380_jh ?? string.Empty);
                 item.SubItems.Add(registro.Equipo_380_jh ?? string.Empty);
 
@@ -177,6 +191,67 @@ namespace UI
             listViewBitacora_380_jh.EndUpdate();
             _cantidadRegistros_380_jh = registros.Count;
             ActualizarEstado_380_jh();
+        }
+
+        private string TraducirModulo_380_jh(string modulo)
+        {
+            if (string.Equals(modulo, "BancoSangre_380_jh", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(modulo, "BancoSangre", StringComparison.OrdinalIgnoreCase))
+            {
+                return LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("BITACORA_MODULE_BLOOD_BANK");
+            }
+
+            if (string.Equals(modulo, "Seguridad_380_jh", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(modulo, "Seguridad", StringComparison.OrdinalIgnoreCase))
+            {
+                return LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("BITACORA_MODULE_SECURITY");
+            }
+
+            if (string.Equals(modulo, "Integridad_380_jh", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(modulo, "Integridad", StringComparison.OrdinalIgnoreCase))
+            {
+                return LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("BITACORA_MODULE_INTEGRITY");
+            }
+
+            return modulo ?? string.Empty;
+        }
+
+        private string TraducirAccion_380_jh(string accion)
+        {
+            string clave = null;
+            switch ((accion ?? string.Empty).Replace("_380_jh", string.Empty))
+            {
+                case "LoginExitoso": clave = "BITACORA_ACTION_LOGIN_SUCCESS"; break;
+                case "LoginFallido": clave = "BITACORA_ACTION_LOGIN_FAILURE"; break;
+                case "RegistroFallido": clave = "BITACORA_ACTION_REGISTER_FAILURE"; break;
+                case "DonanteRegistrado": clave = "BITACORA_ACTION_DONOR_REGISTERED"; break;
+                case "DonacionRegistrada": clave = "BITACORA_ACTION_DONATION_REGISTERED"; break;
+                case "UnidadesGeneradas": clave = "BITACORA_ACTION_UNITS_GENERATED"; break;
+                case "UnidadClasificada": clave = "BITACORA_ACTION_UNIT_CLASSIFIED"; break;
+                case "UnidadLiberada": clave = "BITACORA_ACTION_UNIT_RELEASED"; break;
+                case "UnidadBloqueada": clave = "BITACORA_ACTION_UNIT_BLOCKED"; break;
+                case "UnidadDescartada": clave = "BITACORA_ACTION_UNIT_DISCARDED"; break;
+                case "OperacionFallida": clave = "BITACORA_ACTION_OPERATION_FAILURE"; break;
+                case "RestauracionFallida": clave = "BITACORA_ACTION_RESTORE_FAILED"; break;
+                case "IntegridadRestaurada": clave = "BITACORA_ACTION_INTEGRITY_RESTORED"; break;
+                case "IntegridadInicializada": clave = "BITACORA_ACTION_INTEGRITY_INITIALIZED"; break;
+                case "IntegridadDetectada": clave = "BITACORA_ACTION_INTEGRITY_DETECTED"; break;
+            }
+
+            return clave == null ? accion ?? string.Empty : LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(clave);
+        }
+
+        private string TraducirNivel_380_jh(string nivel)
+        {
+            string clave;
+            switch ((nivel ?? string.Empty).Replace("_380_jh", string.Empty))
+            {
+                case "Advertencia": clave = "BITACORA_LEVEL_WARNING"; break;
+                case "Error": clave = "BITACORA_LEVEL_ERROR"; break;
+                default: clave = "BITACORA_LEVEL_INFORMATION"; break;
+            }
+
+            return LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(clave);
         }
 
         private void ActualizarEstado_380_jh()

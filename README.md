@@ -12,6 +12,10 @@ Desarrollar un sistema que permita gestionar las operaciones principales de una 
 
 ## Funcionalidades
 
+El proceso de banco de sangre PN1 incluye protección DVH/DVV, detección de
+inconsistencias y recuperación administrativa.
+Ver [instalación, tratamiento de incidentes y pruebas](Database/INTEGRIDAD_PN1.md).
+
 
 ---
 

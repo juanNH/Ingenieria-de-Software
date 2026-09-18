@@ -1,4 +1,4 @@
-USE [TecniSalud];
+USE [HemovidaGest];
 GO
 
 IF OBJECT_ID('dbo.Bitacora', 'U') IS NULL

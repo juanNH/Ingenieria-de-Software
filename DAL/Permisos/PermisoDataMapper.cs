@@ -450,13 +450,47 @@ namespace DAL
         private List<int> CargarIdsAsignados_380_jh(int idUsuario)
         {
             const string sql = @"
-                SELECT uc.id_componente
-                FROM dbo.UsuarioComponentePermiso uc
+                WITH componentes_asignados AS
+                (
+                    SELECT uc.id_componente
+                    FROM dbo.UsuarioComponentePermiso uc
+                    WHERE uc.id_usuario = @id_usuario
+                      AND UPPER(uc.estado_usuario_componente) = 'ACTIVO'
+
+                    UNION
+
+                    SELECT componente.id_componente
+                    FROM dbo.UsuarioRol ur
+                    INNER JOIN dbo.Rol rol
+                        ON rol.id_rol = ur.id_rol
+                    INNER JOIN dbo.ComponentePermiso componente
+                        ON componente.nombre = rol.nombre
+                       AND componente.tipo = 'FAMILIA'
+                    WHERE ur.id_usuario = @id_usuario
+                      AND UPPER(ur.estado_usuario_rol) = 'ACTIVO'
+                      AND UPPER(rol.estado_rol) = 'ACTIVO'
+
+                    UNION
+
+                    SELECT componente.id_componente
+                    FROM dbo.UsuarioRol ur
+                    INNER JOIN dbo.Rol rol
+                        ON rol.id_rol = ur.id_rol
+                    INNER JOIN dbo.RolPermiso rol_permiso
+                        ON rol_permiso.id_rol = rol.id_rol
+                    INNER JOIN dbo.Permiso permiso
+                        ON permiso.id_permiso = rol_permiso.id_permiso
+                    INNER JOIN dbo.ComponentePermiso componente
+                        ON componente.codigo = permiso.codigo
+                    WHERE ur.id_usuario = @id_usuario
+                      AND UPPER(ur.estado_usuario_rol) = 'ACTIVO'
+                      AND UPPER(rol.estado_rol) = 'ACTIVO'
+                )
+                SELECT asignado.id_componente
+                FROM componentes_asignados asignado
                 INNER JOIN dbo.ComponentePermiso c
-                    ON c.id_componente = uc.id_componente
-                WHERE uc.id_usuario = @id_usuario
-                  AND UPPER(uc.estado_usuario_componente) = 'ACTIVO'
-                  AND UPPER(c.estado_componente) = 'ACTIVO'
+                    ON c.id_componente = asignado.id_componente
+                WHERE UPPER(c.estado_componente) = 'ACTIVO'
                 ORDER BY c.nombre";
 
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>

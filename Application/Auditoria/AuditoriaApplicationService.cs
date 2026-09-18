@@ -99,7 +99,21 @@ namespace Application
 
         public List<AuditoriaRegistro_380_jh> ListarHistorial_380_jh(string entidad, int idEntidad)
         {
+            if (entidad != "Usuario" && !new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh))
+                return new List<AuditoriaRegistro_380_jh>();
             return _auditoriaRepository_380_jh.ListarPorEntidad_380_jh(entidad, idEntidad);
+        }
+
+        public List<AuditoriaRegistro_380_jh> ListarNegocio_380_jh(string entidad)
+        {
+            var registros = new List<AuditoriaRegistro_380_jh>();
+            if (!new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh))
+                return registros;
+            if (entidad != "Donante" && entidad != "Donacion" && entidad != "Unidad" && entidad != "MovimientoUnidad")
+                return registros;
+            foreach (var registro in _auditoriaRepository_380_jh.ListarTodos_380_jh())
+                if (registro.Entidad_380_jh == entidad) registros.Add(registro);
+            return registros;
         }
 
         private static List<AuditoriaCambio_380_jh> CalcularCambios_380_jh(AuditoriaMemento_380_jh estadoAnterior, AuditoriaMemento_380_jh estadoNuevo)

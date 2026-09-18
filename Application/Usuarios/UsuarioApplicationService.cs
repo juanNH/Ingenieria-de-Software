@@ -14,6 +14,7 @@ namespace Application
         private readonly BitacoraRepository_380_jh _bitacoraRepository_380_jh;
         private readonly AuditoriaApplicationService_380_jh _auditoriaService_380_jh;
         private readonly DigitoVerificadorApplicationService_380_jh _digitoVerificadorService_380_jh;
+        private readonly IntegridadApplicationService_380_jh _integridadApplicationService_380_jh;
         private readonly PlainTextPasswordService_380_jh _passwordService_380_jh;
         private readonly JavaScriptSerializer _serializer_380_jh;
         private BitacoraFactory_380_jh _bitacoraFactory_380_jh;
@@ -55,6 +56,7 @@ namespace Application
             _bitacoraRepository_380_jh = bitacoraRepository;
             _auditoriaService_380_jh = auditoriaService;
             _digitoVerificadorService_380_jh = digitoVerificadorService;
+            _integridadApplicationService_380_jh = new IntegridadApplicationService_380_jh();
             _passwordService_380_jh = passwordService;
             _serializer_380_jh = new JavaScriptSerializer();
         }
@@ -122,6 +124,7 @@ namespace Application
             string identificador = username.Trim();
             string passwordProtegida = _passwordService_380_jh.Hash_380_jh(password);
             bool integridadUsuariosValida = _digitoVerificadorService_380_jh.VerificarUsuarios_380_jh();
+            bool integridadNegocioValida = _integridadApplicationService_380_jh.VerificarParaAcceso_380_jh();
             Usuario_380_jh usuario = _usuarioRepository_380_jh.ObtenerPorCredenciales_380_jh(identificador, passwordProtegida);
 
             if (usuario == null)
@@ -148,7 +151,8 @@ namespace Application
 
             usuario.ComponentesPermiso_380_jh = _permisoRepository_380_jh.ListarAsignadosPorUsuario_380_jh(usuario.Id_380_jh);
 
-            if (!integridadUsuariosValida && !EsAdministrador_380_jh(usuario))
+            if ((!integridadUsuariosValida || !integridadNegocioValida ||
+                 usuario.BloqueoDigitoVerificador_380_jh) && !EsAdministrador_380_jh(usuario))
             {
                 return null;
             }
@@ -279,7 +283,8 @@ namespace Application
         public bool HayBloqueoDigitoVerificador_380_jh()
         {
             return !_digitoVerificadorService_380_jh.VerificarUsuarios_380_jh() ||
-                   _digitoVerificadorService_380_jh.HayBloqueoUsuarios_380_jh();
+                   _digitoVerificadorService_380_jh.HayBloqueoUsuarios_380_jh() ||
+                   !_integridadApplicationService_380_jh.VerificarParaAcceso_380_jh();
         }
 
         public bool RestaurarCampoDesdeAuditoria_380_jh(AuditoriaRegistro_380_jh auditoria, string campo)

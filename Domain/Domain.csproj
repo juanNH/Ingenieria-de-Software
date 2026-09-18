@@ -53,6 +53,13 @@
     <Compile Include="Permisos\Permiso.cs" />
     <Compile Include="Permisos\PermisosSistema.cs" />
     <Compile Include="Permisos\TipoComponentePermiso.cs" />
+    <Compile Include="PN1\CodigoOperacionPN1.cs" />
+    <Compile Include="PN1\InformeIntegridad.cs" />
+    <Compile Include="PN1\Donacion.cs" />
+    <Compile Include="PN1\Donante.cs" />
+    <Compile Include="PN1\EstadoUnidadPN1.cs" />
+    <Compile Include="PN1\MovimientoUnidad.cs" />
+    <Compile Include="PN1\Unidad.cs" />
     <Compile Include="Seguridad\Sesion.cs" />
     <Compile Include="Usuarios\CodigoRegistroUsuario.cs" />
     <Compile Include="Usuarios\Usuario.cs" />

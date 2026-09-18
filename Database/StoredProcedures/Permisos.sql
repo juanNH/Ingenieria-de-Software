@@ -1,4 +1,8 @@
-USE [TecniSalud];
+USE [HemovidaGest];
+GO
+
+SET ANSI_NULLS ON;
+SET QUOTED_IDENTIFIER ON;
 GO
 
 IF EXISTS (
@@ -253,6 +257,9 @@ INSERT INTO @componentes (codigo, nombre, descripcion, tipo) VALUES
 ('SEGURIDAD', 'Seguridad', 'Familia para gestion de roles y permisos', 'FAMILIA'),
 ('AUDITORIA', 'Auditoria', 'Familia para consulta de bitacora e historial de cambios', 'FAMILIA'),
 ('IDIOMAS_TRADUCCIONES', 'Idiomas y traducciones', 'Familia para gestion de idiomas y traducciones', 'FAMILIA'),
+('PN1_PERSONAL_EXTRACCION', 'Personal de extracción', 'Familia para registrar donantes y donaciones', 'FAMILIA'),
+('PN1_OPERADOR_AUTORIZADO', 'Operador autorizado', 'Familia para clasificar unidades', 'FAMILIA'),
+('PN1_RESPONSABLE_AUTORIZADO', 'Responsable autorizado', 'Familia para liberar, bloquear o descartar unidades', 'FAMILIA'),
 ('USUARIO_VER', 'Ver usuarios', 'Permite acceder al modulo de usuarios', 'PERMISO'),
 ('USUARIO_CREAR', 'Crear usuarios', 'Permite crear usuarios', 'PERMISO'),
 ('USUARIO_EDITAR', 'Editar usuarios', 'Permite modificar usuarios', 'PERMISO'),
@@ -269,7 +276,15 @@ INSERT INTO @componentes (codigo, nombre, descripcion, tipo) VALUES
 ('TRADUCCION_VER', 'Ver traducciones', 'Permite ver el arbol de etiquetas y traducciones de UI', 'PERMISO'),
 ('TRADUCCION_EDITAR', 'Editar traducciones', 'Permite crear o modificar traducciones detectadas desde la UI', 'PERMISO'),
 ('BITACORA_VER', 'Ver bitacora', 'Permite consultar la bitacora del sistema', 'PERMISO'),
-('AUDITORIA_CAMBIOS_VER', 'Ver auditoria de cambios', 'Permite consultar el historial de cambios de entidades auditadas', 'PERMISO');
+('AUDITORIA_CAMBIOS_VER', 'Ver auditoria de cambios', 'Permite consultar el historial de cambios de entidades auditadas', 'PERMISO'),
+('DONANTE_VER', 'Ver donantes', 'Permite consultar donantes', 'PERMISO'),
+('DONANTE_CREAR', 'Registrar donantes', 'Permite registrar donantes', 'PERMISO'),
+('DONACION_CREAR', 'Registrar donaciones', 'Permite registrar donaciones y generar unidades', 'PERMISO'),
+('UNIDAD_VER', 'Ver unidades', 'Permite consultar unidades', 'PERMISO'),
+('UNIDAD_CLASIFICAR', 'Clasificar unidades', 'Permite clasificar unidades en revisión', 'PERMISO'),
+('UNIDAD_LIBERAR', 'Liberar unidades', 'Permite liberar unidades clasificadas', 'PERMISO'),
+('UNIDAD_BLOQUEAR', 'Bloquear unidades', 'Permite bloquear unidades clasificadas', 'PERMISO'),
+('UNIDAD_DESCARTAR', 'Descartar unidades', 'Permite descartar unidades clasificadas', 'PERMISO');
 
 MERGE dbo.ComponentePermiso AS destino
 USING @componentes AS origen
@@ -294,6 +309,9 @@ INSERT INTO @relaciones (codigo_padre, codigo_hijo) VALUES
 ('ADMINISTRADOR', 'SEGURIDAD'),
 ('ADMINISTRADOR', 'AUDITORIA'),
 ('ADMINISTRADOR', 'IDIOMAS_TRADUCCIONES'),
+('ADMINISTRADOR', 'PN1_PERSONAL_EXTRACCION'),
+('ADMINISTRADOR', 'PN1_OPERADOR_AUTORIZADO'),
+('ADMINISTRADOR', 'PN1_RESPONSABLE_AUTORIZADO'),
 ('ADMINISTRADOR', 'USUARIO_VER'),
 ('ADMINISTRADOR', 'USUARIO_CREAR'),
 ('ADMINISTRADOR', 'USUARIO_EDITAR'),
@@ -310,7 +328,16 @@ INSERT INTO @relaciones (codigo_padre, codigo_hijo) VALUES
 ('IDIOMAS_TRADUCCIONES', 'TRADUCCION_VER'),
 ('IDIOMAS_TRADUCCIONES', 'TRADUCCION_EDITAR'),
 ('AUDITORIA', 'BITACORA_VER'),
-('AUDITORIA', 'AUDITORIA_CAMBIOS_VER');
+('AUDITORIA', 'AUDITORIA_CAMBIOS_VER'),
+('PN1_PERSONAL_EXTRACCION', 'DONANTE_VER'),
+('PN1_PERSONAL_EXTRACCION', 'DONANTE_CREAR'),
+('PN1_PERSONAL_EXTRACCION', 'DONACION_CREAR'),
+('PN1_OPERADOR_AUTORIZADO', 'UNIDAD_VER'),
+('PN1_OPERADOR_AUTORIZADO', 'UNIDAD_CLASIFICAR'),
+('PN1_RESPONSABLE_AUTORIZADO', 'UNIDAD_VER'),
+('PN1_RESPONSABLE_AUTORIZADO', 'UNIDAD_LIBERAR'),
+('PN1_RESPONSABLE_AUTORIZADO', 'UNIDAD_BLOQUEAR'),
+('PN1_RESPONSABLE_AUTORIZADO', 'UNIDAD_DESCARTAR');
 
 INSERT INTO dbo.ComponentePermisoRelacion (id_padre, id_hijo)
 SELECT padre.id_componente, hijo.id_componente
@@ -600,4 +627,116 @@ BEGIN
         INSERT (id_etiqueta, id_idioma, texto)
         VALUES (origen.id_etiqueta, origen.id_idioma, origen.texto);
 END
+GO
+
+-- ============================================================
+-- Roles y permisos funcionales de PN1
+-- ============================================================
+
+UPDATE dbo.Rol
+SET estado_rol = 'INACTIVO'
+WHERE nombre IN ('Paciente', 'Recepcionista', 'Profesional', 'EncargadoStock', 'Direccion');
+GO
+
+MERGE dbo.Rol AS destino
+USING
+(
+    SELECT 'Administrador' AS nombre, 'Acceso total a la administracion y al negocio.' AS descripcion
+    UNION ALL SELECT 'Personal de extracción', 'Registra donantes y donaciones.'
+    UNION ALL SELECT 'Operador autorizado', 'Clasifica unidades en revisión.'
+    UNION ALL SELECT 'Responsable autorizado', 'Libera, bloquea o descarta unidades clasificadas.'
+) AS origen
+ON destino.nombre = origen.nombre
+WHEN MATCHED THEN
+    UPDATE SET descripcion = origen.descripcion, estado_rol = 'ACTIVO'
+WHEN NOT MATCHED THEN
+    INSERT (nombre, descripcion, estado_rol)
+    VALUES (origen.nombre, origen.descripcion, 'ACTIVO');
+GO
+
+DECLARE @PermisosPN1 TABLE
+(
+    codigo VARCHAR(100) NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion VARCHAR(255) NULL,
+    modulo VARCHAR(100) NOT NULL,
+    accion VARCHAR(100) NOT NULL
+);
+
+INSERT INTO @PermisosPN1 (codigo, nombre, descripcion, modulo, accion) VALUES
+('DONANTE_VER', 'Ver donantes', 'Permite consultar donantes', 'PN1', 'DONANTE_VER'),
+('DONANTE_CREAR', 'Registrar donantes', 'Permite registrar donantes', 'PN1', 'DONANTE_CREAR'),
+('DONACION_CREAR', 'Registrar donaciones', 'Permite registrar donaciones y generar unidades', 'PN1', 'DONACION_CREAR'),
+('UNIDAD_VER', 'Ver unidades', 'Permite consultar unidades', 'PN1', 'UNIDAD_VER'),
+('UNIDAD_CLASIFICAR', 'Clasificar unidades', 'Permite clasificar unidades en revisión', 'PN1', 'UNIDAD_CLASIFICAR'),
+('UNIDAD_LIBERAR', 'Liberar unidades', 'Permite liberar unidades clasificadas', 'PN1', 'UNIDAD_LIBERAR'),
+('UNIDAD_BLOQUEAR', 'Bloquear unidades', 'Permite bloquear unidades clasificadas', 'PN1', 'UNIDAD_BLOQUEAR'),
+('UNIDAD_DESCARTAR', 'Descartar unidades', 'Permite descartar unidades clasificadas', 'PN1', 'UNIDAD_DESCARTAR');
+
+INSERT INTO dbo.Permiso (codigo, nombre, descripcion, modulo, accion)
+SELECT p.codigo, p.nombre, p.descripcion, p.modulo, p.accion
+FROM @PermisosPN1 p
+WHERE NOT EXISTS (SELECT 1 FROM dbo.Permiso existente WHERE existente.codigo = p.codigo);
+
+DECLARE @RolesPN1 TABLE (rol VARCHAR(100), permiso VARCHAR(100));
+INSERT INTO @RolesPN1 (rol, permiso) VALUES
+('Administrador', 'DONANTE_VER'), ('Administrador', 'DONANTE_CREAR'), ('Administrador', 'DONACION_CREAR'),
+('Administrador', 'UNIDAD_VER'), ('Administrador', 'UNIDAD_CLASIFICAR'), ('Administrador', 'UNIDAD_LIBERAR'),
+('Administrador', 'UNIDAD_BLOQUEAR'), ('Administrador', 'UNIDAD_DESCARTAR'),
+('Personal de extracción', 'DONANTE_VER'), ('Personal de extracción', 'DONANTE_CREAR'), ('Personal de extracción', 'DONACION_CREAR'),
+('Operador autorizado', 'UNIDAD_VER'), ('Operador autorizado', 'UNIDAD_CLASIFICAR'),
+('Responsable autorizado', 'UNIDAD_VER'), ('Responsable autorizado', 'UNIDAD_LIBERAR'),
+('Responsable autorizado', 'UNIDAD_BLOQUEAR'), ('Responsable autorizado', 'UNIDAD_DESCARTAR');
+
+INSERT INTO dbo.RolPermiso (id_rol, id_permiso)
+SELECT r.id_rol, p.id_permiso
+FROM @RolesPN1 rp
+INNER JOIN dbo.Rol r ON r.nombre = rp.rol
+INNER JOIN dbo.Permiso p ON p.codigo = rp.permiso
+WHERE NOT EXISTS
+(
+    SELECT 1 FROM dbo.RolPermiso existente
+    WHERE existente.id_rol = r.id_rol AND existente.id_permiso = p.id_permiso
+);
+
+IF NOT EXISTS
+(
+    SELECT 1
+    FROM dbo.UsuarioRol ur
+    INNER JOIN dbo.Usuario u ON u.id_usuario = ur.id_usuario
+    INNER JOIN dbo.Rol r ON r.id_rol = ur.id_rol
+    WHERE u.nombre_usuario = 'admin' AND r.nombre = 'Administrador'
+)
+BEGIN
+    INSERT INTO dbo.UsuarioRol (id_usuario, id_rol)
+    SELECT u.id_usuario, r.id_rol
+    FROM dbo.Usuario u CROSS JOIN dbo.Rol r
+    WHERE u.nombre_usuario = 'admin' AND r.nombre = 'Administrador';
+END
+GO
+
+-- Permisos nuevos: solo el administrador los recibe de forma predeterminada.
+DECLARE @permisos_integridad TABLE(codigo VARCHAR(100), nombre VARCHAR(100), accion VARCHAR(100));
+INSERT @permisos_integridad VALUES
+('INTEGRIDAD_VER','Consultar integridad','VER'),
+('INTEGRIDAD_RESTAURAR','Restaurar integridad','RESTAURAR');
+INSERT dbo.Permiso(codigo,nombre,descripcion,modulo,accion)
+SELECT p.codigo,p.nombre,p.nombre,'INTEGRIDAD',p.accion FROM @permisos_integridad p
+WHERE NOT EXISTS(SELECT 1 FROM dbo.Permiso d WHERE d.codigo=p.codigo);
+UPDATE d SET nombre=p.nombre,descripcion=p.nombre,modulo='INTEGRIDAD',accion=p.accion
+FROM dbo.Permiso d JOIN @permisos_integridad p ON p.codigo=d.codigo;
+INSERT dbo.ComponentePermiso(codigo,nombre,descripcion,tipo)
+SELECT p.codigo,p.nombre,p.nombre,'PERMISO' FROM @permisos_integridad p
+WHERE NOT EXISTS(SELECT 1 FROM dbo.ComponentePermiso d WHERE d.codigo=p.codigo);
+UPDATE d SET nombre=p.nombre,descripcion=p.nombre,tipo='PERMISO',estado_componente='ACTIVO'
+FROM dbo.ComponentePermiso d JOIN @permisos_integridad p ON p.codigo=d.codigo;
+INSERT dbo.ComponentePermisoRelacion(id_padre,id_hijo)
+SELECT a.id_componente,c.id_componente FROM dbo.ComponentePermiso a
+CROSS JOIN dbo.ComponentePermiso c WHERE a.codigo='ADMINISTRADOR'
+AND c.codigo IN ('INTEGRIDAD_VER','INTEGRIDAD_RESTAURAR')
+AND NOT EXISTS(SELECT 1 FROM dbo.ComponentePermisoRelacion r WHERE r.id_padre=a.id_componente AND r.id_hijo=c.id_componente);
+INSERT dbo.RolPermiso(id_rol,id_permiso)
+SELECT r.id_rol,p.id_permiso FROM dbo.Rol r CROSS JOIN dbo.Permiso p
+WHERE r.nombre='Administrador' AND p.codigo IN ('INTEGRIDAD_VER','INTEGRIDAD_RESTAURAR')
+AND NOT EXISTS(SELECT 1 FROM dbo.RolPermiso rp WHERE rp.id_rol=r.id_rol AND rp.id_permiso=p.id_permiso);
 GO

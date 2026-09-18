@@ -129,6 +129,17 @@ namespace DAL
             }
         }
 
+        public DataSet LeerConjunto_380_jh(string sql, List<SqlParameter> parametros = null)
+        {
+            using (SqlDataAdapter adaptador = new SqlDataAdapter())
+            {
+                DataSet conjunto = new DataSet();
+                adaptador.SelectCommand = CrearComando_380_jh(sql, parametros);
+                adaptador.Fill(conjunto);
+                return conjunto;
+            }
+        }
+
         private SqlCommand CrearComando_380_jh(string sql, List<SqlParameter> parametros = null, CommandType commandType = CommandType.StoredProcedure)
         {
             SqlCommand comando = new SqlCommand(sql, Conexion_380_jh)
@@ -157,7 +168,8 @@ namespace DAL
                 return localConnectionString;
             }
 
-            return ConfigurationManager.ConnectionStrings["TecniSalud"]?.ConnectionString;
+            return ConfigurationManager.ConnectionStrings["HemovidaGest"]?.ConnectionString
+                ?? ConfigurationManager.ConnectionStrings["TecniSalud"]?.ConnectionString;
         }
 
         private static string ReadLocalConnectionString_380_jh()

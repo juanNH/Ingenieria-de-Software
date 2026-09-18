@@ -12,7 +12,14 @@ namespace UI
     {
         private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
         private readonly UsuarioApplicationService_380_jh _usuarioService_380_jh;
+        private ToolStripMenuItem _bancoSangreToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _donantesToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _donacionesToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _unidadesToolStripMenuItem_380_jh;
         private bool _cargandoIdiomas_380_jh;
+        private ToolStripMenuItem _integridadMenu_380_jh;
+        private ToolStripStatusLabel _integridadEstado_380_jh;
+        private ToolStripButton _integridadVerificar_380_jh;
 
         public MainForm_380_jh()
             : this(new AutorizacionApplicationService_380_jh(), new UsuarioApplicationService_380_jh())
@@ -24,6 +31,8 @@ namespace UI
             _autorizacionService_380_jh = autorizacionService;
             _usuarioService_380_jh = usuarioService;
             InitializeComponent_380_jh();
+            ConfigurarMenuNegocio_380_jh();
+            ConfigurarIntegridad_380_jh();
             ConfigurarTraducciones_380_jh();
             Load += MainForm_Load_380_jh;
             FormClosed += MainForm_FormClosed_380_jh;
@@ -38,6 +47,7 @@ namespace UI
             ActualizarUsuario_380_jh();
 
             ConfigurarMenuPorPermisos_380_jh();
+            new IntegridadApplicationService_380_jh().Verificar_380_jh();
             MostrarPantallaInicial_380_jh();
         }
 
@@ -54,6 +64,7 @@ namespace UI
             Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("MAIN_TITLE");
             ActualizarUsuario_380_jh();
             SeleccionarIdiomaActual_380_jh();
+            ActualizarIntegridad_380_jh(this, EventArgs.Empty);
         }
 
         private void ConfigurarTraducciones_380_jh()
@@ -63,8 +74,37 @@ namespace UI
             usuariosToolStripMenuItem_380_jh.Tag = "MENU_USERS";
             rolesToolStripMenuItem_380_jh.Tag = "MENU_ROLES";
             idiomasToolStripMenuItem_380_jh.Tag = "MENU_LANGUAGES";
+            _bancoSangreToolStripMenuItem_380_jh.Tag = "MENU_BLOOD_BANK";
+            _donantesToolStripMenuItem_380_jh.Tag = "MENU_DONORS";
+            _donacionesToolStripMenuItem_380_jh.Tag = "MENU_DONATIONS";
+            _unidadesToolStripMenuItem_380_jh.Tag = "MENU_UNITS";
             salirToolStripMenuItem_380_jh.Tag = "MENU_LOGOUT";
             lblIdioma_380_jh.Tag = "LANGUAGE_SELECTOR";
+        }
+
+        private void ConfigurarMenuNegocio_380_jh()
+        {
+            _bancoSangreToolStripMenuItem_380_jh = new ToolStripMenuItem
+            {
+                Name = "bancoSangreToolStripMenuItem",
+                Font = new Font("Segoe UI", 10F),
+                ForeColor = Color.White
+            };
+            _donantesToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "donantesToolStripMenuItem" };
+            _donantesToolStripMenuItem_380_jh.Click += donantesToolStripMenuItem_Click_380_jh;
+            _donacionesToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "donacionesToolStripMenuItem" };
+            _donacionesToolStripMenuItem_380_jh.Click += donacionesToolStripMenuItem_Click_380_jh;
+            _unidadesToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "unidadesToolStripMenuItem" };
+            _unidadesToolStripMenuItem_380_jh.Click += unidadesToolStripMenuItem_Click_380_jh;
+            _bancoSangreToolStripMenuItem_380_jh.DropDownItems.AddRange(new ToolStripItem[]
+            {
+                _donantesToolStripMenuItem_380_jh,
+                _donacionesToolStripMenuItem_380_jh,
+                _unidadesToolStripMenuItem_380_jh
+            });
+
+            int posicionSalida = menuStrip1_380_jh.Items.IndexOf(salirToolStripMenuItem_380_jh);
+            menuStrip1_380_jh.Items.Insert(posicionSalida < 0 ? menuStrip1_380_jh.Items.Count : posicionSalida, _bancoSangreToolStripMenuItem_380_jh);
         }
 
         private void bitacoraToolStripMenuItem_Click_380_jh(object sender, EventArgs e)
@@ -127,9 +167,41 @@ namespace UI
             Close();
         }
 
+        private void donantesToolStripMenuItem_Click_380_jh(object sender, EventArgs e)
+        {
+            if (!_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteVer_380_jh) &&
+                !ValidarPermiso_380_jh(PermisosSistema_380_jh.DonanteCrear_380_jh))
+            {
+                return;
+            }
+
+            ShowScreen_380_jh(new DonantesView_380_jh());
+        }
+
+        private void donacionesToolStripMenuItem_Click_380_jh(object sender, EventArgs e)
+        {
+            if (!ValidarPermiso_380_jh(PermisosSistema_380_jh.DonacionCrear_380_jh))
+            {
+                return;
+            }
+
+            ShowScreen_380_jh(new DonacionesView_380_jh());
+        }
+
+        private void unidadesToolStripMenuItem_Click_380_jh(object sender, EventArgs e)
+        {
+            if (!TienePermisoUnidades_380_jh())
+            {
+                MessageBox.Show(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("SECURITY_ACCESS_DENIED"));
+                return;
+            }
+
+            ShowScreen_380_jh(new UnidadesView_380_jh());
+        }
+
         private void ShowScreen_380_jh(UserControl screen)
         {
-            contentPanel_380_jh.Controls.Clear();
+            while (contentPanel_380_jh.Controls.Count > 0) contentPanel_380_jh.Controls[0].Dispose();
             screen.Dock = DockStyle.Fill;
             contentPanel_380_jh.Controls.Add(screen);
         }
@@ -175,12 +247,32 @@ namespace UI
 
         private void ConfigurarMenuPorPermisos_380_jh()
         {
+            _integridadMenu_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh);
             bitacoraToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.BitacoraVer_380_jh);
             auditoriaCambiosToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.AuditoriaCambiosVer_380_jh);
             usuariosToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioVer_380_jh);
             rolesToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.RolVer_380_jh);
             idiomasToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.IdiomaVer_380_jh) ||
                                                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.TraduccionVer_380_jh);
+
+            bool mostrarDonantes = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteVer_380_jh) ||
+                                    _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteCrear_380_jh);
+            bool mostrarDonaciones = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonacionCrear_380_jh);
+            bool mostrarUnidades = TienePermisoUnidades_380_jh();
+
+            _donantesToolStripMenuItem_380_jh.Visible = mostrarDonantes;
+            _donacionesToolStripMenuItem_380_jh.Visible = mostrarDonaciones;
+            _unidadesToolStripMenuItem_380_jh.Visible = mostrarUnidades;
+            _bancoSangreToolStripMenuItem_380_jh.Visible = mostrarDonantes || mostrarDonaciones || mostrarUnidades;
+        }
+
+        private bool TienePermisoUnidades_380_jh()
+        {
+            return _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadVer_380_jh) ||
+                   _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadClasificar_380_jh) ||
+                   _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadLiberar_380_jh) ||
+                   _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadBloquear_380_jh) ||
+                   _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadDescartar_380_jh);
         }
 
         private void MostrarPantallaInicial_380_jh()
@@ -212,6 +304,24 @@ namespace UI
             if (idiomasToolStripMenuItem_380_jh.Visible)
             {
                 ShowScreen_380_jh(new IdiomasView_380_jh());
+                return;
+            }
+
+            if (_donantesToolStripMenuItem_380_jh.Available)
+            {
+                ShowScreen_380_jh(new DonantesView_380_jh());
+                return;
+            }
+
+            if (_donacionesToolStripMenuItem_380_jh.Available)
+            {
+                ShowScreen_380_jh(new DonacionesView_380_jh());
+                return;
+            }
+
+            if (_unidadesToolStripMenuItem_380_jh.Available)
+            {
+                ShowScreen_380_jh(new UnidadesView_380_jh());
                 return;
             }
 
@@ -248,7 +358,42 @@ namespace UI
 
         private void MainForm_FormClosed_380_jh(object sender, FormClosedEventArgs e)
         {
+            IntegridadApplicationService_380_jh.EstadoCambiado_380_jh -= ActualizarIntegridad_380_jh;
             LanguageManager_380_jh.Instance_380_jh.Detach_380_jh(this);
+        }
+
+        private void ConfigurarIntegridad_380_jh()
+        {
+            _integridadMenu_380_jh = new ToolStripMenuItem { Tag = "MENU_INTEGRITY", ForeColor = Color.White, Font = new Font("Segoe UI", 10F) };
+            _integridadMenu_380_jh.Click += delegate { AbrirIntegridad_380_jh(); };
+            menuStrip1_380_jh.Items.Insert(menuStrip1_380_jh.Items.IndexOf(salirToolStripMenuItem_380_jh), _integridadMenu_380_jh);
+            var barra = new StatusStrip { Dock = DockStyle.Bottom };
+            _integridadEstado_380_jh = new ToolStripStatusLabel { Spring = true, TextAlign = ContentAlignment.MiddleLeft };
+            _integridadEstado_380_jh.Click += delegate { AbrirIntegridad_380_jh(); };
+            barra.Items.Add(_integridadEstado_380_jh);
+            _integridadVerificar_380_jh = new ToolStripButton();
+            _integridadVerificar_380_jh.Click += delegate { new IntegridadApplicationService_380_jh().Verificar_380_jh(); };
+            barra.Items.Add(_integridadVerificar_380_jh);
+            Controls.Add(barra);
+            IntegridadApplicationService_380_jh.EstadoCambiado_380_jh += ActualizarIntegridad_380_jh;
+            Disposed += delegate { IntegridadApplicationService_380_jh.EstadoCambiado_380_jh -= ActualizarIntegridad_380_jh; };
+        }
+
+        private void AbrirIntegridad_380_jh()
+        {
+            if (ValidarPermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh))
+                ShowScreen_380_jh(new IntegridadView_380_jh());
+        }
+
+        private void ActualizarIntegridad_380_jh(object sender, EventArgs e)
+        {
+            if (_integridadEstado_380_jh == null || IsDisposed) return;
+            var estado = IntegridadApplicationService_380_jh.Estado_380_jh;
+            _integridadVerificar_380_jh.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("INTEGRITY_VERIFY");
+            _integridadEstado_380_jh.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(
+                !estado.Disponible_380_jh ? "INTEGRITY_UNAVAILABLE" : estado.EsValida_380_jh ? "INTEGRITY_OK" : "INTEGRITY_BLOCKED");
+            _integridadEstado_380_jh.BackColor = estado.EsValida_380_jh ? Color.Honeydew : Color.MistyRose;
+            _integridadEstado_380_jh.ForeColor = estado.EsValida_380_jh ? Color.DarkGreen : Color.DarkRed;
         }
     }
 }

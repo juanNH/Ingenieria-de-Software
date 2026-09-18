@@ -19,6 +19,7 @@ namespace UI
         private Label lblDescripcion_380_jh;
         private Label lblUsuarioAuditado_380_jh;
         private ComboBox cmbUsuarios_380_jh;
+        private ComboBox cmbEntidad_380_jh;
         private Button btnActualizar_380_jh;
         private Button btnRestaurarCampo_380_jh;
         private ListView listViewCambios_380_jh;
@@ -51,6 +52,17 @@ namespace UI
             _usuarioService_380_jh = usuarioService;
             ConstruirInterfaz_380_jh();
             ConfigurarTraducciones_380_jh();
+            cmbEntidad_380_jh = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Location = new Point(410, 97), Size = new Size(180, 23) };
+            cmbEntidad_380_jh.Items.Add("Usuario");
+            if (new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh))
+                cmbEntidad_380_jh.Items.AddRange(new object[] { "Donante", "Donacion", "Unidad", "MovimientoUnidad" });
+            cmbEntidad_380_jh.SelectedIndex = 0;
+            cmbEntidad_380_jh.SelectedIndexChanged += delegate
+            {
+                cmbUsuarios_380_jh.Enabled = cmbEntidad_380_jh.SelectedIndex == 0;
+                CargarAuditoria_380_jh((cmbUsuarios_380_jh.SelectedItem as Usuario_380_jh)?.Id_380_jh ?? 0);
+            };
+            Controls.Add(cmbEntidad_380_jh);
             CargarUsuarios_380_jh();
         }
 
@@ -288,7 +300,9 @@ namespace UI
 
         private void CargarAuditoria_380_jh(int usuarioId)
         {
-            _registros_380_jh = usuarioId == 0
+            bool negocio = cmbEntidad_380_jh != null && cmbEntidad_380_jh.SelectedIndex > 0;
+            if (negocio) new IntegridadApplicationService_380_jh().Verificar_380_jh();
+            _registros_380_jh = negocio ? _auditoriaService_380_jh.ListarNegocio_380_jh(cmbEntidad_380_jh.SelectedItem.ToString()) : usuarioId == 0
                 ? _auditoriaService_380_jh.ListarTodos_380_jh()
                 : _auditoriaService_380_jh.ListarHistorial_380_jh("Usuario", usuarioId);
             listViewCambios_380_jh.BeginUpdate();
@@ -297,6 +311,9 @@ namespace UI
             foreach (AuditoriaRegistro_380_jh registro in _registros_380_jh)
             {
                 List<AuditoriaCambio_380_jh> cambios = DeserializarCambios_380_jh(registro.CambiosJson_380_jh);
+                if (cambios.Count == 0 && registro.Entidad_380_jh != "Usuario")
+                    cambios.Add(new AuditoriaCambio_380_jh { Campo_380_jh = registro.Accion_380_jh,
+                        ValorAnterior_380_jh = registro.EstadoAnteriorJson_380_jh, ValorNuevo_380_jh = registro.EstadoNuevoJson_380_jh });
 
                 foreach (AuditoriaCambio_380_jh cambio in cambios)
                 {
@@ -305,7 +322,7 @@ namespace UI
                     item.SubItems.Add(registro.Entidad_380_jh ?? string.Empty);
                     item.SubItems.Add(registro.IdEntidad_380_jh.ToString());
                     item.SubItems.Add(registro.IdentificadorUsuarioActor_380_jh ?? string.Empty);
-                    item.SubItems.Add(cambio.Campo_380_jh ?? string.Empty);
+                    item.SubItems.Add(registro.Entidad_380_jh == "Usuario" ? cambio.Campo_380_jh ?? string.Empty : registro.Accion_380_jh + " / " + cambio.Campo_380_jh);
                     item.SubItems.Add(FormatearValor_380_jh(cambio.ValorAnterior_380_jh));
                     item.SubItems.Add(FormatearValor_380_jh(cambio.ValorNuevo_380_jh));
                     item.Tag = new CambioAuditoriaSeleccionado_380_jh
@@ -356,7 +373,7 @@ namespace UI
             }
 
             CambioAuditoriaSeleccionado_380_jh seleccion = listViewCambios_380_jh.SelectedItems[0].Tag as CambioAuditoriaSeleccionado_380_jh;
-            if (seleccion == null || seleccion.Registro_380_jh == null || seleccion.Cambio_380_jh == null)
+            if (seleccion == null || seleccion.Registro_380_jh == null || seleccion.Cambio_380_jh == null || seleccion.Registro_380_jh.Entidad_380_jh != "Usuario")
             {
                 return;
             }
