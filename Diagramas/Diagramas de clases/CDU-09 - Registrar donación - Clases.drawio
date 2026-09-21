@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="Electron" agent="Codex" version="24.7.17">
+  <diagram id="ebdfc32c10b8441d85b5514f38d65428" name="CDU-09 Registrar donación">
+    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2700" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="diagram-title" value="CDU-09 — Diagrama de clases: Registrar donación" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=26;fontStyle=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="160" y="20" width="2150" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-ui" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="100" width="500" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-ui-label" value="UI" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="62" y="102" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-app" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="580" y="100" width="570" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-app-label" value="Application" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="592" y="102" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-repo" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="100" width="480" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-repo-label" value="Repository" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1192" y="102" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-dal" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1690" y="100" width="550" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-dal-label" value="DAL" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1702" y="102" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-domain" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="220" y="1070" width="1900" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-domain-label" value="Domain" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="232" y="1072" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="MainForm09" value="MainForm_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="90" y="165" width="420" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="MainForm09-attr" value="- _autorizacionService_380_jh: AutorizacionApplicationService_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="MainForm09">
+          <mxGeometry x="0" y="46" width="420" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="MainForm09-op" value="- donacionesToolStripMenuItem_Click_380_jh(sender, e): void&lt;br/&gt;- ShowScreen_380_jh(screen: UserControl): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="MainForm09">
+          <mxGeometry x="0" y="100" width="420" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionesView" value="DonacionesView_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="90" y="430" width="420" height="263" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionesView-attr" value="- _donanteService_380_jh: DonanteApplicationService_380_jh&lt;br/&gt;- _donacionService_380_jh: DonacionApplicationService_380_jh&lt;br/&gt;- _unidades_380_jh: List&amp;lt;Unidad_380_jh&amp;gt;" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonacionesView">
+          <mxGeometry x="0" y="46" width="420" height="97" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionesView-op" value="+ DonacionesView_380_jh()&lt;br/&gt;- CargarDonantes_380_jh(): void&lt;br/&gt;- Registrar_Click_380_jh(sender, e): void&lt;br/&gt;- CargarUnidades_380_jh(unidades): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonacionesView">
+          <mxGeometry x="0" y="143" width="420" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionService" value="DonacionApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="620" y="140" width="490" height="211" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionService-attr" value="- _donacionRepository_380_jh: DonacionRepository_380_jh&lt;br/&gt;- _autorizacionService_380_jh: AutorizacionApplicationService_380_jh&lt;br/&gt;- _bitacoraService_380_jh: BitacoraApplicationService_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonacionService">
+          <mxGeometry x="0" y="46" width="490" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionService-op" value="+ Registrar_380_jh(donacion): CodigoOperacionPN1_380_jh&lt;br/&gt;- RegistrarFalla_380_jh(usuario, descripcion): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonacionService">
+          <mxGeometry x="0" y="141" width="490" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="DonanteService09" value="DonanteApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="620" y="440" width="490" height="154" as="geometry" />
+        </mxCell>
+        <mxCell id="DonanteService09-attr" value="- _donanteRepository_380_jh: DonanteRepository_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonanteService09">
+          <mxGeometry x="0" y="46" width="490" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="DonanteService09-op" value="+ Listar_380_jh(buscar): List&amp;lt;Donante_380_jh&amp;gt;" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonanteService09">
+          <mxGeometry x="0" y="100" width="490" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="Auth09" value="AutorizacionApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="620" y="630" width="490" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Auth09-op" value="+ TienePermiso_380_jh(usuario, codigo): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Auth09">
+          <mxGeometry x="0" y="46" width="490" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="Integridad09" value="IntegridadApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="620" y="765" width="490" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Integridad09-op" value="+ Verificar_380_jh(): InformeIntegridad_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Integridad09">
+          <mxGeometry x="0" y="46" width="490" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="Bitacora09" value="BitacoraApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="620" y="890" width="490" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Bitacora09-op" value="+ RegistrarEvento_380_jh(...): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Bitacora09">
+          <mxGeometry x="0" y="46" width="490" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionRepo" value="DonacionRepository_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="165" width="400" height="154" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionRepo-attr" value="- _donacionDataMapper_380_jh: DonacionDataMapper_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonacionRepo">
+          <mxGeometry x="0" y="46" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionRepo-op" value="+ Registrar_380_jh(donacion, idUsuario): CodigoOperacionPN1_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonacionRepo">
+          <mxGeometry x="0" y="100" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="DonanteRepo09" value="DonanteRepository_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="420" width="400" height="154" as="geometry" />
+        </mxCell>
+        <mxCell id="DonanteRepo09-attr" value="- _donanteDataMapper_380_jh: DonanteDataMapper_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonanteRepo09">
+          <mxGeometry x="0" y="46" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="DonanteRepo09-op" value="+ Listar_380_jh(buscar): List&amp;lt;Donante_380_jh&amp;gt;" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonanteRepo09">
+          <mxGeometry x="0" y="100" width="400" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionMapper" value="DonacionDataMapper_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1730" y="135" width="470" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionMapper-attr" value="- _databaseContext_380_jh: DatabaseContext_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonacionMapper">
+          <mxGeometry x="0" y="46" width="470" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionMapper-op" value="+ Registrar_380_jh(donacion, idUsuario): CodigoOperacionPN1_380_jh&lt;br/&gt;- MapearResultado_380_jh(fila): CodigoOperacionPN1_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonacionMapper">
+          <mxGeometry x="0" y="100" width="470" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="DonanteMapper09" value="DonanteDataMapper_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1730" y="420" width="470" height="154" as="geometry" />
+        </mxCell>
+        <mxCell id="DonanteMapper09-attr" value="- _databaseContext_380_jh: DatabaseContext_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonanteMapper09">
+          <mxGeometry x="0" y="46" width="470" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="DonanteMapper09-op" value="+ Listar_380_jh(buscar): List&amp;lt;Donante_380_jh&amp;gt;" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonanteMapper09">
+          <mxGeometry x="0" y="100" width="470" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="Db09" value="DatabaseContext_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1730" y="685" width="470" height="195" as="geometry" />
+        </mxCell>
+        <mxCell id="Db09-attr" value="+ Conexion_380_jh: SqlConnection" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Db09">
+          <mxGeometry x="0" y="46" width="470" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="Db09-op" value="+ Leer_380_jh(...): DataTable&lt;br/&gt;+ LeerConjunto_380_jh(...): DataSet&lt;br/&gt;+ Abrir_380_jh()/Cerrar_380_jh(): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Db09">
+          <mxGeometry x="0" y="100" width="470" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionDomain" value="Donacion_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1130" width="450" height="316" as="geometry" />
+        </mxCell>
+        <mxCell id="DonacionDomain-attr" value="+ Id_380_jh: int&lt;br/&gt;+ IdDonante_380_jh: int&lt;br/&gt;+ Donante_380_jh: Donante_380_jh&lt;br/&gt;+ FechaDonacion_380_jh: DateTime&lt;br/&gt;+ CantidadUnidades_380_jh: int&lt;br/&gt;+ TipoComponente_380_jh: string&lt;br/&gt;+ FechaVencimiento_380_jh: DateTime&lt;br/&gt;+ Observaciones_380_jh: string&lt;br/&gt;+ IdUsuarioResponsable_380_jh: int&lt;br/&gt;+ Unidades_380_jh: List&amp;lt;Unidad_380_jh&amp;gt;" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonacionDomain">
+          <mxGeometry x="0" y="46" width="450" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="UnidadDomain09" value="Unidad_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="730" y="1130" width="450" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="UnidadDomain09-attr" value="+ Id_380_jh: int&lt;br/&gt;+ CodigoIdentificacion_380_jh: string&lt;br/&gt;+ IdDonacion_380_jh: int&lt;br/&gt;+ TipoComponente_380_jh: string&lt;br/&gt;+ FechaVencimiento_380_jh: DateTime&lt;br/&gt;+ EstadoOperativo_380_jh: string" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="UnidadDomain09">
+          <mxGeometry x="0" y="46" width="450" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="UnidadDomain09-op" value="+ EstaClasificada_380_jh: bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="UnidadDomain09">
+          <mxGeometry x="0" y="216" width="450" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="DonanteDomain09" value="Donante_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="1130" width="390" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="DonanteDomain09-attr" value="+ Id_380_jh: int&lt;br/&gt;+ Documento_380_jh: string&lt;br/&gt;+ NombreCompleto_380_jh: string&lt;br/&gt;+ Estado_380_jh: string" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonanteDomain09">
+          <mxGeometry x="0" y="46" width="390" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="DonanteDomain09-op" value="+ ToString(): string" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonanteDomain09">
+          <mxGeometry x="0" y="166" width="390" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="Codigo09" value="«enumeration»&lt;br/&gt;CodigoOperacionPN1_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=68;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1630" y="1130" width="390" height="213" as="geometry" />
+        </mxCell>
+        <mxCell id="Codigo09-attr" value="Ok_380_jh&lt;br/&gt;DatosInvalidos_380_jh&lt;br/&gt;NoAutorizado_380_jh&lt;br/&gt;IntegridadInvalida_380_jh&lt;br/&gt;Error_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Codigo09">
+          <mxGeometry x="0" y="68" width="390" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-1" value="crea" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="MainForm09" target="DonacionesView">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-2" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="DonacionesView" target="DonacionService">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-3" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="DonacionesView" target="DonanteService09">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-4" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="DonacionService" target="DonacionRepo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-5" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="DonacionRepo" target="DonacionMapper">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-6" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="DonanteService09" target="DonanteRepo09">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-7" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="DonanteRepo09" target="DonanteMapper09">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-9" value="crea" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="DonacionesView" target="DonacionDomain">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-10" value="contiene 1..*" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="DonacionDomain" target="UnidadDomain09">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="relation-auth" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0;exitY=0.8;entryX=0;entryY=0.3;" edge="1" parent="1" source="DonacionService" target="Auth09">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="310" />
+              <mxPoint x="600" y="660" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="relation-integrity" value="crea" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.85;entryX=1;entryY=0.5;" edge="1" parent="1" source="DonacionService" target="Integridad09">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1130" y="440" />
+              <mxPoint x="1130" y="720" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="relation-log" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.65;entryX=1;entryY=0.5;" edge="1" parent="1" source="DonacionService" target="Bitacora09">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1160" y="460" />
+              <mxPoint x="1160" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="relation-result" value="retorna" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.8;entryX=0.5;entryY=0;" edge="1" parent="1" source="DonacionRepo" target="Codigo09">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1640" y="300" />
+              <mxPoint x="1640" y="1040" />
+              <mxPoint x="1825" y="1040" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="relation-view-auth" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.85;entryX=0;entryY=0.6;" edge="1" parent="1" source="DonacionesView" target="Auth09">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-8" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0;exitY=0.8;entryX=0;entryY=0.5;" edge="1" parent="1" source="DonacionMapper" target="Db09">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1710" y="290" />
+              <mxPoint x="1710" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="relation-donor-context" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=1;entryY=0.8;" edge="1" parent="1" source="DonanteMapper09" target="Db09">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2220" y="570" />
+              <mxPoint x="2220" y="910" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="relation-donor-domain" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=1;" edge="1" parent="1" source="DonacionDomain" target="DonanteDomain09">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="1660" />
+              <mxPoint x="1430" y="1660" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,95 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="CDU-03 Logout" id="cdu02-logout-uml">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="2182" pageHeight="1395" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pkg-ui" parent="1" style="shape=folder;fontStyle=1;tabWidth=80;tabHeight=28;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
+          <mxGeometry height="1070" width="651" x="62" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-domain" parent="1" style="shape=folder;fontStyle=1;tabWidth=100;tabHeight=28;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
+          <mxGeometry height="930" width="651" x="806" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-application" parent="1" style="shape=folder;fontStyle=1;tabWidth=120;tabHeight=28;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;" value="" vertex="1">
+          <mxGeometry height="450" width="563" x="1519" y="512" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-ui" parent="1" style="text;whiteSpace=wrap;html=1;" value="UI" vertex="1">
+          <mxGeometry height="28" width="80" x="62" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-domain" parent="1" style="text;whiteSpace=wrap;html=1;" value="Domain" vertex="1">
+          <mxGeometry height="28" width="100" x="806" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-application" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;align=center;verticalAlign=middle;resizable=0;movable=0;connectable=0;points=[];" value="Application" vertex="1">
+          <mxGeometry height="28" width="120" x="1519" y="512" as="geometry" />
+        </mxCell>
+        <mxCell id="Program_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=48;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontSize=13;fontFamily=Arial;overflow=hidden;" value="Program_380_jh" vertex="1">
+          <mxGeometry height="234" width="465" x="140" y="163" as="geometry" />
+        </mxCell>
+        <mxCell id="Program_380_jh-attr" parent="Program_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;fontSize=12;fontFamily=Arial;whiteSpace=wrap;spacingTop=5;spacingBottom=5;" value="" vertex="1">
+          <mxGeometry height="56" width="465" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="Program_380_jh-op" parent="Program_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;fontSize=12;fontFamily=Arial;whiteSpace=wrap;spacingTop=5;spacingBottom=5;" value="- static Main(): void" vertex="1">
+          <mxGeometry height="130" width="465" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="MainForm_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=48;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontSize=13;fontFamily=Arial;overflow=hidden;" value="MainForm_380_jh" vertex="1">
+          <mxGeometry height="358" width="465" x="140" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="MainForm_380_jh-attr" parent="MainForm_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;fontSize=12;fontFamily=Arial;whiteSpace=wrap;spacingTop=5;spacingBottom=5;" value="- _usuarioService_380_jh: UsuarioApplicationService_380_jh&lt;br/&gt;- contentPanel_380_jh: Panel&lt;br/&gt;- lblUsuario_380_jh: Label" vertex="1">
+          <mxGeometry height="90" width="465" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="MainForm_380_jh-op" parent="MainForm_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;fontSize=12;fontFamily=Arial;whiteSpace=wrap;spacingTop=5;spacingBottom=5;" value="+ MainForm_380_jh()&lt;br/&gt;- MainForm_Load_380_jh(sender, e): void&lt;br/&gt;- salirToolStripMenuItem_Click_380_jh(sender, e): void&lt;br/&gt;- ShowScreen_380_jh(screen: UserControl): void" vertex="1">
+          <mxGeometry height="220" width="465" y="138" as="geometry" />
+        </mxCell>
+        <mxCell id="Login_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=48;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontSize=13;fontFamily=Arial;overflow=hidden;" value="Login_380_jh" vertex="1">
+          <mxGeometry height="144" width="341" x="186" y="946" as="geometry" />
+        </mxCell>
+        <mxCell id="Login_380_jh-op" parent="Login_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;fontSize=12;fontFamily=Arial;whiteSpace=wrap;spacingTop=5;spacingBottom=5;" value="+ Login_380_jh()" vertex="1">
+          <mxGeometry height="96" width="341" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="Sesion_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=72;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontSize=13;fontFamily=Arial;overflow=hidden;" value="&amp;lt;&amp;lt;singleton&amp;gt;&amp;gt;&lt;br/&gt;Sesion_380_jh" vertex="1">
+          <mxGeometry height="320" width="418" x="922" y="232" as="geometry" />
+        </mxCell>
+        <mxCell id="Sesion_380_jh-attr" parent="Sesion_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;fontSize=12;fontFamily=Arial;whiteSpace=wrap;spacingTop=5;spacingBottom=5;" value="- static _instance_380_jh: Sesion_380_jh&lt;br/&gt;- static _lock_380_jh: object&lt;br/&gt;- _usuario_380_jh: Usuario_380_jh&lt;br/&gt;- _fechaInicio_380_jh: DateTime" vertex="1">
+          <mxGeometry height="146" width="418" y="72" as="geometry" />
+        </mxCell>
+        <mxCell id="Sesion_380_jh-op" parent="Sesion_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;fontSize=12;fontFamily=Arial;whiteSpace=wrap;spacingTop=5;spacingBottom=5;" value="+ static ObtenerInstancia_380_jh(): Sesion_380_jh&lt;br/&gt;+ IniciarSesion_380_jh(usuario): void&lt;br/&gt;+ ObtenerUsuario_380_jh(): Usuario_380_jh&lt;br/&gt;+ ObtenerFechaInicio_380_jh(): DateTime&lt;br/&gt;+ HaySesionActiva_380_jh(): bool&lt;br/&gt;+ Logout_380_jh(): void" vertex="1">
+          <mxGeometry height="102" width="418" y="218" as="geometry" />
+        </mxCell>
+        <mxCell id="Usuario_380_jh" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=48;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontSize=13;fontFamily=Arial;overflow=hidden;" value="Usuario_380_jh" vertex="1">
+          <mxGeometry height="327" width="403" x="930" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="Usuario_380_jh-attr" parent="Usuario_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;fontSize=12;fontFamily=Arial;whiteSpace=wrap;spacingTop=5;spacingBottom=5;" value="+ Id_380_jh: int&lt;br/&gt;+ Username_380_jh: string&lt;br/&gt;+ Email_380_jh: string&lt;br/&gt;+ Nombre_380_jh: string&lt;br/&gt;+ Apellido_380_jh: string&lt;br/&gt;+ Estado_380_jh: string" vertex="1">
+          <mxGeometry height="226" width="403" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="Usuario_380_jh-op" parent="Usuario_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;fontSize=12;fontFamily=Arial;whiteSpace=wrap;spacingTop=5;spacingBottom=5;" value="+ ToString(): string" vertex="1">
+          <mxGeometry height="53" width="403" y="274" as="geometry" />
+        </mxCell>
+        <mxCell id="UsuarioService" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=48;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontSize=13;fontFamily=Arial;overflow=hidden;" value="UsuarioApplicationService_380_jh" vertex="1">
+          <mxGeometry height="204" width="469" x="1573" y="636" as="geometry" />
+        </mxCell>
+        <mxCell id="UsuarioService-attr" parent="UsuarioService" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;fontSize=12;fontFamily=Arial;whiteSpace=wrap;spacingTop=5;spacingBottom=5;" value="- _digitoVerificadorService_380_jh: DigitoVerificadorApplicationService_380_jh" vertex="1">
+          <mxGeometry height="78" width="469" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="UsuarioService-op" parent="UsuarioService" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;html=1;fontSize=12;fontFamily=Arial;whiteSpace=wrap;spacingTop=5;spacingBottom=5;" value="+ RecalcularDigitosVerificadoresUsuarios_380_jh(): bool" vertex="1">
+          <mxGeometry height="78" width="469" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-program-main" edge="1" parent="1" source="Program_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;fontSize=12;labelBackgroundColor=#ffffff;spacing=4;edgeStyle=none;orthogonal=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="MainForm_380_jh" value="crea">
+          <mxGeometry relative="1" x="0.00000" y="0" as="geometry"><Array as="points"></Array><mxPoint x="0" y="-10" as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="edge-main-sesion" edge="1" parent="1" source="MainForm_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;fontSize=12;labelBackgroundColor=#ffffff;spacing=4;edgeStyle=none;orthogonal=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Sesion_380_jh" value="utiliza">
+          <mxGeometry relative="1" x="-0.49209" y="0" as="geometry"><Array as="points"><mxPoint x="894" y="644" /><mxPoint x="894" y="392" /></Array><mxPoint x="0" y="-10" as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="edge-main-usuario-service" edge="1" parent="1" source="MainForm_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;fontSize=12;labelBackgroundColor=#ffffff;spacing=4;edgeStyle=none;orthogonal=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="UsuarioService" value="utiliza">
+          <mxGeometry relative="1" x="-0.56543" y="0" as="geometry"><Array as="points"><mxPoint x="633" y="644" /><mxPoint x="633" y="608" /><mxPoint x="1545" y="608" /><mxPoint x="1545" y="738" /></Array><mxPoint x="0" y="-10" as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="edge-sesion-usuario" edge="1" parent="1" source="Sesion_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;fontSize=12;labelBackgroundColor=#ffffff;spacing=4;edgeStyle=none;orthogonal=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="Usuario_380_jh" value="contiene">
+          <mxGeometry relative="1" x="0.17518" y="0" as="geometry"><Array as="points"><mxPoint x="1131" y="592" /><mxPoint x="1131.5" y="592" /></Array><mxPoint x="0" y="-10" as="offset" /></mxGeometry>
+        </mxCell>
+
+        <mxCell id="edge-program-login" edge="1" parent="1" source="Program_380_jh" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;fontSize=12;labelBackgroundColor=#ffffff;spacing=4;edgeStyle=none;orthogonal=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Login_380_jh" value="crea">
+          <mxGeometry relative="1" x="0.47238" y="0" as="geometry"><Array as="points"><mxPoint x="112" y="280" /><mxPoint x="112" y="1018" /></Array><mxPoint x="0" y="-10" as="offset" /></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -35,25 +35,25 @@
           <mxGeometry height="24" width="350" x="108" y="1043" as="geometry" />
         </mxCell>
         <mxCell id="actor-donante" parent="1" style="shape=umlActor;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="65" width="40" x="170" y="92" as="geometry" />
+          <mxGeometry height="55" width="34" x="173" y="68" as="geometry" />
         </mxCell>
         <mxCell id="label-donante" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value=":Donante" vertex="1">
           <mxGeometry height="26" width="150" x="115" y="136" as="geometry" />
         </mxCell>
         <mxCell id="actor-extraccion" parent="1" style="shape=umlActor;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="65" width="40" x="530" y="92" as="geometry" />
+          <mxGeometry height="55" width="34" x="533" y="68" as="geometry" />
         </mxCell>
         <mxCell id="label-extraccion" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value=":Personal de extracción" vertex="1">
           <mxGeometry height="26" width="210" x="445" y="136" as="geometry" />
         </mxCell>
         <mxCell id="actor-operador" parent="1" style="shape=umlActor;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="65" width="40" x="930" y="92" as="geometry" />
+          <mxGeometry height="55" width="34" x="933" y="68" as="geometry" />
         </mxCell>
         <mxCell id="label-operador" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value=":Operador autorizado" vertex="1">
           <mxGeometry height="26" width="190" x="855" y="136" as="geometry" />
         </mxCell>
         <mxCell id="actor-responsable" parent="1" style="shape=umlActor;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="65" width="40" x="1330" y="92" as="geometry" />
+          <mxGeometry height="55" width="34" x="1333" y="68" as="geometry" />
         </mxCell>
         <mxCell id="label-responsable" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value=":Responsable autorizado" vertex="1">
           <mxGeometry height="26" width="220" x="1240" y="136" as="geometry" />
@@ -83,7 +83,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="act-donante" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="" vertex="1">
-          <mxGeometry height="38" width="14" x="183" y="205" as="geometry" />
+          <mxGeometry height="25" width="14" x="183" y="235" as="geometry" />
         </mxCell>
         <mxCell id="act-extraccion" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="" vertex="1">
           <mxGeometry height="335" width="14" x="543" y="215" as="geometry" />
@@ -92,17 +92,17 @@
           <mxGeometry height="195" width="14" x="943" y="520" as="geometry" />
         </mxCell>
         <mxCell id="act-responsable" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="" vertex="1">
-          <mxGeometry height="435" width="14" x="1343" y="710" as="geometry" />
+          <mxGeometry height="455" width="14" x="1343" y="710" as="geometry" />
         </mxCell>
         <mxCell id="m01" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Entrada E1–E2: Datos del donante y de la donación">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="197" y="225" as="sourcePoint" />
-            <mxPoint x="543" y="225" as="targetPoint" />
+            <mxPoint x="197" y="245" as="sourcePoint" />
+            <mxPoint x="543" y="245" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m02" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Comportamiento C1: Registrar donante y donación">
-          <mxGeometry relative="1" x="0.3" y="-1" as="geometry">
-            <mxPoint x="12" y="-8" as="offset" />
+        <mxCell id="m02" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="C1: Registrar donante y donación">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
             <Array as="points">
               <mxPoint x="680" y="270" />
               <mxPoint x="680" y="310" />
@@ -111,9 +111,9 @@
             <mxPoint x="557" y="310" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m03" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Comportamiento C2–C3: Generar / identificar unidades">
-          <mxGeometry relative="1" x="0.3" y="-1" as="geometry">
-            <mxPoint x="12" y="-8" as="offset" />
+        <mxCell id="m03" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="C2–C3: Generar unidades En revisión">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
             <Array as="points">
               <mxPoint x="680" y="335" />
               <mxPoint x="680" y="375" />
@@ -134,9 +134,9 @@
             <mxPoint x="943" y="520" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m05b" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Comportamiento C4: Cargar clasificación">
-          <mxGeometry relative="1" x="0.3" y="-1" as="geometry">
-            <mxPoint x="12" y="-8" as="offset" />
+        <mxCell id="m05b" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="C4: Cargar clasificación">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
             <Array as="points">
               <mxPoint x="1110" y="560" />
               <mxPoint x="1110" y="605" />
@@ -145,9 +145,9 @@
             <mxPoint x="957" y="605" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m06" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Comportamiento C5: Validar datos">
-          <mxGeometry relative="1" x="0.3" y="-1" as="geometry">
-            <mxPoint x="12" y="-8" as="offset" />
+        <mxCell id="m06" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="C5: Validar datos">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
             <Array as="points">
               <mxPoint x="1090" y="620" />
               <mxPoint x="1090" y="665" />
@@ -162,26 +162,26 @@
             <mxPoint x="1343" y="710" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m08" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Comportamiento C6: Revisar unidad">
-          <mxGeometry relative="1" x="0.3" y="-1" as="geometry">
-            <mxPoint x="12" y="-8" as="offset" />
+        <mxCell id="m08" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="C6: Revisar unidad">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
             <Array as="points">
-              <mxPoint x="1480" y="825" />
-              <mxPoint x="1480" y="870" />
+              <mxPoint x="1170" y="825" />
+              <mxPoint x="1170" y="870" />
             </Array>
-            <mxPoint x="1357" y="825" as="sourcePoint" />
-            <mxPoint x="1357" y="870" as="targetPoint" />
+            <mxPoint x="1343" y="825" as="sourcePoint" />
+            <mxPoint x="1343" y="870" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m09" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Entrada E5 / Comportamiento C7: Definir estado">
-          <mxGeometry relative="1" x="0.3" y="-1" as="geometry">
-            <mxPoint x="12" y="-8" as="offset" />
+        <mxCell id="m09" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="E5 / C7: Definir estado">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
             <Array as="points">
-              <mxPoint x="1510" y="950" />
-              <mxPoint x="1510" y="990" />
+              <mxPoint x="1170" y="950" />
+              <mxPoint x="1170" y="990" />
             </Array>
-            <mxPoint x="1357" y="950" as="sourcePoint" />
-            <mxPoint x="1357" y="990" as="targetPoint" />
+            <mxPoint x="1343" y="950" as="sourcePoint" />
+            <mxPoint x="1343" y="990" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="m10" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S4: Estado operativo definido">
@@ -190,15 +190,15 @@
             <mxPoint x="957" y="1018" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m11" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Comportamiento C8: Impedir liberación">
-          <mxGeometry relative="1" x="0.3" y="-1" as="geometry">
-            <mxPoint x="12" y="-8" as="offset" />
+        <mxCell id="m11" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="C8: Impedir liberación">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
             <Array as="points">
-              <mxPoint x="1480" y="1085" />
-              <mxPoint x="1480" y="1130" />
+              <mxPoint x="1170" y="1085" />
+              <mxPoint x="1170" y="1130" />
             </Array>
-            <mxPoint x="1357" y="1085" as="sourcePoint" />
-            <mxPoint x="1357" y="1130" as="targetPoint" />
+            <mxPoint x="1343" y="1085" as="sourcePoint" />
+            <mxPoint x="1343" y="1130" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="m12" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S5: Liberación rechazada">
@@ -206,9 +206,6 @@
             <mxPoint x="1343" y="1160" as="sourcePoint" />
             <mxPoint x="957" y="1160" as="targetPoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="leyenda" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;Convención:&lt;/b&gt; Entrada = dato o solicitud recibida · Comportamiento = autoacción del rol · Salida = respuesta o entrega punteada&lt;br&gt;Balance PN1: E1–E5 → C1–C8 → S1–S5">
-          <mxGeometry height="55" width="1180" x="210" y="1260" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
