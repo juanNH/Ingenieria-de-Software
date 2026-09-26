@@ -120,7 +120,7 @@ namespace UI
 
             Panel grillaPanel = new Panel { Dock = DockStyle.Fill };
             layout.Controls.Add(grillaPanel, 0, 3);
-            FlowLayoutPanel filtro = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 32 };
+            FlowLayoutPanel filtro = new FlowLayoutPanel { Dock = DockStyle.Top, Height = 36, WrapContents = false };
             _txtBuscar_380_jh = new TextBox { Width = 240 };
             _txtBuscar_380_jh.KeyDown += Buscar_KeyDown_380_jh;
             Button buscar = CrearBoton_380_jh("BTN_SEARCH");
@@ -130,11 +130,35 @@ namespace UI
             filtro.Controls.Add(_txtBuscar_380_jh);
             filtro.Controls.Add(buscar);
             filtro.Controls.Add(actualizar);
-            grillaPanel.Controls.Add(filtro);
-
             _grid_380_jh = new DataGridView
             {
                 Dock = DockStyle.Fill,
+                BackgroundColor = Color.White,
+                BorderStyle = BorderStyle.None,
+                CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal,
+                ColumnHeadersVisible = true,
+                ColumnHeadersHeight = 34,
+                ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing,
+                EnableHeadersVisualStyles = false,
+                GridColor = Color.FromArgb(222, 226, 230),
+                RowHeadersVisible = false,
+                AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle { BackColor = Color.FromArgb(248, 249, 250) },
+                ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
+                {
+                    BackColor = Color.FromArgb(33, 37, 41),
+                    ForeColor = Color.White,
+                    Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold),
+                    Alignment = DataGridViewContentAlignment.MiddleLeft,
+                    Padding = new Padding(6, 0, 0, 0)
+                },
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    BackColor = Color.White,
+                    ForeColor = Color.FromArgb(33, 37, 41),
+                    SelectionBackColor = Color.FromArgb(207, 226, 255),
+                    SelectionForeColor = Color.FromArgb(33, 37, 41),
+                    Padding = new Padding(6, 2, 6, 2)
+                },
                 ReadOnly = true,
                 AllowUserToAddRows = false,
                 AutoGenerateColumns = false,
@@ -152,6 +176,8 @@ namespace UI
 
             _lblEstado_380_jh = new Label { Dock = DockStyle.Bottom, Height = 22, TextAlign = ContentAlignment.MiddleLeft };
             grillaPanel.Controls.Add(_lblEstado_380_jh);
+            // Docked controls are laid out in reverse z-order: reserve filter and status space before filling the remainder.
+            grillaPanel.Controls.Add(filtro);
             _btnRegistrar_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteCrear_380_jh);
         }
 
@@ -187,10 +213,26 @@ namespace UI
             {
                 DataPropertyName = propiedad,
                 Name = propiedad,
+                HeaderText = ObtenerEncabezadoPredeterminado_380_jh(propiedad),
                 Tag = key,
-                FillWeight = propiedad == "nombreCompleto" ? 180 : 100
+                FillWeight = propiedad == "nombreCompleto" || propiedad == "email" ? 150 : 85,
+                MinimumWidth = propiedad == "id_donante" ? 55 : 90
             };
             _grid_380_jh.Columns.Add(columna);
+        }
+
+        private static string ObtenerEncabezadoPredeterminado_380_jh(string propiedad)
+        {
+            switch (propiedad)
+            {
+                case "id_donante": return "ID";
+                case "documento": return "Documento";
+                case "nombreCompleto": return "Donante";
+                case "telefono": return "Teléfono";
+                case "email": return "Email";
+                case "estado": return "Estado";
+                default: return propiedad;
+            }
         }
 
         private void CargarDonantes_380_jh()

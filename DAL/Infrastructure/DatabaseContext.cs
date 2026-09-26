@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -17,6 +16,13 @@ namespace DAL
 
         public void Abrir_380_jh()
         {
+            if (string.IsNullOrWhiteSpace(ConnectionString_380_jh))
+            {
+                throw new InvalidOperationException(
+                    "No se encontró la cadena de conexión de HemovidaGest. " +
+                    "Configurá DAL\\App.local.config a partir de DAL\\App.local.example.config.");
+            }
+
             Conexion_380_jh = new SqlConnection(ConnectionString_380_jh);
             Conexion_380_jh.Open();
         }
@@ -162,24 +168,19 @@ namespace DAL
 
         private static string ResolveConnectionString_380_jh()
         {
-            string localConnectionString = ReadLocalConnectionString_380_jh();
-            if (!string.IsNullOrWhiteSpace(localConnectionString))
-            {
-                return localConnectionString;
-            }
-
-            return ConfigurationManager.ConnectionStrings["HemovidaGest"]?.ConnectionString
-                ?? ConfigurationManager.ConnectionStrings["TecniSalud"]?.ConnectionString;
+            return ReadLocalConnectionString_380_jh();
         }
 
         private static string ReadLocalConnectionString_380_jh()
         {
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string dalDirectory = Path.GetDirectoryName(typeof(DatabaseContext_380_jh).Assembly.Location);
             string[] candidatePaths =
             {
                 Path.Combine(baseDirectory, "App.local.config"),
-                Path.GetFullPath(Path.Combine(baseDirectory, @"..\..\App.local.config")),
-                Path.GetFullPath(Path.Combine(baseDirectory, @"..\..\..\App.local.config"))
+                Path.Combine(dalDirectory ?? baseDirectory, "App.local.config"),
+                Path.GetFullPath(Path.Combine(baseDirectory, @"..\..\..\DAL\App.local.config")),
+                Path.GetFullPath(Path.Combine(baseDirectory, @"..\..\..\..\DAL\App.local.config"))
             };
 
             foreach (string localConfigPath in candidatePaths)

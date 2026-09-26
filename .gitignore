@@ -4,4 +4,4 @@ obj/
 *.dll
 *.pdb
 .vs/
-UI/App.local.config
+DAL/App.local.config

@@ -17,9 +17,6 @@ namespace UI
         private ToolStripMenuItem _donacionesToolStripMenuItem_380_jh;
         private ToolStripMenuItem _unidadesToolStripMenuItem_380_jh;
         private bool _cargandoIdiomas_380_jh;
-        private ToolStripMenuItem _integridadMenu_380_jh;
-        private ToolStripStatusLabel _integridadEstado_380_jh;
-        private ToolStripButton _integridadVerificar_380_jh;
 
         public MainForm_380_jh()
             : this(new AutorizacionApplicationService_380_jh(), new UsuarioApplicationService_380_jh())
@@ -32,7 +29,6 @@ namespace UI
             _usuarioService_380_jh = usuarioService;
             InitializeComponent_380_jh();
             ConfigurarMenuNegocio_380_jh();
-            ConfigurarIntegridad_380_jh();
             ConfigurarTraducciones_380_jh();
             Load += MainForm_Load_380_jh;
             FormClosed += MainForm_FormClosed_380_jh;
@@ -64,7 +60,6 @@ namespace UI
             Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("MAIN_TITLE");
             ActualizarUsuario_380_jh();
             SeleccionarIdiomaActual_380_jh();
-            ActualizarIntegridad_380_jh(this, EventArgs.Empty);
         }
 
         private void ConfigurarTraducciones_380_jh()
@@ -247,7 +242,6 @@ namespace UI
 
         private void ConfigurarMenuPorPermisos_380_jh()
         {
-            _integridadMenu_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh);
             bitacoraToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.BitacoraVer_380_jh);
             auditoriaCambiosToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.AuditoriaCambiosVer_380_jh);
             usuariosToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioVer_380_jh);
@@ -277,6 +271,13 @@ namespace UI
 
         private void MostrarPantallaInicial_380_jh()
         {
+            if (!IntegridadApplicationService_380_jh.Estado_380_jh.EsValida_380_jh &&
+                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh))
+            {
+                ShowScreen_380_jh(new IntegridadView_380_jh(MostrarPantallaInicial_380_jh));
+                return;
+            }
+
             if (bitacoraToolStripMenuItem_380_jh.Visible)
             {
                 ShowScreen_380_jh(new BitacoraView_380_jh());
@@ -358,42 +359,7 @@ namespace UI
 
         private void MainForm_FormClosed_380_jh(object sender, FormClosedEventArgs e)
         {
-            IntegridadApplicationService_380_jh.EstadoCambiado_380_jh -= ActualizarIntegridad_380_jh;
             LanguageManager_380_jh.Instance_380_jh.Detach_380_jh(this);
-        }
-
-        private void ConfigurarIntegridad_380_jh()
-        {
-            _integridadMenu_380_jh = new ToolStripMenuItem { Tag = "MENU_INTEGRITY", ForeColor = Color.White, Font = new Font("Segoe UI", 10F) };
-            _integridadMenu_380_jh.Click += delegate { AbrirIntegridad_380_jh(); };
-            menuStrip1_380_jh.Items.Insert(menuStrip1_380_jh.Items.IndexOf(salirToolStripMenuItem_380_jh), _integridadMenu_380_jh);
-            var barra = new StatusStrip { Dock = DockStyle.Bottom };
-            _integridadEstado_380_jh = new ToolStripStatusLabel { Spring = true, TextAlign = ContentAlignment.MiddleLeft };
-            _integridadEstado_380_jh.Click += delegate { AbrirIntegridad_380_jh(); };
-            barra.Items.Add(_integridadEstado_380_jh);
-            _integridadVerificar_380_jh = new ToolStripButton();
-            _integridadVerificar_380_jh.Click += delegate { new IntegridadApplicationService_380_jh().Verificar_380_jh(); };
-            barra.Items.Add(_integridadVerificar_380_jh);
-            Controls.Add(barra);
-            IntegridadApplicationService_380_jh.EstadoCambiado_380_jh += ActualizarIntegridad_380_jh;
-            Disposed += delegate { IntegridadApplicationService_380_jh.EstadoCambiado_380_jh -= ActualizarIntegridad_380_jh; };
-        }
-
-        private void AbrirIntegridad_380_jh()
-        {
-            if (ValidarPermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh))
-                ShowScreen_380_jh(new IntegridadView_380_jh());
-        }
-
-        private void ActualizarIntegridad_380_jh(object sender, EventArgs e)
-        {
-            if (_integridadEstado_380_jh == null || IsDisposed) return;
-            var estado = IntegridadApplicationService_380_jh.Estado_380_jh;
-            _integridadVerificar_380_jh.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("INTEGRITY_VERIFY");
-            _integridadEstado_380_jh.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(
-                !estado.Disponible_380_jh ? "INTEGRITY_UNAVAILABLE" : estado.EsValida_380_jh ? "INTEGRITY_OK" : "INTEGRITY_BLOCKED");
-            _integridadEstado_380_jh.BackColor = estado.EsValida_380_jh ? Color.Honeydew : Color.MistyRose;
-            _integridadEstado_380_jh.ForeColor = estado.EsValida_380_jh ? Color.DarkGreen : Color.DarkRed;
         }
     }
 }

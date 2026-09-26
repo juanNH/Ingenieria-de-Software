@@ -197,7 +197,7 @@ dotnet build IngDeSoftware.sln --no-restore -v:q
 ~~~
 
 Las pruebas crean una base con nombre único HemovidaGest_Integridad_Test_*.
-No escriben en HemovidaGest, no cambian App.local.config y eliminan
+No escriben en HemovidaGest, no cambian DAL/App.local.config y eliminan
 únicamente su base temporal al finalizar. -Servidor permite otra instancia;
 -ConservarBase conserva la base de prueba para diagnóstico.
 

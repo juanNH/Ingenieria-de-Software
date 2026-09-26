@@ -56,6 +56,9 @@
     <Compile Include="Usuarios\UsuarioDataMapper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.local.example.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{be12b97c-d2b5-4dbb-89b5-7e3e72bba151}</Project>
       <Name>Domain</Name>

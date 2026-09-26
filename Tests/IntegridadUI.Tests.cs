@@ -49,18 +49,46 @@ internal static class IntegridadUITests
                     }
                     ((LocalizedUserControl_380_jh)vista).OnLanguageChanged_380_jh(LanguageManager_380_jh.Instance_380_jh.CurrentLanguage_380_jh);
                     Check(true, "UI constructor, resizing and translation: " + vista.GetType().Name);
+
+                    if (vista is DonantesView_380_jh)
+                    {
+                        var grilla = (DataGridView)vista.GetType().GetField("_grid_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(vista);
+                        FlowLayoutPanel filtro = null;
+                        foreach (Control control in grilla.Parent.Controls)
+                            if (control is FlowLayoutPanel && control.Dock == DockStyle.Top) filtro = (FlowLayoutPanel)control;
+                        bool encabezadosVisibles = grilla.ColumnHeadersVisible && !grilla.RowHeadersVisible;
+                        foreach (DataGridViewColumn columna in grilla.Columns)
+                            encabezadosVisibles = encabezadosVisibles && !string.IsNullOrWhiteSpace(columna.HeaderText);
+                        Check(encabezadosVisibles, "Donor grid shows translated column headers without an empty row-header column");
+                        Check(filtro != null && filtro.Bottom <= grilla.Top, "Donor grid starts below the search controls");
+                    }
                 }
             }
             using (var pantalla = new MainForm_380_jh())
             {
                 pantalla.GetType().GetMethod("MainForm_Load_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(pantalla, new object[] { pantalla, EventArgs.Empty });
                 pantalla.PerformLayout();
-                Check(true, "Main form load and integrity status integration");
+                Check(true, "Main form load without integrity status chrome");
+                var menu = (MenuStrip)pantalla.GetType().GetField("menuStrip1_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(pantalla);
+                bool integridadEnMenu = false;
+                foreach (ToolStripItem item in menu.Items)
+                    integridadEnMenu = integridadEnMenu || string.Equals(item.Tag as string, "MENU_INTEGRITY", StringComparison.Ordinal);
+                bool barraEstadoVisible = false;
+                foreach (Control control in pantalla.Controls)
+                    barraEstadoVisible = barraEstadoVisible || control is StatusStrip;
+                Check(!integridadEnMenu && !barraEstadoVisible, "Integrity tab and status strip are absent from main navigation");
             }
             using (var unidades = new UnidadesView_380_jh())
             {
                 Sql("UPDATE dbo.Unidad SET fecha_vencimiento='00010101' WHERE id_unidad=1");
                 Check(!servicio.Verificar_380_jh().EsValida_380_jh, "Application maps corruption");
+                using (var pantalla = new MainForm_380_jh())
+                {
+                    pantalla.GetType().GetMethod("MainForm_Load_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(pantalla, new object[] { pantalla, EventArgs.Empty });
+                    var panelContenido = (Panel)pantalla.GetType().GetField("contentPanel_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(pantalla);
+                    Check(panelContenido.Controls.Count == 1 && panelContenido.Controls[0] is IntegridadView_380_jh,
+                        "Administrator is routed to the repair screen when integrity is broken");
+                }
                 var boton = (Button)unidades.GetType().GetField("_btnClasificar_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(unidades);
                 Check(!boton.Enabled, "Integrity event disables an already open business screen");
                 using (var corrupta = new UnidadesView_380_jh())

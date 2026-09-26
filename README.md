@@ -24,5 +24,9 @@ Ver [instalación, tratamiento de incidentes y pruebas](Database/INTEGRIDAD_PN1.
 - Lenguaje: C#
 - Base de datos: Sql server
 
+## Configuración de la base de datos
+
+La cadena de conexión se configura para la DAL. Copiá `DAL/App.local.example.config` como `DAL/App.local.config` y ajustá el servidor si hace falta. El archivo local está excluido de Git. `DatabaseContext` de la DAL carga esa configuración al abrir la conexión; la UI no contiene la cadena.
+
 ---
 

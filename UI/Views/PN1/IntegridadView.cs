@@ -11,6 +11,7 @@ namespace UI
     {
         private readonly IntegridadApplicationService_380_jh _servicio_380_jh = new IntegridadApplicationService_380_jh();
         private readonly AutorizacionApplicationService_380_jh _autorizacion_380_jh = new AutorizacionApplicationService_380_jh();
+        private readonly Action _integridadRestaurada_380_jh;
         private InformeIntegridad_380_jh _informe_380_jh;
         private readonly Label _estado_380_jh = new Label { Dock = DockStyle.Fill };
         private readonly DataGridView _grilla_380_jh = new DataGridView
@@ -25,7 +26,13 @@ namespace UI
         private readonly Button _restaurar_380_jh = CrearBoton_380_jh("INTEGRITY_RESTORE");
 
         public IntegridadView_380_jh()
+            : this(null)
         {
+        }
+
+        public IntegridadView_380_jh(Action integridadRestaurada)
+        {
+            _integridadRestaurada_380_jh = integridadRestaurada;
             Padding = new Padding(16);
             BackColor = Color.White;
             var layout = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 6, AutoScroll = true };
@@ -117,6 +124,11 @@ namespace UI
             if (resultado == "INTEGRITY_RECOVERED" && !_informe_380_jh.EsValida_380_jh) resultado = "INTEGRITY_UNAVAILABLE";
             MessageBox.Show(Traducir_380_jh(resultado));
             Pintar_380_jh();
+
+            if (resultado == "INTEGRITY_RECOVERED" && _informe_380_jh.EsValida_380_jh && _integridadRestaurada_380_jh != null)
+            {
+                BeginInvoke(_integridadRestaurada_380_jh);
+            }
         }
 
         private static string Traducir_380_jh(string clave) => LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(clave);
