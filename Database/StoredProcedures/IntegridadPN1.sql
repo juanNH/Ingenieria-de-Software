@@ -6,6 +6,7 @@ SET ANSI_NULLS ON;
 SET QUOTED_IDENTIFIER ON;
 GO
 IF COL_LENGTH('dbo.Donante', 'dvh') IS NULL ALTER TABLE dbo.Donante ADD dvh VARCHAR(64) NULL;
+IF COL_LENGTH('dbo.Donante', 'email') < 512 ALTER TABLE dbo.Donante ALTER COLUMN email VARCHAR(512) NULL;
 IF COL_LENGTH('dbo.Donacion', 'dvh') IS NULL ALTER TABLE dbo.Donacion ADD dvh VARCHAR(64) NULL;
 IF COL_LENGTH('dbo.Unidad', 'dvh') IS NULL ALTER TABLE dbo.Unidad ADD dvh VARCHAR(64) NULL;
 IF COL_LENGTH('dbo.MovimientoUnidad', 'dvh') IS NULL ALTER TABLE dbo.MovimientoUnidad ADD dvh VARCHAR(64) NULL;
@@ -325,11 +326,11 @@ BEGIN
 
  UPDATE d SET documento=j.documento,nombre=j.nombre,apellido=j.apellido,fecha_nacimiento=j.fecha_nacimiento,telefono=j.telefono,email=j.email,domicilio=j.domicilio,estado_donante=j.estado_donante,fecha_alta=j.fecha_alta,id_usuario_alta=j.id_usuario_alta
  FROM dbo.Donante d JOIN #restaurar r ON r.entidad='Donante' AND r.id_entidad=d.id_donante
- CROSS APPLY OPENJSON(r.confiable) WITH(id_donante int '$.id_donante',documento varchar(30) '$.documento',nombre varchar(100) '$.nombre',apellido varchar(100) '$.apellido',fecha_nacimiento date '$.fecha_nacimiento',telefono varchar(50) '$.telefono',email varchar(150) '$.email',domicilio varchar(255) '$.domicilio',estado_donante varchar(20) '$.estado_donante',fecha_alta datetime '$.fecha_alta',id_usuario_alta int '$.id_usuario_alta') j;
+ CROSS APPLY OPENJSON(r.confiable) WITH(id_donante int '$.id_donante',documento varchar(30) '$.documento',nombre varchar(100) '$.nombre',apellido varchar(100) '$.apellido',fecha_nacimiento date '$.fecha_nacimiento',telefono varchar(50) '$.telefono',email varchar(512) '$.email',domicilio varchar(255) '$.domicilio',estado_donante varchar(20) '$.estado_donante',fecha_alta datetime '$.fecha_alta',id_usuario_alta int '$.id_usuario_alta') j;
  SET IDENTITY_INSERT dbo.Donante ON;
  INSERT dbo.Donante(id_donante,documento,nombre,apellido,fecha_nacimiento,telefono,email,domicilio,estado_donante,fecha_alta,id_usuario_alta)
  SELECT j.id_donante,j.documento,j.nombre,j.apellido,j.fecha_nacimiento,j.telefono,j.email,j.domicilio,j.estado_donante,j.fecha_alta,j.id_usuario_alta FROM #restaurar r
- CROSS APPLY OPENJSON(r.confiable) WITH(id_donante int '$.id_donante',documento varchar(30) '$.documento',nombre varchar(100) '$.nombre',apellido varchar(100) '$.apellido',fecha_nacimiento date '$.fecha_nacimiento',telefono varchar(50) '$.telefono',email varchar(150) '$.email',domicilio varchar(255) '$.domicilio',estado_donante varchar(20) '$.estado_donante',fecha_alta datetime '$.fecha_alta',id_usuario_alta int '$.id_usuario_alta') j
+ CROSS APPLY OPENJSON(r.confiable) WITH(id_donante int '$.id_donante',documento varchar(30) '$.documento',nombre varchar(100) '$.nombre',apellido varchar(100) '$.apellido',fecha_nacimiento date '$.fecha_nacimiento',telefono varchar(50) '$.telefono',email varchar(512) '$.email',domicilio varchar(255) '$.domicilio',estado_donante varchar(20) '$.estado_donante',fecha_alta datetime '$.fecha_alta',id_usuario_alta int '$.id_usuario_alta') j
  WHERE r.entidad='Donante' AND NOT EXISTS(SELECT 1 FROM dbo.Donante d WHERE d.id_donante=r.id_entidad);
  SET IDENTITY_INSERT dbo.Donante OFF;
 
@@ -452,6 +453,14 @@ INSERT @i18n_integridad VALUES
 ('INTEGRITY_RECOVERED',N'Operación completada e integridad verificada.',N'Operation completed and integrity verified.'),
 ('INTEGRITY_RECOVERY_FAILED',N'No se confirmó la recuperación. Verificá nuevamente el estado y revisá la bitácora antes de reintentar.',N'Recovery was not confirmed. Verify the state again and review the log before retrying.'),
 ('INTEGRITY_STALE_PREVIEW',N'Los datos cambiaron desde la revisión. Actualizá el informe antes de confirmar.',N'Data changed since the preview. Refresh the report before confirming.'),
+('DONOR_UPDATED',N'Donante actualizado correctamente.',N'Donor updated successfully.'),
+('DONOR_UPDATE_ERROR',N'No se pudo actualizar el donante.',N'Could not update the donor.'),
+('BITACORA_ACTION_DONOR_UPDATED',N'Donante actualizado',N'Donor updated'),
+('DONOR_NOT_FOUND',N'El donante ya no existe o no está disponible.',N'The donor no longer exists or is unavailable.'),
+('DONOR_EMAIL_UNAVAILABLE',N'No se pudo obtener el correo del donante.',N'The donor email could not be retrieved.'),
+('DONOR_SHOW_EMAIL',N'Mostrar correo',N'Show email'),
+('DONOR_HIDE_EMAIL',N'Ocultar correo',N'Hide email'),
+('BTN_UPDATE_DONOR',N'Guardar cambios',N'Save changes'),
 ('INTEGRITY_BACKUP_REQUIRED',N'La fuente no permite una recuperación segura. Necesitás un backup confiable; no recalcules para ocultar el error.',N'The source cannot support safe recovery. A trusted backup is required; do not recalculate to hide the error.'),
 ('INTEGRITY_TYPE_SIN_INICIALIZAR',N'Base inicial ausente o incompleta',N'Missing or incomplete baseline'),
 ('INTEGRITY_TYPE_DVH',N'Dígito de fila incorrecto',N'Row checksum mismatch'),

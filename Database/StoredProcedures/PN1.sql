@@ -18,7 +18,8 @@ BEGIN
         d.apellido,
         d.fecha_nacimiento,
         d.telefono,
-        d.email,
+        CAST(NULL AS VARCHAR(512)) AS email,
+        CONVERT(BIT, CASE WHEN d.email IS NULL THEN 0 ELSE 1 END) AS tiene_email,
         d.domicilio,
         d.estado_donante,
         d.fecha_alta,
@@ -35,6 +36,90 @@ BEGIN
 END
 GO
 
+IF OBJECT_ID('dbo.sp_Donante_Email_Obtener', 'P') IS NOT NULL
+    DROP PROCEDURE dbo.sp_Donante_Email_Obtener;
+GO
+
+CREATE PROCEDURE dbo.sp_Donante_Email_Obtener
+    @id_donante INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT email
+    FROM dbo.Donante
+    WHERE id_donante = @id_donante
+      AND estado_donante = 'ACTIVO';
+END
+GO
+
+IF OBJECT_ID('dbo.sp_Donante_Correos_Legados_Listar', 'P') IS NOT NULL
+    DROP PROCEDURE dbo.sp_Donante_Correos_Legados_Listar;
+GO
+
+CREATE PROCEDURE dbo.sp_Donante_Correos_Legados_Listar
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT id_donante, email
+    FROM dbo.Donante
+    WHERE email IS NOT NULL
+      AND LEFT(email, 9) <> 'dpapi:v1:';
+END
+GO
+
+IF OBJECT_ID('dbo.sp_Donante_Correos_Migrar', 'P') IS NOT NULL
+    DROP PROCEDURE dbo.sp_Donante_Correos_Migrar;
+GO
+
+CREATE PROCEDURE dbo.sp_Donante_Correos_Migrar
+    @emails_json NVARCHAR(MAX),
+    @id_usuario INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    IF ISJSON(@emails_json) <> 1 OR @id_usuario IS NULL OR @id_usuario <= 0
+    BEGIN
+        SELECT CONVERT(BIT, 0) AS completado;
+        RETURN;
+    END;
+
+    DECLARE @emails TABLE (id_donante INT PRIMARY KEY, email_original VARCHAR(512) NULL, email VARCHAR(512) NULL);
+    INSERT INTO @emails(id_donante, email_original, email)
+    SELECT id, email_original, email
+    FROM OPENJSON(@emails_json)
+    WITH (id INT '$.id', email_original VARCHAR(512) '$.email_original', email VARCHAR(512) '$.email');
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+        EXEC dbo.sp_IntegridadPN1_Exigir;
+
+        UPDATE d
+        SET email = e.email
+        FROM dbo.Donante d
+        INNER JOIN @emails e ON e.id_donante = d.id_donante
+        WHERE d.email IS NOT NULL
+          AND d.email = e.email_original
+          AND LEFT(d.email, 9) <> 'dpapi:v1:';
+
+        IF @@ROWCOUNT > 0
+        BEGIN
+            EXEC dbo.sp_IntegridadPN1_Sellar @id_usuario, 'UPDATE';
+        END;
+
+        COMMIT TRANSACTION;
+        SELECT CONVERT(BIT, 1) AS completado;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH;
+END
+GO
+
 IF OBJECT_ID('dbo.sp_Donante_Registrar', 'P') IS NOT NULL
     DROP PROCEDURE dbo.sp_Donante_Registrar;
 GO
@@ -45,7 +130,7 @@ CREATE PROCEDURE dbo.sp_Donante_Registrar
     @apellido VARCHAR(100),
     @fecha_nacimiento DATE = NULL,
     @telefono VARCHAR(50) = NULL,
-    @email VARCHAR(150) = NULL,
+    @email VARCHAR(512) = NULL,
     @domicilio VARCHAR(255) = NULL,
     @id_usuario INT
 AS
@@ -99,8 +184,7 @@ BEGIN
         EXEC dbo.sp_IntegridadPN1_Sellar @id_usuario;
         COMMIT TRANSACTION;
 
-        SELECT 'OK' AS codigo_resultado, id_donante, documento, nombre, apellido,
-               fecha_nacimiento, telefono, email, domicilio, estado_donante, fecha_alta, id_usuario_alta
+        SELECT 'OK' AS codigo_resultado, id_donante
         FROM dbo.Donante
         WHERE id_donante = @id_donante;
     END TRY
@@ -110,6 +194,89 @@ BEGIN
         IF ERROR_NUMBER() IN (2601, 2627)
         BEGIN
             SELECT 'DUPLICADO' AS codigo_resultado, CAST(NULL AS INT) AS id_donante;
+            RETURN;
+        END;
+
+        THROW;
+    END CATCH;
+END
+GO
+
+IF OBJECT_ID('dbo.sp_Donante_Actualizar', 'P') IS NOT NULL
+    DROP PROCEDURE dbo.sp_Donante_Actualizar;
+GO
+
+CREATE PROCEDURE dbo.sp_Donante_Actualizar
+    @id_donante INT,
+    @documento VARCHAR(30),
+    @nombre VARCHAR(100),
+    @apellido VARCHAR(100),
+    @fecha_nacimiento DATE = NULL,
+    @telefono VARCHAR(50) = NULL,
+    @email VARCHAR(512) = NULL,
+    @actualizar_email BIT = 0,
+    @domicilio VARCHAR(255) = NULL,
+    @id_usuario INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+        EXEC dbo.sp_IntegridadPN1_Exigir;
+
+        IF @id_donante IS NULL OR @id_donante <= 0
+           OR NULLIF(LTRIM(RTRIM(@documento)), '') IS NULL
+           OR NULLIF(LTRIM(RTRIM(@nombre)), '') IS NULL
+           OR NULLIF(LTRIM(RTRIM(@apellido)), '') IS NULL
+           OR @id_usuario IS NULL OR @id_usuario <= 0
+           OR (@fecha_nacimiento IS NOT NULL AND @fecha_nacimiento > CONVERT(DATE, GETDATE()))
+        BEGIN
+            SELECT 'DATOS_INVALIDOS' AS codigo_resultado;
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END;
+
+        IF NOT EXISTS (SELECT 1 FROM dbo.Donante WHERE id_donante = @id_donante)
+        BEGIN
+            SELECT 'NO_ENCONTRADO' AS codigo_resultado;
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END;
+
+        IF EXISTS (
+            SELECT 1 FROM dbo.Donante
+            WHERE documento = LTRIM(RTRIM(@documento))
+              AND id_donante <> @id_donante
+        )
+        BEGIN
+            SELECT 'DUPLICADO' AS codigo_resultado;
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END;
+
+        UPDATE dbo.Donante
+        SET documento = LTRIM(RTRIM(@documento)),
+            nombre = LTRIM(RTRIM(@nombre)),
+            apellido = LTRIM(RTRIM(@apellido)),
+            fecha_nacimiento = @fecha_nacimiento,
+            telefono = NULLIF(LTRIM(RTRIM(@telefono)), ''),
+            email = CASE WHEN @actualizar_email = 1 THEN NULLIF(LTRIM(RTRIM(@email)), '') ELSE email END,
+            domicilio = NULLIF(LTRIM(RTRIM(@domicilio)), '')
+        WHERE id_donante = @id_donante;
+
+        EXEC dbo.sp_IntegridadPN1_Sellar @id_usuario, 'UPDATE';
+        COMMIT TRANSACTION;
+
+        SELECT 'OK' AS codigo_resultado;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+
+        IF ERROR_NUMBER() IN (2601, 2627)
+        BEGIN
+            SELECT 'DUPLICADO' AS codigo_resultado;
             RETURN;
         END;
 

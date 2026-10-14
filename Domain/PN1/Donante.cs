@@ -11,6 +11,7 @@ namespace Domain
         public DateTime? FechaNacimiento_380_jh { get; set; }
         public string Telefono_380_jh { get; set; }
         public string Email_380_jh { get; set; }
+        public bool TieneEmail_380_jh { get; set; }
         public string Domicilio_380_jh { get; set; }
         public string Estado_380_jh { get; set; }
         public DateTime FechaAlta_380_jh { get; set; }

@@ -14,17 +14,22 @@ borrar las personalizadas.
 
 1. Detener todas las instancias de la aplicación y respaldar la base actual.
 2. Ejecutar **StoredProcedures/IntegridadPN1.sql** sobre HemovidaGest.
-   Agrega las columnas, verificadores, historial protegido, registro de
-   incidentes, permisos y traducciones que falten. No borra filas PN1 ni acepta
-   automáticamente su contenido.
+   Agrega las columnas, amplía `Donante.email` para el valor cifrado, verificadores,
+   historial protegido, registro de incidentes, permisos y traducciones que falten.
+   No borra filas PN1 ni acepta automáticamente su contenido.
 3. Ejecutar **StoredProcedures/PN1.sql**. Todos los procedimientos de escritura
-   quedan protegidos por la verificación transaccional.
+   quedan protegidos por la verificación transaccional. También instala el alta,
+   consulta individual y actualización de donantes.
 4. Compilar la solución y volver a iniciar sesión como administrador para cargar
    los permisos nuevos.
 5. Abrir **Integridad**, revisar el informe y contrastar los datos iniciales
    con una fuente confiable. Conservar un backup externo.
-6. Elegir **Aceptar base inicial**. Confirmar solamente si
-   los datos revisados son correctos. Luego debe aparecer la verificación correcta.
+6. Si PN1 todavía no tiene una base inicial aceptada, elegir **Aceptar base
+   inicial** solo después de revisar los datos. Si ya está inicializada, verificar
+   que el informe esté correcto y no volver a inicializarla.
+7. Abrir **Donantes** una vez. La primera carga cifra los correos existentes de
+   la tabla `Donante` y vuelve a sellar la integridad dentro de una transacción.
+   Volver a **Integridad** y confirmar que la verificación siga correcta.
 
 La aceptación inicial calcula los dígitos sobre los datos existentes y guarda
 sus primeras versiones; no puede determinar si ya estaban mal antes de instalar
@@ -35,6 +40,17 @@ base de verificadores, se mantiene el bloqueo.
 La instalación fue probada con SQL Server 2022. Utiliza CREATE OR ALTER,
 FOR JSON, OPENJSON y HASHBYTES con SHA2_256; necesita compatibilidad
 de base 130 o superior.
+
+## Cifrado de correos de donantes
+
+La aplicación protege cada correo con Windows DPAPI (ámbito del usuario actual)
+antes de enviarlo a SQL. La lista de donantes no carga el valor del correo; la
+consulta individual lo devuelve únicamente cuando se solicita desde la pantalla.
+Los equipos y procesos que deban descifrar un mismo registro tienen que ejecutarse
+bajo el mismo perfil de Windows. Los registros históricos de `Auditoria` creados
+antes de instalar el cifrado conservan su JSON original; la migración actualiza
+el correo de `Donante` y crea una nueva versión protegida sin reescribir ese
+historial anterior.
 
 ## Instalación nueva
 

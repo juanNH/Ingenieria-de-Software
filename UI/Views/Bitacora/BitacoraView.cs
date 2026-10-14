@@ -225,6 +225,7 @@ namespace UI
                 case "LoginFallido": clave = "BITACORA_ACTION_LOGIN_FAILURE"; break;
                 case "RegistroFallido": clave = "BITACORA_ACTION_REGISTER_FAILURE"; break;
                 case "DonanteRegistrado": clave = "BITACORA_ACTION_DONOR_REGISTERED"; break;
+                case "DonanteActualizado": clave = "BITACORA_ACTION_DONOR_UPDATED"; break;
                 case "DonacionRegistrada": clave = "BITACORA_ACTION_DONATION_REGISTERED"; break;
                 case "UnidadesGeneradas": clave = "BITACORA_ACTION_UNITS_GENERATED"; break;
                 case "UnidadClasificada": clave = "BITACORA_ACTION_UNIT_CLASSIFIED"; break;

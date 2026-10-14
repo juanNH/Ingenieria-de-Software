@@ -31,34 +31,46 @@
         <mxCell id="label-responsable" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=top;whiteSpace=wrap;" value="&lt;b&gt;Responsable autorizado&lt;/b&gt;&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="55" width="280" x="1210" y="245" as="geometry" />
         </mxCell>
-        <mxCell id="rel-donante-extraccion" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#d79b00;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Entrada E1–E2: datos del donante y de la donación&lt;br&gt;Salida S1–S2: notificación">
+        <mxCell id="rel-donante-extraccion-e1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#d79b00;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Entrada E1: Datos del donante y de la donación">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="225" y="195" as="sourcePoint" />
-            <mxPoint x="545" y="195" as="targetPoint" />
+            <mxPoint x="225" y="170" as="sourcePoint" />
+            <mxPoint x="545" y="170" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="rel-extraccion-operador" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#d6b656;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Entrada E3: datos de clasificación">
+        <mxCell id="rel-extraccion-donante-s1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#d79b00;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S1: Donación registrada y unidades en revisión">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="545" y="210" as="sourcePoint" />
+            <mxPoint x="225" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-extraccion-operador-s2" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#d6b656;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S2: Unidades en revisión para clasificación">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="595" y="195" as="sourcePoint" />
             <mxPoint x="935" y="195" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="rel-operador-responsable" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#82b366;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S3 / Entrada E4: unidad clasificada&lt;br&gt;Salida S4–S5: resultado">
+        <mxCell id="rel-operador-responsable-s3" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#82b366;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S3: Unidad clasificada para revisión">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="985" y="195" as="sourcePoint" />
-            <mxPoint x="1325" y="195" as="targetPoint" />
+            <mxPoint x="985" y="180" as="sourcePoint" />
+            <mxPoint x="1325" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-responsable-operador-s4" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#9673a6;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S4: Estado operativo">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1325" y="215" as="sourcePoint" />
+            <mxPoint x="985" y="215" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="tarea-donante" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8f0;strokeColor=#d79b00;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;" value="&lt;br&gt;Se presenta y realiza la donación. Proporciona los datos necesarios al personal." vertex="1">
           <mxGeometry height="115" width="280" x="85" y="355" as="geometry" />
         </mxCell>
-        <mxCell id="tarea-extraccion" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffdf2;strokeColor=#d6b656;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;" value="Solicita y registra los datos del donante; registra la donación y genera una o más unidades con identificación y vencimiento." vertex="1">
+        <mxCell id="tarea-extraccion" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffdf2;strokeColor=#d6b656;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;" value="Solicita y registra los datos del donante; registra la donación y genera unidades identificadas en estado «En revisión» para clasificación." vertex="1">
           <mxGeometry height="115" width="280" x="430" y="355" as="geometry" />
         </mxCell>
-        <mxCell id="tarea-operador" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2fbf1;strokeColor=#82b366;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;" value="Carga componente, grupo sanguíneo, factor Rh, vencimiento y observaciones." vertex="1">
+        <mxCell id="tarea-operador" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2fbf1;strokeColor=#82b366;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;" value="Carga E2 (datos de clasificación), valida los datos y entrega la unidad clasificada al Responsable autorizado." vertex="1">
           <mxGeometry height="115" width="280" x="820" y="355" as="geometry" />
         </mxCell>
-        <mxCell id="tarea-responsable" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#faf6fc;strokeColor=#9673a6;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;" value="Revisa la información y libera, bloquea o descarta cada unidad." vertex="1">
+        <mxCell id="tarea-responsable" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#faf6fc;strokeColor=#9673a6;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;" value="Recibe la salida S3, revisa la unidad y procesa E3 (liberar, bloquear o descartar); comunica S4 al Operador autorizado." vertex="1">
           <mxGeometry height="115" width="280" x="1210" y="355" as="geometry" />
         </mxCell>
       </root>

@@ -6,6 +6,7 @@ namespace Abstractions
         LoginFallido_380_jh,
         RegistroFallido_380_jh,
         DonanteRegistrado_380_jh,
+        DonanteActualizado_380_jh,
         DonacionRegistrada_380_jh,
         UnidadesGeneradas_380_jh,
         UnidadClasificada_380_jh,
