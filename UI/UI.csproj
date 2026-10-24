@@ -108,6 +108,25 @@
     <Compile Include="Views\PN1\UnidadesView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Views\PN2\ControlesPN2.cs" />
+    <Compile Include="Views\PN2\InventarioView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\PN2\SolicitudesTransfusionalesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\PN2\ReservasView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\PN2\DestinosView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\PN2\TrazabilidadView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\PN2\ReportesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Auth\Login.resx">

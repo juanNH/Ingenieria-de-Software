@@ -17,6 +17,14 @@ namespace Abstractions
         IntegridadDetectada_380_jh,
         IntegridadInicializada_380_jh,
         IntegridadRestaurada_380_jh,
-        RestauracionFallida_380_jh
+        RestauracionFallida_380_jh,
+        UbicacionActualizada_380_jh,
+        SolicitudTransfusionalRegistrada_380_jh,
+        UnidadReservada_380_jh,
+        ReservaCancelada_380_jh,
+        UnidadEntregada_380_jh,
+        UnidadTransfundida_380_jh,
+        UnidadDevuelta_380_jh,
+        UnidadReingresada_380_jh
     }
 }

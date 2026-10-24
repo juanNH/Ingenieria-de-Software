@@ -12,10 +12,17 @@ namespace UI
     {
         private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
         private readonly UsuarioApplicationService_380_jh _usuarioService_380_jh;
-        private ToolStripMenuItem _bancoSangreToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _pn1ToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _pn2ToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _consultasToolStripMenuItem_380_jh;
         private ToolStripMenuItem _donantesToolStripMenuItem_380_jh;
         private ToolStripMenuItem _donacionesToolStripMenuItem_380_jh;
         private ToolStripMenuItem _unidadesToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _solicitudesToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _reservasToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _destinosToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _trazabilidadToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _reportesToolStripMenuItem_380_jh;
         private bool _cargandoIdiomas_380_jh;
 
         public MainForm_380_jh()
@@ -69,37 +76,106 @@ namespace UI
             usuariosToolStripMenuItem_380_jh.Tag = "MENU_USERS";
             rolesToolStripMenuItem_380_jh.Tag = "MENU_ROLES";
             idiomasToolStripMenuItem_380_jh.Tag = "MENU_LANGUAGES";
-            _bancoSangreToolStripMenuItem_380_jh.Tag = "MENU_BLOOD_BANK";
+            _pn1ToolStripMenuItem_380_jh.Tag = "MENU_PN1";
+            _pn2ToolStripMenuItem_380_jh.Tag = "MENU_PN2";
+            _consultasToolStripMenuItem_380_jh.Tag = "MENU_CONSULTAS";
             _donantesToolStripMenuItem_380_jh.Tag = "MENU_DONORS";
             _donacionesToolStripMenuItem_380_jh.Tag = "MENU_DONATIONS";
             _unidadesToolStripMenuItem_380_jh.Tag = "MENU_UNITS";
+            _solicitudesToolStripMenuItem_380_jh.Tag = "MENU_TRANSFUSION_REQUESTS";
+            _reservasToolStripMenuItem_380_jh.Tag = "MENU_RESERVATIONS";
+            _destinosToolStripMenuItem_380_jh.Tag = "MENU_UNIT_DESTINATION";
+            _trazabilidadToolStripMenuItem_380_jh.Tag = "MENU_TRACEABILITY";
+            _reportesToolStripMenuItem_380_jh.Tag = "MENU_REPORTS_ALERTS";
             salirToolStripMenuItem_380_jh.Tag = "MENU_LOGOUT";
             lblIdioma_380_jh.Tag = "LANGUAGE_SELECTOR";
         }
 
         private void ConfigurarMenuNegocio_380_jh()
         {
-            _bancoSangreToolStripMenuItem_380_jh = new ToolStripMenuItem
+            _pn1ToolStripMenuItem_380_jh = new ToolStripMenuItem
             {
-                Name = "bancoSangreToolStripMenuItem",
+                Name = "pn1ToolStripMenuItem",
                 Font = new Font("Segoe UI", 10F),
                 ForeColor = Color.White
             };
+            _pn2ToolStripMenuItem_380_jh = new ToolStripMenuItem
+            {
+                Name = "pn2ToolStripMenuItem",
+                Font = new Font("Segoe UI", 10F),
+                ForeColor = Color.White
+            };
+            _consultasToolStripMenuItem_380_jh = new ToolStripMenuItem
+            {
+                Name = "consultasToolStripMenuItem",
+                Font = new Font("Segoe UI", 10F),
+                ForeColor = Color.White
+            };
+            _pn1ToolStripMenuItem_380_jh.MouseEnter += MostrarDesplegableAlPasarMouse_380_jh;
+            _pn2ToolStripMenuItem_380_jh.MouseEnter += MostrarDesplegableAlPasarMouse_380_jh;
+            _consultasToolStripMenuItem_380_jh.MouseEnter += MostrarDesplegableAlPasarMouse_380_jh;
             _donantesToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "donantesToolStripMenuItem" };
             _donantesToolStripMenuItem_380_jh.Click += donantesToolStripMenuItem_Click_380_jh;
             _donacionesToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "donacionesToolStripMenuItem" };
             _donacionesToolStripMenuItem_380_jh.Click += donacionesToolStripMenuItem_Click_380_jh;
             _unidadesToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "unidadesToolStripMenuItem" };
             _unidadesToolStripMenuItem_380_jh.Click += unidadesToolStripMenuItem_Click_380_jh;
-            _bancoSangreToolStripMenuItem_380_jh.DropDownItems.AddRange(new ToolStripItem[]
+            _solicitudesToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "solicitudesToolStripMenuItem" };
+            _solicitudesToolStripMenuItem_380_jh.Click += delegate
+            {
+                if (TienePermisoSolicitudes_380_jh()) ShowScreen_380_jh(new SolicitudesTransfusionalesView_380_jh());
+            };
+            _reservasToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "reservasToolStripMenuItem" };
+            _reservasToolStripMenuItem_380_jh.Click += delegate
+            {
+                if (TienePermisoReservas_380_jh()) ShowScreen_380_jh(new ReservasView_380_jh());
+            };
+            _destinosToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "destinosToolStripMenuItem" };
+            _destinosToolStripMenuItem_380_jh.Click += delegate
+            {
+                if (ValidarPermiso_380_jh(PermisosSistema_380_jh.DestinoRegistrar_380_jh)) ShowScreen_380_jh(new DestinosView_380_jh());
+            };
+            _trazabilidadToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "trazabilidadToolStripMenuItem" };
+            _trazabilidadToolStripMenuItem_380_jh.Click += delegate
+            {
+                if (ValidarPermiso_380_jh(PermisosSistema_380_jh.TrazabilidadVer_380_jh)) ShowScreen_380_jh(new TrazabilidadView_380_jh());
+            };
+            _reportesToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "reportesToolStripMenuItem" };
+            _reportesToolStripMenuItem_380_jh.Click += delegate
+            {
+                if (ValidarPermiso_380_jh(PermisosSistema_380_jh.ReporteVer_380_jh)) ShowScreen_380_jh(new ReportesView_380_jh());
+            };
+            _pn1ToolStripMenuItem_380_jh.DropDownItems.AddRange(new ToolStripItem[]
             {
                 _donantesToolStripMenuItem_380_jh,
                 _donacionesToolStripMenuItem_380_jh,
                 _unidadesToolStripMenuItem_380_jh
             });
+            _pn2ToolStripMenuItem_380_jh.DropDownItems.AddRange(new ToolStripItem[]
+            {
+                _solicitudesToolStripMenuItem_380_jh,
+                _reservasToolStripMenuItem_380_jh,
+                _destinosToolStripMenuItem_380_jh
+            });
+            _consultasToolStripMenuItem_380_jh.DropDownItems.AddRange(new ToolStripItem[]
+            {
+                _trazabilidadToolStripMenuItem_380_jh,
+                _reportesToolStripMenuItem_380_jh
+            });
 
             int posicionSalida = menuStrip1_380_jh.Items.IndexOf(salirToolStripMenuItem_380_jh);
-            menuStrip1_380_jh.Items.Insert(posicionSalida < 0 ? menuStrip1_380_jh.Items.Count : posicionSalida, _bancoSangreToolStripMenuItem_380_jh);
+            int posicionProcesos = posicionSalida < 0 ? menuStrip1_380_jh.Items.Count : posicionSalida;
+            menuStrip1_380_jh.Items.Insert(posicionProcesos, _pn1ToolStripMenuItem_380_jh);
+            menuStrip1_380_jh.Items.Insert(posicionProcesos + 1, _pn2ToolStripMenuItem_380_jh);
+        }
+
+        private void MostrarDesplegableAlPasarMouse_380_jh(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menu = sender as ToolStripMenuItem;
+            if (menu != null && menu.Visible && menu.DropDownItems.Count > 0 && !menu.DropDown.Visible)
+            {
+                menu.ShowDropDown();
+            }
         }
 
         private void bitacoraToolStripMenuItem_Click_380_jh(object sender, EventArgs e)
@@ -257,7 +333,33 @@ namespace UI
             _donantesToolStripMenuItem_380_jh.Visible = mostrarDonantes;
             _donacionesToolStripMenuItem_380_jh.Visible = mostrarDonaciones;
             _unidadesToolStripMenuItem_380_jh.Visible = mostrarUnidades;
-            _bancoSangreToolStripMenuItem_380_jh.Visible = mostrarDonantes || mostrarDonaciones || mostrarUnidades;
+            bool mostrarSolicitudes = TienePermisoSolicitudes_380_jh();
+            bool mostrarReservas = TienePermisoReservas_380_jh();
+            bool mostrarDestinos = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DestinoRegistrar_380_jh);
+            bool mostrarTrazabilidad = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.TrazabilidadVer_380_jh);
+            bool mostrarReportes = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReporteVer_380_jh);
+            _solicitudesToolStripMenuItem_380_jh.Visible = mostrarSolicitudes;
+            _reservasToolStripMenuItem_380_jh.Visible = mostrarReservas;
+            _destinosToolStripMenuItem_380_jh.Visible = mostrarDestinos;
+            _trazabilidadToolStripMenuItem_380_jh.Visible = mostrarTrazabilidad;
+            _reportesToolStripMenuItem_380_jh.Visible = mostrarReportes;
+            _pn1ToolStripMenuItem_380_jh.Visible = mostrarDonantes || mostrarDonaciones || mostrarUnidades;
+            _pn2ToolStripMenuItem_380_jh.Visible = mostrarSolicitudes || mostrarReservas || mostrarDestinos;
+            _consultasToolStripMenuItem_380_jh.Visible = mostrarTrazabilidad || mostrarReportes;
+        }
+
+        private bool TienePermisoSolicitudes_380_jh()
+        {
+            return _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.SolicitudVer_380_jh) ||
+                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.SolicitudCrear_380_jh);
+        }
+
+        private bool TienePermisoReservas_380_jh()
+        {
+            return _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaVer_380_jh) ||
+                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaCrear_380_jh) ||
+                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaCancelar_380_jh) ||
+                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.EntregaRegistrar_380_jh);
         }
 
         private bool TienePermisoUnidades_380_jh()
@@ -323,6 +425,32 @@ namespace UI
             if (_unidadesToolStripMenuItem_380_jh.Available)
             {
                 ShowScreen_380_jh(new UnidadesView_380_jh());
+                return;
+            }
+
+            if (_solicitudesToolStripMenuItem_380_jh.Available)
+            {
+                ShowScreen_380_jh(new SolicitudesTransfusionalesView_380_jh());
+                return;
+            }
+            if (_reservasToolStripMenuItem_380_jh.Available)
+            {
+                ShowScreen_380_jh(new ReservasView_380_jh());
+                return;
+            }
+            if (_destinosToolStripMenuItem_380_jh.Available)
+            {
+                ShowScreen_380_jh(new DestinosView_380_jh());
+                return;
+            }
+            if (_trazabilidadToolStripMenuItem_380_jh.Available)
+            {
+                ShowScreen_380_jh(new TrazabilidadView_380_jh());
+                return;
+            }
+            if (_reportesToolStripMenuItem_380_jh.Available)
+            {
+                ShowScreen_380_jh(new ReportesView_380_jh());
                 return;
             }
 

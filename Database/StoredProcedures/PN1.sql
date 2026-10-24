@@ -559,6 +559,24 @@ BEGIN
         RETURN;
     END;
 
+    -- Una devolucion reingresada conserva sus datos historicos, pero requiere
+    -- una clasificacion nueva antes de su siguiente liberacion.
+    IF @estado_nuevo = 'LIBERADA' AND EXISTS (
+        SELECT 1 FROM dbo.MovimientoUnidad reingreso
+        WHERE reingreso.id_unidad=@id_unidad AND reingreso.tipo_movimiento='REINGRESO'
+          AND NOT EXISTS (
+              SELECT 1 FROM dbo.MovimientoUnidad clasificacion
+              WHERE clasificacion.id_unidad=@id_unidad
+                AND clasificacion.tipo_movimiento='CLASIFICACION'
+                AND clasificacion.id_movimiento_unidad>reingreso.id_movimiento_unidad
+          )
+    )
+    BEGIN
+        SELECT 'CONFLICTO_ESTADO' AS codigo_resultado,@id_unidad AS id_unidad;
+        ROLLBACK TRANSACTION;
+        RETURN;
+    END;
+
 
         UPDATE dbo.Unidad
         SET estado_operativo = @estado_nuevo,

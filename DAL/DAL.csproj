@@ -52,6 +52,7 @@
     <Compile Include="PN1\DonanteDataMapper.cs" />
     <Compile Include="PN1\IntegridadDataMapper.cs" />
     <Compile Include="PN1\UnidadDataMapper.cs" />
+    <Compile Include="PN2\PN2DataMapper.cs" />
     <Compile Include="Seguridad\DigitoVerificadorDataMapper.cs" />
     <Compile Include="Usuarios\UsuarioDataMapper.cs" />
   </ItemGroup>

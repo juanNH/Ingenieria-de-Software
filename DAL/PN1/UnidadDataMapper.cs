@@ -139,6 +139,7 @@ namespace DAL
                 FactorRh_380_jh = Texto_380_jh(fila, "factor_rh"),
                 Observaciones_380_jh = Texto_380_jh(fila, "observaciones"),
                 EstadoOperativo_380_jh = Texto_380_jh(fila, "estado_operativo"),
+                Ubicacion_380_jh = Texto_380_jh(fila, "ubicacion"),
                 FechaAlta_380_jh = Convert.ToDateTime(fila["fecha_alta"]),
                 FechaUltimaModificacion_380_jh = Convert.ToDateTime(fila["fecha_ultima_modificacion"]),
                 IdUsuarioUltimaModificacion_380_jh = Convert.ToInt32(fila["id_usuario_ultima_modificacion"])
@@ -158,6 +159,7 @@ namespace DAL
             destino.FactorRh_380_jh = origen.FactorRh_380_jh;
             destino.Observaciones_380_jh = origen.Observaciones_380_jh;
             destino.EstadoOperativo_380_jh = origen.EstadoOperativo_380_jh;
+            destino.Ubicacion_380_jh = origen.Ubicacion_380_jh;
             destino.FechaAlta_380_jh = origen.FechaAlta_380_jh;
             destino.FechaUltimaModificacion_380_jh = origen.FechaUltimaModificacion_380_jh;
             destino.IdUsuarioUltimaModificacion_380_jh = origen.IdUsuarioUltimaModificacion_380_jh;

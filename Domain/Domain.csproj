@@ -60,6 +60,16 @@
     <Compile Include="PN1\EstadoUnidadPN1.cs" />
     <Compile Include="PN1\MovimientoUnidad.cs" />
     <Compile Include="PN1\Unidad.cs" />
+    <Compile Include="PN2\SolicitudTransfusional.cs" />
+    <Compile Include="PN2\Reserva.cs" />
+    <Compile Include="PN2\Entrega.cs" />
+    <Compile Include="PN2\TrazabilidadFiltro.cs" />
+    <Compile Include="PN2\MovimientoTrazabilidad.cs" />
+    <Compile Include="PN2\FilaReportePN2.cs" />
+    <Compile Include="PN2\CodigoOperacionPN2.cs" />
+    <Compile Include="PN2\EstadoUnidadPN2.cs" />
+    <Compile Include="PN2\EstadoReserva.cs" />
+    <Compile Include="PN2\EstadoSolicitudTransfusional.cs" />
     <Compile Include="Seguridad\Sesion.cs" />
     <Compile Include="Usuarios\CodigoRegistroUsuario.cs" />
     <Compile Include="Usuarios\Usuario.cs" />

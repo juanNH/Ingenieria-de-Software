@@ -16,6 +16,7 @@ namespace Domain
         public string FactorRh_380_jh { get; set; }
         public string Observaciones_380_jh { get; set; }
         public string EstadoOperativo_380_jh { get; set; }
+        public string Ubicacion_380_jh { get; set; }
         public DateTime FechaAlta_380_jh { get; set; }
         public DateTime FechaUltimaModificacion_380_jh { get; set; }
         public int IdUsuarioUltimaModificacion_380_jh { get; set; }

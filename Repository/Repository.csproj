@@ -44,6 +44,7 @@
     <Compile Include="PN1\DonanteRepository.cs" />
     <Compile Include="PN1\IntegridadRepository.cs" />
     <Compile Include="PN1\UnidadRepository.cs" />
+    <Compile Include="PN2\PN2Repository.cs" />
     <Compile Include="Seguridad\DigitoVerificadorRepository.cs" />
     <Compile Include="Usuarios\UsuarioRepository.cs" />
   </ItemGroup>

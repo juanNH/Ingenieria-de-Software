@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="Electron">
+  <diagram name="PN2 - Diagrama de actividad del negocio" id="pn2---diagrama-de-actividad-del-negocio">
+    <mxGraphModel dx="1700" dy="1680" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1680" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=22;align=center;verticalAlign=middle;fontFamily=Arial;" value="PN2 — Diagrama de Actividad del Negocio" vertex="1">
+          <mxGeometry x="260" y="18" width="1180" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="etiqueta" parent="1" style="shape=note;whiteSpace=wrap;html=1;size=18;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=12;fontFamily=Arial;align=center;verticalAlign=middle;" value="DAN PN2" vertex="1">
+          <mxGeometry x="40" y="65" width="105" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="lane-profesional" parent="1" style="swimlane;horizontal=1;startSize=44;whiteSpace=wrap;html=1;rounded=0;fillColor=#f5f5f5;swimlaneFillColor=#ffffff;strokeColor=#999999;strokeWidth=1.5;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;Profesional solicitante&lt;/b&gt;" vertex="1">
+          <mxGeometry x="40" y="110" width="340" height="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="lane-autorizado" parent="1" style="swimlane;horizontal=1;startSize=44;whiteSpace=wrap;html=1;rounded=0;fillColor=#f5f5f5;swimlaneFillColor=#ffffff;strokeColor=#999999;strokeWidth=1.5;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;Operador autorizado&lt;/b&gt;" vertex="1">
+          <mxGeometry x="380" y="110" width="780" height="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="lane-banco" parent="1" style="swimlane;horizontal=1;startSize=44;whiteSpace=wrap;html=1;rounded=0;fillColor=#f5f5f5;swimlaneFillColor=#ffffff;strokeColor=#999999;strokeWidth=1.5;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;Operador del banco de sangre&lt;/b&gt;" vertex="1">
+          <mxGeometry x="1160" y="110" width="500" height="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="inicio" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#b4cf68;strokeColor=#6c8e00;strokeWidth=2;fontStyle=1;fontSize=20;fontFamily=Arial;align=center;verticalAlign=middle;" value="" vertex="1">
+          <mxGeometry x="190" y="145" width="38" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" parent="1" style="shape=callout;whiteSpace=wrap;html=1;perimeter=rectanglePerimeter;fillColor=#fff2cc;strokeColor=#8a6d3b;strokeWidth=2;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;E1&lt;/b&gt;&lt;br&gt;Paciente receptor, componente y cantidad requerida" vertex="1">
+          <mxGeometry x="80" y="205" width="260" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#29a9d6;strokeColor=#197a9d;strokeWidth=2;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDUN-13 / C1&lt;/b&gt;&lt;br&gt;Registrar solicitud transfusional" vertex="1">
+          <mxGeometry x="80" y="320" width="260" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;S1&lt;/b&gt;&lt;br&gt;Solicitud registrada y pendiente" vertex="1">
+          <mxGeometry x="80" y="420" width="260" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="ds-solicitudes" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;«datastore»&lt;/b&gt;&lt;br&gt;Solicitudes transfusionales" vertex="1">
+          <mxGeometry x="85" y="540" width="250" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" parent="1" style="shape=callout;whiteSpace=wrap;html=1;perimeter=rectanglePerimeter;fillColor=#fff2cc;strokeColor=#8a6d3b;strokeWidth=2;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;E2&lt;/b&gt;&lt;br&gt;Solicitud elegida y cantidad a reservar" vertex="1">
+          <mxGeometry x="415" y="420" width="270" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#29a9d6;strokeColor=#197a9d;strokeWidth=2;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDUN-12 Gestionar inventario / C2&lt;/b&gt;&lt;br&gt;Consultar disponibilidad en «Reservas y entregas»" vertex="1">
+          <mxGeometry x="415" y="535" width="285" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="decision-disponibilidad" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#b4cf68;strokeColor=#6c8e00;strokeWidth=2;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDUN-14 / C3&lt;/b&gt;&lt;br&gt;¿Unidad apta&lt;br&gt;y saldo?" vertex="1">
+          <mxGeometry x="760" y="530" width="150" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;S2&lt;/b&gt;&lt;br&gt;Unidades disponibles y saldo visibles en «Reservas y entregas»" vertex="1">
+          <mxGeometry x="735" y="680" width="310" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#29a9d6;strokeColor=#197a9d;strokeWidth=2;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDUN-14 Reservar y entregar unidad / C4&lt;/b&gt;&lt;br&gt;Reservar unidad y asociarla a la solicitud" vertex="1">
+          <mxGeometry x="745" y="900" width="290" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;S3&lt;/b&gt;&lt;br&gt;Reserva activa; cantidades actualizadas" vertex="1">
+          <mxGeometry x="745" y="1000" width="290" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="ds-operaciones" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;«datastore»&lt;/b&gt;&lt;br&gt;Unidades, reservas y entregas" vertex="1">
+          <mxGeometry x="930" y="535" width="210" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="decision-cancelar" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#b4cf68;strokeColor=#6c8e00;strokeWidth=2;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="¿Cancelar&lt;br&gt;la reserva?" vertex="1">
+          <mxGeometry x="800" y="1100" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" parent="1" style="shape=callout;whiteSpace=wrap;html=1;perimeter=rectanglePerimeter;fillColor=#fff2cc;strokeColor=#8a6d3b;strokeWidth=2;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;E3&lt;/b&gt;&lt;br&gt;Reserva activa y confirmación de entrega" vertex="1">
+          <mxGeometry x="415" y="1230" width="285" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#29a9d6;strokeColor=#197a9d;strokeWidth=2;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDUN-14 Reservar y entregar unidad / C5&lt;/b&gt;&lt;br&gt;Confirmar reserva activa y registrar entrega" vertex="1">
+          <mxGeometry x="415" y="1325" width="285" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;S4&lt;/b&gt;&lt;br&gt;Entrega registrada; cantidades actualizadas" vertex="1">
+          <mxGeometry x="415" y="1425" width="285" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" parent="1" style="shape=callout;whiteSpace=wrap;html=1;perimeter=rectanglePerimeter;fillColor=#fff2cc;strokeColor=#8a6d3b;strokeWidth=2;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;E7&lt;/b&gt;&lt;br&gt;Reserva activa y motivo de cancelación" vertex="1">
+          <mxGeometry x="735" y="1230" width="300" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#29a9d6;strokeColor=#197a9d;strokeWidth=2;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;C9&lt;/b&gt;&lt;br&gt;Cancelar manualmente una reserva activa con motivo" vertex="1">
+          <mxGeometry x="735" y="1325" width="300" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="s8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;S8&lt;/b&gt;&lt;br&gt;Reserva cancelada; unidad Liberada y saldo actualizado" vertex="1">
+          <mxGeometry x="735" y="1425" width="300" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="pendiente" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;Sin unidad apta&lt;/b&gt;&lt;br&gt;La solicitud conserva su estado Pendiente" vertex="1">
+          <mxGeometry x="935" y="800" width="200" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" parent="1" style="shape=callout;whiteSpace=wrap;html=1;perimeter=rectanglePerimeter;fillColor=#fff2cc;strokeColor=#8a6d3b;strokeWidth=2;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;E4&lt;/b&gt;&lt;br&gt;Destino de la entrega y motivo si Devuelta o Descartada" vertex="1">
+          <mxGeometry x="1220" y="1230" width="385" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#29a9d6;strokeColor=#197a9d;strokeWidth=2;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDUN-15 Registrar transfusión, devolución o descarte / C6&lt;/b&gt;&lt;br&gt;Registrar destino en «Destino de unidades»" vertex="1">
+          <mxGeometry x="1220" y="1325" width="385" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;S5&lt;/b&gt;&lt;br&gt;Destino guardado; devolución o descarte reabre saldo" vertex="1">
+          <mxGeometry x="1220" y="1425" width="385" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="fin-pendiente" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#b4cf68;strokeColor=#6c8e00;strokeWidth=2;fontStyle=1;fontSize=20;fontFamily=Arial;align=center;verticalAlign=middle;" value="×" vertex="1">
+          <mxGeometry x="1015" y="890" width="38" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="fin-entrega" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#b4cf68;strokeColor=#6c8e00;strokeWidth=2;fontStyle=1;fontSize=20;fontFamily=Arial;align=center;verticalAlign=middle;" value="×" vertex="1">
+          <mxGeometry x="0" y="1520" width="38" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="fin-cancelacion" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#b4cf68;strokeColor=#6c8e00;strokeWidth=2;fontStyle=1;fontSize=20;fontFamily=Arial;align=center;verticalAlign=middle;" value="×" vertex="1">
+          <mxGeometry x="0" y="1520" width="38" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="fin-destino" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#b4cf68;strokeColor=#6c8e00;strokeWidth=2;fontStyle=1;fontSize=20;fontFamily=Arial;align=center;verticalAlign=middle;" value="×" vertex="1">
+          <mxGeometry x="0" y="1520" width="38" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="nota-reglas" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;strokeWidth=1.5;fontSize=12;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;spacingTop=8;" value="&lt;b&gt;Reglas del flujo&lt;/b&gt; — Atención parcial; «Reservas y entregas» muestra cantidad requerida, reservada, entregada y saldo. Solo se reservan unidades clasificadas, Liberadas, vigentes y disponibles. Cancelación manual con motivo. Devolución o descarte reabren saldo y conservan historial. Una unidad Devuelta sigue indisponible hasta reingreso autorizado a En revisión y nueva clasificación y liberación por PN1.&lt;br&gt;&lt;br&gt;&lt;b&gt;Navegación&lt;/b&gt; — PN1 y PN2 están en pestañas separadas; sus pantallas se despliegan al pasar el cursor. No hay pantalla de inventario ni campos de ubicación u observaciones. Trazabilidad y Reportes y alertas se consultan por separado." vertex="1">
+          <mxGeometry x="40" y="1570" width="1620" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="f-inicio-e1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="209" y="183" as="sourcePoint" />
+            <mxPoint x="209" y="205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-e1-c1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="210" y="293" as="sourcePoint" />
+            <mxPoint x="210" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-c1-s1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="210" y="394" as="sourcePoint" />
+            <mxPoint x="210" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-s1-e2" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Solicitud pendiente" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="461" as="sourcePoint" />
+            <mxPoint x="415" y="461" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-e2-c2" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="550" y="508" as="sourcePoint" />
+            <mxPoint x="550" y="535" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-c2-s2" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="578" />
+            </Array>
+            <mxPoint x="700" y="578" as="sourcePoint" />
+            <mxPoint x="735" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-s2-c3" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="890" y="775" />
+            </Array>
+            <mxPoint x="890" y="760" as="sourcePoint" />
+            <mxPoint x="835" y="790" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-c3-c4" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Sí" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="865" y="905" />
+            </Array>
+            <mxPoint x="835" y="905" as="sourcePoint" />
+            <mxPoint x="890" y="900" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-c3-pendiente" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="No" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="910" y="847" as="sourcePoint" />
+            <mxPoint x="935" y="839" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-pendiente-fin" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1035" y="878" as="sourcePoint" />
+            <mxPoint x="1034" y="890" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-c4-s3" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="890" y="978" as="sourcePoint" />
+            <mxPoint x="890" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-s3-cancelar" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="890" y="1078" as="sourcePoint" />
+            <mxPoint x="890" y="1100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-cancelar-entrega" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="No" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="1185" />
+            </Array>
+            <mxPoint x="800" y="1160" as="sourcePoint" />
+            <mxPoint x="557" y="1230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-cancelar-reserva" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Sí" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="1185" />
+            </Array>
+            <mxPoint x="980" y="1160" as="sourcePoint" />
+            <mxPoint x="885" y="1230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-e3-c5" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="557" y="1314" as="sourcePoint" />
+            <mxPoint x="557" y="1325" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-c5-s4" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="557" y="1407" as="sourcePoint" />
+            <mxPoint x="557" y="1425" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-s4-fin" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="557" y="1501" as="sourcePoint" />
+            <mxPoint x="554" y="1535" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-e7-c9" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="885" y="1314" as="sourcePoint" />
+            <mxPoint x="885" y="1325" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-c9-s8" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="885" y="1407" as="sourcePoint" />
+            <mxPoint x="885" y="1425" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-s8-fin" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="885" y="1501" as="sourcePoint" />
+            <mxPoint x="884" y="1535" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-s4-e4" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Unidad entregada" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="717" y="1463" />
+              <mxPoint x="717" y="1210" />
+              <mxPoint x="1412" y="1210" />
+            </Array>
+            <mxPoint x="700" y="1463" as="sourcePoint" />
+            <mxPoint x="1412" y="1230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-e4-c6" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1412" y="1318" as="sourcePoint" />
+            <mxPoint x="1412" y="1325" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-c6-s5" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1412" y="1401" as="sourcePoint" />
+            <mxPoint x="1412" y="1425" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f-s5-fin" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=1.5;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1412" y="1507" as="sourcePoint" />
+            <mxPoint x="1409" y="1535" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -45,6 +45,7 @@
     <Compile Include="PN1\DonanteApplicationService.cs" />
     <Compile Include="PN1\IntegridadApplicationService.cs" />
     <Compile Include="PN1\UnidadApplicationService.cs" />
+    <Compile Include="PN2\PN2ApplicationService.cs" />
     <Compile Include="Usuarios\UsuarioApplicationService.cs" />
   </ItemGroup>
   <ItemGroup>

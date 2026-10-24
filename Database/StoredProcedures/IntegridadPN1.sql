@@ -2,6 +2,11 @@
 -- Ejecutar antes de PN1.sql. No acepta los datos existentes automaticamente.
 USE [HemovidaGest];
 GO
+-- PN2 extiende estas mismas vistas y procedimientos; no reemplazarlos por
+-- definiciones de PN1 una vez instalada esa extension. Ejecutar con stop-on-error.
+IF OBJECT_ID('dbo.v_IntegridadPN2_Instalada','V') IS NOT NULL
+    THROW 51012,'PN2_ALREADY_INSTALLED_USE_INTEGRIDADPN2',1;
+GO
 SET ANSI_NULLS ON;
 SET QUOTED_IDENTIFIER ON;
 GO

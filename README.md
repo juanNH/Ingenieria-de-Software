@@ -16,6 +16,11 @@ El proceso de banco de sangre PN1 incluye protección DVH/DVV, detección de
 inconsistencias y recuperación administrativa.
 Ver [instalación, tratamiento de incidentes y pruebas](Database/INTEGRIDAD_PN1.md).
 
+PN2 incluye solicitudes transfusionales, inventario, reservas y entregas parciales,
+destinos, trazabilidad y reportes. Ver [flujo, diagramas draw.io, instalación y
+recorrido de validación funcional](Docs/PN2.md). Los diagramas de clases y la secuencia
+de clases quedan pendientes de esa validación.
+
 
 ---
 

@@ -36,5 +36,18 @@ namespace Domain
         public const string UnidadLiberar_380_jh = "UNIDAD_LIBERAR";
         public const string UnidadBloquear_380_jh = "UNIDAD_BLOQUEAR";
         public const string UnidadDescartar_380_jh = "UNIDAD_DESCARTAR";
+
+        public const string InventarioVer_380_jh = "INVENTARIO_VER";
+        public const string InventarioActualizar_380_jh = "INVENTARIO_ACTUALIZAR";
+        public const string SolicitudVer_380_jh = "SOLICITUD_VER";
+        public const string SolicitudCrear_380_jh = "SOLICITUD_CREAR";
+        public const string ReservaVer_380_jh = "RESERVA_VER";
+        public const string ReservaCrear_380_jh = "RESERVA_CREAR";
+        public const string ReservaCancelar_380_jh = "RESERVA_CANCELAR";
+        public const string EntregaRegistrar_380_jh = "ENTREGA_REGISTRAR";
+        public const string DestinoRegistrar_380_jh = "DESTINO_REGISTRAR";
+        public const string UnidadReingresar_380_jh = "UNIDAD_REINGRESAR";
+        public const string TrazabilidadVer_380_jh = "TRAZABILIDAD_VER";
+        public const string ReporteVer_380_jh = "REPORTE_VER";
     }
 }
