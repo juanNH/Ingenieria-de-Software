@@ -38,6 +38,7 @@
     <Compile Include="Bitacora\BitacoraModulo.cs" />
     <Compile Include="Bitacora\BitacoraNivel.cs" />
     <Compile Include="Common\IEntity.cs" />
+    <Compile Include="Serialization\IXmlSerializer.cs" />
     <Compile Include="Seguridad\IPasswordService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

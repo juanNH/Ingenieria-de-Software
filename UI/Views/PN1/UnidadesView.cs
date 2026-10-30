@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using Application;
 using Domain;
@@ -24,6 +27,12 @@ namespace UI
         private Button _btnLiberar_380_jh;
         private Button _btnBloquear_380_jh;
         private Button _btnDescartar_380_jh;
+        private Button _btnExportarXml_380_jh;
+        private Button _btnImportarXml_380_jh;
+        private Button _btnLimpiarXml_380_jh;
+        private readonly List<FilaUnidadXml_380_jh> _filasXml_380_jh = new List<FilaUnidadXml_380_jh>();
+        private bool _modoXml_380_jh;
+        private SplitContainer _split_380_jh;
         private Label _lblEstado_380_jh;
 
         public UnidadesView_380_jh()
@@ -56,13 +65,13 @@ namespace UI
             TableLayoutPanel layout = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 4 };
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 38));
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 32));
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 34));
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 50));
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             Controls.Add(layout);
             layout.Controls.Add(CrearLabel_380_jh("UNITS_TITLE", 18, true), 0, 0);
             layout.Controls.Add(CrearLabel_380_jh("UNITS_DESCRIPTION", 9, false), 0, 1);
 
-            FlowLayoutPanel filtro = new FlowLayoutPanel { Dock = DockStyle.Fill, WrapContents = false };
+            FlowLayoutPanel filtro = new FlowLayoutPanel { Dock = DockStyle.Fill, WrapContents = false, AutoScroll = true };
             Label etiquetaBusqueda = CrearLabel_380_jh("UNIT_CODE", 8, false);
             etiquetaBusqueda.AutoSize = true;
             etiquetaBusqueda.Dock = DockStyle.None;
@@ -75,8 +84,19 @@ namespace UI
             buscar.Click += delegate { CargarUnidades_380_jh(); };
             Button actualizar = CrearBoton_380_jh("BTN_REFRESH");
             actualizar.Click += delegate { CargarUnidades_380_jh(); };
+            _btnExportarXml_380_jh = CrearBoton_380_jh("UNIT_SERIALIZE_TABLE");
+            _btnExportarXml_380_jh.Enabled = false;
+            _btnExportarXml_380_jh.Click += ExportarProcesoXml_Click_380_jh;
+            _btnImportarXml_380_jh = CrearBoton_380_jh("UNIT_DESERIALIZE_TABLE");
+            _btnImportarXml_380_jh.Click += ImportarProcesoXml_Click_380_jh;
+            _btnLimpiarXml_380_jh = CrearBoton_380_jh("UNIT_CLEAR_TABLE");
+            _btnLimpiarXml_380_jh.Enabled = false;
+            _btnLimpiarXml_380_jh.Click += LimpiarXml_Click_380_jh;
             filtro.Controls.Add(buscar);
             filtro.Controls.Add(actualizar);
+            filtro.Controls.Add(_btnExportarXml_380_jh);
+            filtro.Controls.Add(_btnImportarXml_380_jh);
+            filtro.Controls.Add(_btnLimpiarXml_380_jh);
             layout.Controls.Add(filtro, 0, 2);
 
             SplitContainer split = new SplitContainer
@@ -87,6 +107,7 @@ namespace UI
                 Panel1MinSize = 25,
                 Panel2MinSize = 25
             };
+            _split_380_jh = split;
             split.SizeChanged += Split_SizeChanged_380_jh;
             layout.Controls.Add(split, 0, 3);
 
@@ -111,7 +132,7 @@ namespace UI
             AgregarColumna_380_jh("estado", "UNIT_STATUS", 100);
             _grid_380_jh.SelectionChanged += Grid_SelectionChanged_380_jh;
             grilla.Controls.Add(_grid_380_jh);
-            _lblEstado_380_jh = new Label { Dock = DockStyle.Bottom, Height = 24, TextAlign = ContentAlignment.MiddleLeft };
+            _lblEstado_380_jh = new Label { Dock = DockStyle.Bottom, Height = 48, TextAlign = ContentAlignment.MiddleLeft };
             grilla.Controls.Add(_lblEstado_380_jh);
 
             GroupBox detalle = new GroupBox { Dock = DockStyle.Fill, Tag = "UNIT_DETAIL", Padding = new Padding(10) };
@@ -229,12 +250,22 @@ namespace UI
             _btnLiberar_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadLiberar_380_jh);
             _btnBloquear_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadBloquear_380_jh);
             _btnDescartar_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadDescartar_380_jh);
+            bool puedeXml = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadVer_380_jh) ||
+                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadClasificar_380_jh) ||
+                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadLiberar_380_jh) ||
+                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadBloquear_380_jh) ||
+                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadDescartar_380_jh);
+            _btnExportarXml_380_jh.Visible = puedeXml;
+            _btnImportarXml_380_jh.Visible = puedeXml;
+            _btnLimpiarXml_380_jh.Visible = puedeXml;
         }
 
         private void CargarUnidades_380_jh()
         {
             new IntegridadApplicationService_380_jh().Verificar_380_jh();
             List<Unidad_380_jh> unidades = _unidadService_380_jh.Listar_380_jh(_txtBuscar_380_jh == null ? null : _txtBuscar_380_jh.Text);
+            _modoXml_380_jh = false;
+            _filasXml_380_jh.Clear();
             _unidades_380_jh.Clear();
             _unidades_380_jh.AddRange(unidades);
             PintarGrilla_380_jh();
@@ -248,30 +279,36 @@ namespace UI
             }
 
             _grid_380_jh.Rows.Clear();
-            foreach (Unidad_380_jh unidad in _unidades_380_jh)
+            if (_modoXml_380_jh)
             {
-                int fila = _grid_380_jh.Rows.Add(
-                    unidad.CodigoIdentificacion_380_jh,
-                    unidad.Donante_380_jh,
-                    unidad.TipoComponente_380_jh,
-                    unidad.GrupoSanguineo_380_jh,
-                    unidad.FactorRh_380_jh,
-                    unidad.FechaVencimiento_380_jh.ToString("dd/MM/yyyy"),
-                    TraducirEstado_380_jh(unidad.EstadoOperativo_380_jh));
-                _grid_380_jh.Rows[fila].Tag = unidad;
+                foreach (FilaUnidadXml_380_jh fila in _filasXml_380_jh)
+                {
+                    int indice = _grid_380_jh.Rows.Add(fila.CodigoIdentificacion_380_jh, fila.Donante_380_jh, fila.TipoComponente_380_jh,
+                        fila.GrupoSanguineo_380_jh, fila.FactorRh_380_jh, fila.FechaVencimiento_380_jh.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture), TraducirEstado_380_jh(fila.EstadoOperativo_380_jh));
+                    _grid_380_jh.Rows[indice].Tag = fila;
+                }
             }
-
-            _lblEstado_380_jh.Text = _unidades_380_jh.Count + " " + LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("MENU_UNITS");
+            else
+            {
+                foreach (Unidad_380_jh unidad in _unidades_380_jh)
+                {
+                    int indice = _grid_380_jh.Rows.Add(unidad.CodigoIdentificacion_380_jh, unidad.Donante_380_jh, unidad.TipoComponente_380_jh,
+                        unidad.GrupoSanguineo_380_jh, unidad.FactorRh_380_jh, unidad.FechaVencimiento_380_jh.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture), TraducirEstado_380_jh(unidad.EstadoOperativo_380_jh));
+                    _grid_380_jh.Rows[indice].Tag = unidad;
+                }
+            }
+            _split_380_jh.Panel2.Enabled = !_modoXml_380_jh;
+            _btnExportarXml_380_jh.Enabled = _grid_380_jh.Rows.Count > 0;
+            _btnLimpiarXml_380_jh.Enabled = _grid_380_jh.Rows.Count > 0;
+            _lblEstado_380_jh.Text = _modoXml_380_jh
+                ? string.Format(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_TABLE_PREVIEW"), _filasXml_380_jh.Count)
+                : _unidades_380_jh.Count + " " + LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("MENU_UNITS");
+            Grid_SelectionChanged_380_jh(this, EventArgs.Empty);
         }
 
         private void Grid_SelectionChanged_380_jh(object sender, EventArgs e)
         {
-            if (_grid_380_jh.SelectedRows.Count == 0)
-            {
-                return;
-            }
-
-            Unidad_380_jh unidad = _grid_380_jh.SelectedRows[0].Tag as Unidad_380_jh;
+            Unidad_380_jh unidad = ObtenerSeleccionada_380_jh();
             if (unidad == null)
             {
                 return;
@@ -290,6 +327,7 @@ namespace UI
 
         private Unidad_380_jh ObtenerSeleccionada_380_jh()
         {
+            if (_modoXml_380_jh) return null;
             return _grid_380_jh.SelectedRows.Count == 0 ? null : _grid_380_jh.SelectedRows[0].Tag as Unidad_380_jh;
         }
 
@@ -341,6 +379,122 @@ namespace UI
             }
         }
 
+        private void ExportarProcesoXml_Click_380_jh(object sender, EventArgs e)
+        {
+            try
+            {
+                List<FilaUnidadXml_380_jh> filas = ObtenerFilasVisibles_380_jh();
+                if (filas.Count == 0)
+                {
+                    MessageBox.Show(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_TABLE_EMPTY"));
+                    return;
+                }
+                string xml = _unidadService_380_jh.SerializarTablaXml_380_jh(filas);
+
+                using (SaveFileDialog dialogo = new SaveFileDialog
+                {
+                    AddExtension = true,
+                    DefaultExt = "xml",
+                    FileName = "TablaUnidadesPN1.xml",
+                    Filter = "XML (*.xml)|*.xml",
+                    OverwritePrompt = true,
+                    Title = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_SERIALIZE_TABLE")
+                })
+                {
+                    if (dialogo.ShowDialog(this) != DialogResult.OK)
+                    {
+                        return;
+                    }
+
+                    File.WriteAllText(dialogo.FileName, xml, new UTF8Encoding(false));
+                }
+
+                MessageBox.Show(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_TABLE_EXPORT_SUCCESS"));
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("OPERATION_NOT_AUTHORIZED"));
+            }
+            catch (InvalidDataException ex)
+            {
+                MessageBox.Show(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_TABLE_EXPORT_ERROR") + Environment.NewLine + ex.Message);
+            }
+            catch (Exception ex) when (ex is IOException || ex is InvalidOperationException || ex is ArgumentException || ex is FormatException)
+            {
+                MessageBox.Show(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_TABLE_EXPORT_ERROR"));
+            }
+        }
+
+        private List<FilaUnidadXml_380_jh> ObtenerFilasVisibles_380_jh()
+        {
+            var filas = new List<FilaUnidadXml_380_jh>();
+            foreach (DataGridViewRow fila in _grid_380_jh.Rows)
+            {
+                if (!fila.Visible || fila.IsNewRow) continue;
+                Unidad_380_jh unidad = fila.Tag as Unidad_380_jh;
+                FilaUnidadXml_380_jh importada = fila.Tag as FilaUnidadXml_380_jh;
+                if (unidad == null && importada == null) throw new InvalidDataException("Fila sin origen válido.");
+                filas.Add(new FilaUnidadXml_380_jh
+                {
+                    CodigoIdentificacion_380_jh = Convert.ToString(fila.Cells["codigo"].Value),
+                    Donante_380_jh = Convert.ToString(fila.Cells["donante"].Value),
+                    TipoComponente_380_jh = Convert.ToString(fila.Cells["componente"].Value),
+                    GrupoSanguineo_380_jh = Convert.ToString(fila.Cells["grupo"].Value),
+                    FactorRh_380_jh = Convert.ToString(fila.Cells["rh"].Value),
+                    FechaVencimiento_380_jh = DateTime.ParseExact(Convert.ToString(fila.Cells["vencimiento"].Value), "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    EstadoOperativo_380_jh = unidad != null ? unidad.EstadoOperativo_380_jh : importada.EstadoOperativo_380_jh
+                });
+            }
+            return filas;
+        }
+
+        private void ImportarProcesoXml_Click_380_jh(object sender, EventArgs e)
+        {
+            using (OpenFileDialog dialogo = new OpenFileDialog
+            {
+                Filter = "XML (*.xml)|*.xml", CheckFileExists = true,
+                Title = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_DESERIALIZE_TABLE")
+            })
+            {
+                if (dialogo.ShowDialog(this) != DialogResult.OK) return;
+                try
+                {
+                    TablaUnidadesXml_380_jh tabla;
+                    using (FileStream archivo = File.OpenRead(dialogo.FileName))
+                        tabla = _unidadService_380_jh.DeserializarTablaXml_380_jh(archivo);
+                    MostrarTablaXml_380_jh(tabla);
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    MessageBox.Show(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("OPERATION_NOT_AUTHORIZED"));
+                }
+                catch (InvalidDataException ex)
+                {
+                    MessageBox.Show(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_TABLE_IMPORT_ERROR") + Environment.NewLine + ex.Message);
+                }
+                catch (Exception ex) when (ex is IOException || ex is InvalidOperationException || ex is System.Xml.XmlException || ex is System.Xml.Schema.XmlSchemaException || ex is ArgumentException)
+                {
+                    MessageBox.Show(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_TABLE_IMPORT_ERROR"));
+                }
+            }
+        }
+
+        private void LimpiarXml_Click_380_jh(object sender, EventArgs e)
+        {
+            _unidades_380_jh.Clear();
+            _filasXml_380_jh.Clear();
+            _modoXml_380_jh = true;
+            PintarGrilla_380_jh();
+        }
+
+        private void MostrarTablaXml_380_jh(TablaUnidadesXml_380_jh tabla)
+        {
+            _filasXml_380_jh.Clear();
+            _filasXml_380_jh.AddRange(tabla.Unidades_380_jh);
+            _modoXml_380_jh = true;
+            PintarGrilla_380_jh();
+        }
+
         private static string ObtenerClaveResultado_380_jh(CodigoOperacionPN1_380_jh resultado, string estado)
         {
             if (resultado == CodigoOperacionPN1_380_jh.Ok_380_jh)
@@ -369,10 +523,15 @@ namespace UI
             string clave;
             switch (estado)
             {
+                case EstadoUnidadPN1_380_jh.EnRevision_380_jh: clave = "UNIT_STATE_EN_REVISION"; break;
                 case EstadoUnidadPN1_380_jh.Liberada_380_jh: clave = "UNIT_STATE_LIBERADA"; break;
                 case EstadoUnidadPN1_380_jh.Bloqueada_380_jh: clave = "UNIT_STATE_BLOQUEADA"; break;
                 case EstadoUnidadPN1_380_jh.Descartada_380_jh: clave = "UNIT_STATE_DESCARTADA"; break;
-                default: clave = "UNIT_STATE_EN_REVISION"; break;
+                case EstadoUnidadPN2_380_jh.Reservada_380_jh: clave = "PN2_STATE_RESERVADA"; break;
+                case EstadoUnidadPN2_380_jh.Entregada_380_jh: clave = "PN2_STATE_ENTREGADA"; break;
+                case EstadoUnidadPN2_380_jh.Transfundida_380_jh: clave = "PN2_STATE_TRANSFUNDIDA"; break;
+                case EstadoUnidadPN2_380_jh.Devuelta_380_jh: clave = "PN2_STATE_DEVUELTA"; break;
+                default: return estado ?? string.Empty;
             }
 
             return LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(clave);

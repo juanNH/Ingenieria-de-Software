@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="Electron">
+  <diagram name="PN1 - XML auxiliar - Secuencia" id="pn1-xml-secuencia">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1760" pageHeight="1480">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="PN1 — Serialización de la tabla de unidades" style="text;html=1;strokeColor=none;fillColor=none;fontSize=22;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="120" y="15" width="1460" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="actor" value="Operador" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="5" y="70" width="210" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-life" value="" style="dashed=1;endArrow=none;strokeColor=#999999;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="125" as="sourcePoint" />
+            <mxPoint x="110" y="1440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ui" value="UnidadesView" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="70" width="210" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="ui-life" value="" style="dashed=1;endArrow=none;strokeColor=#999999;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="125" as="sourcePoint" />
+            <mxPoint x="370" y="1440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="app" value="UnidadApplicationService" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="555" y="70" width="210" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="app-life" value="" style="dashed=1;endArrow=none;strokeColor=#999999;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="125" as="sourcePoint" />
+            <mxPoint x="660" y="1440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tabla" value="TablaUnidadesXmlService" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="865" y="70" width="210" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="tabla-life" value="" style="dashed=1;endArrow=none;strokeColor=#999999;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="970" y="125" as="sourcePoint" />
+            <mxPoint x="970" y="1440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="serializer" value="XmlSerializerService" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1175" y="70" width="210" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="serializer-life" value="" style="dashed=1;endArrow=none;strokeColor=#999999;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1280" y="125" as="sourcePoint" />
+            <mxPoint x="1280" y="1440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legacy" value="ProcesoPN1XmlImportService" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1455" y="70" width="210" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="legacy-life" value="" style="dashed=1;endArrow=none;strokeColor=#999999;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1560" y="125" as="sourcePoint" />
+            <mxPoint x="1560" y="1440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="section1" value="1. Serializar todas las filas visibles" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="20" y="150" width="1700" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" value="Serializar tabla" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#333333;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="210" as="sourcePoint" />
+            <mxPoint x="370" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s2" value="ObtenerFilasVisibles(): filas de la grilla" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="270" y="235" width="330" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="SerializarTablaXml(filas)" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#333333;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="310" as="sourcePoint" />
+            <mxPoint x="660" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s4" value="Serializar(filas): validar datos" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#333333;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="355" as="sourcePoint" />
+            <mxPoint x="970" y="355" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s5" value="Serialize(tabla)" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#333333;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="970" y="400" as="sourcePoint" />
+            <mxPoint x="1280" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s6" value="XML" style="edgeStyle=none;html=1;endArrow=open;dashed=1;strokeColor=#555555;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1280" y="445" as="sourcePoint" />
+            <mxPoint x="970" y="445" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7" value="XML" style="edgeStyle=none;html=1;endArrow=open;dashed=1;strokeColor=#555555;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="970" y="490" as="sourcePoint" />
+            <mxPoint x="660" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s8" value="XML" style="edgeStyle=none;html=1;endArrow=open;dashed=1;strokeColor=#555555;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="535" as="sourcePoint" />
+            <mxPoint x="370" y="535" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s9" value="Guardar archivo (SaveFileDialog)" style="edgeStyle=none;html=1;endArrow=open;dashed=1;strokeColor=#555555;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="580" as="sourcePoint" />
+            <mxPoint x="110" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="section2" value="2. Limpiar la misma tabla visual" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="20" y="620" width="1700" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="s10" value="Limpiar tabla" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#333333;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="685" as="sourcePoint" />
+            <mxPoint x="370" y="685" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s11" value="Vaciar filas locales y deshabilitar acciones operativas." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="285" y="715" width="385" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="section3" value="3. Deserializar a la misma tabla visual" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="20" y="785" width="1700" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="s12" value="Seleccionar XML" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#333333;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="850" as="sourcePoint" />
+            <mxPoint x="370" y="850" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s13" value="DeserializarTablaXml(stream)" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#333333;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="895" as="sourcePoint" />
+            <mxPoint x="660" y="895" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s14" value="Deserializar(stream)" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#333333;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="940" as="sourcePoint" />
+            <mxPoint x="970" y="940" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s15" value="[formato nuevo] Deserialize(stream, esquema de tabla)" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#333333;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="970" y="985" as="sourcePoint" />
+            <mxPoint x="1280" y="985" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s16" value="[formato nuevo] Tabla o error" style="edgeStyle=none;html=1;endArrow=open;dashed=1;strokeColor=#555555;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1280" y="1030" as="sourcePoint" />
+            <mxPoint x="970" y="1030" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s17" value="[formato anterior] Importar(stream)" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeColor=#333333;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="970" y="1075" as="sourcePoint" />
+            <mxPoint x="1560" y="1075" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s18" value="[formato anterior] ProcesoPN1" style="edgeStyle=none;html=1;endArrow=open;dashed=1;strokeColor=#555555;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1560" y="1120" as="sourcePoint" />
+            <mxPoint x="970" y="1120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s19" value="Validar campos, códigos únicos, estado y clasificación; conservar la grilla si falla." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="780" y="1150" width="430" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s20" value="Tabla o error" style="edgeStyle=none;html=1;endArrow=open;dashed=1;strokeColor=#555555;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="970" y="1240" as="sourcePoint" />
+            <mxPoint x="660" y="1240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s21" value="Tabla o error" style="edgeStyle=none;html=1;endArrow=open;dashed=1;strokeColor=#555555;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="1285" as="sourcePoint" />
+            <mxPoint x="370" y="1285" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s22" value="Mostrar filas temporales no verificadas" style="edgeStyle=none;html=1;endArrow=open;dashed=1;strokeColor=#555555;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="1330" as="sourcePoint" />
+            <mxPoint x="110" y="1330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note" value="Actualizar o buscar vuelve a consultar la base. Limpiar y deserializar solo modifican la tabla visual." style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="310" y="1370" width="1090" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

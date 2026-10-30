@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.IO;
 using Abstractions;
 using Domain;
 using Repository;
+using Services;
 
 namespace Application
 {
@@ -10,9 +12,10 @@ namespace Application
         private readonly UnidadRepository_380_jh _unidadRepository_380_jh;
         private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
         private readonly BitacoraApplicationService_380_jh _bitacoraService_380_jh;
+        private readonly IXmlSerializer_380_jh _xmlSerializer_380_jh;
 
         public UnidadApplicationService_380_jh()
-            : this(new UnidadRepository_380_jh(), new AutorizacionApplicationService_380_jh(), new BitacoraApplicationService_380_jh())
+            : this(new UnidadRepository_380_jh(), new AutorizacionApplicationService_380_jh(), new BitacoraApplicationService_380_jh(), new XmlSerializerService_380_jh())
         {
         }
 
@@ -20,24 +23,121 @@ namespace Application
             UnidadRepository_380_jh unidadRepository,
             AutorizacionApplicationService_380_jh autorizacionService,
             BitacoraApplicationService_380_jh bitacoraService)
+            : this(unidadRepository, autorizacionService, bitacoraService, new XmlSerializerService_380_jh())
+        {
+        }
+
+        public UnidadApplicationService_380_jh(
+            UnidadRepository_380_jh unidadRepository,
+            AutorizacionApplicationService_380_jh autorizacionService,
+            BitacoraApplicationService_380_jh bitacoraService,
+            IXmlSerializer_380_jh xmlSerializer)
         {
             _unidadRepository_380_jh = unidadRepository;
             _autorizacionService_380_jh = autorizacionService;
             _bitacoraService_380_jh = bitacoraService;
+            _xmlSerializer_380_jh = xmlSerializer;
         }
 
         public List<Unidad_380_jh> Listar_380_jh(string buscar = null)
         {
-            if (!_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadVer_380_jh) &&
-                !_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadClasificar_380_jh) &&
-                !_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadLiberar_380_jh) &&
-                !_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadBloquear_380_jh) &&
-                !_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadDescartar_380_jh))
+            if (!PuedeConsultarUnidades_380_jh(Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh()))
             {
                 return new List<Unidad_380_jh>();
             }
 
             return _unidadRepository_380_jh.Listar_380_jh(string.IsNullOrWhiteSpace(buscar) ? null : buscar.Trim());
+        }
+
+        public string ExportarProcesoXml_380_jh(Unidad_380_jh unidad)
+        {
+            if (unidad == null || unidad.Id_380_jh <= 0 || !PuedeConsultarUnidades_380_jh(
+                    Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh()))
+            {
+                return null;
+            }
+
+            List<Unidad_380_jh> unidades = _unidadRepository_380_jh.Listar_380_jh(null);
+            Unidad_380_jh unidadSeleccionada = unidades.Find(item => item.Id_380_jh == unidad.Id_380_jh);
+            if (unidadSeleccionada == null)
+            {
+                return null;
+            }
+
+            List<Unidad_380_jh> unidadesDonacion = new List<Unidad_380_jh>();
+            foreach (Unidad_380_jh unidadDonacion in unidades)
+            {
+                if (unidadDonacion.IdDonacion_380_jh == unidadSeleccionada.IdDonacion_380_jh)
+                {
+                    unidadesDonacion.Add(unidadDonacion);
+                }
+            }
+
+            ProcesoPN1Xml_380_jh proceso = new ProcesoPN1Xml_380_jh
+            {
+                VersionEsquema_380_jh = "1.0",
+                ExportadoEnUtc_380_jh = System.DateTime.UtcNow,
+                Donacion_380_jh = new DonacionProcesoPN1Xml_380_jh
+                {
+                    Id_380_jh = unidadSeleccionada.IdDonacion_380_jh,
+                    CantidadUnidades_380_jh = unidadesDonacion.Count,
+                    Donante_380_jh = new DonanteProcesoXml_380_jh
+                    {
+                        Id_380_jh = unidadSeleccionada.IdDonante_380_jh.GetValueOrDefault(),
+                        Nombre_380_jh = unidadSeleccionada.Donante_380_jh
+                    },
+                    Unidades_380_jh = unidadesDonacion.ConvertAll(MapearUnidadXml_380_jh)
+                }
+            };
+
+            return _xmlSerializer_380_jh.Serialize_380_jh(proceso);
+        }
+
+        public ProcesoPN1Xml_380_jh ImportarProcesoXml_380_jh(Stream stream)
+        {
+            if (!PuedeConsultarUnidades_380_jh(Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh()))
+                throw new System.UnauthorizedAccessException();
+            return new ProcesoPN1XmlImportService_380_jh(_xmlSerializer_380_jh).Importar_380_jh(stream);
+        }
+
+        public string SerializarTablaXml_380_jh(List<FilaUnidadXml_380_jh> filas)
+        {
+            if (!PuedeConsultarUnidades_380_jh(Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh()))
+                throw new System.UnauthorizedAccessException();
+            return new TablaUnidadesXmlService_380_jh(_xmlSerializer_380_jh).Serializar_380_jh(filas);
+        }
+
+        public TablaUnidadesXml_380_jh DeserializarTablaXml_380_jh(Stream stream)
+        {
+            if (!PuedeConsultarUnidades_380_jh(Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh()))
+                throw new System.UnauthorizedAccessException();
+            return new TablaUnidadesXmlService_380_jh(_xmlSerializer_380_jh).Deserializar_380_jh(stream);
+        }
+
+        private static UnidadProcesoXml_380_jh MapearUnidadXml_380_jh(Unidad_380_jh unidad)
+        {
+            return new UnidadProcesoXml_380_jh
+            {
+                Id_380_jh = unidad.Id_380_jh,
+                CodigoIdentificacion_380_jh = unidad.CodigoIdentificacion_380_jh,
+                TipoComponente_380_jh = unidad.TipoComponente_380_jh,
+                GrupoSanguineo_380_jh = unidad.GrupoSanguineo_380_jh,
+                FactorRh_380_jh = unidad.FactorRh_380_jh,
+                FechaVencimiento_380_jh = unidad.FechaVencimiento_380_jh,
+                EstadoOperativo_380_jh = unidad.EstadoOperativo_380_jh,
+                Observaciones_380_jh = unidad.Observaciones_380_jh,
+                FechaAlta_380_jh = unidad.FechaAlta_380_jh,
+                FechaUltimaModificacion_380_jh = unidad.FechaUltimaModificacion_380_jh
+            };
+        }
+
+        private bool PuedeConsultarUnidades_380_jh(Usuario_380_jh usuario)
+        {
+            return _autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadVer_380_jh) ||
+                   _autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadClasificar_380_jh) ||
+                   _autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadLiberar_380_jh) ||
+                   _autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadBloquear_380_jh) ||
+                   _autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadDescartar_380_jh);
         }
 
         public CodigoOperacionPN1_380_jh Clasificar_380_jh(Unidad_380_jh unidad)
