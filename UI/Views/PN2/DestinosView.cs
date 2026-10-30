@@ -46,6 +46,16 @@ namespace UI
             Button actualizar = ControlesPN2_380_jh.CrearBoton_380_jh("BTN_REFRESH");
             actualizar.Click += delegate { CargarEntregas_380_jh(); };
             filtros.Controls.Add(actualizar);
+            Button comprobante = ControlesPN2_380_jh.CrearBoton_380_jh("RECEIPT_PDF");
+            comprobante.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.SolicitudVer_380_jh) &&
+                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaVer_380_jh);
+            comprobante.Click += delegate
+            {
+                Entrega_380_jh entrega = ControlesPN2_380_jh.Seleccionado_380_jh<Entrega_380_jh>(_grid_380_jh);
+                if (entrega == null) { MessageBox.Show(this, ControlesPN2_380_jh.Traducir_380_jh("PN2_SELECT_DELIVERY")); return; }
+                ComprobantePdfUI_380_jh.GuardarPN2_380_jh(this, _pn2Service_380_jh, entrega.IdSolicitudTransfusional_380_jh, entrega.Id_380_jh);
+            };
+            filtros.Controls.Add(comprobante);
             layout.Controls.Add(filtros, 0, 2);
 
             Panel grillaPanel = new Panel { Dock = DockStyle.Fill };

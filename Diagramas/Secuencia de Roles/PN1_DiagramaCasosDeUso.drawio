@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="PN1 - Casos de uso" id="pn1-casos-de-uso">
-    <mxGraphModel dx="3839" dy="1361" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+    <mxGraphModel dx="3839" dy="1361" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -11,7 +11,7 @@
           <mxGeometry height="28" width="900" x="350" y="70" as="geometry" />
         </mxCell>
         <mxCell id="limite" parent="1" style="swimlane;horizontal=1;startSize=42;whiteSpace=wrap;html=1;rounded=0;fillColor=none;swimlaneFillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;fontStyle=1;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="HemovidaGest - PN1" vertex="1">
-          <mxGeometry height="760" width="850" x="375" y="120" as="geometry" />
+          <mxGeometry height="760" width="1180" x="375" y="120" as="geometry" />
         </mxCell>
         <mxCell id="uc08" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDUN-01&lt;/b&gt;&lt;br&gt;Registrar donante" vertex="1">
           <mxGeometry height="105" width="300" x="650" y="205" as="geometry" />
@@ -64,6 +64,8 @@
         <mxCell id="a-responsable-11" edge="1" parent="1" source="actor-responsable" style="rounded=0;html=1;endArrow=openThin;strokeColor=#9673a6;strokeWidth=1.5;endFill=0;" target="uc11" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="uc-comprobante" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=14;" value="Generar comprobante PDF de donación" vertex="1"><mxGeometry x="1240" y="520" width="260" height="105" as="geometry" /></mxCell>
+        <mxCell id="asoc-comprobante" parent="1" source="actor-operador" target="uc-comprobante" value="" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;fontSize=11;"><mxGeometry relative="1" as="geometry" /></mxCell>
       </root>
     </mxGraphModel>
   </diagram>

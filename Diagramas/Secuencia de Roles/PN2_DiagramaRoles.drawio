@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mxfile host="Electron">
   <diagram name="PN2 - Diagrama de roles" id="pn2---diagrama-de-roles">
-    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -65,6 +65,7 @@
         <mxCell id="reglas-pn2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;strokeWidth=1.5;fontSize=12;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;spacingTop=8;" value="&lt;b&gt;Pantallas PN2&lt;/b&gt; — «Solicitudes transfusionales» → «Reservas y entregas» → «Destino de unidades». Las pestañas PN1 y PN2 se separan y despliegan sus pantallas al pasar el cursor.&lt;br&gt;&lt;br&gt;&lt;b&gt;Reglas&lt;/b&gt; — Atención parcial; se muestran cantidad requerida, reservada, entregada y saldo. La cancelación es manual y requiere motivo. Devolución y descarte reabren saldo y conservan historial. Una unidad Devuelta sigue indisponible hasta su reingreso autorizado a En revisión y nueva clasificación y liberación en PN1. «Consultas» es independiente." vertex="1">
           <mxGeometry x="65" y="770" width="1470" height="170" as="geometry" />
         </mxCell>
+        <mxCell id="comprobante-pn2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;E9 / C11 / S10&lt;/b&gt; — El usuario con permisos de solicitudes y reservas genera el PDF consolidado desde Solicitudes o el individual desde Destino de unidades." vertex="1"><mxGeometry x="65" y="955" width="1470" height="75" as="geometry" /></mxCell>
       </root>
     </mxGraphModel>
   </diagram>

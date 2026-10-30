@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="PN1 - Diagrama de Actividad del Negocio" id="pn1-diagrama-actividad-negocio">
-    <mxGraphModel dx="1717" dy="1043" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1820" math="0" shadow="0">
+    <mxGraphModel dx="1717" dy="1043" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="2150" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -11,16 +11,16 @@
           <mxGeometry height="38" width="105" x="40" y="65" as="geometry" />
         </mxCell>
         <mxCell id="lane-donante" parent="1" style="swimlane;horizontal=1;startSize=44;whiteSpace=wrap;html=1;rounded=0;fillColor=#f5f5f5;swimlaneFillColor=#ffffff;strokeColor=#999999;strokeWidth=1.5;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;Donante&lt;/b&gt;" vertex="1">
-          <mxGeometry height="1650" width="260" x="40" y="110" as="geometry" />
+          <mxGeometry height="1930" width="260" x="40" y="110" as="geometry" />
         </mxCell>
         <mxCell id="lane-extraccion" parent="1" style="swimlane;horizontal=1;startSize=44;whiteSpace=wrap;html=1;rounded=0;fillColor=#f5f5f5;swimlaneFillColor=#ffffff;strokeColor=#999999;strokeWidth=1.5;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;Personal de extracción&lt;/b&gt;" vertex="1">
-          <mxGeometry height="1650" width="350" x="300" y="110" as="geometry" />
+          <mxGeometry height="1930" width="350" x="300" y="110" as="geometry" />
         </mxCell>
         <mxCell id="lane-operador" parent="1" style="swimlane;horizontal=1;startSize=44;whiteSpace=wrap;html=1;rounded=0;fillColor=#f5f5f5;swimlaneFillColor=#ffffff;strokeColor=#999999;strokeWidth=1.5;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;Operador autorizado&lt;/b&gt;" vertex="1">
-          <mxGeometry height="1650" width="330" x="650" y="110" as="geometry" />
+          <mxGeometry height="1930" width="330" x="650" y="110" as="geometry" />
         </mxCell>
         <mxCell id="lane-responsable" parent="1" style="swimlane;horizontal=1;startSize=44;whiteSpace=wrap;html=1;rounded=0;fillColor=#f5f5f5;swimlaneFillColor=#ffffff;strokeColor=#999999;strokeWidth=1.5;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;Responsable autorizado&lt;/b&gt;" vertex="1">
-          <mxGeometry height="1650" width="780" x="980" y="110" as="geometry" />
+          <mxGeometry height="1930" width="780" x="980" y="110" as="geometry" />
         </mxCell>
         <mxCell id="inicio" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#9673a6;strokeColor=#6b4f78;strokeWidth=2;" value="" vertex="1">
           <mxGeometry height="30" width="30" x="155" y="175" as="geometry" />
@@ -177,6 +177,12 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="e4-comprobante" parent="1" style="shape=callout;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#8a6d3b;strokeWidth=2;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;E4&lt;/b&gt;&lt;br&gt;Seleccionar unidad guardada y solicitar comprobante" vertex="1"><mxGeometry x="1000" y="1790" width="220" height="75" as="geometry" /></mxCell>
+        <mxCell id="c8-comprobante" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#29a9d6;strokeColor=#197a9d;strokeWidth=2;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;C8&lt;/b&gt;&lt;br&gt;Generar comprobante PDF de la donación" vertex="1"><mxGeometry x="1250" y="1790" width="220" height="75" as="geometry" /></mxCell>
+        <mxCell id="s5-comprobante" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1.5;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;S5&lt;/b&gt;&lt;br&gt;PDF con unidades y estados al emitir" vertex="1"><mxGeometry x="1500" y="1790" width="220" height="75" as="geometry" /></mxCell>
+        <mxCell id="f-e4-c8" parent="1" source="e4-comprobante" target="c8-comprobante" value="" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;fontSize=11;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="f-s4-c8" parent="1" source="s4" target="c8-comprobante" value="A solicitud" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;fontSize=11;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="f-c8-s5" parent="1" source="c8-comprobante" target="s5-comprobante" value="" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;fontSize=11;"><mxGeometry relative="1" as="geometry" /></mxCell>
       </root>
     </mxGraphModel>
   </diagram>

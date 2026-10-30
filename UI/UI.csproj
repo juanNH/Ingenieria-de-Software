@@ -53,6 +53,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Common\TranslationApplier.cs" />
+    <Compile Include="Common\ComprobantePdfUI.cs" />
     <Compile Include="Views\Idiomas\IdiomasView.cs">
       <SubType>UserControl</SubType>
     </Compile>
