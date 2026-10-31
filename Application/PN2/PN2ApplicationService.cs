@@ -56,8 +56,22 @@ namespace Application
 
         public CodigoOperacionPN2_380_jh RegistrarSolicitud_380_jh(SolicitudTransfusional_380_jh solicitud)
         {
+            bool estudioAusente = solicitud != null && string.IsNullOrWhiteSpace(solicitud.GrupoReceptor_380_jh) &&
+                string.IsNullOrWhiteSpace(solicitud.RhReceptor_380_jh) && string.IsNullOrWhiteSpace(solicitud.LaboratorioEstudio_380_jh) &&
+                string.IsNullOrWhiteSpace(solicitud.ReferenciaEstudio_380_jh) && string.IsNullOrWhiteSpace(solicitud.ResultadoAnticuerpos_380_jh) &&
+                !solicitud.FechaEstudio_380_jh.HasValue;
+            bool estudioCompleto = solicitud != null &&
+                (solicitud.GrupoReceptor_380_jh == "O" || solicitud.GrupoReceptor_380_jh == "A" ||
+                 solicitud.GrupoReceptor_380_jh == "B" || solicitud.GrupoReceptor_380_jh == "AB") &&
+                (solicitud.RhReceptor_380_jh == "+" || solicitud.RhReceptor_380_jh == "-") &&
+                TextoValido_380_jh(solicitud.LaboratorioEstudio_380_jh, 150, true) &&
+                TextoValido_380_jh(solicitud.ReferenciaEstudio_380_jh, 150, true) &&
+                TextoValido_380_jh(solicitud.ResultadoAnticuerpos_380_jh, 500, true) &&
+                solicitud.FechaEstudio_380_jh.HasValue && solicitud.FechaEstudio_380_jh.Value.Date <= DateTime.Today;
             bool valida = solicitud != null && TextoValido_380_jh(solicitud.PacienteReceptor_380_jh, 150, true) &&
-                TextoValido_380_jh(solicitud.TipoComponente_380_jh, 100, true) && solicitud.CantidadRequerida_380_jh > 0;
+                TextoValido_380_jh(solicitud.TipoComponente_380_jh, 100, true) && solicitud.CantidadRequerida_380_jh > 0 &&
+                TextoValido_380_jh(solicitud.DocumentoReceptor_380_jh, 50, true) &&
+                TextoValido_380_jh(solicitud.ProfesionalSolicitante_380_jh, 150, true) && (estudioAusente || estudioCompleto);
             return Ejecutar_380_jh(PermisosSistema_380_jh.SolicitudCrear_380_jh, valida,
                 BitacoraAccion_380_jh.SolicitudTransfusionalRegistrada_380_jh, "Solicitud transfusional registrada.",
                 idUsuario =>
@@ -66,6 +80,38 @@ namespace Application
                     solicitud.TipoComponente_380_jh = Limpiar_380_jh(solicitud.TipoComponente_380_jh);
                     return _repository_380_jh.RegistrarSolicitud_380_jh(solicitud, idUsuario);
                 });
+        }
+
+        public CodigoOperacionPN2_380_jh ActualizarEstudio_380_jh(SolicitudTransfusional_380_jh solicitud)
+        {
+            bool valida = solicitud != null && solicitud.Id_380_jh > 0 &&
+                TextoValido_380_jh(solicitud.DocumentoReceptor_380_jh, 50, true) &&
+                TextoValido_380_jh(solicitud.ProfesionalSolicitante_380_jh, 150, true) &&
+                (solicitud.GrupoReceptor_380_jh == "O" || solicitud.GrupoReceptor_380_jh == "A" || solicitud.GrupoReceptor_380_jh == "B" || solicitud.GrupoReceptor_380_jh == "AB") &&
+                (solicitud.RhReceptor_380_jh == "+" || solicitud.RhReceptor_380_jh == "-") &&
+                TextoValido_380_jh(solicitud.LaboratorioEstudio_380_jh, 150, true) &&
+                TextoValido_380_jh(solicitud.ReferenciaEstudio_380_jh, 150, true) &&
+                TextoValido_380_jh(solicitud.ResultadoAnticuerpos_380_jh, 500, true) &&
+                solicitud.FechaEstudio_380_jh.HasValue && solicitud.FechaEstudio_380_jh.Value.Date <= DateTime.Today;
+            return Ejecutar_380_jh(PermisosSistema_380_jh.SolicitudCrear_380_jh, valida,
+                BitacoraAccion_380_jh.EstudioReceptorActualizado_380_jh, "Estudio del receptor actualizado.",
+                idUsuario => _repository_380_jh.ActualizarEstudio_380_jh(solicitud, idUsuario));
+        }
+
+        public CodigoOperacionPN2_380_jh ValidarEstudio_380_jh(int idSolicitud)
+        {
+            return Ejecutar_380_jh(PermisosSistema_380_jh.ReservaCrear_380_jh, idSolicitud > 0,
+                BitacoraAccion_380_jh.EstudioReceptorValidado_380_jh, "Estudio del receptor validado. Solicitud: " + idSolicitud + ".",
+                idUsuario => _repository_380_jh.ValidarEstudio_380_jh(idSolicitud, idUsuario));
+        }
+
+        public List<Unidad_380_jh> ListarCandidatas_380_jh(int idSolicitud)
+        {
+            Usuario_380_jh usuario = UsuarioActual_380_jh();
+            if (!TienePermiso_380_jh(usuario, PermisosSistema_380_jh.InventarioVer_380_jh) ||
+                !TienePermiso_380_jh(usuario, PermisosSistema_380_jh.ReservaVer_380_jh)) return new List<Unidad_380_jh>();
+            ValidarConsulta_380_jh(idSolicitud > 0);
+            return _repository_380_jh.ListarCandidatas_380_jh(idSolicitud, usuario.Id_380_jh);
         }
 
         public List<Reserva_380_jh> ListarReservas_380_jh(int? idSolicitudTransfusional = null)
@@ -80,7 +126,7 @@ namespace Application
         {
             return Ejecutar_380_jh(PermisosSistema_380_jh.ReservaCrear_380_jh,
                 reserva != null && reserva.IdSolicitudTransfusional_380_jh > 0 && reserva.IdUnidad_380_jh > 0 &&
-                TextoValido_380_jh(reserva.Observacion_380_jh, 500), BitacoraAccion_380_jh.UnidadReservada_380_jh,
+                TextoValido_380_jh(reserva.Observacion_380_jh, 450, true), BitacoraAccion_380_jh.UnidadReservada_380_jh,
                 "Reserva registrada. Solicitud: " + (reserva == null ? 0 : reserva.IdSolicitudTransfusional_380_jh) +
                 ". Unidad: " + (reserva == null ? 0 : reserva.IdUnidad_380_jh) + ".",
                 idUsuario => _repository_380_jh.Reservar_380_jh(reserva, idUsuario));

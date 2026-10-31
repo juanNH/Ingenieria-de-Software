@@ -153,6 +153,8 @@ namespace UI
                 case "Unidades vencidas cuyo recorrido aún no terminó en transfusión o descarte.": clave = "PN2_REPORT_EXPIRED_NOTE"; break;
                 case "Reservas activas con unidad vencida, sin clasificación o con estado/componente incompatible.": clave = "PN2_REPORT_INVALID_RESERVATIONS_NOTE"; break;
                 case "Solicitudes con saldo y sin unidad liberada, clasificada y vigente del componente solicitado.": clave = "PN2_REPORT_UNAVAILABLE_NOTE"; break;
+                case "Reservas activas sin estudio validado o referencia, con unidad vencida o sin coincidencia preliminar.": clave = "PN2_REPORT_STUDY_RESERVATIONS_NOTE"; break;
+                case "Solicitudes con saldo sin estudio validado o sin unidades candidatas.": clave = "PN2_REPORT_STUDY_UNAVAILABLE_NOTE"; break;
                 default: return detalle ?? string.Empty;
             }
             return ControlesPN2_380_jh.Traducir_380_jh(clave);

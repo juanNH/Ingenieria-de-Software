@@ -36,20 +36,26 @@ namespace UI
 
         private void ConstruirInterfaz_380_jh()
         {
-            TableLayoutPanel layout = ControlesPN2_380_jh.CrearLayout_380_jh(this, "PN2_RESERVATIONS_TITLE", "PN2_RESERVATIONS_DESCRIPTION", 62, 180);
+            TableLayoutPanel layout = ControlesPN2_380_jh.CrearLayout_380_jh(this, "PN2_RESERVATIONS_TITLE", "PN2_RESERVATIONS_STUDY_DESCRIPTION", 62, 180);
             FlowLayoutPanel filtros = ControlesPN2_380_jh.CrearFiltros_380_jh();
             _cmbSolicitud_380_jh = new ComboBox { Width = 620, DropDownStyle = ComboBoxStyle.DropDownList, FormattingEnabled = true,
                 DropDownWidth = 800, DisplayMember = "PacienteReceptor_380_jh", ValueMember = "Id_380_jh" };
             _cmbSolicitud_380_jh.Format += delegate(object sender, ListControlConvertEventArgs e)
             {
                 SolicitudTransfusional_380_jh solicitud = e.ListItem as SolicitudTransfusional_380_jh;
-                if (solicitud != null) e.Value = string.Format("#{0} · {1} · {2}", solicitud.Id_380_jh, solicitud.PacienteReceptor_380_jh, solicitud.TipoComponente_380_jh);
+                if (solicitud != null) e.Value = string.Format("#{0} · {1} · {2} · {3}{4} · {5}", solicitud.Id_380_jh, solicitud.PacienteReceptor_380_jh,
+                    solicitud.TipoComponente_380_jh, solicitud.GrupoReceptor_380_jh, solicitud.RhReceptor_380_jh,
+                    ControlesPN2_380_jh.Traducir_380_jh(solicitud.IdUsuarioValidacion_380_jh.HasValue ? "PN2_STUDY_VALIDATED" : "PN2_STUDY_PENDING"));
             };
             _cmbSolicitud_380_jh.SelectedIndexChanged += delegate { if (!_cargando_380_jh) CargarReservas_380_jh(); };
             ControlesPN2_380_jh.AgregarFiltro_380_jh(filtros, "PN2_REQUEST_ID", _cmbSolicitud_380_jh);
             Button actualizar = ControlesPN2_380_jh.CrearBoton_380_jh("BTN_REFRESH");
             actualizar.Click += delegate { CargarDatos_380_jh(); };
             filtros.Controls.Add(actualizar);
+            Button validar = ControlesPN2_380_jh.CrearBoton_380_jh("PN2_VALIDATE_STUDY");
+            validar.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaCrear_380_jh);
+            validar.Click += ValidarEstudio_Click_380_jh;
+            filtros.Controls.Add(validar);
             layout.Controls.Add(filtros, 0, 2);
 
             SplitContainer split = new SplitContainer { Dock = DockStyle.Fill, Orientation = Orientation.Horizontal,
@@ -59,7 +65,7 @@ namespace UI
                 int disponible = split.Height - split.SplitterWidth;
                 if (disponible >= 60) split.SplitterDistance = Math.Max(25, Math.Min(disponible - 25, disponible / 2));
             };
-            GroupBox unidades = new GroupBox { Dock = DockStyle.Fill, Tag = "PN2_AVAILABLE_UNITS" };
+            GroupBox unidades = new GroupBox { Dock = DockStyle.Fill, Tag = "PN2_CANDIDATE_UNITS" };
             _gridUnidades_380_jh = ControlesPN2_380_jh.CrearGrilla_380_jh();
             ControlesPN2_380_jh.AgregarColumna_380_jh(_gridUnidades_380_jh, "codigo", "UNIT_CODE");
             ControlesPN2_380_jh.AgregarColumna_380_jh(_gridUnidades_380_jh, "componente", "UNIT_COMPONENT", 130);
@@ -87,8 +93,8 @@ namespace UI
             _lblCantidades_380_jh = new Label { Dock = DockStyle.Fill, AutoEllipsis = true };
             formulario.Controls.Add(_lblCantidades_380_jh, 0, 0);
             formulario.SetColumnSpan(_lblCantidades_380_jh, 4);
-            _txtObservacion_380_jh = new TextBox { MaxLength = 500 };
-            ControlesPN2_380_jh.AgregarCampo_380_jh(formulario, "PN2_REASON_OBSERVATION", _txtObservacion_380_jh, 0, 1);
+            _txtObservacion_380_jh = new TextBox { MaxLength = 450 };
+            ControlesPN2_380_jh.AgregarCampo_380_jh(formulario, "PN2_COMPATIBILITY_OR_REASON", _txtObservacion_380_jh, 0, 1);
             formulario.SetColumnSpan(_txtObservacion_380_jh, 3);
             FlowLayoutPanel acciones = new FlowLayoutPanel { Dock = DockStyle.Fill, WrapContents = false, AutoScroll = true };
             _btnReservar_380_jh = ControlesPN2_380_jh.CrearBoton_380_jh("PN2_RESERVE");
@@ -119,11 +125,7 @@ namespace UI
             {
                 new IntegridadApplicationService_380_jh().Verificar_380_jh();
                 List<SolicitudTransfusional_380_jh> solicitudes = _pn2Service_380_jh.ListarSolicitudes_380_jh();
-                List<Unidad_380_jh> inventario = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.InventarioVer_380_jh)
-                    ? _pn2Service_380_jh.ListarInventario_380_jh(null, "LIBERADA") : new List<Unidad_380_jh>();
                 _cargando_380_jh = true;
-                _unidades_380_jh.Clear();
-                _unidades_380_jh.AddRange(inventario);
                 _cmbSolicitud_380_jh.DataSource = solicitudes;
                 _cmbSolicitud_380_jh.SelectedItem = solicitudes.FirstOrDefault(s => s.Id_380_jh == idPrevio) ?? solicitudes.FirstOrDefault();
                 _cargando_380_jh = false;
@@ -138,8 +140,11 @@ namespace UI
             try
             {
                 List<Reserva_380_jh> reservas = solicitud == null ? new List<Reserva_380_jh>() : _pn2Service_380_jh.ListarReservas_380_jh(solicitud.Id_380_jh);
+                List<Unidad_380_jh> unidades = solicitud == null ? new List<Unidad_380_jh>() : _pn2Service_380_jh.ListarCandidatas_380_jh(solicitud.Id_380_jh);
                 _reservas_380_jh.Clear();
                 _reservas_380_jh.AddRange(reservas);
+                _unidades_380_jh.Clear();
+                _unidades_380_jh.AddRange(unidades);
                 _gridReservas_380_jh.Enabled = true;
                 _gridUnidades_380_jh.Enabled = true;
                 PintarDatos_380_jh();
@@ -152,8 +157,7 @@ namespace UI
             if (_gridUnidades_380_jh == null) return;
             SolicitudTransfusional_380_jh solicitud = _cmbSolicitud_380_jh.SelectedItem as SolicitudTransfusional_380_jh;
             _gridUnidades_380_jh.Rows.Clear();
-            foreach (Unidad_380_jh unidad in _unidades_380_jh.Where(u => solicitud != null && u.EstaClasificada_380_jh &&
-                u.FechaVencimiento_380_jh.Date >= DateTime.Today && string.Equals(u.TipoComponente_380_jh?.Trim(), solicitud.TipoComponente_380_jh?.Trim(), StringComparison.OrdinalIgnoreCase)))
+            foreach (Unidad_380_jh unidad in _unidades_380_jh)
             {
                 int fila = _gridUnidades_380_jh.Rows.Add(unidad.CodigoIdentificacion_380_jh, unidad.TipoComponente_380_jh, unidad.GrupoSanguineo_380_jh,
                     unidad.FactorRh_380_jh, unidad.FechaVencimiento_380_jh.ToString("dd/MM/yyyy"), unidad.Ubicacion_380_jh);
@@ -177,8 +181,25 @@ namespace UI
             SolicitudTransfusional_380_jh solicitud = _cmbSolicitud_380_jh.SelectedItem as SolicitudTransfusional_380_jh;
             Unidad_380_jh unidad = ControlesPN2_380_jh.Seleccionado_380_jh<Unidad_380_jh>(_gridUnidades_380_jh);
             if (solicitud == null || unidad == null) { MessageBox.Show(this, ControlesPN2_380_jh.Traducir_380_jh("PN2_SELECT_REQUEST_UNIT")); return; }
+            if (string.IsNullOrWhiteSpace(_txtObservacion_380_jh.Text)) { MessageBox.Show(this, ControlesPN2_380_jh.Traducir_380_jh("PN2_COMPATIBILITY_REFERENCE_REQUIRED")); return; }
+            if (MessageBox.Show(this, string.Format(ControlesPN2_380_jh.Traducir_380_jh("PN2_CONFIRM_COMPATIBILITY"), unidad.CodigoIdentificacion_380_jh, solicitud.PacienteReceptor_380_jh),
+                ControlesPN2_380_jh.Traducir_380_jh("MENU_RESERVATIONS"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
             Reserva_380_jh reserva = new Reserva_380_jh { IdSolicitudTransfusional_380_jh = solicitud.Id_380_jh, IdUnidad_380_jh = unidad.Id_380_jh, Observacion_380_jh = _txtObservacion_380_jh.Text };
             FinalizarOperacion_380_jh(_pn2Service_380_jh.Reservar_380_jh(reserva));
+        }
+
+        private void ValidarEstudio_Click_380_jh(object sender, EventArgs e)
+        {
+            SolicitudTransfusional_380_jh s = _cmbSolicitud_380_jh.SelectedItem as SolicitudTransfusional_380_jh;
+            if (s == null) { MessageBox.Show(this, ControlesPN2_380_jh.Traducir_380_jh("PN2_SELECT_REQUEST")); return; }
+            string detalle = string.Format(ControlesPN2_380_jh.Traducir_380_jh("PN2_STUDY_CONFIRM_DETAILS").Replace("\\n", Environment.NewLine), s.PacienteReceptor_380_jh,
+                s.DocumentoReceptor_380_jh, s.GrupoReceptor_380_jh, s.RhReceptor_380_jh, s.LaboratorioEstudio_380_jh,
+                s.ReferenciaEstudio_380_jh, s.FechaEstudio_380_jh.HasValue ? s.FechaEstudio_380_jh.Value.ToString("dd/MM/yyyy") : "-",
+                s.ResultadoAnticuerpos_380_jh);
+            if (s.IdUsuarioValidacion_380_jh.HasValue) { MessageBox.Show(this, detalle, ControlesPN2_380_jh.Traducir_380_jh("PN2_STUDY_VALIDATED")); return; }
+            if (MessageBox.Show(this, detalle, ControlesPN2_380_jh.Traducir_380_jh("PN2_VALIDATE_STUDY"),
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+            FinalizarOperacion_380_jh(_pn2Service_380_jh.ValidarEstudio_380_jh(s.Id_380_jh));
         }
 
         private void Entregar_Click_380_jh(object sender, EventArgs e)

@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="Electron">
   <diagram name="PN2 - Diagrama de secuencia de roles" id="pn2---diagrama-de-secuencia-de-roles">
     <mxGraphModel dx="1288" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="2050" math="0" shadow="0">
@@ -10,10 +11,10 @@
         <mxCell id="flujo-principal" parent="1" style="swimlane;startSize=30;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;fontStyle=1;fontSize=14;fontFamily=Arial;" value="Flujo principal PN2" vertex="1">
           <mxGeometry height="1700" width="1640" x="30" y="165" as="geometry" />
         </mxCell>
-        <mxCell id="frame-solicitud" parent="1" style="swimlane;startSize=28;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d79b00;strokeWidth=1.5;fontStyle=1;fontSize=13;fontFamily=Arial;align=left;spacingLeft=180;" value="1. Registrar solicitud transfusional" vertex="1">
+        <mxCell id="frame-solicitud" parent="1" style="swimlane;startSize=28;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d79b00;strokeWidth=1.5;fontStyle=1;fontSize=13;fontFamily=Arial;align=left;spacingLeft=180;" value="1. Recibir orden y registrar solicitud y estudio" vertex="1">
           <mxGeometry height="260" width="1600" x="50" y="215" as="geometry" />
         </mxCell>
-        <mxCell id="frame-reserva" parent="1" style="swimlane;startSize=28;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=1.5;fontStyle=1;fontSize=13;fontFamily=Arial;align=left;spacingLeft=180;" value="2. Consultar disponibilidad y reservar unidades" vertex="1">
+        <mxCell id="frame-reserva" parent="1" style="swimlane;startSize=28;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=1.5;fontStyle=1;fontSize=13;fontFamily=Arial;align=left;spacingLeft=180;" value="2. Validar estudio, buscar candidatos y reservar" vertex="1">
           <mxGeometry height="455" width="1600" x="50" y="485" as="geometry" />
         </mxCell>
         <mxCell id="frame-entrega-cancelacion" parent="1" style="swimlane;startSize=28;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=1.5;fontStyle=1;fontSize=13;fontFamily=Arial;align=left;spacingLeft=180;" value="3. Confirmar entrega o cancelar reserva activa" vertex="1">
@@ -76,33 +77,19 @@
         <mxCell id="act-banco" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="" vertex="1">
           <mxGeometry height="120" width="14" x="1453" y="1445" as="geometry" />
         </mxCell>
-        <mxCell id="m01" edge="1" parent="1" style="endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.5;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="Entrada E1: Necesidad transfusional">
+        <mxCell id="m01" edge="1" parent="1" style="endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.5;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="E1: Solicitud, datos del receptor y estudio">
           <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="390" y="270" />
-              <mxPoint x="390" y="298" />
-            </Array>
-            <mxPoint x="257" y="270" as="sourcePoint" />
-            <mxPoint x="257" y="298" as="targetPoint" />
-          </mxGeometry>
+            <mxPoint x="257" y="270" as="sourcePoint" /><mxPoint x="843" y="270" as="targetPoint" /></mxGeometry>
         </mxCell>
-        <mxCell id="m02" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="C1: Registrar solicitud">
+        <mxCell id="m02" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="C1: Registrar pedido y transcribir estudio">
           <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="390" y="325" />
-              <mxPoint x="390" y="353" />
-            </Array>
-            <mxPoint x="257" y="325" as="sourcePoint" />
-            <mxPoint x="257" y="353" as="targetPoint" />
-          </mxGeometry>
+            <Array as="points"><mxPoint x="990" y="325" /><mxPoint x="990" y="353" /></Array><mxPoint x="857" y="325" as="sourcePoint" /><mxPoint x="857" y="353" as="targetPoint" /></mxGeometry>
         </mxCell>
-        <mxCell id="m03" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="Salida S1: Solicitud registrada y pendiente">
+        <mxCell id="m03" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="S1: Solicitud registrada; estudio pendiente">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="257" y="400" as="sourcePoint" />
-            <mxPoint x="843" y="400" as="targetPoint" />
-          </mxGeometry>
+            <mxPoint x="843" y="400" as="sourcePoint" /><mxPoint x="257" y="400" as="targetPoint" /></mxGeometry>
         </mxCell>
-        <mxCell id="m04" edge="1" parent="1" style="endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.5;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="Entrada E2: Solicitud elegida y cantidad a reservar">
+        <mxCell id="m04" edge="1" parent="1" style="endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.5;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="E2: Solicitud e informe del receptor">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="990" y="540" />
@@ -112,7 +99,7 @@
             <mxPoint x="857" y="568" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m05" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="CDUN-12 / C2: Consultar disponibilidad&amp;nbsp;">
+        <mxCell id="m05" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="C2: Validar estudio y consultar candidatos">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="990" y="595" />
@@ -122,7 +109,7 @@
             <mxPoint x="857" y="623" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m06" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="Salida S2: Unidades aptas y saldo visibles">
+        <mxCell id="m06" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="S2: Estudio validado y unidades candidatas">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="990" y="650" />
@@ -132,7 +119,7 @@
             <mxPoint x="857" y="678" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m07" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="CDUN-14 / C3: Validar unidad apta y saldo">
+        <mxCell id="m07" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="E10 / C3: Resultado de pruebas; confirmar compatibilidad y saldo">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="990" y="705" />
@@ -142,7 +129,7 @@
             <mxPoint x="857" y="733" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m08" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="CDUN-14 / C4: Reservar unidad y asociarla a la solicitud">
+        <mxCell id="m08" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="C4: Registrar referencia y reservar unidad">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="990" y="750" />
@@ -238,7 +225,7 @@
             <mxPoint x="1467" y="1558" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="nota-secuencia" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;strokeWidth=1.5;fontSize=12;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;spacingTop=8;" value="&lt;b&gt;Reglas y pantallas&lt;/b&gt; — La atención puede ser parcial; se muestran cantidad requerida, reservada, entregada y saldo pendiente. Cancelación manual con motivo. Devolución y descarte reabren saldo y conservan historial. Una unidad Devuelta permanece indisponible hasta reingreso autorizado a En revisión y nueva clasificación y liberación en PN1.&lt;br&gt;&lt;br&gt;PN2 usa «Solicitudes transfusionales», «Reservas y entregas» y «Destino de unidades». «Consultas» es independiente; no hay pantalla de inventario, ubicación ni observaciones." vertex="1">
+        <mxCell id="nota-secuencia" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;strokeWidth=1.5;fontSize=12;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;spacingTop=8;" value="&lt;b&gt;Reglas&lt;/b&gt; — El filtro por componente y grupo muestra candidatos; el operador confirma la compatibilidad mediante el procedimiento aplicable y registra su referencia. La atención puede ser parcial. La cancelación requiere motivo; devolución y descarte reabren saldo." vertex="1">
           <mxGeometry height="125" width="1560" x="70" y="1870" as="geometry" />
         </mxCell>
         <mxCell id="m08b" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="Salida S3: Reserva activa y cantidades actualizadas">
@@ -284,7 +271,7 @@
             <mxPoint x="1460" y="1830" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-      </root>
+      <mxCell id="act-autorizado-solicitud" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="" vertex="1"><mxGeometry x="843" y="265" width="14" height="165" as="geometry" /></mxCell></root>
     </mxGraphModel>
   </diagram>
 </mxfile>

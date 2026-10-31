@@ -44,13 +44,49 @@ namespace DAL
             CodigoOperacionPN2_380_jh resultado = Ejecutar_380_jh("sp_SolicitudTransfusional_Registrar",
                 ParametrosUsuario_380_jh(idUsuario, Texto_380_jh("@paciente_receptor", solicitud.PacienteReceptor_380_jh, 150),
                     Texto_380_jh("@tipo_componente", solicitud.TipoComponente_380_jh, 100),
-                    Entero_380_jh("@cantidad_requerida", solicitud.CantidadRequerida_380_jh)), out id);
+                    Entero_380_jh("@cantidad_requerida", solicitud.CantidadRequerida_380_jh),
+                    Texto_380_jh("@documento_receptor", solicitud.DocumentoReceptor_380_jh, 50),
+                    Texto_380_jh("@grupo_receptor", solicitud.GrupoReceptor_380_jh, 5, false),
+                    Texto_380_jh("@rh_receptor", solicitud.RhReceptor_380_jh, 5, false),
+                    Texto_380_jh("@laboratorio_estudio", solicitud.LaboratorioEstudio_380_jh, 150),
+                    Texto_380_jh("@referencia_estudio", solicitud.ReferenciaEstudio_380_jh, 150),
+                    Fecha_380_jh("@fecha_estudio", solicitud.FechaEstudio_380_jh),
+                    Texto_380_jh("@resultado_anticuerpos", solicitud.ResultadoAnticuerpos_380_jh, 500),
+                    Texto_380_jh("@nombre_solicitante", solicitud.ProfesionalSolicitante_380_jh, 150)), out id);
             if (resultado == CodigoOperacionPN2_380_jh.Ok_380_jh)
             {
                 solicitud.Id_380_jh = id;
                 solicitud.IdUsuarioSolicitante_380_jh = idUsuario;
             }
             return resultado;
+        }
+
+        public CodigoOperacionPN2_380_jh ActualizarEstudio_380_jh(SolicitudTransfusional_380_jh solicitud, int idUsuario)
+        {
+            int id;
+            return Ejecutar_380_jh("sp_PN2_ActualizarEstudio", ParametrosUsuario_380_jh(idUsuario,
+                Entero_380_jh("@id_solicitud", solicitud.Id_380_jh),
+                Texto_380_jh("@documento_receptor", solicitud.DocumentoReceptor_380_jh, 50),
+                Texto_380_jh("@grupo_receptor", solicitud.GrupoReceptor_380_jh, 5, false),
+                Texto_380_jh("@rh_receptor", solicitud.RhReceptor_380_jh, 5, false),
+                Texto_380_jh("@laboratorio_estudio", solicitud.LaboratorioEstudio_380_jh, 150),
+                Texto_380_jh("@referencia_estudio", solicitud.ReferenciaEstudio_380_jh, 150),
+                Fecha_380_jh("@fecha_estudio", solicitud.FechaEstudio_380_jh),
+                Texto_380_jh("@resultado_anticuerpos", solicitud.ResultadoAnticuerpos_380_jh, 500),
+                Texto_380_jh("@nombre_solicitante", solicitud.ProfesionalSolicitante_380_jh, 150)), out id);
+        }
+
+        public CodigoOperacionPN2_380_jh ValidarEstudio_380_jh(int idSolicitud, int idUsuario)
+        {
+            int id;
+            return Ejecutar_380_jh("sp_PN2_ValidarEstudio", ParametrosUsuario_380_jh(idUsuario,
+                Entero_380_jh("@id_solicitud", idSolicitud)), out id);
+        }
+
+        public List<Unidad_380_jh> ListarCandidatas_380_jh(int idSolicitud, int idUsuario)
+        {
+            return Leer_380_jh("sp_PN2_UnidadesCandidatas", ParametrosUsuario_380_jh(idUsuario,
+                Entero_380_jh("@id_solicitud", idSolicitud)), UnidadDataMapper_380_jh.MapearPublico_380_jh);
         }
 
         public List<Reserva_380_jh> ListarReservas_380_jh(int? idSolicitudTransfusional, int idUsuario)
@@ -65,7 +101,8 @@ namespace DAL
             CodigoOperacionPN2_380_jh resultado = Ejecutar_380_jh("sp_Reserva_Registrar", ParametrosUsuario_380_jh(idUsuario,
                 Entero_380_jh("@id_solicitud_transfusional", reserva.IdSolicitudTransfusional_380_jh),
                 Entero_380_jh("@id_unidad", reserva.IdUnidad_380_jh),
-                Texto_380_jh("@observacion", reserva.Observacion_380_jh, 500)), out id);
+                Texto_380_jh("@observacion", null, 500),
+                Texto_380_jh("@referencia_compatibilidad", reserva.Observacion_380_jh, 450)), out id);
             if (resultado == CodigoOperacionPN2_380_jh.Ok_380_jh)
             {
                 reserva.Id_380_jh = id;
@@ -186,6 +223,15 @@ namespace DAL
             {
                 Id_380_jh = Convert.ToInt32(fila["id_solicitud_transfusional"]),
                 PacienteReceptor_380_jh = Cadena_380_jh(fila, "paciente_receptor"),
+                DocumentoReceptor_380_jh = Cadena_380_jh(fila, "documento_receptor"),
+                GrupoReceptor_380_jh = Cadena_380_jh(fila, "grupo_receptor"),
+                RhReceptor_380_jh = Cadena_380_jh(fila, "rh_receptor"),
+                LaboratorioEstudio_380_jh = Cadena_380_jh(fila, "laboratorio_estudio"),
+                ReferenciaEstudio_380_jh = Cadena_380_jh(fila, "referencia_estudio"),
+                FechaEstudio_380_jh = FechaNullable_380_jh(fila, "fecha_estudio"),
+                ResultadoAnticuerpos_380_jh = Cadena_380_jh(fila, "resultado_anticuerpos"),
+                IdUsuarioValidacion_380_jh = EnteroNullable_380_jh(fila, "id_usuario_validacion"),
+                FechaValidacion_380_jh = FechaNullable_380_jh(fila, "fecha_validacion"),
                 FechaSolicitud_380_jh = Convert.ToDateTime(fila["fecha_solicitud"]),
                 TipoComponente_380_jh = Cadena_380_jh(fila, "tipo_componente"),
                 CantidadRequerida_380_jh = Convert.ToInt32(fila["cantidad_requerida"]),

@@ -25,6 +25,8 @@ namespace Abstractions
         UnidadEntregada_380_jh,
         UnidadTransfundida_380_jh,
         UnidadDevuelta_380_jh,
-        UnidadReingresada_380_jh
+        UnidadReingresada_380_jh,
+        EstudioReceptorValidado_380_jh,
+        EstudioReceptorActualizado_380_jh
     }
 }

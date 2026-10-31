@@ -46,6 +46,42 @@ CREATE TABLE dbo.SolicitudTransfusional
 );
 GO
 
+-- Los registros anteriores conservan valores NULL y necesitan estudios nuevos.
+IF COL_LENGTH('dbo.SolicitudTransfusional','documento_receptor') IS NULL
+    ALTER TABLE dbo.SolicitudTransfusional ADD documento_receptor NVARCHAR(50) NULL, grupo_receptor VARCHAR(5) NULL,
+        rh_receptor VARCHAR(5) NULL, laboratorio_estudio NVARCHAR(150) NULL, referencia_estudio NVARCHAR(150) NULL,
+        fecha_estudio DATE NULL, resultado_anticuerpos NVARCHAR(500) NULL, id_usuario_validacion INT NULL,
+        fecha_validacion DATETIME NULL;
+IF COL_LENGTH('dbo.SolicitudTransfusional','nombre_solicitante') IS NULL
+    ALTER TABLE dbo.SolicitudTransfusional ADD nombre_solicitante NVARCHAR(150) NULL;
+GO
+
+-- Filtro preliminar, deliberadamente limitado a componentes identificados.
+-- La aptitud final debe confirmarla el personal con las pruebas correspondientes.
+CREATE OR ALTER FUNCTION dbo.fn_PN2_GrupoCandidato
+(@componente NVARCHAR(100), @grupo VARCHAR(5), @rh VARCHAR(5), @receptor VARCHAR(5), @rh_receptor VARCHAR(5))
+RETURNS BIT
+AS
+BEGIN
+    IF @grupo NOT IN ('O','A','B','AB') OR @receptor NOT IN ('O','A','B','AB')
+       OR @rh NOT IN ('+','-') OR @rh_receptor NOT IN ('+','-') RETURN 0;
+    DECLARE @tipo NVARCHAR(100)=UPPER(LTRIM(RTRIM(@componente))) COLLATE Latin1_General_CI_AI;
+    IF @tipo COLLATE Latin1_General_CI_AI IN (N'GLOBULOS ROJOS', N'CONCENTRADO DE GLOBULOS ROJOS', N'ERITROCITOS', N'CONCENTRADO DE ERITROCITOS')
+    BEGIN
+        IF @rh_receptor='-' AND @rh<>'-' RETURN 0;
+        IF @grupo='O' OR @grupo=@receptor OR (@receptor='AB' AND @grupo IN ('A','B')) RETURN 1;
+    END;
+    IF @tipo COLLATE Latin1_General_CI_AI IN (N'PLASMA', N'PLASMA FRESCO CONGELADO')
+    BEGIN
+        IF @grupo='AB' OR @grupo=@receptor OR (@receptor='O' AND @grupo IN ('A','B')) RETURN 1;
+    END;
+    -- Plaquetas: lista conservadora de grupo identico; la validacion es individual.
+    IF @tipo COLLATE Latin1_General_CI_AI IN (N'PLAQUETAS', N'CONCENTRADO DE PLAQUETAS')
+       AND @grupo=@receptor AND (@rh_receptor='+' OR @rh='-') RETURN 1;
+    RETURN 0;
+END;
+GO
+
 IF OBJECT_ID('dbo.Reserva','U') IS NULL
 CREATE TABLE dbo.Reserva
 (
@@ -151,6 +187,7 @@ BEGIN
         THROW 51002,'PN2_REQUIRES_INTEGRITY_MIGRATION',1;
     IF OBJECT_DEFINITION(OBJECT_ID('dbo.v_IntegridadPN1_Datos')) NOT LIKE '%SolicitudTransfusional%'
        OR OBJECT_DEFINITION(OBJECT_ID('dbo.v_IntegridadPN1_Datos')) NOT LIKE '%id_entrega%'
+       OR OBJECT_DEFINITION(OBJECT_ID('dbo.v_IntegridadPN1_Datos')) NOT LIKE '%grupo_receptor%'
         THROW 51002,'PN2_INTEGRITY_DEFINITIONS_DOWNGRADED',1;
     EXEC dbo.sp_IntegridadPN1_Exigir;
 END;
@@ -208,8 +245,10 @@ BEGIN
     EXEC dbo.sp_PN2_Autorizar @id_usuario,'SOLICITUD_VER';
     DECLARE @todas BIT=CASE WHEN dbo.fn_PN2_TienePermiso(@id_usuario,'INVENTARIO_VER')=1 OR dbo.fn_PN2_TienePermiso(@id_usuario,'RESERVA_VER')=1 THEN 1 ELSE 0 END;
     SELECT s.id_solicitud_transfusional,s.paciente_receptor,s.fecha_solicitud,s.tipo_componente,
-        s.cantidad_requerida,s.id_usuario_solicitante,u.nombre+' '+u.apellido profesional_solicitante,
-        s.estado_solicitud,c.cantidad_reservada,c.cantidad_entregada,c.saldo_pendiente
+        s.cantidad_requerida,s.id_usuario_solicitante,COALESCE(s.nombre_solicitante,u.nombre+' '+u.apellido) profesional_solicitante,
+        s.estado_solicitud,c.cantidad_reservada,c.cantidad_entregada,c.saldo_pendiente,
+        s.documento_receptor,s.grupo_receptor,s.rh_receptor,s.laboratorio_estudio,s.referencia_estudio,
+        s.fecha_estudio,s.resultado_anticuerpos,s.id_usuario_validacion,s.fecha_validacion
     FROM dbo.SolicitudTransfusional s JOIN dbo.Usuario u ON u.id_usuario=s.id_usuario_solicitante
     JOIN dbo.v_PN2_SolicitudCantidades c ON c.id_solicitud_transfusional=s.id_solicitud_transfusional
     WHERE (@todas=1 OR s.id_usuario_solicitante=@id_usuario)
@@ -271,7 +310,10 @@ ALTER TABLE dbo.MovimientoUnidad ADD CONSTRAINT CK_MovimientoUnidad_EstadoNuevo 
 GO
 
 CREATE OR ALTER PROCEDURE dbo.sp_SolicitudTransfusional_Registrar
-    @paciente_receptor NVARCHAR(150),@tipo_componente NVARCHAR(100),@cantidad_requerida INT,@id_usuario INT
+    @paciente_receptor NVARCHAR(150),@tipo_componente NVARCHAR(100),@cantidad_requerida INT,@id_usuario INT,
+    @documento_receptor NVARCHAR(50),@grupo_receptor VARCHAR(5),@rh_receptor VARCHAR(5),
+    @laboratorio_estudio NVARCHAR(150),@referencia_estudio NVARCHAR(150),@fecha_estudio DATE,
+    @resultado_anticuerpos NVARCHAR(500),@nombre_solicitante NVARCHAR(150)
 AS
 BEGIN
     SET NOCOUNT ON; SET XACT_ABORT ON;
@@ -281,15 +323,99 @@ BEGIN
         EXEC dbo.sp_PN2_Exigir;
         IF NULLIF(LTRIM(RTRIM(@paciente_receptor)),'') IS NULL
            OR NULLIF(LTRIM(RTRIM(@tipo_componente)),'') IS NULL OR @cantidad_requerida IS NULL OR @cantidad_requerida<=0
+           OR NULLIF(LTRIM(RTRIM(@documento_receptor)),'') IS NULL
+           OR NULLIF(LTRIM(RTRIM(@nombre_solicitante)),'') IS NULL
+           OR NOT ((@grupo_receptor IS NULL AND @rh_receptor IS NULL AND NULLIF(LTRIM(RTRIM(@laboratorio_estudio)),'') IS NULL
+                    AND NULLIF(LTRIM(RTRIM(@referencia_estudio)),'') IS NULL AND @fecha_estudio IS NULL
+                    AND NULLIF(LTRIM(RTRIM(@resultado_anticuerpos)),'') IS NULL)
+                 OR (@grupo_receptor IS NOT NULL AND @grupo_receptor IN ('O','A','B','AB') AND @rh_receptor IS NOT NULL AND @rh_receptor IN ('+','-')
+                    AND NULLIF(LTRIM(RTRIM(@laboratorio_estudio)),'') IS NOT NULL AND NULLIF(LTRIM(RTRIM(@referencia_estudio)),'') IS NOT NULL
+                    AND @fecha_estudio IS NOT NULL AND @fecha_estudio<=CONVERT(DATE,GETDATE())
+                    AND NULLIF(LTRIM(RTRIM(@resultado_anticuerpos)),'') IS NOT NULL))
         BEGIN
             ROLLBACK; SELECT 'DATOS_INVALIDOS' codigo_resultado,CAST(NULL AS INT) id_resultado; RETURN;
         END;
-        INSERT dbo.SolicitudTransfusional(paciente_receptor,tipo_componente,cantidad_requerida,id_usuario_solicitante)
-        VALUES(LTRIM(RTRIM(@paciente_receptor)),LTRIM(RTRIM(@tipo_componente)),@cantidad_requerida,@id_usuario);
+        INSERT dbo.SolicitudTransfusional(paciente_receptor,tipo_componente,cantidad_requerida,id_usuario_solicitante,
+            documento_receptor,grupo_receptor,rh_receptor,laboratorio_estudio,referencia_estudio,fecha_estudio,resultado_anticuerpos,nombre_solicitante)
+        VALUES(LTRIM(RTRIM(@paciente_receptor)),LTRIM(RTRIM(@tipo_componente)),@cantidad_requerida,@id_usuario,
+            LTRIM(RTRIM(@documento_receptor)),@grupo_receptor,@rh_receptor,LTRIM(RTRIM(@laboratorio_estudio)),
+            LTRIM(RTRIM(@referencia_estudio)),@fecha_estudio,LTRIM(RTRIM(@resultado_anticuerpos)),LTRIM(RTRIM(@nombre_solicitante)));
         DECLARE @id INT=CONVERT(INT,SCOPE_IDENTITY());
         EXEC dbo.sp_IntegridadPN1_Sellar @id_usuario;
         COMMIT; SELECT 'OK' codigo_resultado,@id id_resultado;
     END TRY BEGIN CATCH IF @@TRANCOUNT>0 ROLLBACK; THROW; END CATCH;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE dbo.sp_PN2_ActualizarEstudio
+    @id_solicitud INT,@id_usuario INT,@documento_receptor NVARCHAR(50),@grupo_receptor VARCHAR(5),@rh_receptor VARCHAR(5),
+    @laboratorio_estudio NVARCHAR(150),@referencia_estudio NVARCHAR(150),@fecha_estudio DATE,
+    @resultado_anticuerpos NVARCHAR(500),@nombre_solicitante NVARCHAR(150)
+AS
+BEGIN
+    SET NOCOUNT ON; SET XACT_ABORT ON;
+    BEGIN TRY
+        BEGIN TRANSACTION;
+        EXEC dbo.sp_IntegridadPN1_Autorizar @id_usuario,'SOLICITUD_CREAR';
+        EXEC dbo.sp_PN2_Exigir;
+        IF NULLIF(LTRIM(RTRIM(@documento_receptor)),'') IS NULL
+           OR @grupo_receptor IS NULL OR @grupo_receptor NOT IN ('O','A','B','AB')
+           OR @rh_receptor IS NULL OR @rh_receptor NOT IN ('+','-')
+           OR NULLIF(LTRIM(RTRIM(@laboratorio_estudio)),'') IS NULL OR NULLIF(LTRIM(RTRIM(@referencia_estudio)),'') IS NULL
+           OR @fecha_estudio IS NULL OR @fecha_estudio>CONVERT(DATE,GETDATE())
+           OR NULLIF(LTRIM(RTRIM(@resultado_anticuerpos)),'') IS NULL OR NULLIF(LTRIM(RTRIM(@nombre_solicitante)),'') IS NULL
+        BEGIN ROLLBACK; SELECT 'DATOS_INVALIDOS' codigo_resultado,CAST(NULL AS INT) id_resultado; RETURN; END;
+        IF NOT EXISTS(SELECT 1 FROM dbo.SolicitudTransfusional s WHERE s.id_solicitud_transfusional=@id_solicitud
+            AND s.id_usuario_validacion IS NULL AND (s.id_usuario_solicitante=@id_usuario OR dbo.fn_PN2_TienePermiso(@id_usuario,'INVENTARIO_VER')=1)
+            AND NOT EXISTS(SELECT 1 FROM dbo.Reserva r WHERE r.id_solicitud_transfusional=s.id_solicitud_transfusional AND r.estado_reserva IN ('ACTIVA','ENTREGADA')))
+        BEGIN ROLLBACK; SELECT 'CONFLICTO_ESTADO' codigo_resultado,CAST(NULL AS INT) id_resultado; RETURN; END;
+        UPDATE dbo.SolicitudTransfusional SET documento_receptor=LTRIM(RTRIM(@documento_receptor)),grupo_receptor=@grupo_receptor,
+            rh_receptor=@rh_receptor,laboratorio_estudio=LTRIM(RTRIM(@laboratorio_estudio)),referencia_estudio=LTRIM(RTRIM(@referencia_estudio)),
+            fecha_estudio=@fecha_estudio,resultado_anticuerpos=LTRIM(RTRIM(@resultado_anticuerpos)),nombre_solicitante=LTRIM(RTRIM(@nombre_solicitante))
+        WHERE id_solicitud_transfusional=@id_solicitud;
+        EXEC dbo.sp_IntegridadPN1_Sellar @id_usuario;
+        COMMIT; SELECT 'OK' codigo_resultado,@id_solicitud id_resultado;
+    END TRY BEGIN CATCH IF @@TRANCOUNT>0 ROLLBACK; THROW; END CATCH;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE dbo.sp_PN2_ValidarEstudio @id_solicitud INT,@id_usuario INT
+AS
+BEGIN
+    SET NOCOUNT ON; SET XACT_ABORT ON;
+    BEGIN TRY
+        BEGIN TRANSACTION;
+        EXEC dbo.sp_IntegridadPN1_Autorizar @id_usuario,'RESERVA_CREAR';
+        EXEC dbo.sp_PN2_Exigir;
+        IF NOT EXISTS(SELECT 1 FROM dbo.SolicitudTransfusional WHERE id_solicitud_transfusional=@id_solicitud
+            AND documento_receptor IS NOT NULL AND grupo_receptor IN ('O','A','B','AB') AND rh_receptor IN ('+','-')
+            AND laboratorio_estudio IS NOT NULL AND referencia_estudio IS NOT NULL AND fecha_estudio IS NOT NULL
+            AND resultado_anticuerpos IS NOT NULL AND id_usuario_validacion IS NULL)
+        BEGIN ROLLBACK; SELECT 'DATOS_INVALIDOS' codigo_resultado,CAST(NULL AS INT) id_resultado; RETURN; END;
+        UPDATE dbo.SolicitudTransfusional SET id_usuario_validacion=@id_usuario,fecha_validacion=GETDATE()
+        WHERE id_solicitud_transfusional=@id_solicitud;
+        EXEC dbo.sp_IntegridadPN1_Sellar @id_usuario;
+        COMMIT; SELECT 'OK' codigo_resultado,@id_solicitud id_resultado;
+    END TRY BEGIN CATCH IF @@TRANCOUNT>0 ROLLBACK; THROW; END CATCH;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE dbo.sp_PN2_UnidadesCandidatas @id_solicitud INT,@id_usuario INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    EXEC dbo.sp_PN2_Autorizar @id_usuario,'INVENTARIO_VER';
+    EXEC dbo.sp_PN2_Autorizar @id_usuario,'RESERVA_VER';
+    SELECT u.id_unidad,u.codigo_identificacion,u.id_donacion,u.tipo_componente,u.fecha_vencimiento,
+           u.grupo_sanguineo,u.factor_rh,u.observaciones,u.estado_operativo,u.ubicacion,
+           u.fecha_alta,u.fecha_ultima_modificacion,u.id_usuario_ultima_modificacion
+    FROM dbo.Unidad u JOIN dbo.SolicitudTransfusional s ON s.id_solicitud_transfusional=@id_solicitud
+    WHERE s.id_usuario_validacion IS NOT NULL AND u.estado_operativo='LIBERADA'
+      AND u.fecha_vencimiento>=CONVERT(DATE,GETDATE()) AND u.tipo_componente=s.tipo_componente
+      AND dbo.fn_PN2_GrupoCandidato(u.tipo_componente,u.grupo_sanguineo,u.factor_rh,s.grupo_receptor,s.rh_receptor)=1
+      AND NOT EXISTS(SELECT 1 FROM dbo.Reserva r WHERE r.id_unidad=u.id_unidad AND r.estado_reserva='ACTIVA')
+    ORDER BY CASE WHEN u.grupo_sanguineo=s.grupo_receptor AND u.factor_rh=s.rh_receptor THEN 0 ELSE 1 END,
+             u.fecha_vencimiento,u.id_unidad;
 END;
 GO
 
@@ -323,7 +449,8 @@ END;
 GO
 
 CREATE OR ALTER PROCEDURE dbo.sp_Reserva_Registrar
-    @id_solicitud_transfusional INT,@id_unidad INT,@observacion NVARCHAR(500)=NULL,@id_usuario INT
+    @id_solicitud_transfusional INT,@id_unidad INT,@observacion NVARCHAR(500)=NULL,@id_usuario INT,
+    @referencia_compatibilidad NVARCHAR(450)
 AS
 BEGIN
     SET NOCOUNT ON; SET XACT_ABORT ON;
@@ -332,6 +459,7 @@ BEGIN
         EXEC dbo.sp_IntegridadPN1_Autorizar @id_usuario,'RESERVA_CREAR';
         EXEC dbo.sp_PN2_Exigir;
         IF @id_solicitud_transfusional IS NULL OR @id_solicitud_transfusional<=0 OR @id_unidad IS NULL OR @id_unidad<=0
+           OR NULLIF(LTRIM(RTRIM(@referencia_compatibilidad)),'') IS NULL
         BEGIN ROLLBACK; SELECT 'DATOS_INVALIDOS' codigo_resultado,CAST(NULL AS INT) id_resultado; RETURN; END;
         IF NOT EXISTS(SELECT 1 FROM dbo.SolicitudTransfusional WHERE id_solicitud_transfusional=@id_solicitud_transfusional)
            OR NOT EXISTS(SELECT 1 FROM dbo.Unidad WHERE id_unidad=@id_unidad)
@@ -341,13 +469,15 @@ BEGIN
         IF NOT EXISTS(
             SELECT 1 FROM dbo.Unidad u JOIN dbo.SolicitudTransfusional s ON s.id_solicitud_transfusional=@id_solicitud_transfusional
             WHERE u.id_unidad=@id_unidad AND u.estado_operativo='LIBERADA' AND u.fecha_vencimiento>=CONVERT(DATE,GETDATE())
+              AND s.id_usuario_validacion IS NOT NULL
+              AND dbo.fn_PN2_GrupoCandidato(u.tipo_componente,u.grupo_sanguineo,u.factor_rh,s.grupo_receptor,s.rh_receptor)=1
               AND u.tipo_componente=s.tipo_componente AND NULLIF(LTRIM(RTRIM(u.grupo_sanguineo)),'') IS NOT NULL
               AND NULLIF(LTRIM(RTRIM(u.factor_rh)),'') IS NOT NULL
               AND NOT EXISTS(SELECT 1 FROM dbo.Reserva r WHERE r.id_unidad=u.id_unidad AND r.estado_reserva='ACTIVA')
         )
         BEGIN ROLLBACK; SELECT 'SIN_DISPONIBILIDAD' codigo_resultado,CAST(NULL AS INT) id_resultado; RETURN; END;
         INSERT dbo.Reserva(id_solicitud_transfusional,id_unidad,observacion,id_usuario_responsable)
-        VALUES(@id_solicitud_transfusional,@id_unidad,NULLIF(LTRIM(RTRIM(@observacion)),''),@id_usuario);
+        VALUES(@id_solicitud_transfusional,@id_unidad,CONCAT(N'Compatibilidad confirmada: ',LTRIM(RTRIM(@referencia_compatibilidad))),@id_usuario);
         DECLARE @id INT=CONVERT(INT,SCOPE_IDENTITY());
         UPDATE dbo.Unidad SET estado_operativo='RESERVADA',fecha_ultima_modificacion=GETDATE(),id_usuario_ultima_modificacion=@id_usuario WHERE id_unidad=@id_unidad;
         INSERT dbo.MovimientoUnidad(id_unidad,tipo_movimiento,estado_anterior,estado_nuevo,observacion,id_usuario,id_solicitud_transfusional,id_reserva)
@@ -406,6 +536,9 @@ BEGIN
         IF NOT EXISTS(
             SELECT 1 FROM dbo.Unidad u JOIN dbo.SolicitudTransfusional s ON s.id_solicitud_transfusional=@id_solicitud
             WHERE u.id_unidad=@id_unidad AND u.estado_operativo='RESERVADA' AND u.fecha_vencimiento>=CONVERT(DATE,GETDATE())
+              AND s.id_usuario_validacion IS NOT NULL
+              AND EXISTS(SELECT 1 FROM dbo.Reserva rr WHERE rr.id_reserva=@id_reserva AND rr.observacion LIKE N'Compatibilidad confirmada: _%')
+              AND dbo.fn_PN2_GrupoCandidato(u.tipo_componente,u.grupo_sanguineo,u.factor_rh,s.grupo_receptor,s.rh_receptor)=1
               AND u.tipo_componente=s.tipo_componente AND u.grupo_sanguineo IS NOT NULL AND u.factor_rh IS NOT NULL)
         BEGIN ROLLBACK; SELECT 'SIN_DISPONIBILIDAD' codigo_resultado,CAST(NULL AS INT) id_resultado; RETURN; END;
         INSERT dbo.Entrega(id_reserva,observacion,id_usuario_responsable) VALUES(@id_reserva,NULLIF(LTRIM(RTRIM(@observacion)),''),@id_usuario);
@@ -549,14 +682,18 @@ BEGIN
     SELECT 'ALERTAS',N'Unidades vencidas',COUNT(*),N'Unidades vencidas cuyo recorrido aún no terminó en transfusión o descarte.'
     FROM #unidades WHERE fecha_vencimiento<CONVERT(DATE,GETDATE()) AND estado_operativo NOT IN ('DESCARTADA','TRANSFUNDIDA')
     UNION ALL
-    SELECT 'ALERTAS',N'Reservas inhabilitadas',COUNT(*),N'Reservas activas con unidad vencida, sin clasificación o con estado/componente incompatible.'
+    SELECT 'ALERTAS',N'Reservas inhabilitadas',COUNT(*),N'Reservas activas sin estudio validado o referencia, con unidad vencida o sin coincidencia preliminar.'
     FROM dbo.Reserva r JOIN #unidades u ON u.id_unidad=r.id_unidad JOIN dbo.SolicitudTransfusional s ON s.id_solicitud_transfusional=r.id_solicitud_transfusional
-    WHERE r.estado_reserva='ACTIVA' AND (u.estado_operativo<>'RESERVADA' OR u.fecha_vencimiento<CONVERT(DATE,GETDATE()) OR u.grupo_sanguineo IS NULL OR u.factor_rh IS NULL OR u.tipo_componente IS NULL OR u.tipo_componente<>s.tipo_componente)
+    WHERE r.estado_reserva='ACTIVA' AND (u.estado_operativo<>'RESERVADA' OR u.fecha_vencimiento<CONVERT(DATE,GETDATE())
+        OR s.id_usuario_validacion IS NULL OR r.observacion IS NULL OR r.observacion NOT LIKE N'Compatibilidad confirmada: _%'
+        OR u.tipo_componente IS NULL OR u.tipo_componente<>s.tipo_componente
+        OR dbo.fn_PN2_GrupoCandidato(u.tipo_componente,u.grupo_sanguineo,u.factor_rh,s.grupo_receptor,s.rh_receptor)=0)
     UNION ALL
-    SELECT 'ALERTAS',N'Solicitudes sin disponibilidad',COUNT(*),N'Solicitudes con saldo y sin unidad liberada, clasificada y vigente del componente solicitado.'
+    SELECT 'ALERTAS',N'Solicitudes sin disponibilidad',COUNT(*),N'Solicitudes con saldo sin estudio validado o sin unidades candidatas.'
     FROM #solicitudes s WHERE s.saldo_pendiente>0 AND NOT EXISTS(
         SELECT 1 FROM dbo.Unidad u WHERE u.tipo_componente=s.tipo_componente AND u.estado_operativo='LIBERADA'
-          AND u.fecha_vencimiento>=CONVERT(DATE,GETDATE()) AND u.grupo_sanguineo IS NOT NULL AND u.factor_rh IS NOT NULL
+          AND s.id_usuario_validacion IS NOT NULL AND u.fecha_vencimiento>=CONVERT(DATE,GETDATE())
+          AND dbo.fn_PN2_GrupoCandidato(u.tipo_componente,u.grupo_sanguineo,u.factor_rh,s.grupo_receptor,s.rh_receptor)=1
           AND NOT EXISTS(SELECT 1 FROM dbo.Reserva r WHERE r.id_unidad=u.id_unidad AND r.estado_reserva='ACTIVA'))
     ORDER BY seccion,concepto;
 END;

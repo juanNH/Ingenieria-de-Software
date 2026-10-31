@@ -2,13 +2,15 @@
 
 Estado: implementado para validación funcional. Actualizado: 17 de octubre de 2026.
 
+Actualización en curso (octubre de 2026): el pedido incorpora datos de identificación y estudios del receptor, validación por un operador y búsqueda preliminar por componente y grupo. Véanse las reglas, límites y pasos de instalación de [Compatibilidad en PN2](PN2-compatibilidad.md).
+
 PN2 continúa el trabajo de PN1: utiliza las unidades registradas, clasificadas y liberadas allí para atender solicitudes transfusionales. Incluye código C#, persistencia SQL Server, permisos, tres pantallas operativas disponibles desde PN2 y diagramas de negocio editables en draw.io. PN1 y PN2 aparecen como opciones separadas del menú principal. El tab Consultas está oculto por ahora; las vistas Trazabilidad y Reportes y alertas, junto con sus permisos, se conservan en el código. La pantalla independiente de Inventario también se conserva en el código, pero no aparece en el menú.
 
 ## Referencias y alcance
 
 La fuente es [Trabajo de Diploma, versión 1.1.0](https://docs.google.com/document/d/1EUrkuuLmCq6YnOGA_lSNvpeQSwCAK-Xd34jLIo4du58/edit?tab=t.0): RFN2, glosario G03, roles G04 y reglas G05. La nomenclatura y la presentación toman como referencia PN1 y los CDUN-12 a CDUN-17 existentes.
 
-El Profesional solicitante registra la solicitud. El Operador del banco de sangre consulta inventario y atiende el pedido. Esta distribución fue confirmada por el usuario y resuelve la contradicción con el paso 3 narrativo de RFN2; el documento fuente no fue modificado.
+El profesional presenta el pedido y los estudios. Un usuario habilitado para registrar solicitudes transcribe los datos; el operador autorizado valida el estudio y atiende la reserva. El solicitante identificado en el pedido y el usuario que lo carga son datos distintos. El documento fuente no fue modificado.
 
 También se confirmaron entregas parciales, cancelación manual con motivo, devolución con reingreso explícito autorizado y reapertura del saldo cuando una entrega se devuelve o descarta. Estas decisiones están implementadas.
 
@@ -31,9 +33,9 @@ Los CDUN conservan sus identificadores. No se agregaron diagramas de clases ni s
 
 | Rol existente | Operaciones de PN2 | Familia de permisos |
 | --- | --- | --- |
-| Profesional solicitante | Crear y consultar sus propias solicitudes. | PN2_PROFESIONAL_SOLICITANTE |
-| Operador del banco de sangre | Consultar solicitudes y reservas, registrar destino y consultar reportes. | PN2_OPERADOR_BANCO |
-| Operador autorizado | Consultar solicitudes y unidades disponibles; reservar, cancelar y entregar. | PN1_OPERADOR_AUTORIZADO, ampliada |
+| Profesional solicitante | Presentar el pedido y sus estudios; si dispone de acceso, registrar y consultar sus solicitudes. | PN2_PROFESIONAL_SOLICITANTE |
+| Operador del banco de sangre | Registrar y consultar solicitudes, consultar reservas, registrar destino y consultar reportes. | PN2_OPERADOR_BANCO |
+| Operador autorizado | Registrar solicitudes, validar estudios, consultar unidades candidatas; reservar, cancelar y entregar. | PN1_OPERADOR_AUTORIZADO, ampliada |
 | Responsable autorizado | Consultar reportes. La lógica de reingreso de una unidad Devuelta se conserva en el servicio, pero no tiene una acción disponible en la interfaz actual. | PN1_RESPONSABLE_AUTORIZADO, ampliada |
 | Auditor | Consultar trazabilidad. | PN2_AUDITOR |
 | Administrador del banco de sangre | Acceso a las operaciones de PN2 mediante la familia administrativa existente. | ADMINISTRADOR |
@@ -43,9 +45,9 @@ Los permisos se comprueban en Application y SQL. La instalación agrega las fami
 ## Flujo en lenguaje coloquial
 
 1. **Preparar las unidades en PN1.** Registrar donante y donación, generar unidades, clasificarlas y liberarlas. La unidad debe estar vigente y su componente debe corresponder al solicitado.
-2. **Registrar el pedido.** En Solicitudes transfusionales, el Profesional solicitante indica paciente receptor, componente y cantidad. Su usuario y la fecha quedan registrados. Se permite guardar el pedido aunque no exista stock.
-3. **Mirar qué hay disponible.** En **Reservas y entregas**, el operador selecciona la solicitud y ve las unidades Liberadas, clasificadas y vigentes del componente solicitado. La disponibilidad se consulta dentro del flujo de atención.
-4. **Reservar por unidad.** En Reservas y entregas se seleccionan solicitud y unidad. El sistema confirma que el pedido tenga saldo y que la unidad esté Liberada, clasificada, vigente y con el componente solicitado. Pasa a Reservada y queda vinculada al pedido. Se pueden reservar y entregar algunas unidades y continuar después.
+2. **Registrar el pedido.** El profesional presenta la orden y el informe. El personal carga solicitante, nombre y documento del receptor, componente, cantidad, grupo ABO, RhD, resultado de anticuerpos, laboratorio, referencia y fecha del estudio. La solicitud puede guardarse sin stock o sin estudio; este se completa después y permanece pendiente de validación.
+3. **Validar el estudio y buscar.** Un operador autorizado revisa los datos, la identidad y la vigencia del informe y registra su validación. En **Reservas y entregas**, el sistema muestra unidades candidatas liberadas, vigentes y del componente solicitado, filtradas según el grupo registrado. El filtro es preliminar y solo contempla los nombres de componentes documentados.
+4. **Reservar por unidad.** El operador verifica la compatibilidad para el receptor según el protocolo del servicio, ingresa la referencia de esa comprobación y confirma. El sistema vuelve a controlar el estudio, el filtro, el saldo y la disponibilidad; la unidad pasa a Reservada. La atención puede ser parcial.
 5. **Entregar la reserva.** Se selecciona una reserva activa y se confirma la entrega. Se vuelven a controlar vigencia, estado y relación con la solicitud. La unidad pasa a Entregada; una reserva sólo puede producir una entrega.
 6. **Registrar qué ocurrió.** En Destino de unidades se selecciona la entrega sin destino y se registra Transfundida, Devuelta o Descartada. Devolución y descarte requieren motivo y recuperan una unidad de saldo para reemplazo. La entrega original permanece en el historial.
 7. **Cancelar si no se entregará.** Una reserva activa puede cancelarse con motivo. Se conserva el registro y la unidad vuelve a Liberada. La vigencia se vuelve a comprobar antes de cualquier nueva reserva; no hay vencimiento automático de reservas.
@@ -53,7 +55,7 @@ Los permisos se comprueban en Application y SQL. La instalación agrega las fami
 9. **Consultar el recorrido.** Trazabilidad muestra movimientos con usuario, fecha, estado anterior y nuevo, observación y vínculos con solicitud, reserva y entrega. Reportes y alertas permite revisar stock, pedidos y problemas operativos. Ambas son consultas independientes del circuito de entrega.
 10. **Emitir el comprobante.** Al registrar un destino, el sistema genera el PDF de esa entrega. Si el archivo no puede guardarse, queda pendiente para reintento. En Solicitudes transfusionales se puede exportar aparte un reporte manual del estado actual de la solicitud.
 
-El sistema comprueba disponibilidad operativa y coincidencia de componente. La evaluación clínica corresponde al personal autorizado: no se implementó selección automática por compatibilidad sanguínea, prioridades ni FEFO.
+El sistema filtra por componente y una regla preliminar de ABO/RhD; la evaluación clínica y las pruebas aplicables corresponden al personal autorizado. No determina por sí solo la aptitud definitiva. No se implementa gestión automatizada de anticuerpos, prioridades ni FEFO.
 
 ## Cantidades y estados
 
@@ -83,10 +85,10 @@ Estados de reserva: ACTIVA, ENTREGADA y CANCELADA. Estados nuevos de unidad: RES
 
 | Entrada | Comportamiento | Salida |
 | --- | --- | --- |
-| E1. Necesidad del paciente receptor, profesional, componente y cantidad. | C1. Registrar solicitud transfusional. | S1. Solicitud registrada, pendiente de atención. |
-| E2. Unidad, estado, ubicación, vencimiento y movimiento. | C2. Consultar inventario y actualizar estado y ubicación según permisos. | S2. Inventario consultado o actualizado. |
-| E1 y E2. Solicitud e inventario. | C3. Verificar disponibilidad operativa. | S1 si falta disponibilidad; de lo contrario continúa la atención. |
-| E3. Unidad, solicitud, responsable, fecha y observación. | C4. Reservar unidad y asociarla al pedido. | S3. Reserva registrada. |
+| E1. Solicitud, datos del receptor y estudio de laboratorio. | C1. Registrar el pedido y transcribir el estudio. | S1. Solicitud registrada con estudio pendiente de validación. |
+| E2. Solicitud e informe original. | C2. Validar estudio y consultar candidatos por componente, estado, vigencia y grupo. | S2. Estudio validado y unidades candidatas. |
+| E1, E2 y E10. Solicitud, inventario y resultado de pruebas. | C3. Verificar saldo y confirmar compatibilidad según el protocolo. | S1 si falta disponibilidad o validación; de lo contrario continúa la atención. |
+| E10. Unidad candidata, resultado de compatibilidad y su referencia. | C4. Confirmar la evaluación y reservar la unidad. | S3. Reserva registrada con referencia. |
 | E3. Reserva y datos de entrega. | C5. Confirmar habilitación y registrar entrega. | S4. Entrega registrada. |
 | E4. Entrega, destino, responsable, fecha y motivo cuando corresponde. | C6. Registrar transfusión, devolución o descarte. | S5. Destino registrado y saldo actualizado. |
 | E5. Unidad, período, estado, grupo o componente. | C7. Consultar trazabilidad. | S6. Historial consultado. |
@@ -148,15 +150,15 @@ Luego ejecuta PN2_Catalogos.sql, la actualización de PN1.sql, PN2.sql, Integrid
 
 ### Estado de la instalación local
 
-La migración ya se aplicó el 17 de octubre de 2026 a `HemovidaGest` en el servidor local `.`. Se comprobaron las tres tablas nuevas, los procedimientos, los doce permisos y cero errores de integridad. Se conserva el usuario existente y no se cargaron datos ficticios de negocio.
+La versión anterior de PN2 se aplicó el 17 de octubre de 2026 a `HemovidaGest` en el servidor local `.`. Los cambios de estudios y compatibilidad descritos en [PN2-compatibilidad](PN2-compatibilidad.md) requieren una nueva migración; no se aplican automáticamente.
 
 El respaldo anterior a la actualización se conserva en la carpeta de backups de SQL Server con el nombre `HemovidaGest_AntesPN2_20261017_184644_18913565e0f147428488c69e24604568.bak`; se verificó con `RESTORE VERIFYONLY` y checksum. Para comenzar la revisión local alcanza con abrir la aplicación e iniciar sesión nuevamente.
 
 ## Recorrido para la validación funcional
 
-1. Preparar en PN1 al menos tres unidades vigentes del mismo componente, clasificadas y liberadas.
-2. Crear una solicitud por tres unidades y comprobar **3 / 0 / 0 / 3**.
-3. Reservar dos unidades y comprobar **3 / 2 / 0 / 1**. Intentar reservar una de ellas nuevamente: debe rechazarse.
+1. Preparar en PN1 al menos tres unidades vigentes, clasificadas y liberadas con un componente reconocido y grupos candidatos para el estudio del receptor.
+2. Crear una solicitud por tres unidades, cargar el estudio y comprobar **3 / 0 / 0 / 3**. Un operador autorizado valida el informe.
+3. Confirmar la compatibilidad de dos candidatas, ingresar la referencia y reservarlas; comprobar **3 / 2 / 0 / 1**. Intentar reservar una de ellas nuevamente: debe rechazarse.
 4. Entregar una reserva y comprobar **3 / 1 / 1 / 1**. No debe poder entregarse otra vez la misma reserva.
 5. Devolverla con motivo: comprobar **3 / 1 / 0 / 2** y conservar la entrega en el historial.
 6. Cancelar la reserva restante con motivo: comprobar **3 / 0 / 0 / 3**. La unidad queda Liberada.

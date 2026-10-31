@@ -102,6 +102,8 @@ namespace UI
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadDescartada_380_jh", "BITACORA_ACTION_UNIT_DISCARDED"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UbicacionActualizada_380_jh", "BITACORA_ACTION_LOCATION_UPDATED"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("SolicitudTransfusionalRegistrada_380_jh", "BITACORA_ACTION_TRANSFUSION_REQUEST_REGISTERED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("EstudioReceptorActualizado_380_jh", "BITACORA_ACTION_RECIPIENT_STUDY_UPDATED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("EstudioReceptorValidado_380_jh", "BITACORA_ACTION_RECIPIENT_STUDY_VALIDATED"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadReservada_380_jh", "BITACORA_ACTION_UNIT_RESERVED"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("ReservaCancelada_380_jh", "BITACORA_ACTION_RESERVATION_CANCELLED"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadEntregada_380_jh", "BITACORA_ACTION_UNIT_DELIVERED"));
@@ -242,6 +244,8 @@ namespace UI
                 case "UnidadDescartada": clave = "BITACORA_ACTION_UNIT_DISCARDED"; break;
                 case "UbicacionActualizada": clave = "BITACORA_ACTION_LOCATION_UPDATED"; break;
                 case "SolicitudTransfusionalRegistrada": clave = "BITACORA_ACTION_TRANSFUSION_REQUEST_REGISTERED"; break;
+                case "EstudioReceptorActualizado": clave = "BITACORA_ACTION_RECIPIENT_STUDY_UPDATED"; break;
+                case "EstudioReceptorValidado": clave = "BITACORA_ACTION_RECIPIENT_STUDY_VALIDATED"; break;
                 case "UnidadReservada": clave = "BITACORA_ACTION_UNIT_RESERVED"; break;
                 case "ReservaCancelada": clave = "BITACORA_ACTION_RESERVATION_CANCELLED"; break;
                 case "UnidadEntregada": clave = "BITACORA_ACTION_UNIT_DELIVERED"; break;

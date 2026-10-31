@@ -35,6 +35,21 @@ namespace Repository
             return _mapper_380_jh.RegistrarSolicitud_380_jh(solicitud, idUsuario);
         }
 
+        public CodigoOperacionPN2_380_jh ActualizarEstudio_380_jh(SolicitudTransfusional_380_jh solicitud, int idUsuario)
+        {
+            return _mapper_380_jh.ActualizarEstudio_380_jh(solicitud, idUsuario);
+        }
+
+        public CodigoOperacionPN2_380_jh ValidarEstudio_380_jh(int idSolicitud, int idUsuario)
+        {
+            return _mapper_380_jh.ValidarEstudio_380_jh(idSolicitud, idUsuario);
+        }
+
+        public List<Unidad_380_jh> ListarCandidatas_380_jh(int idSolicitud, int idUsuario)
+        {
+            return _mapper_380_jh.ListarCandidatas_380_jh(idSolicitud, idUsuario);
+        }
+
         public List<Reserva_380_jh> ListarReservas_380_jh(int? idSolicitudTransfusional, int idUsuario)
         {
             return _mapper_380_jh.ListarReservas_380_jh(idSolicitudTransfusional, idUsuario);
