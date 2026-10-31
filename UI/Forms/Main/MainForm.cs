@@ -52,6 +52,8 @@ namespace UI
             ConfigurarMenuPorPermisos_380_jh();
             new IntegridadApplicationService_380_jh().Verificar_380_jh();
             MostrarPantallaInicial_380_jh();
+            if (new ComprobanteAutomaticoApplicationService_380_jh().Disponible_380_jh())
+                ComprobantePdfUI_380_jh.ProcesarPendientes_380_jh(this, false);
         }
 
         public void OnLanguageChanged_380_jh(Idioma_380_jh idioma)

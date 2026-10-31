@@ -49,6 +49,7 @@
     <Compile Include="Infrastructure\DatabaseContext.cs" />
     <Compile Include="Permisos\PermisoDataMapper.cs" />
     <Compile Include="PN1\DonacionDataMapper.cs" />
+    <Compile Include="PN1\ComprobanteDataMapper.cs" />
     <Compile Include="PN1\DonanteDataMapper.cs" />
     <Compile Include="PN1\IntegridadDataMapper.cs" />
     <Compile Include="PN1\UnidadDataMapper.cs" />

@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -43,6 +44,7 @@
     <Compile Include="Seguridad\DigitoVerificadorApplicationService.cs" />
     <Compile Include="Idiomas\IdiomaApplicationService.cs" />
     <Compile Include="PN1\DonacionApplicationService.cs" />
+    <Compile Include="PN1\ComprobanteAutomaticoApplicationService.cs" />
     <Compile Include="PN1\DonanteApplicationService.cs" />
     <Compile Include="PN1\IntegridadApplicationService.cs" />
     <Compile Include="PN1\UnidadApplicationService.cs" />

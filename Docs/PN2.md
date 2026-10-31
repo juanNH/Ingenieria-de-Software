@@ -22,7 +22,7 @@ Los diagramas de clases y la secuencia de clases quedan pendientes de la validac
 | Actividad | [Actividad de negocio](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaActividadNegocio.drawio) | Flujo principal, decisiones, destinos y alternativas. |
 | Modelo conceptual | [Modelo conceptual](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaModeloConceptual.drawio) | Conceptos, datos y multiplicidades del negocio. |
 | Secuencia de roles | [Secuencia de roles](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaSecuenciaRoles.drawio) | Interacciones entre las personas y el sistema durante la atención. |
-| Entrada, Comportamiento y Salida | [E/C/S](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaEntradaComportamientoSalida.drawio) | Flujo operativo y E9/C11/S10 del comprobante PDF. |
+| Entrada, Comportamiento y Salida | [E/C/S](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaEntradaComportamientoSalida.drawio) | Flujo operativo y E9/C11/S10 del comprobante automático al registrar destino. |
 | Casos de uso | [CDUN-12 a CDUN-17](../Diagramas/Casos%20de%20Uso/PN2%20-%20CDU-12%20a%20CDU-17%20-%20Casos%20de%20uso.drawio) | Actores y casos existentes; comprobante, cancelación y reingreso. |
 
 Los CDUN conservan sus identificadores. No se agregaron diagramas de clases ni secuencias de clases.
@@ -51,7 +51,7 @@ Los permisos se comprueban en Application y SQL. La instalación agrega las fami
 7. **Cancelar si no se entregará.** Una reserva activa puede cancelarse con motivo. Se conserva el registro y la unidad vuelve a Liberada. La vigencia se vuelve a comprobar antes de cualquier nueva reserva; no hay vencimiento automático de reservas.
 8. **Reingresar una devolución.** La lógica de reingreso queda preservada en el servicio: un Responsable autorizado puede llevar una unidad Devuelta a En revisión. La interfaz actual no expone esa acción; antes de volver a reservarla, la unidad debe clasificarse otra vez y liberarse desde PN1.
 9. **Consultar el recorrido.** Trazabilidad muestra movimientos con usuario, fecha, estado anterior y nuevo, observación y vínculos con solicitud, reserva y entrega. Reportes y alertas permite revisar stock, pedidos y problemas operativos. Ambas son consultas independientes del circuito de entrega.
-10. **Generar un comprobante.** Con permisos para ver solicitudes y reservas, seleccionar la solicitud en Solicitudes transfusionales para obtener un PDF consolidado, o una entrega en Destino de unidades para obtener el PDF individual. El documento refleja el estado al emitirlo y puede generarse durante una atención parcial.
+10. **Emitir el comprobante.** Al registrar un destino, el sistema genera el PDF de esa entrega. Si el archivo no puede guardarse, queda pendiente para reintento. En Solicitudes transfusionales se puede exportar aparte un reporte manual del estado actual de la solicitud.
 
 El sistema comprueba disponibilidad operativa y coincidencia de componente. La evaluación clínica corresponde al personal autorizado: no se implementó selección automática por compatibilidad sanguínea, prioridades ni FEFO.
 
@@ -93,7 +93,7 @@ Estados de reserva: ACTIVA, ENTREGADA y CANCELADA. Estados nuevos de unidad: RES
 | E6. Consulta de reportes y alertas. | C8. Generar reportes y alertas. | S7. Resultados disponibles. |
 | E7. Reserva activa y motivo. | C9. Cancelar reserva. | S8. Reserva cancelada, unidad liberada y saldo actualizado. |
 | E8. Unidad devuelta, responsable autorizado y motivo. | C10. Reingresar a En revisión. | S9. Unidad pendiente de nueva clasificación y liberación PN1. |
-| E9. Solicitud o entrega guardada seleccionada y pedido de comprobante. | C11. Consultar los datos autorizados y generar el comprobante PDF. | S10. PDF consolidado o individual con estado y cantidades al emitirlo. |
+| E9. Destino guardado de una entrega. | C11. Generar automáticamente el comprobante de esa entrega. | S10. PDF con el destino o comprobante pendiente de reintento. |
 
 ## Pantallas y consultas
 
@@ -108,7 +108,7 @@ Las alertas incluyen unidades vencidas, reservas activas cuya unidad ya no reún
 
 Las tres pantallas PN2 disponibles en la navegación tienen textos en español e inglés y utilizan el mecanismo de integridad de PN1. Las vistas de consultas también se conservan implementadas, pero su tab superior no se agrega al menú. La lista de unidades disponibles está dentro de Reservas y entregas. Un error de consulta se informa y bloquea la selección de resultados anteriores para evitar operar sobre datos desactualizados.
 
-El botón **Comprobante PDF** está disponible en Solicitudes transfusionales y Destino de unidades cuando el usuario tiene `SOLICITUD_VER` y `RESERVA_VER`. Se guarda en la ubicación elegida; no se genera automáticamente ni se conserva una copia en la base. El estado Entregada no es un cierre irreversible: una devolución o descarte posterior puede reabrir el saldo. Véase [Comprobantes y balanceo](Comprobantes-PN1-PN2.md).
+**Copiar comprobante PDF** permite recuperar el original de una entrega; **Exportar reporte PDF** genera un documento con datos actuales. Para ambas consultas PN2 se requieren `SOLICITUD_VER` y `RESERVA_VER`. El estado Entregada no es un cierre irreversible: una devolución o descarte posterior puede reabrir el saldo. Véase [Comprobantes y balanceo](Comprobantes-PN1-PN2.md).
 
 ## Código y base de datos
 
@@ -142,7 +142,7 @@ La protección DVH/DVV y la recuperación existentes incluyen las nuevas tablas 
 
 Opcionalmente se pueden indicar `-Servidor` y `-Base`. El instalador usa la conexión local sin mostrar sus credenciales, comprueba la integridad y crea un backup COPY_ONLY con checksum en la carpeta de backups de SQL Server; verifica ese archivo antes de migrar. La cuenta SQL necesita permisos de backup y de modificación de esquema.
 
-Luego ejecuta PN2_Catalogos.sql, la actualización de PN1.sql, PN2.sql e IntegridadPN2.sql en una transacción y verifica nuevamente la integridad antes de confirmar. Un error revierte la actualización. No usar el esquema inicial completo para actualizar una base con datos.
+Luego ejecuta PN2_Catalogos.sql, la actualización de PN1.sql, PN2.sql, IntegridadPN2.sql y ComprobantesAutomaticos.sql en una transacción y verifica nuevamente la integridad antes de confirmar. Un error revierte la actualización. No usar el esquema inicial completo para actualizar una base con datos. Una base que ya tiene PN2 puede actualizar solo comprobantes con `./Database/InstalarComprobantes.ps1`.
 
 4. Compilar `IngDeSoftware.sln` y abrir la UI. Volver a iniciar sesión para cargar los permisos. El administrador existente recibe las operaciones de PN2; los demás usuarios usan las familias asignadas.
 

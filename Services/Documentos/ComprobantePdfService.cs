@@ -14,10 +14,16 @@ namespace Services
     {
         public void GuardarPN1_380_jh(string archivo, IList<Unidad_380_jh> unidades, string usuario)
         {
+            GuardarPN1_380_jh(archivo, unidades, usuario, false);
+        }
+
+        public void GuardarPN1_380_jh(string archivo, IList<Unidad_380_jh> unidades, string usuario, bool instantaneaOperacion, string identificador = null)
+        {
             if (unidades == null || unidades.Count == 0 || unidades.Any(u => u.IdDonacion_380_jh != unidades[0].IdDonacion_380_jh))
                 throw new ArgumentException("Se requiere una donación con unidades guardadas.");
             Unidad_380_jh primera = unidades[0];
-            using (Documento_380_jh documento = new Documento_380_jh("Comprobante de proceso de donación", "PN1 · Donación " + primera.IdDonacion_380_jh, usuario))
+            DateTime? fechaOperacion = instantaneaOperacion ? (DateTime?)unidades.Max(u => u.FechaUltimaModificacion_380_jh) : null;
+            using (Documento_380_jh documento = new Documento_380_jh("Comprobante de proceso de donación", "PN1 · Donación " + primera.IdDonacion_380_jh, usuario, instantaneaOperacion, identificador, fechaOperacion))
             {
                 documento.Campo_380_jh("Donación", primera.IdDonacion_380_jh.ToString());
                 documento.Campo_380_jh("Donante", primera.Donante_380_jh);
@@ -43,13 +49,20 @@ namespace Services
         public void GuardarPN2_380_jh(string archivo, SolicitudTransfusional_380_jh solicitud,
             IList<Entrega_380_jh> entregas, string usuario, int? idEntrega = null)
         {
+            GuardarPN2_380_jh(archivo, solicitud, entregas, usuario, idEntrega, false);
+        }
+
+        public void GuardarPN2_380_jh(string archivo, SolicitudTransfusional_380_jh solicitud,
+            IList<Entrega_380_jh> entregas, string usuario, int? idEntrega, bool instantaneaOperacion, string identificador = null)
+        {
             if (solicitud == null || entregas == null || entregas.Any(e => e.IdSolicitudTransfusional_380_jh != solicitud.Id_380_jh))
                 throw new ArgumentException("Se requiere una solicitud y sus entregas guardadas.");
             List<Entrega_380_jh> seleccion = entregas.Where(e => !idEntrega.HasValue || e.Id_380_jh == idEntrega.Value).OrderBy(e => e.FechaEntrega_380_jh).ToList();
             if (idEntrega.HasValue && seleccion.Count != 1) throw new ArgumentException("Entrega inexistente.");
             string titulo = idEntrega.HasValue ? "Comprobante de entrega" : "Comprobante de atención de solicitud";
             string referencia = idEntrega.HasValue ? "PN2 · Entrega " + idEntrega.Value : "PN2 · Solicitud " + solicitud.Id_380_jh;
-            using (Documento_380_jh documento = new Documento_380_jh(titulo, referencia, usuario))
+            DateTime? fechaOperacion = instantaneaOperacion && seleccion.Count == 1 ? seleccion[0].FechaDestino_380_jh : null;
+            using (Documento_380_jh documento = new Documento_380_jh(titulo, referencia, usuario, instantaneaOperacion, identificador, fechaOperacion))
             {
                 documento.Campo_380_jh("Solicitud", solicitud.Id_380_jh.ToString());
                 documento.Campo_380_jh("Fecha de solicitud", solicitud.FechaSolicitud_380_jh.ToString("dd/MM/yyyy HH:mm"));
@@ -90,14 +103,18 @@ namespace Services
             private XGraphics _grafico;
             private double _y;
 
-            public Documento_380_jh(string nombre, string referencia, string usuario)
+            public Documento_380_jh(string nombre, string referencia, string usuario, bool instantaneaOperacion, string identificador, DateTime? fechaOperacion)
             {
                 _nombre = nombre; _referencia = referencia;
                 _pdf.Info.Title = nombre;
                 NuevaPagina_380_jh();
                 Campo_380_jh("Emitido", _emitido.ToString("dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture));
-                Campo_380_jh("Generado por", usuario);
-                Texto_380_jh("Datos registrados al momento de la emisión. Los estados pueden cambiar posteriormente.");
+                if (!string.IsNullOrWhiteSpace(identificador)) Campo_380_jh("Identificador del comprobante", identificador);
+                if (fechaOperacion.HasValue) Campo_380_jh("Fecha de la operación", fechaOperacion.Value.ToString("dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture));
+                Campo_380_jh(instantaneaOperacion ? "Responsable de la operación" : "Generado por", usuario);
+                Texto_380_jh(instantaneaOperacion
+                    ? "Datos registrados al finalizar la operación. Los estados pueden cambiar posteriormente."
+                    : "Datos registrados al momento de la emisión. Los estados pueden cambiar posteriormente.");
             }
 
             private void NuevaPagina_380_jh()

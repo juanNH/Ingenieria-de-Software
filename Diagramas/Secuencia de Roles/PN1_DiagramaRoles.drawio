@@ -73,7 +73,7 @@
         <mxCell id="tarea-responsable" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#faf6fc;strokeColor=#9673a6;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=14;spacingRight=14;" value="Recibe la salida S3, revisa la unidad y procesa E3 (liberar, bloquear o descartar); comunica S4 al Operador autorizado." vertex="1">
           <mxGeometry height="115" width="280" x="1210" y="355" as="geometry" />
         </mxCell>
-        <mxCell id="comprobante-pn1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;E4 / C8 / S5&lt;/b&gt; — El usuario con acceso a unidades selecciona una unidad de la donación y genera el comprobante PDF con sus estados actuales." vertex="1"><mxGeometry x="420" y="610" width="760" height="100" as="geometry" /></mxCell>
+        <mxCell id="comprobante-pn1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=13;fontFamily=Arial;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;E4 / C8 / S5&lt;/b&gt; — Tras registrar la última decisión de las unidades de una donación, el sistema genera el comprobante automáticamente; si falla el archivo, queda pendiente de reintento." vertex="1"><mxGeometry x="420" y="610" width="760" height="100" as="geometry" /></mxCell>
       </root>
     </mxGraphModel>
   </diagram>

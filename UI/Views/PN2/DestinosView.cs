@@ -46,16 +46,28 @@ namespace UI
             Button actualizar = ControlesPN2_380_jh.CrearBoton_380_jh("BTN_REFRESH");
             actualizar.Click += delegate { CargarEntregas_380_jh(); };
             filtros.Controls.Add(actualizar);
-            Button comprobante = ControlesPN2_380_jh.CrearBoton_380_jh("RECEIPT_PDF");
+            Button comprobante = ControlesPN2_380_jh.CrearBoton_380_jh("RECEIPT_COPY");
             comprobante.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.SolicitudVer_380_jh) &&
                 _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaVer_380_jh);
             comprobante.Click += delegate
             {
                 Entrega_380_jh entrega = ControlesPN2_380_jh.Seleccionado_380_jh<Entrega_380_jh>(_grid_380_jh);
                 if (entrega == null) { MessageBox.Show(this, ControlesPN2_380_jh.Traducir_380_jh("PN2_SELECT_DELIVERY")); return; }
-                ComprobantePdfUI_380_jh.GuardarPN2_380_jh(this, _pn2Service_380_jh, entrega.IdSolicitudTransfusional_380_jh, entrega.Id_380_jh);
+                ComprobantePdfUI_380_jh.CopiarOriginal_380_jh(this, "PN2", entrega.Id_380_jh);
             };
             filtros.Controls.Add(comprobante);
+            Button reporteActual = ControlesPN2_380_jh.CrearBoton_380_jh("RECEIPT_CURRENT_PDF");
+            reporteActual.Visible = comprobante.Visible;
+            reporteActual.Click += delegate
+            {
+                Entrega_380_jh entrega = ControlesPN2_380_jh.Seleccionado_380_jh<Entrega_380_jh>(_grid_380_jh);
+                if (entrega == null) { MessageBox.Show(this, ControlesPN2_380_jh.Traducir_380_jh("PN2_SELECT_DELIVERY")); return; }
+                ComprobantePdfUI_380_jh.GuardarPN2_380_jh(this, _pn2Service_380_jh, entrega.IdSolicitudTransfusional_380_jh, entrega.Id_380_jh);
+            };
+            filtros.Controls.Add(reporteActual);
+            Button reintentarComprobante = ControlesPN2_380_jh.CrearBoton_380_jh("RECEIPT_RETRY");
+            reintentarComprobante.Click += delegate { ComprobantePdfUI_380_jh.ProcesarPendientes_380_jh(this, true); };
+            filtros.Controls.Add(reintentarComprobante);
             layout.Controls.Add(filtros, 0, 2);
 
             Panel grillaPanel = new Panel { Dock = DockStyle.Fill };
@@ -148,11 +160,13 @@ namespace UI
             if ((destino == "DEVUELTA" || destino == "DESCARTADA") && string.IsNullOrWhiteSpace(_txtMotivo_380_jh.Text))
             { MessageBox.Show(this, ControlesPN2_380_jh.Traducir_380_jh("PN2_REASON_REQUIRED")); return; }
             if (!ControlesPN2_380_jh.Confirmar_380_jh(this, "PN2_CONFIRM_DESTINATION", entrega.CodigoIdentificacion_380_jh + " · " + ControlesPN2_380_jh.TraducirEstado_380_jh(destino))) return;
+            if (!ComprobantePdfUI_380_jh.VerificarInstalacion_380_jh(this)) return;
             CodigoOperacionPN2_380_jh resultado = _pn2Service_380_jh.RegistrarDestino_380_jh(entrega.Id_380_jh, destino, _txtMotivo_380_jh.Text);
             ControlesPN2_380_jh.MostrarResultado_380_jh(this, resultado);
             if (resultado != CodigoOperacionPN2_380_jh.Ok_380_jh) return;
             _txtMotivo_380_jh.Clear();
             CargarEntregas_380_jh();
+            ComprobantePdfUI_380_jh.ProcesarPendientes_380_jh(this, true, false);
         }
     }
 }

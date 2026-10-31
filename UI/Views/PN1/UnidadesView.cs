@@ -30,6 +30,7 @@ namespace UI
         private Button _btnDescartar_380_jh;
         private Button _btnExportarXml_380_jh;
         private Button _btnComprobante_380_jh;
+        private Button _btnReporteActual_380_jh;
         private Button _btnImportarXml_380_jh;
         private Button _btnLimpiarXml_380_jh;
         private readonly List<FilaUnidadXml_380_jh> _filasXml_380_jh = new List<FilaUnidadXml_380_jh>();
@@ -94,14 +95,20 @@ namespace UI
             _btnLimpiarXml_380_jh = CrearBoton_380_jh("UNIT_CLEAR_TABLE");
             _btnLimpiarXml_380_jh.Enabled = false;
             _btnLimpiarXml_380_jh.Click += LimpiarXml_Click_380_jh;
-            _btnComprobante_380_jh = CrearBoton_380_jh("RECEIPT_PDF");
+            _btnComprobante_380_jh = CrearBoton_380_jh("RECEIPT_COPY");
             _btnComprobante_380_jh.Click += Comprobante_Click_380_jh;
+            _btnReporteActual_380_jh = CrearBoton_380_jh("RECEIPT_CURRENT_PDF");
+            _btnReporteActual_380_jh.Click += ReporteActual_Click_380_jh;
+            Button reintentarComprobante = CrearBoton_380_jh("RECEIPT_RETRY");
+            reintentarComprobante.Click += delegate { ComprobantePdfUI_380_jh.ProcesarPendientes_380_jh(this, true); };
             filtro.Controls.Add(buscar);
             filtro.Controls.Add(actualizar);
             filtro.Controls.Add(_btnExportarXml_380_jh);
             filtro.Controls.Add(_btnImportarXml_380_jh);
             filtro.Controls.Add(_btnLimpiarXml_380_jh);
             filtro.Controls.Add(_btnComprobante_380_jh);
+            filtro.Controls.Add(_btnReporteActual_380_jh);
+            filtro.Controls.Add(reintentarComprobante);
             layout.Controls.Add(filtro, 0, 2);
 
             SplitContainer split = new SplitContainer
@@ -264,6 +271,7 @@ namespace UI
             _btnImportarXml_380_jh.Visible = puedeXml;
             _btnLimpiarXml_380_jh.Visible = puedeXml;
             _btnComprobante_380_jh.Visible = puedeXml;
+            _btnReporteActual_380_jh.Visible = puedeXml;
         }
 
         private void CargarUnidades_380_jh()
@@ -339,24 +347,35 @@ namespace UI
                 MessageBox.Show(this, LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_INVALID"));
                 return;
             }
-            int idUnidad = seleccionada.Id_380_jh;
-            ComprobantePdfUI_380_jh.Guardar_380_jh(this, "PN1_Donacion_" + seleccionada.IdDonacion_380_jh + ".pdf", archivo =>
-            {
-                InformeIntegridad_380_jh integridad = new IntegridadApplicationService_380_jh().Verificar_380_jh();
-                if (!integridad.Disponible_380_jh || !integridad.EsValida_380_jh) throw new InvalidOperationException();
-                List<Unidad_380_jh> unidades = _unidadService_380_jh.Listar_380_jh();
-                Unidad_380_jh actual = unidades.FirstOrDefault(u => u.Id_380_jh == idUnidad);
-                if (actual == null) throw new InvalidOperationException();
-                List<Unidad_380_jh> donacion = unidades.Where(u => u.IdDonacion_380_jh == actual.IdDonacion_380_jh).ToList();
-                Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-                new ComprobantePdfService_380_jh().GuardarPN1_380_jh(archivo, donacion, usuario == null ? "" : usuario.Username_380_jh);
-            });
+            ComprobantePdfUI_380_jh.CopiarOriginal_380_jh(this, "PN1", seleccionada.IdDonacion_380_jh);
         }
 
         private Unidad_380_jh ObtenerSeleccionada_380_jh()
         {
             if (_modoXml_380_jh) return null;
             return _grid_380_jh.SelectedRows.Count == 0 ? null : _grid_380_jh.SelectedRows[0].Tag as Unidad_380_jh;
+        }
+
+        private void ReporteActual_Click_380_jh(object sender, EventArgs e)
+        {
+            Unidad_380_jh seleccionada = ObtenerSeleccionada_380_jh();
+            if (seleccionada == null || !_grid_380_jh.Enabled)
+            {
+                MessageBox.Show(this, LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_INVALID"));
+                return;
+            }
+            int idUnidad = seleccionada.Id_380_jh;
+            ComprobantePdfUI_380_jh.Guardar_380_jh(this, "ReporteActual_PN1_" + seleccionada.IdDonacion_380_jh + ".pdf", archivo =>
+            {
+                InformeIntegridad_380_jh integridad = new IntegridadApplicationService_380_jh().Verificar_380_jh();
+                if (!integridad.Disponible_380_jh || !integridad.EsValida_380_jh) throw new InvalidOperationException();
+                List<Unidad_380_jh> unidades = _unidadService_380_jh.Listar_380_jh();
+                Unidad_380_jh actual = unidades.FirstOrDefault(u => u.Id_380_jh == idUnidad);
+                if (actual == null) throw new InvalidOperationException();
+                Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
+                new ComprobantePdfService_380_jh().GuardarPN1_380_jh(archivo,
+                    unidades.Where(u => u.IdDonacion_380_jh == actual.IdDonacion_380_jh).ToList(), usuario == null ? "" : usuario.Username_380_jh);
+            });
         }
 
         private void Clasificar_Click_380_jh(object sender, EventArgs e)
@@ -390,11 +409,13 @@ namespace UI
                 return;
             }
 
+            if (!ComprobantePdfUI_380_jh.VerificarInstalacion_380_jh(this)) return;
             CodigoOperacionPN1_380_jh resultado = _unidadService_380_jh.CambiarEstado_380_jh(unidad, estado, _txtObservaciones_380_jh.Text);
             MessageBox.Show(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(ObtenerClaveResultado_380_jh(resultado, estado)));
             if (resultado == CodigoOperacionPN1_380_jh.Ok_380_jh)
             {
                 CargarUnidades_380_jh();
+                ComprobantePdfUI_380_jh.ProcesarPendientes_380_jh(this, true, false);
             }
         }
 

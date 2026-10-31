@@ -43,7 +43,7 @@ namespace UI
             Button actualizar = ControlesPN2_380_jh.CrearBoton_380_jh("BTN_REFRESH");
             actualizar.Click += delegate { CargarSolicitudes_380_jh(); };
             filtros.Controls.Add(actualizar);
-            Button comprobante = ControlesPN2_380_jh.CrearBoton_380_jh("RECEIPT_PDF");
+            Button comprobante = ControlesPN2_380_jh.CrearBoton_380_jh("RECEIPT_CURRENT_PDF");
             comprobante.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.SolicitudVer_380_jh) &&
                 _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaVer_380_jh);
             comprobante.Click += delegate

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auditoria\AuditoriaCambio.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="PN1\EstadoUnidadPN1.cs" />
     <Compile Include="PN1\MovimientoUnidad.cs" />
     <Compile Include="PN1\Unidad.cs" />
+    <Compile Include="PN1\ComprobanteAutomatico.cs" />
     <Compile Include="PN2\SolicitudTransfusional.cs" />
     <Compile Include="PN2\Reserva.cs" />
     <Compile Include="PN2\Entrega.cs" />
