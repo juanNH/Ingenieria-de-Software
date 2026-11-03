@@ -309,7 +309,8 @@ BEGIN
     IF @id_donante IS NULL OR @id_donante <= 0
        OR @fecha_donacion IS NULL
        OR @cantidad_unidades IS NULL OR @cantidad_unidades <= 0
-       OR NULLIF(LTRIM(RTRIM(@tipo_componente)), '') IS NULL
+       OR UPPER(LTRIM(RTRIM(@tipo_componente))) COLLATE Latin1_General_CI_AI NOT IN
+            ('CONCENTRADO DE ERITROCITOS','PLASMA FRESCO CONGELADO','CONCENTRADO DE PLAQUETAS')
        OR @fecha_vencimiento IS NULL
        OR @fecha_vencimiento < CONVERT(DATE, @fecha_donacion)
        OR @id_usuario IS NULL OR @id_usuario <= 0
@@ -453,7 +454,8 @@ BEGIN
         EXEC dbo.sp_IntegridadPN1_Exigir;
 
     IF @id_unidad IS NULL OR @id_unidad <= 0
-       OR NULLIF(LTRIM(RTRIM(@tipo_componente)), '') IS NULL
+       OR UPPER(LTRIM(RTRIM(@tipo_componente))) COLLATE Latin1_General_CI_AI NOT IN
+            ('CONCENTRADO DE ERITROCITOS','PLASMA FRESCO CONGELADO','CONCENTRADO DE PLAQUETAS')
        OR @grupo_sanguineo NOT IN ('A', 'B', 'AB', 'O')
        OR @factor_rh NOT IN ('+', '-')
        OR @fecha_vencimiento IS NULL

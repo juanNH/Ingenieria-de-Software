@@ -69,7 +69,7 @@ namespace Application
                 TextoValido_380_jh(solicitud.ResultadoAnticuerpos_380_jh, 500, true) &&
                 solicitud.FechaEstudio_380_jh.HasValue && solicitud.FechaEstudio_380_jh.Value.Date <= DateTime.Today;
             bool valida = solicitud != null && TextoValido_380_jh(solicitud.PacienteReceptor_380_jh, 150, true) &&
-                TextoValido_380_jh(solicitud.TipoComponente_380_jh, 100, true) && solicitud.CantidadRequerida_380_jh > 0 &&
+                ComponentesTransfusionales_380_jh.EsValido_380_jh(solicitud.TipoComponente_380_jh) && solicitud.CantidadRequerida_380_jh > 0 &&
                 TextoValido_380_jh(solicitud.DocumentoReceptor_380_jh, 50, true) &&
                 TextoValido_380_jh(solicitud.ProfesionalSolicitante_380_jh, 150, true) && (estudioAusente || estudioCompleto);
             return Ejecutar_380_jh(PermisosSistema_380_jh.SolicitudCrear_380_jh, valida,

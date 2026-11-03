@@ -17,7 +17,7 @@ namespace UI
         private ComboBox _cmbDonante_380_jh;
         private DateTimePicker _dtpDonacion_380_jh;
         private NumericUpDown _numCantidad_380_jh;
-        private TextBox _txtComponente_380_jh;
+        private ComboBox _cmbComponente_380_jh;
         private DateTimePicker _dtpVencimiento_380_jh;
         private TextBox _txtObservaciones_380_jh;
         private DataGridView _gridUnidades_380_jh;
@@ -75,14 +75,15 @@ namespace UI
             _cmbDonante_380_jh = new ComboBox { Dock = DockStyle.Fill, DropDownStyle = ComboBoxStyle.DropDownList };
             _dtpDonacion_380_jh = new DateTimePicker { Dock = DockStyle.Fill, Format = DateTimePickerFormat.Short, Value = DateTime.Now };
             _numCantidad_380_jh = new NumericUpDown { Dock = DockStyle.Left, Minimum = 1, Maximum = 1000, Value = 1, Width = 120 };
-            _txtComponente_380_jh = new TextBox { Dock = DockStyle.Fill, MaxLength = 100 };
+            _cmbComponente_380_jh = new ComboBox { Dock = DockStyle.Fill, DropDownStyle = ComboBoxStyle.DropDownList };
+            _cmbComponente_380_jh.Items.AddRange(ComponentesTransfusionales_380_jh.CrearOpciones_380_jh());
             _dtpVencimiento_380_jh = new DateTimePicker { Dock = DockStyle.Fill, Format = DateTimePickerFormat.Short, Value = DateTime.Now.AddDays(35) };
             _txtObservaciones_380_jh = new TextBox { Dock = DockStyle.Fill, MaxLength = 500 };
 
             AgregarCampo_380_jh(formulario, "DONATION_DONOR", _cmbDonante_380_jh, 0, 0);
             AgregarCampo_380_jh(formulario, "DONATION_DATE", _dtpDonacion_380_jh, 2, 0);
             AgregarCampo_380_jh(formulario, "DONATION_QUANTITY", _numCantidad_380_jh, 0, 1);
-            AgregarCampo_380_jh(formulario, "DONATION_COMPONENT", _txtComponente_380_jh, 2, 1);
+            AgregarCampo_380_jh(formulario, "DONATION_COMPONENT", _cmbComponente_380_jh, 2, 1);
             AgregarCampo_380_jh(formulario, "DONATION_EXPIRATION", _dtpVencimiento_380_jh, 0, 2);
             AgregarCampo_380_jh(formulario, "DONATION_OBSERVATIONS", _txtObservaciones_380_jh, 2, 2);
             formulario.SetColumnSpan(_txtObservaciones_380_jh, 1);
@@ -177,7 +178,7 @@ namespace UI
                 IdDonante_380_jh = donante == null ? 0 : donante.Id_380_jh,
                 FechaDonacion_380_jh = _dtpDonacion_380_jh.Value,
                 CantidadUnidades_380_jh = Convert.ToInt32(_numCantidad_380_jh.Value),
-                TipoComponente_380_jh = _txtComponente_380_jh.Text,
+                TipoComponente_380_jh = _cmbComponente_380_jh.SelectedItem as string,
                 FechaVencimiento_380_jh = _dtpVencimiento_380_jh.Value.Date,
                 Observaciones_380_jh = _txtObservaciones_380_jh.Text
             };

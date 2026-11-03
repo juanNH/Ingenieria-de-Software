@@ -13,7 +13,7 @@ namespace UI
         private readonly List<SolicitudTransfusional_380_jh> _solicitudes_380_jh = new List<SolicitudTransfusional_380_jh>();
         private TextBox _txtBuscar_380_jh;
         private TextBox _txtPaciente_380_jh;
-        private TextBox _txtComponente_380_jh;
+        private ComboBox _cmbComponente_380_jh;
         private TextBox _txtDocumento_380_jh, _txtLaboratorio_380_jh, _txtReferencia_380_jh, _txtAnticuerpos_380_jh;
         private TextBox _txtSolicitante_380_jh;
         private ComboBox _cmbGrupo_380_jh, _cmbRh_380_jh;
@@ -81,7 +81,8 @@ namespace UI
             Panel formularioPanel = new Panel { Dock = DockStyle.Fill };
             TableLayoutPanel formulario = ControlesPN2_380_jh.CrearFormulario_380_jh(formularioPanel, "PN2_NEW_REQUEST", 7);
             _txtPaciente_380_jh = new TextBox { MaxLength = 150 };
-            _txtComponente_380_jh = new TextBox { MaxLength = 100 };
+            _cmbComponente_380_jh = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
+            _cmbComponente_380_jh.Items.AddRange(ComponentesTransfusionales_380_jh.CrearOpciones_380_jh());
             _numCantidad_380_jh = new NumericUpDown { Minimum = 1, Maximum = int.MaxValue, Value = 1 };
             _txtDocumento_380_jh = new TextBox { MaxLength = 50 };
             _txtSolicitante_380_jh = new TextBox { MaxLength = 150 };
@@ -94,7 +95,7 @@ namespace UI
             _cmbRh_380_jh.Items.AddRange(new object[] { "+", "-" });
             _fechaEstudio_380_jh = new DateTimePicker { Format = DateTimePickerFormat.Short, MaxDate = DateTime.Today, ShowCheckBox = true, Checked = false };
             ControlesPN2_380_jh.AgregarCampo_380_jh(formulario, "PN2_PATIENT", _txtPaciente_380_jh, 0, 0);
-            ControlesPN2_380_jh.AgregarCampo_380_jh(formulario, "UNIT_COMPONENT", _txtComponente_380_jh, 2, 0);
+            ControlesPN2_380_jh.AgregarCampo_380_jh(formulario, "UNIT_COMPONENT", _cmbComponente_380_jh, 2, 0);
             ControlesPN2_380_jh.AgregarCampo_380_jh(formulario, "PN2_REQUIRED", _numCantidad_380_jh, 0, 1);
             ControlesPN2_380_jh.AgregarCampo_380_jh(formulario, "PN2_PATIENT_DOCUMENT", _txtDocumento_380_jh, 2, 1);
             ControlesPN2_380_jh.AgregarCampo_380_jh(formulario, "UNIT_BLOOD_GROUP", _cmbGrupo_380_jh, 0, 2);
@@ -169,14 +170,14 @@ namespace UI
                 ReferenciaEstudio_380_jh = _txtReferencia_380_jh.Text,
                 FechaEstudio_380_jh = _fechaEstudio_380_jh.Checked ? (DateTime?)_fechaEstudio_380_jh.Value.Date : null,
                 ResultadoAnticuerpos_380_jh = _txtAnticuerpos_380_jh.Text,
-                TipoComponente_380_jh = _txtComponente_380_jh.Text,
+                TipoComponente_380_jh = _cmbComponente_380_jh.SelectedItem as string,
                 CantidadRequerida_380_jh = Convert.ToInt32(_numCantidad_380_jh.Value)
             };
             CodigoOperacionPN2_380_jh resultado = _pn2Service_380_jh.RegistrarSolicitud_380_jh(solicitud);
             ControlesPN2_380_jh.MostrarResultado_380_jh(this, resultado);
             if (resultado != CodigoOperacionPN2_380_jh.Ok_380_jh) return;
             _txtPaciente_380_jh.Clear();
-            _txtComponente_380_jh.Clear();
+            _cmbComponente_380_jh.SelectedIndex = -1;
             _txtDocumento_380_jh.Clear(); _txtSolicitante_380_jh.Clear(); _txtLaboratorio_380_jh.Clear(); _txtReferencia_380_jh.Clear(); _txtAnticuerpos_380_jh.Clear();
             _cmbGrupo_380_jh.SelectedIndex = -1; _cmbRh_380_jh.SelectedIndex = -1;
             _fechaEstudio_380_jh.Checked = false;
@@ -190,7 +191,7 @@ namespace UI
             SolicitudTransfusional_380_jh s = ControlesPN2_380_jh.Seleccionado_380_jh<SolicitudTransfusional_380_jh>(_grid_380_jh);
             if (s == null) return;
             _txtPaciente_380_jh.Text = s.PacienteReceptor_380_jh;
-            _txtComponente_380_jh.Text = s.TipoComponente_380_jh;
+            _cmbComponente_380_jh.SelectedItem = s.TipoComponente_380_jh;
             _txtSolicitante_380_jh.Text = s.ProfesionalSolicitante_380_jh;
             _txtDocumento_380_jh.Text = s.DocumentoReceptor_380_jh;
             _cmbGrupo_380_jh.SelectedItem = s.GrupoReceptor_380_jh;

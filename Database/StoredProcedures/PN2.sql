@@ -322,7 +322,9 @@ BEGIN
         EXEC dbo.sp_IntegridadPN1_Autorizar @id_usuario,'SOLICITUD_CREAR';
         EXEC dbo.sp_PN2_Exigir;
         IF NULLIF(LTRIM(RTRIM(@paciente_receptor)),'') IS NULL
-           OR NULLIF(LTRIM(RTRIM(@tipo_componente)),'') IS NULL OR @cantidad_requerida IS NULL OR @cantidad_requerida<=0
+           OR UPPER(LTRIM(RTRIM(@tipo_componente))) COLLATE Latin1_General_CI_AI NOT IN
+                ('CONCENTRADO DE ERITROCITOS','PLASMA FRESCO CONGELADO','CONCENTRADO DE PLAQUETAS')
+           OR @cantidad_requerida IS NULL OR @cantidad_requerida<=0
            OR NULLIF(LTRIM(RTRIM(@documento_receptor)),'') IS NULL
            OR NULLIF(LTRIM(RTRIM(@nombre_solicitante)),'') IS NULL
            OR NOT ((@grupo_receptor IS NULL AND @rh_receptor IS NULL AND NULLIF(LTRIM(RTRIM(@laboratorio_estudio)),'') IS NULL

@@ -19,7 +19,7 @@ namespace UI
         private readonly List<Unidad_380_jh> _unidades_380_jh = new List<Unidad_380_jh>();
         private DataGridView _grid_380_jh;
         private TextBox _txtBuscar_380_jh;
-        private TextBox _txtComponente_380_jh;
+        private ComboBox _cmbComponente_380_jh;
         private ComboBox _cmbGrupo_380_jh;
         private ComboBox _cmbRh_380_jh;
         private DateTimePicker _dtpVencimiento_380_jh;
@@ -154,14 +154,15 @@ namespace UI
             formulario.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
             detalle.Controls.Add(formulario);
 
-            _txtComponente_380_jh = new TextBox { Dock = DockStyle.Fill, MaxLength = 100 };
+            _cmbComponente_380_jh = new ComboBox { Dock = DockStyle.Fill, DropDownStyle = ComboBoxStyle.DropDownList };
+            _cmbComponente_380_jh.Items.AddRange(ComponentesTransfusionales_380_jh.CrearOpciones_380_jh());
             _cmbGrupo_380_jh = new ComboBox { Dock = DockStyle.Left, DropDownStyle = ComboBoxStyle.DropDownList, Width = 100 };
             _cmbGrupo_380_jh.Items.AddRange(new object[] { "A", "B", "AB", "O" });
             _cmbRh_380_jh = new ComboBox { Dock = DockStyle.Left, DropDownStyle = ComboBoxStyle.DropDownList, Width = 100 };
             _cmbRh_380_jh.Items.AddRange(new object[] { "+", "-" });
             _dtpVencimiento_380_jh = new DateTimePicker { Dock = DockStyle.Fill, Format = DateTimePickerFormat.Short };
             _txtObservaciones_380_jh = new TextBox { Dock = DockStyle.Fill, Multiline = true, Height = 55, MaxLength = 500, ScrollBars = ScrollBars.Vertical };
-            AgregarCampo_380_jh(formulario, "UNIT_COMPONENT", _txtComponente_380_jh, 0);
+            AgregarCampo_380_jh(formulario, "UNIT_COMPONENT", _cmbComponente_380_jh, 0);
             AgregarCampo_380_jh(formulario, "UNIT_BLOOD_GROUP", _cmbGrupo_380_jh, 1);
             AgregarCampo_380_jh(formulario, "UNIT_RH", _cmbRh_380_jh, 2);
             AgregarCampo_380_jh(formulario, "UNIT_EXPIRATION", _dtpVencimiento_380_jh, 3);
@@ -328,7 +329,7 @@ namespace UI
                 return;
             }
 
-            _txtComponente_380_jh.Text = unidad.TipoComponente_380_jh ?? string.Empty;
+            _cmbComponente_380_jh.SelectedItem = unidad.TipoComponente_380_jh;
             _cmbGrupo_380_jh.SelectedItem = unidad.GrupoSanguineo_380_jh;
             _cmbRh_380_jh.SelectedItem = unidad.FactorRh_380_jh;
             // Un dato alterado puede estar fuera del rango admitido por WinForms.
@@ -387,7 +388,7 @@ namespace UI
                 return;
             }
 
-            unidad.TipoComponente_380_jh = _txtComponente_380_jh.Text;
+            unidad.TipoComponente_380_jh = _cmbComponente_380_jh.SelectedItem as string;
             unidad.GrupoSanguineo_380_jh = _cmbGrupo_380_jh.SelectedItem == null ? null : _cmbGrupo_380_jh.SelectedItem.ToString();
             unidad.FactorRh_380_jh = _cmbRh_380_jh.SelectedItem == null ? null : _cmbRh_380_jh.SelectedItem.ToString();
             unidad.FechaVencimiento_380_jh = _dtpVencimiento_380_jh.Value.Date;
