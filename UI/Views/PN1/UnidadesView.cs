@@ -155,11 +155,11 @@ namespace UI
             detalle.Controls.Add(formulario);
 
             _cmbComponente_380_jh = new ComboBox { Dock = DockStyle.Fill, DropDownStyle = ComboBoxStyle.DropDownList };
-            _cmbComponente_380_jh.Items.AddRange(ComponentesTransfusionales_380_jh.CrearOpciones_380_jh());
+            MaestrosCombo_380_jh.Cargar_380_jh(_cmbComponente_380_jh, MaestroPN1ApplicationService_380_jh.Componente_380_jh);
             _cmbGrupo_380_jh = new ComboBox { Dock = DockStyle.Left, DropDownStyle = ComboBoxStyle.DropDownList, Width = 100 };
-            _cmbGrupo_380_jh.Items.AddRange(new object[] { "A", "B", "AB", "O" });
+            MaestrosCombo_380_jh.Cargar_380_jh(_cmbGrupo_380_jh, MaestroPN1ApplicationService_380_jh.Grupo_380_jh);
             _cmbRh_380_jh = new ComboBox { Dock = DockStyle.Left, DropDownStyle = ComboBoxStyle.DropDownList, Width = 100 };
-            _cmbRh_380_jh.Items.AddRange(new object[] { "+", "-" });
+            MaestrosCombo_380_jh.Cargar_380_jh(_cmbRh_380_jh, MaestroPN1ApplicationService_380_jh.Rh_380_jh);
             _dtpVencimiento_380_jh = new DateTimePicker { Dock = DockStyle.Fill, Format = DateTimePickerFormat.Short };
             _txtObservaciones_380_jh = new TextBox { Dock = DockStyle.Fill, Multiline = true, Height = 55, MaxLength = 500, ScrollBars = ScrollBars.Vertical };
             AgregarCampo_380_jh(formulario, "UNIT_COMPONENT", _cmbComponente_380_jh, 0);
@@ -308,7 +308,7 @@ namespace UI
                 foreach (Unidad_380_jh unidad in _unidades_380_jh)
                 {
                     int indice = _grid_380_jh.Rows.Add(unidad.CodigoIdentificacion_380_jh, unidad.Donante_380_jh, unidad.TipoComponente_380_jh,
-                        unidad.GrupoSanguineo_380_jh, unidad.FactorRh_380_jh, unidad.FechaVencimiento_380_jh.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture), TraducirEstado_380_jh(unidad.EstadoOperativo_380_jh));
+                        unidad.GrupoSanguineo_380_jh, unidad.FactorRh_380_jh, unidad.FechaVencimiento_380_jh.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture), MostrarEstado_380_jh(unidad));
                     _grid_380_jh.Rows[indice].Tag = unidad;
                 }
             }
@@ -329,9 +329,9 @@ namespace UI
                 return;
             }
 
-            _cmbComponente_380_jh.SelectedItem = unidad.TipoComponente_380_jh;
-            _cmbGrupo_380_jh.SelectedItem = unidad.GrupoSanguineo_380_jh;
-            _cmbRh_380_jh.SelectedItem = unidad.FactorRh_380_jh;
+            MaestrosCombo_380_jh.Seleccionar_380_jh(_cmbComponente_380_jh, unidad.TipoComponente_380_jh);
+            MaestrosCombo_380_jh.Seleccionar_380_jh(_cmbGrupo_380_jh, unidad.GrupoSanguineo_380_jh);
+            MaestrosCombo_380_jh.Seleccionar_380_jh(_cmbRh_380_jh, unidad.FactorRh_380_jh);
             // Un dato alterado puede estar fuera del rango admitido por WinForms.
             // La consulta sigue visible y bloqueada; no se corrige el dato en la base.
             _dtpVencimiento_380_jh.Value = unidad.FechaVencimiento_380_jh < _dtpVencimiento_380_jh.MinDate
@@ -388,9 +388,9 @@ namespace UI
                 return;
             }
 
-            unidad.TipoComponente_380_jh = _cmbComponente_380_jh.SelectedItem as string;
-            unidad.GrupoSanguineo_380_jh = _cmbGrupo_380_jh.SelectedItem == null ? null : _cmbGrupo_380_jh.SelectedItem.ToString();
-            unidad.FactorRh_380_jh = _cmbRh_380_jh.SelectedItem == null ? null : _cmbRh_380_jh.SelectedItem.ToString();
+            unidad.TipoComponente_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbComponente_380_jh);
+            unidad.GrupoSanguineo_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbGrupo_380_jh);
+            unidad.FactorRh_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbRh_380_jh);
             unidad.FechaVencimiento_380_jh = _dtpVencimiento_380_jh.Value.Date;
             unidad.Observaciones_380_jh = _txtObservaciones_380_jh.Text;
             CodigoOperacionPN1_380_jh resultado = _unidadService_380_jh.Clasificar_380_jh(unidad);
@@ -585,6 +585,13 @@ namespace UI
             }
 
             return LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(clave);
+        }
+
+        private string MostrarEstado_380_jh(Unidad_380_jh unidad)
+        {
+            string traducido = TraducirEstado_380_jh(unidad?.EstadoOperativo_380_jh);
+            return traducido == unidad?.EstadoOperativo_380_jh && !string.IsNullOrWhiteSpace(unidad?.EstadoOperativoDescripcion_380_jh)
+                ? unidad.EstadoOperativoDescripcion_380_jh : traducido;
         }
     }
 }

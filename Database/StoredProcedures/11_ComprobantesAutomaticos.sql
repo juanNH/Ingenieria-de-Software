@@ -45,7 +45,7 @@ BEGIN
     DECLARE eventos CURSOR LOCAL FAST_FORWARD FOR
         SELECT id_movimiento_unidad,id_unidad,id_usuario,estado_anterior,estado_nuevo,id_entrega
         FROM inserted WHERE (estado_anterior='EN_REVISION' AND tipo_movimiento IN ('LIBERACION','BLOQUEO','DESCARTE') AND estado_nuevo IN ('LIBERADA','BLOQUEADA','DESCARTADA'))
-           OR (estado_anterior='ENTREGADA' AND tipo_movimiento IN ('TRANSFUSION','DEVOLUCION','DESCARTE') AND estado_nuevo IN ('TRANSFUNDIDA','DEVUELTA','DESCARTADA') AND id_entrega IS NOT NULL);
+           OR (estado_anterior='ENTREGADA' AND tipo_movimiento IN ('TRANSFUSION','DEVOLUCION','DESCARTE','DESTINO') AND id_entrega IS NOT NULL);
     OPEN eventos;
     FETCH NEXT FROM eventos INTO @movimiento,@unidad,@usuario,@anterior,@nuevo,@entrega;
     WHILE @@FETCH_STATUS=0
@@ -103,11 +103,12 @@ BEGIN
                     u.codigo_identificacion AS [CodigoIdentificacion_380_jh],s.paciente_receptor AS [PacienteReceptor_380_jh],
                     s.tipo_componente AS [TipoComponente_380_jh],e.fecha_entrega AS [FechaEntrega_380_jh],
                     e.id_usuario_responsable AS [IdUsuarioResponsable_380_jh],responsable.nombre+' '+responsable.apellido AS [Responsable_380_jh],
-                    e.observacion AS [Observacion_380_jh],e.destino AS [Destino_380_jh],e.fecha_destino AS [FechaDestino_380_jh],
+                    e.observacion AS [Observacion_380_jh],e.destino AS [Destino_380_jh],dest.descripcion AS [DestinoDescripcion_380_jh],e.fecha_destino AS [FechaDestino_380_jh],
                     e.motivo_destino AS [MotivoDestino_380_jh],e.id_usuario_destino AS [IdUsuarioDestino_380_jh]
                  FROM dbo.Entrega e JOIN dbo.Reserva r ON r.id_reserva=e.id_reserva
                  JOIN dbo.SolicitudTransfusional s ON s.id_solicitud_transfusional=r.id_solicitud_transfusional
                  JOIN dbo.Unidad u ON u.id_unidad=r.id_unidad JOIN dbo.Usuario responsable ON responsable.id_usuario=e.id_usuario_responsable
+                 LEFT JOIN dbo.DestinoEntrega dest ON dest.codigo=e.destino
                  WHERE e.id_entrega=@entrega FOR XML PATH('Entrega'),ROOT('Entregas'),TYPE)
                 FROM dbo.Usuario us WHERE us.id_usuario=@usuario FOR XML PATH('Comprobante'),TYPE);
             INSERT dbo.ComprobantePendiente(proceso,id_referencia,id_usuario,datos)

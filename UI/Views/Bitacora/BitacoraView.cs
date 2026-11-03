@@ -107,6 +107,7 @@ namespace UI
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadReservada_380_jh", "BITACORA_ACTION_UNIT_RESERVED"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("ReservaCancelada_380_jh", "BITACORA_ACTION_RESERVATION_CANCELLED"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadEntregada_380_jh", "BITACORA_ACTION_UNIT_DELIVERED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadDestinoIndependiente_380_jh", "BITACORA_ACTION_UNIT_DESTINATION"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadTransfundida_380_jh", "BITACORA_ACTION_UNIT_TRANSFUSED"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadDevuelta_380_jh", "BITACORA_ACTION_UNIT_RETURNED"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadReingresada_380_jh", "BITACORA_ACTION_UNIT_REENTERED"));
@@ -249,6 +250,7 @@ namespace UI
                 case "UnidadReservada": clave = "BITACORA_ACTION_UNIT_RESERVED"; break;
                 case "ReservaCancelada": clave = "BITACORA_ACTION_RESERVATION_CANCELLED"; break;
                 case "UnidadEntregada": clave = "BITACORA_ACTION_UNIT_DELIVERED"; break;
+                case "UnidadDestinoIndependiente": clave = "BITACORA_ACTION_UNIT_DESTINATION"; break;
                 case "UnidadTransfundida": clave = "BITACORA_ACTION_UNIT_TRANSFUSED"; break;
                 case "UnidadDevuelta": clave = "BITACORA_ACTION_UNIT_RETURNED"; break;
                 case "UnidadReingresada": clave = "BITACORA_ACTION_UNIT_REENTERED"; break;

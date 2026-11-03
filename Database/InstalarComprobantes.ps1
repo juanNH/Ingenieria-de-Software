@@ -1,4 +1,4 @@
-param([string]$Servidor, [string]$Base)
+﻿param([string]$Servidor, [string]$Base)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path $PSScriptRoot -Parent
 $configPath = Join-Path $root 'DAL/App.local.config'
@@ -31,7 +31,7 @@ try {
     [void]$command.ExecuteNonQuery(); $command.Dispose()
     Write-Host "Respaldo verificado: $backupPath"
     $transaction = $connection.BeginTransaction()
-    $sql = [IO.File]::ReadAllText((Join-Path $PSScriptRoot 'StoredProcedures/ComprobantesAutomaticos.sql')).Replace('USE [HemovidaGest];','')
+    $sql = [IO.File]::ReadAllText((Join-Path $PSScriptRoot 'StoredProcedures/11_ComprobantesAutomaticos.sql')).Replace('USE [HemovidaGest];','')
     foreach ($batch in [regex]::Split($sql,'(?im)^\s*GO\s*(?:--[^\r\n]*)?$')) {
         if (!$batch.Trim()) { continue }
         $command = $connection.CreateCommand(); $command.Transaction = $transaction; $command.CommandTimeout = 180; $command.CommandText = $batch

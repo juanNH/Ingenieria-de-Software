@@ -5,6 +5,7 @@ namespace Domain
         public const string Administrador_380_jh = "ADMINISTRADOR";
         public const string IntegridadVer_380_jh = "INTEGRIDAD_VER";
         public const string IntegridadRestaurar_380_jh = "INTEGRIDAD_RESTAURAR";
+        public const string MaestrosAdministrar_380_jh = "MAESTROS_PN1_ADMINISTRAR";
 
         public const string BitacoraVer_380_jh = "BITACORA_VER";
         public const string AuditoriaCambiosVer_380_jh = "AUDITORIA_CAMBIOS_VER";

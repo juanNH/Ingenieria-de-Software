@@ -16,6 +16,7 @@ namespace Domain
         public string Responsable_380_jh { get; set; }
         public string Observacion_380_jh { get; set; }
         public string Destino_380_jh { get; set; }
+        public string DestinoDescripcion_380_jh { get; set; }
         public DateTime? FechaDestino_380_jh { get; set; }
         public string MotivoDestino_380_jh { get; set; }
         public int? IdUsuarioDestino_380_jh { get; set; }

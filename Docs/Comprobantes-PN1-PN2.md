@@ -21,7 +21,7 @@ Con la aplicación cerrada y PN2 e IntegridadPN2 instalados, ejecutar desde la r
 ./Database/InstalarComprobantes.ps1
 ```
 
-El instalador verifica integridad, crea y verifica un respaldo SQL, instala [ComprobantesAutomaticos.sql](../Database/StoredProcedures/ComprobantesAutomaticos.sql) en una transacción y vuelve a verificar integridad. `InstalarPN2.ps1` también instala esta actualización. Si falta la migración o el disparador está deshabilitado, la aplicación informa el problema e impide registrar la decisión PN1 o el destino PN2 hasta instalarla.
+El instalador verifica integridad, crea y verifica un respaldo SQL, instala [11_ComprobantesAutomaticos.sql](../Database/StoredProcedures/11_ComprobantesAutomaticos.sql) en una transacción y vuelve a verificar integridad. `InstalarPN2.ps1` también instala esta actualización. Si falta la migración o el disparador está deshabilitado, la aplicación informa el problema e impide registrar la decisión PN1 o el destino PN2 hasta instalarla.
 
 Por defecto, los archivos se guardan en la carpeta **Documentos/HemovidaGest/Comprobantes**, en subcarpetas `PN1` y `PN2`. Para que distintos puestos puedan acceder a los originales, configurar la misma ruta absoluta compartida en la clave `ComprobantesDirectorio` del archivo `UI.exe.config` de cada instalación. La cuenta que ejecuta la aplicación necesita permiso de lectura y escritura en esa carpeta. Una ruta vacía usa Documentos del usuario del equipo.
 

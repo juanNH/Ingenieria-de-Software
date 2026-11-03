@@ -72,6 +72,9 @@
     <Compile Include="Forms\Auth\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Auth\CambiarContrasena.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Main\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +103,8 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\PN1\ProteccionIntegridad.cs" />
+    <Compile Include="Views\PN1\MaestrosCombo.cs" />
+    <Compile Include="Views\PN1\MaestrosView.cs"><SubType>UserControl</SubType></Compile>
     <Compile Include="Views\PN1\DonantesView.cs">
       <SubType>UserControl</SubType>
     </Compile>

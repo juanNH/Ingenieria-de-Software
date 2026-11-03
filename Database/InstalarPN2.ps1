@@ -1,4 +1,4 @@
-param([string]$Servidor, [string]$Base)
+﻿param([string]$Servidor, [string]$Base)
 $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
 $taskConfigPath = Join-Path $taskRoot 'DAL/App.local.config'
@@ -17,7 +17,7 @@ try {
     $taskConnection.Open()
     $taskCommand = $taskConnection.CreateCommand()
     $taskCommand.CommandText = "SELECT CASE WHEN OBJECT_ID('dbo.v_IntegridadPN1_Errores','V') IS NOT NULL THEN 1 ELSE 0 END"
-    if ([int]$taskCommand.ExecuteScalar() -ne 1) { throw 'Primero instalá IntegridadPN1.sql y PN1.sql.' }
+    if ([int]$taskCommand.ExecuteScalar() -ne 1) { throw 'Primero instalá 05_IntegridadPN1.sql y 07_PN1.sql.' }
     $taskCommand.CommandText = 'SELECT COUNT(*) FROM dbo.v_IntegridadPN1_Errores'
     if ([int]$taskCommand.ExecuteScalar() -ne 0) { throw 'La integridad actual tiene inconsistencias. Revisá Integridad antes de instalar PN2.' }
     $taskCommand.CommandText = "SELECT CONVERT(NVARCHAR(4000),SERVERPROPERTY('InstanceDefaultBackupPath'))"
@@ -35,9 +35,9 @@ try {
     $taskCommand.Dispose()
     Write-Host "Respaldo verificado: $taskBackupPath"
     $taskTransaction = $taskConnection.BeginTransaction()
-    foreach ($taskScript in @('PN2_Catalogos.sql','PN1.sql','PN2.sql','IntegridadPN2.sql','ComprobantesAutomaticos.sql')) {
+    foreach ($taskScript in @('08_PN2_Catalogos.sql','06_MaestrosPN1.sql','07_PN1.sql','09_PN2.sql','10_IntegridadPN2.sql','11_ComprobantesAutomaticos.sql')) {
         $taskScriptPath = Join-Path $PSScriptRoot ('StoredProcedures/' + $taskScript)
-        $taskSql = (Get-Content -Raw -LiteralPath $taskScriptPath).Replace('USE [HemovidaGest];','')
+        $taskSql = (Get-Content -Raw -Encoding UTF8 -LiteralPath $taskScriptPath).Replace('USE [HemovidaGest];','')
         foreach ($taskBatch in [regex]::Split($taskSql,'(?im)^\s*GO\s*(?:--[^\r\n]*)?$')) {
             if (!$taskBatch.Trim()) { continue }
             $taskCommand = $taskConnection.CreateCommand()

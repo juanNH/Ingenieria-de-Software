@@ -21,6 +21,10 @@ destinos, trazabilidad y reportes. Ver [flujo, diagramas draw.io, instalación y
 recorrido de validación funcional](Docs/PN2.md). Los diagramas de clases y la secuencia
 de clases quedan pendientes de esa validación.
 
+El menú **Maestros** permite administrar componentes, grupos sanguíneos, factor Rh y destinos de entrega.
+Para actualizar una base existente, ejecutar [InstalarMaestrosPN1.ps1](Database/InstalarMaestrosPN1.ps1); la migración conserva los códigos históricos y crea un respaldo verificado.
+El [orden de ejecución de los scripts SQL](Database/README.md) distingue instalaciones nuevas y actualizaciones PN1/PN2.
+
 
 ---
 

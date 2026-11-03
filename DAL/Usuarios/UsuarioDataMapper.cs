@@ -357,6 +357,38 @@ namespace DAL
             }
         }
 
+        public int CambiarContrasena_380_jh(int idUsuario, string hashActual, string hashNuevo)
+        {
+            if (idUsuario == 0 || string.IsNullOrWhiteSpace(hashActual) || string.IsNullOrWhiteSpace(hashNuevo))
+            {
+                return -1;
+            }
+
+            List<SqlParameter> parametros = new List<SqlParameter>
+            {
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario),
+                _databaseContext_380_jh.CrearParametro_380_jh("@password_hash_actual", hashActual),
+                _databaseContext_380_jh.CrearParametro_380_jh("@password_hash_nuevo", hashNuevo)
+            };
+
+            const string sql = @"
+                UPDATE dbo.Usuario
+                SET password_hash = @password_hash_nuevo
+                WHERE id_usuario = @id_usuario
+                  AND password_hash = @password_hash_actual
+                  AND estado_usuario = 'ACTIVO'";
+
+            try
+            {
+                _databaseContext_380_jh.Abrir_380_jh();
+                return _databaseContext_380_jh.EscribirTexto_380_jh(sql, parametros);
+            }
+            finally
+            {
+                _databaseContext_380_jh.Cerrar_380_jh();
+            }
+        }
+
         public int Borrar_380_jh(Usuario_380_jh usuario)
         {
             if (usuario == null || usuario.Id_380_jh == 0)

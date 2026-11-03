@@ -63,7 +63,7 @@
     <Compile Include="PN1\Unidad.cs" />
     <Compile Include="PN1\ComprobanteAutomatico.cs" />
     <Compile Include="PN2\SolicitudTransfusional.cs" />
-    <Compile Include="PN2\ComponentesTransfusionales.cs" />
+    <Compile Include="PN1\MaestroPN1.cs" />
     <Compile Include="PN2\Reserva.cs" />
     <Compile Include="PN2\Entrega.cs" />
     <Compile Include="PN2\TrazabilidadFiltro.cs" />
@@ -75,6 +75,7 @@
     <Compile Include="PN2\EstadoSolicitudTransfusional.cs" />
     <Compile Include="Seguridad\Sesion.cs" />
     <Compile Include="Usuarios\CodigoRegistroUsuario.cs" />
+    <Compile Include="Usuarios\ResultadoCambioContrasena.cs" />
     <Compile Include="Usuarios\Usuario.cs" />
   </ItemGroup>
   <ItemGroup>

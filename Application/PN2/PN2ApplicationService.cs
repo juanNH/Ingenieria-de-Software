@@ -61,15 +61,14 @@ namespace Application
                 string.IsNullOrWhiteSpace(solicitud.ReferenciaEstudio_380_jh) && string.IsNullOrWhiteSpace(solicitud.ResultadoAnticuerpos_380_jh) &&
                 !solicitud.FechaEstudio_380_jh.HasValue;
             bool estudioCompleto = solicitud != null &&
-                (solicitud.GrupoReceptor_380_jh == "O" || solicitud.GrupoReceptor_380_jh == "A" ||
-                 solicitud.GrupoReceptor_380_jh == "B" || solicitud.GrupoReceptor_380_jh == "AB") &&
-                (solicitud.RhReceptor_380_jh == "+" || solicitud.RhReceptor_380_jh == "-") &&
+                TextoValido_380_jh(solicitud.GrupoReceptor_380_jh, 5, true) &&
+                TextoValido_380_jh(solicitud.RhReceptor_380_jh, 5, true) &&
                 TextoValido_380_jh(solicitud.LaboratorioEstudio_380_jh, 150, true) &&
                 TextoValido_380_jh(solicitud.ReferenciaEstudio_380_jh, 150, true) &&
                 TextoValido_380_jh(solicitud.ResultadoAnticuerpos_380_jh, 500, true) &&
                 solicitud.FechaEstudio_380_jh.HasValue && solicitud.FechaEstudio_380_jh.Value.Date <= DateTime.Today;
             bool valida = solicitud != null && TextoValido_380_jh(solicitud.PacienteReceptor_380_jh, 150, true) &&
-                ComponentesTransfusionales_380_jh.EsValido_380_jh(solicitud.TipoComponente_380_jh) && solicitud.CantidadRequerida_380_jh > 0 &&
+                TextoValido_380_jh(solicitud.TipoComponente_380_jh, 100, true) && solicitud.CantidadRequerida_380_jh > 0 &&
                 TextoValido_380_jh(solicitud.DocumentoReceptor_380_jh, 50, true) &&
                 TextoValido_380_jh(solicitud.ProfesionalSolicitante_380_jh, 150, true) && (estudioAusente || estudioCompleto);
             return Ejecutar_380_jh(PermisosSistema_380_jh.SolicitudCrear_380_jh, valida,
@@ -87,8 +86,8 @@ namespace Application
             bool valida = solicitud != null && solicitud.Id_380_jh > 0 &&
                 TextoValido_380_jh(solicitud.DocumentoReceptor_380_jh, 50, true) &&
                 TextoValido_380_jh(solicitud.ProfesionalSolicitante_380_jh, 150, true) &&
-                (solicitud.GrupoReceptor_380_jh == "O" || solicitud.GrupoReceptor_380_jh == "A" || solicitud.GrupoReceptor_380_jh == "B" || solicitud.GrupoReceptor_380_jh == "AB") &&
-                (solicitud.RhReceptor_380_jh == "+" || solicitud.RhReceptor_380_jh == "-") &&
+                TextoValido_380_jh(solicitud.GrupoReceptor_380_jh, 5, true) &&
+                TextoValido_380_jh(solicitud.RhReceptor_380_jh, 5, true) &&
                 TextoValido_380_jh(solicitud.LaboratorioEstudio_380_jh, 150, true) &&
                 TextoValido_380_jh(solicitud.ReferenciaEstudio_380_jh, 150, true) &&
                 TextoValido_380_jh(solicitud.ResultadoAnticuerpos_380_jh, 500, true) &&
@@ -160,14 +159,18 @@ namespace Application
         {
             destino = Limpiar_380_jh(destino);
             if (destino != null) destino = destino.ToUpperInvariant();
-            bool transfundida = destino == EstadoUnidadPN2_380_jh.Transfundida_380_jh;
-            bool devuelta = destino == EstadoUnidadPN2_380_jh.Devuelta_380_jh;
-            bool descartada = destino == EstadoUnidadPN1_380_jh.Descartada_380_jh;
+            MaestroPN1_380_jh opcion;
+            try { opcion = new MaestroPN1ApplicationService_380_jh().Listar_380_jh(MaestroPN1ApplicationService_380_jh.Destino_380_jh).Find(x => string.Equals(x.Codigo_380_jh, destino, StringComparison.OrdinalIgnoreCase)); }
+            catch { return CodigoOperacionPN2_380_jh.IntegridadInvalida_380_jh; }
+            bool transfundida = opcion != null && opcion.Codigo_380_jh == EstadoUnidadPN2_380_jh.Transfundida_380_jh;
+            bool devuelta = opcion != null && opcion.Codigo_380_jh == EstadoUnidadPN2_380_jh.Devuelta_380_jh;
+            bool descartada = opcion != null && opcion.Codigo_380_jh == EstadoUnidadPN1_380_jh.Descartada_380_jh;
             BitacoraAccion_380_jh accion = transfundida ? BitacoraAccion_380_jh.UnidadTransfundida_380_jh :
-                devuelta ? BitacoraAccion_380_jh.UnidadDevuelta_380_jh : BitacoraAccion_380_jh.UnidadDescartada_380_jh;
+                devuelta ? BitacoraAccion_380_jh.UnidadDevuelta_380_jh :
+                descartada ? BitacoraAccion_380_jh.UnidadDescartada_380_jh : BitacoraAccion_380_jh.UnidadDestinoIndependiente_380_jh;
             return Ejecutar_380_jh(PermisosSistema_380_jh.DestinoRegistrar_380_jh,
-                idEntrega > 0 && (transfundida || devuelta || descartada) && TextoValido_380_jh(motivo, 500, !transfundida), accion,
-                "Destino registrado. Entrega: " + idEntrega + ". Estado: " + destino + ".",
+                idEntrega > 0 && opcion != null && TextoValido_380_jh(motivo, 500, opcion.MotivoObligatorio_380_jh), accion,
+                "Destino registrado. Entrega: " + idEntrega + ". Destino/estado: " + (opcion == null ? "" : opcion.Codigo_380_jh) + ".",
                 idUsuario => _repository_380_jh.RegistrarDestino_380_jh(idEntrega, destino, Limpiar_380_jh(motivo), idUsuario));
         }
 

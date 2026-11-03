@@ -12,6 +12,7 @@ namespace UI
         private readonly PN2ApplicationService_380_jh _pn2Service_380_jh;
         private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
         private readonly List<Entrega_380_jh> _entregas_380_jh = new List<Entrega_380_jh>();
+        private readonly List<MaestroPN1_380_jh> _destinos_380_jh = new List<MaestroPN1_380_jh>();
         private TextBox _txtBuscar_380_jh;
         private ComboBox _cmbFiltroDestino_380_jh;
         private ComboBox _cmbDestino_380_jh;
@@ -19,6 +20,7 @@ namespace UI
         private DataGridView _grid_380_jh;
         private Button _btnRegistrar_380_jh;
         private Label _lblEstado_380_jh;
+        private Label _lblEfecto_380_jh;
 
         public DestinosView_380_jh() : this(new PN2ApplicationService_380_jh(), new AutorizacionApplicationService_380_jh()) { }
 
@@ -95,12 +97,15 @@ namespace UI
             _btnRegistrar_380_jh = ControlesPN2_380_jh.CrearBoton_380_jh("PN2_REGISTER_DESTINATION");
             _btnRegistrar_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DestinoRegistrar_380_jh);
             _btnRegistrar_380_jh.Click += Registrar_Click_380_jh;
+            _lblEfecto_380_jh = new Label { Dock = DockStyle.Fill, AutoEllipsis = true };
+            formulario.Controls.Add(_lblEfecto_380_jh, 0, 1);
+            formulario.SetColumnSpan(_lblEfecto_380_jh, 3);
+            _cmbDestino_380_jh.SelectedIndexChanged += delegate { ActualizarEfecto_380_jh(); };
             formulario.Controls.Add(_btnRegistrar_380_jh, 3, 1);
             Label nota = ControlesPN2_380_jh.CrearLabel_380_jh("PN2_DESTINATION_NOTE");
             formulario.Controls.Add(nota, 0, 2);
             formulario.SetColumnSpan(nota, 4);
             layout.Controls.Add(formularioPanel, 0, 4);
-            CargarOpciones_380_jh();
         }
 
         protected override void ApplyTranslations_380_jh()
@@ -113,14 +118,62 @@ namespace UI
         private void CargarOpciones_380_jh()
         {
             if (_cmbDestino_380_jh == null) return;
-            ControlesPN2_380_jh.CargarEstados_380_jh(_cmbFiltroDestino_380_jh, "", "SIN_DESTINO", "TRANSFUNDIDA", "DEVUELTA", "DESCARTADA");
-            ControlesPN2_380_jh.CargarEstados_380_jh(_cmbDestino_380_jh, "TRANSFUNDIDA", "DEVUELTA", "DESCARTADA");
+            string filtroAnterior = ControlesPN2_380_jh.EstadoSeleccionado_380_jh(_cmbFiltroDestino_380_jh);
+            string destinoAnterior = ControlesPN2_380_jh.EstadoSeleccionado_380_jh(_cmbDestino_380_jh);
+            try
+            {
+                _destinos_380_jh.Clear();
+                _destinos_380_jh.AddRange(new MaestroPN1ApplicationService_380_jh().Listar_380_jh(MaestroPN1ApplicationService_380_jh.Destino_380_jh, false));
+                _cmbDestino_380_jh.Enabled = true; _cmbFiltroDestino_380_jh.Enabled = true;
+                var filtros = new List<KeyValuePair<string, string>> {
+                    new KeyValuePair<string, string>("", ControlesPN2_380_jh.Traducir_380_jh("FILTER_ALL")),
+                    new KeyValuePair<string, string>("SIN_DESTINO", ControlesPN2_380_jh.TraducirEstado_380_jh("SIN_DESTINO"))
+                };
+                filtros.AddRange(_destinos_380_jh.Select(x => new KeyValuePair<string, string>(x.Codigo_380_jh, NombreDestino_380_jh(x))));
+                _cmbFiltroDestino_380_jh.DisplayMember = "Value"; _cmbFiltroDestino_380_jh.ValueMember = "Key";
+                _cmbFiltroDestino_380_jh.DataSource = filtros;
+                _cmbFiltroDestino_380_jh.SelectedValue = filtroAnterior;
+                if (_cmbFiltroDestino_380_jh.SelectedIndex < 0) _cmbFiltroDestino_380_jh.SelectedIndex = 0;
+                var disponibles = _destinos_380_jh.Where(x => x.Activo_380_jh).Select(x => new KeyValuePair<string, string>(x.Codigo_380_jh, NombreDestino_380_jh(x))).ToList();
+                _cmbDestino_380_jh.DisplayMember = "Value"; _cmbDestino_380_jh.ValueMember = "Key";
+                _cmbDestino_380_jh.DataSource = disponibles;
+                _cmbDestino_380_jh.SelectedValue = destinoAnterior;
+                if (string.IsNullOrEmpty(destinoAnterior)) _cmbDestino_380_jh.SelectedIndex = -1;
+                ActualizarEfecto_380_jh();
+            }
+            catch
+            {
+                _destinos_380_jh.Clear(); _cmbDestino_380_jh.DataSource = null; _cmbFiltroDestino_380_jh.DataSource = null;
+                _cmbDestino_380_jh.Enabled = false; _cmbFiltroDestino_380_jh.Enabled = false;
+                if (_lblEfecto_380_jh != null) _lblEfecto_380_jh.Text = ControlesPN2_380_jh.Traducir_380_jh("MASTERS_LOAD_ERROR");
+            }
+        }
+
+        private static string NombreDestino_380_jh(MaestroPN1_380_jh destino)
+        {
+            if (destino == null) return string.Empty;
+            if ((destino.Codigo_380_jh == "TRANSFUNDIDA" && destino.Descripcion_380_jh == "Transfundida") ||
+                (destino.Codigo_380_jh == "DEVUELTA" && destino.Descripcion_380_jh == "Devuelta") ||
+                (destino.Codigo_380_jh == "DESCARTADA" && destino.Descripcion_380_jh == "Descartada"))
+                return ControlesPN2_380_jh.TraducirEstado_380_jh(destino.Codigo_380_jh);
+            return destino.Descripcion_380_jh;
+        }
+
+        private void ActualizarEfecto_380_jh()
+        {
+            if (_lblEfecto_380_jh == null) return;
+            string codigo = ControlesPN2_380_jh.EstadoSeleccionado_380_jh(_cmbDestino_380_jh);
+            var destino = _destinos_380_jh.FirstOrDefault(x => x.Codigo_380_jh == codigo);
+            _lblEfecto_380_jh.Text = destino == null ? ControlesPN2_380_jh.Traducir_380_jh("PN2_CHOOSE_DESTINATION") :
+                string.Format(ControlesPN2_380_jh.Traducir_380_jh(destino.MotivoObligatorio_380_jh ? "PN2_DEST_EFFECT_REQUIRED" : "PN2_DEST_EFFECT_OPTIONAL"),
+                    NombreDestino_380_jh(destino));
         }
 
         private void CargarEntregas_380_jh()
         {
             try
             {
+                CargarOpciones_380_jh();
                 new IntegridadApplicationService_380_jh().Verificar_380_jh();
                 List<Entrega_380_jh> entregas = _pn2Service_380_jh.ListarEntregas_380_jh();
                 _entregas_380_jh.Clear();
@@ -144,7 +197,8 @@ namespace UI
             {
                 int fila = _grid_380_jh.Rows.Add(entrega.Id_380_jh, entrega.IdSolicitudTransfusional_380_jh, entrega.CodigoIdentificacion_380_jh,
                     entrega.PacienteReceptor_380_jh, entrega.FechaEntrega_380_jh.ToString("dd/MM/yyyy HH:mm"), entrega.Responsable_380_jh,
-                    ControlesPN2_380_jh.TraducirEstado_380_jh(string.IsNullOrEmpty(entrega.Destino_380_jh) ? "SIN_DESTINO" : entrega.Destino_380_jh),
+                    string.IsNullOrEmpty(entrega.Destino_380_jh) ? ControlesPN2_380_jh.TraducirEstado_380_jh("SIN_DESTINO") :
+                        (NombreDestino_380_jh(_destinos_380_jh.FirstOrDefault(x => x.Codigo_380_jh == entrega.Destino_380_jh)) is string nombre && nombre.Length > 0 ? nombre : entrega.Destino_380_jh),
                     entrega.FechaDestino_380_jh?.ToString("dd/MM/yyyy HH:mm"), entrega.MotivoDestino_380_jh);
                 _grid_380_jh.Rows[fila].Tag = entrega;
             }
@@ -156,10 +210,13 @@ namespace UI
         {
             Entrega_380_jh entrega = ControlesPN2_380_jh.Seleccionado_380_jh<Entrega_380_jh>(_grid_380_jh);
             if (entrega == null) { MessageBox.Show(this, ControlesPN2_380_jh.Traducir_380_jh("PN2_SELECT_DELIVERY")); return; }
+            if (!string.IsNullOrEmpty(entrega.Destino_380_jh)) { MessageBox.Show(this, ControlesPN2_380_jh.Traducir_380_jh("PN2_DESTINATION_ALREADY_SET")); return; }
             string destino = ControlesPN2_380_jh.EstadoSeleccionado_380_jh(_cmbDestino_380_jh);
-            if ((destino == "DEVUELTA" || destino == "DESCARTADA") && string.IsNullOrWhiteSpace(_txtMotivo_380_jh.Text))
+            var opcion = _destinos_380_jh.FirstOrDefault(x => x.Activo_380_jh && x.Codigo_380_jh == destino);
+            if (opcion == null) { MessageBox.Show(this, ControlesPN2_380_jh.Traducir_380_jh("PN2_CHOOSE_DESTINATION")); return; }
+            if (opcion.MotivoObligatorio_380_jh && string.IsNullOrWhiteSpace(_txtMotivo_380_jh.Text))
             { MessageBox.Show(this, ControlesPN2_380_jh.Traducir_380_jh("PN2_REASON_REQUIRED")); return; }
-            if (!ControlesPN2_380_jh.Confirmar_380_jh(this, "PN2_CONFIRM_DESTINATION", entrega.CodigoIdentificacion_380_jh + " · " + ControlesPN2_380_jh.TraducirEstado_380_jh(destino))) return;
+            if (!ControlesPN2_380_jh.Confirmar_380_jh(this, "PN2_CONFIRM_DESTINATION", entrega.CodigoIdentificacion_380_jh + " · " + NombreDestino_380_jh(opcion))) return;
             if (!ComprobantePdfUI_380_jh.VerificarInstalacion_380_jh(this)) return;
             CodigoOperacionPN2_380_jh resultado = _pn2Service_380_jh.RegistrarDestino_380_jh(entrega.Id_380_jh, destino, _txtMotivo_380_jh.Text);
             ControlesPN2_380_jh.MostrarResultado_380_jh(this, resultado);

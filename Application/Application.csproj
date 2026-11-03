@@ -44,6 +44,7 @@
     <Compile Include="Seguridad\DigitoVerificadorApplicationService.cs" />
     <Compile Include="Idiomas\IdiomaApplicationService.cs" />
     <Compile Include="PN1\DonacionApplicationService.cs" />
+    <Compile Include="PN1\MaestroPN1ApplicationService.cs" />
     <Compile Include="PN1\ComprobanteAutomaticoApplicationService.cs" />
     <Compile Include="PN1\DonanteApplicationService.cs" />
     <Compile Include="PN1\IntegridadApplicationService.cs" />

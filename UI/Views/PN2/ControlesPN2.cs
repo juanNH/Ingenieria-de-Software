@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Application;
 using Domain;
 using Services;
 
@@ -105,6 +106,12 @@ namespace UI
             return texto == clave ? estado : texto;
         }
 
+        internal static string TraducirEstado_380_jh(string estado, string descripcion)
+        {
+            string traducido = TraducirEstado_380_jh(estado);
+            return traducido == estado && !string.IsNullOrWhiteSpace(descripcion) ? descripcion : traducido;
+        }
+
         internal static void CargarEstados_380_jh(ComboBox combo, params string[] estados)
         {
             string seleccionado = EstadoSeleccionado_380_jh(combo);
@@ -116,6 +123,35 @@ namespace UI
             combo.DataSource = opciones;
             combo.SelectedValue = seleccionado ?? string.Empty;
             if (combo.SelectedIndex < 0 && opciones.Count > 0) combo.SelectedIndex = 0;
+        }
+
+        internal static void CargarEstadosUnidad_380_jh(ComboBox combo)
+        {
+            string seleccionado = EstadoSeleccionado_380_jh(combo);
+            List<KeyValuePair<string, string>> opciones = new List<KeyValuePair<string, string>> {
+                new KeyValuePair<string, string>(string.Empty, Traducir_380_jh("FILTER_ALL"))
+            };
+            HashSet<string> incluidos = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (string codigo in new[] { "EN_REVISION", "LIBERADA", "BLOQUEADA", "RESERVADA", "ENTREGADA", "TRANSFUNDIDA", "DEVUELTA", "DESCARTADA" })
+            {
+                opciones.Add(new KeyValuePair<string, string>(codigo, TraducirEstado_380_jh(codigo)));
+                incluidos.Add(codigo);
+            }
+            try
+            {
+                foreach (MaestroPN1_380_jh estado in new MaestroPN1ApplicationService_380_jh()
+                    .Listar_380_jh(MaestroPN1ApplicationService_380_jh.Destino_380_jh, false))
+                {
+                    if (incluidos.Add(estado.Codigo_380_jh))
+                        opciones.Add(new KeyValuePair<string, string>(estado.Codigo_380_jh, estado.Descripcion_380_jh));
+                }
+            }
+            catch { }
+            combo.DisplayMember = "Value";
+            combo.ValueMember = "Key";
+            combo.DataSource = opciones;
+            combo.SelectedValue = seleccionado ?? string.Empty;
+            if (combo.SelectedIndex < 0) combo.SelectedIndex = 0;
         }
 
         internal static string EstadoSeleccionado_380_jh(ComboBox combo)

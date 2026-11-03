@@ -1,7 +1,7 @@
 -- HemovidaGest: solicitud, reserva, entrega y trazabilidad (PN2).
 -- Instalacion incremental SQL Server 2016 SP1+, compatibilidad 130 o superior.
--- Ejecutar despues de IntegridadPN1.sql y PN1.sql, con la aplicacion detenida.
--- Completar luego con IntegridadPN2.sql antes de habilitar operaciones PN2.
+-- Ejecutar despues de 05_IntegridadPN1.sql, 06_MaestrosPN1.sql y 07_PN1.sql, con la aplicacion detenida.
+-- Completar luego con 10_IntegridadPN2.sql antes de habilitar operaciones PN2.
 USE [HemovidaGest];
 GO
 SET ANSI_NULLS ON;
@@ -115,7 +115,7 @@ CREATE TABLE dbo.Entrega
     motivo_destino NVARCHAR(500) NULL,
     id_usuario_destino INT NULL,
     dvh VARCHAR(64) NULL,
-    CONSTRAINT CK_Entrega_Destino CHECK (destino IS NULL OR destino IN ('TRANSFUNDIDA','DEVUELTA','DESCARTADA')),
+    CONSTRAINT FK_Entrega_Destino FOREIGN KEY (destino) REFERENCES dbo.DestinoEntrega(codigo),
     CONSTRAINT CK_Entrega_DestinoCompleto CHECK (
         (destino IS NULL AND fecha_destino IS NULL AND id_usuario_destino IS NULL)
         OR (destino IS NOT NULL AND fecha_destino IS NOT NULL AND id_usuario_destino IS NOT NULL)),
@@ -190,6 +190,7 @@ BEGIN
        OR OBJECT_DEFINITION(OBJECT_ID('dbo.v_IntegridadPN1_Datos')) NOT LIKE '%grupo_receptor%'
         THROW 51002,'PN2_INTEGRITY_DEFINITIONS_DOWNGRADED',1;
     EXEC dbo.sp_IntegridadPN1_Exigir;
+    EXEC dbo.sp_MaestroPN1_Exigir;
 END;
 GO
 
@@ -227,9 +228,10 @@ BEGIN
     SET NOCOUNT ON;
     EXEC dbo.sp_PN2_Autorizar @id_usuario,'INVENTARIO_VER';
     SELECT u.id_unidad,u.codigo_identificacion,u.id_donacion,u.tipo_componente,u.fecha_vencimiento,
-           u.grupo_sanguineo,u.factor_rh,u.observaciones,u.estado_operativo,u.ubicacion,
+           u.grupo_sanguineo,u.factor_rh,u.observaciones,u.estado_operativo,eu.descripcion estado_operativo_descripcion,u.ubicacion,
            u.fecha_alta,u.fecha_ultima_modificacion,u.id_usuario_ultima_modificacion
     FROM dbo.Unidad u
+    LEFT JOIN dbo.EstadoUnidad eu ON eu.codigo=u.estado_operativo
     WHERE (@estado IS NULL OR u.estado_operativo=@estado)
       AND (@buscar IS NULL OR u.codigo_identificacion LIKE '%'+@buscar+'%' OR u.tipo_componente LIKE '%'+@buscar+'%'
            OR u.ubicacion LIKE '%'+@buscar+'%' OR u.grupo_sanguineo+u.factor_rh LIKE '%'+@buscar+'%')
@@ -281,10 +283,11 @@ BEGIN
     EXEC dbo.sp_PN2_Autorizar @id_usuario,'RESERVA_VER';
     SELECT e.id_entrega,e.id_reserva,r.id_solicitud_transfusional,r.id_unidad,u.codigo_identificacion,
         s.paciente_receptor,s.tipo_componente,e.fecha_entrega,e.id_usuario_responsable,
-        a.nombre+' '+a.apellido responsable,e.observacion,e.destino,e.fecha_destino,e.motivo_destino,e.id_usuario_destino
+        a.nombre+' '+a.apellido responsable,e.observacion,e.destino,d.descripcion destino_descripcion,e.fecha_destino,e.motivo_destino,e.id_usuario_destino
     FROM dbo.Entrega e JOIN dbo.Reserva r ON r.id_reserva=e.id_reserva JOIN dbo.Unidad u ON u.id_unidad=r.id_unidad
     JOIN dbo.SolicitudTransfusional s ON s.id_solicitud_transfusional=r.id_solicitud_transfusional
     JOIN dbo.Usuario a ON a.id_usuario=e.id_usuario_responsable
+    LEFT JOIN dbo.DestinoEntrega d ON d.codigo=e.destino
     WHERE @id_solicitud_transfusional IS NULL OR r.id_solicitud_transfusional=@id_solicitud_transfusional
     ORDER BY e.fecha_entrega DESC,e.id_entrega DESC;
 END;
@@ -298,15 +301,18 @@ IF NOT EXISTS(SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID('dbo.Solicitud
     CREATE INDEX IX_SolicitudTransfusional_Usuario_Fecha ON dbo.SolicitudTransfusional(id_usuario_solicitante,fecha_solicitud DESC);
 GO
 
-ALTER TABLE dbo.Unidad DROP CONSTRAINT CK_Unidad_Estado;
-ALTER TABLE dbo.Unidad ADD CONSTRAINT CK_Unidad_Estado CHECK (
-    estado_operativo IN ('EN_REVISION','LIBERADA','BLOQUEADA','DESCARTADA','RESERVADA','ENTREGADA','TRANSFUNDIDA','DEVUELTA'));
+IF OBJECT_ID('dbo.EstadoUnidad','U') IS NULL THROW 51010,'PN2_REQUIRES_ESTADO_UNIDAD',1;
+IF OBJECT_ID('dbo.CK_Unidad_Estado','C') IS NOT NULL ALTER TABLE dbo.Unidad DROP CONSTRAINT CK_Unidad_Estado;
+IF OBJECT_ID('dbo.FK_Unidad_EstadoUnidad','F') IS NULL
+    ALTER TABLE dbo.Unidad WITH CHECK ADD CONSTRAINT FK_Unidad_EstadoUnidad FOREIGN KEY(estado_operativo) REFERENCES dbo.EstadoUnidad(codigo);
 ALTER TABLE dbo.MovimientoUnidad DROP CONSTRAINT CK_MovimientoUnidad_Tipo;
 ALTER TABLE dbo.MovimientoUnidad ADD CONSTRAINT CK_MovimientoUnidad_Tipo CHECK (
-    tipo_movimiento IN ('REGISTRO','CLASIFICACION','LIBERACION','BLOQUEO','DESCARTE','RESTAURACION','UBICACION','RESERVA','ENTREGA','TRANSFUSION','DEVOLUCION','CANCELACION','REINGRESO'));
-ALTER TABLE dbo.MovimientoUnidad DROP CONSTRAINT CK_MovimientoUnidad_EstadoNuevo;
-ALTER TABLE dbo.MovimientoUnidad ADD CONSTRAINT CK_MovimientoUnidad_EstadoNuevo CHECK (
-    estado_nuevo IN ('EN_REVISION','LIBERADA','BLOQUEADA','DESCARTADA','RESERVADA','ENTREGADA','TRANSFUNDIDA','DEVUELTA'));
+    tipo_movimiento IN ('REGISTRO','CLASIFICACION','LIBERACION','BLOQUEO','DESCARTE','RESTAURACION','UBICACION','RESERVA','ENTREGA','TRANSFUSION','DEVOLUCION','CANCELACION','REINGRESO','DESTINO'));
+IF OBJECT_ID('dbo.CK_MovimientoUnidad_EstadoNuevo','C') IS NOT NULL ALTER TABLE dbo.MovimientoUnidad DROP CONSTRAINT CK_MovimientoUnidad_EstadoNuevo;
+IF OBJECT_ID('dbo.FK_MovimientoUnidad_EstadoAnterior','F') IS NULL
+    ALTER TABLE dbo.MovimientoUnidad WITH CHECK ADD CONSTRAINT FK_MovimientoUnidad_EstadoAnterior FOREIGN KEY(estado_anterior) REFERENCES dbo.EstadoUnidad(codigo);
+IF OBJECT_ID('dbo.FK_MovimientoUnidad_EstadoNuevo','F') IS NULL
+    ALTER TABLE dbo.MovimientoUnidad WITH CHECK ADD CONSTRAINT FK_MovimientoUnidad_EstadoNuevo FOREIGN KEY(estado_nuevo) REFERENCES dbo.EstadoUnidad(codigo);
 GO
 
 CREATE OR ALTER PROCEDURE dbo.sp_SolicitudTransfusional_Registrar
@@ -322,15 +328,14 @@ BEGIN
         EXEC dbo.sp_IntegridadPN1_Autorizar @id_usuario,'SOLICITUD_CREAR';
         EXEC dbo.sp_PN2_Exigir;
         IF NULLIF(LTRIM(RTRIM(@paciente_receptor)),'') IS NULL
-           OR UPPER(LTRIM(RTRIM(@tipo_componente))) COLLATE Latin1_General_CI_AI NOT IN
-                ('CONCENTRADO DE ERITROCITOS','PLASMA FRESCO CONGELADO','CONCENTRADO DE PLAQUETAS')
+           OR @tipo_componente IS NULL OR NOT EXISTS(SELECT 1 FROM dbo.ComponenteTransfusional WHERE codigo=LTRIM(RTRIM(@tipo_componente)) AND activo=1)
            OR @cantidad_requerida IS NULL OR @cantidad_requerida<=0
            OR NULLIF(LTRIM(RTRIM(@documento_receptor)),'') IS NULL
            OR NULLIF(LTRIM(RTRIM(@nombre_solicitante)),'') IS NULL
            OR NOT ((@grupo_receptor IS NULL AND @rh_receptor IS NULL AND NULLIF(LTRIM(RTRIM(@laboratorio_estudio)),'') IS NULL
                     AND NULLIF(LTRIM(RTRIM(@referencia_estudio)),'') IS NULL AND @fecha_estudio IS NULL
                     AND NULLIF(LTRIM(RTRIM(@resultado_anticuerpos)),'') IS NULL)
-                 OR (@grupo_receptor IS NOT NULL AND @grupo_receptor IN ('O','A','B','AB') AND @rh_receptor IS NOT NULL AND @rh_receptor IN ('+','-')
+                 OR (@grupo_receptor IS NOT NULL AND EXISTS(SELECT 1 FROM dbo.GrupoSanguineo WHERE codigo=@grupo_receptor AND activo=1) AND @rh_receptor IS NOT NULL AND EXISTS(SELECT 1 FROM dbo.FactorRh WHERE codigo=@rh_receptor AND activo=1)
                     AND NULLIF(LTRIM(RTRIM(@laboratorio_estudio)),'') IS NOT NULL AND NULLIF(LTRIM(RTRIM(@referencia_estudio)),'') IS NOT NULL
                     AND @fecha_estudio IS NOT NULL AND @fecha_estudio<=CONVERT(DATE,GETDATE())
                     AND NULLIF(LTRIM(RTRIM(@resultado_anticuerpos)),'') IS NOT NULL))
@@ -361,8 +366,8 @@ BEGIN
         EXEC dbo.sp_IntegridadPN1_Autorizar @id_usuario,'SOLICITUD_CREAR';
         EXEC dbo.sp_PN2_Exigir;
         IF NULLIF(LTRIM(RTRIM(@documento_receptor)),'') IS NULL
-           OR @grupo_receptor IS NULL OR @grupo_receptor NOT IN ('O','A','B','AB')
-           OR @rh_receptor IS NULL OR @rh_receptor NOT IN ('+','-')
+           OR @grupo_receptor IS NULL OR NOT EXISTS(SELECT 1 FROM dbo.GrupoSanguineo WHERE codigo=@grupo_receptor AND activo=1)
+           OR @rh_receptor IS NULL OR NOT EXISTS(SELECT 1 FROM dbo.FactorRh WHERE codigo=@rh_receptor AND activo=1)
            OR NULLIF(LTRIM(RTRIM(@laboratorio_estudio)),'') IS NULL OR NULLIF(LTRIM(RTRIM(@referencia_estudio)),'') IS NULL
            OR @fecha_estudio IS NULL OR @fecha_estudio>CONVERT(DATE,GETDATE())
            OR NULLIF(LTRIM(RTRIM(@resultado_anticuerpos)),'') IS NULL OR NULLIF(LTRIM(RTRIM(@nombre_solicitante)),'') IS NULL
@@ -390,7 +395,8 @@ BEGIN
         EXEC dbo.sp_IntegridadPN1_Autorizar @id_usuario,'RESERVA_CREAR';
         EXEC dbo.sp_PN2_Exigir;
         IF NOT EXISTS(SELECT 1 FROM dbo.SolicitudTransfusional WHERE id_solicitud_transfusional=@id_solicitud
-            AND documento_receptor IS NOT NULL AND grupo_receptor IN ('O','A','B','AB') AND rh_receptor IN ('+','-')
+            AND documento_receptor IS NOT NULL AND EXISTS(SELECT 1 FROM dbo.GrupoSanguineo WHERE codigo=grupo_receptor)
+            AND EXISTS(SELECT 1 FROM dbo.FactorRh WHERE codigo=rh_receptor)
             AND laboratorio_estudio IS NOT NULL AND referencia_estudio IS NOT NULL AND fecha_estudio IS NOT NULL
             AND resultado_anticuerpos IS NOT NULL AND id_usuario_validacion IS NULL)
         BEGIN ROLLBACK; SELECT 'DATOS_INVALIDOS' codigo_resultado,CAST(NULL AS INT) id_resultado; RETURN; END;
@@ -565,8 +571,10 @@ BEGIN
         BEGIN TRANSACTION;
         EXEC dbo.sp_IntegridadPN1_Autorizar @id_usuario,'DESTINO_REGISTRAR';
         EXEC dbo.sp_PN2_Exigir;
-        IF @id_entrega IS NULL OR @id_entrega<=0 OR @destino IS NULL OR @destino NOT IN ('TRANSFUNDIDA','DEVUELTA','DESCARTADA')
-           OR (@destino IN ('DEVUELTA','DESCARTADA') AND NULLIF(LTRIM(RTRIM(@motivo)),'') IS NULL)
+        DECLARE @estado_destino VARCHAR(20),@motivo_obligatorio BIT;
+        SELECT @estado_destino=codigo,@motivo_obligatorio=motivo_obligatorio FROM dbo.DestinoEntrega WHERE codigo=@destino AND activo=1;
+        IF @id_entrega IS NULL OR @id_entrega<=0 OR @estado_destino IS NULL
+           OR (@motivo_obligatorio=1 AND NULLIF(LTRIM(RTRIM(@motivo)),'') IS NULL)
         BEGIN ROLLBACK; SELECT 'DATOS_INVALIDOS' codigo_resultado,CAST(NULL AS INT) id_resultado; RETURN; END;
         DECLARE @id_unidad INT,@id_solicitud INT,@id_reserva INT,@destino_actual VARCHAR(20);
         SELECT @id_unidad=r.id_unidad,@id_solicitud=r.id_solicitud_transfusional,@id_reserva=r.id_reserva,@destino_actual=e.destino
@@ -576,10 +584,10 @@ BEGIN
         IF @destino_actual IS NOT NULL OR NOT EXISTS(SELECT 1 FROM dbo.Unidad WHERE id_unidad=@id_unidad AND estado_operativo='ENTREGADA')
         BEGIN ROLLBACK; SELECT 'CONFLICTO_ESTADO' codigo_resultado,@id_entrega id_resultado; RETURN; END;
         UPDATE dbo.Entrega SET destino=@destino,fecha_destino=GETDATE(),motivo_destino=NULLIF(LTRIM(RTRIM(@motivo)),''),id_usuario_destino=@id_usuario WHERE id_entrega=@id_entrega;
-        UPDATE dbo.Unidad SET estado_operativo=@destino,fecha_ultima_modificacion=GETDATE(),id_usuario_ultima_modificacion=@id_usuario WHERE id_unidad=@id_unidad;
+        UPDATE dbo.Unidad SET estado_operativo=@estado_destino,fecha_ultima_modificacion=GETDATE(),id_usuario_ultima_modificacion=@id_usuario WHERE id_unidad=@id_unidad;
         INSERT dbo.MovimientoUnidad(id_unidad,tipo_movimiento,estado_anterior,estado_nuevo,observacion,id_usuario,id_solicitud_transfusional,id_reserva,id_entrega)
-        VALUES(@id_unidad,CASE @destino WHEN 'TRANSFUNDIDA' THEN 'TRANSFUSION' WHEN 'DEVUELTA' THEN 'DEVOLUCION' ELSE 'DESCARTE' END,
-            'ENTREGADA',@destino,@motivo,@id_usuario,@id_solicitud,@id_reserva,@id_entrega);
+        VALUES(@id_unidad,CASE @estado_destino WHEN 'TRANSFUNDIDA' THEN 'TRANSFUSION' WHEN 'DEVUELTA' THEN 'DEVOLUCION' WHEN 'DESCARTADA' THEN 'DESCARTE' ELSE 'DESTINO' END,
+            'ENTREGADA',@estado_destino,@motivo,@id_usuario,@id_solicitud,@id_reserva,@id_entrega);
         EXEC dbo.sp_PN2_Solicitud_ActualizarEstado @id_solicitud;
         EXEC dbo.sp_IntegridadPN1_Sellar @id_usuario;
         COMMIT; SELECT 'OK' codigo_resultado,@id_entrega id_resultado;
@@ -625,9 +633,12 @@ BEGIN
     EXEC dbo.sp_PN2_Autorizar @id_usuario,'TRAZABILIDAD_VER';
     IF @desde>@hasta THROW 51011,'PN2_INVALID_FILTER',1;
     SELECT m.id_movimiento_unidad,m.id_unidad,u.codigo_identificacion,m.tipo_movimiento,m.estado_anterior,m.estado_nuevo,
+        ea.descripcion estado_anterior_descripcion,en.descripcion estado_nuevo_descripcion,
         m.observacion,m.fecha_movimiento,m.id_usuario,a.nombre_usuario usuario,m.id_solicitud_transfusional,m.id_reserva,m.id_entrega,
         u.tipo_componente,u.grupo_sanguineo,u.factor_rh
     FROM dbo.MovimientoUnidad m JOIN dbo.Unidad u ON u.id_unidad=m.id_unidad JOIN dbo.Usuario a ON a.id_usuario=m.id_usuario
+    LEFT JOIN dbo.EstadoUnidad ea ON ea.codigo=m.estado_anterior
+    LEFT JOIN dbo.EstadoUnidad en ON en.codigo=m.estado_nuevo
     WHERE (@id_unidad IS NULL OR m.id_unidad=@id_unidad)
       AND (@desde IS NULL OR m.fecha_movimiento>=@desde)
       AND (@hasta IS NULL OR m.fecha_movimiento<=@hasta)

@@ -82,8 +82,8 @@ namespace UI
         private void CargarOpciones_380_jh()
         {
             if (_cmbEstado_380_jh == null) return;
-            ControlesPN2_380_jh.CargarEstados_380_jh(_cmbEstado_380_jh, "", "EN_REVISION", "LIBERADA", "BLOQUEADA", "RESERVADA", "ENTREGADA", "TRANSFUNDIDA", "DEVUELTA", "DESCARTADA");
-            ControlesPN2_380_jh.CargarEstados_380_jh(_cmbGrupo_380_jh, "", "A", "B", "AB", "O");
+            ControlesPN2_380_jh.CargarEstadosUnidad_380_jh(_cmbEstado_380_jh);
+            ControlesPN2_380_jh.CargarEstados_380_jh(_cmbGrupo_380_jh, MaestrosCombo_380_jh.ConTodos_380_jh(MaestroPN1ApplicationService_380_jh.Grupo_380_jh));
         }
 
         private void CargarReporte_380_jh()

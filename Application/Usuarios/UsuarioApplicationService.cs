@@ -171,6 +171,39 @@ namespace Application
             return _usuarioRepository_380_jh.Existe_380_jh(username);
         }
 
+        public ResultadoCambioContrasena_380_jh CambiarContrasena_380_jh(string contrasenaActual, string contrasenaNueva)
+        {
+            Usuario_380_jh usuarioSesion = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
+            if (usuarioSesion == null ||
+                string.IsNullOrWhiteSpace(contrasenaActual) ||
+                string.IsNullOrWhiteSpace(contrasenaNueva))
+            {
+                return ResultadoCambioContrasena_380_jh.DatosInvalidos_380_jh;
+            }
+
+            string hashActual = _passwordService_380_jh.Hash_380_jh(contrasenaActual);
+            Usuario_380_jh usuarioValidado = _usuarioRepository_380_jh.ObtenerPorCredenciales_380_jh(usuarioSesion.Username_380_jh, hashActual);
+            if (usuarioValidado == null || usuarioValidado.Id_380_jh != usuarioSesion.Id_380_jh)
+            {
+                return ResultadoCambioContrasena_380_jh.ContrasenaActualIncorrecta_380_jh;
+            }
+
+            string hashNuevo = _passwordService_380_jh.Hash_380_jh(contrasenaNueva);
+            if (string.Equals(hashActual, hashNuevo, System.StringComparison.Ordinal))
+            {
+                return ResultadoCambioContrasena_380_jh.NuevaIgualActual_380_jh;
+            }
+
+            if (!_usuarioRepository_380_jh.CambiarContrasena_380_jh(usuarioSesion.Id_380_jh, hashActual, hashNuevo))
+            {
+                return ResultadoCambioContrasena_380_jh.Error_380_jh;
+            }
+
+            return _digitoVerificadorService_380_jh.RecalcularUsuarios_380_jh()
+                ? ResultadoCambioContrasena_380_jh.Actualizada_380_jh
+                : ResultadoCambioContrasena_380_jh.ErrorIntegridad_380_jh;
+        }
+
         public bool EstaBloqueado_380_jh(string username)
         {
             if (string.IsNullOrWhiteSpace(username))

@@ -82,7 +82,7 @@ namespace UI
             TableLayoutPanel formulario = ControlesPN2_380_jh.CrearFormulario_380_jh(formularioPanel, "PN2_NEW_REQUEST", 7);
             _txtPaciente_380_jh = new TextBox { MaxLength = 150 };
             _cmbComponente_380_jh = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
-            _cmbComponente_380_jh.Items.AddRange(ComponentesTransfusionales_380_jh.CrearOpciones_380_jh());
+            MaestrosCombo_380_jh.Cargar_380_jh(_cmbComponente_380_jh, MaestroPN1ApplicationService_380_jh.Componente_380_jh);
             _numCantidad_380_jh = new NumericUpDown { Minimum = 1, Maximum = int.MaxValue, Value = 1 };
             _txtDocumento_380_jh = new TextBox { MaxLength = 50 };
             _txtSolicitante_380_jh = new TextBox { MaxLength = 150 };
@@ -90,9 +90,9 @@ namespace UI
             _txtReferencia_380_jh = new TextBox { MaxLength = 150 };
             _txtAnticuerpos_380_jh = new TextBox { MaxLength = 500 };
             _cmbGrupo_380_jh = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
-            _cmbGrupo_380_jh.Items.AddRange(new object[] { "O", "A", "B", "AB" });
+            MaestrosCombo_380_jh.Cargar_380_jh(_cmbGrupo_380_jh, MaestroPN1ApplicationService_380_jh.Grupo_380_jh);
             _cmbRh_380_jh = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList };
-            _cmbRh_380_jh.Items.AddRange(new object[] { "+", "-" });
+            MaestrosCombo_380_jh.Cargar_380_jh(_cmbRh_380_jh, MaestroPN1ApplicationService_380_jh.Rh_380_jh);
             _fechaEstudio_380_jh = new DateTimePicker { Format = DateTimePickerFormat.Short, MaxDate = DateTime.Today, ShowCheckBox = true, Checked = false };
             ControlesPN2_380_jh.AgregarCampo_380_jh(formulario, "PN2_PATIENT", _txtPaciente_380_jh, 0, 0);
             ControlesPN2_380_jh.AgregarCampo_380_jh(formulario, "UNIT_COMPONENT", _cmbComponente_380_jh, 2, 0);
@@ -164,13 +164,13 @@ namespace UI
                 PacienteReceptor_380_jh = _txtPaciente_380_jh.Text,
                 DocumentoReceptor_380_jh = _txtDocumento_380_jh.Text,
                 ProfesionalSolicitante_380_jh = _txtSolicitante_380_jh.Text,
-                GrupoReceptor_380_jh = _cmbGrupo_380_jh.SelectedItem as string,
-                RhReceptor_380_jh = _cmbRh_380_jh.SelectedItem as string,
+                GrupoReceptor_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbGrupo_380_jh),
+                RhReceptor_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbRh_380_jh),
                 LaboratorioEstudio_380_jh = _txtLaboratorio_380_jh.Text,
                 ReferenciaEstudio_380_jh = _txtReferencia_380_jh.Text,
                 FechaEstudio_380_jh = _fechaEstudio_380_jh.Checked ? (DateTime?)_fechaEstudio_380_jh.Value.Date : null,
                 ResultadoAnticuerpos_380_jh = _txtAnticuerpos_380_jh.Text,
-                TipoComponente_380_jh = _cmbComponente_380_jh.SelectedItem as string,
+                TipoComponente_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbComponente_380_jh),
                 CantidadRequerida_380_jh = Convert.ToInt32(_numCantidad_380_jh.Value)
             };
             CodigoOperacionPN2_380_jh resultado = _pn2Service_380_jh.RegistrarSolicitud_380_jh(solicitud);
@@ -191,11 +191,11 @@ namespace UI
             SolicitudTransfusional_380_jh s = ControlesPN2_380_jh.Seleccionado_380_jh<SolicitudTransfusional_380_jh>(_grid_380_jh);
             if (s == null) return;
             _txtPaciente_380_jh.Text = s.PacienteReceptor_380_jh;
-            _cmbComponente_380_jh.SelectedItem = s.TipoComponente_380_jh;
+            MaestrosCombo_380_jh.Seleccionar_380_jh(_cmbComponente_380_jh, s.TipoComponente_380_jh);
             _txtSolicitante_380_jh.Text = s.ProfesionalSolicitante_380_jh;
             _txtDocumento_380_jh.Text = s.DocumentoReceptor_380_jh;
-            _cmbGrupo_380_jh.SelectedItem = s.GrupoReceptor_380_jh;
-            _cmbRh_380_jh.SelectedItem = s.RhReceptor_380_jh;
+            MaestrosCombo_380_jh.Seleccionar_380_jh(_cmbGrupo_380_jh, s.GrupoReceptor_380_jh);
+            MaestrosCombo_380_jh.Seleccionar_380_jh(_cmbRh_380_jh, s.RhReceptor_380_jh);
             _txtLaboratorio_380_jh.Text = s.LaboratorioEstudio_380_jh;
             _txtReferencia_380_jh.Text = s.ReferenciaEstudio_380_jh;
             _txtAnticuerpos_380_jh.Text = s.ResultadoAnticuerpos_380_jh;
@@ -210,7 +210,7 @@ namespace UI
             var datos = new SolicitudTransfusional_380_jh {
                 Id_380_jh = seleccion.Id_380_jh, DocumentoReceptor_380_jh = _txtDocumento_380_jh.Text,
                 ProfesionalSolicitante_380_jh = _txtSolicitante_380_jh.Text,
-                GrupoReceptor_380_jh = _cmbGrupo_380_jh.SelectedItem as string, RhReceptor_380_jh = _cmbRh_380_jh.SelectedItem as string,
+                GrupoReceptor_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbGrupo_380_jh), RhReceptor_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbRh_380_jh),
                 LaboratorioEstudio_380_jh = _txtLaboratorio_380_jh.Text, ReferenciaEstudio_380_jh = _txtReferencia_380_jh.Text,
                 FechaEstudio_380_jh = _fechaEstudio_380_jh.Checked ? (DateTime?)_fechaEstudio_380_jh.Value.Date : null,
                 ResultadoAnticuerpos_380_jh = _txtAnticuerpos_380_jh.Text

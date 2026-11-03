@@ -305,12 +305,12 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
         EXEC dbo.sp_IntegridadPN1_Exigir;
+        EXEC dbo.sp_MaestroPN1_Exigir;
 
     IF @id_donante IS NULL OR @id_donante <= 0
        OR @fecha_donacion IS NULL
        OR @cantidad_unidades IS NULL OR @cantidad_unidades <= 0
-       OR UPPER(LTRIM(RTRIM(@tipo_componente))) COLLATE Latin1_General_CI_AI NOT IN
-            ('CONCENTRADO DE ERITROCITOS','PLASMA FRESCO CONGELADO','CONCENTRADO DE PLAQUETAS')
+       OR @tipo_componente IS NULL OR NOT EXISTS (SELECT 1 FROM dbo.ComponenteTransfusional WHERE codigo=LTRIM(RTRIM(@tipo_componente)) AND activo=1)
        OR @fecha_vencimiento IS NULL
        OR @fecha_vencimiento < CONVERT(DATE, @fecha_donacion)
        OR @id_usuario IS NULL OR @id_usuario <= 0
@@ -452,12 +452,12 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
         EXEC dbo.sp_IntegridadPN1_Exigir;
+        EXEC dbo.sp_MaestroPN1_Exigir;
 
     IF @id_unidad IS NULL OR @id_unidad <= 0
-       OR UPPER(LTRIM(RTRIM(@tipo_componente))) COLLATE Latin1_General_CI_AI NOT IN
-            ('CONCENTRADO DE ERITROCITOS','PLASMA FRESCO CONGELADO','CONCENTRADO DE PLAQUETAS')
-       OR @grupo_sanguineo NOT IN ('A', 'B', 'AB', 'O')
-       OR @factor_rh NOT IN ('+', '-')
+       OR @tipo_componente IS NULL OR NOT EXISTS (SELECT 1 FROM dbo.ComponenteTransfusional WHERE codigo=LTRIM(RTRIM(@tipo_componente)) AND activo=1)
+       OR @grupo_sanguineo IS NULL OR NOT EXISTS (SELECT 1 FROM dbo.GrupoSanguineo WHERE codigo=@grupo_sanguineo AND activo=1)
+       OR @factor_rh IS NULL OR NOT EXISTS (SELECT 1 FROM dbo.FactorRh WHERE codigo=@factor_rh AND activo=1)
        OR @fecha_vencimiento IS NULL
        OR @fecha_vencimiento < CONVERT(DATE, GETDATE())
        OR @id_usuario IS NULL OR @id_usuario <= 0
@@ -530,6 +530,7 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
         EXEC dbo.sp_IntegridadPN1_Exigir;
+        EXEC dbo.sp_MaestroPN1_Exigir;
 
     IF @id_unidad IS NULL OR @id_unidad <= 0
        OR @estado_nuevo NOT IN ('LIBERADA', 'BLOQUEADA', 'DESCARTADA')

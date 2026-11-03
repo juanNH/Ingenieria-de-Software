@@ -109,7 +109,8 @@ namespace Application
             var registros = new List<AuditoriaRegistro_380_jh>();
             if (!new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh))
                 return registros;
-            if (entidad != "Donante" && entidad != "Donacion" && entidad != "Unidad" && entidad != "MovimientoUnidad")
+            if (entidad != "Donante" && entidad != "Donacion" && entidad != "Unidad" && entidad != "MovimientoUnidad" &&
+                entidad != "MaestroComponente" && entidad != "MaestroGrupo" && entidad != "MaestroRh" && entidad != "MaestroDestino")
                 return registros;
             foreach (var registro in _auditoriaRepository_380_jh.ListarTodos_380_jh())
                 if (registro.Entidad_380_jh == entidad) registros.Add(registro);

@@ -27,7 +27,8 @@ namespace Domain
                 if (!Disponible_380_jh || EsValida_380_jh || PuedeInicializar_380_jh) return false;
                 return Incidencias_380_jh.Count > 0 && !Incidencias_380_jh.Exists(i =>
                     i.Entidad_380_jh == "AuditoriaPN1" || i.Tipo_380_jh == "SIN_INICIALIZAR" ||
-                    i.Tipo_380_jh == "SIN_VERSION" || i.Tipo_380_jh == "HISTORIAL_INVALIDO");
+                    i.Tipo_380_jh == "SIN_VERSION" || i.Tipo_380_jh == "HISTORIAL_INVALIDO" ||
+                    i.Tipo_380_jh == "MAESTROS_INVALIDOS");
             }
         }
     }

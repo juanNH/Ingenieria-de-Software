@@ -100,6 +100,16 @@ namespace Repository
             return _usuarioDataMapper_380_jh.Editar_380_jh(usuario) > 0;
         }
 
+        public bool CambiarContrasena_380_jh(int idUsuario, string hashActual, string hashNuevo)
+        {
+            if (idUsuario == 0 || string.IsNullOrWhiteSpace(hashActual) || string.IsNullOrWhiteSpace(hashNuevo))
+            {
+                return false;
+            }
+
+            return _usuarioDataMapper_380_jh.CambiarContrasena_380_jh(idUsuario, hashActual, hashNuevo) > 0;
+        }
+
         public bool ActualizarIdiomaPreferido_380_jh(int usuarioId, int idiomaId)
         {
             if (usuarioId == 0 || idiomaId == 0)

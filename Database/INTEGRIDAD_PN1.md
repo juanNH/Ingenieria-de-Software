@@ -7,27 +7,42 @@ entrada de navegación.
 
 ## Base existente: HemovidaGest
 
-No volver a ejecutar tecni_salud_schema.sql sobre una base existente.
-No ejecutar I18n_Reset_Es_En.sql para esta actualización: ese script elimina y
+Para incorporar los maestros a una base PN1 o PN1+PN2 ya instalada, detener la
+aplicación y ejecutar `Database/InstalarMaestrosPN1.ps1`. El instalador verifica
+la integridad, genera y verifica un respaldo, y aplica la migración en una sola
+transacción. Se conserva cada código histórico; los componentes antiguos que no
+estaban entre las opciones iniciales quedan inactivos. Volver a iniciar sesión
+para obtener el permiso de administración de maestros.
+
+Los catálogos y sus cambios auditados tienen una huella conjunta independiente.
+Ante una alteración, se bloquean sus consultas y las operaciones que los usan;
+Integridad informa la incidencia y su recuperación requiere una copia confiable.
+Los códigos de grupo, Rh o componente sin una regla conocida por PN2 se pueden
+registrar, pero el filtro de compatibilidad no propone unidades para ellos.
+El código de cada destino de PN2 se registra como un estado operativo propio de
+la unidad. Solo **TRANSFUNDIDA** cuenta como transfusión cumplida; **DEVUELTA**
+habilita el reingreso y **DESCARTADA** mantiene su comportamiento terminal. Un
+estado nuevo no hereda automáticamente ninguna de esas reglas.
+
+No volver a ejecutar 00_tecni_salud_schema.sql sobre una base existente.
+No ejecutar 99_I18n_Reset_Es_En.sql para esta actualización: ese script elimina y
 recrea el catálogo de idiomas. La migración nueva agrega las traducciones sin
 borrar las personalizadas.
 
 1. Detener todas las instancias de la aplicación y respaldar la base actual.
-2. Ejecutar **StoredProcedures/IntegridadPN1.sql** sobre HemovidaGest.
+2. Ejecutar **StoredProcedures/05_IntegridadPN1.sql** sobre HemovidaGest.
    Agrega las columnas, amplía `Donante.email` para el valor cifrado, verificadores,
    historial protegido, registro de incidentes, permisos y traducciones que falten.
    No borra filas PN1 ni acepta automáticamente su contenido.
-3. Ejecutar **StoredProcedures/PN1.sql**. Todos los procedimientos de escritura
-   quedan protegidos por la verificación transaccional. También instala el alta,
-   consulta individual y actualización de donantes.
-4. Compilar la solución y volver a iniciar sesión como administrador para cargar
-   los permisos nuevos.
-5. Abrir **Integridad**, revisar el informe y contrastar los datos iniciales
-   con una fuente confiable. Conservar un backup externo.
-6. Si PN1 todavía no tiene una base inicial aceptada, elegir **Aceptar base
-   inicial** solo después de revisar los datos. Si ya está inicializada, verificar
+3. Si la base anterior tiene datos PN1 sin una base inicial aceptada, ejecutar
+   **StoredProcedures/07_PN1.sql**, iniciar sesión como administrador y abrir
+   **Integridad**. Revisar los datos con una fuente confiable y elegir **Aceptar
+   base inicial** solo después de esa revisión. Si ya está inicializada, verificar
    que el informe esté correcto y no volver a inicializarla.
-7. Abrir **Donantes** una vez. La primera carga cifra los correos existentes de
+4. Detener la aplicación y ejecutar **InstalarMaestrosPN1.ps1**. El instalador
+   aplica los maestros y actualiza los procedimientos PN1 y, si está instalado,
+   PN2. Compilar la solución y volver a iniciar sesión como administrador.
+5. Abrir **Donantes** una vez. La primera carga cifra los correos existentes de
    la tabla `Donante` y vuelve a sellar la integridad dentro de una transacción.
    Volver a **Integridad** y confirmar que la verificación siga correcta.
 
@@ -54,15 +69,20 @@ historial anterior.
 
 ## Instalación nueva
 
+La lista de abajo cubre la instalación PN1. Para instalar también PN2 y ver
+qué hacer con una base existente, seguir el índice completo en
+[`Database/README.md`](README.md).
+
 Ejecutar, en orden:
 
-1. tecni_salud_schema.sql.
-2. StoredProcedures/AuthUsuario.sql.
-3. StoredProcedures/Bitacora.sql.
-4. StoredProcedures/Auditoria.sql.
-5. StoredProcedures/Permisos.sql.
-6. StoredProcedures/IntegridadPN1.sql.
-7. StoredProcedures/PN1.sql.
+1. 00_tecni_salud_schema.sql.
+2. StoredProcedures/01_AuthUsuario.sql.
+3. StoredProcedures/02_Bitacora.sql.
+4. StoredProcedures/03_Auditoria.sql.
+5. StoredProcedures/04_Permisos.sql.
+6. StoredProcedures/05_IntegridadPN1.sql.
+7. StoredProcedures/06_MaestrosPN1.sql.
+8. StoredProcedures/07_PN1.sql.
 
 Después, iniciar sesión y revisar Integridad. Si existen datos de negocio
 previos, aceptar explícitamente la base inicial luego de validarlos. Una base

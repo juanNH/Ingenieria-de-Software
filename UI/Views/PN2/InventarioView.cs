@@ -66,7 +66,7 @@ namespace UI
         private void CargarEstados_380_jh()
         {
             if (_cmbEstado_380_jh != null)
-                ControlesPN2_380_jh.CargarEstados_380_jh(_cmbEstado_380_jh, "", "EN_REVISION", "LIBERADA", "BLOQUEADA", "RESERVADA", "ENTREGADA", "TRANSFUNDIDA", "DEVUELTA", "DESCARTADA");
+                ControlesPN2_380_jh.CargarEstadosUnidad_380_jh(_cmbEstado_380_jh);
         }
 
         private void CargarInventario_380_jh()
@@ -91,7 +91,7 @@ namespace UI
             foreach (Unidad_380_jh unidad in _unidades_380_jh)
             {
                 int fila = _grid_380_jh.Rows.Add(unidad.CodigoIdentificacion_380_jh, unidad.TipoComponente_380_jh,
-                    unidad.GrupoSanguineo_380_jh, unidad.FactorRh_380_jh, ControlesPN2_380_jh.TraducirEstado_380_jh(unidad.EstadoOperativo_380_jh),
+                    unidad.GrupoSanguineo_380_jh, unidad.FactorRh_380_jh, ControlesPN2_380_jh.TraducirEstado_380_jh(unidad.EstadoOperativo_380_jh, unidad.EstadoOperativoDescripcion_380_jh),
                     unidad.FechaVencimiento_380_jh.ToString("dd/MM/yyyy"));
                 _grid_380_jh.Rows[fila].Tag = unidad;
                 if (unidad.Id_380_jh == idSeleccionado) _grid_380_jh.Rows[fila].Selected = true;

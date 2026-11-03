@@ -13,6 +13,7 @@ namespace UI
         private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
         private readonly UsuarioApplicationService_380_jh _usuarioService_380_jh;
         private ToolStripMenuItem _pn1ToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _maestrosToolStripMenuItem_380_jh;
         private ToolStripMenuItem _pn2ToolStripMenuItem_380_jh;
         private ToolStripMenuItem _consultasToolStripMenuItem_380_jh;
         private ToolStripMenuItem _donantesToolStripMenuItem_380_jh;
@@ -23,6 +24,7 @@ namespace UI
         private ToolStripMenuItem _destinosToolStripMenuItem_380_jh;
         private ToolStripMenuItem _trazabilidadToolStripMenuItem_380_jh;
         private ToolStripMenuItem _reportesToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _cambiarContrasenaToolStripMenuItem_380_jh;
         private bool _cargandoIdiomas_380_jh;
 
         public MainForm_380_jh()
@@ -79,6 +81,7 @@ namespace UI
             rolesToolStripMenuItem_380_jh.Tag = "MENU_ROLES";
             idiomasToolStripMenuItem_380_jh.Tag = "MENU_LANGUAGES";
             _pn1ToolStripMenuItem_380_jh.Tag = "MENU_PN1";
+            _maestrosToolStripMenuItem_380_jh.Tag = "MASTERS_TITLE";
             _pn2ToolStripMenuItem_380_jh.Tag = "MENU_PN2";
             _consultasToolStripMenuItem_380_jh.Tag = "MENU_CONSULTAS";
             _donantesToolStripMenuItem_380_jh.Tag = "MENU_DONORS";
@@ -90,11 +93,20 @@ namespace UI
             _trazabilidadToolStripMenuItem_380_jh.Tag = "MENU_TRACEABILITY";
             _reportesToolStripMenuItem_380_jh.Tag = "MENU_REPORTS_ALERTS";
             salirToolStripMenuItem_380_jh.Tag = "MENU_LOGOUT";
+            _cambiarContrasenaToolStripMenuItem_380_jh.Tag = "MENU_CHANGE_PASSWORD";
             lblIdioma_380_jh.Tag = "LANGUAGE_SELECTOR";
         }
 
         private void ConfigurarMenuNegocio_380_jh()
         {
+            _maestrosToolStripMenuItem_380_jh = new ToolStripMenuItem
+            {
+                Name = "maestrosToolStripMenuItem", Font = new Font("Segoe UI", 10F), ForeColor = Color.White
+            };
+            _maestrosToolStripMenuItem_380_jh.Click += delegate
+            {
+                if (ValidarPermiso_380_jh(PermisosSistema_380_jh.MaestrosAdministrar_380_jh)) ShowScreen_380_jh(new MaestrosView_380_jh());
+            };
             _pn1ToolStripMenuItem_380_jh = new ToolStripMenuItem
             {
                 Name = "pn1ToolStripMenuItem",
@@ -165,10 +177,23 @@ namespace UI
                 _reportesToolStripMenuItem_380_jh
             });
 
+            _cambiarContrasenaToolStripMenuItem_380_jh = new ToolStripMenuItem
+            {
+                Name = "cambiarContrasenaToolStripMenuItem",
+                Font = new Font("Segoe UI", 10F),
+                ForeColor = Color.White,
+                Tag = "MENU_CHANGE_PASSWORD",
+                Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("MENU_CHANGE_PASSWORD")
+            };
+            _cambiarContrasenaToolStripMenuItem_380_jh.Click += cambiarContrasenaToolStripMenuItem_Click_380_jh;
+
             int posicionSalida = menuStrip1_380_jh.Items.IndexOf(salirToolStripMenuItem_380_jh);
             int posicionProcesos = posicionSalida < 0 ? menuStrip1_380_jh.Items.Count : posicionSalida;
             menuStrip1_380_jh.Items.Insert(posicionProcesos, _pn1ToolStripMenuItem_380_jh);
             menuStrip1_380_jh.Items.Insert(posicionProcesos + 1, _pn2ToolStripMenuItem_380_jh);
+            menuStrip1_380_jh.Items.Insert(posicionProcesos + 2, _maestrosToolStripMenuItem_380_jh);
+            int posicionSalidaActualizada = menuStrip1_380_jh.Items.IndexOf(salirToolStripMenuItem_380_jh);
+            menuStrip1_380_jh.Items.Insert(posicionSalidaActualizada, _cambiarContrasenaToolStripMenuItem_380_jh);
         }
 
         private void MostrarDesplegableAlPasarMouse_380_jh(object sender, EventArgs e)
@@ -235,6 +260,21 @@ namespace UI
         private void salirToolStripMenuItem_Click_380_jh(object sender, EventArgs e)
         {
             _usuarioService_380_jh.RecalcularDigitosVerificadoresUsuarios_380_jh();
+            Sesion_380_jh.ObtenerInstancia_380_jh().Logout_380_jh();
+            DialogResult = DialogResult.Retry;
+            Close();
+        }
+
+        private void cambiarContrasenaToolStripMenuItem_Click_380_jh(object sender, EventArgs e)
+        {
+            using (CambiarContrasena_380_jh pantalla = new CambiarContrasena_380_jh(_usuarioService_380_jh))
+            {
+                if (pantalla.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+            }
+
             Sesion_380_jh.ObtenerInstancia_380_jh().Logout_380_jh();
             DialogResult = DialogResult.Retry;
             Close();
@@ -346,6 +386,7 @@ namespace UI
             _trazabilidadToolStripMenuItem_380_jh.Visible = mostrarTrazabilidad;
             _reportesToolStripMenuItem_380_jh.Visible = mostrarReportes;
             _pn1ToolStripMenuItem_380_jh.Visible = mostrarDonantes || mostrarDonaciones || mostrarUnidades;
+            _maestrosToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.MaestrosAdministrar_380_jh);
             _pn2ToolStripMenuItem_380_jh.Visible = mostrarSolicitudes || mostrarReservas || mostrarDestinos;
             _consultasToolStripMenuItem_380_jh.Visible = mostrarTrazabilidad || mostrarReportes;
         }

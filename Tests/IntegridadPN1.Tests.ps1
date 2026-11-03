@@ -1,4 +1,4 @@
-param([string]$Servidor = '.', [switch]$ConservarBase, [switch]$DatosExistentes)
+﻿param([string]$Servidor = '.', [switch]$ConservarBase, [switch]$DatosExistentes)
 $ErrorActionPreference = 'Stop'
 $raizProyecto = Split-Path $PSScriptRoot -Parent
 $salidaPruebas = Join-Path $PSScriptRoot 'bin/IntegrityTests'
@@ -45,15 +45,15 @@ function Restaurar {
     Assert ((Verificar).Tables[0].Rows[0].es_valida) 'Restauracion termina con integridad valida'
 }
 try {
-    Script 'Database/tecni_salud_schema.sql'
-    Script 'Database/StoredProcedures/Bitacora.sql'
+    Script 'Database/00_tecni_salud_schema.sql'
+    Script 'Database/StoredProcedures/02_Bitacora.sql'
     if ($DatosExistentes) {
         [void](Sql 'ALTER TABLE dbo.Donante DROP COLUMN dvh; ALTER TABLE dbo.Donacion DROP COLUMN dvh; ALTER TABLE dbo.Unidad DROP COLUMN dvh; ALTER TABLE dbo.MovimientoUnidad DROP COLUMN dvh; ALTER TABLE dbo.Auditoria DROP COLUMN dvh_integridad')
         [void](Sql "INSERT dbo.Donante(documento,nombre,apellido,id_usuario_alta) VALUES('D1','Maria','Prueba',1)")
     }
-    Script 'Database/StoredProcedures/IntegridadPN1.sql'
-    Script 'Database/StoredProcedures/PN1.sql'
-    Script 'Database/StoredProcedures/IntegridadPN1.sql'
+    Script 'Database/StoredProcedures/05_IntegridadPN1.sql'
+    Script 'Database/StoredProcedures/07_PN1.sql'
+    Script 'Database/StoredProcedures/05_IntegridadPN1.sql'
     $informe = Sql 'EXEC dbo.sp_IntegridadPN1_Verificar'
     if ($DatosExistentes) {
         Assert (!$informe.Tables[0].Rows[0].es_valida -and $informe.Tables[0].Rows[0].puede_inicializar) 'Los datos existentes requieren aceptar una base inicial'

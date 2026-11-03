@@ -221,6 +221,48 @@ GO
 -- PN1: registro y trazabilidad de donantes, donaciones y unidades
 -- ============================================================
 
+CREATE TABLE dbo.ComponenteTransfusional
+(
+    id INT IDENTITY PRIMARY KEY, codigo VARCHAR(100) NOT NULL UNIQUE,
+    descripcion NVARCHAR(150) NOT NULL, activo BIT NOT NULL DEFAULT 1
+);
+CREATE TABLE dbo.GrupoSanguineo
+(
+    id INT IDENTITY PRIMARY KEY, codigo VARCHAR(5) NOT NULL UNIQUE,
+    descripcion NVARCHAR(150) NOT NULL, activo BIT NOT NULL DEFAULT 1
+);
+CREATE TABLE dbo.FactorRh
+(
+    id INT IDENTITY PRIMARY KEY, codigo VARCHAR(5) NOT NULL UNIQUE,
+    descripcion NVARCHAR(150) NOT NULL, activo BIT NOT NULL DEFAULT 1
+);
+CREATE TABLE dbo.EstadoUnidad
+(
+    codigo VARCHAR(20) NOT NULL CONSTRAINT PK_EstadoUnidad PRIMARY KEY,
+    descripcion NVARCHAR(150) NOT NULL
+);
+INSERT dbo.EstadoUnidad(codigo,descripcion) VALUES
+('EN_REVISION',N'En revisión'),('LIBERADA',N'Liberada'),('BLOQUEADA',N'Bloqueada'),('DESCARTADA',N'Descartada'),
+('RESERVADA',N'Reservada'),('ENTREGADA',N'Entregada'),('TRANSFUNDIDA',N'Transfundida'),('DEVUELTA',N'Devuelta');
+CREATE TABLE dbo.DestinoEntrega
+(
+    id INT IDENTITY PRIMARY KEY, codigo VARCHAR(20) NOT NULL UNIQUE,
+    descripcion NVARCHAR(150) NOT NULL, activo BIT NOT NULL DEFAULT 1,
+    motivo_obligatorio BIT NOT NULL,
+    CONSTRAINT CK_DestinoEntrega_Codigo CHECK (codigo<>'SIN_DESTINO'),
+    CONSTRAINT CK_DestinoEntrega_Motivo CHECK (codigo NOT IN ('DEVUELTA','DESCARTADA') OR motivo_obligatorio=1),
+    CONSTRAINT FK_DestinoEntrega_Codigo_EstadoUnidad FOREIGN KEY (codigo) REFERENCES dbo.EstadoUnidad(codigo)
+);
+INSERT dbo.ComponenteTransfusional(codigo,descripcion) VALUES
+('Concentrado de eritrocitos',N'Concentrado de eritrocitos'),
+('Plasma fresco congelado',N'Plasma fresco congelado'),
+('Concentrado de plaquetas',N'Concentrado de plaquetas');
+INSERT dbo.GrupoSanguineo(codigo,descripcion) VALUES ('A','A'),('B','B'),('AB','AB'),('O','O');
+INSERT dbo.FactorRh(codigo,descripcion) VALUES ('+',N'Positivo'),('-',N'Negativo');
+INSERT dbo.DestinoEntrega(codigo,descripcion,motivo_obligatorio) VALUES
+('TRANSFUNDIDA',N'Transfundida',0),('DEVUELTA',N'Devuelta',1),('DESCARTADA',N'Descartada',1);
+GO
+
 CREATE TABLE dbo.Donante
 (
     dvh VARCHAR(64) NULL,
@@ -255,6 +297,7 @@ CREATE TABLE dbo.Donacion
     fecha_alta DATETIME NOT NULL CONSTRAINT DF_Donacion_FechaAlta DEFAULT GETDATE(),
     CONSTRAINT CK_Donacion_Cantidad CHECK (cantidad_unidades > 0),
     CONSTRAINT CK_Donacion_Vencimiento CHECK (fecha_vencimiento >= CONVERT(DATE, fecha_donacion)),
+    CONSTRAINT FK_Donacion_Componente FOREIGN KEY (tipo_componente) REFERENCES dbo.ComponenteTransfusional(codigo),
     CONSTRAINT FK_Donacion_Donante FOREIGN KEY (id_donante) REFERENCES dbo.Donante(id_donante),
     CONSTRAINT FK_Donacion_UsuarioResponsable FOREIGN KEY (id_usuario_responsable) REFERENCES dbo.Usuario(id_usuario)
 );
@@ -276,9 +319,10 @@ CREATE TABLE dbo.Unidad
     fecha_ultima_modificacion DATETIME NOT NULL CONSTRAINT DF_Unidad_FechaModificacion DEFAULT GETDATE(),
     id_usuario_ultima_modificacion INT NOT NULL,
     CONSTRAINT UQ_Unidad_Codigo UNIQUE (codigo_identificacion),
-    CONSTRAINT CK_Unidad_Estado CHECK (estado_operativo IN ('EN_REVISION', 'LIBERADA', 'BLOQUEADA', 'DESCARTADA')),
-    CONSTRAINT CK_Unidad_Grupo CHECK (grupo_sanguineo IS NULL OR grupo_sanguineo IN ('A', 'B', 'AB', 'O')),
-    CONSTRAINT CK_Unidad_Rh CHECK (factor_rh IS NULL OR factor_rh IN ('+', '-')),
+    CONSTRAINT FK_Unidad_EstadoUnidad FOREIGN KEY (estado_operativo) REFERENCES dbo.EstadoUnidad(codigo),
+    CONSTRAINT FK_Unidad_Componente FOREIGN KEY (tipo_componente) REFERENCES dbo.ComponenteTransfusional(codigo),
+    CONSTRAINT FK_Unidad_Grupo FOREIGN KEY (grupo_sanguineo) REFERENCES dbo.GrupoSanguineo(codigo),
+    CONSTRAINT FK_Unidad_Rh FOREIGN KEY (factor_rh) REFERENCES dbo.FactorRh(codigo),
     CONSTRAINT FK_Unidad_Donacion FOREIGN KEY (id_donacion) REFERENCES dbo.Donacion(id_donacion),
     CONSTRAINT FK_Unidad_UsuarioModificacion FOREIGN KEY (id_usuario_ultima_modificacion) REFERENCES dbo.Usuario(id_usuario)
 );
@@ -295,8 +339,9 @@ CREATE TABLE dbo.MovimientoUnidad
     observacion VARCHAR(500) NULL,
     fecha_movimiento DATETIME NOT NULL CONSTRAINT DF_MovimientoUnidad_Fecha DEFAULT GETDATE(),
     id_usuario INT NOT NULL,
-    CONSTRAINT CK_MovimientoUnidad_Tipo CHECK (tipo_movimiento IN ('REGISTRO', 'CLASIFICACION', 'LIBERACION', 'BLOQUEO', 'DESCARTE', 'RESTAURACION')),
-    CONSTRAINT CK_MovimientoUnidad_EstadoNuevo CHECK (estado_nuevo IN ('EN_REVISION', 'LIBERADA', 'BLOQUEADA', 'DESCARTADA')),
+    CONSTRAINT CK_MovimientoUnidad_Tipo CHECK (tipo_movimiento IN ('REGISTRO', 'CLASIFICACION', 'LIBERACION', 'BLOQUEO', 'DESCARTE', 'RESTAURACION', 'DESTINO')),
+    CONSTRAINT FK_MovimientoUnidad_EstadoAnterior FOREIGN KEY (estado_anterior) REFERENCES dbo.EstadoUnidad(codigo),
+    CONSTRAINT FK_MovimientoUnidad_EstadoNuevo FOREIGN KEY (estado_nuevo) REFERENCES dbo.EstadoUnidad(codigo),
     CONSTRAINT FK_MovimientoUnidad_Unidad FOREIGN KEY (id_unidad) REFERENCES dbo.Unidad(id_unidad),
     CONSTRAINT FK_MovimientoUnidad_Usuario FOREIGN KEY (id_usuario) REFERENCES dbo.Usuario(id_usuario)
 );

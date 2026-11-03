@@ -49,7 +49,7 @@ Los permisos se comprueban en Application y SQL. La instalación agrega las fami
 3. **Validar el estudio y buscar.** Un operador autorizado revisa los datos, la identidad y la vigencia del informe y registra su validación. En **Reservas y entregas**, el sistema muestra unidades candidatas liberadas, vigentes y del componente solicitado, filtradas según el grupo registrado. El filtro es preliminar y solo contempla los nombres de componentes documentados.
 4. **Reservar por unidad.** El operador verifica la compatibilidad para el receptor según el protocolo del servicio, ingresa la referencia de esa comprobación y confirma. El sistema vuelve a controlar el estudio, el filtro, el saldo y la disponibilidad; la unidad pasa a Reservada. La atención puede ser parcial.
 5. **Entregar la reserva.** Se selecciona una reserva activa y se confirma la entrega. Se vuelven a controlar vigencia, estado y relación con la solicitud. La unidad pasa a Entregada; una reserva sólo puede producir una entrega.
-6. **Registrar qué ocurrió.** En Destino de unidades se selecciona la entrega sin destino y se registra Transfundida, Devuelta o Descartada. Devolución y descarte requieren motivo y recuperan una unidad de saldo para reemplazo. La entrega original permanece en el historial.
+6. **Registrar el estado de destino.** En Destino de unidades se elige un estado configurado en Maestros. Transfundida cubre el pedido; cualquier otro estado reabre el saldo para reemplazo y queda en el historial. Devolución y descarte requieren motivo; solo Devuelta habilita el reingreso autorizado de esa unidad.
 7. **Cancelar si no se entregará.** Una reserva activa puede cancelarse con motivo. Se conserva el registro y la unidad vuelve a Liberada. La vigencia se vuelve a comprobar antes de cualquier nueva reserva; no hay vencimiento automático de reservas.
 8. **Reingresar una devolución.** La lógica de reingreso queda preservada en el servicio: un Responsable autorizado puede llevar una unidad Devuelta a En revisión. La interfaz actual no expone esa acción; antes de volver a reservarla, la unidad debe clasificarse otra vez y liberarse desde PN1.
 9. **Consultar el recorrido.** Trazabilidad muestra movimientos con usuario, fecha, estado anterior y nuevo, observación y vínculos con solicitud, reserva y entrega. Reportes y alertas permite revisar stock, pedidos y problemas operativos. Ambas son consultas independientes del circuito de entrega.
@@ -65,7 +65,7 @@ Cada reserva corresponde a una unidad y una solicitud; cada reserva tiene cero o
 | --- | --- |
 | Requeridas | Cantidad registrada en el pedido. |
 | Reservadas | Reservas activas todavía sin entregar. |
-| Entregadas | Entregas sin destino o con destino Transfundida. No incluye devueltas ni descartadas. |
+| Entregadas | Entregas sin destino o con estado Transfundida. Un destino distinto de Transfundida reabre el saldo. |
 | Pendientes | Requeridas menos Reservadas menos Entregadas; nunca menor que cero. |
 
 La columna Entregadas representa atención efectiva. El historial conserva también las entregas posteriormente devueltas o descartadas.
@@ -90,7 +90,7 @@ Estados de reserva: ACTIVA, ENTREGADA y CANCELADA. Estados nuevos de unidad: RES
 | E1, E2 y E10. Solicitud, inventario y resultado de pruebas. | C3. Verificar saldo y confirmar compatibilidad según el protocolo. | S1 si falta disponibilidad o validación; de lo contrario continúa la atención. |
 | E10. Unidad candidata, resultado de compatibilidad y su referencia. | C4. Confirmar la evaluación y reservar la unidad. | S3. Reserva registrada con referencia. |
 | E3. Reserva y datos de entrega. | C5. Confirmar habilitación y registrar entrega. | S4. Entrega registrada. |
-| E4. Entrega, destino, responsable, fecha y motivo cuando corresponde. | C6. Registrar transfusión, devolución o descarte. | S5. Destino registrado y saldo actualizado. |
+| E4. Entrega, estado de destino, responsable, fecha y motivo cuando corresponde. | C6. Registrar el estado de destino configurado. | S5. Estado registrado y saldo actualizado. |
 | E5. Unidad, período, estado, grupo o componente. | C7. Consultar trazabilidad. | S6. Historial consultado. |
 | E6. Consulta de reportes y alertas. | C8. Generar reportes y alertas. | S7. Resultados disponibles. |
 | E7. Reserva activa y motivo. | C9. Cancelar reserva. | S8. Reserva cancelada, unidad liberada y saldo actualizado. |
@@ -103,7 +103,7 @@ Desde el menú principal aparecen las opciones habilitadas por los permisos de l
 
 - **Solicitudes transfusionales:** registro del pedido y cantidades de atención.
 - **Reservas y entregas:** selección de solicitud y stock, reserva, cancelación y entrega; historial de reservas.
-- **Destino de unidades:** entregas y registro de transfusión, devolución o descarte.
+- **Destino de unidades:** entregas y registro del estado de destino configurado en Maestros.
 - **Consultas (oculto en la navegación actual):** las vistas Trazabilidad y Reportes y alertas permanecen implementadas. Trazabilidad permite filtrar por unidad, período, estado resultante del movimiento, grupo y componente. Reportes y alertas muestra inventario actual, solicitudes, saldos, reservas, movimientos y alertas operativas.
 
 Las alertas incluyen unidades vencidas, reservas activas cuya unidad ya no reúne las condiciones y solicitudes con saldo sin stock apto del componente. Son resultados de consulta, sin envío automático ni umbrales de días agregados. Los filtros de fecha delimitan registros y movimientos; no reconstruyen el stock de una fecha pasada. El período incluye el día completo seleccionado como Hasta.
@@ -123,14 +123,14 @@ Se conservan las capas y la nomenclatura `_380_jh` del proyecto:
 | Repositorio | [Repository/PN2](../Repository/PN2/) |
 | Operaciones y permisos | [PN2ApplicationService](../Application/PN2/PN2ApplicationService.cs) |
 | Pantallas | [UI/Views/PN2](../UI/Views/PN2/) |
-| Tablas y procedimientos | [PN2.sql](../Database/StoredProcedures/PN2.sql) |
-| Permisos y traducciones | [PN2_Catalogos.sql](../Database/StoredProcedures/PN2_Catalogos.sql) |
-| Integridad y recuperación común | [IntegridadPN2.sql](../Database/StoredProcedures/IntegridadPN2.sql) |
+| Tablas y procedimientos | [09_PN2.sql](../Database/StoredProcedures/09_PN2.sql) |
+| Permisos y traducciones | [08_PN2_Catalogos.sql](../Database/StoredProcedures/08_PN2_Catalogos.sql) |
+| Integridad y recuperación común | [10_IntegridadPN2.sql](../Database/StoredProcedures/10_IntegridadPN2.sql) |
 | Instalación | [InstalarPN2.ps1](../Database/InstalarPN2.ps1) |
 
 Se agregan SolicitudTransfusional, Reserva y Entrega. Unidad incorpora ubicación y MovimientoUnidad conserva referencias opcionales a solicitud, reserva y entrega. Los índices y las transacciones evitan reservas simultáneas de la misma unidad, duplicación de entrega y sobreasignación de la última cantidad pendiente.
 
-La protección DVH/DVV y la recuperación existentes incluyen las nuevas tablas y columnas. Se preservan los hashes anteriores cuando las nuevas columnas no tienen datos. La migración rechaza una base con integridad inválida; después de instalar PN2 no se debe ejecutar una versión antigua de IntegridadPN1.sql que omita estas tablas. El script actual contiene ese control.
+La protección DVH/DVV y la recuperación existentes incluyen las nuevas tablas y columnas. Se preservan los hashes anteriores cuando las nuevas columnas no tienen datos. La migración rechaza una base con integridad inválida; después de instalar PN2 no se debe ejecutar una versión antigua de 05_IntegridadPN1.sql que omita estas tablas. El script actual contiene ese control.
 
 ### Instalación sobre una base PN1 existente
 
@@ -144,7 +144,11 @@ La protección DVH/DVV y la recuperación existentes incluyen las nuevas tablas 
 
 Opcionalmente se pueden indicar `-Servidor` y `-Base`. El instalador usa la conexión local sin mostrar sus credenciales, comprueba la integridad y crea un backup COPY_ONLY con checksum en la carpeta de backups de SQL Server; verifica ese archivo antes de migrar. La cuenta SQL necesita permisos de backup y de modificación de esquema.
 
-Luego ejecuta PN2_Catalogos.sql, la actualización de PN1.sql, PN2.sql, IntegridadPN2.sql y ComprobantesAutomaticos.sql en una transacción y verifica nuevamente la integridad antes de confirmar. Un error revierte la actualización. No usar el esquema inicial completo para actualizar una base con datos. Una base que ya tiene PN2 puede actualizar solo comprobantes con `./Database/InstalarComprobantes.ps1`.
+Luego ejecuta 08_PN2_Catalogos.sql, 06_MaestrosPN1.sql, la actualización de 07_PN1.sql, 09_PN2.sql, 10_IntegridadPN2.sql y 11_ComprobantesAutomaticos.sql en una transacción y verifica nuevamente la integridad antes de confirmar. Un error revierte la actualización. No usar el esquema inicial completo para actualizar una base con datos. Una base que ya tiene PN2 puede actualizar solo comprobantes con `./Database/InstalarComprobantes.ps1`.
+
+Los componentes, grupos sanguíneos y factores Rh se administran en **Maestros** y se comparten con PN1. El filtro de candidatos mantiene las reglas conocidas de PN2: un código nuevo sin una regla de compatibilidad reconocida no genera candidatos automáticamente.
+
+Los destinos de entrega también se administran en **Maestros**. El código de cada destino es el estado propio de la unidad; no hay un selector de resultado separado. Los estados estándar **TRANSFUNDIDA**, **DEVUELTA** y **DESCARTADA** mantienen sus reglas existentes. Un estado nuevo no cuenta automáticamente como transfusión ni habilita reingreso; puede exigir motivo según su configuración. Una baja oculta la opción para nuevas entregas y conserva su significado en el historial.
 
 4. Compilar `IngDeSoftware.sln` y abrir la UI. Volver a iniciar sesión para cargar los permisos. El administrador existente recibe las operaciones de PN2; los demás usuarios usan las familias asignadas.
 

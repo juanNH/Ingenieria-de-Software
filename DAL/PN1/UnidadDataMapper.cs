@@ -110,7 +110,7 @@ namespace DAL
             }
             catch (SqlException ex)
             {
-                return ex.Number == 51001 || ex.Number == 51002
+                return ex.Number == 51001 || ex.Number == 51002 || ex.Number == 51014
                     ? CodigoOperacionPN1_380_jh.IntegridadInvalida_380_jh : CodigoOperacionPN1_380_jh.Error_380_jh;
             }
             catch
@@ -139,6 +139,7 @@ namespace DAL
                 FactorRh_380_jh = Texto_380_jh(fila, "factor_rh"),
                 Observaciones_380_jh = Texto_380_jh(fila, "observaciones"),
                 EstadoOperativo_380_jh = Texto_380_jh(fila, "estado_operativo"),
+                EstadoOperativoDescripcion_380_jh = Texto_380_jh(fila, "estado_operativo_descripcion"),
                 Ubicacion_380_jh = Texto_380_jh(fila, "ubicacion"),
                 FechaAlta_380_jh = Convert.ToDateTime(fila["fecha_alta"]),
                 FechaUltimaModificacion_380_jh = Convert.ToDateTime(fila["fecha_ultima_modificacion"]),
@@ -159,6 +160,7 @@ namespace DAL
             destino.FactorRh_380_jh = origen.FactorRh_380_jh;
             destino.Observaciones_380_jh = origen.Observaciones_380_jh;
             destino.EstadoOperativo_380_jh = origen.EstadoOperativo_380_jh;
+            destino.EstadoOperativoDescripcion_380_jh = origen.EstadoOperativoDescripcion_380_jh;
             destino.Ubicacion_380_jh = origen.Ubicacion_380_jh;
             destino.FechaAlta_380_jh = origen.FechaAlta_380_jh;
             destino.FechaUltimaModificacion_380_jh = origen.FechaUltimaModificacion_380_jh;

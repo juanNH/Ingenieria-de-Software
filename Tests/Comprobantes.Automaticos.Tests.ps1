@@ -18,11 +18,11 @@ function Assert([bool]$value, [string]$message) { if (!$value) { throw $message 
 function CountPending([string]$where) { return [int](Sql "SELECT COUNT(*) n FROM dbo.ComprobantePendiente WHERE $where").Tables[0].Rows[0].n }
 try {
     New-Item -ItemType Directory -Path $folder | Out-Null
-    foreach ($script in @('Database/tecni_salud_schema.sql','Database/StoredProcedures/Bitacora.sql',
-        'Database/StoredProcedures/IntegridadPN1.sql','Database/StoredProcedures/PN1.sql',
-        'Database/StoredProcedures/PN2_Catalogos.sql','Database/StoredProcedures/PN2.sql',
-        'Database/StoredProcedures/IntegridadPN2.sql','Database/StoredProcedures/ComprobantesAutomaticos.sql')) { Script $script }
-    Script 'Database/StoredProcedures/ComprobantesAutomaticos.sql'
+    foreach ($script in @('Database/00_tecni_salud_schema.sql','Database/StoredProcedures/02_Bitacora.sql',
+        'Database/StoredProcedures/05_IntegridadPN1.sql','Database/StoredProcedures/07_PN1.sql',
+        'Database/StoredProcedures/08_PN2_Catalogos.sql','Database/StoredProcedures/09_PN2.sql',
+        'Database/StoredProcedures/10_IntegridadPN2.sql','Database/StoredProcedures/11_ComprobantesAutomaticos.sql')) { Script $script }
+    Script 'Database/StoredProcedures/11_ComprobantesAutomaticos.sql'
     [void](Sql "EXEC dbo.sp_Donante_Registrar @documento='PRUEBA',@nombre='Maria',@apellido='Prueba',@id_usuario=1")
     [void](Sql "EXEC dbo.sp_Donacion_Registrar @id_donante=1,@fecha_donacion='20260101',@cantidad_unidades=3,@tipo_componente='Sangre',@fecha_vencimiento='20991231',@id_usuario=1")
     foreach ($id in 1..3) { [void](Sql "EXEC dbo.sp_Unidad_Clasificar @id_unidad=$id,@tipo_componente='Sangre',@grupo_sanguineo='O',@factor_rh='+',@fecha_vencimiento='20991231',@id_usuario=1") }

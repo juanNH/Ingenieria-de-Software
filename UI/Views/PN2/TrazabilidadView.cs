@@ -93,8 +93,8 @@ namespace UI
         private void CargarOpciones_380_jh()
         {
             if (_cmbEstado_380_jh == null) return;
-            ControlesPN2_380_jh.CargarEstados_380_jh(_cmbEstado_380_jh, "", "EN_REVISION", "LIBERADA", "BLOQUEADA", "RESERVADA", "ENTREGADA", "TRANSFUNDIDA", "DEVUELTA", "DESCARTADA");
-            ControlesPN2_380_jh.CargarEstados_380_jh(_cmbGrupo_380_jh, "", "A", "B", "AB", "O");
+            ControlesPN2_380_jh.CargarEstadosUnidad_380_jh(_cmbEstado_380_jh);
+            ControlesPN2_380_jh.CargarEstados_380_jh(_cmbGrupo_380_jh, MaestrosCombo_380_jh.ConTodos_380_jh(MaestroPN1ApplicationService_380_jh.Grupo_380_jh));
         }
 
         private void CargarTrazabilidad_380_jh()
@@ -130,7 +130,8 @@ namespace UI
             {
                 int fila = _grid_380_jh.Rows.Add(movimiento.FechaMovimiento_380_jh.ToString("dd/MM/yyyy HH:mm"), movimiento.IdUnidad_380_jh,
                     movimiento.CodigoIdentificacion_380_jh, ControlesPN2_380_jh.TraducirEstado_380_jh(movimiento.TipoMovimiento_380_jh),
-                    ControlesPN2_380_jh.TraducirEstado_380_jh(movimiento.EstadoAnterior_380_jh), ControlesPN2_380_jh.TraducirEstado_380_jh(movimiento.EstadoNuevo_380_jh),
+                    ControlesPN2_380_jh.TraducirEstado_380_jh(movimiento.EstadoAnterior_380_jh, movimiento.EstadoAnteriorDescripcion_380_jh),
+                    ControlesPN2_380_jh.TraducirEstado_380_jh(movimiento.EstadoNuevo_380_jh, movimiento.EstadoNuevoDescripcion_380_jh),
                     movimiento.Usuario_380_jh, movimiento.IdSolicitudTransfusional_380_jh, movimiento.IdReserva_380_jh, movimiento.IdEntrega_380_jh);
                 _grid_380_jh.Rows[fila].Tag = movimiento;
             }

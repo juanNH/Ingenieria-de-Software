@@ -1,40 +1,31 @@
--- HemovidaGest: migracion incremental de integridad PN1 (SQL Server 2016+).
--- Ejecutar antes de PN1.sql. No acepta los datos existentes automaticamente.
+-- Extension del modulo transversal de Integridad para PN2.
+-- Ejecutar despues de 09_PN2.sql. Conserva hashes y snapshots anteriores de PN1.
+-- NO acepta una nueva base inicial ni recalcula datos existentes de PN1.
 USE [HemovidaGest];
-GO
--- PN2 extiende estas mismas vistas y procedimientos; no reemplazarlos por
--- definiciones de PN1 una vez instalada esa extension. Ejecutar con stop-on-error.
-IF OBJECT_ID('dbo.v_IntegridadPN2_Instalada','V') IS NOT NULL
-    THROW 51012,'PN2_ALREADY_INSTALLED_USE_INTEGRIDADPN2',1;
 GO
 SET ANSI_NULLS ON;
 SET QUOTED_IDENTIFIER ON;
+SET XACT_ABORT ON;
 GO
-IF COL_LENGTH('dbo.Donante', 'dvh') IS NULL ALTER TABLE dbo.Donante ADD dvh VARCHAR(64) NULL;
-IF COL_LENGTH('dbo.Donante', 'email') < 512 ALTER TABLE dbo.Donante ALTER COLUMN email VARCHAR(512) NULL;
-IF COL_LENGTH('dbo.Donacion', 'dvh') IS NULL ALTER TABLE dbo.Donacion ADD dvh VARCHAR(64) NULL;
-IF COL_LENGTH('dbo.Unidad', 'dvh') IS NULL ALTER TABLE dbo.Unidad ADD dvh VARCHAR(64) NULL;
-IF COL_LENGTH('dbo.MovimientoUnidad', 'dvh') IS NULL ALTER TABLE dbo.MovimientoUnidad ADD dvh VARCHAR(64) NULL;
-IF COL_LENGTH('dbo.Auditoria', 'dvh_integridad') IS NULL ALTER TABLE dbo.Auditoria ADD dvh_integridad VARCHAR(64) NULL;
-GO
-IF OBJECT_ID('dbo.IntegridadIncidente', 'U') IS NULL
-CREATE TABLE dbo.IntegridadIncidente
-(
-    id_incidente INT IDENTITY PRIMARY KEY,
-    entidad VARCHAR(100) NOT NULL,
-    id_entidad INT NOT NULL,
-    tipo VARCHAR(40) NOT NULL,
-    fecha_deteccion DATETIME NOT NULL DEFAULT GETDATE(),
-    fecha_resolucion DATETIME NULL
-);
-GO
-IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id=OBJECT_ID('dbo.IntegridadIncidente') AND name='UX_IntegridadIncidente_Abierto')
-CREATE UNIQUE INDEX UX_IntegridadIncidente_Abierto ON dbo.IntegridadIncidente(entidad,id_entidad,tipo) WHERE fecha_resolucion IS NULL;
-GO
--- Una reparacion fisica desde una version verificada tambien deja un movimiento.
-ALTER TABLE dbo.MovimientoUnidad DROP CONSTRAINT CK_MovimientoUnidad_Tipo;
-ALTER TABLE dbo.MovimientoUnidad ADD CONSTRAINT CK_MovimientoUnidad_Tipo
-CHECK (tipo_movimiento IN ('REGISTRO','CLASIFICACION','LIBERACION','BLOQUEO','DESCARTE','RESTAURACION'));
+BEGIN TRANSACTION;
+EXEC dbo.sp_IntegridadPN1_Exigir;
+IF OBJECT_ID('dbo.v_IntegridadPN2_Instalada','V') IS NOT NULL
+   AND (OBJECT_DEFINITION(OBJECT_ID('dbo.v_IntegridadPN1_Datos')) NOT LIKE '%SolicitudTransfusional%'
+        OR OBJECT_DEFINITION(OBJECT_ID('dbo.v_IntegridadPN1_Datos')) NOT LIKE '%id_entrega%')
+BEGIN
+    ROLLBACK;
+    THROW 51012,'PN2_INTEGRITY_DEFINITIONS_DOWNGRADED',1;
+END;
+-- La primera instalacion PN2 admite solamente tablas vacias y columnas NULL.
+IF OBJECT_ID('dbo.v_IntegridadPN2_Instalada','V') IS NULL AND (
+    EXISTS(SELECT 1 FROM dbo.SolicitudTransfusional) OR EXISTS(SELECT 1 FROM dbo.Reserva)
+    OR EXISTS(SELECT 1 FROM dbo.Entrega) OR EXISTS(SELECT 1 FROM dbo.Unidad WHERE ubicacion IS NOT NULL)
+    OR EXISTS(SELECT 1 FROM dbo.MovimientoUnidad WHERE id_solicitud_transfusional IS NOT NULL OR id_reserva IS NOT NULL OR id_entrega IS NOT NULL)
+    OR EXISTS(SELECT 1 FROM dbo.Auditoria WHERE entidad IN ('SolicitudTransfusional','Reserva','Entrega')))
+BEGIN
+    ROLLBACK;
+    THROW 51012,'PN2_UNTRUSTED_EXISTING_DATA',1;
+END;
 GO
 CREATE OR ALTER VIEW dbo.v_IntegridadPN1_Datos AS
 SELECT CAST('Donante' AS VARCHAR(100)) entidad, d.id_donante id_entidad, j.datos_json, d.dvh,
@@ -50,12 +41,32 @@ UNION ALL
 SELECT CAST('Unidad' AS VARCHAR(100)) entidad, d.id_unidad id_entidad, j.datos_json, d.dvh,
     CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', CONVERT(NVARCHAR(MAX), j.datos_json)), 2) dvh_calculado
 FROM dbo.Unidad d
-CROSS APPLY (SELECT (SELECT d.id_unidad, d.codigo_identificacion, d.id_donacion, d.tipo_componente, d.fecha_vencimiento, d.grupo_sanguineo, d.factor_rh, d.observaciones, d.estado_operativo, d.fecha_alta, d.fecha_ultima_modificacion, d.id_usuario_ultima_modificacion FOR JSON PATH, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER) datos_json) j
+CROSS APPLY (SELECT CASE WHEN d.ubicacion IS NULL THEN (SELECT d.id_unidad, d.codigo_identificacion, d.id_donacion, d.tipo_componente, d.fecha_vencimiento, d.grupo_sanguineo, d.factor_rh, d.observaciones, d.estado_operativo, d.fecha_alta, d.fecha_ultima_modificacion, d.id_usuario_ultima_modificacion FOR JSON PATH, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER) ELSE (SELECT d.id_unidad, d.codigo_identificacion, d.id_donacion, d.tipo_componente, d.fecha_vencimiento, d.grupo_sanguineo, d.factor_rh, d.observaciones, d.estado_operativo, d.fecha_alta, d.fecha_ultima_modificacion, d.id_usuario_ultima_modificacion, d.ubicacion FOR JSON PATH, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER) END datos_json) j
 UNION ALL
 SELECT CAST('MovimientoUnidad' AS VARCHAR(100)) entidad, d.id_movimiento_unidad id_entidad, j.datos_json, d.dvh,
     CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', CONVERT(NVARCHAR(MAX), j.datos_json)), 2) dvh_calculado
 FROM dbo.MovimientoUnidad d
-CROSS APPLY (SELECT (SELECT d.id_movimiento_unidad, d.id_unidad, d.tipo_movimiento, d.estado_anterior, d.estado_nuevo, d.observacion, d.fecha_movimiento, d.id_usuario FOR JSON PATH, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER) datos_json) j;
+CROSS APPLY (SELECT CASE WHEN d.id_solicitud_transfusional IS NULL AND d.id_reserva IS NULL AND d.id_entrega IS NULL THEN (SELECT d.id_movimiento_unidad, d.id_unidad, d.tipo_movimiento, d.estado_anterior, d.estado_nuevo, d.observacion, d.fecha_movimiento, d.id_usuario FOR JSON PATH, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER) ELSE (SELECT d.id_movimiento_unidad, d.id_unidad, d.tipo_movimiento, d.estado_anterior, d.estado_nuevo, d.observacion, d.fecha_movimiento, d.id_usuario, d.id_solicitud_transfusional, d.id_reserva, d.id_entrega FOR JSON PATH, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER) END datos_json) j
+UNION ALL
+SELECT CAST('SolicitudTransfusional' AS VARCHAR(100)),d.id_solicitud_transfusional,j.datos_json,d.dvh,
+ CONVERT(VARCHAR(64),HASHBYTES('SHA2_256',CONVERT(NVARCHAR(MAX),j.datos_json)),2)
+FROM dbo.SolicitudTransfusional d
+CROSS APPLY(SELECT CASE WHEN d.documento_receptor IS NULL AND d.grupo_receptor IS NULL AND d.rh_receptor IS NULL
+ AND d.laboratorio_estudio IS NULL AND d.referencia_estudio IS NULL AND d.fecha_estudio IS NULL
+ AND d.resultado_anticuerpos IS NULL AND d.id_usuario_validacion IS NULL AND d.fecha_validacion IS NULL AND d.nombre_solicitante IS NULL
+ THEN (SELECT d.id_solicitud_transfusional,d.paciente_receptor,d.tipo_componente,d.cantidad_requerida,d.id_usuario_solicitante,d.observaciones,d.fecha_solicitud,d.estado_solicitud FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER)
+ ELSE (SELECT d.id_solicitud_transfusional,d.paciente_receptor,d.tipo_componente,d.cantidad_requerida,d.id_usuario_solicitante,d.observaciones,d.fecha_solicitud,d.estado_solicitud,
+ d.documento_receptor,d.grupo_receptor,d.rh_receptor,d.laboratorio_estudio,d.referencia_estudio,d.fecha_estudio,d.resultado_anticuerpos,d.id_usuario_validacion,d.fecha_validacion,d.nombre_solicitante FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) END datos_json) j
+UNION ALL
+SELECT CAST('Reserva' AS VARCHAR(100)),d.id_reserva,j.datos_json,d.dvh,
+ CONVERT(VARCHAR(64),HASHBYTES('SHA2_256',CONVERT(NVARCHAR(MAX),j.datos_json)),2)
+FROM dbo.Reserva d
+CROSS APPLY(SELECT (SELECT d.id_reserva,d.id_solicitud_transfusional,d.id_unidad,d.estado_reserva,d.observacion,d.id_usuario_responsable,d.fecha_reserva,d.fecha_cierre,d.motivo_cancelacion FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) datos_json) j
+UNION ALL
+SELECT CAST('Entrega' AS VARCHAR(100)),d.id_entrega,j.datos_json,d.dvh,
+ CONVERT(VARCHAR(64),HASHBYTES('SHA2_256',CONVERT(NVARCHAR(MAX),j.datos_json)),2)
+FROM dbo.Entrega d
+CROSS APPLY(SELECT (SELECT d.id_entrega,d.id_reserva,d.observacion,d.id_usuario_responsable,d.fecha_entrega,d.fecha_destino,d.destino,d.motivo_destino,d.id_usuario_destino FOR JSON PATH,INCLUDE_NULL_VALUES,WITHOUT_ARRAY_WRAPPER) datos_json) j;
 GO
 CREATE OR ALTER VIEW dbo.v_IntegridadPN1_Auditoria AS
 SELECT a.*, CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', CONVERT(NVARCHAR(MAX), j.datos_json)), 2) dvh_calculado
@@ -63,7 +74,7 @@ FROM dbo.Auditoria a
 CROSS APPLY (SELECT (SELECT a.id_auditoria,a.entidad,a.id_entidad,a.accion,a.id_usuario_actor,
  a.identificador_usuario_actor,a.fecha_evento,a.estado_anterior_json,a.estado_nuevo_json,a.cambios_json
  FOR JSON PATH, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER) datos_json) j
-WHERE a.entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad');
+WHERE a.entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','SolicitudTransfusional','Reserva','Entrega');
 GO
 CREATE OR ALTER VIEW dbo.v_IntegridadPN1_UltimaVersion AS
 SELECT entidad,id_entidad,estado_nuevo_json, id_auditoria
@@ -73,7 +84,7 @@ FROM (SELECT entidad,id_entidad,estado_nuevo_json,id_auditoria,
 GO
 CREATE OR ALTER VIEW dbo.v_IntegridadPN1_Vertical AS
 SELECT e.entidad, CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', CONVERT(NVARCHAR(MAX), COALESCE(j.contenido,N'[]'))), 2) dvv_calculado
-FROM (VALUES ('Donante'),('Donacion'),('Unidad'),('MovimientoUnidad'),('AuditoriaPN1')) e(entidad)
+FROM (VALUES ('Donante'),('Donacion'),('Unidad'),('MovimientoUnidad'),('SolicitudTransfusional'),('Reserva'),('Entrega'),('AuditoriaPN1')) e(entidad)
 CROSS APPLY (SELECT CASE WHEN e.entidad='AuditoriaPN1' THEN
  (SELECT a.id_auditoria, a.dvh_integridad FROM dbo.v_IntegridadPN1_Auditoria a ORDER BY a.id_auditoria FOR JSON PATH, INCLUDE_NULL_VALUES)
  ELSE (SELECT d.id_entidad, d.dvh FROM dbo.v_IntegridadPN1_Datos d WHERE d.entidad=e.entidad ORDER BY d.id_entidad FOR JSON PATH, INCLUDE_NULL_VALUES)
@@ -81,11 +92,11 @@ CROSS APPLY (SELECT CASE WHEN e.entidad='AuditoriaPN1' THEN
 GO
 CREATE OR ALTER VIEW dbo.v_IntegridadPN1_Errores AS
 SELECT CAST('PN1' AS VARCHAR(100)) entidad, 0 id_entidad, CAST('SIN_INICIALIZAR' AS VARCHAR(40)) tipo
-WHERE (SELECT COUNT(*) FROM dbo.DigitoVerificadorVertical WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','AuditoriaPN1'))<>5
+WHERE (SELECT COUNT(*) FROM dbo.DigitoVerificadorVertical WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','SolicitudTransfusional','Reserva','Entrega','AuditoriaPN1'))<>8
   AND (
         EXISTS (SELECT 1 FROM dbo.v_IntegridadPN1_Datos)
         OR EXISTS (SELECT 1 FROM dbo.v_IntegridadPN1_Auditoria)
-        OR EXISTS (SELECT 1 FROM dbo.DigitoVerificadorVertical WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','AuditoriaPN1'))
+        OR EXISTS (SELECT 1 FROM dbo.DigitoVerificadorVertical WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','SolicitudTransfusional','Reserva','Entrega','AuditoriaPN1'))
       )
 UNION ALL
 SELECT entidad,id_entidad,'DVH' FROM dbo.v_IntegridadPN1_Datos WHERE dvh IS NULL OR dvh<>dvh_calculado
@@ -96,7 +107,7 @@ WHERE (d.dvv IS NULL OR d.dvv<>v.dvv_calculado)
   AND (
         EXISTS (SELECT 1 FROM dbo.v_IntegridadPN1_Datos)
         OR EXISTS (SELECT 1 FROM dbo.v_IntegridadPN1_Auditoria)
-        OR EXISTS (SELECT 1 FROM dbo.DigitoVerificadorVertical WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','AuditoriaPN1'))
+        OR EXISTS (SELECT 1 FROM dbo.DigitoVerificadorVertical WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','SolicitudTransfusional','Reserva','Entrega','AuditoriaPN1'))
       )
 UNION ALL
 SELECT 'AuditoriaPN1',id_auditoria,'HISTORIAL_INVALIDO' FROM dbo.v_IntegridadPN1_Auditoria
@@ -119,7 +130,7 @@ SELECT CONVERT(VARCHAR(64),HASHBYTES('SHA2_256',CONVERT(NVARCHAR(MAX),
  COALESCE((SELECT entidad,id_entidad,tipo FROM dbo.v_IntegridadPN1_Errores ORDER BY entidad,id_entidad,tipo FOR JSON PATH),N'[]') +
  COALESCE((SELECT entidad,id_entidad,datos_json,dvh FROM dbo.v_IntegridadPN1_Datos ORDER BY entidad,id_entidad FOR JSON PATH,INCLUDE_NULL_VALUES),N'[]') +
  COALESCE((SELECT id_auditoria,dvh_integridad,dvh_calculado FROM dbo.v_IntegridadPN1_Auditoria ORDER BY id_auditoria FOR JSON PATH,INCLUDE_NULL_VALUES),N'[]') +
- COALESCE((SELECT entidad,dvv FROM dbo.DigitoVerificadorVertical WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','AuditoriaPN1') ORDER BY entidad FOR JSON PATH),N'[]')
+ COALESCE((SELECT entidad,dvv FROM dbo.DigitoVerificadorVertical WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','SolicitudTransfusional','Reserva','Entrega','AuditoriaPN1') ORDER BY entidad FOR JSON PATH),N'[]')
 )),2) revision;
 GO
 -- Se serializan verificacion/escritura/restauracion. Los locks de tabla evitan
@@ -135,8 +146,11 @@ BEGIN
  SELECT @n=COUNT_BIG(*) FROM dbo.Donacion WITH(TABLOCKX,HOLDLOCK);
  SELECT @n=COUNT_BIG(*) FROM dbo.Unidad WITH(TABLOCKX,HOLDLOCK);
  SELECT @n=COUNT_BIG(*) FROM dbo.MovimientoUnidad WITH(TABLOCKX,HOLDLOCK);
+ SELECT @n=COUNT_BIG(*) FROM dbo.SolicitudTransfusional WITH(TABLOCKX,HOLDLOCK);
+ SELECT @n=COUNT_BIG(*) FROM dbo.Reserva WITH(TABLOCKX,HOLDLOCK);
+ SELECT @n=COUNT_BIG(*) FROM dbo.Entrega WITH(TABLOCKX,HOLDLOCK);
  SELECT @n=COUNT_BIG(*) FROM dbo.Auditoria WITH(TABLOCKX,HOLDLOCK);
- SELECT @n=COUNT_BIG(*) FROM dbo.DigitoVerificadorVertical WITH(UPDLOCK,HOLDLOCK) WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','AuditoriaPN1');
+ SELECT @n=COUNT_BIG(*) FROM dbo.DigitoVerificadorVertical WITH(UPDLOCK,HOLDLOCK) WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','SolicitudTransfusional','Reserva','Entrega','AuditoriaPN1');
 END;
 GO
 CREATE OR ALTER PROCEDURE dbo.sp_IntegridadPN1_Exigir AS
@@ -171,6 +185,9 @@ BEGIN
  UPDATE d SET dvh=v.dvh_calculado FROM dbo.Donacion d JOIN dbo.v_IntegridadPN1_Datos v ON v.entidad='Donacion' AND v.id_entidad=d.id_donacion;
  UPDATE d SET dvh=v.dvh_calculado FROM dbo.Unidad d JOIN dbo.v_IntegridadPN1_Datos v ON v.entidad='Unidad' AND v.id_entidad=d.id_unidad;
  UPDATE d SET dvh=v.dvh_calculado FROM dbo.MovimientoUnidad d JOIN dbo.v_IntegridadPN1_Datos v ON v.entidad='MovimientoUnidad' AND v.id_entidad=d.id_movimiento_unidad;
+ UPDATE d SET dvh=v.dvh_calculado FROM dbo.SolicitudTransfusional d JOIN dbo.v_IntegridadPN1_Datos v ON v.entidad='SolicitudTransfusional' AND v.id_entidad=d.id_solicitud_transfusional;
+ UPDATE d SET dvh=v.dvh_calculado FROM dbo.Reserva d JOIN dbo.v_IntegridadPN1_Datos v ON v.entidad='Reserva' AND v.id_entidad=d.id_reserva;
+ UPDATE d SET dvh=v.dvh_calculado FROM dbo.Entrega d JOIN dbo.v_IntegridadPN1_Datos v ON v.entidad='Entrega' AND v.id_entidad=d.id_entrega;
  MERGE dbo.DigitoVerificadorVertical AS d USING dbo.v_IntegridadPN1_Vertical AS v ON d.entidad=v.entidad
  WHEN MATCHED THEN UPDATE SET dvv=v.dvv_calculado,fecha_calculo=GETDATE()
  WHEN NOT MATCHED THEN INSERT(entidad,dvv) VALUES(v.entidad,v.dvv_calculado);
@@ -195,7 +212,7 @@ BEGIN
  UPDATE i SET fecha_resolucion=GETDATE() FROM dbo.IntegridadIncidente i
  WHERE i.fecha_resolucion IS NULL AND NOT EXISTS(SELECT 1 FROM #errores e WHERE e.entidad=i.entidad AND e.id_entidad=i.id_entidad AND e.tipo=i.tipo);
  DECLARE @inicializable BIT=0;
- IF NOT EXISTS(SELECT 1 FROM dbo.DigitoVerificadorVertical WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','AuditoriaPN1'))
+ IF NOT EXISTS(SELECT 1 FROM dbo.DigitoVerificadorVertical WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','SolicitudTransfusional','Reserva','Entrega','AuditoriaPN1'))
  AND NOT EXISTS(SELECT 1 FROM dbo.v_IntegridadPN1_Auditoria)
  AND NOT EXISTS(SELECT 1 FROM dbo.Bitacora WHERE accion='IntegridadInicializada_380_jh')
  AND NOT EXISTS(SELECT 1 FROM dbo.v_IntegridadPN1_Datos WHERE dvh IS NOT NULL)
@@ -284,7 +301,7 @@ BEGIN
  EXEC dbo.sp_IntegridadPN1_Bloquear;
  EXEC dbo.sp_IntegridadPN1_Autorizar @id_usuario,'INTEGRIDAD_RESTAURAR';
  EXEC dbo.sp_IntegridadPN1_Autorizar @id_usuario,'INTEGRIDAD_VER';
- IF EXISTS(SELECT 1 FROM dbo.DigitoVerificadorVertical WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','AuditoriaPN1'))
+ IF EXISTS(SELECT 1 FROM dbo.DigitoVerificadorVertical WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','SolicitudTransfusional','Reserva','Entrega','AuditoriaPN1'))
  OR EXISTS(SELECT 1 FROM dbo.v_IntegridadPN1_Auditoria)
  OR EXISTS(SELECT 1 FROM dbo.Bitacora WHERE accion='IntegridadInicializada_380_jh')
  OR EXISTS(SELECT 1 FROM dbo.v_IntegridadPN1_Datos WHERE dvh IS NOT NULL)
@@ -349,23 +366,44 @@ BEGIN
  WHERE r.entidad='Donacion' AND NOT EXISTS(SELECT 1 FROM dbo.Donacion d WHERE d.id_donacion=r.id_entidad);
  SET IDENTITY_INSERT dbo.Donacion OFF;
 
- UPDATE d SET codigo_identificacion=j.codigo_identificacion,id_donacion=j.id_donacion,tipo_componente=j.tipo_componente,fecha_vencimiento=j.fecha_vencimiento,grupo_sanguineo=j.grupo_sanguineo,factor_rh=j.factor_rh,observaciones=j.observaciones,estado_operativo=j.estado_operativo,fecha_alta=j.fecha_alta,fecha_ultima_modificacion=j.fecha_ultima_modificacion,id_usuario_ultima_modificacion=j.id_usuario_ultima_modificacion
+ UPDATE d SET ubicacion=j.ubicacion,codigo_identificacion=j.codigo_identificacion,id_donacion=j.id_donacion,tipo_componente=j.tipo_componente,fecha_vencimiento=j.fecha_vencimiento,grupo_sanguineo=j.grupo_sanguineo,factor_rh=j.factor_rh,observaciones=j.observaciones,estado_operativo=j.estado_operativo,fecha_alta=j.fecha_alta,fecha_ultima_modificacion=j.fecha_ultima_modificacion,id_usuario_ultima_modificacion=j.id_usuario_ultima_modificacion
  FROM dbo.Unidad d JOIN #restaurar r ON r.entidad='Unidad' AND r.id_entidad=d.id_unidad
- CROSS APPLY OPENJSON(r.confiable) WITH(id_unidad int '$.id_unidad',codigo_identificacion varchar(50) '$.codigo_identificacion',id_donacion int '$.id_donacion',tipo_componente varchar(100) '$.tipo_componente',fecha_vencimiento date '$.fecha_vencimiento',grupo_sanguineo varchar(5) '$.grupo_sanguineo',factor_rh varchar(5) '$.factor_rh',observaciones varchar(500) '$.observaciones',estado_operativo varchar(20) '$.estado_operativo',fecha_alta datetime '$.fecha_alta',fecha_ultima_modificacion datetime '$.fecha_ultima_modificacion',id_usuario_ultima_modificacion int '$.id_usuario_ultima_modificacion') j;
+ CROSS APPLY OPENJSON(r.confiable) WITH(ubicacion nvarchar(150) '$.ubicacion',id_unidad int '$.id_unidad',codigo_identificacion varchar(50) '$.codigo_identificacion',id_donacion int '$.id_donacion',tipo_componente varchar(100) '$.tipo_componente',fecha_vencimiento date '$.fecha_vencimiento',grupo_sanguineo varchar(5) '$.grupo_sanguineo',factor_rh varchar(5) '$.factor_rh',observaciones varchar(500) '$.observaciones',estado_operativo varchar(20) '$.estado_operativo',fecha_alta datetime '$.fecha_alta',fecha_ultima_modificacion datetime '$.fecha_ultima_modificacion',id_usuario_ultima_modificacion int '$.id_usuario_ultima_modificacion') j;
  SET IDENTITY_INSERT dbo.Unidad ON;
- INSERT dbo.Unidad(id_unidad,codigo_identificacion,id_donacion,tipo_componente,fecha_vencimiento,grupo_sanguineo,factor_rh,observaciones,estado_operativo,fecha_alta,fecha_ultima_modificacion,id_usuario_ultima_modificacion)
- SELECT j.id_unidad,j.codigo_identificacion,j.id_donacion,j.tipo_componente,j.fecha_vencimiento,j.grupo_sanguineo,j.factor_rh,j.observaciones,j.estado_operativo,j.fecha_alta,j.fecha_ultima_modificacion,j.id_usuario_ultima_modificacion FROM #restaurar r
- CROSS APPLY OPENJSON(r.confiable) WITH(id_unidad int '$.id_unidad',codigo_identificacion varchar(50) '$.codigo_identificacion',id_donacion int '$.id_donacion',tipo_componente varchar(100) '$.tipo_componente',fecha_vencimiento date '$.fecha_vencimiento',grupo_sanguineo varchar(5) '$.grupo_sanguineo',factor_rh varchar(5) '$.factor_rh',observaciones varchar(500) '$.observaciones',estado_operativo varchar(20) '$.estado_operativo',fecha_alta datetime '$.fecha_alta',fecha_ultima_modificacion datetime '$.fecha_ultima_modificacion',id_usuario_ultima_modificacion int '$.id_usuario_ultima_modificacion') j
+ INSERT dbo.Unidad(ubicacion,id_unidad,codigo_identificacion,id_donacion,tipo_componente,fecha_vencimiento,grupo_sanguineo,factor_rh,observaciones,estado_operativo,fecha_alta,fecha_ultima_modificacion,id_usuario_ultima_modificacion)
+ SELECT j.ubicacion,j.id_unidad,j.codigo_identificacion,j.id_donacion,j.tipo_componente,j.fecha_vencimiento,j.grupo_sanguineo,j.factor_rh,j.observaciones,j.estado_operativo,j.fecha_alta,j.fecha_ultima_modificacion,j.id_usuario_ultima_modificacion FROM #restaurar r
+ CROSS APPLY OPENJSON(r.confiable) WITH(ubicacion nvarchar(150) '$.ubicacion',id_unidad int '$.id_unidad',codigo_identificacion varchar(50) '$.codigo_identificacion',id_donacion int '$.id_donacion',tipo_componente varchar(100) '$.tipo_componente',fecha_vencimiento date '$.fecha_vencimiento',grupo_sanguineo varchar(5) '$.grupo_sanguineo',factor_rh varchar(5) '$.factor_rh',observaciones varchar(500) '$.observaciones',estado_operativo varchar(20) '$.estado_operativo',fecha_alta datetime '$.fecha_alta',fecha_ultima_modificacion datetime '$.fecha_ultima_modificacion',id_usuario_ultima_modificacion int '$.id_usuario_ultima_modificacion') j
  WHERE r.entidad='Unidad' AND NOT EXISTS(SELECT 1 FROM dbo.Unidad d WHERE d.id_unidad=r.id_entidad);
  SET IDENTITY_INSERT dbo.Unidad OFF;
 
- UPDATE d SET id_unidad=j.id_unidad,tipo_movimiento=j.tipo_movimiento,estado_anterior=j.estado_anterior,estado_nuevo=j.estado_nuevo,observacion=j.observacion,fecha_movimiento=j.fecha_movimiento,id_usuario=j.id_usuario
+ UPDATE d SET paciente_receptor=j.paciente_receptor,tipo_componente=j.tipo_componente,cantidad_requerida=j.cantidad_requerida,id_usuario_solicitante=j.id_usuario_solicitante,observaciones=j.observaciones,fecha_solicitud=j.fecha_solicitud,estado_solicitud=j.estado_solicitud,documento_receptor=j.documento_receptor,grupo_receptor=j.grupo_receptor,rh_receptor=j.rh_receptor,laboratorio_estudio=j.laboratorio_estudio,referencia_estudio=j.referencia_estudio,fecha_estudio=j.fecha_estudio,resultado_anticuerpos=j.resultado_anticuerpos,id_usuario_validacion=j.id_usuario_validacion,fecha_validacion=j.fecha_validacion,nombre_solicitante=j.nombre_solicitante FROM dbo.SolicitudTransfusional d JOIN #restaurar r ON r.entidad='SolicitudTransfusional' AND r.id_entidad=d.id_solicitud_transfusional
+ CROSS APPLY OPENJSON(r.confiable) WITH(id_solicitud_transfusional int '$.id_solicitud_transfusional',paciente_receptor nvarchar(150) '$.paciente_receptor',tipo_componente nvarchar(100) '$.tipo_componente',cantidad_requerida int '$.cantidad_requerida',id_usuario_solicitante int '$.id_usuario_solicitante',observaciones nvarchar(500) '$.observaciones',fecha_solicitud datetime '$.fecha_solicitud',estado_solicitud varchar(20) '$.estado_solicitud',documento_receptor nvarchar(50) '$.documento_receptor',grupo_receptor varchar(5) '$.grupo_receptor',rh_receptor varchar(5) '$.rh_receptor',laboratorio_estudio nvarchar(150) '$.laboratorio_estudio',referencia_estudio nvarchar(150) '$.referencia_estudio',fecha_estudio date '$.fecha_estudio',resultado_anticuerpos nvarchar(500) '$.resultado_anticuerpos',id_usuario_validacion int '$.id_usuario_validacion',fecha_validacion datetime '$.fecha_validacion',nombre_solicitante nvarchar(150) '$.nombre_solicitante') j;
+ SET IDENTITY_INSERT dbo.SolicitudTransfusional ON;
+ INSERT dbo.SolicitudTransfusional(id_solicitud_transfusional,paciente_receptor,tipo_componente,cantidad_requerida,id_usuario_solicitante,observaciones,fecha_solicitud,estado_solicitud,documento_receptor,grupo_receptor,rh_receptor,laboratorio_estudio,referencia_estudio,fecha_estudio,resultado_anticuerpos,id_usuario_validacion,fecha_validacion,nombre_solicitante)
+ SELECT j.id_solicitud_transfusional,j.paciente_receptor,j.tipo_componente,j.cantidad_requerida,j.id_usuario_solicitante,j.observaciones,j.fecha_solicitud,j.estado_solicitud,j.documento_receptor,j.grupo_receptor,j.rh_receptor,j.laboratorio_estudio,j.referencia_estudio,j.fecha_estudio,j.resultado_anticuerpos,j.id_usuario_validacion,j.fecha_validacion,j.nombre_solicitante FROM #restaurar r CROSS APPLY OPENJSON(r.confiable) WITH(id_solicitud_transfusional int '$.id_solicitud_transfusional',paciente_receptor nvarchar(150) '$.paciente_receptor',tipo_componente nvarchar(100) '$.tipo_componente',cantidad_requerida int '$.cantidad_requerida',id_usuario_solicitante int '$.id_usuario_solicitante',observaciones nvarchar(500) '$.observaciones',fecha_solicitud datetime '$.fecha_solicitud',estado_solicitud varchar(20) '$.estado_solicitud',documento_receptor nvarchar(50) '$.documento_receptor',grupo_receptor varchar(5) '$.grupo_receptor',rh_receptor varchar(5) '$.rh_receptor',laboratorio_estudio nvarchar(150) '$.laboratorio_estudio',referencia_estudio nvarchar(150) '$.referencia_estudio',fecha_estudio date '$.fecha_estudio',resultado_anticuerpos nvarchar(500) '$.resultado_anticuerpos',id_usuario_validacion int '$.id_usuario_validacion',fecha_validacion datetime '$.fecha_validacion',nombre_solicitante nvarchar(150) '$.nombre_solicitante') j
+ WHERE r.entidad='SolicitudTransfusional' AND NOT EXISTS(SELECT 1 FROM dbo.SolicitudTransfusional d WHERE d.id_solicitud_transfusional=r.id_entidad);
+ SET IDENTITY_INSERT dbo.SolicitudTransfusional OFF;
+ UPDATE d SET id_solicitud_transfusional=j.id_solicitud_transfusional,id_unidad=j.id_unidad,estado_reserva=j.estado_reserva,observacion=j.observacion,id_usuario_responsable=j.id_usuario_responsable,fecha_reserva=j.fecha_reserva,fecha_cierre=j.fecha_cierre,motivo_cancelacion=j.motivo_cancelacion FROM dbo.Reserva d JOIN #restaurar r ON r.entidad='Reserva' AND r.id_entidad=d.id_reserva
+ CROSS APPLY OPENJSON(r.confiable) WITH(id_reserva int '$.id_reserva',id_solicitud_transfusional int '$.id_solicitud_transfusional',id_unidad int '$.id_unidad',estado_reserva varchar(20) '$.estado_reserva',observacion nvarchar(500) '$.observacion',id_usuario_responsable int '$.id_usuario_responsable',fecha_reserva datetime '$.fecha_reserva',fecha_cierre datetime '$.fecha_cierre',motivo_cancelacion nvarchar(500) '$.motivo_cancelacion') j;
+ SET IDENTITY_INSERT dbo.Reserva ON;
+ INSERT dbo.Reserva(id_reserva,id_solicitud_transfusional,id_unidad,estado_reserva,observacion,id_usuario_responsable,fecha_reserva,fecha_cierre,motivo_cancelacion)
+ SELECT j.id_reserva,j.id_solicitud_transfusional,j.id_unidad,j.estado_reserva,j.observacion,j.id_usuario_responsable,j.fecha_reserva,j.fecha_cierre,j.motivo_cancelacion FROM #restaurar r CROSS APPLY OPENJSON(r.confiable) WITH(id_reserva int '$.id_reserva',id_solicitud_transfusional int '$.id_solicitud_transfusional',id_unidad int '$.id_unidad',estado_reserva varchar(20) '$.estado_reserva',observacion nvarchar(500) '$.observacion',id_usuario_responsable int '$.id_usuario_responsable',fecha_reserva datetime '$.fecha_reserva',fecha_cierre datetime '$.fecha_cierre',motivo_cancelacion nvarchar(500) '$.motivo_cancelacion') j
+ WHERE r.entidad='Reserva' AND NOT EXISTS(SELECT 1 FROM dbo.Reserva d WHERE d.id_reserva=r.id_entidad);
+ SET IDENTITY_INSERT dbo.Reserva OFF;
+ UPDATE d SET id_reserva=j.id_reserva,observacion=j.observacion,id_usuario_responsable=j.id_usuario_responsable,fecha_entrega=j.fecha_entrega,fecha_destino=j.fecha_destino,destino=j.destino,motivo_destino=j.motivo_destino,id_usuario_destino=j.id_usuario_destino FROM dbo.Entrega d JOIN #restaurar r ON r.entidad='Entrega' AND r.id_entidad=d.id_entrega
+ CROSS APPLY OPENJSON(r.confiable) WITH(id_entrega int '$.id_entrega',id_reserva int '$.id_reserva',observacion nvarchar(500) '$.observacion',id_usuario_responsable int '$.id_usuario_responsable',fecha_entrega datetime '$.fecha_entrega',fecha_destino datetime '$.fecha_destino',destino varchar(20) '$.destino',motivo_destino nvarchar(500) '$.motivo_destino',id_usuario_destino int '$.id_usuario_destino') j;
+ SET IDENTITY_INSERT dbo.Entrega ON;
+ INSERT dbo.Entrega(id_entrega,id_reserva,observacion,id_usuario_responsable,fecha_entrega,fecha_destino,destino,motivo_destino,id_usuario_destino)
+ SELECT j.id_entrega,j.id_reserva,j.observacion,j.id_usuario_responsable,j.fecha_entrega,j.fecha_destino,j.destino,j.motivo_destino,j.id_usuario_destino FROM #restaurar r CROSS APPLY OPENJSON(r.confiable) WITH(id_entrega int '$.id_entrega',id_reserva int '$.id_reserva',observacion nvarchar(500) '$.observacion',id_usuario_responsable int '$.id_usuario_responsable',fecha_entrega datetime '$.fecha_entrega',fecha_destino datetime '$.fecha_destino',destino varchar(20) '$.destino',motivo_destino nvarchar(500) '$.motivo_destino',id_usuario_destino int '$.id_usuario_destino') j
+ WHERE r.entidad='Entrega' AND NOT EXISTS(SELECT 1 FROM dbo.Entrega d WHERE d.id_entrega=r.id_entidad);
+ SET IDENTITY_INSERT dbo.Entrega OFF;
+ UPDATE d SET id_solicitud_transfusional=j.id_solicitud_transfusional,id_reserva=j.id_reserva,id_entrega=j.id_entrega,id_unidad=j.id_unidad,tipo_movimiento=j.tipo_movimiento,estado_anterior=j.estado_anterior,estado_nuevo=j.estado_nuevo,observacion=j.observacion,fecha_movimiento=j.fecha_movimiento,id_usuario=j.id_usuario
  FROM dbo.MovimientoUnidad d JOIN #restaurar r ON r.entidad='MovimientoUnidad' AND r.id_entidad=d.id_movimiento_unidad
- CROSS APPLY OPENJSON(r.confiable) WITH(id_movimiento_unidad int '$.id_movimiento_unidad',id_unidad int '$.id_unidad',tipo_movimiento varchar(30) '$.tipo_movimiento',estado_anterior varchar(20) '$.estado_anterior',estado_nuevo varchar(20) '$.estado_nuevo',observacion varchar(500) '$.observacion',fecha_movimiento datetime '$.fecha_movimiento',id_usuario int '$.id_usuario') j;
+ CROSS APPLY OPENJSON(r.confiable) WITH(id_solicitud_transfusional int '$.id_solicitud_transfusional',id_reserva int '$.id_reserva',id_entrega int '$.id_entrega',id_movimiento_unidad int '$.id_movimiento_unidad',id_unidad int '$.id_unidad',tipo_movimiento varchar(30) '$.tipo_movimiento',estado_anterior varchar(20) '$.estado_anterior',estado_nuevo varchar(20) '$.estado_nuevo',observacion varchar(500) '$.observacion',fecha_movimiento datetime '$.fecha_movimiento',id_usuario int '$.id_usuario') j;
  SET IDENTITY_INSERT dbo.MovimientoUnidad ON;
- INSERT dbo.MovimientoUnidad(id_movimiento_unidad,id_unidad,tipo_movimiento,estado_anterior,estado_nuevo,observacion,fecha_movimiento,id_usuario)
- SELECT j.id_movimiento_unidad,j.id_unidad,j.tipo_movimiento,j.estado_anterior,j.estado_nuevo,j.observacion,j.fecha_movimiento,j.id_usuario FROM #restaurar r
- CROSS APPLY OPENJSON(r.confiable) WITH(id_movimiento_unidad int '$.id_movimiento_unidad',id_unidad int '$.id_unidad',tipo_movimiento varchar(30) '$.tipo_movimiento',estado_anterior varchar(20) '$.estado_anterior',estado_nuevo varchar(20) '$.estado_nuevo',observacion varchar(500) '$.observacion',fecha_movimiento datetime '$.fecha_movimiento',id_usuario int '$.id_usuario') j
+ INSERT dbo.MovimientoUnidad(id_solicitud_transfusional,id_reserva,id_entrega,id_movimiento_unidad,id_unidad,tipo_movimiento,estado_anterior,estado_nuevo,observacion,fecha_movimiento,id_usuario)
+ SELECT j.id_solicitud_transfusional,j.id_reserva,j.id_entrega,j.id_movimiento_unidad,j.id_unidad,j.tipo_movimiento,j.estado_anterior,j.estado_nuevo,j.observacion,j.fecha_movimiento,j.id_usuario FROM #restaurar r
+ CROSS APPLY OPENJSON(r.confiable) WITH(id_solicitud_transfusional int '$.id_solicitud_transfusional',id_reserva int '$.id_reserva',id_entrega int '$.id_entrega',id_movimiento_unidad int '$.id_movimiento_unidad',id_unidad int '$.id_unidad',tipo_movimiento varchar(30) '$.tipo_movimiento',estado_anterior varchar(20) '$.estado_anterior',estado_nuevo varchar(20) '$.estado_nuevo',observacion varchar(500) '$.observacion',fecha_movimiento datetime '$.fecha_movimiento',id_usuario int '$.id_usuario') j
  WHERE r.entidad='MovimientoUnidad' AND NOT EXISTS(SELECT 1 FROM dbo.MovimientoUnidad d WHERE d.id_movimiento_unidad=r.id_entidad);
  SET IDENTITY_INSERT dbo.MovimientoUnidad OFF;
 
@@ -400,6 +438,9 @@ BEGIN
  SET IDENTITY_INSERT dbo.Donacion OFF;
  SET IDENTITY_INSERT dbo.Unidad OFF;
  SET IDENTITY_INSERT dbo.MovimientoUnidad OFF;
+ SET IDENTITY_INSERT dbo.SolicitudTransfusional OFF;
+ SET IDENTITY_INSERT dbo.Reserva OFF;
+ SET IDENTITY_INSERT dbo.Entrega OFF;
  THROW;
  END CATCH;
 END;
@@ -409,89 +450,24 @@ GO
 DENY EXECUTE ON dbo.sp_IntegridadPN1_Sellar TO public;
 GO
 
--- Permisos nuevos: solo el administrador los recibe de forma predeterminada.
-DECLARE @permisos_integridad TABLE(codigo VARCHAR(100), nombre VARCHAR(100), accion VARCHAR(100));
-INSERT @permisos_integridad VALUES
-('INTEGRIDAD_VER','Consultar integridad','VER'),
-('INTEGRIDAD_RESTAURAR','Restaurar integridad','RESTAURAR');
-INSERT dbo.Permiso(codigo,nombre,descripcion,modulo,accion)
-SELECT p.codigo,p.nombre,p.nombre,'INTEGRIDAD',p.accion FROM @permisos_integridad p
-WHERE NOT EXISTS(SELECT 1 FROM dbo.Permiso d WHERE d.codigo=p.codigo);
-UPDATE d SET nombre=p.nombre,descripcion=p.nombre,modulo='INTEGRIDAD',accion=p.accion
-FROM dbo.Permiso d JOIN @permisos_integridad p ON p.codigo=d.codigo;
-INSERT dbo.ComponentePermiso(codigo,nombre,descripcion,tipo)
-SELECT p.codigo,p.nombre,p.nombre,'PERMISO' FROM @permisos_integridad p
-WHERE NOT EXISTS(SELECT 1 FROM dbo.ComponentePermiso d WHERE d.codigo=p.codigo);
-UPDATE d SET nombre=p.nombre,descripcion=p.nombre,tipo='PERMISO',estado_componente='ACTIVO'
-FROM dbo.ComponentePermiso d JOIN @permisos_integridad p ON p.codigo=d.codigo;
-INSERT dbo.ComponentePermisoRelacion(id_padre,id_hijo)
-SELECT a.id_componente,c.id_componente FROM dbo.ComponentePermiso a
-CROSS JOIN dbo.ComponentePermiso c WHERE a.codigo='ADMINISTRADOR'
-AND c.codigo IN ('INTEGRIDAD_VER','INTEGRIDAD_RESTAURAR')
-AND NOT EXISTS(SELECT 1 FROM dbo.ComponentePermisoRelacion r WHERE r.id_padre=a.id_componente AND r.id_hijo=c.id_componente);
-INSERT dbo.RolPermiso(id_rol,id_permiso)
-SELECT r.id_rol,p.id_permiso FROM dbo.Rol r CROSS JOIN dbo.Permiso p
-WHERE r.nombre='Administrador' AND p.codigo IN ('INTEGRIDAD_VER','INTEGRIDAD_RESTAURAR')
-AND NOT EXISTS(SELECT 1 FROM dbo.RolPermiso rp WHERE rp.id_rol=r.id_rol AND rp.id_permiso=p.id_permiso);
+
+-- Agregar solo los DVV vacios de PN2; conservar los cinco anteriores.
+-- Una base vacia sin verificadores no recibe una baseline artificial.
+IF EXISTS(SELECT 1 FROM dbo.DigitoVerificadorVertical WHERE entidad IN ('Donante','Donacion','Unidad','MovimientoUnidad','AuditoriaPN1'))
+BEGIN
+    INSERT dbo.DigitoVerificadorVertical(entidad,dvv)
+    SELECT v.entidad,v.dvv_calculado FROM dbo.v_IntegridadPN1_Vertical v
+    WHERE v.entidad IN ('SolicitudTransfusional','Reserva','Entrega')
+      AND NOT EXISTS(SELECT 1 FROM dbo.DigitoVerificadorVertical d WHERE d.entidad=v.entidad)
+      AND NOT EXISTS(SELECT 1 FROM dbo.v_IntegridadPN1_Datos d WHERE d.entidad=v.entidad)
+      AND NOT EXISTS(SELECT 1 FROM dbo.v_IntegridadPN1_Auditoria a WHERE a.entidad=v.entidad);
+END;
+IF EXISTS(SELECT 1 FROM dbo.v_IntegridadPN1_Errores)
+BEGIN
+    IF @@TRANCOUNT>0 ROLLBACK;
+    THROW 51001,'INTEGRITY_BLOCKED',1;
+END;
+COMMIT TRANSACTION;
 GO
--- Catalogo incremental de integridad: no elimina idiomas ni traducciones personalizadas.
-DECLARE @i18n_integridad TABLE(clave VARCHAR(150), es NVARCHAR(500), en NVARCHAR(500));
-INSERT @i18n_integridad VALUES
-('MENU_INTEGRITY',N'Integridad',N'Integrity'),
-('BITACORA_MODULE_INTEGRITY',N'Integridad',N'Integrity'),
-('INTEGRITY_OK',N'Integridad: última verificación correcta.',N'Integrity: last verification passed.'),
-('INTEGRITY_BLOCKED',N'Modo solo consulta: integridad comprometida. Los datos afectados no son confiables; contactá al administrador.',N'Read-only mode: integrity compromised. Affected data is untrusted; contact the administrator.'),
-('INTEGRITY_UNAVAILABLE',N'Operaciones protegidas bloqueadas: no se pudo verificar la integridad. Revisá la conexión y las migraciones SQL.',N'Protected operations are blocked: integrity could not be verified. Check the connection and SQL migrations.'),
-('INTEGRITY_PENDING',N'Pendiente: revisar los datos y aceptar la base inicial.',N'Pending: review the data and accept the initial baseline.'),
-('INTEGRITY_DESCRIPTION',N'Se verifican filas (DVH), tablas (DVV) e historiales de los procesos protegidos. Restaurar recupera las últimas versiones verificadas; no deshace operaciones legítimas.',N'Checks rows (DVH), tables (DVV), and histories for protected processes. Restore recovers the latest verified versions; it does not undo legitimate operations.'),
-('INTEGRITY_VERIFY',N'Verificar / actualizar',N'Verify / refresh'),
-('INTEGRITY_INITIALIZE',N'Aceptar base inicial',N'Accept initial baseline'),
-('INTEGRITY_RESTORE',N'Restaurar desde historial',N'Restore from history'),
-('INTEGRITY_ENTITY',N'Entidad',N'Entity'),
-('INTEGRITY_ID',N'ID',N'ID'),
-('INTEGRITY_TYPE',N'Incidencia',N'Issue'),
-('INTEGRITY_DATE',N'Detectada',N'Detected'),
-('INTEGRITY_CURRENT',N'Registro actual (JSON; vacío si falta)',N'Current record (JSON; empty if missing)'),
-('INTEGRITY_TRUSTED',N'Última versión del historial (usar solo si es íntegro)',N'Latest history version (use only when intact)'),
-('INTEGRITY_CONFIRM_BASELINE',N'¿Aceptás los datos actuales como base inicial? Confirmá solo después de revisarlos y respaldarlos. Esta acción no corrige datos previos y se realiza una sola vez.',N'Accept current data as the initial baseline? Confirm only after reviewing and backing it up. This does not correct existing data and can only be done once.'),
-('INTEGRITY_CONFIRM_RESTORE',N'¿Restaurar todas las inconsistencias recuperables desde las últimas versiones verificadas? Se conservarán los identificadores y se auditará la operación. No se aceptarán datos alterados como válidos.',N'Restore all recoverable inconsistencies from the latest verified versions? IDs will be preserved and the operation audited. Altered data will not be accepted as valid.'),
-('INTEGRITY_RECOVERED',N'Operación completada e integridad verificada.',N'Operation completed and integrity verified.'),
-('INTEGRITY_RECOVERY_FAILED',N'No se confirmó la recuperación. Verificá nuevamente el estado y revisá la bitácora antes de reintentar.',N'Recovery was not confirmed. Verify the state again and review the log before retrying.'),
-('INTEGRITY_STALE_PREVIEW',N'Los datos cambiaron desde la revisión. Actualizá el informe antes de confirmar.',N'Data changed since the preview. Refresh the report before confirming.'),
-('DONOR_UPDATED',N'Donante actualizado correctamente.',N'Donor updated successfully.'),
-('DONOR_UPDATE_ERROR',N'No se pudo actualizar el donante.',N'Could not update the donor.'),
-('BITACORA_ACTION_DONOR_UPDATED',N'Donante actualizado',N'Donor updated'),
-('DONOR_NOT_FOUND',N'El donante ya no existe o no está disponible.',N'The donor no longer exists or is unavailable.'),
-('DONOR_EMAIL_UNAVAILABLE',N'No se pudo obtener el correo del donante.',N'The donor email could not be retrieved.'),
-('DONOR_SHOW_EMAIL',N'Mostrar correo',N'Show email'),
-('DONOR_HIDE_EMAIL',N'Ocultar correo',N'Hide email'),
-('BTN_UPDATE_DONOR',N'Guardar cambios',N'Save changes'),
-('INTEGRITY_BACKUP_REQUIRED',N'La fuente no permite una recuperación segura. Necesitás un backup confiable; no recalcules para ocultar el error.',N'The source cannot support safe recovery. A trusted backup is required; do not recalculate to hide the error.'),
-('INTEGRITY_TYPE_SIN_INICIALIZAR',N'Base inicial ausente o incompleta',N'Missing or incomplete baseline'),
-('INTEGRITY_TYPE_DVH',N'Dígito de fila incorrecto',N'Row checksum mismatch'),
-('INTEGRITY_TYPE_DVV',N'Dígito de tabla incorrecto',N'Table checksum mismatch'),
-('INTEGRITY_TYPE_HISTORIAL_INVALIDO',N'Historial alterado',N'Altered history'),
-('INTEGRITY_TYPE_FALTANTE',N'Registro eliminado',N'Deleted record'),
-('INTEGRITY_TYPE_SIN_VERSION',N'Registro sin versión confiable',N'Record without a trusted version'),
-('INTEGRITY_TYPE_VERSION_DIFERENTE',N'Datos distintos del historial',N'Data differs from history'),
-('BITACORA_ACTION_INTEGRITY_DETECTED',N'Error de integridad detectado',N'Integrity error detected'),
-('BITACORA_ACTION_INTEGRITY_INITIALIZED',N'Base inicial de integridad aceptada',N'Initial integrity baseline accepted'),
-('BITACORA_ACTION_INTEGRITY_RESTORED',N'Integridad restaurada',N'Integrity restored'),
-('BITACORA_ACTION_RESTORE_FAILED',N'Recuperación fallida',N'Recovery failed');
-INSERT dbo.Etiqueta(clave,descripcion)
-SELECT c.clave,c.clave FROM @i18n_integridad c
-WHERE NOT EXISTS(SELECT 1 FROM dbo.Etiqueta e WHERE e.clave=c.clave);
-INSERT dbo.Traduccion(id_etiqueta,id_idioma,texto)
-SELECT e.id_etiqueta,i.id_idioma,CASE WHEN i.codigo='en-US' THEN c.en ELSE c.es END
-FROM @i18n_integridad c JOIN dbo.Etiqueta e ON e.clave=c.clave
-CROSS JOIN dbo.Idioma i WHERE i.codigo IN ('es-AR','en-US')
-AND NOT EXISTS(SELECT 1 FROM dbo.Traduccion t WHERE t.id_etiqueta=e.id_etiqueta AND t.id_idioma=i.id_idioma);
-UPDATE t SET texto=CASE WHEN i.codigo='en-US' THEN c.en ELSE c.es END
-FROM dbo.Traduccion t JOIN dbo.Etiqueta e ON e.id_etiqueta=t.id_etiqueta
-JOIN @i18n_integridad c ON c.clave=e.clave JOIN dbo.Idioma i ON i.id_idioma=t.id_idioma
-WHERE i.codigo IN ('es-AR','en-US');
--- Limpieza de las etiquetas retiradas junto con el campo de motivo.
-DELETE t FROM dbo.Traduccion t JOIN dbo.Etiqueta e ON e.id_etiqueta=t.id_etiqueta
-WHERE e.clave IN ('INTEGRITY_REASON','INTEGRITY_REASON_REQUIRED');
-DELETE FROM dbo.Etiqueta WHERE clave IN ('INTEGRITY_REASON','INTEGRITY_REASON_REQUIRED');
+CREATE OR ALTER VIEW dbo.v_IntegridadPN2_Instalada AS SELECT CAST(1 AS INT) version;
 GO

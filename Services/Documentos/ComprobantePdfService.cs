@@ -82,7 +82,8 @@ namespace Services
                     documento.Campo_380_jh("Responsable de entrega", entrega.Responsable_380_jh);
                     documento.Campo_380_jh("Componente", entrega.TipoComponente_380_jh);
                     documento.Campo_380_jh("Observación de entrega", entrega.Observacion_380_jh);
-                    documento.Campo_380_jh("Destino actual", string.IsNullOrWhiteSpace(entrega.Destino_380_jh) ? "Sin registrar" : entrega.Destino_380_jh);
+                    documento.Campo_380_jh("Destino actual", string.IsNullOrWhiteSpace(entrega.Destino_380_jh) ? "Sin registrar" :
+                        (string.IsNullOrWhiteSpace(entrega.DestinoDescripcion_380_jh) ? entrega.Destino_380_jh : entrega.DestinoDescripcion_380_jh));
                     if (entrega.FechaDestino_380_jh.HasValue) documento.Campo_380_jh("Fecha de destino", entrega.FechaDestino_380_jh.Value.ToString("dd/MM/yyyy HH:mm"));
                     if (entrega.IdUsuarioDestino_380_jh.HasValue) documento.Campo_380_jh("Usuario de destino (ID)", entrega.IdUsuarioDestino_380_jh.Value.ToString());
                     documento.Campo_380_jh("Motivo de destino", entrega.MotivoDestino_380_jh);

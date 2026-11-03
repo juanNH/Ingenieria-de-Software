@@ -35,7 +35,7 @@ namespace Application
             }
 
             if (donacion == null || donacion.IdDonante_380_jh <= 0 || donacion.CantidadUnidades_380_jh <= 0 ||
-                !ComponentesTransfusionales_380_jh.EsValido_380_jh(donacion.TipoComponente_380_jh) || donacion.FechaDonacion_380_jh == default(System.DateTime) ||
+                string.IsNullOrWhiteSpace(donacion.TipoComponente_380_jh) || donacion.TipoComponente_380_jh.Length > 100 || donacion.FechaDonacion_380_jh == default(System.DateTime) ||
                 donacion.FechaVencimiento_380_jh.Date < donacion.FechaDonacion_380_jh.Date)
             {
                 RegistrarFalla_380_jh(usuario, "Registro de donación rechazado por datos inválidos.");

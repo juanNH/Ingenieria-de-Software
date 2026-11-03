@@ -37,6 +37,26 @@ namespace DAL
                         EstadoActual_380_jh = fila["estado_actual"].ToString(),
                         EstadoConfiable_380_jh = fila["estado_confiable"].ToString()
                     });
+                try
+                {
+                    _contexto_380_jh.Leer_380_jh("sp_MaestroPN1_Listar", new List<SqlParameter> {
+                        new SqlParameter("@tipo", "RH"), new SqlParameter("@solo_activos", false)
+                    });
+                }
+                catch (SqlException ex) when (ex.Number == 51014)
+                {
+                    informe.EsValida_380_jh = false;
+                    informe.PuedeInicializar_380_jh = false;
+                    informe.Incidencias_380_jh.Add(new IncidenciaIntegridad_380_jh {
+                        Entidad_380_jh = "MaestrosPN1", IdEntidad_380_jh = 0,
+                        Tipo_380_jh = "MAESTROS_INVALIDOS", Fecha_380_jh = DateTime.Now
+                    });
+                }
+                catch (SqlException ex) when (ex.Number == 2812 && informe.PuedeInicializar_380_jh)
+                {
+                    // Una instalación previa sin base inicial debe poder revisar y aceptar
+                    // PN1 antes de incorporar los maestros mediante la migración.
+                }
                 return informe;
             }
             finally { _contexto_380_jh.Cerrar_380_jh(); }

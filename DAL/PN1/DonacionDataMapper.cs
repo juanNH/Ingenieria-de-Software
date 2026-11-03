@@ -70,7 +70,7 @@ namespace DAL
             }
             catch (SqlException ex)
             {
-                return ex.Number == 51001 || ex.Number == 51002
+                return ex.Number == 51001 || ex.Number == 51002 || ex.Number == 51014
                     ? CodigoOperacionPN1_380_jh.IntegridadInvalida_380_jh : CodigoOperacionPN1_380_jh.Error_380_jh;
             }
             catch

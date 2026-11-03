@@ -193,7 +193,7 @@ namespace DAL
             }
             catch (SqlException ex)
             {
-                if (ex.Number == 51001 || ex.Number == 51002) return CodigoOperacionPN2_380_jh.IntegridadInvalida_380_jh;
+                if (ex.Number == 51001 || ex.Number == 51002 || ex.Number == 51014) return CodigoOperacionPN2_380_jh.IntegridadInvalida_380_jh;
                 if (ex.Number == 51003) return CodigoOperacionPN2_380_jh.NoAutorizado_380_jh;
                 return CodigoOperacionPN2_380_jh.Error_380_jh;
             }
@@ -280,6 +280,7 @@ namespace DAL
                 Responsable_380_jh = Cadena_380_jh(fila, "responsable"),
                 Observacion_380_jh = Cadena_380_jh(fila, "observacion"),
                 Destino_380_jh = Cadena_380_jh(fila, "destino"),
+                DestinoDescripcion_380_jh = Cadena_380_jh(fila, "destino_descripcion"),
                 FechaDestino_380_jh = FechaNullable_380_jh(fila, "fecha_destino"),
                 MotivoDestino_380_jh = Cadena_380_jh(fila, "motivo_destino"),
                 IdUsuarioDestino_380_jh = EnteroNullable_380_jh(fila, "id_usuario_destino")
@@ -295,7 +296,9 @@ namespace DAL
                 CodigoIdentificacion_380_jh = Cadena_380_jh(fila, "codigo_identificacion"),
                 TipoMovimiento_380_jh = Cadena_380_jh(fila, "tipo_movimiento"),
                 EstadoAnterior_380_jh = Cadena_380_jh(fila, "estado_anterior"),
+                EstadoAnteriorDescripcion_380_jh = Cadena_380_jh(fila, "estado_anterior_descripcion"),
                 EstadoNuevo_380_jh = Cadena_380_jh(fila, "estado_nuevo"),
+                EstadoNuevoDescripcion_380_jh = Cadena_380_jh(fila, "estado_nuevo_descripcion"),
                 Observacion_380_jh = Cadena_380_jh(fila, "observacion"),
                 FechaMovimiento_380_jh = Convert.ToDateTime(fila["fecha_movimiento"]),
                 IdUsuario_380_jh = Convert.ToInt32(fila["id_usuario"]),

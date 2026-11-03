@@ -149,7 +149,7 @@ namespace Application
                 return CodigoOperacionPN1_380_jh.NoAutorizado_380_jh;
             }
 
-            if (unidad == null || !ComponentesTransfusionales_380_jh.EsValido_380_jh(unidad.TipoComponente_380_jh) ||
+            if (unidad == null || string.IsNullOrWhiteSpace(unidad.TipoComponente_380_jh) || unidad.TipoComponente_380_jh.Length > 100 ||
                 string.IsNullOrWhiteSpace(unidad.GrupoSanguineo_380_jh) || string.IsNullOrWhiteSpace(unidad.FactorRh_380_jh) ||
                 unidad.FechaVencimiento_380_jh.Date < System.DateTime.Today)
             {
