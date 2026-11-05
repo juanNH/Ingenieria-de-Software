@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="Electron">
+  <diagram id="seq-10" name="CDUN-10 Registrar destino">
+    <mxGraphModel dx="3100" dy="1743" grid="1" gridSize="10" page="1" pageWidth="3100" pageHeight="1743">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="participant-sql" value="SQL Server" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="2045" y="96" width="210" height="1583" as="geometry" />
+        </mxCell>
+        <mxCell id="sequence-title" value="CDUN-10 — Secuencia: Registrar destino" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=30;fontStyle=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="80" y="20" width="3020" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-0" value="Operador del&lt;br/&gt;banco de sangre" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;participant=seqActorStick;" vertex="1" parent="1">
+          <mxGeometry x="45" y="96" width="210" height="1583" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-1" value="UI" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="96" width="210" height="1583" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-2" value="Application.&lt;br/&gt;PN2ApplicationService&lt;br/&gt;_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="545" y="96" width="210" height="1583" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-3" value="Application.&lt;br/&gt;AutorizacionApplicationService&lt;br/&gt;_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="795" y="96" width="210" height="1583" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-4" value="Application.&lt;br/&gt;IntegridadApplicationService&lt;br/&gt;_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1045" y="96" width="210" height="1583" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-5" value="PN2Repository_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1295" y="96" width="210" height="1583" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-6" value="PN2DataMapper_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1545" y="96" width="210" height="1583" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-7" value="DatabaseContext_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1795" y="96" width="210" height="1583" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-8" value="Application.&lt;br/&gt;BitacoraApplicationService&lt;br/&gt;_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="2295" y="96" width="210" height="1583" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-9" value="Application.&lt;br/&gt;MaestroPN1ApplicationService&lt;br/&gt;_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="2545" y="96" width="210" height="1583" as="geometry" />
+        </mxCell>
+        <mxCell id="message-0" value="Registrar destino de la entrega" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="250" as="sourcePoint" />
+            <mxPoint x="400" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-1" value="RegistrarDestino_380_jh(…)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="307" as="sourcePoint" />
+            <mxPoint x="650" y="307" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-2" value="Listar_380_jh(Destino)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="364" as="sourcePoint" />
+            <mxPoint x="2650" y="364" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-3" value="catálogo" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2650" y="421" as="sourcePoint" />
+            <mxPoint x="650" y="421" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-4" value="TienePermiso_380_jh(…)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="478" as="sourcePoint" />
+            <mxPoint x="900" y="478" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-5" value="resultado" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="900" y="535" as="sourcePoint" />
+            <mxPoint x="650" y="535" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-6" value="Verificar_380_jh()" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="592" as="sourcePoint" />
+            <mxPoint x="1150" y="592" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-7" value="informe" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1150" y="649" as="sourcePoint" />
+            <mxPoint x="650" y="649" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-8" value="RegistrarDestino_380_jh(…, idUsuario)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="706" as="sourcePoint" />
+            <mxPoint x="1400" y="706" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-9" value="RegistrarDestino_380_jh(…)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1400" y="763" as="sourcePoint" />
+            <mxPoint x="1650" y="763" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-10" value="Leer_380_jh(&quot;sp_Entrega_RegistrarDestino&quot;, …)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1650" y="820" as="sourcePoint" />
+            <mxPoint x="1900" y="820" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-11" value="filas / resultado" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1900" y="977" as="sourcePoint" />
+            <mxPoint x="1650" y="977" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-12" value="resultado" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1650" y="1034" as="sourcePoint" />
+            <mxPoint x="1400" y="1034" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-13" value="resultado" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1400" y="1091" as="sourcePoint" />
+            <mxPoint x="650" y="1091" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-14" value="RegistrarEvento_380_jh(…)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="1148" as="sourcePoint" />
+            <mxPoint x="2400" y="1148" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-15" value="resultado" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2400" y="1205" as="sourcePoint" />
+            <mxPoint x="650" y="1205" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-16" value="resultado" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="1262" as="sourcePoint" />
+            <mxPoint x="400" y="1262" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="message-17" value="Mostrar resultado" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="1319" as="sourcePoint" />
+            <mxPoint x="150" y="1319" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note" value="Flujo principal. Las validaciones y los errores devuelven el resultado correspondiente sin completar la operación." style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=13;fontColor=#666666;align=center;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1683" width="2980" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="ref-cdun11" value="ref  CDUN-11 Emitir comprobante de destino [resultado OK]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#6c8ebf;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="300" y="1361" width="1900" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="sql-0-0" value="EXEC sp_Entrega_RegistrarDestino" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1900" y="855" as="sourcePoint" />
+            <mxPoint x="2150" y="855" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sql-0-1" value="filas / resultado" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2150" y="890" as="sourcePoint" />
+            <mxPoint x="1900" y="890" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

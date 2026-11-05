@@ -11,8 +11,7 @@
         <mxCell id="participant-0" value="Personal de&lt;br/&gt;extracción" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;participant=seqActorStick;" vertex="1" parent="1">
           <mxGeometry x="45" y="96" width="210" height="2848" as="geometry" />
         </mxCell>
-        
-        <mxCell id="participant-2" value="UI.DonantesView_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="participant-2" value="UI" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="545" y="96" width="210" height="2848" as="geometry" />
         </mxCell>
         <mxCell id="participant-3" value="Domain.Donante_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
@@ -72,7 +71,6 @@
             <mxPoint x="650" y="342" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        
         <mxCell id="msg-4" value="Listar_380_jh(buscar)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="650" y="462" as="sourcePoint" />

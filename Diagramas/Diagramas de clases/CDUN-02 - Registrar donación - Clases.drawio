@@ -38,22 +38,13 @@
         <mxCell id="pkg-domain-label" value="Domain" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="232" y="1072" width="170" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="MainForm09" value="MainForm_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
-          <mxGeometry x="90" y="165" width="420" height="170" as="geometry" />
-        </mxCell>
-        <mxCell id="MainForm09-attr" value="- _autorizacionService_380_jh: AutorizacionApplicationService_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="MainForm09">
-          <mxGeometry x="0" y="46" width="420" height="54" as="geometry" />
-        </mxCell>
-        <mxCell id="MainForm09-op" value="- donacionesToolStripMenuItem_Click_380_jh(sender, e): void&lt;br/&gt;- ShowScreen_380_jh(screen: UserControl): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="MainForm09">
-          <mxGeometry x="0" y="100" width="420" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="DonacionesView" value="DonacionesView_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+        <mxCell id="DonacionesView" value="UI" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
           <mxGeometry x="90" y="430" width="420" height="263" as="geometry" />
         </mxCell>
         <mxCell id="DonacionesView-attr" value="- _donanteService_380_jh: DonanteApplicationService_380_jh&lt;br/&gt;- _donacionService_380_jh: DonacionApplicationService_380_jh&lt;br/&gt;- _unidades_380_jh: List&amp;lt;Unidad_380_jh&amp;gt;" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonacionesView">
           <mxGeometry x="0" y="46" width="420" height="97" as="geometry" />
         </mxCell>
-        <mxCell id="DonacionesView-op" value="+ DonacionesView_380_jh()&lt;br/&gt;- CargarDonantes_380_jh(): void&lt;br/&gt;- Registrar_Click_380_jh(sender, e): void&lt;br/&gt;- CargarUnidades_380_jh(unidades): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonacionesView">
+        <mxCell id="DonacionesView-op" value="- CargarDonantes_380_jh(): void&lt;br/&gt;- Registrar_Click_380_jh(sender, e): void&lt;br/&gt;- CargarUnidades_380_jh(unidades): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonacionesView">
           <mxGeometry x="0" y="143" width="420" height="120" as="geometry" />
         </mxCell>
         <mxCell id="DonacionService" value="DonacionApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
@@ -166,9 +157,6 @@
         </mxCell>
         <mxCell id="Codigo09-attr" value="Ok_380_jh&lt;br/&gt;DatosInvalidos_380_jh&lt;br/&gt;NoAutorizado_380_jh&lt;br/&gt;IntegridadInvalida_380_jh&lt;br/&gt;Error_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Codigo09">
           <mxGeometry x="0" y="68" width="390" height="145" as="geometry" />
-        </mxCell>
-        <mxCell id="edge-1" value="crea" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="MainForm09" target="DonacionesView">
-          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="edge-2" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="DonacionesView" target="DonacionService">
           <mxGeometry relative="1" as="geometry" />

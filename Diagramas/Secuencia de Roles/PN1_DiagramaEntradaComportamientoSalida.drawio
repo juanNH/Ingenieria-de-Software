@@ -1,14 +1,11 @@
 <mxfile host="Electron">
   <diagram name="PN1 - Entrada Comportamiento Salida" id="pn1-entrada-comportamiento-salida">
-    <mxGraphModel dx="1519" dy="916" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+    <mxGraphModel dx="1533" dy="749" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="titulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=22;align=center;verticalAlign=middle;fontFamily=Arial;" value="PN1 — Diagrama de Entrada, Comportamiento y Salida" vertex="1">
           <mxGeometry height="42" width="1100" x="250" y="25" as="geometry" />
-        </mxCell>
-        <mxCell id="subtitulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;align=center;verticalAlign=middle;fontColor=#666666;fontFamily=Arial;" value="Balanceado con la secuencia de roles y actividad del proceso PN1" vertex="1">
-          <mxGeometry height="28" width="1100" x="250" y="68" as="geometry" />
         </mxCell>
         <mxCell id="entrada" parent="1" style="swimlane;horizontal=1;startSize=52;whiteSpace=wrap;html=1;rounded=0;fillColor=#bfe3f2;swimlaneFillColor=#d9eef8;strokeColor=#6c8ebf;strokeWidth=2;fontSize=17;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;&lt;u&gt;Entrada&lt;/u&gt;&lt;/b&gt;" vertex="1">
           <mxGeometry height="430" width="410" x="60" y="170" as="geometry" />

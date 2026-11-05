@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="Electron">
+  <diagram id="pn2-clases" name="PN2 - CDUN-06 a CDUN-11">
+    <mxGraphModel dx="2150" dy="1510" grid="1" gridSize="10" page="1" pageWidth="2150" pageHeight="1510">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="PN2 — Diagrama de clases: CDUN-06 a CDUN-11" style="text;html=0;fontFamily=Arial;fontSize=24;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="2050" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="ui" value="UI «síntesis»&#10;────────────────────────&#10;Vistas de solicitud, reserva y destino.&#10;+ ProcesarPendientes_380_jh(…)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=15;align=left;spacing=12;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="360" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="app" value="PN2ApplicationService_380_jh&#10;────────────────────────&#10;+ RegistrarSolicitud_380_jh(…)&#10;+ ValidarEstudio_380_jh(…)&#10;+ ListarCandidatas_380_jh(…)&#10;+ Reservar_380_jh(…)&#10;+ Entregar_380_jh(…)&#10;+ RegistrarDestino_380_jh(…)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=15;align=left;spacing=12;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="500" y="100" width="460" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="repo" value="PN2Repository_380_jh&#10;────────────────────────&#10;+ RegistrarSolicitud_380_jh(…)&#10;+ ValidarEstudio_380_jh(…)&#10;+ ListarCandidatas_380_jh(…)&#10;+ Reservar_380_jh(…)&#10;+ Entregar_380_jh(…)&#10;+ RegistrarDestino_380_jh(…)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=15;align=left;spacing=12;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="100" width="460" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="mapper" value="PN2DataMapper_380_jh&#10;────────────────────────&#10;+ RegistrarSolicitud_380_jh(…)&#10;+ ValidarEstudio_380_jh(…)&#10;+ ListarCandidatas_380_jh(…)&#10;+ Reservar_380_jh(…)&#10;+ Entregar_380_jh(…)&#10;+ RegistrarDestino_380_jh(…)&#10;- Leer_380_jh(…)&#10;- Ejecutar_380_jh(…)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=15;align=left;spacing=12;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1620" y="100" width="460" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="DatabaseContext_380_jh&#10;────────────────────────&#10;+ Abrir_380_jh()&#10;+ Leer_380_jh(…)&#10;+ Cerrar_380_jh()" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=15;align=left;spacing=12;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="930" width="460" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="utiliza" style="html=1;rounded=0;endArrow=block;endFill=1;dashed=0;strokeColor=#444444;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="400" y="190" as="sourcePoint" />
+            <mxPoint x="500" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" value="utiliza" style="html=1;rounded=0;endArrow=block;endFill=1;dashed=0;strokeColor=#444444;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="960" y="190" as="sourcePoint" />
+            <mxPoint x="1060" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" value="utiliza" style="html=1;rounded=0;endArrow=block;endFill=1;dashed=0;strokeColor=#444444;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1520" y="190" as="sourcePoint" />
+            <mxPoint x="1620" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" value="utiliza" style="html=1;rounded=0;endArrow=block;endFill=1;dashed=0;strokeColor=#444444;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1850" y="510" as="sourcePoint" />
+            <mxPoint x="1850" y="930" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="note" value="UI sintetiza las vistas de PN2. El detalle de generación automática se representa en CDUN-11." style="shape=note;whiteSpace=wrap;html=0;fillColor=#f5f5f5;strokeColor=#666666;fontSize=15;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1410" width="2040" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="auth" value="AutorizacionApplicationService_380_jh&#10;────────────────────&#10;+ TienePermiso_380_jh(…)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="630" width="360" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="integ" value="IntegridadApplicationService_380_jh&#10;────────────────────&#10;+ Verificar_380_jh()" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="450" y="630" width="360" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="bit" value="BitacoraApplicationService_380_jh&#10;────────────────────&#10;+ RegistrarEvento_380_jh(…)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="860" y="630" width="360" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="maestro" value="MaestroPN1ApplicationService_380_jh&#10;────────────────────&#10;+ Listar_380_jh(…)" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="630" width="360" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="pdf" value="ComprobanteAutomaticoApplicationService_380_jh&#10;────────────────────&#10;+ ProcesarPendientes_380_jh()&#10;«invocado por UI»" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="1160" width="360" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="sol" value="SolicitudTransfusional_380_jh&#10;────────────────────&#10;+ Id_380_jh : int&#10;+ PacienteReceptor_380_jh : string&#10;+ DocumentoReceptor_380_jh : string&#10;+ GrupoReceptor_380_jh : string&#10;+ RhReceptor_380_jh : string&#10;…" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="930" width="360" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="res" value="Reserva_380_jh&#10;────────────────────&#10;+ Id_380_jh : int&#10;+ IdSolicitudTransfusional_380_jh : int&#10;+ IdUnidad_380_jh : int&#10;+ EstadoReserva_380_jh : string&#10;…" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="450" y="930" width="360" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="ent" value="Entrega_380_jh&#10;────────────────────&#10;+ Id_380_jh : int&#10;+ IdReserva_380_jh : int&#10;+ FechaEntrega_380_jh : DateTime&#10;+ Destino_380_jh : string&#10;…" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="860" y="930" width="360" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="uni" value="Unidad_380_jh&#10;────────────────────&#10;+ Id_380_jh : int&#10;+ CodigoIdentificacion_380_jh : string&#10;+ TipoComponente_380_jh : string&#10;+ GrupoSanguineo_380_jh : string&#10;+ FactorRh_380_jh : string&#10;…" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="930" width="360" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="code" value="CodigoOperacionPN2_380_jh&#10;────────────────────&#10;«enumeración»" style="rounded=0;whiteSpace=wrap;html=0;fillColor=#F8F5EF;strokeColor=#555555;fontFamily=Arial;fontSize=14;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="1140" width="360" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-auth" value="" edge="1" parent="1" source="app" target="auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;endFill=0;dashed=1;strokeColor=#555555;exitX=0.1;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dep-integ" value="" edge="1" parent="1" source="app" target="integ" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;endFill=0;dashed=1;strokeColor=#555555;exitX=0.3;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dep-bit" value="" edge="1" parent="1" source="app" target="bit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;endFill=0;dashed=1;strokeColor=#555555;exitX=0.65;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1040" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dep-maestro" value="" edge="1" parent="1" source="app" target="maestro" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=open;endFill=0;dashed=1;strokeColor=#555555;exitX=0.9;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1450" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sol-res" edge="1" parent="1" source="sol" target="res" style="edgeStyle=orthogonalEdgeStyle;startArrow=none;endArrow=none;strokeColor=#555555;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="res-ent" edge="1" parent="1" source="res" target="ent" style="edgeStyle=orthogonalEdgeStyle;startArrow=none;endArrow=none;strokeColor=#555555;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-reserva" edge="1" parent="1" source="res" target="uni" style="edgeStyle=orthogonalEdgeStyle;startArrow=none;endArrow=none;strokeColor=#555555;exitX=0.5;exitY=0;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="630" y="850" />
+              <mxPoint x="1450" y="850" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

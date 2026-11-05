@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <mxfile host="Electron">
   <diagram name="PN1 - XML auxiliar - Secuencia" id="pn1-xml-secuencia">
     <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1760" pageHeight="1480">
@@ -17,7 +17,7 @@
             <mxPoint x="110" y="1440" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ui" value="UnidadesView" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+        <mxCell id="ui" value="UI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="265" y="70" width="210" height="55" as="geometry" />
         </mxCell>
         <mxCell id="ui-life" value="" style="dashed=1;endArrow=none;strokeColor=#999999;" edge="1" parent="1">

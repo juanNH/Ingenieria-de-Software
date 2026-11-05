@@ -1,37 +1,189 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <mxfile host="Electron" agent="Codex">
-<diagram id="pn1-modelo-conceptual" name="PN1 - Modelo conceptual">
-<mxGraphModel dx="1380" dy="1180" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1380" pageHeight="1180" math="0" shadow="0">
-<root>
-<mxCell id="0"/>
-<mxCell id="1" parent="0"/>
-<mxCell id="donante" value="Donante" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="80" y="60" width="400" height="300" as="geometry"/></mxCell>
-<mxCell id="donante-atributos" value="&lt;div style=&quot;line-height:1.55&quot;&gt;- documento : string&lt;br&gt;- nombre : string&lt;br&gt;- apellido : string&lt;br&gt;- fechaNacimiento : DateTime&lt;br&gt;- telefono : string&lt;br&gt;- email : string&lt;br&gt;- domicilio : string&lt;br&gt;- estadoDonante : string&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=17;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=12;" vertex="1" parent="donante"><mxGeometry x="0" y="42" width="400" height="258" as="geometry"/></mxCell>
-<mxCell id="personal" value="Usuario" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="800" y="60" width="400" height="190" as="geometry"/></mxCell>
-<mxCell id="personal-atributos" value="&lt;div style=&quot;line-height:1.55&quot;&gt;- nombreUsuario : string&lt;br&gt;- nombre : string&lt;br&gt;- apellido : string&lt;br&gt;- email : string&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=17;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=12;" vertex="1" parent="personal"><mxGeometry x="0" y="42" width="400" height="148" as="geometry"/></mxCell>
-<mxCell id="donacion" value="Donacion" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="80" y="510" width="400" height="230" as="geometry"/></mxCell>
-<mxCell id="donacion-atributos" value="&lt;div style=&quot;line-height:1.55&quot;&gt;- fechaDonacion : DateTime&lt;br&gt;- cantidadUnidades : int&lt;br&gt;- componenteInicial : string&lt;br&gt;- vencimientoInicialUnidades : DateTime&lt;br&gt;- observaciones : string&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=17;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=12;" vertex="1" parent="donacion"><mxGeometry x="0" y="42" width="400" height="188" as="geometry"/></mxCell>
-<mxCell id="unidad" value="Unidad" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="800" y="420" width="400" height="280" as="geometry"/></mxCell>
-<mxCell id="unidad-atributos" value="&lt;div style=&quot;line-height:1.55&quot;&gt;- codigoIdentificacion : string&lt;br&gt;- tipoComponente : string&lt;br&gt;- fechaVencimiento : DateTime&lt;br&gt;- grupoSanguineo : string&lt;br&gt;- factorRh : string&lt;br&gt;- estadoOperativo : string&lt;br&gt;- observaciones : string&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=17;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=12;" vertex="1" parent="unidad"><mxGeometry x="0" y="42" width="400" height="238" as="geometry"/></mxCell>
-<mxCell id="movimiento" value="MovimientoUnidad" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="800" y="870" width="400" height="230" as="geometry"/></mxCell>
-<mxCell id="movimiento-atributos" value="&lt;div style=&quot;line-height:1.55&quot;&gt;- tipoMovimiento : string&lt;br&gt;- fechaMovimiento : DateTime&lt;br&gt;- estadoAnterior : string&lt;br&gt;- estadoNuevo : string&lt;br&gt;- observacion : string&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=17;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=12;" vertex="1" parent="movimiento"><mxGeometry x="0" y="42" width="400" height="188" as="geometry"/></mxCell>
-<mxCell id="donante-donacion" value="" style="edgeStyle=none;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="donante" target="donacion"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
-<mxCell id="donacion-unidad" value="" style="edgeStyle=none;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.732142857;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="donacion" target="unidad"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
-<mxCell id="donacion-multiplicidad" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="donacion-unidad"><mxGeometry x="-0.82" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="-24" y="-31" as="offset"/></mxGeometry></mxCell>
-<mxCell id="unidad-multiplicidad" value="1..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="donacion-unidad"><mxGeometry x="0.82" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="-24" y="-31" as="offset"/></mxGeometry></mxCell>
-<mxCell id="unidad-movimiento" value="" style="edgeStyle=none;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="unidad" target="movimiento"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
-<mxCell id="unidad-historial-multiplicidad" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="unidad-movimiento"><mxGeometry x="-0.82" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset"/></mxGeometry></mxCell>
-<mxCell id="movimiento-multiplicidad" value="1..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="unidad-movimiento"><mxGeometry x="0.82" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset"/></mxGeometry></mxCell>
-<mxCell id="personal-donante" value="" style="edgeStyle=none;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0;exitY=0.5;entryX=1;entryY=0.316666667;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="personal" target="donante"><mxGeometry relative="1" as="geometry"></mxGeometry></mxCell>
-<mxCell id="personal-donacion" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0;exitY=0.85;entryX=1;entryY=0.25;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="personal" target="donacion"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="610" y="221.5"/><mxPoint x="610" y="567.5"/></Array></mxGeometry></mxCell>
-<mxCell id="personal-movimiento" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=1;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="personal" target="movimiento"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1290" y="155"/><mxPoint x="1290" y="985"/></Array></mxGeometry></mxCell>
-<mxCell id="comprobante" value="Comprobante automático" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="80" y="870" width="400" height="230" as="geometry"/></mxCell>
-<mxCell id="comprobante-atributos" value="&lt;div style=&quot;line-height:1.55&quot;&gt;- identificador : Guid&lt;br&gt;- fechaEvento : DateTime&lt;br&gt;- fechaGeneracion : DateTime?&lt;br&gt;- rutaArchivo : string?&lt;br&gt;- estado : pendiente / emitido&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=17;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=12;" vertex="1" parent="comprobante"><mxGeometry x="0" y="42" width="400" height="188" as="geometry"/></mxCell>
-<mxCell id="donacion-comprobante" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="donacion" target="comprobante"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="donacion-comprobante-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="donacion-comprobante"><mxGeometry x="-0.8" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset"/></mxGeometry></mxCell>
-<mxCell id="donacion-comprobante-destino" value="0..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="donacion-comprobante"><mxGeometry x="0.8" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset"/></mxGeometry></mxCell>
-</root>
-</mxGraphModel>
-</diagram>
+  <diagram id="pn1-modelo-conceptual" name="PN1 - Modelo conceptual">
+    <mxGraphModel dx="2514" dy="1228" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1850" pageHeight="1700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="donante" parent="1" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" value="Donante" vertex="1">
+          <mxGeometry height="369" width="450" x="60" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="donante-atributos" parent="donante" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- Documento : string&lt;br&gt;- Nombre : string&lt;br&gt;- Apellido : string&lt;br&gt;- FechaNacimiento : DateTime?&lt;br&gt;- Telefono : string&lt;br&gt;- Email : string&lt;br&gt;- TieneEmail : bool&lt;br&gt;- Domicilio : string&lt;br&gt;- Estado : string&lt;br&gt;- FechaAlta : DateTime&lt;br&gt;- IdUsuarioAlta : int&lt;br&gt;- NombreCompleto : string {derivado}&lt;/div&gt;" vertex="1">
+          <mxGeometry height="327" width="450" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="personal" parent="1" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" value="Usuario" vertex="1">
+          <mxGeometry height="369" width="430" x="620" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="personal-atributos" parent="personal" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- Username : string&lt;br&gt;- Email : string&lt;br&gt;- Password : string&lt;br&gt;- Nombre : string&lt;br&gt;- Apellido : string&lt;br&gt;- Idioma : string&lt;br&gt;- IdiomaPreferidoId : int?&lt;br&gt;- Estado : string&lt;br&gt;- IntentosLoginFallidos : int&lt;br&gt;- BloqueoDigitoVerificador : bool&lt;br&gt;- Dvh : string&lt;br&gt;- ComponentesPermiso : List&amp;lt;ComponentePermiso&amp;gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="327" width="430" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="donacion" parent="1" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" value="Donacion" vertex="1">
+          <mxGeometry height="323" width="480" x="60" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="donacion-atributos" parent="donacion" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- IdDonante : int&lt;br&gt;- Donante : Donante&lt;br&gt;- FechaDonacion : DateTime&lt;br&gt;- CantidadUnidades : int&lt;br&gt;- TipoComponente : string&lt;br&gt;- FechaVencimiento : DateTime&lt;br&gt;- Observaciones : string&lt;br&gt;- IdUsuarioResponsable : int&lt;br&gt;- FechaAlta : DateTime&lt;br&gt;- Unidades : List&amp;lt;Unidad&amp;gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="281" width="480" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad" parent="1" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" value="Unidad" vertex="1">
+          <mxGeometry height="484" width="500" x="620" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-atributos" parent="unidad" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- CodigoIdentificacion : string&lt;br&gt;- IdDonacion : int&lt;br&gt;- IdDonante : int?&lt;br&gt;- DocumentoDonante : string&lt;br&gt;- Donante : string&lt;br&gt;- TipoComponente : string&lt;br&gt;- FechaVencimiento : DateTime&lt;br&gt;- GrupoSanguineo : string&lt;br&gt;- FactorRh : string&lt;br&gt;- Observaciones : string&lt;br&gt;- EstadoOperativo : string&lt;br&gt;- EstadoOperativoDescripcion : string&lt;br&gt;- Ubicacion : string&lt;br&gt;- FechaAlta : DateTime&lt;br&gt;- FechaUltimaModificacion : DateTime&lt;br&gt;- IdUsuarioUltimaModificacion : int&lt;br&gt;- EstaClasificada : bool {derivado}&lt;/div&gt;" vertex="1">
+          <mxGeometry height="442" width="500" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="movimiento" parent="1" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" value="MovimientoUnidad" vertex="1">
+          <mxGeometry height="254" width="500" x="620" y="1220" as="geometry" />
+        </mxCell>
+        <mxCell id="movimiento-atributos" parent="movimiento" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- IdUnidad : int&lt;br&gt;- TipoMovimiento : string&lt;br&gt;- EstadoAnterior : string&lt;br&gt;- EstadoNuevo : string&lt;br&gt;- Observacion : string&lt;br&gt;- FechaMovimiento : DateTime&lt;br&gt;- IdUsuario : int&lt;/div&gt;" vertex="1">
+          <mxGeometry height="212" width="500" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="comprobante" parent="1" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" value="ComprobantePendiente" vertex="1">
+          <mxGeometry height="190" width="440" x="60" y="1220" as="geometry" />
+        </mxCell>
+        <mxCell id="comprobante-atributos" parent="comprobante" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : long&lt;br&gt;- Identificador : Guid&lt;br&gt;- Proceso : string&lt;br&gt;- IdReferencia : int&lt;br&gt;- DatosXml : string&lt;/div&gt;" vertex="1">
+          <mxGeometry height="148" width="440" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="donante-donacion" edge="1" parent="1" source="donante" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=1;entryPerimeter=1;" target="donacion" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="donante-donacion-origen" connectable="0" parent="donante-donacion" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" value="1" vertex="1">
+          <mxGeometry height="24" relative="1" width="52" x="-0.82" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="donante-donacion-destino" connectable="0" parent="donante-donacion" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" value="0..*" vertex="1">
+          <mxGeometry height="24" relative="1" width="52" x="0.82" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="donacion-unidad" edge="1" parent="1" source="donacion" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" target="unidad" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="donacion-unidad-origen" connectable="0" parent="donacion-unidad" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" value="1" vertex="1">
+          <mxGeometry height="24" relative="1" width="52" x="-0.82" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="donacion-unidad-destino" connectable="0" parent="donacion-unidad" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" value="1..*" vertex="1">
+          <mxGeometry height="24" relative="1" width="52" x="0.82" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-movimiento" edge="1" parent="1" source="unidad" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=1;entryPerimeter=1;" target="movimiento" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-movimiento-origen" connectable="0" parent="unidad-movimiento" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" value="1" vertex="1">
+          <mxGeometry height="24" relative="1" width="52" x="-0.82" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-movimiento-destino" connectable="0" parent="unidad-movimiento" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" value="0..*" vertex="1">
+          <mxGeometry height="24" relative="1" width="52" x="0.82" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="usuario-donante" edge="1" parent="1" source="personal" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0;exitY=0.5;entryX=1;entryY=0.4;exitPerimeter=1;entryPerimeter=1;" target="donante" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="usuario-donante-origen" connectable="0" parent="usuario-donante" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" value="1" vertex="1">
+          <mxGeometry height="24" relative="1" width="52" x="-0.82" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="usuario-donante-destino" connectable="0" parent="usuario-donante" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" value="0..*" vertex="1">
+          <mxGeometry height="24" relative="1" width="52" x="0.82" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="usuario-unidad" edge="1" parent="1" source="personal" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=1;entryPerimeter=1;" target="unidad" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="usuario-unidad-origen" connectable="0" parent="usuario-unidad" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" value="1" vertex="1">
+          <mxGeometry height="24" relative="1" width="52" x="-0.82" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="usuario-unidad-destino" connectable="0" parent="usuario-unidad" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" value="0..*" vertex="1">
+          <mxGeometry height="24" relative="1" width="52" x="0.82" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="donacion-comprobante" edge="1" parent="1" source="donacion" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=1;entryPerimeter=1;dashed=1;dashPattern=6 4;" target="comprobante" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="donacion-comprobante-origen" connectable="0" parent="donacion-comprobante" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" value="1" vertex="1">
+          <mxGeometry height="24" relative="1" width="52" x="-0.82" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="donacion-comprobante-destino" connectable="0" parent="donacion-comprobante" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" value="0..1" vertex="1">
+          <mxGeometry height="24" relative="1" width="52" x="0.82" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="catalogo-componente" parent="1" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" value="ComponenteTransfusional" vertex="1">
+          <mxGeometry height="159" width="400" x="1300" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-componente-atributos" parent="catalogo-componente" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- Codigo : string&lt;br&gt;- Descripcion : string&lt;br&gt;- Activo : bool&lt;/div&gt;" vertex="1">
+          <mxGeometry height="117" width="400" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-grupo" parent="1" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" value="GrupoSanguineo" vertex="1">
+          <mxGeometry height="159" width="400" x="1300" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-grupo-atributos" parent="catalogo-grupo" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- Codigo : string&lt;br&gt;- Descripcion : string&lt;br&gt;- Activo : bool&lt;/div&gt;" vertex="1">
+          <mxGeometry height="117" width="400" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-rh" parent="1" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" value="FactorRh" vertex="1">
+          <mxGeometry height="159" width="400" x="1300" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-rh-atributos" parent="catalogo-rh" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- Codigo : string&lt;br&gt;- Descripcion : string&lt;br&gt;- Activo : bool&lt;/div&gt;" vertex="1">
+          <mxGeometry height="117" width="400" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-estado" parent="1" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" value="EstadoUnidad" vertex="1">
+          <mxGeometry height="113" width="400" x="1300" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-estado-atributos" parent="catalogo-estado" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Codigo : string&lt;br&gt;- Descripcion : string&lt;/div&gt;" vertex="1">
+          <mxGeometry height="71" width="400" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="donacion-componente" edge="1" parent="1" source="donacion" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;dashed=1;dashPattern=6 4;exitX=0.78;exitY=0;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" target="catalogo-componente" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="435" y="550" />
+              <mxPoint x="1160" y="550" />
+              <mxPoint x="1160" y="142" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-catalogo-componente" edge="1" parent="1" source="unidad" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;dashed=1;dashPattern=6 4;exitX=1;exitY=0.14;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" target="catalogo-componente" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1190" y="687" />
+              <mxPoint x="1190" y="142" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-catalogo-grupo" edge="1" parent="1" source="unidad" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;dashed=1;dashPattern=6 4;exitX=1;exitY=0.34;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" target="catalogo-grupo" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1215" y="784" />
+              <mxPoint x="1215" y="382" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-catalogo-rh" edge="1" parent="1" source="unidad" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;dashed=1;dashPattern=6 4;exitX=1;exitY=0.58;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" target="catalogo-rh" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1240" y="900" />
+              <mxPoint x="1240" y="622" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-catalogo-estado" edge="1" parent="1" source="unidad" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;dashed=1;dashPattern=6 4;exitX=1;exitY=0.82;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" target="catalogo-estado" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1265" y="1016" />
+              <mxPoint x="1265" y="840" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
 </mxfile>
-

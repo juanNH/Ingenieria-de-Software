@@ -1,55 +1,55 @@
 <mxfile host="Electron">
   <diagram name="PN2 - Diagrama de roles" id="pn2---diagrama-de-roles">
-    <mxGraphModel dx="1717" dy="1043" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1381" dy="675" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="titulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=22;align=center;verticalAlign=middle;fontFamily=Arial;" value="PN2 — Diagrama de roles: Solicitud, reserva, entrega y destino de unidades" vertex="1">
+        <mxCell id="titulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=22;align=center;verticalAlign=middle;fontFamily=Arial;" value="PN2 — Roles del proceso" vertex="1">
           <mxGeometry height="44" width="1360" x="120" y="22" as="geometry" />
         </mxCell>
-        <mxCell id="subtitulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;align=center;verticalAlign=middle;fontColor=#666666;fontFamily=Arial;" value="Flujo principal PN2: tres pantallas; Consultas queda fuera del proceso" vertex="1">
+        <mxCell id="subtitulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;align=center;verticalAlign=middle;fontColor=#666666;fontFamily=Arial;" value="El receptor presenta el pedido y sus estudios." vertex="1">
           <mxGeometry height="30" width="1240" x="180" y="68" as="geometry" />
         </mxCell>
         <mxCell id="actor-profesional" parent="1" style="shape=umlActor;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="80" width="40" x="240" y="130" as="geometry" />
+          <mxGeometry height="80" width="40" x="110" y="130" as="geometry" />
         </mxCell>
         <mxCell id="actor-autorizado" parent="1" style="shape=umlActor;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="80" width="40" x="780" y="130" as="geometry" />
+          <mxGeometry height="80" width="40" x="460" y="130" as="geometry" />
         </mxCell>
         <mxCell id="actor-banco" parent="1" style="shape=umlActor;html=1;fillColor=#e1f5e0;strokeColor=#82b366;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="80" width="40" x="1320" y="130" as="geometry" />
+          <mxGeometry height="80" width="40" x="860" y="130" as="geometry" />
         </mxCell>
-        <mxCell id="label-profesional" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=top;whiteSpace=wrap;" value="&lt;b&gt;Profesional solicitante&lt;/b&gt;" vertex="1">
-          <mxGeometry height="38" width="320" x="100" y="235" as="geometry" />
+        <mxCell id="label-profesional" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=top;whiteSpace=wrap;" value="&lt;b&gt;Receptor&lt;/b&gt;" vertex="1">
+          <mxGeometry height="38" width="280" y="235" as="geometry" />
         </mxCell>
-        <mxCell id="label-autorizado" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=top;whiteSpace=wrap;" value="&lt;b&gt;Operador autorizado&lt;/b&gt;" vertex="1">
-          <mxGeometry height="38" width="320" x="640" y="235" as="geometry" />
+        <mxCell id="label-autorizado" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=top;whiteSpace=wrap;" value="&lt;b&gt;Personal de registro&lt;/b&gt;" vertex="1">
+          <mxGeometry height="38" width="280" x="340" y="235" as="geometry" />
         </mxCell>
-        <mxCell id="label-banco" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=top;whiteSpace=wrap;" value="&lt;b&gt;Operador del banco de sangre&lt;/b&gt;" vertex="1">
-          <mxGeometry height="38" width="320" x="1180" y="235" as="geometry" />
+        <mxCell id="label-banco" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=top;whiteSpace=wrap;" value="&lt;b&gt;Operador autorizado&lt;/b&gt;" vertex="1">
+          <mxGeometry height="38" width="300" x="740" y="235" as="geometry" />
         </mxCell>
-        <mxCell id="rel-profesional-autorizado-e1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#d79b00;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Entrada E1: solicitud y estudios del receptor">
+        <mxCell id="actor-operador-banco" parent="1" style="shape=umlActor;html=1;fillColor=#e1f5e0;strokeColor=#82b366;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="80" width="40" x="1310" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="label-operador-banco" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=top;whiteSpace=wrap;" value="&lt;b&gt;Operador del banco de sangre&lt;/b&gt;" vertex="1">
+          <mxGeometry height="38" width="300" x="1190" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-profesional-autorizado-e1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#d79b00;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Entrada E3: Pedido y estudios">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="280" y="165" as="sourcePoint" />
-            <mxPoint x="780" y="165" as="targetPoint" />
+            <mxPoint x="150" y="165" as="sourcePoint" />
+            <mxPoint x="460" y="165" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="rel-autorizado-profesional-s1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#82b366;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S1: solicitud registrada; estudio pendiente">
+        <mxCell id="rel-autorizado-profesional-s1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#82b366;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S5: Solicitud registrada">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="780" y="195" as="sourcePoint" />
-            <mxPoint x="280" y="195" as="targetPoint" />
+            <mxPoint x="500" y="195" as="sourcePoint" />
+            <mxPoint x="860" y="195" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="rel-autorizado-banco-s4" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#82b366;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S4: Entrega registrada para indicar su destino">
+        <mxCell id="rel-autorizado-banco-s4" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#82b366;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S6: Unidad entregada">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="820" y="165" as="sourcePoint" />
-            <mxPoint x="1320" y="165" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="rel-banco-autorizado-e4" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#9673a6;strokeWidth=1.5;fontSize=12;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Entrada E4: Destino de la unidad entregada">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1320" y="195" as="sourcePoint" />
-            <mxPoint x="820" y="195" as="targetPoint" />
+            <mxPoint x="900" y="165" as="sourcePoint" />
+            <mxPoint x="1310" y="165" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>

@@ -1,59 +1,233 @@
 <?xml version='1.0' encoding='utf-8'?>
 <mxfile host="Electron" agent="Codex">
-<diagram id="pn2-modelo-conceptual" name="PN2 - Modelo conceptual">
-<mxGraphModel dx="1960" dy="1690" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1960" pageHeight="1690" math="0" shadow="0">
-<root>
-<mxCell id="0" />
-<mxCell id="1" parent="0" />
-<mxCell id="usuario" value="Usuario" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="80" y="60" width="400" height="190" as="geometry" /></mxCell>
-<mxCell id="usuario-atributos" value="&lt;div style=&quot;line-height:1.55&quot;&gt;- nombreUsuario : string&lt;br&gt;- nombre : string&lt;br&gt;- apellido : string&lt;br&gt;- email : string&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=17;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=12;" vertex="1" parent="usuario"><mxGeometry x="0" y="42" width="400" height="148" as="geometry" /></mxCell>
-<mxCell id="solicitud" value="SolicitudTransfusional" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="680" y="60" width="440" height="340" as="geometry" /></mxCell>
-<mxCell id="solicitud-atributos" value="&lt;div style=&quot;line-height:1.4&quot;&gt;- receptor y documento&lt;br&gt;- profesional solicitante&lt;br&gt;- componente y cantidad&lt;br&gt;- grupo ABO y RhD&lt;br&gt;- laboratorio, informe y fecha&lt;br&gt;- resultado de anticuerpos&lt;br&gt;- validación: usuario y fecha&lt;br&gt;- fecha y estado de solicitud&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=17;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=12;" vertex="1" parent="solicitud"><mxGeometry x="0" y="42" width="440" height="298" as="geometry" /></mxCell>
-<mxCell id="unidad" value="Unidad" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="1360" y="60" width="440" height="320" as="geometry" /></mxCell>
-<mxCell id="unidad-atributos" value="&lt;div style=&quot;line-height:1.55&quot;&gt;- codigoIdentificacion : string&lt;br&gt;- tipoComponente : string&lt;br&gt;- fechaVencimiento : DateTime&lt;br&gt;- grupoSanguineo : string&lt;br&gt;- factorRh : string&lt;br&gt;- estadoOperativo : string&lt;br&gt;- observaciones : string&lt;br&gt;- ubicacion : string&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=17;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=12;" vertex="1" parent="unidad"><mxGeometry x="0" y="42" width="440" height="278" as="geometry" /></mxCell>
-<mxCell id="reserva" value="Reserva" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="80" y="780" width="400" height="230" as="geometry" /></mxCell>
-<mxCell id="reserva-atributos" value="&lt;div style=&quot;line-height:1.55&quot;&gt;- fecha y estado&lt;br&gt;- referencia de compatibilidad&lt;br&gt;- responsable&lt;br&gt;- fecha de cierre&lt;br&gt;- motivo de cancelación&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=17;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=12;" vertex="1" parent="reserva"><mxGeometry x="0" y="42" width="400" height="188" as="geometry" /></mxCell>
-<mxCell id="entrega" value="Entrega" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="680" y="780" width="400" height="230" as="geometry" /></mxCell>
-<mxCell id="entrega-atributos" value="&lt;div style=&quot;line-height:1.55&quot;&gt;- fechaEntrega : DateTime&lt;br&gt;- observacion : string&lt;br&gt;- destino : string&lt;br&gt;- fechaDestino : DateTime&lt;br&gt;- motivoDestino : string&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=17;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=12;" vertex="1" parent="entrega"><mxGeometry x="0" y="42" width="400" height="188" as="geometry" /></mxCell>
-<mxCell id="movimiento" value="MovimientoUnidad" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="1360" y="780" width="440" height="230" as="geometry" /></mxCell>
-<mxCell id="movimiento-atributos" value="&lt;div style=&quot;line-height:1.55&quot;&gt;- tipoMovimiento : string&lt;br&gt;- fechaMovimiento : DateTime&lt;br&gt;- estadoAnterior : string&lt;br&gt;- estadoNuevo : string&lt;br&gt;- observacion : string&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=17;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=12;" vertex="1" parent="movimiento"><mxGeometry x="0" y="42" width="440" height="188" as="geometry" /></mxCell>
-<mxCell id="usuario-solicitud" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=1;exitY=0.4;entryX=0;entryY=0.27;" edge="1" parent="1" source="usuario" target="solicitud"><mxGeometry relative="1" as="geometry" /></mxCell>
-<mxCell id="usuario-solicitud-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="usuario-solicitud"><mxGeometry x="-0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="-24" y="-31" as="offset" /></mxGeometry></mxCell>
-<mxCell id="usuario-solicitud-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="usuario-solicitud"><mxGeometry x="0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="-24" y="-31" as="offset" /></mxGeometry></mxCell>
-<mxCell id="usuario-reserva" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.25;exitY=1;entryX=0.25;entryY=0;" edge="1" parent="1" source="usuario" target="reserva"><mxGeometry relative="1" as="geometry" /></mxCell>
-<mxCell id="usuario-reserva-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="usuario-reserva"><mxGeometry x="-0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset" /></mxGeometry></mxCell>
-<mxCell id="usuario-reserva-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="usuario-reserva"><mxGeometry x="0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset" /></mxGeometry></mxCell>
-<mxCell id="usuario-entrega" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.8;exitY=0;entryX=0.85;entryY=0;" edge="1" parent="1" source="usuario" target="entrega"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="400" y="40" /><mxPoint x="1160" y="40" /><mxPoint x="1160" y="700" /><mxPoint x="1054" y="700" /></Array></mxGeometry></mxCell>
-<mxCell id="usuario-entrega-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="usuario-entrega"><mxGeometry x="-0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="-24" y="-31" as="offset" /></mxGeometry></mxCell>
-<mxCell id="usuario-entrega-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="usuario-entrega"><mxGeometry x="0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset" /></mxGeometry></mxCell>
-<mxCell id="usuario-movimiento" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.25;exitY=0;entryX=1;entryY=0.5;jumpStyle=arc;jumpSize=10;" edge="1" parent="1" source="usuario" target="movimiento"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="180" y="25" /><mxPoint x="1910" y="25" /><mxPoint x="1910" y="895" /></Array></mxGeometry></mxCell>
-<mxCell id="usuario-movimiento-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="usuario-movimiento"><mxGeometry x="-0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset" /></mxGeometry></mxCell>
-<mxCell id="usuario-movimiento-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="usuario-movimiento"><mxGeometry x="0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset" /></mxGeometry></mxCell>
-<mxCell id="solicitud-reserva" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0;exitY=0.75;entryX=1;entryY=0.3;" edge="1" parent="1" source="solicitud" target="reserva"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="600" y="270" /><mxPoint x="600" y="822" /></Array></mxGeometry></mxCell>
-<mxCell id="solicitud-reserva-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="solicitud-reserva"><mxGeometry x="-0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="-24" y="-31" as="offset" /></mxGeometry></mxCell>
-<mxCell id="solicitud-reserva-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="solicitud-reserva"><mxGeometry x="0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-31" as="offset" /></mxGeometry></mxCell>
-<mxCell id="solicitud-entrega" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="solicitud" target="entrega"><mxGeometry relative="1" as="geometry" /></mxCell>
-<mxCell id="solicitud-entrega-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="solicitud-entrega"><mxGeometry x="-0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset" /></mxGeometry></mxCell>
-<mxCell id="solicitud-entrega-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="solicitud-entrega"><mxGeometry x="0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset" /></mxGeometry></mxCell>
-<mxCell id="reserva-entrega" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=1;exitY=0.8;entryX=0;entryY=0.8;" edge="1" parent="1" source="reserva" target="entrega"><mxGeometry relative="1" as="geometry" /></mxCell>
-<mxCell id="reserva-entrega-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="reserva-entrega"><mxGeometry x="-0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="-24" y="-31" as="offset" /></mxGeometry></mxCell>
-<mxCell id="reserva-entrega-destino" value="0..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="reserva-entrega"><mxGeometry x="0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="-24" y="-31" as="offset" /></mxGeometry></mxCell>
-<mxCell id="unidad-reserva" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=1;exitY=0.90625;entryX=0.5;entryY=1;" edge="1" parent="1" source="unidad" target="reserva"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1850" y="350" /><mxPoint x="1850" y="1100" /><mxPoint x="280" y="1100" /></Array></mxGeometry></mxCell>
-<mxCell id="unidad-reserva-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="unidad-reserva"><mxGeometry x="-0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="-24" y="-31" as="offset" /></mxGeometry></mxCell>
-<mxCell id="unidad-reserva-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="unidad-reserva"><mxGeometry x="0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset" /></mxGeometry></mxCell>
-<mxCell id="unidad-entrega" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0;exitY=0.75;entryX=1;entryY=0.3;" edge="1" parent="1" source="unidad" target="entrega"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1240" y="300" /><mxPoint x="1240" y="822" /></Array></mxGeometry></mxCell>
-<mxCell id="unidad-entrega-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="unidad-entrega"><mxGeometry x="-0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="-24" y="-31" as="offset" /></mxGeometry></mxCell>
-<mxCell id="unidad-entrega-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="unidad-entrega"><mxGeometry x="0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-31" as="offset" /></mxGeometry></mxCell>
-<mxCell id="unidad-movimiento" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="unidad" target="movimiento"><mxGeometry relative="1" as="geometry" /></mxCell>
-<mxCell id="unidad-movimiento-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="unidad-movimiento"><mxGeometry x="-0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset" /></mxGeometry></mxCell>
-<mxCell id="unidad-movimiento-destino" value="1..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="unidad-movimiento"><mxGeometry x="0.99" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset" /></mxGeometry></mxCell>
-<mxCell id="nota-conceptual" value="&lt;b&gt;Alcance conceptual PN2&lt;/b&gt;&lt;br&gt;La solicitud conserva identidad y estudio del receptor por pedido. La validación queda asociada a un usuario y una fecha. La reserva registra la referencia de compatibilidad.&lt;br&gt;El filtro propone candidatos; el operador confirma la evaluación. Devolución y descarte reabren saldo. Una entrega con destino genera un comprobante." style="shape=note;whiteSpace=wrap;html=1;size=18;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;fontFamily=Arial;align=left;verticalAlign=middle;spacing=10;fontSize=14;" vertex="1" parent="1"><mxGeometry x="80" y="1500" width="1720" height="150" as="geometry" /></mxCell>
-<mxCell id="comprobante" value="Comprobante automático" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1"><mxGeometry x="680" y="1200" width="400" height="230" as="geometry" /></mxCell>
-<mxCell id="comprobante-atributos" value="&lt;div style=&quot;line-height:1.55&quot;&gt;- identificador : Guid&lt;br&gt;- fechaEvento : DateTime&lt;br&gt;- fechaGeneracion : DateTime?&lt;br&gt;- rutaArchivo : string?&lt;br&gt;- estado : pendiente / emitido&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=17;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=12;" vertex="1" parent="comprobante"><mxGeometry x="0" y="42" width="400" height="188" as="geometry" /></mxCell>
-<mxCell id="entrega-comprobante" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;jumpStyle=arc;jumpSize=10;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="entrega" target="comprobante"><mxGeometry relative="1" as="geometry" /></mxCell>
-<mxCell id="entrega-comprobante-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="entrega-comprobante"><mxGeometry x="-0.8" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset" /></mxGeometry></mxCell>
-<mxCell id="entrega-comprobante-destino" value="0..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=17;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" connectable="0" parent="entrega-comprobante"><mxGeometry x="0.8" y="0" width="48" height="24" relative="1" as="geometry"><mxPoint x="12" y="-12" as="offset" /></mxGeometry></mxCell>
-</root>
-</mxGraphModel>
-</diagram>
+  <diagram id="pn2-modelo-conceptual" name="PN2 - Modelo conceptual">
+    <mxGraphModel dx="2900" dy="1370" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2900" pageHeight="1370" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="usuario" value="Usuario" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="60" y="70" width="400" height="369" as="geometry" />
+        </mxCell>
+        <mxCell id="usuario-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- Username : string&lt;br&gt;- Email : string&lt;br&gt;- Password : string&lt;br&gt;- Nombre : string&lt;br&gt;- Apellido : string&lt;br&gt;- Idioma : string&lt;br&gt;- IdiomaPreferidoId : int?&lt;br&gt;- Estado : string&lt;br&gt;- IntentosLoginFallidos : int&lt;br&gt;- BloqueoDigitoVerificador : bool&lt;br&gt;- Dvh : string&lt;br&gt;- ComponentesPermiso : List&amp;lt;ComponentePermiso&amp;gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="usuario">
+          <mxGeometry x="0" y="42" width="400" height="327" as="geometry" />
+        </mxCell>
+        <mxCell id="solicitud" value="SolicitudTransfusional" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="560" y="70" width="500" height="530" as="geometry" />
+        </mxCell>
+        <mxCell id="solicitud-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- PacienteReceptor : string&lt;br&gt;- DocumentoReceptor : string&lt;br&gt;- GrupoReceptor : string&lt;br&gt;- RhReceptor : string&lt;br&gt;- LaboratorioEstudio : string&lt;br&gt;- ReferenciaEstudio : string&lt;br&gt;- FechaEstudio : DateTime?&lt;br&gt;- ResultadoAnticuerpos : string&lt;br&gt;- IdUsuarioValidacion : int?&lt;br&gt;- FechaValidacion : DateTime?&lt;br&gt;- FechaSolicitud : DateTime&lt;br&gt;- TipoComponente : string&lt;br&gt;- CantidadRequerida : int&lt;br&gt;- IdUsuarioSolicitante : int&lt;br&gt;- ProfesionalSolicitante : string&lt;br&gt;- EstadoSolicitud : string&lt;br&gt;- CantidadReservada : int&lt;br&gt;- CantidadEntregada : int&lt;br&gt;- SaldoPendiente : int&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="solicitud">
+          <mxGeometry x="0" y="42" width="500" height="488" as="geometry" />
+        </mxCell>
+        <mxCell id="reserva" value="Reserva" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="70" width="500" height="369" as="geometry" />
+        </mxCell>
+        <mxCell id="reserva-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- IdSolicitudTransfusional : int&lt;br&gt;- IdUnidad : int&lt;br&gt;- CodigoIdentificacion : string&lt;br&gt;- PacienteReceptor : string&lt;br&gt;- TipoComponente : string&lt;br&gt;- EstadoReserva : string&lt;br&gt;- FechaReserva : DateTime&lt;br&gt;- IdUsuarioResponsable : int&lt;br&gt;- Responsable : string&lt;br&gt;- Observacion : string&lt;br&gt;- FechaCierre : DateTime?&lt;br&gt;- MotivoCancelacion : string&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="reserva">
+          <mxGeometry x="0" y="42" width="500" height="327" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad" value="Unidad" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1760" y="70" width="500" height="484" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- CodigoIdentificacion : string&lt;br&gt;- IdDonacion : int&lt;br&gt;- IdDonante : int?&lt;br&gt;- DocumentoDonante : string&lt;br&gt;- Donante : string&lt;br&gt;- TipoComponente : string&lt;br&gt;- FechaVencimiento : DateTime&lt;br&gt;- GrupoSanguineo : string&lt;br&gt;- FactorRh : string&lt;br&gt;- Observaciones : string&lt;br&gt;- EstadoOperativo : string&lt;br&gt;- EstadoOperativoDescripcion : string&lt;br&gt;- Ubicacion : string&lt;br&gt;- FechaAlta : DateTime&lt;br&gt;- FechaUltimaModificacion : DateTime&lt;br&gt;- IdUsuarioUltimaModificacion : int&lt;br&gt;- EstaClasificada : bool {derivado}&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="unidad">
+          <mxGeometry x="0" y="42" width="500" height="442" as="geometry" />
+        </mxCell>
+        <mxCell id="comprobante" value="ComprobantePendiente" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="560" y="700" width="480" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="comprobante-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : long&lt;br&gt;- Identificador : Guid&lt;br&gt;- Proceso : string&lt;br&gt;- IdReferencia : int&lt;br&gt;- DatosXml : string&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="comprobante">
+          <mxGeometry x="0" y="42" width="480" height="148" as="geometry" />
+        </mxCell>
+        <mxCell id="entrega" value="Entrega" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="700" width="500" height="438" as="geometry" />
+        </mxCell>
+        <mxCell id="entrega-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- IdReserva : int&lt;br&gt;- IdSolicitudTransfusional : int&lt;br&gt;- IdUnidad : int&lt;br&gt;- CodigoIdentificacion : string&lt;br&gt;- PacienteReceptor : string&lt;br&gt;- TipoComponente : string&lt;br&gt;- FechaEntrega : DateTime&lt;br&gt;- IdUsuarioResponsable : int&lt;br&gt;- Responsable : string&lt;br&gt;- Observacion : string&lt;br&gt;- Destino : string&lt;br&gt;- DestinoDescripcion : string&lt;br&gt;- FechaDestino : DateTime?&lt;br&gt;- MotivoDestino : string&lt;br&gt;- IdUsuarioDestino : int?&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="entrega">
+          <mxGeometry x="0" y="42" width="500" height="396" as="geometry" />
+        </mxCell>
+        <mxCell id="movimiento" value="MovimientoUnidad" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1760" y="700" width="500" height="254" as="geometry" />
+        </mxCell>
+        <mxCell id="movimiento-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- IdUnidad : int&lt;br&gt;- TipoMovimiento : string&lt;br&gt;- EstadoAnterior : string&lt;br&gt;- EstadoNuevo : string&lt;br&gt;- Observacion : string&lt;br&gt;- FechaMovimiento : DateTime&lt;br&gt;- IdUsuario : int&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="movimiento">
+          <mxGeometry x="0" y="42" width="500" height="212" as="geometry" />
+        </mxCell>
+        <mxCell id="nota-pn2" value="Catálogos conceptuales: componente, grupo, Rh y destino se gestionan mediante MaestroPN1; EstadoUnidad es un catálogo separado. Las flechas indican uso de valores por código." style="shape=note;whiteSpace=wrap;html=1;size=18;fillColor=#F5F5F5;strokeColor=#666666;fontSize=15;fontFamily=Arial;align=left;verticalAlign=middle;spacing=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1250" width="2800" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="usuario-solicitud" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.25;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="usuario" target="solicitud">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="solicitud-reserva" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=1;exitY=0.35;entryX=0;entryY=0.35;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="solicitud" target="reserva">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-reserva" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0;exitY=0.7;entryX=1;entryY=0.72;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="unidad" target="reserva">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="reserva-entrega" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="reserva" target="entrega">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-movimiento" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="unidad" target="movimiento">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="entrega-comprobante" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0;exitY=0.32;entryX=1;entryY=0.5;exitPerimeter=1;entryPerimeter=1;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="entrega" target="comprobante">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="usuario-solicitud-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="usuario-solicitud" connectable="0">
+          <mxGeometry x="-0.82" y="0" width="52" height="24" relative="1" as="geometry">
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="usuario-solicitud-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="usuario-solicitud" connectable="0">
+          <mxGeometry x="0.82" y="0" width="52" height="24" relative="1" as="geometry">
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="solicitud-reserva-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="solicitud-reserva" connectable="0">
+          <mxGeometry x="-0.82" y="0" width="52" height="24" relative="1" as="geometry">
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="solicitud-reserva-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="solicitud-reserva" connectable="0">
+          <mxGeometry x="0.82" y="0" width="52" height="24" relative="1" as="geometry">
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-reserva-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="unidad-reserva" connectable="0">
+          <mxGeometry x="-0.82" y="0" width="52" height="24" relative="1" as="geometry">
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-reserva-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="unidad-reserva" connectable="0">
+          <mxGeometry x="0.82" y="0" width="52" height="24" relative="1" as="geometry">
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="reserva-entrega-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="reserva-entrega" connectable="0">
+          <mxGeometry x="-0.82" y="0" width="52" height="24" relative="1" as="geometry">
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="reserva-entrega-destino" value="0..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="reserva-entrega" connectable="0">
+          <mxGeometry x="0.82" y="0" width="52" height="24" relative="1" as="geometry">
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-movimiento-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="unidad-movimiento" connectable="0">
+          <mxGeometry x="-0.82" y="0" width="52" height="24" relative="1" as="geometry">
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-movimiento-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="unidad-movimiento" connectable="0">
+          <mxGeometry x="0.82" y="0" width="52" height="24" relative="1" as="geometry">
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="entrega-comprobante-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="entrega-comprobante" connectable="0">
+          <mxGeometry x="-0.82" y="0" width="52" height="24" relative="1" as="geometry">
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="entrega-comprobante-destino" value="0..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="entrega-comprobante" connectable="0">
+          <mxGeometry x="0.82" y="0" width="52" height="24" relative="1" as="geometry">
+            <mxPoint x="0" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="catalogo-componente" value="ComponenteTransfusional" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="2400" y="70" width="400" height="159" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-componente-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- Codigo : string&lt;br&gt;- Descripcion : string&lt;br&gt;- Activo : bool&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="catalogo-componente">
+          <mxGeometry x="0" y="42" width="400" height="117" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-grupo" value="GrupoSanguineo" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="2400" y="300" width="400" height="159" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-grupo-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- Codigo : string&lt;br&gt;- Descripcion : string&lt;br&gt;- Activo : bool&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="catalogo-grupo">
+          <mxGeometry x="0" y="42" width="400" height="117" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-rh" value="FactorRh" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="2400" y="530" width="400" height="159" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-rh-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- Codigo : string&lt;br&gt;- Descripcion : string&lt;br&gt;- Activo : bool&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="catalogo-rh">
+          <mxGeometry x="0" y="42" width="400" height="117" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-estado" value="EstadoUnidad" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="2400" y="760" width="400" height="113" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-estado-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Codigo : string&lt;br&gt;- Descripcion : string&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="catalogo-estado">
+          <mxGeometry x="0" y="42" width="400" height="71" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-destino" value="DestinoEntrega" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="2400" y="990" width="400" height="182" as="geometry" />
+        </mxCell>
+        <mxCell id="catalogo-destino-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- Codigo : string&lt;br&gt;- Descripcion : string&lt;br&gt;- Activo : bool&lt;br&gt;- MotivoObligatorio : bool&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="catalogo-destino">
+          <mxGeometry x="0" y="42" width="400" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="solicitud-catalogo-componente" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;dashed=1;dashPattern=6 4;exitX=0.18;exitY=1;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="solicitud" target="catalogo-componente">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="610" />
+              <mxPoint x="2290" y="610" />
+              <mxPoint x="2290" y="142" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="solicitud-catalogo-grupo" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;dashed=1;dashPattern=6 4;exitX=0.38;exitY=1;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="solicitud" target="catalogo-grupo">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="632" />
+              <mxPoint x="2315" y="632" />
+              <mxPoint x="2315" y="372" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="solicitud-catalogo-rh" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;dashed=1;dashPattern=6 4;exitX=0.5800000000000001;exitY=1;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="solicitud" target="catalogo-rh">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="850" y="654" />
+              <mxPoint x="2340" y="654" />
+              <mxPoint x="2340" y="602" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-catalogo-componente" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;dashed=1;dashPattern=6 4;exitX=1;exitY=0.15;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="unidad" target="catalogo-componente">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2268" y="142" />
+              <mxPoint x="2268" y="142" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-catalogo-grupo" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;dashed=1;dashPattern=6 4;exitX=1;exitY=0.35;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="unidad" target="catalogo-grupo">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2288" y="239" />
+              <mxPoint x="2288" y="372" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-catalogo-rh" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;dashed=1;dashPattern=6 4;exitX=1;exitY=0.58;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="unidad" target="catalogo-rh">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2308" y="350" />
+              <mxPoint x="2308" y="602" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-catalogo-estado" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;dashed=1;dashPattern=6 4;exitX=1;exitY=0.8;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="unidad" target="catalogo-estado">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2328" y="457" />
+              <mxPoint x="2328" y="812" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="entrega-catalogo-destino" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=open;endFill=0;strokeColor=#555555;strokeWidth=1.5;dashed=1;dashPattern=6 4;exitX=1;exitY=0.88;entryX=0;entryY=0.5;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="entrega" target="catalogo-destino">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1700" y="1085" />
+              <mxPoint x="1700" y="1190" />
+              <mxPoint x="2375" y="1190" />
+              <mxPoint x="2375" y="1073" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
 </mxfile>
