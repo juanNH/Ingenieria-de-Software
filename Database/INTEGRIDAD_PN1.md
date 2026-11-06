@@ -144,9 +144,10 @@ concurrencia; hay que medirlo antes de usarla con volúmenes grandes.
 
 - Se verifica al abrir la sesión, abrir/actualizar pantallas PN1 y antes de
   escribir. No es un monitor continuo de modificaciones hechas fuera de la app.
-- Una barra persistente muestra la última verificación; **Verificar / actualizar**
-  permite comprobar nuevamente en cualquier momento, incluso después de una
-  reparación realizada por otra sesión.
+- El menú principal muestra **Integridad** a quienes tienen permiso de consulta.
+  Si se detecta una inconsistencia al iniciar sesión, esa pantalla se abre
+  automáticamente para quien tiene acceso. **Verificar / actualizar** vuelve a
+  comprobar la base, incluso después de una reparación realizada en otra sesión.
 - Una inconsistencia o la imposibilidad de verificar bloquea las escrituras de
   todo PN1 y marca el campo de bloqueo de los usuarios no administradores.
   Esos usuarios no pueden iniciar sesión mientras el estado sea inválido;

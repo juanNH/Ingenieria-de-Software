@@ -12,6 +12,7 @@ namespace UI
     {
         private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
         private readonly UsuarioApplicationService_380_jh _usuarioService_380_jh;
+        private ToolStripMenuItem _integridadToolStripMenuItem_380_jh;
         private ToolStripMenuItem _pn1ToolStripMenuItem_380_jh;
         private ToolStripMenuItem _maestrosToolStripMenuItem_380_jh;
         private ToolStripMenuItem _pn2ToolStripMenuItem_380_jh;
@@ -52,9 +53,9 @@ namespace UI
             ActualizarUsuario_380_jh();
 
             ConfigurarMenuPorPermisos_380_jh();
-            new IntegridadApplicationService_380_jh().Verificar_380_jh();
+            InformeIntegridad_380_jh integridad = new IntegridadApplicationService_380_jh().Verificar_380_jh();
             MostrarPantallaInicial_380_jh();
-            if (new ComprobanteAutomaticoApplicationService_380_jh().Disponible_380_jh())
+            if (integridad.EsValida_380_jh && new ComprobanteAutomaticoApplicationService_380_jh().Disponible_380_jh())
                 ComprobantePdfUI_380_jh.ProcesarPendientes_380_jh(this, false);
         }
 
@@ -77,6 +78,7 @@ namespace UI
         {
             bitacoraToolStripMenuItem_380_jh.Tag = "MENU_AUDIT";
             auditoriaCambiosToolStripMenuItem_380_jh.Tag = "MENU_CHANGE_AUDIT";
+            _integridadToolStripMenuItem_380_jh.Tag = "MENU_INTEGRITY";
             usuariosToolStripMenuItem_380_jh.Tag = "MENU_USERS";
             rolesToolStripMenuItem_380_jh.Tag = "MENU_ROLES";
             idiomasToolStripMenuItem_380_jh.Tag = "MENU_LANGUAGES";
@@ -99,6 +101,21 @@ namespace UI
 
         private void ConfigurarMenuNegocio_380_jh()
         {
+            _integridadToolStripMenuItem_380_jh = new ToolStripMenuItem
+            {
+                Name = "integridadToolStripMenuItem",
+                Font = new Font("Segoe UI", 10F),
+                ForeColor = Color.White,
+                Visible = false
+            };
+            _integridadToolStripMenuItem_380_jh.Click += delegate
+            {
+                if (ValidarPermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh))
+                    MostrarIntegridad_380_jh();
+            };
+            int posicionAuditoria = menuStrip1_380_jh.Items.IndexOf(auditoriaCambiosToolStripMenuItem_380_jh);
+            menuStrip1_380_jh.Items.Insert(posicionAuditoria + 1, _integridadToolStripMenuItem_380_jh);
+
             _maestrosToolStripMenuItem_380_jh = new ToolStripMenuItem
             {
                 Name = "maestrosToolStripMenuItem", Font = new Font("Segoe UI", 10F), ForeColor = Color.White
@@ -362,6 +379,7 @@ namespace UI
         {
             bitacoraToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.BitacoraVer_380_jh);
             auditoriaCambiosToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.AuditoriaCambiosVer_380_jh);
+            _integridadToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh);
             usuariosToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UsuarioVer_380_jh);
             rolesToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.RolVer_380_jh);
             idiomasToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.IdiomaVer_380_jh) ||
@@ -414,12 +432,17 @@ namespace UI
                    _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadDescartar_380_jh);
         }
 
+        private void MostrarIntegridad_380_jh()
+        {
+            ShowScreen_380_jh(new IntegridadView_380_jh(MostrarPantallaInicial_380_jh));
+        }
+
         private void MostrarPantallaInicial_380_jh()
         {
             if (!IntegridadApplicationService_380_jh.Estado_380_jh.EsValida_380_jh &&
                 _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh))
             {
-                ShowScreen_380_jh(new IntegridadView_380_jh(MostrarPantallaInicial_380_jh));
+                MostrarIntegridad_380_jh();
                 return;
             }
 
@@ -494,6 +517,11 @@ namespace UI
             if (_reportesToolStripMenuItem_380_jh.Available)
             {
                 ShowScreen_380_jh(new ReportesView_380_jh());
+                return;
+            }
+            if (_integridadToolStripMenuItem_380_jh.Available)
+            {
+                MostrarIntegridad_380_jh();
                 return;
             }
 
