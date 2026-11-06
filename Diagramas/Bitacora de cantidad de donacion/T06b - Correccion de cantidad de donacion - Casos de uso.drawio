@@ -1,0 +1,87 @@
+<mxfile host="Electron">
+  <diagram name="PN1 - Casos de uso" id="pn1-casos-de-uso-restauracion">
+    <mxGraphModel dx="2027" dy="990" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1050" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=22;align=center;verticalAlign=middle;fontFamily=Arial;" value="PN1 - Diagrama de casos de uso: Registro y liberación de unidades" vertex="1">
+          <mxGeometry height="42" width="1260" x="320" y="28" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;align=center;verticalAlign=middle;fontColor=#666666;fontFamily=Arial;" value="Cobertura funcional de RFN1 y restauración de la cantidad declarada" vertex="1">
+          <mxGeometry height="28" width="900" x="500" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="limite" parent="1" style="swimlane;horizontal=1;startSize=42;whiteSpace=wrap;html=1;rounded=0;fillColor=none;swimlaneFillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;fontStyle=1;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="HemovidaGest - PN1" vertex="1">
+          <mxGeometry height="860" width="1180" x="525" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="uc08" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDUN-01&lt;/b&gt;&lt;br&gt;Registrar donante" vertex="1">
+          <mxGeometry height="105" width="300" x="800" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="uc09" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDUN-02&lt;/b&gt;&lt;br&gt;Registrar donación" vertex="1">
+          <mxGeometry height="125" width="330" x="785" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="uc10" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDUN-03&lt;/b&gt;&lt;br&gt;Clasificar unidad" vertex="1">
+          <mxGeometry height="105" width="300" x="800" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="uc11" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDUN-04&lt;/b&gt;&lt;br&gt;Definir estado operativo&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;Punto de extensión&lt;br&gt;Antes de confirmar el estado operativo&lt;/span&gt;" vertex="1">
+          <mxGeometry height="125" width="330" x="785" y="695" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-donante" parent="1" style="shape=umlActor;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="80" width="40" x="120" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="label-donante" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=top;whiteSpace=wrap;" value="&lt;b&gt;Donante&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="230" x="25" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-extraccion" parent="1" style="shape=umlActor;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="80" width="40" x="285" y="245" as="geometry" />
+        </mxCell>
+        <mxCell id="label-extraccion" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=top;whiteSpace=wrap;" value="&lt;b&gt;Personal de extracción&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="260" x="175" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-operador" parent="1" style="shape=umlActor;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="80" width="40" x="285" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="label-operador" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=top;whiteSpace=wrap;" value="&lt;b&gt;Operador autorizado&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="260" x="175" y="635" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-responsable" parent="1" style="shape=umlActor;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="80" width="40" x="280" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="label-responsable" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=top;whiteSpace=wrap;" value="&lt;b&gt;Responsable autorizado&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="280" x="160" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="a-donante-09" edge="1" parent="1" source="actor-donante" style="rounded=0;html=1;endArrow=classicThin;strokeColor=#d79b00;strokeWidth=1.5;exitX=0.5;exitY=0.5;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitDx=0;exitDy=0;exitPerimeter=0;endFill=1;" target="actor-extraccion" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a-extraccion-08" edge="1" parent="1" source="actor-extraccion" style="rounded=0;html=1;endArrow=none;strokeColor=#d6b656;strokeWidth=1.5;" target="uc08" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a-extraccion-09" edge="1" parent="1" source="actor-extraccion" style="rounded=0;html=1;endArrow=none;strokeColor=#d6b656;strokeWidth=1.5;" target="uc09" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a-operador-10" edge="1" parent="1" source="actor-operador" style="rounded=0;html=1;endArrow=openThin;strokeColor=#82b366;strokeWidth=1.5;endFill=0;" target="uc10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a-responsable-11" edge="1" parent="1" source="actor-responsable" style="rounded=0;html=1;endArrow=openThin;strokeColor=#9673a6;strokeWidth=1.5;endFill=0;" target="uc11" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uc-restaurar-cantidad" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDUN&lt;/b&gt;&lt;br&gt;Restaurar cantidad declarada" vertex="1">
+          <mxGeometry height="105" width="260" x="1390" y="695" as="geometry" />
+        </mxCell>
+        <mxCell id="uc-comprobante" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=14;" value="&lt;b&gt;CDUN-05&lt;/b&gt;&lt;br&gt;Emitir comprobante de donación" vertex="1">
+          <mxGeometry height="105" width="260" x="1390" y="845" as="geometry" />
+        </mxCell>
+        <mxCell id="asoc-comprobante" edge="1" parent="1" source="uc-comprobante" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;fontSize=12;strokeColor=#666666;exitX=0;exitY=0.5;entryX=1;entryY=0.73;labelBackgroundColor=#f5f5f5;" target="uc11" value="«extend»">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1270" y="898" />
+              <mxPoint x="1270" y="786" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="asoc-restaurar-cantidad" edge="1" parent="1" source="uc-restaurar-cantidad" style="rounded=0;html=1;endArrow=open;endFill=0;dashed=1;fontSize=12;fontFamily=Arial;strokeColor=#666666;exitX=0;exitY=0.5;entryX=1;entryY=0.42;labelBackgroundColor=#f5f5f5;" target="uc11" value="«extend»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

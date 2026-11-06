@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="Electron" agent="Codex" version="24.7.17" type="device">
+  <diagram id="pn1-cdun-restaurar-cantidad-secuencia" name="Restaurar cantidad declarada">
+    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2085" pageHeight="1205" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sequence-title" value="CDUN — Secuencia: Restaurar cantidad declarada" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;align=center;verticalAlign=middle;strokeColor=none;fontSize=30;fontStyle=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="48" y="18" width="1989" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="extension-frame" value="opt [Antes de confirmar el estado operativo, con edición habilitada y permisos de consulta y edición]" style="swimlane;startSize=29;horizontal=1;html=1;rounded=0;fillColor=none;swimlaneFillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=14;fontStyle=1;align=left;spacingLeft=9;" vertex="1" parent="1">
+          <mxGeometry x="47" y="184" width="1991" height="955" as="geometry" />
+        </mxCell>
+        <mxCell id="actor" value="" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=60;fontColor=#333333;fontFamily=Arial;fontSize=14;fontStyle=1;fillColor=#ffe6cc;strokeColor=#d79b00;participant=seqActorStick;" vertex="1" parent="1">
+          <mxGeometry x="33.5" y="92" width="225" height="1078" as="geometry" />
+        </mxCell>
+        <mxCell id="ui" value="UI.&lt;br/&gt;UnidadesView_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=72;fontColor=#333333;fontFamily=Arial;fontSize=14;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="327.5" y="92" width="225" height="1078" as="geometry" />
+        </mxCell>
+        <mxCell id="app" value="Application.&lt;br/&gt;DonacionApplicationService&lt;br/&gt;_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=72;fontColor=#333333;fontFamily=Arial;fontSize=14;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="621.5" y="92" width="225" height="1078" as="geometry" />
+        </mxCell>
+        <mxCell id="repo" value="Repository.&lt;br/&gt;DonacionRepository_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=72;fontColor=#333333;fontFamily=Arial;fontSize=14;fontStyle=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="915.5" y="92" width="225" height="1078" as="geometry" />
+        </mxCell>
+        <mxCell id="dal" value="DAL.&lt;br/&gt;DonacionDataMapper_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=72;fontColor=#333333;fontFamily=Arial;fontSize=14;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="1209.5" y="92" width="225" height="1078" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="DAL.&lt;br/&gt;DatabaseContext_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=72;fontColor=#333333;fontFamily=Arial;fontSize=14;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="1503.5" y="92" width="225" height="1078" as="geometry" />
+        </mxCell>
+        <mxCell id="sql" value="SQL Server" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=72;fontColor=#333333;fontFamily=Arial;fontSize=14;fontStyle=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1797.5" y="92" width="225" height="1078" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-name" value="Responsable&lt;br/&gt;autorizado" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;align=center;verticalAlign=middle;strokeColor=none;fontSize=13;fontStyle=1;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="76" y="152" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="message-1" value="Elige Restaurar cantidad" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;exitX=0.5;exitY=0.1437848;exitPerimeter=0;entryX=0.5;entryY=0.1437848;entryPerimeter=0;" edge="1" parent="1" source="actor" target="ui">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-2" value="ConsultarHistorialCantidad_380_jh&lt;br/&gt;(idDonacion)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;exitX=0.5;exitY=0.1808905;exitPerimeter=0;entryX=0.5;entryY=0.1808905;entryPerimeter=0;" edge="1" parent="1" source="ui" target="app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-3" value="ConsultarHistorialCantidad_380_jh&lt;br/&gt;(idDonacion)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;exitX=0.5;exitY=0.2170686;exitPerimeter=0;entryX=0.5;entryY=0.2170686;entryPerimeter=0;" edge="1" parent="1" source="app" target="repo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-4" value="ConsultarHistorialCantidad_380_jh&lt;br/&gt;(idDonacion)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;exitX=0.5;exitY=0.2532468;exitPerimeter=0;entryX=0.5;entryY=0.2532468;entryPerimeter=0;" edge="1" parent="1" source="repo" target="dal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-5" value="Leer_380_jh(procedimiento, parametros)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;exitX=0.5;exitY=0.2894249;exitPerimeter=0;entryX=0.5;entryY=0.2894249;entryPerimeter=0;" edge="1" parent="1" source="dal" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-6" value="sp_Donacion_ConsultarHistorialCantidad&lt;br/&gt;(idDonacion)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;exitX=0.5;exitY=0.3302412;exitPerimeter=0;entryX=0.5;entryY=0.3302412;entryPerimeter=0;" edge="1" parent="1" source="db" target="sql">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-7" value="Historial y datos de la donación" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;exitX=0.5;exitY=0.3673469;exitPerimeter=0;entryX=0.5;entryY=0.3673469;entryPerimeter=0;" edge="1" parent="1" source="sql" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-8" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;exitX=0.5;exitY=0.3988868;exitPerimeter=0;entryX=0.5;entryY=0.3988868;entryPerimeter=0;" edge="1" parent="1" source="db" target="dal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-9" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;exitX=0.5;exitY=0.4304267;exitPerimeter=0;entryX=0.5;entryY=0.4304267;entryPerimeter=0;" edge="1" parent="1" source="dal" target="repo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-10" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;exitX=0.5;exitY=0.4619666;exitPerimeter=0;entryX=0.5;entryY=0.4619666;entryPerimeter=0;" edge="1" parent="1" source="repo" target="app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-11" value="Historial, cantidad vigente&lt;br/&gt;y unidades anulables" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;exitX=0.5;exitY=0.4935065;exitPerimeter=0;entryX=0.5;entryY=0.4935065;entryPerimeter=0;" edge="1" parent="1" source="app" target="ui">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-12" value="Muestra versiones y unidades anulables" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;exitX=0.5;exitY=0.5250464;exitPerimeter=0;entryX=0.5;entryY=0.5250464;entryPerimeter=0;" edge="1" parent="1" source="ui" target="actor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-13" value="Confirma versión y motivo&lt;br/&gt;y selecciona el excedente si corresponde" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;exitX=0.5;exitY=0.5751391;exitPerimeter=0;entryX=0.5;entryY=0.5751391;entryPerimeter=0;" edge="1" parent="1" source="actor" target="ui">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-14" value="RestaurarCantidad_380_jh(solicitud)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;exitX=0.5;exitY=0.6131725;exitPerimeter=0;entryX=0.5;entryY=0.6131725;entryPerimeter=0;" edge="1" parent="1" source="ui" target="app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-15" value="SolicitarCorreccionCantidad_380_jh&lt;br/&gt;(solicitud, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;exitX=0.5;exitY=0.6539889;exitPerimeter=0;entryX=0.5;entryY=0.6539889;entryPerimeter=0;" edge="1" parent="1" source="app" target="repo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-16" value="SolicitarCorreccionCantidad_380_jh&lt;br/&gt;(solicitud, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;exitX=0.5;exitY=0.6948052;exitPerimeter=0;entryX=0.5;entryY=0.6948052;entryPerimeter=0;" edge="1" parent="1" source="repo" target="dal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-17" value="Leer_380_jh(procedimiento, parametros)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;exitX=0.5;exitY=0.7309833;exitPerimeter=0;entryX=0.5;entryY=0.7309833;entryPerimeter=0;" edge="1" parent="1" source="dal" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-18" value="sp_Donacion_SolicitarCorreccionCantidad&lt;br/&gt;(solicitud, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;exitX=0.5;exitY=0.7727273;exitPerimeter=0;entryX=0.5;entryY=0.7727273;entryPerimeter=0;" edge="1" parent="1" source="db" target="sql">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-25" value="Nueva versión o rechazo" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;exitX=0.5;exitY=0.8116883;exitPerimeter=0;entryX=0.5;entryY=0.8116883;entryPerimeter=0;" edge="1" parent="1" source="sql" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-26" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;exitX=0.5;exitY=0.8404453;exitPerimeter=0;entryX=0.5;entryY=0.8404453;entryPerimeter=0;" edge="1" parent="1" source="db" target="dal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-27" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;exitX=0.5;exitY=0.8692022;exitPerimeter=0;entryX=0.5;entryY=0.8692022;entryPerimeter=0;" edge="1" parent="1" source="dal" target="repo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-28" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;exitX=0.5;exitY=0.8979592;exitPerimeter=0;entryX=0.5;entryY=0.8979592;entryPerimeter=0;" edge="1" parent="1" source="repo" target="app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-29" value="Resultado de la restauración" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;exitX=0.5;exitY=0.9267161;exitPerimeter=0;entryX=0.5;entryY=0.9267161;entryPerimeter=0;" edge="1" parent="1" source="app" target="ui">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="message-30" value="Muestra nueva cantidad o rechazo" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=14;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;exitX=0.5;exitY=0.9554731;exitPerimeter=0;entryX=0.5;entryY=0.9554731;entryPerimeter=0;" edge="1" parent="1" source="ui" target="actor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
