@@ -6,3 +6,5 @@ obj/
 .vs/
 DAL/App.local.config
 /tmp/
+/output/
+*.drawio.bkp

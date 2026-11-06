@@ -1,7 +1,10 @@
 ﻿param(
     [Parameter(Mandatory = $true, ParameterSetName = 'Instalar')] [string]$Servidor,
     [Parameter(Mandatory = $true, ParameterSetName = 'Instalar')] [string]$Configuracion,
-    [Parameter(Mandatory = $true, ParameterSetName = 'Detectar')] [switch]$DetectarInstancias
+    [Parameter(ParameterSetName = 'Instalar')] [switch]$PrepararLocalDB,
+    [Parameter(ParameterSetName = 'Instalar')] [switch]$DatosPrueba,
+    [Parameter(Mandatory = $true, ParameterSetName = 'Detectar')] [switch]$DetectarInstancias,
+    [Parameter(Mandatory = $true, ParameterSetName = 'VerificarLocalDB')] [switch]$VerificarLocalDB
 )
 
 $ErrorActionPreference = 'Stop'
@@ -14,6 +17,85 @@ if ($DetectarInstancias) {
         } |
         Sort-Object
     return
+}
+
+function Get-LocalDB {
+    if (![Environment]::Is64BitOperatingSystem) { return }
+
+    # Consultar la vista nativa aunque el instalador ejecute PowerShell de 32 bits.
+    $registro = [Microsoft.Win32.RegistryKey]::OpenBaseKey(
+        [Microsoft.Win32.RegistryHive]::LocalMachine, [Microsoft.Win32.RegistryView]::Registry64
+    )
+    try {
+        $instaladas = $registro.OpenSubKey('SOFTWARE\Microsoft\Microsoft SQL Server Local DB\Installed Versions')
+        if (!$instaladas) { return }
+        try {
+            $versiones = $instaladas.GetSubKeyNames() |
+                Where-Object { $_ -match '^\d+\.\d+$' -and ([version]$_).Major -ge 15 } |
+                Sort-Object { [version]$_ } -Descending
+
+            foreach ($version in $versiones) {
+                $clave = $instaladas.OpenSubKey($version)
+                if (!$clave) { continue }
+                try {
+                    $api = $clave.GetValue('InstanceAPIPath')
+                } finally {
+                    $clave.Dispose()
+                }
+                if (!$api -or !(Test-Path -LiteralPath $api -PathType Leaf)) { continue }
+
+                $bin = Split-Path -Parent $api
+                $motor = Split-Path -Parent (Split-Path -Parent $bin)
+                $utilidad = Join-Path $motor 'Tools\Binn\SqlLocalDB.exe'
+                if (Test-Path -LiteralPath $utilidad -PathType Leaf) {
+                    return [pscustomobject]@{ Ruta = $utilidad; Version = $version }
+                }
+            }
+
+            if ($versiones) {
+                throw 'LocalDB figura instalado, pero no se encontraron los archivos necesarios para iniciarlo.'
+            }
+        } finally {
+            $instaladas.Dispose()
+        }
+    } finally {
+        $registro.Dispose()
+    }
+}
+
+function Invoke-LocalDB([string]$Ruta, [string]$Argumentos) {
+    $proceso = New-Object System.Diagnostics.Process
+    try {
+        $proceso.StartInfo.FileName = $Ruta
+        $proceso.StartInfo.Arguments = $Argumentos
+        $proceso.StartInfo.UseShellExecute = $false
+        $proceso.StartInfo.CreateNoWindow = $true
+        $proceso.StartInfo.RedirectStandardOutput = $true
+        $proceso.StartInfo.RedirectStandardError = $true
+        [void]$proceso.Start()
+        $salida = $proceso.StandardOutput.ReadToEndAsync()
+        $errorNativo = $proceso.StandardError.ReadToEndAsync()
+        $proceso.WaitForExit()
+        if ($proceso.ExitCode -ne 0) {
+            $detalle = ($salida.Result + ' ' + $errorNativo.Result).Trim()
+            throw "SqlLocalDB $Argumentos devolvió el código $($proceso.ExitCode). $detalle"
+        }
+        return $salida.Result
+    } finally {
+        $proceso.Dispose()
+    }
+}
+
+if ($VerificarLocalDB) {
+    try {
+        $localDB = Get-LocalDB
+        if (!$localDB) { exit 2 }
+        [void](Invoke-LocalDB $localDB.Ruta 'versions')
+        exit 0
+    } catch {
+        [Console]::Error.WriteLine($_.Exception.GetBaseException().Message)
+        exit 1
+    }
 }
 
 $scripts = @(
@@ -31,6 +113,9 @@ $scripts = @(
     '10_IntegridadPN2.sql',
     '11_ComprobantesAutomaticos.sql'
 )
+if ($DatosPrueba) {
+    $scripts += 'DatosPrueba.sql'
+}
 
 function Invoke-SqlBatch($Conexion, $Transaccion, [string]$Sql) {
     $comando = $Conexion.CreateCommand()
@@ -80,14 +165,53 @@ try {
     }
     $lotes[$scripts[0]] = $esquema[2..($esquema.Count - 1)]
 
+    if ($PrepararLocalDB) {
+        $etapa = 'Preparar la instancia local de HemovidaGest'
+        if ($Servidor.Trim() -notmatch '^\(localdb\)\\([a-z0-9_]{1,128})$') {
+            throw 'Indicá una instancia LocalDB con un nombre formado por letras, números o guiones bajos.'
+        }
+        $instancia = $Matches[1]
+        $localDB = Get-LocalDB
+        if (!$localDB) { throw 'No se encontró SQL Server Express LocalDB 2019 o posterior.' }
+
+        $instancias = (Invoke-LocalDB $localDB.Ruta 'info') -split '\r?\n'
+        if (($instancias | ForEach-Object { $_.Trim() }) -notcontains $instancia) {
+            [void](Invoke-LocalDB $localDB.Ruta ('create "{0}" {1}' -f $instancia, $localDB.Version))
+        }
+        [void](Invoke-LocalDB $localDB.Ruta ('start "{0}"' -f $instancia))
+    }
+
     $etapa = 'Conectar con la instancia de SQL Server'
     $master.Open()
-    $etapa = 'Crear HemovidaGest'
-    Invoke-SqlBatch $master $null @'
+    $crearBase = @'
 IF DB_ID(N'HemovidaGest') IS NOT NULL
     THROW 51000, 'HemovidaGest ya existe en esta instancia. Elegí una instancia de prueba o usá la migración correspondiente.', 1;
-CREATE DATABASE [HemovidaGest];
 '@
+    if ($PrepararLocalDB) {
+        $comando = $master.CreateCommand()
+        try {
+            $comando.CommandText = "SELECT SERVERPROPERTY('ProductMajorVersion');"
+            if ([int]$comando.ExecuteScalar() -lt 15) {
+                throw "La instancia $Servidor usa una versión anterior a LocalDB 2019."
+            }
+            # El directorio predeterminado de LocalDB puede compartirse entre instancias del mismo usuario.
+            $comando.CommandText = 'SELECT physical_name FROM sys.master_files WHERE database_id = 1 AND file_id = 1;'
+            $carpetaInstancia = Split-Path -Parent ([string]$comando.ExecuteScalar())
+            $datos = (Join-Path $carpetaInstancia 'HemovidaGest.mdf').Replace("'", "''")
+            $log = (Join-Path $carpetaInstancia 'HemovidaGest_log.ldf').Replace("'", "''")
+            $crearBase += [Environment]::NewLine + @"
+CREATE DATABASE [HemovidaGest]
+ON (NAME = N'HemovidaGest', FILENAME = N'$datos')
+LOG ON (NAME = N'HemovidaGest_log', FILENAME = N'$log');
+"@
+        } finally {
+            $comando.Dispose()
+        }
+    } else {
+        $crearBase += [Environment]::NewLine + 'CREATE DATABASE [HemovidaGest];'
+    }
+    $etapa = 'Crear HemovidaGest'
+    Invoke-SqlBatch $master $null $crearBase
     $baseCreada = $true
     $base.Open()
     $transaccion = $base.BeginTransaction()

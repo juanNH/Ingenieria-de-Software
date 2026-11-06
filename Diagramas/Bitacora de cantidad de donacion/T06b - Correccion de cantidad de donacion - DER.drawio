@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="app.diagrams.net" type="device" compressed="false">
+  <diagram id="pn1-cantidad-der" name="Corregir cantidad declarada">
+    <mxGraphModel dx="1190" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1190" pageHeight="844" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titulo" value="DER · Corregir cantidad declarada" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontStyle=1;fontSize=26;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="52" y="24" width="1083" height="37" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitulo" value="PN1 · Diseño propuesto" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;fontColor=#526070;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="52" y="66" width="1083" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="donacion" value="" style="rounded=0;fillColor=#FFFFFF;strokeColor=#566273;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="52" y="124" width="280" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="donacion-nombre" value="Donacion" style="rounded=0;fillColor=#EDF1F5;strokeColor=#566273;strokeWidth=1;html=1;align=left;spacingLeft=11;fontSize=15;fontStyle=1;fontFamily=Arial;fontColor=#172232;" vertex="1" parent="donacion" connectable="0">
+          <mxGeometry x="0" y="0" width="280" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="donacion-clave-0" value="PK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="donacion" connectable="0">
+          <mxGeometry x="11" y="38" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="donacion-campo-0" value="id_donacion" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="donacion" connectable="0">
+          <mxGeometry x="57" y="38" width="211" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="donacion-campo-1" value="cantidad_unidades" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="donacion" connectable="0">
+          <mxGeometry x="57" y="61" width="211" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad" value="" style="rounded=0;fillColor=#FFFFFF;strokeColor=#566273;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="52" y="400" width="280" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-nombre" value="Unidad" style="rounded=0;fillColor=#EDF1F5;strokeColor=#566273;strokeWidth=1;html=1;align=left;spacingLeft=11;fontSize=15;fontStyle=1;fontFamily=Arial;fontColor=#172232;" vertex="1" parent="unidad" connectable="0">
+          <mxGeometry x="0" y="0" width="280" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-clave-0" value="PK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="unidad" connectable="0">
+          <mxGeometry x="11" y="38" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-campo-0" value="id_unidad" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="unidad" connectable="0">
+          <mxGeometry x="57" y="38" width="211" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-clave-1" value="FK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="unidad" connectable="0">
+          <mxGeometry x="11" y="61" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-campo-1" value="id_donacion" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="unidad" connectable="0">
+          <mxGeometry x="57" y="61" width="211" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-campo-2" value="codigo_identificacion" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="unidad" connectable="0">
+          <mxGeometry x="57" y="84" width="211" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-campo-3" value="estado_operativo" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="unidad" connectable="0">
+          <mxGeometry x="57" y="107" width="211" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="movimiento" value="" style="rounded=0;fillColor=#FFFFFF;strokeColor=#566273;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="52" y="670" width="280" height="111" as="geometry" />
+        </mxCell>
+        <mxCell id="movimiento-nombre" value="MovimientoUnidad" style="rounded=0;fillColor=#EDF1F5;strokeColor=#566273;strokeWidth=1;html=1;align=left;spacingLeft=11;fontSize=15;fontStyle=1;fontFamily=Arial;fontColor=#172232;" vertex="1" parent="movimiento" connectable="0">
+          <mxGeometry x="0" y="0" width="280" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="movimiento-clave-0" value="PK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="movimiento" connectable="0">
+          <mxGeometry x="11" y="38" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="movimiento-campo-0" value="id_movimiento_unidad" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="movimiento" connectable="0">
+          <mxGeometry x="57" y="38" width="211" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="movimiento-clave-1" value="FK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="movimiento" connectable="0">
+          <mxGeometry x="11" y="61" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="movimiento-campo-1" value="id_unidad" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="movimiento" connectable="0">
+          <mxGeometry x="57" y="61" width="211" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="movimiento-campo-2" value="tipo_movimiento" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="movimiento" connectable="0">
+          <mxGeometry x="57" y="84" width="211" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="version" value="" style="rounded=0;fillColor=#FFFFFF;strokeColor=#566273;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="781" y="124" width="354" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="version-nombre" value="DonacionCantidadCopia" style="rounded=0;fillColor=#EDF1F5;strokeColor=#566273;strokeWidth=1;html=1;align=left;spacingLeft=11;fontSize=15;fontStyle=1;fontFamily=Arial;fontColor=#172232;" vertex="1" parent="version" connectable="0">
+          <mxGeometry x="0" y="0" width="354" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="version-clave-0" value="PK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="version" connectable="0">
+          <mxGeometry x="11" y="38" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="version-campo-0" value="id_version" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="version" connectable="0">
+          <mxGeometry x="57" y="38" width="285" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="version-clave-1" value="FK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="version" connectable="0">
+          <mxGeometry x="11" y="61" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="version-campo-1" value="id_donacion" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="version" connectable="0">
+          <mxGeometry x="57" y="61" width="285" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="version-clave-2" value="FK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="version" connectable="0">
+          <mxGeometry x="11" y="84" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="version-campo-2" value="id_correccion (opcional)" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="version" connectable="0">
+          <mxGeometry x="57" y="84" width="285" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="version-campo-3" value="cantidad_unidades" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="version" connectable="0">
+          <mxGeometry x="57" y="107" width="285" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="version-clave-usuario" value="FK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="version" connectable="0">
+          <mxGeometry x="11" y="130" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="version-campo-usuario" value="id_usuario" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="version" connectable="0">
+          <mxGeometry x="57" y="130" width="285" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="version-campo-fecha" value="fecha" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="version" connectable="0">
+          <mxGeometry x="57" y="153" width="285" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="correccion" value="" style="rounded=0;fillColor=#FFFFFF;strokeColor=#566273;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="781" y="400" width="354" height="203" as="geometry" />
+        </mxCell>
+        <mxCell id="correccion-nombre" value="CorreccionCantidadDonacion" style="rounded=0;fillColor=#EDF1F5;strokeColor=#566273;strokeWidth=1;html=1;align=left;spacingLeft=11;fontSize=15;fontStyle=1;fontFamily=Arial;fontColor=#172232;" vertex="1" parent="correccion" connectable="0">
+          <mxGeometry x="0" y="0" width="354" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="correccion-clave-0" value="PK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="correccion" connectable="0">
+          <mxGeometry x="11" y="38" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="correccion-campo-0" value="id_correccion" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="correccion" connectable="0">
+          <mxGeometry x="57" y="38" width="285" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="correccion-clave-1" value="FK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="correccion" connectable="0">
+          <mxGeometry x="11" y="61" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="correccion-campo-1" value="id_donacion" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="correccion" connectable="0">
+          <mxGeometry x="57" y="61" width="285" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="correccion-clave-2" value="FK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="correccion" connectable="0">
+          <mxGeometry x="11" y="84" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="correccion-campo-2" value="id_version_esperada" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="correccion" connectable="0">
+          <mxGeometry x="57" y="84" width="285" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="correccion-clave-3" value="FK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="correccion" connectable="0">
+          <mxGeometry x="11" y="107" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="correccion-campo-3" value="id_version_origen (opcional)" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="correccion" connectable="0">
+          <mxGeometry x="57" y="107" width="285" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="correccion-campo-4" value="cantidad_objetivo" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="correccion" connectable="0">
+          <mxGeometry x="57" y="130" width="285" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="correccion-campo-5" value="accion" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="correccion" connectable="0">
+          <mxGeometry x="57" y="153" width="285" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="correccion-campo-6" value="motivo" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="correccion" connectable="0">
+          <mxGeometry x="57" y="176" width="285" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="detalle" value="" style="rounded=0;fillColor=#FFFFFF;strokeColor=#566273;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="423" y="670" width="283" height="111" as="geometry" />
+        </mxCell>
+        <mxCell id="detalle-nombre" value="CorreccionCantidadUnidad" style="rounded=0;fillColor=#EDF1F5;strokeColor=#566273;strokeWidth=1;html=1;align=left;spacingLeft=11;fontSize=15;fontStyle=1;fontFamily=Arial;fontColor=#172232;" vertex="1" parent="detalle" connectable="0">
+          <mxGeometry x="0" y="0" width="283" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="detalle-clave-0" value="PK/FK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="detalle" connectable="0">
+          <mxGeometry x="11" y="38" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="detalle-campo-0" value="id_correccion" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="detalle" connectable="0">
+          <mxGeometry x="57" y="38" width="214" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="detalle-clave-1" value="PK/FK" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=11;fontStyle=1;align=left;fontColor=#526070;" vertex="1" parent="detalle" connectable="0">
+          <mxGeometry x="11" y="61" width="46" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="detalle-campo-1" value="id_unidad" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="detalle" connectable="0">
+          <mxGeometry x="57" y="61" width="214" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="detalle-campo-2" value="accion" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;align=left;" vertex="1" parent="detalle" connectable="0">
+          <mxGeometry x="57" y="84" width="214" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="donacion-unidad" value="" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERone;endArrow=ERoneToMany;startFill=0;endFill=0;startSize=10;endSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="donacion" target="unidad">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="donacion-version" value="" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERone;endArrow=ERoneToMany;startFill=0;endFill=0;startSize=10;endSize=10;exitX=1;exitY=0.49;exitDx=0;exitDy=0;entryX=0;entryY=0.239;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="donacion" target="version">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="donacion-correccion" value="" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;startSize=10;endSize=10;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0;entryY=0.227;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="donacion" target="correccion">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="554" y="194" />
+              <mxPoint x="554" y="446" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-movimiento" value="" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERone;endArrow=ERoneToMany;startFill=0;endFill=0;startSize=10;endSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="unidad" target="movimiento">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="unidad-detalle" value="" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;startSize=10;endSize=10;exitX=1;exitY=0.64;exitDx=0;exitDy=0;entryX=0;entryY=0.645;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="unidad" target="detalle">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="372" y="486" />
+              <mxPoint x="372" y="742" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="correccion-detalle" value="" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERone;endArrow=ERoneToMany;startFill=0;endFill=0;startSize=10;endSize=10;exitX=0;exitY=0.65;exitDx=0;exitDy=0;entryX=1;entryY=0.645;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="correccion" target="detalle">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="743" y="532" />
+              <mxPoint x="743" y="742" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="correccion-version-esperada" value="Esperada" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERzeroToMany;endArrow=ERone;startFill=0;endFill=0;startSize=10;endSize=10;exitX=0.16;exitY=0;exitDx=0;exitDy=0;entryX=0.16;entryY=1;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="correccion" target="version">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="correccion-version-origen" value="Origen" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERzeroToMany;endArrow=ERzeroToOne;startFill=0;endFill=0;startSize=10;endSize=10;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="correccion" target="version">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="correccion-version-resultante" value="Resultante" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERzeroToOne;endArrow=ERone;startFill=0;endFill=0;startSize=10;endSize=10;exitX=0.84;exitY=0;exitDx=0;exitDy=0;entryX=0.84;entryY=1;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="correccion" target="version">
+          <mxGeometry relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

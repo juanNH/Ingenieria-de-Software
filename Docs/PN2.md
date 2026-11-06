@@ -8,13 +8,13 @@ PN2 continúa el trabajo de PN1: utiliza las unidades registradas, clasificadas 
 
 ## Referencias y alcance
 
-La fuente es [Trabajo de Diploma, versión 1.1.0](https://docs.google.com/document/d/1EUrkuuLmCq6YnOGA_lSNvpeQSwCAK-Xd34jLIo4du58/edit?tab=t.0): RFN2, glosario G03, roles G04 y reglas G05. La nomenclatura y la presentación toman como referencia PN1 y los CDUN-12 a CDUN-17 existentes.
+La descomposición funcional y las fichas de CDUN-06 a CDUN-11 están en RFN2 del [Trabajo de Diploma](https://docs.google.com/document/d/1EUrkuuLmCq6YnOGA_lSNvpeQSwCAK-Xd34jLIo4du58/edit?tab=t.0).
 
-El profesional presenta el pedido y los estudios. Un usuario habilitado para registrar solicitudes transcribe los datos; el operador autorizado valida el estudio y atiende la reserva. El solicitante identificado en el pedido y el usuario que lo carga son datos distintos. El documento fuente no fue modificado.
+El receptor presenta el pedido del profesional y el estudio al personal de registro. Un usuario habilitado transcribe los datos y el operador autorizado valida el estudio y atiende la reserva. El profesional identificado en el pedido y el usuario que lo carga son datos distintos.
 
 También se confirmaron entregas parciales, cancelación manual con motivo, devolución con reingreso explícito autorizado y reapertura del saldo cuando una entrega se devuelve o descarta. Estas decisiones están implementadas.
 
-Los diagramas de clases y la secuencia de clases quedan pendientes de la validación funcional. La secuencia de roles forma parte de los diagramas de negocio y está preparada junto con los demás diagramas de esta etapa. La futura bitácora de cambios será una entrega documental con DER, tabla copia, casos de uso y explicación de triggers. Esta implementación reutiliza los registros operativos y la protección de integridad existentes.
+La secuencia de roles describe el flujo de negocio. Las secuencias de clases muestran los pasos y alternativas de cada CDUN desde la UI hasta SQL Server. Los DER muestran las tablas y claves foráneas que intervienen en cada caso.
 
 ## Diagramas de negocio
 
@@ -25,9 +25,12 @@ Los diagramas de clases y la secuencia de clases quedan pendientes de la validac
 | Modelo conceptual | [Modelo conceptual](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaModeloConceptual.drawio) | Conceptos, datos y multiplicidades del negocio. |
 | Secuencia de roles | [Secuencia de roles](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaSecuenciaRoles.drawio) | Interacciones entre las personas y el sistema durante la atención. |
 | Entrada, Comportamiento y Salida | [E/C/S](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaEntradaComportamientoSalida.drawio) | Flujo operativo y E9/C11/S10 del comprobante automático al registrar destino. |
-| Casos de uso | [CDUN-12 a CDUN-17](../Diagramas/Casos%20de%20Uso/PN2%20-%20CDU-12%20a%20CDU-17%20-%20Casos%20de%20uso.drawio) | Actores y casos existentes; comprobante, cancelación y reingreso. |
+| Casos de uso | [CDUN-06 a CDUN-11](../Diagramas/Casos%20de%20Uso/PN2%20-%20CDUN-06%20a%20CDUN-11%20-%20Casos%20de%20uso.drawio) | Registro, validación, reserva, entrega, destino y comprobante. |
+| Clases | [CDUN-06 a CDUN-11](../Diagramas/Diagramas%20de%20clases/PN2%20-%20CDUN-06%20a%20CDUN-11%20-%20Clases.drawio) | Una página por caso. |
+| Secuencia de clases | [CDUN-06 a CDUN-11](../Diagramas/Diagramas%20de%20Secuencia/PN2%20-%20CDUN-06%20a%20CDUN-11%20-%20Secuencia.drawio) | Una página por caso con el flujo principal y las alternativas. |
+| DER | [Diagramas y exportaciones de SSMS](../Diagramas/Diagramas%20Entidad%20Relacion/LEEME.md) | Tablas y claves foráneas de cada caso. |
 
-Los CDUN conservan sus identificadores. No se agregaron diagramas de clases ni secuencias de clases.
+La carga posterior del estudio es una alternativa del CDUN-06 y la cancelación de una reserva activa pertenece al CDUN-08. El CDUN-11 extiende al CDUN-10 cuando se registra el destino correctamente.
 
 ## Roles y permisos
 

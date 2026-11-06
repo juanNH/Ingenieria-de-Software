@@ -132,15 +132,18 @@ internal static class IntegridadUITests
             {
                 pantalla.GetType().GetMethod("MainForm_Load_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(pantalla, new object[] { pantalla, EventArgs.Empty });
                 pantalla.PerformLayout();
-                Check(true, "Main form load without integrity status chrome");
                 var menu = (MenuStrip)pantalla.GetType().GetField("menuStrip1_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(pantalla);
-                bool integridadEnMenu = false;
-                foreach (ToolStripItem item in menu.Items)
-                    integridadEnMenu = integridadEnMenu || string.Equals(item.Tag as string, "MENU_INTEGRITY", StringComparison.Ordinal);
+                var integridadEnMenu = menu.Items["integridadToolStripMenuItem"];
+                Check(integridadEnMenu != null && integridadEnMenu.Available && string.Equals(integridadEnMenu.Tag as string, "MENU_INTEGRITY", StringComparison.Ordinal),
+                    "Administrator can access Integrity from the main navigation");
+                integridadEnMenu.PerformClick();
+                var panelContenido = (Panel)pantalla.GetType().GetField("contentPanel_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(pantalla);
+                Check(panelContenido.Controls.Count == 1 && panelContenido.Controls[0] is IntegridadView_380_jh,
+                    "Integrity menu opens the diagnostic screen when the database is valid");
                 bool barraEstadoVisible = false;
                 foreach (Control control in pantalla.Controls)
                     barraEstadoVisible = barraEstadoVisible || control is StatusStrip;
-                Check(!integridadEnMenu && !barraEstadoVisible, "Integrity tab and status strip are absent from main navigation");
+                Check(!barraEstadoVisible, "Main form does not add an integrity status strip");
             }
             using (var unidades = new UnidadesView_380_jh())
             {
@@ -170,6 +173,13 @@ internal static class IntegridadUITests
                 Check(boton.Enabled, "Verified recovery enables business screen");
             }
             Sesion_380_jh.ObtenerInstancia_380_jh().IniciarSesion_380_jh(new Usuario_380_jh { Id_380_jh = 2 });
+            using (var pantalla = new MainForm_380_jh())
+            {
+                pantalla.GetType().GetMethod("MainForm_Load_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(pantalla, new object[] { pantalla, EventArgs.Empty });
+                var menu = (MenuStrip)pantalla.GetType().GetField("menuStrip1_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(pantalla);
+                var integridadEnMenu = menu.Items["integridadToolStripMenuItem"];
+                Check(integridadEnMenu == null || !integridadEnMenu.Available, "Integrity menu is unavailable without view permission");
+            }
             Check(servicio.Recuperar_380_jh("", false) == "OPERATION_NOT_AUTHORIZED", "Application enforces recovery permissions");
             Check(new AuditoriaApplicationService_380_jh().ListarNegocio_380_jh("Donante").Count == 0, "Application protects PN1 audit history");
             // Missing migration must never produce a green report.

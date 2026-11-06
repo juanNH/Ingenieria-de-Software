@@ -1,21 +1,25 @@
 # Diagramas entidad-relación por caso de uso
 
-Los archivos editables `.drawio` corresponden a CDUN-01 a CDUN-11. Se construyeron a partir de los metadatos de la base `HemovidaGest` en SQL Server y de los procedimientos utilizados por la aplicación. Cada diagrama muestra las tablas de negocio que participan en ese caso; no es un esquema completo de la base.
+Los diagramas corresponden a CDUN-01 a CDUN-11 y se encuentran en la carpeta **Database Diagrams** de la base `HemovidaGest` de SQL Server. Cada uno muestra las tablas seleccionadas para ese caso; no es un esquema completo de la base.
+
+Los PNG con sufijo `- SSMS.png` son copias obtenidas del diseñador nativo de SQL Server Management Studio. Los diagramas se restauran mediante `Database/StoredProcedures/12_DiagramasSSMS.sql`; sus líneas corresponden a claves foráneas de SQL Server.
 
 | Caso | Procedimientos y funcionamiento relevantes |
 | --- | --- |
-| CDUN-01 | `sp_Donante_Registrar` |
+| CDUN-01 | `sp_Donante_Registrar` y vínculo con el usuario que da de alta al donante |
 | CDUN-02 | `sp_Donacion_Registrar` |
 | CDUN-03 | `sp_Unidad_Clasificar` |
 | CDUN-04 | `sp_Unidad_CambiarEstado` |
 | CDUN-05 | Movimiento de unidad, disparador `tr_MovimientoUnidad_Comprobante` y procedimientos de comprobantes |
-| CDUN-06 | `sp_SolicitudTransfusional_Registrar` |
+| CDUN-06 | `sp_SolicitudTransfusional_Registrar` y `sp_PN2_ActualizarEstudio`. Se consulta `Reserva` antes de completar o corregir el estudio. |
 | CDUN-07 | `sp_PN2_ValidarEstudio` |
-| CDUN-08 | `sp_PN2_UnidadesCandidatas` y `sp_Reserva_Registrar` |
-| CDUN-09 | `sp_Entrega_Registrar` |
-| CDUN-10 | `sp_Entrega_RegistrarDestino` |
-| CDUN-11 | Movimiento de unidad, disparador `tr_MovimientoUnidad_Comprobante` y procedimientos de comprobantes |
+| CDUN-08 | `sp_PN2_UnidadesCandidatas`, `sp_Reserva_Registrar` y `sp_Reserva_Cancelar`. |
+| CDUN-09 | `sp_Reserva_Listar` y `sp_Entrega_Registrar`. |
+| CDUN-10 | `sp_Entrega_Listar` y `sp_Entrega_RegistrarDestino`. El destino activo se toma de `DestinoEntrega` y el movimiento dispara el comprobante de CDUN-11. |
+| CDUN-11 | Disparador `tr_MovimientoUnidad_Comprobante`, consulta `sp_Comprobante_Pendientes` y confirmación `sp_Comprobante_MarcarGenerado`. |
 
-Las líneas continuas representan claves foráneas declaradas en SQL Server. Las discontinuas representan validaciones por procedimiento o referencias lógicas sin clave foránea. El texto junto a una FK indica la cantidad de registros de la tabla de origen por cada destino y, a continuación, la cantidad de destinos por cada origen. `FK*` señala una clave foránea a una tabla que quedó fuera del alcance del caso; las columnas técnicas `dvh` se omitieron.
+Las líneas representan claves foráneas declaradas en SQL Server; las referencias lógicas sin clave foránea no aparecen como líneas. Las imágenes conservan las columnas técnicas mostradas por SSMS, incluida `dvh`.
 
-Los datos del receptor y de su estudio están en `SolicitudTransfusional`: en el esquema consultado no existe una tabla independiente `Receptor`. Los campos de componente, grupo y factor del receptor se validan mediante procedimientos, pero no tienen FK declarada. En los comprobantes, `proceso` e `id_referencia` identifican la donación o la entrega sin una FK declarada; el disparador captura los datos en XML.
+Los datos del receptor y de su estudio están en `SolicitudTransfusional`. En CDUN-06 y CDUN-07, SSMS dibuja las relaciones de `tipo_componente`, `grupo_receptor` y `rh_receptor` con los códigos de sus catálogos, y las dos relaciones con `Usuario` (solicitante y validador). El grupo, el factor Rh y el usuario validador pueden quedar vacíos cuando aún no se cuenta con esa información. Las claves se instalan con `Database/StoredProcedures/09a_RelacionesSolicitudPN2.sql`.
+
+En CDUN-05 y CDUN-11, `ComprobantePendiente` se conecta con el resto de las tablas mediante la FK a `Usuario`. Sus campos `proceso` e `id_referencia` identifican la donación o la entrega sin una clave foránea directa; el disparador captura los datos del comprobante en XML.

@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="Electron" agent="Codex" version="24.7.17">
   <diagram id="4daf7b7965a940d3b3b9a87f0506ae5d" name="CDUN-01 Registrar donante">
-    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2700" pageHeight="1800" math="0" shadow="0">
+    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2800" pageHeight="1800" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -48,13 +48,13 @@
           <mxGeometry x="0" y="143" width="420" height="120" as="geometry" />
         </mxCell>
         <mxCell id="DonanteService" value="DonanteApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
-          <mxGeometry x="620" y="150" width="490" height="261" as="geometry" />
+          <mxGeometry x="620" y="150" width="490" height="286" as="geometry" />
         </mxCell>
-        <mxCell id="DonanteService-attr" value="- _donanteRepository_380_jh: DonanteRepository_380_jh&lt;br/&gt;- _autorizacionService_380_jh: AutorizacionApplicationService_380_jh&lt;br/&gt;- _bitacoraService_380_jh: BitacoraApplicationService_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonanteService">
-          <mxGeometry x="0" y="46" width="490" height="95" as="geometry" />
+        <mxCell id="DonanteService-attr" value="- _donanteRepository_380_jh: DonanteRepository_380_jh&lt;br/&gt;- _autorizacionService_380_jh: AutorizacionApplicationService_380_jh&lt;br/&gt;- _bitacoraService_380_jh: BitacoraApplicationService_380_jh&lt;br/&gt;- _cifradoEmailService_380_jh: CifradoEmailService_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonanteService">
+          <mxGeometry x="0" y="46" width="490" height="120" as="geometry" />
         </mxCell>
         <mxCell id="DonanteService-op" value="+ Listar_380_jh(buscar): List&amp;lt;Donante_380_jh&amp;gt;&lt;br/&gt;+ Registrar_380_jh(donante): CodigoOperacionPN1_380_jh&lt;br/&gt;- RegistrarFalla_380_jh(usuario, descripcion): void&lt;br/&gt;- Normalizar_380_jh(donante): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DonanteService">
-          <mxGeometry x="0" y="141" width="490" height="120" as="geometry" />
+          <mxGeometry x="0" y="166" width="490" height="120" as="geometry" />
         </mxCell>
         <mxCell id="Auth08" value="AutorizacionApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
           <mxGeometry x="620" y="535" width="490" height="100" as="geometry" />
@@ -193,6 +193,26 @@
               <mxPoint x="1810" y="1025" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="pkg-services" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;" vertex="1" parent="1">
+          <mxGeometry x="2290" y="100" width="440" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="CifradoEmail" value="CifradoEmailService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="2320" y="180" width="380" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="CifradoEmail-op" value="+ Cifrar_380_jh(valor): string" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="CifradoEmail">
+          <mxGeometry x="0" y="46" width="380" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="donante-cifrado" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;strokeColor=#555555;fontSize=13;exitX=1;exitY=0;entryX=0;entryY=0;" edge="1" parent="1" source="DonanteService" target="CifradoEmail">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1150" y="130" />
+              <mxPoint x="2280" y="130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pkg-services-label" value="Services" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2302" y="102" width="170" height="28" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
