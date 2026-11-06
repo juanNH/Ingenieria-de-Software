@@ -26,9 +26,19 @@ try {
     # y se sella antes de migrar para comprobar la conservación de hashes y versiones.
     [void](Invoke-TaskSql @'
 BEGIN TRANSACTION;
+ALTER TABLE dbo.SolicitudTransfusional DROP CONSTRAINT IF EXISTS FK_SolicitudTransfusional_Componente;
+ALTER TABLE dbo.SolicitudTransfusional DROP CONSTRAINT IF EXISTS FK_SolicitudTransfusional_Grupo;
+ALTER TABLE dbo.SolicitudTransfusional DROP CONSTRAINT IF EXISTS FK_SolicitudTransfusional_Rh;
+ALTER TABLE dbo.SolicitudTransfusional DROP CONSTRAINT IF EXISTS FK_SolicitudTransfusional_UsuarioValidacion;
+ALTER TABLE dbo.SolicitudTransfusional ALTER COLUMN tipo_componente NVARCHAR(100) NOT NULL;
 INSERT dbo.ComponenteTransfusional(codigo,descripcion,activo) VALUES('Globulos rojos',N'Glóbulos rojos',1),('Plasma',N'Plasma',1);
 INSERT dbo.GrupoSanguineo(codigo,descripcion,activo) VALUES('O','O',1),('B','B',1);
 INSERT dbo.FactorRh(codigo,descripcion,activo) VALUES('+',N'Positivo',1),('-',N'Negativo',1);
+INSERT dbo.EstadoUnidad(codigo,descripcion) VALUES
+('EN_REVISION',N'En revisión'),('LIBERADA',N'Liberada'),('BLOQUEADA',N'Bloqueada'),('DESCARTADA',N'Descartada'),
+('RESERVADA',N'Reservada'),('ENTREGADA',N'Entregada'),('TRANSFUNDIDA',N'Transfundida'),('DEVUELTA',N'Devuelta');
+INSERT dbo.DestinoEntrega(codigo,descripcion,motivo_obligatorio) VALUES
+('TRANSFUNDIDA',N'Transfundida',0),('DEVUELTA',N'Devuelta',1),('DESCARTADA',N'Descartada',1);
 INSERT dbo.Usuario(nombre_usuario,email,password_hash) VALUES('prueba_pn2','prueba_pn2@example.invalid','prueba');
 DECLARE @user INT=SCOPE_IDENTITY();
 INSERT dbo.Donante(documento,nombre,apellido,id_usuario_alta) VALUES('DTEST','Donante','Prueba',@user);
@@ -50,7 +60,7 @@ DROP TABLE dbo.MaestrosPN1Control;
 
     $taskTransaction = $taskConnection.BeginTransaction()
     try {
-        foreach ($taskFile in @('08_PN2_Catalogos.sql','06_MaestrosPN1.sql','07_PN1.sql','09_PN2.sql','10_IntegridadPN2.sql','11_ComprobantesAutomaticos.sql')) {
+        foreach ($taskFile in @('08_PN2_Catalogos.sql','06_MaestrosPN1.sql','07_PN1.sql','09_PN2.sql','09a_RelacionesSolicitudPN2.sql','10_IntegridadPN2.sql','11_ComprobantesAutomaticos.sql')) {
             $taskPath = Join-Path $PSScriptRoot ('../Database/StoredProcedures/' + $taskFile)
             $taskSql = (Get-Content -Raw -Encoding UTF8 -LiteralPath $taskPath).Replace('USE [HemovidaGest];','')
             foreach ($taskBatch in [regex]::Split($taskSql,'(?im)^\s*GO\s*(?:--[^\r\n]*)?$')) {
@@ -58,6 +68,7 @@ DROP TABLE dbo.MaestrosPN1Control;
             }
         }
         if ([int](Invoke-TaskSql 'SELECT COUNT(*) FROM dbo.v_IntegridadPN1_Errores' $taskTransaction) -ne 0) { throw 'La migración alteró la integridad anterior.' }
+        if ([int](Invoke-TaskSql "SELECT COUNT(*) FROM sys.foreign_keys WHERE parent_object_id=OBJECT_ID('dbo.SolicitudTransfusional') AND is_disabled=0 AND is_not_trusted=0" $taskTransaction) -ne 5) { throw 'Faltan claves foráneas verificadas de la solicitud.' }
         $taskTransaction.Commit()
     } catch { $taskTransaction.Rollback(); throw } finally { $taskTransaction.Dispose() }
 

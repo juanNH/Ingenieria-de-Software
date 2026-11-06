@@ -22,10 +22,12 @@ permisos para crear y modificar la base `HemovidaGest`:
 8. `StoredProcedures/07_PN1.sql` — procedimientos de donantes, donaciones y unidades.
 9. `StoredProcedures/08_PN2_Catalogos.sql` — permisos y traducciones de PN2.
 10. `StoredProcedures/09_PN2.sql` — solicitudes, reservas, entregas y trazabilidad.
-11. `StoredProcedures/10_IntegridadPN2.sql` — extiende la integridad para PN2.
-12. `StoredProcedures/11_ComprobantesAutomaticos.sql` — comprobantes automáticos.
+11. `StoredProcedures/09a_RelacionesSolicitudPN2.sql` — aplica las claves foráneas de la solicitud a los catálogos y al usuario que valida el estudio.
+12. `StoredProcedures/10_IntegridadPN2.sql` — extiende la integridad para PN2.
+13. `StoredProcedures/11_ComprobantesAutomaticos.sql` — comprobantes automáticos.
+14. `StoredProcedures/12_DiagramasSSMS.sql` — crea los diagramas CDUN-01 a CDUN-11 en Database Diagrams de SSMS, con sus diseños guardados.
 
-Para instalar solo PN1, detenete después del paso 8. Los pasos 9 a 12 son la
+Para instalar solo PN1, detenete después del paso 8. Los pasos 9 a 13 son la
 extensión PN2. `09_PN2.sql` requiere PN1 instalado; `10_IntegridadPN2.sql` requiere
 PN2; y los comprobantes requieren ambas integridades.
 
@@ -42,7 +44,15 @@ integridad al finalizar:
 | Actualizar únicamente los comprobantes de una base PN2 | `./Database/InstalarComprobantes.ps1` |
 
 `InstalarPN2.ps1` aplica, en orden, `08_PN2_Catalogos.sql`, `06_MaestrosPN1.sql`,
-`07_PN1.sql`, `09_PN2.sql`, `10_IntegridadPN2.sql` y `11_ComprobantesAutomaticos.sql`.
+`07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql` y `12_DiagramasSSMS.sql`. El último script crea los diagramas que falten y conserva los existentes; requiere permisos de propietario de la base. Los diagramas dependen del esquema de tablas instalado.
+
+Para recuperar solo los diagramas después de reconstruir el esquema, ejecutá desde
+la raíz del proyecto `sqlcmd -S . -E -d HemovidaGest -b -i Database/StoredProcedures/12_DiagramasSSMS.sql`.
+Si tu instancia tiene otro nombre, reemplazá `.` por el nombre del servidor.
+Después actualizá la carpeta **Database Diagrams** en SSMS. El script restaura los
+diseños guardados en el repositorio; no recopila automáticamente cambios que
+hagas después en SSMS ni exporta imágenes.
+
 `InstalarMaestrosPN1.ps1` actualiza maestros y procedimientos relacionados; si
 PN2 ya está instalado, también actualiza PN2 y los comprobantes. No ejecutes a
 mano esos mismos archivos además del instalador.
