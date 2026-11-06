@@ -5,6 +5,20 @@
   #endif
 #endif
 
+#ifndef VcRedistX64
+  #define VcRedistX64 "..\output\installer\vc_redist.x64.exe"
+  #if !FileExists(AddBackslash(SourcePath) + VcRedistX64)
+    #error Copia vc_redist.x64.exe a output\installer antes de compilar.
+  #endif
+#endif
+
+#ifndef VcRedistX86
+  #define VcRedistX86 "..\output\installer\vc_redist.x86.exe"
+  #if !FileExists(AddBackslash(SourcePath) + VcRedistX86)
+    #error Copia vc_redist.x86.exe a output\installer antes de compilar.
+  #endif
+#endif
+
 [Setup]
 AppId=HemovidaGest
 AppName=HemovidaGest
@@ -23,6 +37,8 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Source: "InstalarBase.ps1"; Flags: dontcopy
 Source: "DatosPrueba.sql"; Flags: dontcopy
 Source: "{#LocalDbMsi}"; DestName: "SqlLocalDB.msi"; Flags: dontcopy
+Source: "{#VcRedistX64}"; DestName: "vc_redist.x64.exe"; Flags: dontcopy
+Source: "{#VcRedistX86}"; DestName: "vc_redist.x86.exe"; Flags: dontcopy
 Source: "..\Database\00_tecni_salud_schema.sql"; Flags: dontcopy
 Source: "..\Database\StoredProcedures\*.sql"; Excludes: "12_DiagramasSSMS.sql,99_I18n_Reset_Es_En.sql"; Flags: dontcopy
 Source: "..\UI\bin\Release\UI.exe"; DestDir: "{app}"; Flags: ignoreversion
@@ -117,12 +133,65 @@ begin
   IncluirDatosPrueba.Checked := False;
 end;
 
+function RuntimeVisualCppDisponible(const Directorio, Arquitectura: String): Boolean;
+begin
+  Result := FileExists(Directorio + '\vcruntime140.dll') and
+    FileExists(Directorio + '\msvcp140.dll');
+  if Arquitectura = 'x64' then
+    Result := Result and FileExists(Directorio + '\vcruntime140_1.dll');
+end;
+
+function AsegurarRuntimeVisualCpp(const Arquitectura, Directorio: String;
+  var NeedsRestart: Boolean): String;
+var
+  Archivo, Ruta: String;
+  Codigo: Integer;
+begin
+  Result := '';
+  if RuntimeVisualCppDisponible(Directorio, Arquitectura) then Exit;
+  if WizardSilent then
+  begin
+    Result := 'Abrí el asistente en modo interactivo para instalar Microsoft Visual C++ ' + Arquitectura + '.';
+    Exit;
+  end;
+
+  Archivo := 'vc_redist.' + Arquitectura + '.exe';
+  Ruta := ExpandConstant('{tmp}\' + Archivo);
+  if not FileExists(Ruta) then
+    ExtractTemporaryFile(Archivo);
+  if not ShellExec('runas', Ruta, '/install /quiet /norestart',
+    ExpandConstant('{tmp}'), SW_HIDE, ewWaitUntilTerminated, Codigo) then
+  begin
+    Result := 'No se pudo abrir el instalador de Microsoft Visual C++ ' +
+      Arquitectura + '. ' + SysErrorMessage(Codigo);
+    Exit;
+  end;
+
+  Log('Resultado del instalador de Microsoft Visual C++ ' + Arquitectura + ': ' + IntToStr(Codigo));
+  if (Codigo = 3010) or (Codigo = 1641) then
+  begin
+    NeedsRestart := True;
+    Result := 'Reiniciá Windows y volvé a abrir este instalador.';
+  end
+  else if not RuntimeVisualCppDisponible(Directorio, Arquitectura) then
+    Result := 'No se pudo preparar Microsoft Visual C++ ' + Arquitectura +
+      '. Código ' + IntToStr(Codigo) + '.';
+end;
+
 function AsegurarLocalDB(var NeedsRestart: Boolean): String;
 var
   Codigo: Integer;
   Salida: TExecOutput;
 begin
   Result := '';
+  if IsX64OS then
+  begin
+    Result := AsegurarRuntimeVisualCpp('x64', ExpandConstant('{sysnative}'), NeedsRestart);
+    if Result <> '' then Exit;
+    Result := AsegurarRuntimeVisualCpp('x86', ExpandConstant('{syswow64}'), NeedsRestart);
+    if Result <> '' then Exit;
+  end;
+
   if not EjecutarScriptSQL('-VerificarLocalDB', Codigo, Salida) then
   begin
     Result := 'No se pudo ejecutar Windows PowerShell. ' + SysErrorMessage(Codigo);
