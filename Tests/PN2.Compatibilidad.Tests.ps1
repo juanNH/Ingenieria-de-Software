@@ -167,6 +167,8 @@ IF dbo.fn_PN2_GrupoCandidato(N'Plaquetas','A','-','A','-')<>1 OR
     if ([int](Invoke-TaskSql "SELECT cantidad_entregada FROM dbo.v_PN2_SolicitudCantidades WHERE id_solicitud_transfusional=$taskRequestB") -ne 0) { throw 'El estado personalizado se contó como transfusión.' }
     if ((Invoke-TaskSql "SELECT d.descripcion FROM dbo.Entrega e JOIN dbo.DestinoEntrega d ON d.codigo=e.destino WHERE e.id_entrega=$taskDeliveryB") -ne 'Transfusión en quirófano') { throw 'No se conservó la descripción del destino.' }
     if ((Invoke-TaskSql "SELECT datos.value('(/Comprobante/Entregas/Entrega/DestinoDescripcion_380_jh/text())[1]','nvarchar(150)') FROM dbo.ComprobantePendiente WHERE proceso='PN2' AND id_referencia=$taskDeliveryB") -ne 'Transfusión en quirófano') { throw 'El comprobante no conserva la descripción del destino.' }
+    if ((Invoke-TaskSql "SELECT datos.value('(/Comprobante/Solicitud/ProfesionalSolicitante_380_jh/text())[1]','nvarchar(150)') FROM dbo.ComprobantePendiente WHERE proceso='PN2' AND id_referencia=$taskDeliveryB") -ne 'Profesional') { throw 'El comprobante no conserva el profesional solicitante.' }
+    if ((Invoke-TaskSql "SELECT datos.value('(/Comprobante/Usuario/text())[1]','nvarchar(150)') FROM dbo.ComprobantePendiente WHERE proceso='PN2' AND id_referencia=$taskDeliveryB") -ne 'prueba_pn2') { throw 'El comprobante no conserva el responsable de la operación.' }
     if ([int](Invoke-TaskSql 'SELECT COUNT(*) FROM dbo.v_IntegridadPN1_Errores') -ne 0) { throw 'Integridad inválida después del flujo.' }
     Write-Host 'Correcto: migración con datos anteriores, integridad, grupos, validación, filtro, reserva y entrega.'
 } finally {

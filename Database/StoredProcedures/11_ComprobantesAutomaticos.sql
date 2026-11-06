@@ -87,7 +87,7 @@ BEGIN
                 (SELECT s.id_solicitud_transfusional AS [Id_380_jh],s.paciente_receptor AS [PacienteReceptor_380_jh],
                     s.fecha_solicitud AS [FechaSolicitud_380_jh],s.tipo_componente AS [TipoComponente_380_jh],
                     s.cantidad_requerida AS [CantidadRequerida_380_jh],s.id_usuario_solicitante AS [IdUsuarioSolicitante_380_jh],
-                    profesional.nombre+' '+profesional.apellido AS [ProfesionalSolicitante_380_jh],
+                    COALESCE(s.nombre_solicitante, profesional.nombre+' '+profesional.apellido) AS [ProfesionalSolicitante_380_jh],
                     CASE WHEN c.cantidad_entregada>=s.cantidad_requerida THEN 'ENTREGADA'
                          WHEN c.cantidad_reservada+c.cantidad_entregada>=s.cantidad_requerida THEN 'RESERVADA'
                          WHEN c.cantidad_reservada+c.cantidad_entregada>0 THEN 'PARCIAL' ELSE 'PENDIENTE' END AS [EstadoSolicitud_380_jh],
