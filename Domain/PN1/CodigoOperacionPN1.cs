@@ -9,6 +9,7 @@ namespace Domain
         NoEncontrado_380_jh,
         ConflictoEstado_380_jh,
         IntegridadInvalida_380_jh,
-        Error_380_jh
+        Error_380_jh,
+        ConflictoTipificacion_380_jh
     }
 }

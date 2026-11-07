@@ -31,7 +31,7 @@ CREATE OR ALTER VIEW dbo.v_IntegridadPN1_Datos AS
 SELECT CAST('Donante' AS VARCHAR(100)) entidad, d.id_donante id_entidad, j.datos_json, d.dvh,
     CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', CONVERT(NVARCHAR(MAX), j.datos_json)), 2) dvh_calculado
 FROM dbo.Donante d
-CROSS APPLY (SELECT (SELECT d.id_donante, d.documento, d.nombre, d.apellido, d.fecha_nacimiento, d.telefono, d.email, d.domicilio, d.estado_donante, d.fecha_alta, d.id_usuario_alta FOR JSON PATH, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER) datos_json) j
+CROSS APPLY (SELECT JSON_MODIFY(JSON_MODIFY((SELECT d.id_donante, d.documento, d.nombre, d.apellido, d.fecha_nacimiento, d.telefono, d.email, d.domicilio, d.estado_donante, d.fecha_alta, d.id_usuario_alta FOR JSON PATH, INCLUDE_NULL_VALUES, WITHOUT_ARRAY_WRAPPER), '$.grupo_sanguineo', d.grupo_sanguineo), '$.factor_rh', d.factor_rh) datos_json) j
 UNION ALL
 SELECT CAST('Donacion' AS VARCHAR(100)) entidad, d.id_donacion id_entidad, j.datos_json, d.dvh,
     CONVERT(VARCHAR(64), HASHBYTES('SHA2_256', CONVERT(NVARCHAR(MAX), j.datos_json)), 2) dvh_calculado
@@ -346,13 +346,13 @@ BEGIN
  -- Reparar filas en orden de FK. MovimientoUnidad conserva el contenido original;
  -- se agrega luego un movimiento de restauracion, sin borrar el rastro del incidente.
 
- UPDATE d SET documento=j.documento,nombre=j.nombre,apellido=j.apellido,fecha_nacimiento=j.fecha_nacimiento,telefono=j.telefono,email=j.email,domicilio=j.domicilio,estado_donante=j.estado_donante,fecha_alta=j.fecha_alta,id_usuario_alta=j.id_usuario_alta
+ UPDATE d SET grupo_sanguineo=j.grupo_sanguineo,factor_rh=j.factor_rh,documento=j.documento,nombre=j.nombre,apellido=j.apellido,fecha_nacimiento=j.fecha_nacimiento,telefono=j.telefono,email=j.email,domicilio=j.domicilio,estado_donante=j.estado_donante,fecha_alta=j.fecha_alta,id_usuario_alta=j.id_usuario_alta
  FROM dbo.Donante d JOIN #restaurar r ON r.entidad='Donante' AND r.id_entidad=d.id_donante
- CROSS APPLY OPENJSON(r.confiable) WITH(id_donante int '$.id_donante',documento varchar(30) '$.documento',nombre varchar(100) '$.nombre',apellido varchar(100) '$.apellido',fecha_nacimiento date '$.fecha_nacimiento',telefono varchar(50) '$.telefono',email varchar(512) '$.email',domicilio varchar(255) '$.domicilio',estado_donante varchar(20) '$.estado_donante',fecha_alta datetime '$.fecha_alta',id_usuario_alta int '$.id_usuario_alta') j;
+ CROSS APPLY OPENJSON(r.confiable) WITH(grupo_sanguineo varchar(5) '$.grupo_sanguineo',factor_rh varchar(5) '$.factor_rh',id_donante int '$.id_donante',documento varchar(30) '$.documento',nombre varchar(100) '$.nombre',apellido varchar(100) '$.apellido',fecha_nacimiento date '$.fecha_nacimiento',telefono varchar(50) '$.telefono',email varchar(512) '$.email',domicilio varchar(255) '$.domicilio',estado_donante varchar(20) '$.estado_donante',fecha_alta datetime '$.fecha_alta',id_usuario_alta int '$.id_usuario_alta') j;
  SET IDENTITY_INSERT dbo.Donante ON;
- INSERT dbo.Donante(id_donante,documento,nombre,apellido,fecha_nacimiento,telefono,email,domicilio,estado_donante,fecha_alta,id_usuario_alta)
- SELECT j.id_donante,j.documento,j.nombre,j.apellido,j.fecha_nacimiento,j.telefono,j.email,j.domicilio,j.estado_donante,j.fecha_alta,j.id_usuario_alta FROM #restaurar r
- CROSS APPLY OPENJSON(r.confiable) WITH(id_donante int '$.id_donante',documento varchar(30) '$.documento',nombre varchar(100) '$.nombre',apellido varchar(100) '$.apellido',fecha_nacimiento date '$.fecha_nacimiento',telefono varchar(50) '$.telefono',email varchar(512) '$.email',domicilio varchar(255) '$.domicilio',estado_donante varchar(20) '$.estado_donante',fecha_alta datetime '$.fecha_alta',id_usuario_alta int '$.id_usuario_alta') j
+ INSERT dbo.Donante(grupo_sanguineo,factor_rh,id_donante,documento,nombre,apellido,fecha_nacimiento,telefono,email,domicilio,estado_donante,fecha_alta,id_usuario_alta)
+ SELECT j.grupo_sanguineo,j.factor_rh,j.id_donante,j.documento,j.nombre,j.apellido,j.fecha_nacimiento,j.telefono,j.email,j.domicilio,j.estado_donante,j.fecha_alta,j.id_usuario_alta FROM #restaurar r
+ CROSS APPLY OPENJSON(r.confiable) WITH(grupo_sanguineo varchar(5) '$.grupo_sanguineo',factor_rh varchar(5) '$.factor_rh',id_donante int '$.id_donante',documento varchar(30) '$.documento',nombre varchar(100) '$.nombre',apellido varchar(100) '$.apellido',fecha_nacimiento date '$.fecha_nacimiento',telefono varchar(50) '$.telefono',email varchar(512) '$.email',domicilio varchar(255) '$.domicilio',estado_donante varchar(20) '$.estado_donante',fecha_alta datetime '$.fecha_alta',id_usuario_alta int '$.id_usuario_alta') j
  WHERE r.entidad='Donante' AND NOT EXISTS(SELECT 1 FROM dbo.Donante d WHERE d.id_donante=r.id_entidad);
  SET IDENTITY_INSERT dbo.Donante OFF;
 

@@ -29,19 +29,22 @@ try {
     $taskConnection.Open()
     $taskScripts = @('00_tecni_salud_schema.sql','StoredProcedures/01_AuthUsuario.sql','StoredProcedures/02_Bitacora.sql',
         'StoredProcedures/03_Auditoria.sql','StoredProcedures/04_Permisos.sql','StoredProcedures/05_IntegridadPN1.sql',
-        'StoredProcedures/06_MaestrosPN1.sql','StoredProcedures/07_PN1.sql','StoredProcedures/08_PN2_Catalogos.sql',
+        'StoredProcedures/06_MaestrosPN1.sql','StoredProcedures/06b_TipificacionDonante.sql','StoredProcedures/07_PN1.sql','StoredProcedures/08_PN2_Catalogos.sql',
         'StoredProcedures/09_PN2.sql','StoredProcedures/10_IntegridadPN2.sql')
-    if ($Legacy) { $taskScripts = $taskScripts | Where-Object { $_ -ne 'StoredProcedures/06_MaestrosPN1.sql' } }
+    if ($Legacy) { $taskScripts = $taskScripts | Where-Object { $_ -notin @('StoredProcedures/06_MaestrosPN1.sql','StoredProcedures/06b_TipificacionDonante.sql') } }
     foreach ($taskScript in $taskScripts) {
         $taskSql = (Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $taskRoot ('Database/' + $taskScript))).Replace('HemovidaGest',$taskDatabase)
         if ($Legacy -and $taskScript -eq '00_tecni_salud_schema.sql') {
-            $taskSql = [regex]::Replace($taskSql,'(?s)CREATE TABLE dbo\.ComponenteTransfusional.*?INSERT dbo\.FactorRh\(codigo,descripcion\) VALUES.*?\r?\nGO\s*','')
+            # El escenario anterior a Maestros conserva el catalogo transversal de estados.
+            $taskEstados = [regex]::Match($taskSql,'(?s)CREATE TABLE dbo\.EstadoUnidad.*?(?=CREATE TABLE dbo\.DestinoEntrega)').Value
+            $taskSql = [regex]::Replace($taskSql,'(?s)CREATE TABLE dbo\.ComponenteTransfusional.*?INSERT dbo\.FactorRh\(codigo,descripcion\) VALUES.*?\r?\nGO\s*', $taskEstados + [Environment]::NewLine + 'GO' + [Environment]::NewLine)
             $taskSql = [regex]::Replace($taskSql,'(?m)^\s*CONSTRAINT FK_Donacion_Componente FOREIGN KEY.*?\r?\n','')
-            $taskSql = [regex]::Replace($taskSql,'(?m)^\s*CONSTRAINT FK_Unidad_(Componente|Grupo|Rh) FOREIGN KEY.*?\r?\n','')
+            $taskSql = [regex]::Replace($taskSql,'(?m)^\s*CONSTRAINT FK_(Unidad_(Componente|Grupo|Rh)|Donante_(Grupo|Rh)) FOREIGN KEY.*?\r?\n','')
         }
         if ($Legacy -and $taskScript -eq 'StoredProcedures/09_PN2.sql') {
             $taskSql = $taskSql.Replace('CONSTRAINT FK_Entrega_Destino FOREIGN KEY (destino) REFERENCES dbo.DestinoEntrega(codigo),',"CONSTRAINT CK_Entrega_Destino CHECK (destino IS NULL OR destino IN ('TRANSFUNDIDA','DEVUELTA','DESCARTADA')),")
-            $taskSql = $taskSql.Replace('             LEFT JOIN dbo.DestinoEntrega d ON d.codigo=e.destino','').Replace("d.estado_operativo='TRANSFUNDIDA'","e.destino='TRANSFUNDIDA'")
+            $taskSql = [regex]::Replace($taskSql,'(?m)^\s*LEFT JOIN dbo\.DestinoEntrega d ON d.codigo=e.destino\s*\r?\n','').Replace("d.codigo='TRANSFUNDIDA'","e.destino='TRANSFUNDIDA'")
+            $taskSql = $taskSql.Replace('d.descripcion destino_descripcion','e.destino destino_descripcion')
         }
         foreach ($taskBatch in [regex]::Split($taskSql,'(?im)^\s*GO\s*(?:--[^\r\n]*)?$')) {
             if ($taskBatch.Trim()) {
@@ -67,7 +70,7 @@ EXEC dbo.sp_IntegridadPN1_Sellar $taskId; COMMIT;
 "@)
         $taskHash = [string](Invoke-TaskSql "SELECT dvh FROM dbo.Unidad WHERE codigo_identificacion='LEGACY-UNIT'")
         $taskTransaction = $taskConnection.BeginTransaction()
-        foreach ($taskScript in @('06_MaestrosPN1.sql','07_PN1.sql','09_PN2.sql')) {
+        foreach ($taskScript in @('06_MaestrosPN1.sql','06b_TipificacionDonante.sql','07_PN1.sql','09_PN2.sql')) {
             $taskSql = (Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $taskRoot ('Database/StoredProcedures/' + $taskScript))).Replace('HemovidaGest',$taskDatabase).Replace("USE [$taskDatabase];",'')
             foreach ($taskBatch in [regex]::Split($taskSql,'(?im)^\s*GO\s*(?:--[^\r\n]*)?$')) { if ($taskBatch.Trim()) { [void](Invoke-TaskSql $taskBatch) } }
         }
@@ -110,10 +113,11 @@ UPDATE dbo.MaestrosPN1Control SET huella=CONVERT(VARCHAR(64),HASHBYTES('SHA2_256
  (SELECT id,codigo,descripcion,activo FROM dbo.ComponenteTransfusional ORDER BY id FOR JSON PATH,INCLUDE_NULL_VALUES) + N'|'+
  (SELECT id,codigo,descripcion,activo FROM dbo.GrupoSanguineo ORDER BY id FOR JSON PATH,INCLUDE_NULL_VALUES) + N'|'+
  (SELECT id,codigo,descripcion,activo FROM dbo.FactorRh ORDER BY id FOR JSON PATH,INCLUDE_NULL_VALUES) + N'|'+
+ COALESCE((SELECT codigo,descripcion FROM dbo.EstadoUnidad ORDER BY codigo FOR JSON PATH,INCLUDE_NULL_VALUES),N'[]') + N'|' + N'' + N'|' +
  COALESCE((SELECT id_auditoria,entidad,id_entidad,accion,id_usuario_actor,identificador_usuario_actor,fecha_evento,estado_anterior_json,estado_nuevo_json,cambios_json FROM dbo.Auditoria WHERE entidad IN ('MaestroComponente','MaestroGrupo','MaestroRh') ORDER BY id_auditoria FOR JSON PATH,INCLUDE_NULL_VALUES),N'[]'))),2) WHERE id=1;
 '@)
         $taskTransaction = $taskConnection.BeginTransaction()
-        foreach ($taskScript in @('06_MaestrosPN1.sql','07_PN1.sql','09_PN2.sql')) {
+        foreach ($taskScript in @('06_MaestrosPN1.sql','06b_TipificacionDonante.sql','07_PN1.sql','09_PN2.sql')) {
             $taskSql = (Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $taskRoot ('Database/StoredProcedures/' + $taskScript))).Replace('HemovidaGest',$taskDatabase).Replace("USE [$taskDatabase];",'')
             foreach ($taskBatch in [regex]::Split($taskSql,'(?im)^\s*GO\s*(?:--[^\r\n]*)?$')) { if ($taskBatch.Trim()) { [void](Invoke-TaskSql $taskBatch) } }
         }

@@ -37,7 +37,7 @@ try {
     $taskCommand.Dispose()
     Write-Host "Respaldo verificado: $taskBackupPath"
     $taskTransaction = $taskConnection.BeginTransaction()
-    $taskScripts = @('06_MaestrosPN1.sql','07_PN1.sql')
+    $taskScripts = @('06_MaestrosPN1.sql','06b_TipificacionDonante.sql','07_PN1.sql')
     if ($taskHasPN2) { $taskScripts += '09_PN2.sql' }
     if ($taskHasPN2 -and $taskHasComprobantes) { $taskScripts += '11_ComprobantesAutomaticos.sql' }
     foreach ($taskScript in $taskScripts) {
