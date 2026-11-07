@@ -14,3 +14,5 @@ Para probar la carga con una unidad ficticia:
 El formato nuevo contiene una unidad por fila y usa fecha `AAAA-MM-DD`. Admite los estados `EN_REVISION`, `LIBERADA`, `BLOQUEADA`, `DESCARTADA`, `RESERVADA`, `ENTREGADA`, `TRANSFUNDIDA` y `DEVUELTA`. Grupo y Rh pueden quedar vacíos para una unidad en revisión; para los demás estados deben estar completos. Los códigos deben ser únicos. Los archivos `ProcesoPN1` exportados por la versión anterior también se pueden deserializar.
 
 Las filas importadas son temporales y su existencia no se verifica contra la base. Las acciones para clasificar o cambiar el estado quedan deshabilitadas mientras se muestran. Limpiar o importar no modifica la base.
+
+Los códigos de grupo y Rh admiten hasta cinco caracteres para conservar opciones nuevas de Maestros. La vista XML es temporal y no verifica la existencia de esos códigos contra la base.

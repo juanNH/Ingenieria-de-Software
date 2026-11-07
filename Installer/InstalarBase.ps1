@@ -105,7 +105,7 @@ $scripts = @(
     '03_Auditoria.sql',
     '04_Permisos.sql',
     '05_IntegridadPN1.sql',
-    '06_MaestrosPN1.sql',
+    '06_MaestrosPN1.sql','06a_CompatibilidadTransfusional.sql',
     '07_PN1.sql',
     '08_PN2_Catalogos.sql',
     '09_PN2.sql',

@@ -109,8 +109,8 @@ namespace Application
                     fila.EstadoOperativo_380_jh == EstadoUnidadPN2_380_jh.Devuelta_380_jh;
                 if (!estadoValido) throw new InvalidDataException(ubicacion + "el estado operativo no es válido.");
                 if (grupo != rh ||
-                    (grupo && fila.GrupoSanguineo_380_jh != "A" && fila.GrupoSanguineo_380_jh != "B" && fila.GrupoSanguineo_380_jh != "AB" && fila.GrupoSanguineo_380_jh != "O") ||
-                    (rh && fila.FactorRh_380_jh != "+" && fila.FactorRh_380_jh != "-") ||
+                    (grupo && fila.GrupoSanguineo_380_jh.Length > 5) ||
+                    (rh && fila.FactorRh_380_jh.Length > 5) ||
                     (fila.EstadoOperativo_380_jh != EstadoUnidadPN1_380_jh.EnRevision_380_jh && !grupo))
                     throw new InvalidDataException(ubicacion + "revisá el grupo sanguíneo y el factor Rh.");
             }

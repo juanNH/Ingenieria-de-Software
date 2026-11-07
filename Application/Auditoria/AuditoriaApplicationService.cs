@@ -110,7 +110,7 @@ namespace Application
             if (!new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh))
                 return registros;
             if (entidad != "Donante" && entidad != "Donacion" && entidad != "Unidad" && entidad != "MovimientoUnidad" &&
-                entidad != "MaestroComponente" && entidad != "MaestroGrupo" && entidad != "MaestroRh" && entidad != "MaestroDestino")
+                entidad != "MaestroComponente" && entidad != "MaestroGrupo" && entidad != "MaestroRh" && entidad != "MaestroDestino" && entidad != "CompatibilidadTransfusional")
                 return registros;
             foreach (var registro in _auditoriaRepository_380_jh.ListarTodos_380_jh())
                 if (registro.Entidad_380_jh == entidad) registros.Add(registro);

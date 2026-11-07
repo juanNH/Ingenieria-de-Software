@@ -55,7 +55,7 @@ namespace UI
             cmbEntidad_380_jh = new ComboBox { DropDownStyle = ComboBoxStyle.DropDownList, Location = new Point(410, 97), Size = new Size(180, 23) };
             cmbEntidad_380_jh.Items.Add("Usuario");
             if (new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh))
-                cmbEntidad_380_jh.Items.AddRange(new object[] { "Donante", "Donacion", "Unidad", "MovimientoUnidad", "MaestroComponente", "MaestroGrupo", "MaestroRh", "MaestroDestino" });
+                cmbEntidad_380_jh.Items.AddRange(new object[] { "Donante", "Donacion", "Unidad", "MovimientoUnidad", "MaestroComponente", "MaestroGrupo", "MaestroRh", "MaestroDestino", "CompatibilidadTransfusional" });
             cmbEntidad_380_jh.SelectedIndex = 0;
             cmbEntidad_380_jh.SelectedIndexChanged += delegate
             {
