@@ -21,6 +21,8 @@ BEGIN
         CAST(NULL AS VARCHAR(512)) AS email,
         CONVERT(BIT, CASE WHEN d.email IS NULL THEN 0 ELSE 1 END) AS tiene_email,
         d.domicilio,
+        d.grupo_sanguineo,
+        d.factor_rh,
         d.estado_donante,
         d.fecha_alta,
         d.id_usuario_alta
@@ -418,6 +420,8 @@ BEGIN
         u.id_usuario_ultima_modificacion,
         d.id_donante,
         d.documento AS documento_donante,
+        d.grupo_sanguineo AS grupo_sanguineo_donante,
+        d.factor_rh AS factor_rh_donante,
         d.nombre + ' ' + d.apellido AS donante
     FROM dbo.Unidad u
     INNER JOIN dbo.Donacion dn ON dn.id_donacion = u.id_donacion
@@ -481,6 +485,33 @@ BEGIN
         RETURN;
     END;
 
+
+        -- El donante y la unidad se actualizan bajo el mismo bloqueo de integridad.
+        DECLARE @id_donante INT = (
+            SELECT donacion.id_donante FROM dbo.Unidad unidad
+            INNER JOIN dbo.Donacion donacion ON donacion.id_donacion = unidad.id_donacion
+            WHERE unidad.id_unidad = @id_unidad
+        );
+
+        IF EXISTS (
+            SELECT 1 FROM dbo.Donante
+            WHERE id_donante = @id_donante
+              AND (grupo_sanguineo <> @grupo_sanguineo OR factor_rh <> @factor_rh)
+        ) OR EXISTS (
+            SELECT 1 FROM dbo.Unidad unidad
+            INNER JOIN dbo.Donacion donacion ON donacion.id_donacion = unidad.id_donacion
+            WHERE donacion.id_donante = @id_donante
+              AND (unidad.grupo_sanguineo <> @grupo_sanguineo OR unidad.factor_rh <> @factor_rh)
+        )
+        BEGIN
+            SELECT 'CONFLICTO_TIPIFICACION' AS codigo_resultado, @id_unidad AS id_unidad;
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END;
+
+        UPDATE dbo.Donante
+        SET grupo_sanguineo = @grupo_sanguineo, factor_rh = @factor_rh
+        WHERE id_donante = @id_donante AND grupo_sanguineo IS NULL AND factor_rh IS NULL;
 
         UPDATE dbo.Unidad
         SET tipo_componente = LTRIM(RTRIM(@tipo_componente)),

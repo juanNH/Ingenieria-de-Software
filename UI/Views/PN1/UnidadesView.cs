@@ -330,8 +330,8 @@ namespace UI
             }
 
             MaestrosCombo_380_jh.Seleccionar_380_jh(_cmbComponente_380_jh, unidad.TipoComponente_380_jh);
-            MaestrosCombo_380_jh.Seleccionar_380_jh(_cmbGrupo_380_jh, unidad.GrupoSanguineo_380_jh);
-            MaestrosCombo_380_jh.Seleccionar_380_jh(_cmbRh_380_jh, unidad.FactorRh_380_jh);
+            MaestrosCombo_380_jh.Seleccionar_380_jh(_cmbGrupo_380_jh, unidad.GrupoSanguineo_380_jh ?? unidad.GrupoSanguineoDonante_380_jh);
+            MaestrosCombo_380_jh.Seleccionar_380_jh(_cmbRh_380_jh, unidad.FactorRh_380_jh ?? unidad.FactorRhDonante_380_jh);
             // Un dato alterado puede estar fuera del rango admitido por WinForms.
             // La consulta sigue visible y bloqueada; no se corrige el dato en la base.
             _dtpVencimiento_380_jh.Value = unidad.FechaVencimiento_380_jh < _dtpVencimiento_380_jh.MinDate
@@ -388,12 +388,17 @@ namespace UI
                 return;
             }
 
-            unidad.TipoComponente_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbComponente_380_jh);
-            unidad.GrupoSanguineo_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbGrupo_380_jh);
-            unidad.FactorRh_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbRh_380_jh);
-            unidad.FechaVencimiento_380_jh = _dtpVencimiento_380_jh.Value.Date;
-            unidad.Observaciones_380_jh = _txtObservaciones_380_jh.Text;
-            CodigoOperacionPN1_380_jh resultado = _unidadService_380_jh.Clasificar_380_jh(unidad);
+            Unidad_380_jh clasificacion = new Unidad_380_jh
+            {
+                Id_380_jh = unidad.Id_380_jh,
+                CodigoIdentificacion_380_jh = unidad.CodigoIdentificacion_380_jh,
+                TipoComponente_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbComponente_380_jh),
+                GrupoSanguineo_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbGrupo_380_jh),
+                FactorRh_380_jh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbRh_380_jh),
+                FechaVencimiento_380_jh = _dtpVencimiento_380_jh.Value.Date,
+                Observaciones_380_jh = _txtObservaciones_380_jh.Text
+            };
+            CodigoOperacionPN1_380_jh resultado = _unidadService_380_jh.Clasificar_380_jh(clasificacion);
             MessageBox.Show(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(ObtenerClaveResultado_380_jh(resultado, null)));
             if (resultado == CodigoOperacionPN1_380_jh.Ok_380_jh)
             {
@@ -563,6 +568,7 @@ namespace UI
                 case CodigoOperacionPN1_380_jh.IntegridadInvalida_380_jh: return "INTEGRITY_BLOCKED";
                 case CodigoOperacionPN1_380_jh.DatosInvalidos_380_jh: return "UNIT_INVALID";
                 case CodigoOperacionPN1_380_jh.ConflictoEstado_380_jh: return "UNIT_CONFLICT";
+                case CodigoOperacionPN1_380_jh.ConflictoTipificacion_380_jh: return "UNIT_DONOR_BLOOD_CONFLICT";
                 case CodigoOperacionPN1_380_jh.NoAutorizado_380_jh: return "OPERATION_NOT_AUTHORIZED";
                 default: return "UNIT_ERROR";
             }

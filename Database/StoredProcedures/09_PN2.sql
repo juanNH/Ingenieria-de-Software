@@ -252,6 +252,40 @@ BEGIN
 END;
 GO
 
+-- Registro reutilizable por documento a partir de solicitudes protegidas por DVH/DVV.
+-- No copia estudios ni validaciones; los pedidos sin estudio no borran el grupo conocido.
+CREATE OR ALTER PROCEDURE dbo.sp_PN2_Receptores_Listar
+    @buscar NVARCHAR(150)=NULL,@id_usuario INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    EXEC dbo.sp_PN2_Autorizar @id_usuario,'SOLICITUD_VER';
+    DECLARE @todas BIT=CASE WHEN dbo.fn_PN2_TienePermiso(@id_usuario,'INVENTARIO_VER')=1 OR dbo.fn_PN2_TienePermiso(@id_usuario,'RESERVA_VER')=1 THEN 1 ELSE 0 END;
+    ;WITH visibles AS
+    (
+        SELECT *,LTRIM(RTRIM(documento_receptor)) documento
+        FROM dbo.SolicitudTransfusional
+        WHERE NULLIF(LTRIM(RTRIM(documento_receptor)),'') IS NOT NULL
+          AND (@todas=1 OR id_usuario_solicitante=@id_usuario)
+    ), receptores AS
+    (
+        SELECT *,ROW_NUMBER() OVER(PARTITION BY documento ORDER BY fecha_solicitud DESC,id_solicitud_transfusional DESC) rn
+        FROM visibles
+    )
+    SELECT r.documento documento_receptor,r.paciente_receptor,g.grupo_receptor,g.rh_receptor
+    FROM receptores r
+    OUTER APPLY
+    (
+        SELECT TOP(1) v.grupo_receptor,v.rh_receptor
+        FROM visibles v
+        WHERE v.documento=r.documento AND v.grupo_receptor IS NOT NULL AND v.rh_receptor IS NOT NULL
+        ORDER BY v.fecha_estudio DESC,v.fecha_solicitud DESC,v.id_solicitud_transfusional DESC
+    ) g
+    WHERE r.rn=1 AND (@buscar IS NULL OR r.documento LIKE '%'+@buscar+'%' OR r.paciente_receptor LIKE '%'+@buscar+'%')
+    ORDER BY r.paciente_receptor,r.documento;
+END;
+GO
+
 CREATE OR ALTER PROCEDURE dbo.sp_Reserva_Listar @id_solicitud_transfusional INT=NULL,@id_usuario INT
 AS
 BEGIN
@@ -324,7 +358,10 @@ BEGIN
            OR @cantidad_requerida IS NULL OR @cantidad_requerida<=0
            OR NULLIF(LTRIM(RTRIM(@documento_receptor)),'') IS NULL
            OR NULLIF(LTRIM(RTRIM(@nombre_solicitante)),'') IS NULL
-           OR NOT ((@grupo_receptor IS NULL AND @rh_receptor IS NULL AND NULLIF(LTRIM(RTRIM(@laboratorio_estudio)),'') IS NULL
+           OR NOT ((((@grupo_receptor IS NULL AND @rh_receptor IS NULL)
+                      OR (@grupo_receptor IS NOT NULL AND EXISTS(SELECT 1 FROM dbo.GrupoSanguineo WHERE codigo=@grupo_receptor AND activo=1)
+                          AND @rh_receptor IS NOT NULL AND EXISTS(SELECT 1 FROM dbo.FactorRh WHERE codigo=@rh_receptor AND activo=1)))
+                    AND NULLIF(LTRIM(RTRIM(@laboratorio_estudio)),'') IS NULL
                     AND NULLIF(LTRIM(RTRIM(@referencia_estudio)),'') IS NULL AND @fecha_estudio IS NULL
                     AND NULLIF(LTRIM(RTRIM(@resultado_anticuerpos)),'') IS NULL)
                  OR (@grupo_receptor IS NOT NULL AND EXISTS(SELECT 1 FROM dbo.GrupoSanguineo WHERE codigo=@grupo_receptor AND activo=1) AND @rh_receptor IS NOT NULL AND EXISTS(SELECT 1 FROM dbo.FactorRh WHERE codigo=@rh_receptor AND activo=1)

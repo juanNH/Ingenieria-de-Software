@@ -33,7 +33,7 @@ try {
     foreach ($script in @('Database/00_tecni_salud_schema.sql','Database/StoredProcedures/01_AuthUsuario.sql',
         'Database/StoredProcedures/02_Bitacora.sql','Database/StoredProcedures/03_Auditoria.sql',
         'Database/StoredProcedures/04_Permisos.sql','Database/StoredProcedures/05_IntegridadPN1.sql',
-        'Database/StoredProcedures/06_MaestrosPN1.sql','Database/StoredProcedures/06a_CompatibilidadTransfusional.sql','Database/StoredProcedures/07_PN1.sql',
+        'Database/StoredProcedures/06_MaestrosPN1.sql','Database/StoredProcedures/06a_CompatibilidadTransfusional.sql','Database/StoredProcedures/06b_TipificacionDonante.sql','Database/StoredProcedures/07_PN1.sql',
         'Database/StoredProcedures/08_PN2_Catalogos.sql','Database/StoredProcedures/09_PN2.sql',
         'Database/StoredProcedures/09a_RelacionesSolicitudPN2.sql',
         'Database/StoredProcedures/10_IntegridadPN2.sql','Database/StoredProcedures/11_ComprobantesAutomaticos.sql')) { Script $script }

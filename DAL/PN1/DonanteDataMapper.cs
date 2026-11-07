@@ -248,6 +248,8 @@ namespace DAL
                 Email_380_jh = Texto_380_jh(fila, "email"),
                 TieneEmail_380_jh = fila.Table.Columns.Contains("tiene_email") && fila["tiene_email"] != DBNull.Value && Convert.ToBoolean(fila["tiene_email"]),
                 Domicilio_380_jh = Texto_380_jh(fila, "domicilio"),
+                GrupoSanguineo_380_jh = Texto_380_jh(fila, "grupo_sanguineo"),
+                FactorRh_380_jh = Texto_380_jh(fila, "factor_rh"),
                 Estado_380_jh = Texto_380_jh(fila, "estado_donante"),
                 FechaAlta_380_jh = Convert.ToDateTime(fila["fecha_alta"]),
                 IdUsuarioAlta_380_jh = Convert.ToInt32(fila["id_usuario_alta"])

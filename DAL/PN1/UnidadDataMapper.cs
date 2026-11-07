@@ -133,6 +133,8 @@ namespace DAL
                 IdDonante_380_jh = EnteroNullable_380_jh(fila, "id_donante"),
                 DocumentoDonante_380_jh = Texto_380_jh(fila, "documento_donante"),
                 Donante_380_jh = Texto_380_jh(fila, "donante"),
+                GrupoSanguineoDonante_380_jh = Texto_380_jh(fila, "grupo_sanguineo_donante"),
+                FactorRhDonante_380_jh = Texto_380_jh(fila, "factor_rh_donante"),
                 TipoComponente_380_jh = Texto_380_jh(fila, "tipo_componente"),
                 FechaVencimiento_380_jh = Convert.ToDateTime(fila["fecha_vencimiento"]),
                 GrupoSanguineo_380_jh = Texto_380_jh(fila, "grupo_sanguineo"),
@@ -175,6 +177,7 @@ namespace DAL
                 case "DATOS_INVALIDOS": return CodigoOperacionPN1_380_jh.DatosInvalidos_380_jh;
                 case "NO_ENCONTRADO": return CodigoOperacionPN1_380_jh.NoEncontrado_380_jh;
                 case "CONFLICTO_ESTADO": return CodigoOperacionPN1_380_jh.ConflictoEstado_380_jh;
+                case "CONFLICTO_TIPIFICACION": return CodigoOperacionPN1_380_jh.ConflictoTipificacion_380_jh;
                 default: return CodigoOperacionPN1_380_jh.Error_380_jh;
             }
         }

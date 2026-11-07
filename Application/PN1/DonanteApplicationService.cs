@@ -239,6 +239,8 @@ namespace Application
                 Telefono_380_jh = donante.Telefono_380_jh,
                 Email_380_jh = donante.Email_380_jh,
                 Domicilio_380_jh = donante.Domicilio_380_jh,
+                GrupoSanguineo_380_jh = donante.GrupoSanguineo_380_jh,
+                FactorRh_380_jh = donante.FactorRh_380_jh,
                 Estado_380_jh = donante.Estado_380_jh,
                 FechaAlta_380_jh = donante.FechaAlta_380_jh,
                 IdUsuarioAlta_380_jh = donante.IdUsuarioAlta_380_jh

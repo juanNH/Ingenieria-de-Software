@@ -38,6 +38,18 @@ namespace DAL
                 Texto_380_jh("@buscar", buscar, 150)), MapearSolicitud_380_jh);
         }
 
+        public List<Receptor_380_jh> ListarReceptores_380_jh(string buscar, int idUsuario)
+        {
+            return Leer_380_jh("sp_PN2_Receptores_Listar", ParametrosUsuario_380_jh(idUsuario,
+                Texto_380_jh("@buscar", buscar, 150)), fila => new Receptor_380_jh
+                {
+                    Documento_380_jh = Cadena_380_jh(fila, "documento_receptor"),
+                    Nombre_380_jh = Cadena_380_jh(fila, "paciente_receptor"),
+                    GrupoSanguineo_380_jh = Cadena_380_jh(fila, "grupo_receptor"),
+                    FactorRh_380_jh = Cadena_380_jh(fila, "rh_receptor")
+                });
+        }
+
         public CodigoOperacionPN2_380_jh RegistrarSolicitud_380_jh(SolicitudTransfusional_380_jh solicitud, int idUsuario)
         {
             int id;

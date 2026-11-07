@@ -12,6 +12,12 @@ La descomposición funcional y las fichas de CDUN-06 a CDUN-11 están en RFN2 de
 
 El receptor presenta el pedido del profesional y el estudio al personal de registro. Un usuario habilitado transcribe los datos y el operador autorizado valida el estudio y atiende la reserva. El profesional identificado en el pedido y el usuario que lo carga son datos distintos.
 
+Desde **Receptor registrado** se puede recuperar un receptor para otra solicitud; también se busca automáticamente al salir del campo documento. Cada documento aparece una sola vez, con el nombre de su última solicitud y el último par grupo sanguíneo/Rh conocido (prioriza la fecha del estudio). **Nuevo receptor** limpia el formulario. El registro se obtiene de las solicitudes persistidas y protegidas por integridad: incluye datos históricos y continúa disponible al reiniciar. Una solicitud posterior sin grupo no borra el grupo conocido.
+
+La selección completa nombre, documento, grupo y Rh, y limpia los datos del estudio. Se permite registrar el grupo y factor sin un estudio; el pedido queda pendiente hasta cargar y validar el informe de esa solicitud. No se reutilizan laboratorios, resultados ni validaciones anteriores. Los profesionales sólo ven receptores de sus solicitudes; los operadores con acceso general conservan ese alcance. Para actualizar una base existente, ejecutar `Database/InstalarPN2.ps1` con la aplicación cerrada.
+
+Las pruebas de reutilización están incluidas en `Tests/PN2.Compatibilidad.Tests.ps1`, sobre una copia descartable de la base configurada. Para incluir Application, DAL y WinForms, compilar `Tests/PN2.Receptores.Tests.csproj` con MSBuild de Visual Studio (`/restore`) y ejecutar el script con `-ReceptoresUiRunner (Resolve-Path Tests/bin/Receptores/PN2.Receptores.Tests.exe)`. No se modifica la base de trabajo ni `App.local.config`.
+
 También se confirmaron entregas parciales, cancelación manual con motivo, devolución con reingreso explícito autorizado y reapertura del saldo cuando una entrega se devuelve o descarta. Estas decisiones están implementadas.
 
 La secuencia de roles describe el flujo de negocio. Las secuencias de clases muestran los pasos y alternativas de cada CDUN desde la UI hasta SQL Server. Los DER muestran las tablas y claves foráneas que intervienen en cada caso.
@@ -147,7 +153,7 @@ La protección DVH/DVV y la recuperación existentes incluyen las nuevas tablas 
 
 Opcionalmente se pueden indicar `-Servidor` y `-Base`. El instalador usa la conexión local sin mostrar sus credenciales, comprueba la integridad y crea un backup COPY_ONLY con checksum en la carpeta de backups de SQL Server; verifica ese archivo antes de migrar. La cuenta SQL necesita permisos de backup y de modificación de esquema.
 
-Luego ejecuta 08_PN2_Catalogos.sql, 06_MaestrosPN1.sql, 06a_CompatibilidadTransfusional.sql, la actualización de 07_PN1.sql, 09_PN2.sql, 10_IntegridadPN2.sql y 11_ComprobantesAutomaticos.sql en una transacción y verifica nuevamente la integridad antes de confirmar. Un error revierte la actualización. No usar el esquema inicial completo para actualizar una base con datos. Una base que ya tiene PN2 puede actualizar solo comprobantes con `./Database/InstalarComprobantes.ps1`.
+Luego ejecuta 08_PN2_Catalogos.sql, 06_MaestrosPN1.sql, 06a_CompatibilidadTransfusional.sql, 06b_TipificacionDonante.sql, la actualización de 07_PN1.sql, 09_PN2.sql, 10_IntegridadPN2.sql y 11_ComprobantesAutomaticos.sql en una transacción y verifica nuevamente la integridad antes de confirmar. Un error revierte la actualización. No usar el esquema inicial completo para actualizar una base con datos. Una base que ya tiene PN2 puede actualizar solo comprobantes con `./Database/InstalarComprobantes.ps1`.
 
 Los componentes, grupos sanguíneos y factores Rh se administran en **Maestros** y se comparten con PN1. El filtro de candidatos mantiene las reglas conocidas de PN2: un código nuevo necesita sus reglas en **Maestros → Compatibilidades** para generar candidatos. Ver [Compatibilidad configurable](Compatibilidad-configurable.md).
 

@@ -80,6 +80,9 @@ SET XACT_ABORT ON;
 BEGIN TRANSACTION;
 DECLARE @textos TABLE(clave VARCHAR(150),descripcion VARCHAR(255),es NVARCHAR(500),en NVARCHAR(500));
 INSERT @textos VALUES
+(N'PN2_REGISTERED_RECIPIENT',N'Receptor registrado',N'Receptor registrado',N'Registered recipient'),
+(N'PN2_NEW_RECIPIENT',N'Nuevo receptor',N'Nuevo receptor',N'New recipient'),
+(N'PN2_RECIPIENT_REUSE_NOTE',N'Reutilizar receptor',N'Seleccioná un receptor o ingresá su documento para recuperar nombre, grupo y Rh. El estudio se carga en cada solicitud.',N'Select a recipient or enter their ID to retrieve name, blood group and Rh. Enter the study for each request.'),
 (N'PN2_PATIENT_DOCUMENT',N'Documento del receptor',N'Documento del receptor',N'Recipient ID'),
 (N'BITACORA_ACTION_RECIPIENT_STUDY_UPDATED',N'Estudio del receptor actualizado',N'Estudio del receptor actualizado',N'Recipient study updated'),
 (N'BITACORA_ACTION_RECIPIENT_STUDY_VALIDATED',N'Estudio del receptor validado',N'Estudio del receptor validado',N'Recipient study validated'),

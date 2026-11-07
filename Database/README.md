@@ -20,7 +20,7 @@ permisos para crear y modificar la base `HemovidaGest`:
 6. `StoredProcedures/05_IntegridadPN1.sql` — controles e historial protegido de PN1.
 7. `StoredProcedures/06_MaestrosPN1.sql` — catálogos administrables y sus controles.
 8. `StoredProcedures/06a_CompatibilidadTransfusional.sql` — matriz configurable, reglas iniciales, auditoría e integridad.
-9. `StoredProcedures/07_PN1.sql` — procedimientos de donantes, donaciones y unidades.
+9. `StoredProcedures/06b_TipificacionDonante.sql` y luego `StoredProcedures/07_PN1.sql` — procedimientos de donantes, donaciones y unidades.
 10. `StoredProcedures/08_PN2_Catalogos.sql` — permisos y traducciones de PN2.
 11. `StoredProcedures/09_PN2.sql` — solicitudes, reservas, entregas y trazabilidad.
 12. `StoredProcedures/09a_RelacionesSolicitudPN2.sql` — aplica las claves foráneas de la solicitud a los catálogos y al usuario que valida el estudio.
@@ -44,9 +44,10 @@ integridad al finalizar:
 | Incorporar PN2 a una base PN1 válida | `./Database/InstalarPN2.ps1` |
 | Configurar compatibilidades en una base con PN2 | `./Database/InstalarCompatibilidad.ps1` |
 | Actualizar únicamente los comprobantes de una base PN2 | `./Database/InstalarComprobantes.ps1` |
+| Incorporar grupo sanguíneo y Rh persistidos en el donante (PN1 o PN1+PN2) | `./Database/InstalarMaestrosPN1.ps1` |
 
 `InstalarPN2.ps1` aplica, en orden, `08_PN2_Catalogos.sql`, `06_MaestrosPN1.sql`,
-`06a_CompatibilidadTransfusional.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql` y `12_DiagramasSSMS.sql`. El último script crea los diagramas que falten y conserva los existentes; requiere permisos de propietario de la base. Los diagramas dependen del esquema de tablas instalado.
+`06a_CompatibilidadTransfusional.sql`, `06b_TipificacionDonante.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql` y `12_DiagramasSSMS.sql`. El último script crea los diagramas que falten y conserva los existentes; requiere permisos de propietario de la base. Los diagramas dependen del esquema de tablas instalado.
 
 Para recuperar solo los diagramas después de reconstruir el esquema, ejecutá desde
 la raíz del proyecto `sqlcmd -S . -E -d HemovidaGest -b -i Database/StoredProcedures/12_DiagramasSSMS.sql`.
@@ -62,6 +63,26 @@ Ver [cómo configurar las reglas](../Docs/Compatibilidad-configurable.md). No ej
 mano esos mismos archivos además del instalador.
 
 ## Scripts auxiliares
+
+La clasificación de una unidad guarda también el grupo sanguíneo y Rh en el
+donante, dentro de la misma transacción y con auditoría e integridad DVH/DVV.
+Las futuras unidades siguen sin clasificar y en revisión; al abrir su formulario
+se proponen los datos del donante y se requiere confirmar la clasificación.
+Una discrepancia con el donante o sus unidades anteriores rechaza la operación.
+La edición administrativa del donante conserva estos campos.
+
+`06b_TipificacionDonante.sql` recupera antecedentes completos y coincidentes de
+las unidades existentes. Conserva el historial anterior y deja sin tipificar a
+los donantes con antecedentes contradictorios, que requieren revisión.
+Los instaladores de Maestros y PN2 lo ejecutan antes de `07_PN1.sql`.
+No ejecutes de nuevo `05_IntegridadPN1.sql` sobre una base PN2.
+
+Pruebas en una base temporal: `./Tests/TipificacionDonante.Tests.ps1` (PN1),
+agregando `-PN2` para la extensión, `-Legacy` para simular la migración desde
+una base sin tipificación del donante, o ambos para migrar PN2.
+Para comprobar también las pantallas, compilar `Tests/TipificacionDonante.Ui.Tests.csproj`
+en Release y agregar `-UI` al comando de pruebas. El circuito usa la misma base
+temporal y comprueba los servicios, mappers y formularios reales.
 
 - `StoredProcedures/99_I18n_Reset_Es_En.sql` es un reinicio de idiomas, no parte de
   una instalación normal. Puede borrar personalizaciones del catálogo de

@@ -32,7 +32,7 @@ try {
     foreach ($taskScript in @('00_tecni_salud_schema.sql','StoredProcedures/01_AuthUsuario.sql',
         'StoredProcedures/02_Bitacora.sql','StoredProcedures/03_Auditoria.sql','StoredProcedures/04_Permisos.sql',
         'StoredProcedures/05_IntegridadPN1.sql','StoredProcedures/06_MaestrosPN1.sql',
-        'StoredProcedures/06a_CompatibilidadTransfusional.sql','StoredProcedures/07_PN1.sql',
+        'StoredProcedures/06a_CompatibilidadTransfusional.sql','StoredProcedures/06b_TipificacionDonante.sql','StoredProcedures/07_PN1.sql',
         'StoredProcedures/08_PN2_Catalogos.sql','StoredProcedures/09_PN2.sql',
         'StoredProcedures/09a_RelacionesSolicitudPN2.sql','StoredProcedures/10_IntegridadPN2.sql',
         'StoredProcedures/11_ComprobantesAutomaticos.sql')) { Script $taskScript }
