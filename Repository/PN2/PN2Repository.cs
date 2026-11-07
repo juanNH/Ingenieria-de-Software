@@ -30,6 +30,11 @@ namespace Repository
             return _mapper_380_jh.ListarSolicitudes_380_jh(buscar, idUsuario);
         }
 
+        public List<Receptor_380_jh> ListarReceptores_380_jh(string buscar, int idUsuario)
+        {
+            return _mapper_380_jh.ListarReceptores_380_jh(buscar, idUsuario);
+        }
+
         public CodigoOperacionPN2_380_jh RegistrarSolicitud_380_jh(SolicitudTransfusional_380_jh solicitud, int idUsuario)
         {
             return _mapper_380_jh.RegistrarSolicitud_380_jh(solicitud, idUsuario);

@@ -54,10 +54,21 @@ namespace Application
             return _repository_380_jh.ListarSolicitudes_380_jh(Limpiar_380_jh(buscar), usuario.Id_380_jh);
         }
 
+        public List<Receptor_380_jh> ListarReceptores_380_jh(string buscar = null)
+        {
+            Usuario_380_jh usuario = UsuarioActual_380_jh();
+            if (!TienePermiso_380_jh(usuario, PermisosSistema_380_jh.SolicitudVer_380_jh))
+                return new List<Receptor_380_jh>();
+            ValidarConsulta_380_jh(TextoValido_380_jh(buscar, 150));
+            return _repository_380_jh.ListarReceptores_380_jh(Limpiar_380_jh(buscar), usuario.Id_380_jh);
+        }
+
         public CodigoOperacionPN2_380_jh RegistrarSolicitud_380_jh(SolicitudTransfusional_380_jh solicitud)
         {
-            bool estudioAusente = solicitud != null && string.IsNullOrWhiteSpace(solicitud.GrupoReceptor_380_jh) &&
-                string.IsNullOrWhiteSpace(solicitud.RhReceptor_380_jh) && string.IsNullOrWhiteSpace(solicitud.LaboratorioEstudio_380_jh) &&
+            bool grupoValido = solicitud != null &&
+                ((string.IsNullOrWhiteSpace(solicitud.GrupoReceptor_380_jh) && string.IsNullOrWhiteSpace(solicitud.RhReceptor_380_jh)) ||
+                 (TextoValido_380_jh(solicitud.GrupoReceptor_380_jh, 5, true) && TextoValido_380_jh(solicitud.RhReceptor_380_jh, 5, true)));
+            bool estudioAusente = grupoValido && string.IsNullOrWhiteSpace(solicitud.LaboratorioEstudio_380_jh) &&
                 string.IsNullOrWhiteSpace(solicitud.ReferenciaEstudio_380_jh) && string.IsNullOrWhiteSpace(solicitud.ResultadoAnticuerpos_380_jh) &&
                 !solicitud.FechaEstudio_380_jh.HasValue;
             bool estudioCompleto = solicitud != null &&
