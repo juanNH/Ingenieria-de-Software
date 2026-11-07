@@ -13,6 +13,8 @@ namespace Domain
         public string Email_380_jh { get; set; }
         public bool TieneEmail_380_jh { get; set; }
         public string Domicilio_380_jh { get; set; }
+        public string GrupoSanguineo_380_jh { get; set; }
+        public string FactorRh_380_jh { get; set; }
         public string Estado_380_jh { get; set; }
         public DateTime FechaAlta_380_jh { get; set; }
         public int IdUsuarioAlta_380_jh { get; set; }

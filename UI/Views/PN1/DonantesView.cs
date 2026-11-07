@@ -206,6 +206,8 @@ namespace UI
             AgregarColumna_380_jh("nombreCompleto", "GRID_USER");
             AgregarColumna_380_jh("telefono", "DONOR_PHONE");
             AgregarColumna_380_jh("email", "DONOR_EMAIL");
+            AgregarColumna_380_jh("grupo", "UNIT_BLOOD_GROUP");
+            AgregarColumna_380_jh("rh", "UNIT_RH");
             AgregarColumna_380_jh("estado", "DONOR_STATUS");
             _grid_380_jh.CellClick += Grilla_CellClick_380_jh;
             grillaPanel.Controls.Add(_grid_380_jh);
@@ -302,7 +304,8 @@ namespace UI
             foreach (Donante_380_jh donante in _donantes_380_jh)
             {
                 _grid_380_jh.Rows.Add(donante.Id_380_jh, donante.Documento_380_jh, donante.NombreCompleto_380_jh,
-                    donante.Telefono_380_jh, donante.TieneEmail_380_jh ? "••••••••" : "—", TraducirEstado_380_jh(donante.Estado_380_jh));
+                    donante.Telefono_380_jh, donante.TieneEmail_380_jh ? "••••••••" : "—",
+                    donante.GrupoSanguineo_380_jh ?? "—", donante.FactorRh_380_jh ?? "—", TraducirEstado_380_jh(donante.Estado_380_jh));
                 _grid_380_jh.Rows[_grid_380_jh.Rows.Count - 1].Tag = donante;
             }
 

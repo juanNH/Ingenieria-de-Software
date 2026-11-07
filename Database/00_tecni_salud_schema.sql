@@ -274,10 +274,15 @@ CREATE TABLE dbo.Donante
     telefono VARCHAR(50) NULL,
     email VARCHAR(512) NULL,
     domicilio VARCHAR(255) NULL,
+    grupo_sanguineo VARCHAR(5) NULL,
+    factor_rh VARCHAR(5) NULL,
     estado_donante VARCHAR(20) NOT NULL CONSTRAINT DF_Donante_Estado DEFAULT 'ACTIVO',
     fecha_alta DATETIME NOT NULL CONSTRAINT DF_Donante_FechaAlta DEFAULT GETDATE(),
     id_usuario_alta INT NOT NULL,
     CONSTRAINT UQ_Donante_Documento UNIQUE (documento),
+    CONSTRAINT CK_Donante_Tipificacion CHECK ((grupo_sanguineo IS NULL AND factor_rh IS NULL) OR (grupo_sanguineo IS NOT NULL AND factor_rh IS NOT NULL)),
+    CONSTRAINT FK_Donante_Grupo FOREIGN KEY (grupo_sanguineo) REFERENCES dbo.GrupoSanguineo(codigo),
+    CONSTRAINT FK_Donante_Rh FOREIGN KEY (factor_rh) REFERENCES dbo.FactorRh(codigo),
     CONSTRAINT CK_Donante_Estado CHECK (estado_donante IN ('ACTIVO', 'INACTIVO')),
     CONSTRAINT FK_Donante_UsuarioAlta FOREIGN KEY (id_usuario_alta) REFERENCES dbo.Usuario(id_usuario)
 );

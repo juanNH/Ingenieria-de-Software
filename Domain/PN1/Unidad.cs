@@ -10,6 +10,8 @@ namespace Domain
         public int? IdDonante_380_jh { get; set; }
         public string DocumentoDonante_380_jh { get; set; }
         public string Donante_380_jh { get; set; }
+        public string GrupoSanguineoDonante_380_jh { get; set; }
+        public string FactorRhDonante_380_jh { get; set; }
         public string TipoComponente_380_jh { get; set; }
         public DateTime FechaVencimiento_380_jh { get; set; }
         public string GrupoSanguineo_380_jh { get; set; }
