@@ -43,7 +43,7 @@ try {
     $taskConnection = New-Object System.Data.SqlClient.SqlConnection $taskBuilder.ConnectionString
     $taskConnection.Open()
     foreach ($taskFile in @('00_tecni_salud_schema.sql','StoredProcedures/02_Bitacora.sql','StoredProcedures/04_Permisos.sql',
-        'StoredProcedures/05_IntegridadPN1.sql','StoredProcedures/06_MaestrosPN1.sql','StoredProcedures/07_PN1.sql')) { Script $taskFile }
+        'StoredProcedures/05_IntegridadPN1.sql','StoredProcedures/06_MaestrosPN1.sql','StoredProcedures/06a_CompatibilidadTransfusional.sql','StoredProcedures/07_PN1.sql')) { Script $taskFile }
     if ($PN2) {
         foreach ($taskFile in @('08_PN2_Catalogos.sql','09_PN2.sql','10_IntegridadPN2.sql')) { Script ('StoredProcedures/' + $taskFile) }
     }

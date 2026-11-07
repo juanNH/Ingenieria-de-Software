@@ -14,6 +14,29 @@ namespace Application
         public const string Destino_380_jh = "DESTINO";
         private readonly MaestroPN1Repository_380_jh _repository = new MaestroPN1Repository_380_jh();
 
+        public List<ReglaCompatibilidad_380_jh> ListarCompatibilidades_380_jh()
+        {
+            var usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
+            if (!new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(usuario, PermisosSistema_380_jh.MaestrosAdministrar_380_jh))
+                throw new UnauthorizedAccessException();
+            return _repository.ListarCompatibilidades_380_jh(usuario.Id_380_jh);
+        }
+
+        public string GuardarCompatibilidad_380_jh(ReglaCompatibilidad_380_jh regla)
+        {
+            var usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
+            if (!new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(usuario, PermisosSistema_380_jh.MaestrosAdministrar_380_jh))
+                return "NO_AUTORIZADO";
+            if (regla == null || regla.Id_380_jh < 0 || !CodigoValido_380_jh(regla.TipoComponente_380_jh, 100) ||
+                !CodigoValido_380_jh(regla.GrupoUnidad_380_jh, 5) || !CodigoValido_380_jh(regla.RhUnidad_380_jh, 5) ||
+                !CodigoValido_380_jh(regla.GrupoReceptor_380_jh, 5) || !CodigoValido_380_jh(regla.RhReceptor_380_jh, 5))
+                return "DATOS_INVALIDOS";
+            if (!new IntegridadApplicationService_380_jh().Verificar_380_jh().EsValida_380_jh) return "INTEGRIDAD_INVALIDA";
+            return _repository.GuardarCompatibilidad_380_jh(regla, usuario.Id_380_jh);
+        }
+
+        private static bool CodigoValido_380_jh(string codigo, int longitud) => !string.IsNullOrWhiteSpace(codigo) && codigo.Length <= longitud;
+
         public List<MaestroPN1_380_jh> Listar_380_jh(string tipo, bool soloActivos = true)
         {
             if (tipo != Componente_380_jh && tipo != Grupo_380_jh && tipo != Rh_380_jh && tipo != Destino_380_jh) throw new ArgumentException("Tipo de maestro inválido.");

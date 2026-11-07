@@ -10,19 +10,17 @@ La reserva requiere estudio validado, saldo pendiente y una unidad liberada y vi
 
 ## Reglas del filtro preliminar
 
-Como el componente de PN1 es texto libre, el filtro reconoce exclusivamente estos nombres, sin distinguir mayúsculas ni acentos; el componente del pedido y el de la unidad también deben coincidir:
+Las combinaciones se administran en **Maestros → Compatibilidades** y se guardan en `CompatibilidadTransfusional`. La función `fn_PN2_GrupoCandidato` busca una fila activa para componente, grupo/Rh de la unidad y grupo/Rh del receptor. Sin fila activa no hay candidata. El componente del pedido y el de la unidad también deben coincidir.
 
-- `Glóbulos rojos`, `Concentrado de glóbulos rojos`, `Eritrocitos` o `Concentrado de eritrocitos`: compatibilidad ABO de glóbulos rojos; receptor RhD negativo recibe candidatos RhD negativos.
-- `Plasma` o `Plasma fresco congelado`: compatibilidad ABO de plasma. El filtro no restringe por RhD, aunque ambos registros deben tener un valor válido.
-- `Plaquetas` o `Concentrado de plaquetas`: únicamente grupo ABO idéntico y, para receptor RhD negativo, unidades RhD negativas. Es un filtro conservador y puede excluir alternativas que el servicio considere utilizables.
+La primera instalación convierte las reglas anteriores en datos para los componentes reconocidos que ya están en Maestros. Con los tres componentes iniciales se cargan 75 combinaciones: 27 de eritrocitos, 36 de plasma y 12 de plaquetas. Reinstalar conserva reglas personalizadas y bajas; un maestro nuevo requiere configurar explícitamente sus combinaciones.
 
-Un nombre desconocido no produce candidatos. La comparación de grupos no evalúa anticuerpos específicos ni otras características y no reemplaza una prueba cruzada o las pruebas que correspondan. La validación humana y su referencia son obligatorias. Las reglas deben ser revisadas por el servicio de hemoterapia antes de utilizarlas en un entorno asistencial.
+La misma configuración se consulta al buscar, reservar y entregar. El filtro sigue siendo preliminar y el operador debe registrar la confirmación correspondiente. Ver [Compatibilidad configurable](Compatibilidad-configurable.md) para entender cada columna, usar la pantalla, instalar y probar el cambio.
 
 ## Cambios y despliegue
 
 El cambio abarca interfaz, Application, Repository, DAL y procedimientos de PN2. Los campos nuevos son anulables para preservar registros anteriores. Integridad incluye los nuevos datos en el hash y la restauración, y conserva la representación anterior cuando todos están vacíos. Las reservas previas sin estudio validado y sin referencia de compatibilidad no pueden entregarse bajo el nuevo circuito; requieren una resolución operativa antes de actualizar una base que las contenga.
 
-Para actualizar una base existente, cerrar la aplicación y ejecutar `Database/InstalarPN2.ps1`. El instalador comprueba integridad, crea y verifica un respaldo y ejecuta los scripts en una transacción. Reiniciar sesión para cargar permisos y traducciones. No se aplicó automáticamente la migración a la base de trabajo.
+Para actualizar una base existente, cerrar la aplicación y ejecutar `Database/InstalarPN2.ps1`. El instalador comprueba integridad, crea y verifica un respaldo y ejecuta los scripts en una transacción. Reiniciar sesión para cargar permisos y traducciones. Si PN2 ya está instalado y solo se actualiza la configuración de compatibilidad, usá `Database/InstalarCompatibilidad.ps1`.
 
 ## Comprobación funcional propuesta
 

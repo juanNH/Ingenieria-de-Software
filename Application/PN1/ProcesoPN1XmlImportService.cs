@@ -41,8 +41,8 @@ namespace Application
                 bool tieneGrupo = !string.IsNullOrWhiteSpace(unidad.GrupoSanguineo_380_jh);
                 bool tieneRh = !string.IsNullOrWhiteSpace(unidad.FactorRh_380_jh);
                 if (tieneGrupo != tieneRh ||
-                    (tieneGrupo && unidad.GrupoSanguineo_380_jh != "A" && unidad.GrupoSanguineo_380_jh != "B" && unidad.GrupoSanguineo_380_jh != "AB" && unidad.GrupoSanguineo_380_jh != "O") ||
-                    (tieneRh && unidad.FactorRh_380_jh != "+" && unidad.FactorRh_380_jh != "-") ||
+                    (tieneGrupo && unidad.GrupoSanguineo_380_jh.Length > 5) ||
+                    (tieneRh && unidad.FactorRh_380_jh.Length > 5) ||
                     (unidad.EstadoOperativo_380_jh != EstadoUnidadPN1_380_jh.EnRevision_380_jh && !tieneGrupo))
                     throw new InvalidDataException("Clasificación de unidad inválida.");
             }

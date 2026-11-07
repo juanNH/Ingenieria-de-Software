@@ -195,6 +195,19 @@ internal static class PN1XmlTests
             grid.Rows[1].Visible = true;
             var servicio = new UnidadApplicationService_380_jh();
             string xml = servicio.SerializarTablaXml_380_jh(filas);
+            var filaConfigurable = new FilaUnidadXml_380_jh {
+                CodigoIdentificacion_380_jh = "CONFIG", Donante_380_jh = "Donante", TipoComponente_380_jh = "Componente nuevo",
+                GrupoSanguineo_380_jh = "X", FactorRh_380_jh = "?", FechaVencimiento_380_jh = new DateTime(2030, 1, 2),
+                EstadoOperativo_380_jh = "LIBERADA"
+            };
+            string xmlConfigurable = servicio.SerializarTablaXml_380_jh(new List<FilaUnidadXml_380_jh> { filaConfigurable });
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(xmlConfigurable))) {
+                var recuperada = servicio.DeserializarTablaXml_380_jh(stream).Unidades_380_jh[0];
+                Check(recuperada.GrupoSanguineo_380_jh == "X" && recuperada.FactorRh_380_jh == "?", "XML conserva grupos y Rh configurables sin consultar la base");
+            }
+            filaConfigurable.FactorRh_380_jh = "LARGO6";
+            try { servicio.SerializarTablaXml_380_jh(new List<FilaUnidadXml_380_jh> { filaConfigurable }); throw new Exception("Se permitió un código demasiado largo."); }
+            catch (InvalidDataException) { Check(true, "XML mantiene el límite de longitud de los maestros"); }
             foreach (string estado in new[] { "RESERVADA", "ENTREGADA", "TRANSFUNDIDA", "DEVUELTA" })
             {
                 var filaEstado = new FilaUnidadXml_380_jh

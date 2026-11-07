@@ -2,7 +2,15 @@
 $ErrorActionPreference = 'Stop'
 $raizProyecto = Split-Path $PSScriptRoot -Parent
 $salidaPruebas = Join-Path $PSScriptRoot 'bin/IntegrityTests'
-& dotnet build (Join-Path $PSScriptRoot 'IntegridadUI.Tests.csproj') --no-restore -v:q "-p:OutputPath=$salidaPruebas"
+$taskMsBuild = (Get-Command MSBuild.exe -ErrorAction SilentlyContinue).Source
+if (!$taskMsBuild) {
+    $taskVsWhere = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio/Installer/vswhere.exe'
+    if (Test-Path -LiteralPath $taskVsWhere) {
+        $taskMsBuild = & $taskVsWhere -latest -products '*' -requires Microsoft.Component.MSBuild -find 'MSBuild\**\Bin\MSBuild.exe' | Select-Object -First 1
+    }
+}
+if (!$taskMsBuild) { throw 'Instalá MSBuild de Visual Studio o Build Tools para compilar las pruebas WinForms de .NET Framework.' }
+& $taskMsBuild (Join-Path $PSScriptRoot 'IntegridadUI.Tests.csproj') /restore /m /v:minimal /nologo "/p:OutputPath=$salidaPruebas"
 if ($LASTEXITCODE -ne 0) { throw 'No compilan las pruebas de UI' }
 $basePrueba = 'HemovidaGest_Integridad_Test_' + [Guid]::NewGuid().ToString('N')
 $conexionPrueba = New-Object System.Data.SqlClient.SqlConnection "Server=$Servidor;Database=master;Integrated Security=True;TrustServerCertificate=True"
@@ -72,6 +80,12 @@ try {
         Assert ((Verificar).Tables[0].Rows[0].es_valida) 'Inicializa y verifica la base sin alterar datos'
         Rechaza "EXEC dbo.sp_IntegridadPN1_Inicializar @id_usuario=1,@revision='$revision'" 51004 'No reinicializa una base aceptada'
     }
+    # La integridad puede inicializarse antes de instalar los maestros sobre datos previos.
+    # Las operaciones actuales exigen los catálogos y sus controles.
+    Script 'Database/StoredProcedures/06_MaestrosPN1.sql'
+    Script 'Database/StoredProcedures/06a_CompatibilidadTransfusional.sql'
+    Script 'Database/StoredProcedures/06b_TipificacionDonante.sql'
+    [void](Sql "EXEC dbo.sp_MaestroPN1_Guardar 'COMPONENTE',0,'Sangre',N'Sangre de prueba',1,1")
     $documento = if ($DatosExistentes) { 'D-extra' } else { 'D1' }
     [void](Sql "EXEC dbo.sp_Donante_Registrar @documento='$documento',@nombre='Maria',@apellido='Prueba',@id_usuario=1")
     [void](Sql "EXEC dbo.sp_Donacion_Registrar @id_donante=1,@fecha_donacion='20260101',@cantidad_unidades=3,@tipo_componente='Sangre',@fecha_vencimiento='20991231',@id_usuario=1")

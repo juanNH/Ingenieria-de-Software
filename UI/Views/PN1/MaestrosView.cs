@@ -27,6 +27,9 @@ namespace UI
             CrearTab_380_jh(tabs, MaestroPN1ApplicationService_380_jh.Grupo_380_jh, "MASTERS_GROUPS", 5);
             CrearTab_380_jh(tabs, MaestroPN1ApplicationService_380_jh.Rh_380_jh, "MASTERS_RH", 5);
             CrearTab_380_jh(tabs, MaestroPN1ApplicationService_380_jh.Destino_380_jh, "MASTERS_DESTINATIONS", 20);
+            var compatibilidades = new TabPage { Tag = "COMPAT_TITLE", Padding = new Padding(12) };
+            compatibilidades.Controls.Add(new CompatibilidadesView_380_jh { Dock = DockStyle.Fill });
+            tabs.TabPages.Add(compatibilidades);
             new ProteccionIntegridad_380_jh(this, _acciones.ToArray());
         }
 

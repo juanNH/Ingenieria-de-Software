@@ -26,6 +26,9 @@ try {
     # y se sella antes de migrar para comprobar la conservación de hashes y versiones.
     [void](Invoke-TaskSql @'
 BEGIN TRANSACTION;
+-- The cloned schema represents a pre-matrix installation with no data.
+DROP TABLE IF EXISTS dbo.CompatibilidadTransfusional;
+DROP TABLE IF EXISTS dbo.CompatibilidadTransfusionalControl;
 ALTER TABLE dbo.SolicitudTransfusional DROP CONSTRAINT IF EXISTS FK_SolicitudTransfusional_Componente;
 ALTER TABLE dbo.SolicitudTransfusional DROP CONSTRAINT IF EXISTS FK_SolicitudTransfusional_Grupo;
 ALTER TABLE dbo.SolicitudTransfusional DROP CONSTRAINT IF EXISTS FK_SolicitudTransfusional_Rh;
@@ -60,7 +63,7 @@ DROP TABLE dbo.MaestrosPN1Control;
 
     $taskTransaction = $taskConnection.BeginTransaction()
     try {
-        foreach ($taskFile in @('08_PN2_Catalogos.sql','06_MaestrosPN1.sql','06b_TipificacionDonante.sql','07_PN1.sql','09_PN2.sql','09a_RelacionesSolicitudPN2.sql','10_IntegridadPN2.sql','11_ComprobantesAutomaticos.sql')) {
+        foreach ($taskFile in @('08_PN2_Catalogos.sql','06_MaestrosPN1.sql','06a_CompatibilidadTransfusional.sql','06b_TipificacionDonante.sql','07_PN1.sql','09_PN2.sql','09a_RelacionesSolicitudPN2.sql','10_IntegridadPN2.sql','11_ComprobantesAutomaticos.sql')) {
             $taskPath = Join-Path $PSScriptRoot ('../Database/StoredProcedures/' + $taskFile)
             $taskSql = (Get-Content -Raw -Encoding UTF8 -LiteralPath $taskPath).Replace('USE [HemovidaGest];','')
             foreach ($taskBatch in [regex]::Split($taskSql,'(?im)^\s*GO\s*(?:--[^\r\n]*)?$')) {
@@ -98,8 +101,8 @@ IF EXISTS(SELECT 1 FROM @grupos d CROSS JOIN @grupos r
     WHERE dbo.fn_PN2_GrupoCandidato(N'Plasma',d.grupo,'+',r.grupo,'-') <>
           CASE WHEN EXISTS(SELECT 1 FROM @pl x WHERE x.donante=d.grupo AND x.receptor=r.grupo) THEN 1 ELSE 0 END)
     THROW 51000,'PLASMA_MATRIX',1;
-IF dbo.fn_PN2_GrupoCandidato(N'Plaquetas','A','-','A','-')<>1 OR
-   dbo.fn_PN2_GrupoCandidato(N'Plaquetas','O','-','A','+')<>0 THROW 51000,'PLATELET_FILTER',1;
+IF dbo.fn_PN2_GrupoCandidato(N'Concentrado de plaquetas','A','-','A','-')<>1 OR
+   dbo.fn_PN2_GrupoCandidato(N'Concentrado de plaquetas','O','-','A','+')<>0 THROW 51000,'PLATELET_FILTER',1;
 '@)
     $taskUser = [int](Invoke-TaskSql "SELECT id_usuario FROM dbo.Usuario WHERE nombre_usuario='prueba_pn2'")
     $taskRequest = [int](Invoke-TaskSql "SELECT id_solicitud_transfusional FROM dbo.SolicitudTransfusional WHERE paciente_receptor=N'Receptor prueba'")

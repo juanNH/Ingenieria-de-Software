@@ -56,29 +56,20 @@ IF COL_LENGTH('dbo.SolicitudTransfusional','nombre_solicitante') IS NULL
     ALTER TABLE dbo.SolicitudTransfusional ADD nombre_solicitante NVARCHAR(150) NULL;
 GO
 
--- Filtro preliminar, deliberadamente limitado a componentes identificados.
--- La aptitud final debe confirmarla el personal con las pruebas correspondientes.
+-- El filtro consulta las combinaciones configuradas en Maestros.
+-- La evaluación final corresponde al personal y sus pruebas.
 CREATE OR ALTER FUNCTION dbo.fn_PN2_GrupoCandidato
 (@componente NVARCHAR(100), @grupo VARCHAR(5), @rh VARCHAR(5), @receptor VARCHAR(5), @rh_receptor VARCHAR(5))
 RETURNS BIT
 AS
 BEGIN
-    IF @grupo NOT IN ('O','A','B','AB') OR @receptor NOT IN ('O','A','B','AB')
-       OR @rh NOT IN ('+','-') OR @rh_receptor NOT IN ('+','-') RETURN 0;
-    DECLARE @tipo NVARCHAR(100)=UPPER(LTRIM(RTRIM(@componente))) COLLATE Latin1_General_CI_AI;
-    IF @tipo COLLATE Latin1_General_CI_AI IN (N'GLOBULOS ROJOS', N'CONCENTRADO DE GLOBULOS ROJOS', N'ERITROCITOS', N'CONCENTRADO DE ERITROCITOS')
-    BEGIN
-        IF @rh_receptor='-' AND @rh<>'-' RETURN 0;
-        IF @grupo='O' OR @grupo=@receptor OR (@receptor='AB' AND @grupo IN ('A','B')) RETURN 1;
-    END;
-    IF @tipo COLLATE Latin1_General_CI_AI IN (N'PLASMA', N'PLASMA FRESCO CONGELADO')
-    BEGIN
-        IF @grupo='AB' OR @grupo=@receptor OR (@receptor='O' AND @grupo IN ('A','B')) RETURN 1;
-    END;
-    -- Plaquetas: lista conservadora de grupo identico; la validacion es individual.
-    IF @tipo COLLATE Latin1_General_CI_AI IN (N'PLAQUETAS', N'CONCENTRADO DE PLAQUETAS')
-       AND @grupo=@receptor AND (@rh_receptor='+' OR @rh='-') RETURN 1;
-    RETURN 0;
+    DECLARE @candidato BIT=0;
+    IF EXISTS(SELECT 1 FROM dbo.CompatibilidadTransfusional
+        WHERE tipo_componente=@componente
+          AND grupo_unidad=@grupo AND rh_unidad=@rh
+          AND grupo_receptor=@receptor AND rh_receptor=@rh_receptor AND activo=1)
+        SET @candidato=1;
+    RETURN @candidato;
 END;
 GO
 
@@ -191,6 +182,7 @@ BEGIN
         THROW 51002,'PN2_INTEGRITY_DEFINITIONS_DOWNGRADED',1;
     EXEC dbo.sp_IntegridadPN1_Exigir;
     EXEC dbo.sp_MaestroPN1_Exigir;
+    EXEC dbo.sp_CompatibilidadTransfusional_Exigir;
 END;
 GO
 
@@ -448,9 +440,12 @@ GO
 CREATE OR ALTER PROCEDURE dbo.sp_PN2_UnidadesCandidatas @id_solicitud INT,@id_usuario INT
 AS
 BEGIN
-    SET NOCOUNT ON;
+    SET NOCOUNT ON; SET XACT_ABORT ON;
+    BEGIN TRY
+    BEGIN TRANSACTION;
     EXEC dbo.sp_PN2_Autorizar @id_usuario,'INVENTARIO_VER';
     EXEC dbo.sp_PN2_Autorizar @id_usuario,'RESERVA_VER';
+    EXEC dbo.sp_PN2_Exigir;
     SELECT u.id_unidad,u.codigo_identificacion,u.id_donacion,u.tipo_componente,u.fecha_vencimiento,
            u.grupo_sanguineo,u.factor_rh,u.observaciones,u.estado_operativo,u.ubicacion,
            u.fecha_alta,u.fecha_ultima_modificacion,u.id_usuario_ultima_modificacion
@@ -461,6 +456,8 @@ BEGIN
       AND NOT EXISTS(SELECT 1 FROM dbo.Reserva r WHERE r.id_unidad=u.id_unidad AND r.estado_reserva='ACTIVA')
     ORDER BY CASE WHEN u.grupo_sanguineo=s.grupo_receptor AND u.factor_rh=s.rh_receptor THEN 0 ELSE 1 END,
              u.fecha_vencimiento,u.id_unidad;
+    COMMIT;
+    END TRY BEGIN CATCH IF @@TRANCOUNT>0 ROLLBACK; THROW; END CATCH;
 END;
 GO
 
