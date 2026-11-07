@@ -63,6 +63,7 @@
     <Compile Include="PN1\Unidad.cs" />
     <Compile Include="PN1\ComprobanteAutomatico.cs" />
     <Compile Include="PN2\SolicitudTransfusional.cs" />
+    <Compile Include="PN2\Receptor.cs" />
     <Compile Include="PN1\MaestroPN1.cs" />
     <Compile Include="PN2\Reserva.cs" />
     <Compile Include="PN2\Entrega.cs" />

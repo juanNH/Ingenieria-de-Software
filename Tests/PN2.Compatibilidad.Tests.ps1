@@ -1,4 +1,4 @@
-﻿param([string]$ConfigPath = (Join-Path $PSScriptRoot '../DAL/App.local.config'))
+﻿param([string]$ConfigPath = (Join-Path $PSScriptRoot '../DAL/App.local.config'), [string]$ReceptoresUiRunner)
 $ErrorActionPreference = 'Stop'
 [xml]$taskConfig = Get-Content -Raw -LiteralPath $ConfigPath
 $taskBuilder = New-Object System.Data.SqlClient.SqlConnectionStringBuilder $taskConfig.configuration.connectionStrings.add.connectionString
@@ -60,7 +60,7 @@ DROP TABLE dbo.MaestrosPN1Control;
 
     $taskTransaction = $taskConnection.BeginTransaction()
     try {
-        foreach ($taskFile in @('08_PN2_Catalogos.sql','06_MaestrosPN1.sql','07_PN1.sql','09_PN2.sql','09a_RelacionesSolicitudPN2.sql','10_IntegridadPN2.sql','11_ComprobantesAutomaticos.sql')) {
+        foreach ($taskFile in @('08_PN2_Catalogos.sql','06_MaestrosPN1.sql','06b_TipificacionDonante.sql','07_PN1.sql','09_PN2.sql','09a_RelacionesSolicitudPN2.sql','10_IntegridadPN2.sql','11_ComprobantesAutomaticos.sql')) {
             $taskPath = Join-Path $PSScriptRoot ('../Database/StoredProcedures/' + $taskFile)
             $taskSql = (Get-Content -Raw -Encoding UTF8 -LiteralPath $taskPath).Replace('USE [HemovidaGest];','')
             foreach ($taskBatch in [regex]::Split($taskSql,'(?im)^\s*GO\s*(?:--[^\r\n]*)?$')) {
@@ -72,6 +72,7 @@ DROP TABLE dbo.MaestrosPN1Control;
         $taskTransaction.Commit()
     } catch { $taskTransaction.Rollback(); throw } finally { $taskTransaction.Dispose() }
 
+    $taskReadAuthorization = [regex]::Replace([string](Invoke-TaskSql "SELECT OBJECT_DEFINITION(OBJECT_ID('dbo.sp_PN2_Autorizar'))"), '(?i)CREATE\s+(?:OR\s+ALTER\s+)?PROCEDURE', 'CREATE OR ALTER PROCEDURE')
     # Solo en la copia se omite la autorización para aislar el flujo de negocio;
     # esta prueba no evalúa permisos ni reemplaza pruebas con usuarios reales.
     [void](Invoke-TaskSql 'CREATE OR ALTER PROCEDURE dbo.sp_IntegridadPN1_Autorizar @id_usuario INT,@permiso VARCHAR(100) AS BEGIN SET NOCOUNT ON; END')
@@ -170,6 +171,7 @@ IF dbo.fn_PN2_GrupoCandidato(N'Plaquetas','A','-','A','-')<>1 OR
     if ((Invoke-TaskSql "SELECT datos.value('(/Comprobante/Solicitud/ProfesionalSolicitante_380_jh/text())[1]','nvarchar(150)') FROM dbo.ComprobantePendiente WHERE proceso='PN2' AND id_referencia=$taskDeliveryB") -ne 'Profesional') { throw 'El comprobante no conserva el profesional solicitante.' }
     if ((Invoke-TaskSql "SELECT datos.value('(/Comprobante/Usuario/text())[1]','nvarchar(150)') FROM dbo.ComprobantePendiente WHERE proceso='PN2' AND id_referencia=$taskDeliveryB") -ne 'prueba_pn2') { throw 'El comprobante no conserva el responsable de la operación.' }
     if ([int](Invoke-TaskSql 'SELECT COUNT(*) FROM dbo.v_IntegridadPN1_Errores') -ne 0) { throw 'Integridad inválida después del flujo.' }
+    . (Join-Path $PSScriptRoot 'PN2.Receptores.Cases.ps1')
     Write-Host 'Correcto: migración con datos anteriores, integridad, grupos, validación, filtro, reserva y entrega.'
 } finally {
     if ($taskCreated) {
