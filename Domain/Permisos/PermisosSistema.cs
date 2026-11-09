@@ -32,6 +32,7 @@ namespace Domain
         public const string DonanteVer_380_jh = "DONANTE_VER";
         public const string DonanteCrear_380_jh = "DONANTE_CREAR";
         public const string DonacionCrear_380_jh = "DONACION_CREAR";
+        public const string DonacionAjustarCantidad_380_jh = "DONACION_AJUSTAR_CANTIDAD";
         public const string UnidadVer_380_jh = "UNIDAD_VER";
         public const string UnidadClasificar_380_jh = "UNIDAD_CLASIFICAR";
         public const string UnidadLiberar_380_jh = "UNIDAD_LIBERAR";

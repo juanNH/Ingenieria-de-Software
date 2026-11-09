@@ -35,7 +35,7 @@ try {
     $taskCommand.Dispose()
     Write-Host "Respaldo verificado: $taskBackupPath"
     $taskTransaction = $taskConnection.BeginTransaction()
-    foreach ($taskScript in @('08_PN2_Catalogos.sql','06_MaestrosPN1.sql','06a_CompatibilidadTransfusional.sql','06b_TipificacionDonante.sql','07_PN1.sql','09_PN2.sql','09a_RelacionesSolicitudPN2.sql','10_IntegridadPN2.sql','11_ComprobantesAutomaticos.sql','12_DiagramasSSMS.sql')) {
+    foreach ($taskScript in @('08_PN2_Catalogos.sql','06_MaestrosPN1.sql','06a_CompatibilidadTransfusional.sql','06b_TipificacionDonante.sql','07_PN1.sql','09_PN2.sql','09a_RelacionesSolicitudPN2.sql','10_IntegridadPN2.sql','11_ComprobantesAutomaticos.sql','12_DiagramasSSMS.sql','13_AjusteCantidadDonacion.sql')) {
         $taskScriptPath = Join-Path $PSScriptRoot ('StoredProcedures/' + $taskScript)
         $taskSql = (Get-Content -Raw -Encoding UTF8 -LiteralPath $taskScriptPath).Replace('USE [HemovidaGest];','')
         foreach ($taskBatch in [regex]::Split($taskSql,'(?im)^\s*GO\s*(?:--[^\r\n]*)?$')) {

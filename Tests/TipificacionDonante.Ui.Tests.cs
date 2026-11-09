@@ -97,12 +97,37 @@ internal static class TipificacionDonanteUiTests
             }
             Check(units.CambiarEstado_380_jh(next, EstadoUnidadPN1_380_jh.Liberada_380_jh, null) == CodigoOperacionPN1_380_jh.Ok_380_jh,
                 "La clasificacion guardada permite liberar con el grupo desactivado");
+            if (user.ComponentesPermiso_380_jh != null && new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(PermisosSistema_380_jh.DonacionAjustarCantidad_380_jh))
+                ComprobarAjusteCantidad(donations, donor.Id_380_jh, first.IdDonacion_380_jh);
             Check(new IntegridadApplicationService_380_jh().Verificar_380_jh().EsValida_380_jh, "Circuito completo conserva integridad");
             Console.WriteLine("Pruebas UI/Application/DAL de tipificacion completadas.");
             return 0;
         }
         catch (Exception ex) { Console.Error.WriteLine(ex); return 1; }
     }
+
+    private static void ComprobarAjusteCantidad(DonacionApplicationService_380_jh service, int idDonante, int cerrada)
+    {
+        var unidad = Donate(service, idDonante);
+        var datos = service.ConsultarCantidad_380_jh(unidad.IdDonacion_380_jh);
+        Check(datos.Editable_380_jh && datos.Anulables_380_jh.Count == 1, "El formulario recibe la version y las unidades anulables");
+        var dialogType = typeof(UnidadesView_380_jh).Assembly.GetType("UI.CantidadDonacionDialog_380_jh", true);
+        using (var dialog = (Form)Activator.CreateInstance(dialogType, service, unidad.IdDonacion_380_jh, datos))
+        {
+            Field<NumericUpDown>(dialog, "_cantidad").Value = 2;
+            Field<TextBox>(dialog, "_motivo").Text = "Agregar unidad desde el formulario";
+            dialogType.GetMethod("Guardar_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(dialog, new object[] { dialog, EventArgs.Empty });
+            Check(dialog.DialogResult == DialogResult.OK, "El formulario ejecuta el ajuste a traves de Application y DAL");
+        }
+        datos = service.ConsultarCantidad_380_jh(unidad.IdDonacion_380_jh);
+        Check(datos.Cantidad_380_jh == 2 && datos.Historial_380_jh.Count == 2 && datos.Historial_380_jh[0].Anterior_380_jh == 1 &&
+              datos.Historial_380_jh[0].Codigos_380_jh == datos.Anulables_380_jh[1].CodigoIdentificacion_380_jh,
+              "La consulta recupera el cambio y el codigo generado");
+        datos = service.ConsultarCantidad_380_jh(cerrada);
+        using (var dialog = (Form)Activator.CreateInstance(dialogType, service, cerrada, datos))
+            Check(!datos.Editable_380_jh && Field<TextBox>(dialog, "_motivo").Parent == null, "Una donacion liberada solo permite consultar el historial");
+    }
+
     private static Unidad_380_jh Donate(DonacionApplicationService_380_jh service, int donor)
     {
         var donation = new Donacion_380_jh { IdDonante_380_jh = donor, FechaDonacion_380_jh = DateTime.Now, CantidadUnidades_380_jh = 1,

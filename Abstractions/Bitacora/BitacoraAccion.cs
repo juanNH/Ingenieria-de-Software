@@ -28,6 +28,7 @@ namespace Abstractions
         UnidadDestinoIndependiente_380_jh,
         UnidadReingresada_380_jh,
         EstudioReceptorValidado_380_jh,
-        EstudioReceptorActualizado_380_jh
+        EstudioReceptorActualizado_380_jh,
+        CantidadDonacionAjustada_380_jh
     }
 }

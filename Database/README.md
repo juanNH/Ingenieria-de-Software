@@ -27,6 +27,7 @@ permisos para crear y modificar la base `HemovidaGest`:
 13. `StoredProcedures/10_IntegridadPN2.sql` — extiende la integridad para PN2.
 14. `StoredProcedures/11_ComprobantesAutomaticos.sql` — comprobantes automáticos.
 15. `StoredProcedures/12_DiagramasSSMS.sql` — crea los diagramas CDUN-01 a CDUN-11 en Database Diagrams de SSMS, con sus diseños guardados.
+16. `StoredProcedures/13_AjusteCantidadDonacion.sql` — corrección de cantidades e historial de donaciones.
 
 Para instalar solo PN1, detenete después del paso 9. Los pasos 10 a 14 son la
 extensión PN2. `09_PN2.sql` requiere PN1 y `06a_CompatibilidadTransfusional.sql` instalados; `10_IntegridadPN2.sql` requiere
@@ -45,9 +46,10 @@ integridad al finalizar:
 | Configurar compatibilidades en una base con PN2 | `./Database/InstalarCompatibilidad.ps1` |
 | Actualizar únicamente los comprobantes de una base PN2 | `./Database/InstalarComprobantes.ps1` |
 | Incorporar grupo sanguíneo y Rh persistidos en el donante (PN1 o PN1+PN2) | `./Database/InstalarMaestrosPN1.ps1` |
+| Incorporar la corrección de cantidades en una base con PN2 y comprobantes | `./Database/InstalarMaestrosPN1.ps1` |
 
 `InstalarPN2.ps1` aplica, en orden, `08_PN2_Catalogos.sql`, `06_MaestrosPN1.sql`,
-`06a_CompatibilidadTransfusional.sql`, `06b_TipificacionDonante.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql` y `12_DiagramasSSMS.sql`. El último script crea los diagramas que falten y conserva los existentes; requiere permisos de propietario de la base. Los diagramas dependen del esquema de tablas instalado.
+`06a_CompatibilidadTransfusional.sql`, `06b_TipificacionDonante.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql`, `12_DiagramasSSMS.sql` y `13_AjusteCantidadDonacion.sql`. El script 12 crea los diagramas que falten y conserva los existentes. Requiere permisos de propietario de la base. Los diagramas dependen del esquema de tablas instalado.
 
 Para recuperar solo los diagramas después de reconstruir el esquema, ejecutá desde
 la raíz del proyecto `sqlcmd -S . -E -d HemovidaGest -b -i Database/StoredProcedures/12_DiagramasSSMS.sql`.
@@ -61,6 +63,14 @@ PN2 ya está instalado, también actualiza PN2 y los comprobantes. Incluye las
 compatibilidades configurables y conserva las reglas editadas o desactivadas.
 Ver [cómo configurar las reglas](../Docs/Compatibilidad-configurable.md). No ejecutes a
 mano esos mismos archivos además del instalador.
+
+## Corrección de cantidad declarada
+
+En **Unidades**, seleccioná una unidad de la donación y abrí **Cantidad e historial**. `UNIDAD_VER` habilita la consulta y `DONACION_AJUSTAR_CANTIDAD` habilita los cambios. El responsable autorizado y el administrador reciben ambos permisos. El historial queda en solo lectura desde la primera liberación o al registrarse el comprobante de PN1.
+
+`tr_Donacion_AjusteCantidad` recibe la versión que estaba viendo el responsable, la cantidad nueva, el motivo y los códigos seleccionados para la baja. La aplicación envía los identificadores de esas unidades y el trigger registra sus códigos en la auditoría. El ajuste, los movimientos y el historial protegido se confirman juntos. Al aumentar, el trigger genera unidades en revisión. Al reducir, anula las unidades seleccionadas en revisión sin clasificar y conserva sus códigos. Usar una cantidad anterior aplica las mismas reglas y agrega una versión al historial.
+
+`./Tests/Comprobantes.Automaticos.Tests.ps1` prueba el circuito en una base temporal, incluidos la reversión ante fallas y el cierre de PN1.
 
 ## Scripts auxiliares
 

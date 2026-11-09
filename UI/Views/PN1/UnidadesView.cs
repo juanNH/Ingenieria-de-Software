@@ -149,7 +149,7 @@ namespace UI
 
             GroupBox detalle = new GroupBox { Dock = DockStyle.Fill, Tag = "UNIT_DETAIL", Padding = new Padding(10) };
             split.Panel2.Controls.Add(detalle);
-            TableLayoutPanel formulario = new TableLayoutPanel { Dock = DockStyle.Top, Height = 250, ColumnCount = 2, RowCount = 6 };
+            TableLayoutPanel formulario = new TableLayoutPanel { Dock = DockStyle.Top, Height = 290, ColumnCount = 2, RowCount = 7 };
             formulario.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130));
             formulario.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
             detalle.Controls.Add(formulario);
@@ -184,6 +184,10 @@ namespace UI
             acciones.Controls.Add(_btnBloquear_380_jh);
             acciones.Controls.Add(_btnDescartar_380_jh);
             formulario.Controls.Add(acciones, 1, 5);
+            formulario.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+            Button cantidad = CrearBoton_380_jh("DONATION_QUANTITY_HISTORY");
+            cantidad.Click += CantidadDonacion_Click_380_jh;
+            formulario.Controls.Add(cantidad, 1, 6);
 
             ConfigurarPermisos_380_jh();
         }
@@ -338,6 +342,27 @@ namespace UI
                 ? _dtpVencimiento_380_jh.MinDate : unidad.FechaVencimiento_380_jh > _dtpVencimiento_380_jh.MaxDate
                 ? _dtpVencimiento_380_jh.MaxDate : unidad.FechaVencimiento_380_jh;
             _txtObservaciones_380_jh.Text = unidad.Observaciones_380_jh ?? string.Empty;
+        }
+
+        private void CantidadDonacion_Click_380_jh(object sender, EventArgs e)
+        {
+            Unidad_380_jh unidad = ObtenerSeleccionada_380_jh();
+            if (unidad == null) return;
+            var servicio = new DonacionApplicationService_380_jh();
+            CantidadDonacion_380_jh datos;
+            try { datos = servicio.ConsultarCantidad_380_jh(unidad.IdDonacion_380_jh); }
+            catch (Exception ex) when (ex is System.Data.SqlClient.SqlException || ex is InvalidOperationException) { datos = null; }
+            if (datos == null)
+            {
+                MessageBox.Show(this, LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("DONATION_QUANTITY_ERROR"));
+                return;
+            }
+            using (var dialogo = new CantidadDonacionDialog_380_jh(servicio, unidad.IdDonacion_380_jh, datos))
+            {
+                var resultado = dialogo.ShowDialog(this);
+                if (resultado == DialogResult.OK || resultado == DialogResult.Retry) CargarUnidades_380_jh();
+                if (resultado == DialogResult.OK) ComprobantePdfUI_380_jh.ProcesarPendientes_380_jh(this, true, false);
+            }
         }
 
         private void Comprobante_Click_380_jh(object sender, EventArgs e)
@@ -599,6 +624,7 @@ namespace UI
                 case EstadoUnidadPN1_380_jh.Liberada_380_jh: clave = "UNIT_STATE_LIBERADA"; break;
                 case EstadoUnidadPN1_380_jh.Bloqueada_380_jh: clave = "UNIT_STATE_BLOQUEADA"; break;
                 case EstadoUnidadPN1_380_jh.Descartada_380_jh: clave = "UNIT_STATE_DESCARTADA"; break;
+                case "ANULADA": clave = "PN2_STATE_ANULADA"; break;
                 case EstadoUnidadPN2_380_jh.Reservada_380_jh: clave = "PN2_STATE_RESERVADA"; break;
                 case EstadoUnidadPN2_380_jh.Entregada_380_jh: clave = "PN2_STATE_ENTREGADA"; break;
                 case EstadoUnidadPN2_380_jh.Transfundida_380_jh: clave = "PN2_STATE_TRANSFUNDIDA"; break;

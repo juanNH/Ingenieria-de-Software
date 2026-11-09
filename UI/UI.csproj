@@ -112,6 +112,7 @@
     <Compile Include="Views\PN1\DonacionesView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Views\PN1\CantidadDonacionDialog.cs"><SubType>Form</SubType></Compile>
     <Compile Include="Views\PN1\UnidadesView.cs">
       <SubType>UserControl</SubType>
     </Compile>
