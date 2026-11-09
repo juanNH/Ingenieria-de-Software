@@ -77,6 +77,26 @@ internal static class TipificacionDonanteUiTests
             next.GrupoSanguineo_380_jh = "O";
             Check(units.Clasificar_380_jh(next) == CodigoOperacionPN1_380_jh.Ok_380_jh, "Confirmar nueva muestra coincidente");
             Check(next.EstaClasificada_380_jh, "El mapper reconoce la confirmacion");
+            var masters = new MaestroPN1ApplicationService_380_jh();
+            var group = masters.Listar_380_jh(MaestroPN1ApplicationService_380_jh.Grupo_380_jh).Single(g => g.Codigo_380_jh == "O");
+            group.Activo_380_jh = false;
+            Check(masters.Guardar_380_jh(MaestroPN1ApplicationService_380_jh.Grupo_380_jh, group) == "OK", "Desactivar un grupo ya clasificado");
+            using (var view = new UnidadesView_380_jh())
+            {
+                var grid = Field<DataGridView>(view, "_grid_380_jh");
+                grid.ClearSelection();
+                var row = grid.Rows.Cast<DataGridViewRow>().Single(r => ((Unidad_380_jh)r.Tag).Id_380_jh == next.Id_380_jh);
+                row.Selected = true;
+                view.GetType().GetMethod("Grid_SelectionChanged_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(view, new object[] { grid, EventArgs.Empty });
+                var groups = Field<ComboBox>(view, "_cmbGrupo_380_jh");
+                var requiresSave = view.GetType().GetMethod("RequiereGuardarTipificacion_380_jh", BindingFlags.Instance | BindingFlags.NonPublic);
+                Check(groups.SelectedIndex == -1 && !(bool)requiresSave.Invoke(view, new[] { row.Tag }),
+                    "Un grupo guardado que ya no figura en el maestro no cuenta como edicion");
+                groups.SelectedItem = groups.Items.Cast<MaestroPN1_380_jh>().Single(g => g.Codigo_380_jh == "A");
+                Check((bool)requiresSave.Invoke(view, new[] { row.Tag }), "Una correccion sin guardar bloquea la liberacion");
+            }
+            Check(units.CambiarEstado_380_jh(next, EstadoUnidadPN1_380_jh.Liberada_380_jh, null) == CodigoOperacionPN1_380_jh.Ok_380_jh,
+                "La clasificacion guardada permite liberar con el grupo desactivado");
             Check(new IntegridadApplicationService_380_jh().Verificar_380_jh().EsValida_380_jh, "Circuito completo conserva integridad");
             Console.WriteLine("Pruebas UI/Application/DAL de tipificacion completadas.");
             return 0;

@@ -415,10 +415,7 @@ namespace UI
                 return;
             }
 
-            if (estado == EstadoUnidadPN1_380_jh.Liberada_380_jh &&
-                (!unidad.EstaClasificada_380_jh ||
-                 MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbGrupo_380_jh) != unidad.GrupoSanguineo_380_jh ||
-                 MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbRh_380_jh) != unidad.FactorRh_380_jh))
+            if (estado == EstadoUnidadPN1_380_jh.Liberada_380_jh && RequiereGuardarTipificacion_380_jh(unidad))
             {
                 MessageBox.Show(this, LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_SAVE_TYPING_BEFORE_RELEASE"));
                 return;
@@ -432,6 +429,16 @@ namespace UI
                 CargarUnidades_380_jh();
                 ComprobantePdfUI_380_jh.ProcesarPendientes_380_jh(this, true, false);
             }
+        }
+
+        private bool RequiereGuardarTipificacion_380_jh(Unidad_380_jh unidad)
+        {
+            string grupo = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbGrupo_380_jh);
+            string rh = MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbRh_380_jh);
+            // Un valor guardado puede faltar en los maestros activos sin que se haya editado.
+            return !unidad.EstaClasificada_380_jh ||
+                   (grupo != null && !string.Equals(grupo, unidad.GrupoSanguineo_380_jh, StringComparison.OrdinalIgnoreCase)) ||
+                   (rh != null && !string.Equals(rh, unidad.FactorRh_380_jh, StringComparison.OrdinalIgnoreCase));
         }
 
         private void Buscar_KeyDown_380_jh(object sender, KeyEventArgs e)
