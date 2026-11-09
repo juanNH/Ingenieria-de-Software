@@ -28,7 +28,6 @@ namespace UI
         private Button _btnLiberar_380_jh;
         private Button _btnBloquear_380_jh;
         private Button _btnDescartar_380_jh;
-        private Button _btnCantidadHistorial_380_jh;
         private Button _btnExportarXml_380_jh;
         private Button _btnComprobante_380_jh;
         private Button _btnReporteActual_380_jh;
@@ -86,9 +85,6 @@ namespace UI
             filtro.Controls.Add(_txtBuscar_380_jh);
             Button buscar = CrearBoton_380_jh("BTN_SEARCH");
             buscar.Click += delegate { CargarUnidades_380_jh(); };
-            _btnCantidadHistorial_380_jh = CrearBoton_380_jh("DONATION_QUANTITY_HISTORY");
-            _btnCantidadHistorial_380_jh.Enabled = false;
-            _btnCantidadHistorial_380_jh.Click += CantidadDonacion_Click_380_jh;
             Button actualizar = CrearBoton_380_jh("BTN_REFRESH");
             actualizar.Click += delegate { CargarUnidades_380_jh(); };
             _btnExportarXml_380_jh = CrearBoton_380_jh("UNIT_SERIALIZE_TABLE");
@@ -106,7 +102,6 @@ namespace UI
             Button reintentarComprobante = CrearBoton_380_jh("RECEIPT_RETRY");
             reintentarComprobante.Click += delegate { ComprobantePdfUI_380_jh.ProcesarPendientes_380_jh(this, true); };
             filtro.Controls.Add(buscar);
-            filtro.Controls.Add(_btnCantidadHistorial_380_jh);
             filtro.Controls.Add(actualizar);
             filtro.Controls.Add(_btnExportarXml_380_jh);
             filtro.Controls.Add(_btnImportarXml_380_jh);
@@ -329,7 +324,6 @@ namespace UI
         private void Grid_SelectionChanged_380_jh(object sender, EventArgs e)
         {
             Unidad_380_jh unidad = ObtenerSeleccionada_380_jh();
-            _btnCantidadHistorial_380_jh.Enabled = unidad != null;
             if (unidad == null)
             {
                 return;
@@ -344,27 +338,6 @@ namespace UI
                 ? _dtpVencimiento_380_jh.MinDate : unidad.FechaVencimiento_380_jh > _dtpVencimiento_380_jh.MaxDate
                 ? _dtpVencimiento_380_jh.MaxDate : unidad.FechaVencimiento_380_jh;
             _txtObservaciones_380_jh.Text = unidad.Observaciones_380_jh ?? string.Empty;
-        }
-
-        private void CantidadDonacion_Click_380_jh(object sender, EventArgs e)
-        {
-            Unidad_380_jh unidad = ObtenerSeleccionada_380_jh();
-            if (unidad == null) return;
-            var servicio = new DonacionApplicationService_380_jh();
-            CantidadDonacion_380_jh datos;
-            try { datos = servicio.ConsultarCantidad_380_jh(unidad.IdDonacion_380_jh); }
-            catch (Exception ex) when (ex is System.Data.SqlClient.SqlException || ex is InvalidOperationException) { datos = null; }
-            if (datos == null)
-            {
-                MessageBox.Show(this, LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("DONATION_QUANTITY_ERROR"));
-                return;
-            }
-            using (var dialogo = new CantidadDonacionDialog_380_jh(servicio, unidad.IdDonacion_380_jh, datos))
-            {
-                var resultado = dialogo.ShowDialog(this);
-                if (resultado == DialogResult.OK || resultado == DialogResult.Retry) CargarUnidades_380_jh();
-                if (resultado == DialogResult.OK) ComprobantePdfUI_380_jh.ProcesarPendientes_380_jh(this, true, false);
-            }
         }
 
         private void Comprobante_Click_380_jh(object sender, EventArgs e)

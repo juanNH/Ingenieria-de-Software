@@ -81,6 +81,13 @@ namespace Application
             return resultado;
         }
 
+        public List<Donacion_380_jh> Listar_380_jh()
+        {
+            Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
+            return _autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadVer_380_jh)
+                ? _donacionRepository_380_jh.Listar_380_jh(usuario.Id_380_jh) : new List<Donacion_380_jh>();
+        }
+
         public CantidadDonacion_380_jh ConsultarCantidad_380_jh(int idDonacion)
         {
             Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using Application;
@@ -22,6 +23,8 @@ namespace UI
         private TextBox _txtObservaciones_380_jh;
         private DataGridView _gridUnidades_380_jh;
         private Button _btnRegistrar_380_jh;
+        private ComboBox _cmbDonacionRegistrada_380_jh;
+        private Button _btnCantidadHistorial_380_jh;
         private Label _lblEstado_380_jh;
 
         public DonacionesView_380_jh()
@@ -40,6 +43,7 @@ namespace UI
             ConstruirInterfaz_380_jh();
             new ProteccionIntegridad_380_jh(this, _btnRegistrar_380_jh);
             CargarDonantes_380_jh();
+            CargarDonaciones_380_jh();
         }
 
         protected override void ApplyTranslations_380_jh()
@@ -53,16 +57,19 @@ namespace UI
             BackColor = Color.White;
             Padding = new Padding(24);
 
-            TableLayoutPanel layout = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 4, AutoScroll = true };
+            bool puedeRegistrar = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonacionCrear_380_jh);
+            bool puedeConsultar = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadVer_380_jh);
+            TableLayoutPanel layout = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 5, AutoScroll = true };
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 38));
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 32));
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 195));
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, puedeRegistrar ? 195 : 0));
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, puedeConsultar ? 44 : 0));
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             Controls.Add(layout);
             layout.Controls.Add(CrearLabel_380_jh("DONATION_TITLE", 18, true), 0, 0);
             layout.Controls.Add(CrearLabel_380_jh("DONATION_DESCRIPTION", 9, false), 0, 1);
 
-            GroupBox detalle = new GroupBox { Dock = DockStyle.Fill, Tag = "DONATION_DETAIL", Padding = new Padding(10) };
+            GroupBox detalle = new GroupBox { Dock = DockStyle.Fill, Tag = "DONATION_NEW", Padding = new Padding(10), Visible = puedeRegistrar };
             layout.Controls.Add(detalle, 0, 2);
 
             TableLayoutPanel formulario = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 4, RowCount = 4 };
@@ -97,8 +104,35 @@ namespace UI
             acciones.Controls.Add(actualizar);
             formulario.Controls.Add(acciones, 2, 3);
 
+            var consulta = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 4, RowCount = 1, Visible = puedeConsultar };
+            consulta.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            consulta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+            consulta.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            consulta.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            var etiqueta = new Label { AutoSize = true, Anchor = AnchorStyles.Left, Tag = "DONATION_REGISTERED_SELECTION" };
+            _cmbDonacionRegistrada_380_jh = new ComboBox { Anchor = AnchorStyles.Left | AnchorStyles.Right, DropDownStyle = ComboBoxStyle.DropDownList, FormattingEnabled = true };
+            _cmbDonacionRegistrada_380_jh.Format += (sender, args) =>
+            {
+                if (args.ListItem is Donacion_380_jh donacion)
+                {
+                    string cantidad = string.Format(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("DONATION_QUANTITY_CURRENT"), donacion.CantidadUnidades_380_jh);
+                    args.Value = $"#{donacion.Id_380_jh} · {donacion.Donante_380_jh.NombreCompleto_380_jh} · {donacion.FechaDonacion_380_jh:d} · {cantidad}";
+                }
+            };
+            _cmbDonacionRegistrada_380_jh.SelectedIndexChanged += delegate { CargarUnidadesSeleccionadas_380_jh(); };
+            _btnCantidadHistorial_380_jh = CrearBoton_380_jh("DONATION_QUANTITY_HISTORY");
+            _btnCantidadHistorial_380_jh.Enabled = false;
+            _btnCantidadHistorial_380_jh.Click += CantidadDonacion_Click_380_jh;
+            Button actualizarDonaciones = CrearBoton_380_jh("BTN_REFRESH");
+            actualizarDonaciones.Click += delegate { CargarDonaciones_380_jh(); };
+            consulta.Controls.Add(etiqueta, 0, 0);
+            consulta.Controls.Add(_cmbDonacionRegistrada_380_jh, 1, 0);
+            consulta.Controls.Add(_btnCantidadHistorial_380_jh, 2, 0);
+            consulta.Controls.Add(actualizarDonaciones, 3, 0);
+            layout.Controls.Add(consulta, 0, 3);
+
             Panel unidadesPanel = new Panel { Dock = DockStyle.Fill };
-            layout.Controls.Add(unidadesPanel, 0, 3);
+            layout.Controls.Add(unidadesPanel, 0, 4);
             _gridUnidades_380_jh = new DataGridView
             {
                 Dock = DockStyle.Fill,
@@ -116,7 +150,7 @@ namespace UI
             _lblEstado_380_jh = new Label { Dock = DockStyle.Bottom, Height = 24, TextAlign = ContentAlignment.MiddleLeft };
             unidadesPanel.Controls.Add(_lblEstado_380_jh);
 
-            _btnRegistrar_380_jh.Enabled = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonacionCrear_380_jh);
+            _btnRegistrar_380_jh.Visible = puedeRegistrar;
         }
 
         private Label CrearLabel_380_jh(string key, float size, bool bold)
@@ -187,9 +221,74 @@ namespace UI
             MessageBox.Show(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(ObtenerClaveResultado_380_jh(resultado)));
             if (resultado == CodigoOperacionPN1_380_jh.Ok_380_jh)
             {
-                CargarUnidades_380_jh(donacion.Unidades_380_jh);
+                MostrarDonacionRegistrada_380_jh(donacion);
                 _numCantidad_380_jh.Value = 1;
                 _txtObservaciones_380_jh.Clear();
+            }
+        }
+
+        private void MostrarDonacionRegistrada_380_jh(Donacion_380_jh donacion)
+        {
+            CargarUnidades_380_jh(donacion.Unidades_380_jh);
+            CargarDonaciones_380_jh(donacion.Id_380_jh);
+        }
+
+        private void CargarDonaciones_380_jh(int? idPreferido = null)
+        {
+            if (!_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadVer_380_jh)) return;
+            idPreferido = idPreferido ?? (_cmbDonacionRegistrada_380_jh.SelectedItem as Donacion_380_jh)?.Id_380_jh;
+            List<Donacion_380_jh> donaciones;
+            try { donaciones = _donacionService_380_jh.Listar_380_jh(); }
+            catch (Exception ex) when (ex is SqlException || ex is InvalidOperationException)
+            {
+                _lblEstado_380_jh.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("DONATION_QUANTITY_ERROR");
+                return;
+            }
+            _cmbDonacionRegistrada_380_jh.Items.Clear();
+            _cmbDonacionRegistrada_380_jh.Items.AddRange(donaciones.ToArray());
+            if (donaciones.Count > 0)
+            {
+                int indice = donaciones.FindIndex(d => d.Id_380_jh == idPreferido);
+                _cmbDonacionRegistrada_380_jh.SelectedIndex = Math.Max(0, indice);
+            }
+        }
+
+        private void CargarUnidadesSeleccionadas_380_jh()
+        {
+            var donacion = _cmbDonacionRegistrada_380_jh.SelectedItem as Donacion_380_jh;
+            _btnCantidadHistorial_380_jh.Enabled = donacion != null;
+            if (donacion == null)
+            {
+                CargarUnidades_380_jh(null);
+                return;
+            }
+            var datos = ConsultarCantidad_380_jh(donacion.Id_380_jh);
+            CargarUnidades_380_jh(datos?.Unidades_380_jh);
+            if (datos == null)
+                _lblEstado_380_jh.Text = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("DONATION_QUANTITY_ERROR");
+        }
+
+        private CantidadDonacion_380_jh ConsultarCantidad_380_jh(int idDonacion)
+        {
+            try { return _donacionService_380_jh.ConsultarCantidad_380_jh(idDonacion); }
+            catch (Exception ex) when (ex is SqlException || ex is InvalidOperationException) { return null; }
+        }
+
+        private void CantidadDonacion_Click_380_jh(object sender, EventArgs e)
+        {
+            var donacion = _cmbDonacionRegistrada_380_jh.SelectedItem as Donacion_380_jh;
+            if (donacion == null) return;
+            var datos = ConsultarCantidad_380_jh(donacion.Id_380_jh);
+            if (datos == null)
+            {
+                MessageBox.Show(this, LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("DONATION_QUANTITY_ERROR"));
+                return;
+            }
+            using (var dialogo = new CantidadDonacionDialog_380_jh(_donacionService_380_jh, donacion.Id_380_jh, datos))
+            {
+                var resultado = dialogo.ShowDialog(this);
+                if (resultado == DialogResult.OK || resultado == DialogResult.Retry) CargarDonaciones_380_jh(donacion.Id_380_jh);
+                if (resultado == DialogResult.OK) ComprobantePdfUI_380_jh.ProcesarPendientes_380_jh(this, true, false);
             }
         }
 
@@ -228,10 +327,12 @@ namespace UI
                 case EstadoUnidadPN1_380_jh.Liberada_380_jh: clave = "UNIT_STATE_LIBERADA"; break;
                 case EstadoUnidadPN1_380_jh.Bloqueada_380_jh: clave = "UNIT_STATE_BLOQUEADA"; break;
                 case EstadoUnidadPN1_380_jh.Descartada_380_jh: clave = "UNIT_STATE_DESCARTADA"; break;
-                default: clave = "UNIT_STATE_EN_REVISION"; break;
+                case EstadoUnidadPN1_380_jh.EnRevision_380_jh: clave = "UNIT_STATE_EN_REVISION"; break;
+                default: clave = "PN2_STATE_" + estado; break;
             }
 
-            return LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(clave);
+            string traducido = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(clave);
+            return traducido == clave ? estado : traducido;
         }
 
         private static string ObtenerClaveResultado_380_jh(CodigoOperacionPN1_380_jh resultado)

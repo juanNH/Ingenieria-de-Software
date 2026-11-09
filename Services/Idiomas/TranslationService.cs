@@ -306,6 +306,8 @@ namespace Services
                 { "PN2_STATE_ANULADA", CrearTraducciones_380_jh("Anulada por ajuste", "Voided by adjustment") },
                 { "BITACORA_ACTION_DONATION_QUANTITY", CrearTraducciones_380_jh("Cantidad de donación ajustada", "Donation quantity adjusted") },
                 { "DONATION_QUANTITY_HISTORY", CrearTraducciones_380_jh("Cantidad e historial", "Quantity and history") },
+                { "DONATION_REGISTERED_SELECTION", CrearTraducciones_380_jh("Donación registrada", "Registered donation") },
+                { "DONATION_NEW", CrearTraducciones_380_jh("Nueva donación", "New donation") },
                 { "DONATION_QUANTITY_TITLE", CrearTraducciones_380_jh("Cantidad e historial de la donación #{0}", "Quantity and history of donation #{0}") },
                 { "DONATION_QUANTITY_CURRENT", CrearTraducciones_380_jh("Unidades vigentes: {0}", "Current units: {0}") },
                 { "DONATION_QUANTITY_READ_ONLY", CrearTraducciones_380_jh("Historial en solo lectura.", "Read-only history.") },

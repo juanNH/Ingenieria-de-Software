@@ -83,6 +83,28 @@ namespace DAL
             }
         }
 
+        public List<Donacion_380_jh> Listar_380_jh(int idUsuario)
+        {
+            var donaciones = new List<Donacion_380_jh>();
+            try
+            {
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.Leer_380_jh("sp_Donacion_Listar", new List<SqlParameter>
+                {
+                    _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario)
+                });
+                foreach (DataRow fila in tabla.Rows)
+                    donaciones.Add(new Donacion_380_jh
+                    {
+                        Id_380_jh = (int)fila["id_donacion"], FechaDonacion_380_jh = (DateTime)fila["fecha_donacion"],
+                        CantidadUnidades_380_jh = (int)fila["cantidad_unidades"], IdDonante_380_jh = (int)fila["id_donante"],
+                        Donante_380_jh = new Donante_380_jh { Nombre_380_jh = fila["nombre"].ToString(), Apellido_380_jh = fila["apellido"].ToString() }
+                    });
+                return donaciones;
+            }
+            finally { _databaseContext_380_jh.Cerrar_380_jh(); }
+        }
+
         public CantidadDonacion_380_jh ConsultarCantidad_380_jh(int idDonacion, int idUsuario)
         {
             try
@@ -115,6 +137,9 @@ namespace DAL
                     {
                         Id_380_jh = (int)unidad["id_unidad"], CodigoIdentificacion_380_jh = unidad["codigo_identificacion"].ToString()
                     });
+                if (conjunto.Tables.Count > 3)
+                    foreach (DataRow unidad in conjunto.Tables[3].Rows)
+                        resultado.Unidades_380_jh.Add(UnidadDataMapper_380_jh.MapearPublico_380_jh(unidad));
                 return resultado;
             }
             finally { _databaseContext_380_jh.Cerrar_380_jh(); }

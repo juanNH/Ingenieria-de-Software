@@ -25,6 +25,7 @@ namespace Domain
         public bool Editable_380_jh { get; set; }
         public List<CambioCantidadDonacion_380_jh> Historial_380_jh { get; } = new List<CambioCantidadDonacion_380_jh>();
         public List<Unidad_380_jh> Anulables_380_jh { get; } = new List<Unidad_380_jh>();
+        public List<Unidad_380_jh> Unidades_380_jh { get; } = new List<Unidad_380_jh>();
     }
 
     public sealed class CambioCantidadDonacion_380_jh

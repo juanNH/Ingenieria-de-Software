@@ -23,6 +23,8 @@ namespace Repository
             return _donacionDataMapper_380_jh.Registrar_380_jh(donacion, idUsuario);
         }
 
+        public List<Donacion_380_jh> Listar_380_jh(int idUsuario) => _donacionDataMapper_380_jh.Listar_380_jh(idUsuario);
+
         public CantidadDonacion_380_jh ConsultarCantidad_380_jh(int idDonacion, int idUsuario)
         {
             return _donacionDataMapper_380_jh.ConsultarCantidad_380_jh(idDonacion, idUsuario);

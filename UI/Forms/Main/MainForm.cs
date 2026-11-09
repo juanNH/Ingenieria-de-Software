@@ -310,7 +310,8 @@ namespace UI
 
         private void donacionesToolStripMenuItem_Click_380_jh(object sender, EventArgs e)
         {
-            if (!ValidarPermiso_380_jh(PermisosSistema_380_jh.DonacionCrear_380_jh))
+            if (!_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadVer_380_jh) &&
+                !ValidarPermiso_380_jh(PermisosSistema_380_jh.DonacionCrear_380_jh))
             {
                 return;
             }
@@ -387,7 +388,8 @@ namespace UI
 
             bool mostrarDonantes = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteVer_380_jh) ||
                                     _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteCrear_380_jh);
-            bool mostrarDonaciones = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonacionCrear_380_jh);
+            bool mostrarDonaciones = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonacionCrear_380_jh) ||
+                                     _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadVer_380_jh);
             bool mostrarUnidades = TienePermisoUnidades_380_jh();
 
             _donantesToolStripMenuItem_380_jh.Visible = mostrarDonantes;

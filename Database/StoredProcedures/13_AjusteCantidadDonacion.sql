@@ -174,12 +174,26 @@ BEGIN
         SELECT id_auditoria,accion,fecha_evento,identificador_usuario_actor,cantidad_anterior,cantidad_nueva,motivo,unidades_afectadas
         FROM dbo.v_Donacion_HistorialCantidad WHERE id_donacion=@id_donacion ORDER BY id_auditoria DESC;
         SELECT id_unidad,codigo_identificacion FROM dbo.v_Donacion_UnidadAnulable WHERE id_donacion=@id_donacion ORDER BY id_unidad;
+        SELECT id_unidad,codigo_identificacion,id_donacion,tipo_componente,fecha_vencimiento,grupo_sanguineo,
+               factor_rh,observaciones,estado_operativo,fecha_alta,fecha_ultima_modificacion,id_usuario_ultima_modificacion
+        FROM dbo.Unidad WHERE id_donacion=@id_donacion ORDER BY id_unidad;
         COMMIT;
     END TRY
     BEGIN CATCH
         IF @@TRANCOUNT>0 ROLLBACK;
         THROW;
     END CATCH;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE dbo.sp_Donacion_Listar @id_usuario INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    IF dbo.fn_PN2_TienePermiso(@id_usuario,'UNIDAD_VER')<>1 THROW 51003,'OPERATION_NOT_AUTHORIZED',1;
+    SELECT d.id_donacion,d.fecha_donacion,d.cantidad_unidades,d.id_donante,p.nombre,p.apellido
+    FROM dbo.Donacion d JOIN dbo.Donante p ON p.id_donante=d.id_donante
+    ORDER BY d.fecha_alta DESC,d.id_donacion DESC;
 END;
 GO
 
