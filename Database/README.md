@@ -64,16 +64,17 @@ mano esos mismos archivos además del instalador.
 
 ## Scripts auxiliares
 
-La clasificación de una unidad guarda también el grupo sanguíneo y Rh en el
-donante, dentro de la misma transacción y con auditoría e integridad DVH/DVV.
-Las futuras unidades guardan el grupo y Rh conocidos del donante al registrar
-la donación. Quedan en revisión y requieren confirmar la clasificación de la muestra.
-Una discrepancia con el donante o sus unidades anteriores rechaza la operación.
-La edición administrativa del donante conserva estos campos.
+Mientras la unidad está en revisión, la clasificación guarda valores provisionales
+que se pueden corregir. La primera liberación confirma el grupo y Rh en el donante
+y los copia a sus unidades pendientes dentro de la misma transacción, con auditoría
+e integridad DVH/DVV. Las unidades que reciben valores nuevos requieren volver a
+confirmar su clasificación. Las donaciones futuras guardan esos valores al registrarse.
+Una discrepancia con la tipificación confirmada impide liberar la unidad.
 
 `06b_TipificacionDonante.sql` recupera antecedentes completos y coincidentes de
-las unidades existentes. Conserva el historial anterior y deja sin tipificar a
-los donantes con antecedentes contradictorios, que requieren revisión.
+unidades liberadas. Conserva las fichas con evidencia de liberación y vuelve a
+dejar pendientes las fichas antiguas que solo tenían clasificaciones provisionales.
+Los antecedentes de liberación contradictorios sin ficha requieren revisión.
 Los instaladores de Maestros y PN2 lo ejecutan antes de `07_PN1.sql`.
 No ejecutes de nuevo `05_IntegridadPN1.sql` sobre una base PN2.
 

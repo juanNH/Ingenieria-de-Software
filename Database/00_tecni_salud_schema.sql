@@ -344,7 +344,7 @@ CREATE TABLE dbo.MovimientoUnidad
     observacion VARCHAR(500) NULL,
     fecha_movimiento DATETIME NOT NULL CONSTRAINT DF_MovimientoUnidad_Fecha DEFAULT GETDATE(),
     id_usuario INT NOT NULL,
-    CONSTRAINT CK_MovimientoUnidad_Tipo CHECK (tipo_movimiento IN ('REGISTRO', 'CLASIFICACION', 'LIBERACION', 'BLOQUEO', 'DESCARTE', 'RESTAURACION', 'DESTINO')),
+    CONSTRAINT CK_MovimientoUnidad_Tipo CHECK (tipo_movimiento IN ('REGISTRO', 'CLASIFICACION', 'TIPIFICACION_DONANTE', 'LIBERACION', 'BLOQUEO', 'DESCARTE', 'RESTAURACION', 'DESTINO')),
     CONSTRAINT FK_MovimientoUnidad_EstadoAnterior FOREIGN KEY (estado_anterior) REFERENCES dbo.EstadoUnidad(codigo),
     CONSTRAINT FK_MovimientoUnidad_EstadoNuevo FOREIGN KEY (estado_nuevo) REFERENCES dbo.EstadoUnidad(codigo),
     CONSTRAINT FK_MovimientoUnidad_Unidad FOREIGN KEY (id_unidad) REFERENCES dbo.Unidad(id_unidad),

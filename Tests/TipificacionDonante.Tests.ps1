@@ -34,6 +34,9 @@ function Donate([int]$Donor) {
 function Classify([int]$Unit, [string]$Group, [string]$Rh) {
     return Value "DECLARE @v DATE=DATEADD(day,30,GETDATE()); EXEC dbo.sp_Unidad_Clasificar $Unit,'Concentrado de eritrocitos','$Group','$Rh',@v,NULL,$taskUser"
 }
+function Release([int]$Unit) {
+    return Value "EXEC dbo.sp_Unidad_CambiarEstado $Unit,'LIBERADA',NULL,$taskUser"
+}
 try {
     $taskAdmin.Open()
     $taskCommand = $taskAdmin.CreateCommand()
@@ -64,9 +67,12 @@ BEGIN TRANSACTION; EXEC dbo.sp_IntegridadPN1_Exigir;
 INSERT dbo.Donante(documento,nombre,apellido,id_usuario_alta) VALUES('HISTORICO','Ana','Historial',$taskUser),('CONFLICTIVO','Luis','Historial',$taskUser),('DESCONOCIDO','Eva','Historial',$taskUser);
 INSERT dbo.Donacion(id_donante,fecha_donacion,cantidad_unidades,tipo_componente,fecha_vencimiento,id_usuario_responsable)
 SELECT id_donante,GETDATE(),2,'Concentrado de eritrocitos',DATEADD(day,30,GETDATE()),$taskUser FROM dbo.Donante WHERE documento IN ('HISTORICO','CONFLICTIVO');
-INSERT dbo.Unidad(codigo_identificacion,id_donacion,tipo_componente,fecha_vencimiento,grupo_sanguineo,factor_rh,id_usuario_ultima_modificacion)
-SELECT CONCAT(d.documento,'-',n.n),dn.id_donacion,'Concentrado de eritrocitos',dn.fecha_vencimiento,CASE WHEN d.documento='CONFLICTIVO' AND n.n=2 THEN 'B' ELSE 'A' END,'+',$taskUser
+INSERT dbo.Unidad(codigo_identificacion,id_donacion,tipo_componente,fecha_vencimiento,grupo_sanguineo,factor_rh,estado_operativo,id_usuario_ultima_modificacion)
+SELECT CONCAT(d.documento,'-',n.n),dn.id_donacion,'Concentrado de eritrocitos',dn.fecha_vencimiento,CASE WHEN d.documento='CONFLICTIVO' AND n.n=2 THEN 'B' ELSE 'A' END,'+','LIBERADA',$taskUser
 FROM dbo.Donacion dn JOIN dbo.Donante d ON d.id_donante=dn.id_donante CROSS JOIN (VALUES(1),(2)) n(n);
+INSERT dbo.Unidad(codigo_identificacion,id_donacion,tipo_componente,fecha_vencimiento,id_usuario_ultima_modificacion)
+SELECT 'HISTORICO-PENDIENTE',dn.id_donacion,'Concentrado de eritrocitos',dn.fecha_vencimiento,$taskUser
+FROM dbo.Donacion dn JOIN dbo.Donante d ON d.id_donante=dn.id_donante WHERE d.documento='HISTORICO';
 EXEC dbo.sp_IntegridadPN1_Sellar $taskUser; COMMIT;
 "@)
     $taskOldAudit = [int](Value 'SELECT MAX(id_auditoria) FROM dbo.Auditoria')
@@ -76,6 +82,9 @@ EXEC dbo.sp_IntegridadPN1_Sellar $taskUser; COMMIT;
     Script 'StoredProcedures/06b_TipificacionDonante.sql'
     Script 'StoredProcedures/07_PN1.sql'
     Assert (Value "SELECT CONCAT(grupo_sanguineo,factor_rh) FROM dbo.Donante WHERE documento='HISTORICO'") 'A+' 'Migrar antecedentes coincidentes'
+    Assert (Value "SELECT CONCAT(grupo_sanguineo,factor_rh) FROM dbo.Unidad WHERE codigo_identificacion='HISTORICO-PENDIENTE'") 'A+' 'Completar pendientes de fichas confirmadas antes de migrar'
+    $taskHistoricalPending = [int](Value "SELECT id_unidad FROM dbo.Unidad WHERE codigo_identificacion='HISTORICO-PENDIENTE'")
+    Assert (Release $taskHistoricalPending) 'CONFLICTO_ESTADO' 'La migracion no confirma la muestra pendiente'
     Assert (Value "SELECT COUNT(*) FROM dbo.Donante WHERE documento='CONFLICTIVO' AND grupo_sanguineo IS NULL AND factor_rh IS NULL") 1 'No inferir antecedentes contradictorios'
     Assert (Value "SELECT dvh FROM dbo.Donante WHERE documento='DESCONOCIDO'") $taskOldHash 'Conservar hash del donante sin antecedentes'
     Assert (Value $taskAuditHashSql) $taskOldAuditHash 'Conservar auditorias anteriores sin reescribirlas'
@@ -87,37 +96,63 @@ EXEC dbo.sp_IntegridadPN1_Sellar $taskUser; COMMIT;
     Assert (Value 'SELECT COUNT(*) FROM dbo.v_IntegridadPN1_Errores') 0 'Integridad tras migrar'
     $taskDonor = [int](Value "SELECT id_donante FROM dbo.Donante WHERE documento='DESCONOCIDO'")
     $taskUnit = Donate $taskDonor
-    Assert (Classify $taskUnit 'A' '+') 'OK' 'Primera clasificacion'
-    Assert (Value "SELECT CONCAT(grupo_sanguineo,factor_rh) FROM dbo.Donante WHERE id_donante=$taskDonor") 'A+' 'Guardar tipificacion en el donante'
+    Assert (Classify $taskUnit 'O' '-') 'OK' 'Primera clasificacion provisional'
+    # Simula una ficha del flujo anterior, fijada antes de que se libere una unidad.
+    [void](Sql "BEGIN TRANSACTION; EXEC dbo.sp_IntegridadPN1_Exigir; UPDATE dbo.Donante SET grupo_sanguineo='O',factor_rh='-' WHERE id_donante=$taskDonor; EXEC dbo.sp_IntegridadPN1_Sellar $taskUser; COMMIT;")
+    Script 'StoredProcedures/06b_TipificacionDonante.sql'
+    Assert (Value "SELECT COUNT(*) FROM dbo.Donante WHERE id_donante=$taskDonor AND grupo_sanguineo IS NULL AND factor_rh IS NULL") 1 'La migracion deja pendiente una ficha sin liberaciones'
+    Assert (Classify $taskUnit 'A' '+') 'OK' 'Corregir grupo y Rh en revision'
     $taskNextUnit = Donate $taskDonor
-    Assert (Value "SELECT COUNT(*) FROM dbo.Unidad WHERE id_unidad=$taskNextUnit AND grupo_sanguineo='A' AND factor_rh='+' AND estado_operativo='EN_REVISION'") 1 'Nueva muestra guarda grupo y Rh y queda en revision'
+    Assert (Value "SELECT COUNT(*) FROM dbo.Unidad WHERE id_unidad=$taskNextUnit AND grupo_sanguineo IS NULL AND factor_rh IS NULL") 1 'La segunda donacion espera la tipificacion confirmada'
+    Assert (Classify $taskNextUnit 'B' '-') 'OK' 'Guardar una clasificacion provisional distinta'
+    $taskBlockedUnit = Donate $taskDonor
+    Assert (Classify $taskBlockedUnit 'O' '-') 'OK' 'Clasificar la muestra que se bloqueara'
+    Assert (Value "EXEC dbo.sp_Unidad_CambiarEstado $taskBlockedUnit,'BLOQUEADA','Prueba',$taskUser") 'OK' 'Bloquear una muestra sin confirmar la ficha'
+    Assert (Value "SELECT COUNT(*) FROM dbo.Donante WHERE id_donante=$taskDonor AND grupo_sanguineo IS NULL AND factor_rh IS NULL") 1 'Solo liberar confirma la ficha del donante'
+    Assert (Value "EXEC dbo.sp_Unidad_CambiarEstado $taskUnit,'LIBERADA',NULL,$taskUser,'O','-'") 'CONFLICTO_ESTADO' 'Rechazar una liberacion con valores desactualizados'
+    Assert (Release $taskUnit) 'OK' 'Liberar la primera muestra con la correccion'
+    Assert (Value "SELECT CONCAT(grupo_sanguineo,factor_rh) FROM dbo.Donante WHERE id_donante=$taskDonor") 'A+' 'Primera liberacion confirma grupo y Rh en la ficha'
+    Assert (Value "SELECT CONCAT(grupo_sanguineo,factor_rh) FROM dbo.Unidad WHERE id_unidad=$taskBlockedUnit") 'O-' 'Conservar el registro de la muestra bloqueada'
+    Assert (Classify $taskUnit 'B' '-') 'CONFLICTO_ESTADO' 'Una unidad liberada conserva la clasificacion'
+    Assert (Value "SELECT COUNT(*) FROM dbo.Unidad WHERE id_unidad=$taskNextUnit AND grupo_sanguineo='A' AND factor_rh='+' AND estado_operativo='EN_REVISION'") 1 'La muestra pendiente recibe la tipificacion confirmada'
+    Assert (Value "SELECT COUNT(*) FROM dbo.MovimientoUnidad WHERE id_unidad=$taskNextUnit AND tipo_movimiento='TIPIFICACION_DONANTE'") 1 'La propagacion queda registrada'
     $taskListed = (Sql 'EXEC dbo.sp_Unidad_Listar').Tables[0].Select("id_unidad=$taskNextUnit")[0]
     Assert ($taskListed.grupo_sanguineo_donante + $taskListed.factor_rh_donante) 'A+' 'Proponer datos del donante en nuevas muestras'
     $taskDonorListed = (Sql 'EXEC dbo.sp_Donante_Listar').Tables[0].Select("id_donante=$taskDonor")[0]
     Assert ($taskDonorListed.grupo_sanguineo + $taskDonorListed.factor_rh) 'A+' 'Consultar tipificacion en donantes'
-    Assert (Value "EXEC dbo.sp_Unidad_CambiarEstado $taskNextUnit,'LIBERADA',NULL,$taskUser") 'CONFLICTO_ESTADO' 'No liberar muestra por antecedentes solamente'
+    Assert $taskListed.clasificacion_pendiente $true 'La consulta requiere confirmar los valores propagados'
+    Assert (Release $taskNextUnit) 'CONFLICTO_ESTADO' 'No liberar muestra por antecedentes solamente'
+    $taskFuture = Donate $taskDonor
+    Assert (Value "SELECT CONCAT(grupo_sanguineo,factor_rh) FROM dbo.Unidad WHERE id_unidad=$taskFuture") 'A+' 'Las futuras donaciones reciben la ficha confirmada'
+    Assert (Release $taskFuture) 'CONFLICTO_ESTADO' 'Los valores heredados requieren clasificar la muestra'
+    Assert (Classify $taskNextUnit 'B' '+') 'OK' 'Permitir revisar un resultado discrepante'
     $taskAuditCount = Value 'SELECT COUNT(*) FROM dbo.Auditoria'
-    Assert (Classify $taskNextUnit 'B' '+') 'CONFLICTO_TIPIFICACION' 'Rechazar grupo contradictorio'
-    Assert (Classify $taskNextUnit 'A' '-') 'CONFLICTO_TIPIFICACION' 'Rechazar Rh contradictorio'
+    Assert (Release $taskNextUnit) 'CONFLICTO_TIPIFICACION' 'Impedir liberar un grupo distinto al confirmado'
     Assert (Value 'SELECT COUNT(*) FROM dbo.Auditoria') $taskAuditCount 'Rechazo sin cambios ni auditorias de datos'
-    Assert (Value "SELECT COUNT(*) FROM dbo.Unidad WHERE id_unidad=$taskNextUnit AND grupo_sanguineo='A' AND factor_rh='+'") 1 'Rechazo conserva grupo y Rh guardados'
+    Assert (Classify $taskNextUnit 'A' '-') 'OK' 'Guardar una correccion de Rh en revision'
+    Assert (Release $taskNextUnit) 'CONFLICTO_TIPIFICACION' 'Impedir liberar un Rh distinto al confirmado'
     Assert (Classify $taskNextUnit 'A' '+') 'OK' 'Confirmar nueva muestra coincidente'
     Assert (Value "EXEC dbo.sp_Unidad_CambiarEstado $taskNextUnit,'LIBERADA',NULL,$taskUser") 'OK' 'Liberar solo despues de confirmar la muestra'
     Assert (Value "EXEC dbo.sp_Donante_Actualizar @id_donante=$taskDonor,@documento='DESCONOCIDO',@nombre='Eva editada',@apellido='Historial',@id_usuario=$taskUser") 'OK' 'Editar datos administrativos'
     Assert (Value "SELECT CONCAT(grupo_sanguineo,factor_rh) FROM dbo.Donante WHERE id_donante=$taskDonor") 'A+' 'Edicion conserva tipificacion'
-    $taskConflictUnit = [int](Value "SELECT MIN(u.id_unidad) FROM dbo.Unidad u JOIN dbo.Donacion dn ON dn.id_donacion=u.id_donacion JOIN dbo.Donante d ON d.id_donante=dn.id_donante WHERE d.documento='CONFLICTIVO'")
-    Assert (Classify $taskConflictUnit 'A' '+') 'CONFLICTO_TIPIFICACION' 'Bloquear historial contradictorio legado'
+    $taskConflictDonor = [int](Value "SELECT id_donante FROM dbo.Donante WHERE documento='CONFLICTIVO'")
+    $taskConflictUnit = Donate $taskConflictDonor
+    Assert (Classify $taskConflictUnit 'A' '+') 'OK' 'Guardar provisional con historial legado'
+    Assert (Release $taskConflictUnit) 'CONFLICTO_TIPIFICACION' 'Impedir liberar con antecedentes liberados contradictorios'
     Assert (Value "EXEC dbo.sp_Donante_Registrar 'ROLLBACK','Ana','Rollback',NULL,NULL,NULL,NULL,$taskUser") 'OK' 'Registrar donante sin tipificacion'
     $taskRollbackDonor = [int](Value "SELECT id_donante FROM dbo.Donante WHERE documento='ROLLBACK'")
     $taskRollbackUnit = Donate $taskRollbackDonor
     Assert (Classify $taskRollbackUnit 'Z' '+') 'DATOS_INVALIDOS' 'Rechazar grupo invalido'
-    [void](Sql "CREATE TRIGGER dbo.tr_Tipificacion_Test ON dbo.MovimientoUnidad AFTER INSERT AS BEGIN IF EXISTS(SELECT 1 FROM inserted WHERE tipo_movimiento='CLASIFICACION') THROW 51199,'TEST_ROLLBACK',1; END;")
+    Assert (Classify $taskRollbackUnit 'O' '-') 'OK' 'Guardar clasificacion antes de simular falla'
+    $taskRollbackPending = Donate $taskRollbackDonor
+    [void](Sql "CREATE TRIGGER dbo.tr_Tipificacion_Test ON dbo.MovimientoUnidad AFTER INSERT AS BEGIN IF EXISTS(SELECT 1 FROM inserted WHERE tipo_movimiento='LIBERACION') THROW 51199,'TEST_ROLLBACK',1; END;")
     $taskRejected = $false
-    try { [void](Classify $taskRollbackUnit 'O' '-') } catch { $taskRejected = $true }
+    try { [void](Release $taskRollbackUnit) } catch { $taskRejected = $true }
     [void](Sql 'DROP TRIGGER dbo.tr_Tipificacion_Test')
     Assert $taskRejected $true 'Simular falla posterior a la escritura del donante'
-    Assert (Value "SELECT COUNT(*) FROM dbo.Donante WHERE id_donante=$taskRollbackDonor AND grupo_sanguineo IS NULL AND factor_rh IS NULL") 1 'Revertir donante ante falla de clasificacion'
-    Assert (Value "SELECT COUNT(*) FROM dbo.Unidad WHERE id_unidad=$taskRollbackUnit AND grupo_sanguineo IS NULL AND factor_rh IS NULL") 1 'Revertir unidad ante falla de clasificacion'
+    Assert (Value "SELECT COUNT(*) FROM dbo.Donante WHERE id_donante=$taskRollbackDonor AND grupo_sanguineo IS NULL AND factor_rh IS NULL") 1 'Revertir donante ante falla de liberacion'
+    Assert (Value "SELECT COUNT(*) FROM dbo.Unidad WHERE id_unidad=$taskRollbackUnit AND estado_operativo='EN_REVISION'") 1 'Revertir el cambio de estado'
+    Assert (Value "SELECT COUNT(*) FROM dbo.Unidad WHERE id_unidad=$taskRollbackPending AND grupo_sanguineo IS NULL AND factor_rh IS NULL") 1 'Revertir propagacion a la otra muestra'
     [void](Sql "UPDATE dbo.Donante SET grupo_sanguineo='B' WHERE id_donante=$taskDonor")
     Assert ([int](Value 'SELECT COUNT(*) FROM dbo.v_IntegridadPN1_Errores') -gt 0) $true 'Detectar alteracion de tipificacion'
     $taskRejected = $false

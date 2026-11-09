@@ -302,6 +302,7 @@ namespace Services
                 { "UNIT_DISCARDED", CrearTraducciones_380_jh("Unidad descartada correctamente.", "Unit discarded successfully.") },
                 { "UNIT_INVALID", CrearTraducciones_380_jh("Completá los datos requeridos de la unidad.", "Complete the required unit data.") },
                 { "UNIT_CONFLICT", CrearTraducciones_380_jh("La unidad no está en un estado válido para esta operación.", "The unit is not in a valid state for this operation.") },
+                { "UNIT_SAVE_TYPING_BEFORE_RELEASE", CrearTraducciones_380_jh("Guardá el grupo y Rh con Clasificar antes de liberar la muestra.", "Save the blood group and Rh using Classify before releasing the sample.") },
                 { "UNIT_ERROR", CrearTraducciones_380_jh("No se pudo actualizar la unidad.", "Could not update the unit.") },
                 { "UNIT_EXPORT_XML", CrearTraducciones_380_jh("Exportar proceso a XML", "Export process to XML") },
                 { "UNIT_EXPORT_XML_SELECT", CrearTraducciones_380_jh("Seleccioná una unidad para exportar.", "Select a unit to export.") },

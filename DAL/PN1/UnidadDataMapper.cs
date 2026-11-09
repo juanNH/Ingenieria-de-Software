@@ -83,7 +83,9 @@ namespace DAL
                 _databaseContext_380_jh.CrearParametro_380_jh("@id_unidad", unidad.Id_380_jh),
                 CrearParametroTexto_380_jh("@estado_nuevo", estado, 20),
                 CrearParametroTexto_380_jh("@observacion", observacion, 500),
-                _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario)
+                _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario),
+                CrearParametroTexto_380_jh("@grupo_esperado", unidad.GrupoSanguineo_380_jh, 5),
+                CrearParametroTexto_380_jh("@rh_esperado", unidad.FactorRh_380_jh, 5)
             };
 
             return EjecutarActualizacion_380_jh("sp_Unidad_CambiarEstado", parametros, unidad);
