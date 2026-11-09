@@ -28,6 +28,7 @@ namespace UI
         private Button _btnLiberar_380_jh;
         private Button _btnBloquear_380_jh;
         private Button _btnDescartar_380_jh;
+        private Button _btnCantidadHistorial_380_jh;
         private Button _btnExportarXml_380_jh;
         private Button _btnComprobante_380_jh;
         private Button _btnReporteActual_380_jh;
@@ -85,6 +86,9 @@ namespace UI
             filtro.Controls.Add(_txtBuscar_380_jh);
             Button buscar = CrearBoton_380_jh("BTN_SEARCH");
             buscar.Click += delegate { CargarUnidades_380_jh(); };
+            _btnCantidadHistorial_380_jh = CrearBoton_380_jh("DONATION_QUANTITY_HISTORY");
+            _btnCantidadHistorial_380_jh.Enabled = false;
+            _btnCantidadHistorial_380_jh.Click += CantidadDonacion_Click_380_jh;
             Button actualizar = CrearBoton_380_jh("BTN_REFRESH");
             actualizar.Click += delegate { CargarUnidades_380_jh(); };
             _btnExportarXml_380_jh = CrearBoton_380_jh("UNIT_SERIALIZE_TABLE");
@@ -102,6 +106,7 @@ namespace UI
             Button reintentarComprobante = CrearBoton_380_jh("RECEIPT_RETRY");
             reintentarComprobante.Click += delegate { ComprobantePdfUI_380_jh.ProcesarPendientes_380_jh(this, true); };
             filtro.Controls.Add(buscar);
+            filtro.Controls.Add(_btnCantidadHistorial_380_jh);
             filtro.Controls.Add(actualizar);
             filtro.Controls.Add(_btnExportarXml_380_jh);
             filtro.Controls.Add(_btnImportarXml_380_jh);
@@ -149,7 +154,7 @@ namespace UI
 
             GroupBox detalle = new GroupBox { Dock = DockStyle.Fill, Tag = "UNIT_DETAIL", Padding = new Padding(10) };
             split.Panel2.Controls.Add(detalle);
-            TableLayoutPanel formulario = new TableLayoutPanel { Dock = DockStyle.Top, Height = 290, ColumnCount = 2, RowCount = 7 };
+            TableLayoutPanel formulario = new TableLayoutPanel { Dock = DockStyle.Top, Height = 250, ColumnCount = 2, RowCount = 6 };
             formulario.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130));
             formulario.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
             detalle.Controls.Add(formulario);
@@ -184,10 +189,6 @@ namespace UI
             acciones.Controls.Add(_btnBloquear_380_jh);
             acciones.Controls.Add(_btnDescartar_380_jh);
             formulario.Controls.Add(acciones, 1, 5);
-            formulario.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
-            Button cantidad = CrearBoton_380_jh("DONATION_QUANTITY_HISTORY");
-            cantidad.Click += CantidadDonacion_Click_380_jh;
-            formulario.Controls.Add(cantidad, 1, 6);
 
             ConfigurarPermisos_380_jh();
         }
@@ -328,6 +329,7 @@ namespace UI
         private void Grid_SelectionChanged_380_jh(object sender, EventArgs e)
         {
             Unidad_380_jh unidad = ObtenerSeleccionada_380_jh();
+            _btnCantidadHistorial_380_jh.Enabled = unidad != null;
             if (unidad == null)
             {
                 return;

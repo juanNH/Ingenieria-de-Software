@@ -64,6 +64,11 @@ internal static class TipificacionDonanteUiTests
                     "La grilla muestra el grupo y Rh de la segunda unidad");
                 row.Selected = true;
                 view.GetType().GetMethod("Grid_SelectionChanged_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(view, new object[] { grid, EventArgs.Empty });
+                view.Size = new System.Drawing.Size(950, 550);
+                view.PerformLayout();
+                var historial = Field<Button>(view, "_btnCantidadHistorial_380_jh");
+                Check(historial.Enabled && historial.Parent is FlowLayoutPanel && historial.Parent.ClientRectangle.Contains(historial.Bounds),
+                    "El acceso al historial queda visible en la barra superior con una unidad seleccionada");
                 Check(((MaestroPN1_380_jh)Field<ComboBox>(view, "_cmbGrupo_380_jh").SelectedItem).Codigo_380_jh == "O" &&
                     ((MaestroPN1_380_jh)Field<ComboBox>(view, "_cmbRh_380_jh").SelectedItem).Codigo_380_jh == "-", "Formulario propone grupo y Rh del donante");
                 Check(!next.EstaClasificada_380_jh, "Proponer datos en pantalla no clasifica la muestra");

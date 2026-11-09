@@ -66,7 +66,7 @@ mano esos mismos archivos además del instalador.
 
 ## Corrección de cantidad declarada
 
-En **Unidades**, seleccioná una unidad de la donación y abrí **Cantidad e historial**. `UNIDAD_VER` habilita la consulta y `DONACION_AJUSTAR_CANTIDAD` habilita los cambios. El responsable autorizado y el administrador reciben ambos permisos. El historial queda en solo lectura desde la primera liberación o al registrarse el comprobante de PN1.
+En **Unidades**, seleccioná una unidad de la donación y abrí **Cantidad e historial**, junto a **Buscar** en la barra superior. `UNIDAD_VER` habilita la consulta y `DONACION_AJUSTAR_CANTIDAD` habilita los cambios. El responsable autorizado y el administrador reciben ambos permisos. El historial queda en solo lectura desde la primera liberación o al registrarse el comprobante de PN1.
 
 `tr_Donacion_AjusteCantidad` recibe la versión que estaba viendo el responsable, la cantidad nueva, el motivo y los códigos seleccionados para la baja. La aplicación envía los identificadores de esas unidades y el trigger registra sus códigos en la auditoría. El ajuste, los movimientos y el historial protegido se confirman juntos. Al aumentar, el trigger genera unidades en revisión. Al reducir, anula las unidades seleccionadas en revisión sin clasificar y conserva sus códigos. Usar una cantidad anterior aplica las mismas reglas y agrega una versión al historial.
 
