@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Abstractions;
 using Domain;
 using Repository;
@@ -80,7 +81,7 @@ namespace Application
                 Donacion_380_jh = new DonacionProcesoPN1Xml_380_jh
                 {
                     Id_380_jh = unidadSeleccionada.IdDonacion_380_jh,
-                    CantidadUnidades_380_jh = unidadesDonacion.Count,
+                    CantidadUnidades_380_jh = unidadesDonacion.Count(u => u.EstadoOperativo_380_jh != EstadoUnidadPN1_380_jh.Anulada_380_jh),
                     Donante_380_jh = new DonanteProcesoXml_380_jh
                     {
                         Id_380_jh = unidadSeleccionada.IdDonante_380_jh.GetValueOrDefault(),

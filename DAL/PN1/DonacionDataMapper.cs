@@ -83,6 +83,105 @@ namespace DAL
             }
         }
 
+        public List<Donacion_380_jh> Listar_380_jh(int idUsuario)
+        {
+            var donaciones = new List<Donacion_380_jh>();
+            try
+            {
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataTable tabla = _databaseContext_380_jh.Leer_380_jh("sp_Donacion_Listar", new List<SqlParameter>
+                {
+                    _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario)
+                });
+                foreach (DataRow fila in tabla.Rows)
+                    donaciones.Add(new Donacion_380_jh
+                    {
+                        Id_380_jh = (int)fila["id_donacion"], FechaDonacion_380_jh = (DateTime)fila["fecha_donacion"],
+                        CantidadUnidades_380_jh = (int)fila["cantidad_unidades"], IdDonante_380_jh = (int)fila["id_donante"],
+                        Donante_380_jh = new Donante_380_jh { Nombre_380_jh = fila["nombre"].ToString(), Apellido_380_jh = fila["apellido"].ToString() }
+                    });
+                return donaciones;
+            }
+            finally { _databaseContext_380_jh.Cerrar_380_jh(); }
+        }
+
+        public CantidadDonacion_380_jh ConsultarCantidad_380_jh(int idDonacion, int idUsuario)
+        {
+            try
+            {
+                _databaseContext_380_jh.Abrir_380_jh();
+                DataSet conjunto = _databaseContext_380_jh.LeerConjunto_380_jh("sp_Donacion_ConsultarCantidad", new List<SqlParameter>
+                {
+                    _databaseContext_380_jh.CrearParametro_380_jh("@id_donacion", idDonacion),
+                    _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario)
+                });
+                if (conjunto.Tables[0].Rows.Count == 0) return null;
+                DataRow fila = conjunto.Tables[0].Rows[0];
+                var resultado = new CantidadDonacion_380_jh
+                {
+                    Cantidad_380_jh = (int)fila["cantidad_unidades"],
+                    Version_380_jh = fila.IsNull("version_actual") ? 0 : (int)fila["version_actual"],
+                    Editable_380_jh = (bool)fila["editable"]
+                };
+                foreach (DataRow cambio in conjunto.Tables[1].Rows)
+                    resultado.Historial_380_jh.Add(new CambioCantidadDonacion_380_jh
+                    {
+                        Version_380_jh = (int)cambio["id_auditoria"], Accion_380_jh = cambio["accion"].ToString(),
+                        Fecha_380_jh = (DateTime)cambio["fecha_evento"], Responsable_380_jh = cambio["identificador_usuario_actor"].ToString(),
+                        Anterior_380_jh = cambio.IsNull("cantidad_anterior") ? (int?)null : (int)cambio["cantidad_anterior"],
+                        Nueva_380_jh = (int)cambio["cantidad_nueva"], Motivo_380_jh = cambio["motivo"].ToString(),
+                        Codigos_380_jh = cambio["unidades_afectadas"].ToString()
+                    });
+                foreach (DataRow unidad in conjunto.Tables[2].Rows)
+                    resultado.Ajustables_380_jh.Add(new Unidad_380_jh
+                    {
+                        Id_380_jh = (int)unidad["id_unidad"], CodigoIdentificacion_380_jh = unidad["codigo_identificacion"].ToString(),
+                        EstadoOperativo_380_jh = unidad.Table.Columns.Contains("estado_operativo")
+                            ? unidad["estado_operativo"].ToString() : EstadoUnidadPN1_380_jh.EnRevision_380_jh
+                    });
+                if (conjunto.Tables.Count > 3)
+                    foreach (DataRow unidad in conjunto.Tables[3].Rows)
+                        resultado.Unidades_380_jh.Add(UnidadDataMapper_380_jh.MapearPublico_380_jh(unidad));
+                return resultado;
+            }
+            finally { _databaseContext_380_jh.Cerrar_380_jh(); }
+        }
+
+        public CodigoOperacionPN1_380_jh AjustarCantidad_380_jh(int idDonacion, int version, int cantidad, string motivo,
+            IEnumerable<int> unidades, int? restaurar, int idUsuario)
+        {
+            try
+            {
+                _databaseContext_380_jh.Abrir_380_jh();
+                _databaseContext_380_jh.LeerConjunto_380_jh("sp_Donacion_AjustarCantidad", new List<SqlParameter>
+                {
+                    _databaseContext_380_jh.CrearParametro_380_jh("@id_donacion", idDonacion),
+                    _databaseContext_380_jh.CrearParametro_380_jh("@version_esperada", version),
+                    _databaseContext_380_jh.CrearParametro_380_jh("@cantidad", cantidad),
+                    new SqlParameter("@motivo", SqlDbType.NVarChar, 500) { Value = motivo },
+                    new SqlParameter("@unidades_json", SqlDbType.NVarChar, -1) { Value = "[" + string.Join(",", unidades) + "]" },
+                    _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario),
+                    new SqlParameter("@version_a_restaurar", SqlDbType.Int) { Value = (object)restaurar ?? DBNull.Value }
+                });
+                return CodigoOperacionPN1_380_jh.Ok_380_jh;
+            }
+            catch (SqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 51001: case 51002: case 51014: return CodigoOperacionPN1_380_jh.IntegridadInvalida_380_jh;
+                    case 51003: return CodigoOperacionPN1_380_jh.NoAutorizado_380_jh;
+                    case 51120: return CodigoOperacionPN1_380_jh.DatosInvalidos_380_jh;
+                    case 51121: return CodigoOperacionPN1_380_jh.NoEncontrado_380_jh;
+                    case 51122: return CodigoOperacionPN1_380_jh.ConflictoVersion_380_jh;
+                    case 51123: return CodigoOperacionPN1_380_jh.DonacionCerrada_380_jh;
+                    case 51124: return CodigoOperacionPN1_380_jh.UnidadesNoAjustables_380_jh;
+                    default: return CodigoOperacionPN1_380_jh.Error_380_jh;
+                }
+            }
+            finally { _databaseContext_380_jh.Cerrar_380_jh(); }
+        }
+
         private static CodigoOperacionPN1_380_jh MapearResultado_380_jh(DataRow fila)
         {
             switch (fila["codigo_resultado"].ToString())

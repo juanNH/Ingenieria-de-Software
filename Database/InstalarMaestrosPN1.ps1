@@ -39,7 +39,7 @@ try {
     $taskTransaction = $taskConnection.BeginTransaction()
     $taskScripts = @('06_MaestrosPN1.sql','06a_CompatibilidadTransfusional.sql','06b_TipificacionDonante.sql','07_PN1.sql')
     if ($taskHasPN2) { $taskScripts += '09_PN2.sql' }
-    if ($taskHasPN2 -and $taskHasComprobantes) { $taskScripts += '11_ComprobantesAutomaticos.sql' }
+    if ($taskHasPN2 -and $taskHasComprobantes) { $taskScripts += @('11_ComprobantesAutomaticos.sql','13_AjusteCantidadDonacion.sql') }
     foreach ($taskScript in $taskScripts) {
         $taskScriptPath = Join-Path $PSScriptRoot ('StoredProcedures/' + $taskScript)
         $taskSql = (Get-Content -Raw -Encoding UTF8 -LiteralPath $taskScriptPath).Replace('USE [HemovidaGest];','')

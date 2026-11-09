@@ -36,7 +36,8 @@ try {
         'Database/StoredProcedures/06_MaestrosPN1.sql','Database/StoredProcedures/06a_CompatibilidadTransfusional.sql','Database/StoredProcedures/06b_TipificacionDonante.sql','Database/StoredProcedures/07_PN1.sql',
         'Database/StoredProcedures/08_PN2_Catalogos.sql','Database/StoredProcedures/09_PN2.sql',
         'Database/StoredProcedures/09a_RelacionesSolicitudPN2.sql',
-        'Database/StoredProcedures/10_IntegridadPN2.sql','Database/StoredProcedures/11_ComprobantesAutomaticos.sql')) { Script $script }
+        'Database/StoredProcedures/10_IntegridadPN2.sql','Database/StoredProcedures/11_ComprobantesAutomaticos.sql',
+        'Database/StoredProcedures/13_AjusteCantidadDonacion.sql')) { Script $script }
     Script 'Database/StoredProcedures/11_ComprobantesAutomaticos.sql'
     [void](Sql "EXEC dbo.sp_Donante_Registrar @documento='PRUEBA',@nombre='Maria',@apellido='Prueba',@id_usuario=1")
     [void](Sql "EXEC dbo.sp_Donacion_Registrar @id_donante=1,@fecha_donacion='20260101',@cantidad_unidades=3,@tipo_componente='Concentrado de eritrocitos',@fecha_vencimiento='20991231',@id_usuario=1")
@@ -104,6 +105,54 @@ try {
     Assert $rejected 'La consulta del original exige permiso de unidades'
     $result = $service.ProcesarPendientes_380_jh()
     Assert ($result.Archivos_380_jh.Count -eq 0) 'Reintentar nuevamente no duplica archivos'
+
+    Script 'Database/StoredProcedures/13_AjusteCantidadDonacion.sql'
+    $donacion = Sql "EXEC dbo.sp_Donacion_Registrar @id_donante=1,@fecha_donacion='20260101',@cantidad_unidades=2,@tipo_componente='Concentrado de eritrocitos',@fecha_vencimiento='20991231',@id_usuario=1"
+    $idDonacion = [int]$donacion.Tables[0].Rows[0].id_donacion
+    $unidadClasificada = [int]$donacion.Tables[1].Rows[0].id_unidad
+    $unidadAnulable = [int]$donacion.Tables[1].Rows[1].id_unidad
+    $codigoAnulable = [string]$donacion.Tables[1].Rows[1].codigo_identificacion
+    $consulta = Sql "EXEC dbo.sp_Donacion_ConsultarCantidad $idDonacion,1"
+    $versionInicial = [int]$consulta.Tables[0].Rows[0].version_actual
+    Assert ($consulta.Tables[1].Rows.Count -eq 1 -and $consulta.Tables[1].Rows[0].cantidad_nueva -eq 2) 'El historial muestra la cantidad inicial'
+    [void](Sql "EXEC dbo.sp_Unidad_Clasificar @id_unidad=$unidadClasificada,@tipo_componente='Concentrado de eritrocitos',@grupo_sanguineo='O',@factor_rh='+',@fecha_vencimiento='20991231',@id_usuario=1")
+    function Assert-RechazoAjuste([string]$sqlAjuste, [int]$numero, [string]$mensaje) {
+        $rechazado = $false
+        try { [void](Sql $sqlAjuste) } catch { $rechazado = $_.Exception.GetBaseException().Number -eq $numero }
+        Assert $rechazado $mensaje
+    }
+    Assert-RechazoAjuste "EXEC dbo.sp_Donacion_AjustarCantidad $idDonacion,$versionInicial,3,N'Sin permiso',N'[]',$other" 51003 'El trigger verifica permisos'
+    Assert-RechazoAjuste "EXEC dbo.sp_Donacion_AjustarCantidad $idDonacion,$versionInicial,3,N'Aumento sin selección',N'[]',1" 51124 'El trigger rechaza un aumento sin seleccionar unidades existentes'
+    Assert-RechazoAjuste "EXEC dbo.sp_Donacion_AjustarCantidad $idDonacion,$versionInicial,1,N'Reducción',N'[$unidadClasificada]',1" 51124 'Una unidad clasificada no puede anularse'
+    [void](Sql "EXEC dbo.sp_Donacion_AjustarCantidad $idDonacion,$versionInicial,1,N'Reducción',N'[$unidadAnulable]',1")
+    $consulta = Sql "EXEC dbo.sp_Donacion_ConsultarCantidad $idDonacion,1"
+    $versionReduccion = [int]$consulta.Tables[0].Rows[0].version_actual
+    $ajuste = $consulta.Tables[1].Rows[0]
+    Assert ($consulta.Tables[0].Rows[0].cantidad_unidades -eq 1 -and $ajuste.cantidad_anterior -eq 2 -and $ajuste.cantidad_nueva -eq 1 -and $ajuste.motivo -eq 'Reducción' -and $ajuste.identificador_usuario_actor -eq 'admin' -and $ajuste.unidades_afectadas -eq $codigoAnulable) 'La reducción conserva código, responsable, motivo y cantidades en el historial'
+    Assert-RechazoAjuste "EXEC dbo.sp_Donacion_AjustarCantidad $idDonacion,$versionInicial,2,N'Versión anterior',N'[]',1" 51122 'Se rechaza una versión desactualizada'
+    Assert-RechazoAjuste "EXEC dbo.sp_Donacion_AjustarCantidad $idDonacion,$versionReduccion,2,N'Restaurar otra unidad',N'[1]',1" 51124 'El trigger rechaza unidades de otra donación'
+    [void](Sql "EXEC dbo.sp_Donacion_AjustarCantidad $idDonacion,$versionReduccion,2,N'Restaurar cantidad inicial',N'[$unidadAnulable]',1,$versionInicial")
+    $consulta = Sql "EXEC dbo.sp_Donacion_ConsultarCantidad $idDonacion,1"
+    $versionRestaurada = [int]$consulta.Tables[0].Rows[0].version_actual
+    $ajuste = $consulta.Tables[1].Rows[0]
+    Assert ($ajuste.accion -eq 'RESTAURA_CANTIDAD' -and $ajuste.cantidad_nueva -eq 2 -and $ajuste.unidades_afectadas -eq $codigoAnulable -and
+            $consulta.Tables[1].Rows.Count -eq 3 -and $consulta.Tables[3].Rows.Count -eq 2 -and $consulta.Tables[2].Rows[0].id_unidad -eq $unidadAnulable) 'Restaurar reactiva el mismo código sin crear otra unidad'
+    Assert ((Sql "EXEC dbo.sp_Unidad_CambiarEstado $unidadAnulable,'LIBERADA',NULL,1").Tables[0].Rows[0].codigo_resultado -eq 'CONFLICTO_ESTADO') 'Una unidad reactivada sigue pendiente de clasificación'
+    [void](Sql "ALTER TABLE dbo.Auditoria ADD CONSTRAINT CK_PruebaFalloAjuste CHECK (identificador_usuario_actor<>'admin' OR cambios_json NOT LIKE N'%Forzar error%')")
+    Assert-RechazoAjuste "EXEC dbo.sp_Donacion_AjustarCantidad $idDonacion,$versionRestaurada,1,N'Forzar error',N'[$unidadAnulable]',1" 547 'Se fuerza un fallo al escribir la auditoría'
+    [void](Sql 'ALTER TABLE dbo.Auditoria DROP CONSTRAINT CK_PruebaFalloAjuste')
+    $consulta = Sql "EXEC dbo.sp_Donacion_ConsultarCantidad $idDonacion,1"
+    Assert ($consulta.Tables[0].Rows[0].version_actual -eq $versionRestaurada -and $consulta.Tables[0].Rows[0].cantidad_unidades -eq 2 -and $consulta.Tables[2].Rows[0].estado_operativo -eq 'EN_REVISION') 'El fallo revierte cantidad, estado de unidades, movimientos e historial'
+    [void](Sql "EXEC dbo.sp_Unidad_CambiarEstado @id_unidad=$unidadClasificada,@estado_nuevo='BLOQUEADA',@observacion='prueba',@id_usuario=1")
+    $excedente = [int]$consulta.Tables[2].Rows[0].id_unidad
+    [void](Sql "EXEC dbo.sp_Donacion_AjustarCantidad $idDonacion,$versionRestaurada,1,N'Cierre por ajuste',N'[$excedente]',1")
+    $consulta = Sql "EXEC dbo.sp_Donacion_ConsultarCantidad $idDonacion,1"
+    Assert (!$consulta.Tables[0].Rows[0].editable -and (CountPending "proceso='PN1' AND id_referencia=$idDonacion AND datos.value('count(/Comprobante/Unidades/Unidad)','int')=1") -eq 1) 'El comprobante incluye solo unidades vigentes y deja el historial en consulta'
+    $versionCerrada = [int]$consulta.Tables[0].Rows[0].version_actual
+    Assert-RechazoAjuste "EXEC dbo.sp_Donacion_AjustarCantidad $idDonacion,$versionCerrada,2,N'Cerrada',N'[]',1" 51123 'Se rechaza el ajuste de una donación con comprobante'
+    $versionLiberada = [int](Sql 'EXEC dbo.sp_Donacion_ConsultarCantidad 1,1').Tables[0].Rows[0].version_actual
+    Assert-RechazoAjuste "EXEC dbo.sp_Donacion_AjustarCantidad 1,$versionLiberada,4,N'Cerrada',N'[]',1" 51123 'Se rechaza el ajuste de una donación liberada'
+    Assert ((Sql 'SELECT COUNT(*) n FROM dbo.v_IntegridadPN1_Errores').Tables[0].Rows[0].n -eq 0) 'El ajuste conserva la integridad de PN1'
     Write-Host "PDF de prueba: $output"
 }
 finally {

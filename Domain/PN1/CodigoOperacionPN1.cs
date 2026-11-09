@@ -10,6 +10,9 @@ namespace Domain
         ConflictoEstado_380_jh,
         IntegridadInvalida_380_jh,
         Error_380_jh,
-        ConflictoTipificacion_380_jh
+        ConflictoTipificacion_380_jh,
+        ConflictoVersion_380_jh,
+        DonacionCerrada_380_jh,
+        UnidadesNoAjustables_380_jh
     }
 }

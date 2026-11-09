@@ -95,6 +95,7 @@ namespace UI
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("RegistroFallido_380_jh", "BITACORA_ACTION_REGISTER_FAILURE"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("DonanteRegistrado_380_jh", "BITACORA_ACTION_DONOR_REGISTERED"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("DonacionRegistrada_380_jh", "BITACORA_ACTION_DONATION_REGISTERED"));
+            cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("CantidadDonacionAjustada_380_jh", "BITACORA_ACTION_DONATION_QUANTITY"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadesGeneradas_380_jh", "BITACORA_ACTION_UNITS_GENERATED"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadClasificada_380_jh", "BITACORA_ACTION_UNIT_CLASSIFIED"));
             cmbAccionFiltro_380_jh.Items.Add(new BitacoraFiltroOpcion_380_jh("UnidadLiberada_380_jh", "BITACORA_ACTION_UNIT_RELEASED"));
@@ -238,6 +239,7 @@ namespace UI
                 case "DonanteRegistrado": clave = "BITACORA_ACTION_DONOR_REGISTERED"; break;
                 case "DonanteActualizado": clave = "BITACORA_ACTION_DONOR_UPDATED"; break;
                 case "DonacionRegistrada": clave = "BITACORA_ACTION_DONATION_REGISTERED"; break;
+                case "CantidadDonacionAjustada": clave = "BITACORA_ACTION_DONATION_QUANTITY"; break;
                 case "UnidadesGeneradas": clave = "BITACORA_ACTION_UNITS_GENERATED"; break;
                 case "UnidadClasificada": clave = "BITACORA_ACTION_UNIT_CLASSIFIED"; break;
                 case "UnidadLiberada": clave = "BITACORA_ACTION_UNIT_RELEASED"; break;

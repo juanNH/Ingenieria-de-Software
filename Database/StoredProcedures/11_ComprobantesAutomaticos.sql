@@ -45,6 +45,7 @@ BEGIN
     DECLARE eventos CURSOR LOCAL FAST_FORWARD FOR
         SELECT id_movimiento_unidad,id_unidad,id_usuario,estado_anterior,estado_nuevo,id_entrega
         FROM inserted WHERE (estado_anterior='EN_REVISION' AND tipo_movimiento IN ('LIBERACION','BLOQUEO','DESCARTE') AND estado_nuevo IN ('LIBERADA','BLOQUEADA','DESCARTADA'))
+           OR (estado_anterior='EN_REVISION' AND tipo_movimiento='ANULACION_CANTIDAD' AND estado_nuevo='ANULADA')
            OR (estado_anterior='ENTREGADA' AND tipo_movimiento IN ('TRANSFUSION','DEVOLUCION','DESCARTE','DESTINO') AND id_entrega IS NOT NULL);
     OPEN eventos;
     FETCH NEXT FROM eventos INTO @movimiento,@unidad,@usuario,@anterior,@nuevo,@entrega;
@@ -55,7 +56,7 @@ BEGIN
             SELECT @donacion=id_donacion FROM dbo.Unidad WHERE id_unidad=@unidad;
             IF NOT EXISTS(SELECT 1 FROM dbo.ComprobantePendiente WHERE proceso='PN1' AND id_referencia=@donacion)
                AND NOT EXISTS(
-                   SELECT 1 FROM dbo.Unidad u WHERE u.id_donacion=@donacion AND NOT EXISTS(
+                   SELECT 1 FROM dbo.Unidad u WHERE u.id_donacion=@donacion AND u.estado_operativo<>'ANULADA' AND NOT EXISTS(
                        SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad=u.id_unidad
                        AND m.estado_anterior='EN_REVISION' AND m.tipo_movimiento IN ('LIBERACION','BLOQUEO','DESCARTE') AND m.estado_nuevo IN ('LIBERADA','BLOQUEADA','DESCARTADA')))
             BEGIN
@@ -74,7 +75,7 @@ BEGIN
                                   FROM dbo.MovimientoUnidad m WHERE m.id_unidad=u.id_unidad
                                   AND m.estado_anterior='EN_REVISION' AND m.tipo_movimiento IN ('LIBERACION','BLOQUEO','DESCARTE') AND m.estado_nuevo IN ('LIBERADA','BLOQUEADA','DESCARTADA')
                                   ORDER BY m.id_movimiento_unidad DESC) decision
-                     WHERE u.id_donacion=@donacion ORDER BY u.id_unidad
+                     WHERE u.id_donacion=@donacion AND u.estado_operativo<>'ANULADA' ORDER BY u.id_unidad
                      FOR XML PATH('Unidad'),ROOT('Unidades'),TYPE)
                     FROM dbo.Usuario us WHERE us.id_usuario=@usuario FOR XML PATH('Comprobante'),TYPE);
                 INSERT dbo.ComprobantePendiente(proceso,id_referencia,id_usuario,datos)
@@ -129,7 +130,8 @@ BEGIN
     FROM dbo.ComprobantePendiente WHERE fecha_generacion IS NULL AND
       (dbo.fn_PN2_TienePermiso(@id_usuario,'ADMINISTRADOR')=1 OR
        (id_usuario=@id_usuario AND ((proceso='PN1' AND (dbo.fn_PN2_TienePermiso(@id_usuario,'UNIDAD_LIBERAR')=1
-           OR dbo.fn_PN2_TienePermiso(@id_usuario,'UNIDAD_BLOQUEAR')=1 OR dbo.fn_PN2_TienePermiso(@id_usuario,'UNIDAD_DESCARTAR')=1))
+           OR dbo.fn_PN2_TienePermiso(@id_usuario,'UNIDAD_BLOQUEAR')=1 OR dbo.fn_PN2_TienePermiso(@id_usuario,'UNIDAD_DESCARTAR')=1
+           OR dbo.fn_PN2_TienePermiso(@id_usuario,'DONACION_AJUSTAR_CANTIDAD')=1))
         OR (proceso='PN2' AND dbo.fn_PN2_TienePermiso(@id_usuario,'DESTINO_REGISTRAR')=1))))
     ORDER BY id_comprobante;
 END;
@@ -153,7 +155,8 @@ BEGIN
     WHERE id_comprobante=@id_comprobante AND fecha_generacion IS NULL AND
       (dbo.fn_PN2_TienePermiso(@id_usuario,'ADMINISTRADOR')=1 OR
        (id_usuario=@id_usuario AND ((proceso='PN1' AND (dbo.fn_PN2_TienePermiso(@id_usuario,'UNIDAD_LIBERAR')=1
-           OR dbo.fn_PN2_TienePermiso(@id_usuario,'UNIDAD_BLOQUEAR')=1 OR dbo.fn_PN2_TienePermiso(@id_usuario,'UNIDAD_DESCARTAR')=1))
+           OR dbo.fn_PN2_TienePermiso(@id_usuario,'UNIDAD_BLOQUEAR')=1 OR dbo.fn_PN2_TienePermiso(@id_usuario,'UNIDAD_DESCARTAR')=1
+           OR dbo.fn_PN2_TienePermiso(@id_usuario,'DONACION_AJUSTAR_CANTIDAD')=1))
         OR (proceso='PN2' AND dbo.fn_PN2_TienePermiso(@id_usuario,'DESTINO_REGISTRAR')=1))));
     IF @@ROWCOUNT=0 AND NOT EXISTS(SELECT 1 FROM dbo.ComprobantePendiente WHERE id_comprobante=@id_comprobante AND fecha_generacion IS NOT NULL)
         THROW 51003,'OPERATION_NOT_AUTHORIZED',1;

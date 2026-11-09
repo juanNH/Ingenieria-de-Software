@@ -164,6 +164,10 @@ EXEC dbo.sp_IntegridadPN1_Sellar $taskUser; COMMIT;
     Assert (Value "SELECT CONCAT(grupo_sanguineo,factor_rh) FROM dbo.Donante WHERE id_donante=$taskDonor") 'A+' 'Restaurar tipificacion desde historial'
     Assert (Value 'SELECT COUNT(*) FROM dbo.v_IntegridadPN1_Errores') 0 'Integridad final'
     if ($UI) {
+        if ($PN2) {
+            Script 'StoredProcedures/11_ComprobantesAutomaticos.sql'
+            Script 'StoredProcedures/13_AjusteCantidadDonacion.sql'
+        }
         & (Join-Path $PSScriptRoot 'bin/Release/TipificacionDonante.Ui.Tests.exe') $Config $taskDatabase
         if ($LASTEXITCODE -ne 0) { throw 'Fallo el circuito UI/Application/DAL de tipificacion.' }
     }

@@ -67,6 +67,18 @@ internal static class PN1XmlTests
             Rechazado(importer, document.ToString(), "Rechaza estado inválido");
             extra.Element("EstadoOperativo").Value = "LIBERADA";
             Rechazado(importer, document.ToString(), "Rechaza unidad final sin clasificación");
+            extra.Element("EstadoOperativo").Value = "ANULADA";
+            Check(Importar(importer, document.ToString()).Donacion_380_jh.Unidades_380_jh[1].EstadoOperativo_380_jh == "ANULADA",
+                "El formato de proceso conserva una unidad anulada sin clasificación");
+            var tablaService = new TablaUnidadesXmlService_380_jh(serializer);
+            string tablaAnulada = tablaService.Serializar_380_jh(new List<FilaUnidadXml_380_jh> { new FilaUnidadXml_380_jh
+            {
+                CodigoIdentificacion_380_jh = "UN-2", Donante_380_jh = "Donante de prueba", TipoComponente_380_jh = "Sangre",
+                FechaVencimiento_380_jh = now.AddDays(10), EstadoOperativo_380_jh = "ANULADA"
+            } });
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(tablaAnulada)))
+                Check(tablaService.Deserializar_380_jh(stream).Unidades_380_jh.Single().EstadoOperativo_380_jh == "ANULADA",
+                    "La tabla XML conserva una unidad anulada sin clasificación");
             extra.Element("EstadoOperativo").Value = "EN_REVISION";
             extra.Element("FechaVencimiento").Remove();
             Rechazado(importer, document.ToString(), "Rechaza campo obligatorio ausente");

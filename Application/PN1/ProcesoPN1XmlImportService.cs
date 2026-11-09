@@ -40,10 +40,12 @@ namespace Application
 
                 bool tieneGrupo = !string.IsNullOrWhiteSpace(unidad.GrupoSanguineo_380_jh);
                 bool tieneRh = !string.IsNullOrWhiteSpace(unidad.FactorRh_380_jh);
+                bool admiteSinClasificar = unidad.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.EnRevision_380_jh ||
+                    unidad.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Anulada_380_jh;
                 if (tieneGrupo != tieneRh ||
                     (tieneGrupo && unidad.GrupoSanguineo_380_jh.Length > 5) ||
                     (tieneRh && unidad.FactorRh_380_jh.Length > 5) ||
-                    (unidad.EstadoOperativo_380_jh != EstadoUnidadPN1_380_jh.EnRevision_380_jh && !tieneGrupo))
+                    (!admiteSinClasificar && !tieneGrupo))
                     throw new InvalidDataException("Clasificación de unidad inválida.");
             }
             return proceso;
@@ -67,6 +69,7 @@ namespace Application
           <xs:element name='EstadoOperativo'><xs:simpleType><xs:restriction base='xs:string'>
             <xs:enumeration value='EN_REVISION'/><xs:enumeration value='LIBERADA'/><xs:enumeration value='BLOQUEADA'/><xs:enumeration value='DESCARTADA'/>
             <xs:enumeration value='RESERVADA'/><xs:enumeration value='ENTREGADA'/><xs:enumeration value='TRANSFUNDIDA'/><xs:enumeration value='DEVUELTA'/>
+            <xs:enumeration value='ANULADA'/>
           </xs:restriction></xs:simpleType></xs:element>
           <xs:element name='Observaciones' type='xs:string' minOccurs='0'/>
           <xs:element name='FechaAlta' type='xs:dateTime'/>

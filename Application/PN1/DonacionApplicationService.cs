@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Abstractions;
 using Domain;
 using Repository;
@@ -78,6 +79,32 @@ namespace Application
             if (resultado == CodigoOperacionPN1_380_jh.IntegridadInvalida_380_jh)
                 new IntegridadApplicationService_380_jh().Verificar_380_jh();
             return resultado;
+        }
+
+        public List<Donacion_380_jh> Listar_380_jh()
+        {
+            Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
+            return _autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadVer_380_jh)
+                ? _donacionRepository_380_jh.Listar_380_jh(usuario.Id_380_jh) : new List<Donacion_380_jh>();
+        }
+
+        public CantidadDonacion_380_jh ConsultarCantidad_380_jh(int idDonacion)
+        {
+            Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
+            if (!_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadVer_380_jh)) return null;
+            return _donacionRepository_380_jh.ConsultarCantidad_380_jh(idDonacion, usuario.Id_380_jh);
+        }
+
+        public CodigoOperacionPN1_380_jh AjustarCantidad_380_jh(int idDonacion, int version, int cantidad, string motivo,
+            IEnumerable<int> unidades, int? restaurar)
+        {
+            Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
+            if (!_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadVer_380_jh) ||
+                !_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.DonacionAjustarCantidad_380_jh))
+                return CodigoOperacionPN1_380_jh.NoAutorizado_380_jh;
+            if (idDonacion <= 0 || version <= 0 || cantidad < 1 || cantidad > 1000 || string.IsNullOrWhiteSpace(motivo) || motivo.Trim().Length > 500 || unidades == null)
+                return CodigoOperacionPN1_380_jh.DatosInvalidos_380_jh;
+            return _donacionRepository_380_jh.AjustarCantidad_380_jh(idDonacion, version, cantidad, motivo.Trim(), unidades, restaurar, usuario.Id_380_jh);
         }
 
         private void RegistrarFalla_380_jh(Usuario_380_jh usuario, string descripcion)
