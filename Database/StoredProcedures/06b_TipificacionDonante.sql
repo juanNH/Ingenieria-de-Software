@@ -43,27 +43,59 @@ IF OBJECT_ID('dbo.FK_Donante_Grupo', 'F') IS NULL
 IF OBJECT_ID('dbo.FK_Donante_Rh', 'F') IS NULL
     ALTER TABLE dbo.Donante ADD CONSTRAINT FK_Donante_Rh FOREIGN KEY (factor_rh) REFERENCES dbo.FactorRh(codigo);
 
--- Solo inferir antecedentes completos y coincidentes. Un historial contradictorio
--- permanece sin tipificacion en el donante y bloquea nuevas clasificaciones.
+-- Conservar las variantes PN1 y PN2 del CHECK al agregar el nuevo movimiento.
+DECLARE @tipos_movimiento NVARCHAR(MAX) = OBJECT_DEFINITION(OBJECT_ID('dbo.CK_MovimientoUnidad_Tipo', 'C'));
+IF @tipos_movimiento IS NULL THROW 51013, 'DONOR_MOVEMENT_CONSTRAINT_REQUIRED', 1;
+IF CHARINDEX('TIPIFICACION_DONANTE', @tipos_movimiento) = 0
+BEGIN
+    ALTER TABLE dbo.MovimientoUnidad DROP CONSTRAINT CK_MovimientoUnidad_Tipo;
+    DECLARE @agregar_tipo NVARCHAR(MAX) = N'ALTER TABLE dbo.MovimientoUnidad WITH CHECK ADD CONSTRAINT CK_MovimientoUnidad_Tipo CHECK ('
+        + @tipos_movimiento + N' OR tipo_movimiento = ''TIPIFICACION_DONANTE'');';
+    EXEC sys.sp_executesql @agregar_tipo;
+END;
+
+-- Las fichas previas solo se consideran confirmadas cuando existe una liberacion.
+-- Si faltaba la ficha, inferirla de unidades ya liberadas con valores coincidentes.
 ;WITH antecedentes AS (
-    SELECT donacion.id_donante, MIN(unidad.grupo_sanguineo) grupo, MIN(unidad.factor_rh) rh
+    SELECT donacion.id_donante, MIN(unidad.grupo_sanguineo) grupo, MIN(unidad.factor_rh) rh,
+           CASE WHEN MIN(unidad.grupo_sanguineo) = MAX(unidad.grupo_sanguineo)
+                  AND MIN(unidad.factor_rh) = MAX(unidad.factor_rh)
+                  AND COUNT(*) = COUNT(unidad.grupo_sanguineo) AND COUNT(*) = COUNT(unidad.factor_rh)
+                THEN 1 ELSE 0 END AS concordantes
     FROM dbo.Unidad unidad
     INNER JOIN dbo.Donacion donacion ON donacion.id_donacion = unidad.id_donacion
-    WHERE unidad.grupo_sanguineo IS NOT NULL OR unidad.factor_rh IS NOT NULL
+    WHERE unidad.estado_operativo IN ('LIBERADA','RESERVADA','ENTREGADA','TRANSFUNDIDA','DEVUELTA')
+       OR EXISTS (SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad = unidad.id_unidad AND m.tipo_movimiento = 'LIBERACION')
     GROUP BY donacion.id_donante
-    HAVING MIN(unidad.grupo_sanguineo) = MAX(unidad.grupo_sanguineo)
-       AND MIN(unidad.factor_rh) = MAX(unidad.factor_rh)
-       AND COUNT(*) = COUNT(unidad.grupo_sanguineo) AND COUNT(*) = COUNT(unidad.factor_rh)
 )
 UPDATE donante SET grupo_sanguineo = antecedentes.grupo, factor_rh = antecedentes.rh
 FROM dbo.Donante donante
-INNER JOIN antecedentes ON antecedentes.id_donante = donante.id_donante
-WHERE donante.grupo_sanguineo IS NULL AND donante.factor_rh IS NULL;
+LEFT JOIN antecedentes ON antecedentes.id_donante = donante.id_donante
+WHERE (antecedentes.id_donante IS NULL AND donante.grupo_sanguineo IS NOT NULL)
+   OR (antecedentes.concordantes = 1 AND donante.grupo_sanguineo IS NULL);
 
-IF @@ROWCOUNT > 0
+DECLARE @fichas_actualizadas INT = @@ROWCOUNT;
+DECLARE @pendientes_actualizadas TABLE (id_unidad INT PRIMARY KEY);
+UPDATE u SET grupo_sanguineo = d.grupo_sanguineo, factor_rh = d.factor_rh,
+             fecha_ultima_modificacion = GETDATE()
+OUTPUT inserted.id_unidad INTO @pendientes_actualizadas
+FROM dbo.Unidad u
+JOIN dbo.Donacion dn ON dn.id_donacion = u.id_donacion
+JOIN dbo.Donante d ON d.id_donante = dn.id_donante
+WHERE u.estado_operativo = 'EN_REVISION' AND d.grupo_sanguineo IS NOT NULL
+  AND u.grupo_sanguineo IS NULL AND u.factor_rh IS NULL
+  AND NOT EXISTS (SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad = u.id_unidad AND m.tipo_movimiento IN ('LIBERACION','REINGRESO'));
+
+IF @fichas_actualizadas > 0 OR EXISTS (SELECT 1 FROM @pendientes_actualizadas)
 BEGIN
     DECLARE @id_usuario INT = (SELECT TOP (1) id_usuario FROM dbo.Usuario WHERE nombre_usuario = 'admin');
     IF @id_usuario IS NULL THROW 51013, 'DONOR_MIGRATION_ADMIN_REQUIRED', 1;
+    UPDATE u SET id_usuario_ultima_modificacion = @id_usuario
+    FROM dbo.Unidad u JOIN @pendientes_actualizadas p ON p.id_unidad = u.id_unidad;
+    INSERT dbo.MovimientoUnidad (id_unidad, tipo_movimiento, estado_anterior, estado_nuevo, observacion, id_usuario)
+    SELECT id_unidad, 'TIPIFICACION_DONANTE', 'EN_REVISION', 'EN_REVISION',
+           N'Grupo y Rh tomados de la ficha confirmada del donante. Confirmar la muestra.', @id_usuario
+    FROM @pendientes_actualizadas;
     EXEC dbo.sp_IntegridadPN1_Sellar @id_usuario, 'MIGRACION_TIPIFICACION';
 END;
 IF EXISTS (SELECT 1 FROM dbo.v_IntegridadPN1_Errores)

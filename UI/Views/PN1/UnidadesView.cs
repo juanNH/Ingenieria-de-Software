@@ -415,6 +415,15 @@ namespace UI
                 return;
             }
 
+            if (estado == EstadoUnidadPN1_380_jh.Liberada_380_jh &&
+                (!unidad.EstaClasificada_380_jh ||
+                 MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbGrupo_380_jh) != unidad.GrupoSanguineo_380_jh ||
+                 MaestrosCombo_380_jh.Seleccionado_380_jh(_cmbRh_380_jh) != unidad.FactorRh_380_jh))
+            {
+                MessageBox.Show(this, LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_SAVE_TYPING_BEFORE_RELEASE"));
+                return;
+            }
+
             if (!ComprobantePdfUI_380_jh.VerificarInstalacion_380_jh(this)) return;
             CodigoOperacionPN1_380_jh resultado = _unidadService_380_jh.CambiarEstado_380_jh(unidad, estado, _txtObservaciones_380_jh.Text);
             MessageBox.Show(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh(ObtenerClaveResultado_380_jh(resultado, estado)));

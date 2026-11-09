@@ -36,7 +36,7 @@ GO
 -- Una reparacion fisica desde una version verificada tambien deja un movimiento.
 ALTER TABLE dbo.MovimientoUnidad DROP CONSTRAINT CK_MovimientoUnidad_Tipo;
 ALTER TABLE dbo.MovimientoUnidad ADD CONSTRAINT CK_MovimientoUnidad_Tipo
-CHECK (tipo_movimiento IN ('REGISTRO','CLASIFICACION','LIBERACION','BLOQUEO','DESCARTE','RESTAURACION'));
+CHECK (tipo_movimiento IN ('REGISTRO','CLASIFICACION','TIPIFICACION_DONANTE','LIBERACION','BLOQUEO','DESCARTE','RESTAURACION'));
 GO
 CREATE OR ALTER VIEW dbo.v_IntegridadPN1_Datos AS
 SELECT CAST('Donante' AS VARCHAR(100)) entidad, d.id_donante id_entidad, j.datos_json, d.dvh,

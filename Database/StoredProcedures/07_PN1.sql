@@ -427,11 +427,11 @@ BEGIN
         d.documento AS documento_donante,
         d.grupo_sanguineo AS grupo_sanguineo_donante,
         d.factor_rh AS factor_rh_donante,
-        CONVERT(BIT, CASE WHEN u.estado_operativo = 'EN_REVISION' AND EXISTS (
-            SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad = u.id_unidad AND m.tipo_movimiento = 'REGISTRO'
-        ) AND NOT EXISTS (
-            SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad = u.id_unidad AND m.tipo_movimiento = 'CLASIFICACION'
-        ) THEN 1 ELSE 0 END) AS clasificacion_pendiente,
+        CONVERT(BIT, CASE WHEN u.estado_operativo = 'EN_REVISION' AND (
+            SELECT TOP (1) m.tipo_movimiento FROM dbo.MovimientoUnidad m
+            WHERE m.id_unidad = u.id_unidad AND m.tipo_movimiento IN ('REGISTRO','CLASIFICACION','TIPIFICACION_DONANTE','REINGRESO')
+            ORDER BY m.id_movimiento_unidad DESC
+        ) IN ('REGISTRO','TIPIFICACION_DONANTE','REINGRESO') THEN 1 ELSE 0 END) AS clasificacion_pendiente,
         d.nombre + ' ' + d.apellido AS donante
     FROM dbo.Unidad u
     INNER JOIN dbo.Donacion dn ON dn.id_donacion = u.id_donacion
@@ -496,33 +496,6 @@ BEGIN
     END;
 
 
-        -- El donante y la unidad se actualizan bajo el mismo bloqueo de integridad.
-        DECLARE @id_donante INT = (
-            SELECT donacion.id_donante FROM dbo.Unidad unidad
-            INNER JOIN dbo.Donacion donacion ON donacion.id_donacion = unidad.id_donacion
-            WHERE unidad.id_unidad = @id_unidad
-        );
-
-        IF EXISTS (
-            SELECT 1 FROM dbo.Donante
-            WHERE id_donante = @id_donante
-              AND (grupo_sanguineo <> @grupo_sanguineo OR factor_rh <> @factor_rh)
-        ) OR EXISTS (
-            SELECT 1 FROM dbo.Unidad unidad
-            INNER JOIN dbo.Donacion donacion ON donacion.id_donacion = unidad.id_donacion
-            WHERE donacion.id_donante = @id_donante
-              AND (unidad.grupo_sanguineo <> @grupo_sanguineo OR unidad.factor_rh <> @factor_rh)
-        )
-        BEGIN
-            SELECT 'CONFLICTO_TIPIFICACION' AS codigo_resultado, @id_unidad AS id_unidad;
-            ROLLBACK TRANSACTION;
-            RETURN;
-        END;
-
-        UPDATE dbo.Donante
-        SET grupo_sanguineo = @grupo_sanguineo, factor_rh = @factor_rh
-        WHERE id_donante = @id_donante AND grupo_sanguineo IS NULL AND factor_rh IS NULL;
-
         UPDATE dbo.Unidad
         SET tipo_componente = LTRIM(RTRIM(@tipo_componente)),
             grupo_sanguineo = @grupo_sanguineo,
@@ -562,7 +535,9 @@ CREATE PROCEDURE dbo.sp_Unidad_CambiarEstado
     @id_unidad INT,
     @estado_nuevo VARCHAR(20),
     @observacion VARCHAR(500) = NULL,
-    @id_usuario INT
+    @id_usuario INT,
+    @grupo_esperado VARCHAR(5) = NULL,
+    @rh_esperado VARCHAR(5) = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -595,10 +570,12 @@ BEGIN
         WHERE id_unidad = @id_unidad
           AND (estado_operativo <> 'EN_REVISION'
                OR tipo_componente IS NULL OR grupo_sanguineo IS NULL OR factor_rh IS NULL
-               -- Los datos del donante se guardan al registrar, pero la muestra se confirma aparte.
-               OR (EXISTS (SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad = @id_unidad AND m.tipo_movimiento = 'REGISTRO')
-                   AND NOT EXISTS (SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad = @id_unidad AND m.tipo_movimiento = 'CLASIFICACION'))
-               OR (@estado_nuevo = 'LIBERADA' AND fecha_vencimiento < CONVERT(DATE, GETDATE())))
+               OR (SELECT TOP (1) m.tipo_movimiento FROM dbo.MovimientoUnidad m
+                   WHERE m.id_unidad = @id_unidad AND m.tipo_movimiento IN ('REGISTRO','CLASIFICACION','TIPIFICACION_DONANTE')
+                   ORDER BY m.id_movimiento_unidad DESC) IN ('REGISTRO','TIPIFICACION_DONANTE')
+               OR (@estado_nuevo = 'LIBERADA' AND (fecha_vencimiento < CONVERT(DATE, GETDATE())
+                   OR (@grupo_esperado IS NOT NULL AND grupo_sanguineo <> @grupo_esperado)
+                   OR (@rh_esperado IS NOT NULL AND factor_rh <> @rh_esperado))))
     )
     BEGIN
         SELECT 'CONFLICTO_ESTADO' AS codigo_resultado, @id_unidad AS id_unidad;
@@ -624,6 +601,50 @@ BEGIN
         RETURN;
     END;
 
+
+        IF @estado_nuevo = 'LIBERADA'
+        BEGIN
+            DECLARE @id_donante INT, @grupo VARCHAR(5), @rh VARCHAR(5), @grupo_confirmado VARCHAR(5), @rh_confirmado VARCHAR(5);
+            SELECT @id_donante = d.id_donante, @grupo = u.grupo_sanguineo, @rh = u.factor_rh,
+                   @grupo_confirmado = d.grupo_sanguineo, @rh_confirmado = d.factor_rh
+            FROM dbo.Unidad u
+            JOIN dbo.Donacion dn ON dn.id_donacion = u.id_donacion
+            JOIN dbo.Donante d ON d.id_donante = dn.id_donante
+            WHERE u.id_unidad = @id_unidad;
+
+            IF @grupo_confirmado <> @grupo OR @rh_confirmado <> @rh OR (@grupo_confirmado IS NULL AND EXISTS (
+                SELECT 1 FROM dbo.Unidad u JOIN dbo.Donacion dn ON dn.id_donacion = u.id_donacion
+                WHERE dn.id_donante = @id_donante AND u.id_unidad <> @id_unidad
+                  AND (u.grupo_sanguineo <> @grupo OR u.factor_rh <> @rh)
+                  AND (u.estado_operativo IN ('LIBERADA','RESERVADA','ENTREGADA','TRANSFUNDIDA','DEVUELTA') OR EXISTS (
+                      SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad = u.id_unidad AND m.tipo_movimiento = 'LIBERACION'
+                  ))
+            ))
+            BEGIN
+                SELECT 'CONFLICTO_TIPIFICACION' AS codigo_resultado, @id_unidad AS id_unidad;
+                ROLLBACK TRANSACTION;
+                RETURN;
+            END;
+
+            IF @grupo_confirmado IS NULL
+            BEGIN
+                UPDATE dbo.Donante SET grupo_sanguineo = @grupo, factor_rh = @rh WHERE id_donante = @id_donante;
+
+                DECLARE @pendientes_actualizadas TABLE (id_unidad INT PRIMARY KEY);
+                UPDATE u SET grupo_sanguineo = @grupo, factor_rh = @rh,
+                             fecha_ultima_modificacion = GETDATE(), id_usuario_ultima_modificacion = @id_usuario
+                OUTPUT inserted.id_unidad INTO @pendientes_actualizadas
+                FROM dbo.Unidad u JOIN dbo.Donacion dn ON dn.id_donacion = u.id_donacion
+                WHERE dn.id_donante = @id_donante AND u.id_unidad <> @id_unidad AND u.estado_operativo = 'EN_REVISION'
+                  AND (u.grupo_sanguineo IS NULL OR u.factor_rh IS NULL OR u.grupo_sanguineo <> @grupo OR u.factor_rh <> @rh)
+                  AND NOT EXISTS (SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad = u.id_unidad AND m.tipo_movimiento IN ('LIBERACION','REINGRESO'));
+
+                INSERT dbo.MovimientoUnidad (id_unidad, tipo_movimiento, estado_anterior, estado_nuevo, observacion, id_usuario)
+                SELECT id_unidad, 'TIPIFICACION_DONANTE', 'EN_REVISION', 'EN_REVISION',
+                       CONCAT(N'Grupo y Rh tomados de la primera unidad liberada (ID ', @id_unidad, N'). Confirmar la muestra.'), @id_usuario
+                FROM @pendientes_actualizadas;
+            END;
+        END;
 
         UPDATE dbo.Unidad
         SET estado_operativo = @estado_nuevo,

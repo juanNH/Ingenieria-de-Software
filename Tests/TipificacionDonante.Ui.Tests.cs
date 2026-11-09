@@ -34,9 +34,15 @@ internal static class TipificacionDonanteUiTests
             var donations = new DonacionApplicationService_380_jh();
             var units = new UnidadApplicationService_380_jh();
             var first = Donate(donations, donor.Id_380_jh);
-            first.GrupoSanguineo_380_jh = "O"; first.FactorRh_380_jh = "-";
+            first.GrupoSanguineo_380_jh = "A"; first.FactorRh_380_jh = "+";
             Check(units.Clasificar_380_jh(first) == CodigoOperacionPN1_380_jh.Ok_380_jh, "Clasificacion mediante Application y DAL");
             var saved = donors.Listar_380_jh().Single(d => d.Id_380_jh == donor.Id_380_jh);
+            Check(saved.GrupoSanguineo_380_jh == null && saved.FactorRh_380_jh == null, "La clasificacion provisional no confirma la ficha");
+            first.GrupoSanguineo_380_jh = "O"; first.FactorRh_380_jh = "-";
+            Check(units.Clasificar_380_jh(first) == CodigoOperacionPN1_380_jh.Ok_380_jh, "El servicio admite corregir en revision");
+            Check(units.CambiarEstado_380_jh(first, EstadoUnidadPN1_380_jh.Liberada_380_jh, null) == CodigoOperacionPN1_380_jh.Ok_380_jh,
+                "La primera liberacion confirma el resultado corregido");
+            saved = donors.Listar_380_jh().Single(d => d.Id_380_jh == donor.Id_380_jh);
             Check(saved.GrupoSanguineo_380_jh == "O" && saved.FactorRh_380_jh == "-", "El mapper recupera la tipificacion persistida");
             var next = Donate(donations, donor.Id_380_jh);
             Check(next.GrupoSanguineo_380_jh == "O" && next.FactorRh_380_jh == "-" && !next.EstaClasificada_380_jh,
@@ -63,7 +69,9 @@ internal static class TipificacionDonanteUiTests
                 Check(!next.EstaClasificada_380_jh, "Proponer datos en pantalla no clasifica la muestra");
             }
             next.GrupoSanguineo_380_jh = "A"; next.FactorRh_380_jh = "-";
-            Check(units.Clasificar_380_jh(next) == CodigoOperacionPN1_380_jh.ConflictoTipificacion_380_jh, "El mapper devuelve conflicto especifico al servicio");
+            Check(units.Clasificar_380_jh(next) == CodigoOperacionPN1_380_jh.Ok_380_jh, "Se puede guardar una discrepancia provisional");
+            Check(units.CambiarEstado_380_jh(next, EstadoUnidadPN1_380_jh.Liberada_380_jh, null) == CodigoOperacionPN1_380_jh.ConflictoTipificacion_380_jh,
+                "El mapper informa la discrepancia al intentar liberar");
             string message = LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_DONOR_BLOOD_CONFLICT");
             Check(!string.IsNullOrWhiteSpace(message) && message != "UNIT_DONOR_BLOOD_CONFLICT", "Mensaje de conflicto traducido");
             next.GrupoSanguineo_380_jh = "O";
