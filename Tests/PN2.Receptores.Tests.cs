@@ -94,6 +94,19 @@ internal static class ReceptoresTests
                     combo.SelectedIndex == -1 && grid.SelectedRows.Count == 0, "New recipient clears the identity and request selection");
             }
             Check(new IntegridadApplicationService_380_jh().Verificar_380_jh().EsValida_380_jh, "Integrity remains valid after reusing recipients");
+
+            // Conservar la cuenta de SQL permite comprobar que la vista decide qué datos cargar.
+            var soloAlta = new Usuario_380_jh { Id_380_jh = user.Id_380_jh, Estado_380_jh = "ACTIVO" };
+            soloAlta.ComponentesPermiso_380_jh.Add(new Permiso_380_jh { Codigo_380_jh = PermisosSistema_380_jh.SolicitudCrear_380_jh });
+            Sesion_380_jh.ObtenerInstancia_380_jh().IniciarSesion_380_jh(soloAlta);
+            using (var view = new SolicitudesTransfusionalesView_380_jh())
+            {
+                view.CreateControl();
+                Check(Field<Button>(view, "_btnRegistrar_380_jh").Visible, "Registration remains available with create-only permission");
+                var recipients = Field<ComboBox>(view, "_cmbReceptor_380_jh");
+                Check(!recipients.Enabled && recipients.Items.Count == 0 && Field<DataGridView>(view, "_grid_380_jh").Rows.Count == 0,
+                    "Create-only view does not display existing requests or recipients");
+            }
             return 0;
         }
         catch (Exception ex) { Console.Error.WriteLine(ex); return 1; }

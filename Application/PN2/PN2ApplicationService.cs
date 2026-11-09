@@ -9,20 +9,18 @@ namespace Application
     public class PN2ApplicationService_380_jh
     {
         private readonly PN2Repository_380_jh _repository_380_jh;
-        private readonly AutorizacionApplicationService_380_jh _autorizacion_380_jh;
         private readonly BitacoraApplicationService_380_jh _bitacora_380_jh;
         private readonly IntegridadApplicationService_380_jh _integridad_380_jh;
 
         public PN2ApplicationService_380_jh()
-            : this(new PN2Repository_380_jh(), new AutorizacionApplicationService_380_jh(),
+            : this(new PN2Repository_380_jh(),
                 new BitacoraApplicationService_380_jh(), new IntegridadApplicationService_380_jh()) { }
 
         public PN2ApplicationService_380_jh(PN2Repository_380_jh repository,
-            AutorizacionApplicationService_380_jh autorizacion, BitacoraApplicationService_380_jh bitacora,
+            BitacoraApplicationService_380_jh bitacora,
             IntegridadApplicationService_380_jh integridad)
         {
             _repository_380_jh = repository;
-            _autorizacion_380_jh = autorizacion;
             _bitacora_380_jh = bitacora;
             _integridad_380_jh = integridad;
         }
@@ -30,7 +28,7 @@ namespace Application
         public List<Unidad_380_jh> ListarInventario_380_jh(string buscar = null, string estado = null)
         {
             Usuario_380_jh usuario = UsuarioActual_380_jh();
-            if (!TienePermiso_380_jh(usuario, PermisosSistema_380_jh.InventarioVer_380_jh))
+            if (usuario == null)
                 return new List<Unidad_380_jh>();
             ValidarConsulta_380_jh(TextoValido_380_jh(buscar, 150) && TextoValido_380_jh(estado, 20));
             return _repository_380_jh.ListarInventario_380_jh(Limpiar_380_jh(buscar), Limpiar_380_jh(estado), usuario.Id_380_jh);
@@ -38,7 +36,7 @@ namespace Application
 
         public CodigoOperacionPN2_380_jh ActualizarUbicacion_380_jh(int idUnidad, string ubicacion, string observacion)
         {
-            return Ejecutar_380_jh(PermisosSistema_380_jh.InventarioActualizar_380_jh,
+            return Ejecutar_380_jh(
                 idUnidad > 0 && TextoValido_380_jh(ubicacion, 150, true) && TextoValido_380_jh(observacion, 500, true),
                 BitacoraAccion_380_jh.UbicacionActualizada_380_jh, "Ubicación actualizada. Unidad: " + idUnidad + ".",
                 idUsuario => _repository_380_jh.ActualizarUbicacion_380_jh(idUnidad, Limpiar_380_jh(ubicacion), Limpiar_380_jh(observacion), idUsuario));
@@ -47,7 +45,7 @@ namespace Application
         public List<SolicitudTransfusional_380_jh> ListarSolicitudes_380_jh(string buscar = null)
         {
             Usuario_380_jh usuario = UsuarioActual_380_jh();
-            if (!TienePermiso_380_jh(usuario, PermisosSistema_380_jh.SolicitudVer_380_jh))
+            if (usuario == null)
                 return new List<SolicitudTransfusional_380_jh>();
             ValidarConsulta_380_jh(TextoValido_380_jh(buscar, 150));
             // SQL restringe a las solicitudes propias del Profesional solicitante.
@@ -57,7 +55,7 @@ namespace Application
         public List<Receptor_380_jh> ListarReceptores_380_jh(string buscar = null)
         {
             Usuario_380_jh usuario = UsuarioActual_380_jh();
-            if (!TienePermiso_380_jh(usuario, PermisosSistema_380_jh.SolicitudVer_380_jh))
+            if (usuario == null)
                 return new List<Receptor_380_jh>();
             ValidarConsulta_380_jh(TextoValido_380_jh(buscar, 150));
             return _repository_380_jh.ListarReceptores_380_jh(Limpiar_380_jh(buscar), usuario.Id_380_jh);
@@ -82,7 +80,7 @@ namespace Application
                 TextoValido_380_jh(solicitud.TipoComponente_380_jh, 100, true) && solicitud.CantidadRequerida_380_jh > 0 &&
                 TextoValido_380_jh(solicitud.DocumentoReceptor_380_jh, 50, true) &&
                 TextoValido_380_jh(solicitud.ProfesionalSolicitante_380_jh, 150, true) && (estudioAusente || estudioCompleto);
-            return Ejecutar_380_jh(PermisosSistema_380_jh.SolicitudCrear_380_jh, valida,
+            return Ejecutar_380_jh(valida,
                 BitacoraAccion_380_jh.SolicitudTransfusionalRegistrada_380_jh, "Solicitud transfusional registrada.",
                 idUsuario =>
                 {
@@ -103,14 +101,14 @@ namespace Application
                 TextoValido_380_jh(solicitud.ReferenciaEstudio_380_jh, 150, true) &&
                 TextoValido_380_jh(solicitud.ResultadoAnticuerpos_380_jh, 500, true) &&
                 solicitud.FechaEstudio_380_jh.HasValue && solicitud.FechaEstudio_380_jh.Value.Date <= DateTime.Today;
-            return Ejecutar_380_jh(PermisosSistema_380_jh.SolicitudCrear_380_jh, valida,
+            return Ejecutar_380_jh(valida,
                 BitacoraAccion_380_jh.EstudioReceptorActualizado_380_jh, "Estudio del receptor actualizado.",
                 idUsuario => _repository_380_jh.ActualizarEstudio_380_jh(solicitud, idUsuario));
         }
 
         public CodigoOperacionPN2_380_jh ValidarEstudio_380_jh(int idSolicitud)
         {
-            return Ejecutar_380_jh(PermisosSistema_380_jh.ReservaCrear_380_jh, idSolicitud > 0,
+            return Ejecutar_380_jh(idSolicitud > 0,
                 BitacoraAccion_380_jh.EstudioReceptorValidado_380_jh, "Estudio del receptor validado. Solicitud: " + idSolicitud + ".",
                 idUsuario => _repository_380_jh.ValidarEstudio_380_jh(idSolicitud, idUsuario));
         }
@@ -118,8 +116,7 @@ namespace Application
         public List<Unidad_380_jh> ListarCandidatas_380_jh(int idSolicitud)
         {
             Usuario_380_jh usuario = UsuarioActual_380_jh();
-            if (!TienePermiso_380_jh(usuario, PermisosSistema_380_jh.InventarioVer_380_jh) ||
-                !TienePermiso_380_jh(usuario, PermisosSistema_380_jh.ReservaVer_380_jh)) return new List<Unidad_380_jh>();
+            if (usuario == null) return new List<Unidad_380_jh>();
             ValidarConsulta_380_jh(idSolicitud > 0);
             return _repository_380_jh.ListarCandidatas_380_jh(idSolicitud, usuario.Id_380_jh);
         }
@@ -127,14 +124,14 @@ namespace Application
         public List<Reserva_380_jh> ListarReservas_380_jh(int? idSolicitudTransfusional = null)
         {
             Usuario_380_jh usuario = UsuarioActual_380_jh();
-            if (!TienePermiso_380_jh(usuario, PermisosSistema_380_jh.ReservaVer_380_jh)) return new List<Reserva_380_jh>();
+            if (usuario == null) return new List<Reserva_380_jh>();
             ValidarConsulta_380_jh(!idSolicitudTransfusional.HasValue || idSolicitudTransfusional.Value > 0);
             return _repository_380_jh.ListarReservas_380_jh(idSolicitudTransfusional, usuario.Id_380_jh);
         }
 
         public CodigoOperacionPN2_380_jh Reservar_380_jh(Reserva_380_jh reserva)
         {
-            return Ejecutar_380_jh(PermisosSistema_380_jh.ReservaCrear_380_jh,
+            return Ejecutar_380_jh(
                 reserva != null && reserva.IdSolicitudTransfusional_380_jh > 0 && reserva.IdUnidad_380_jh > 0 &&
                 TextoValido_380_jh(reserva.Observacion_380_jh, 450, true), BitacoraAccion_380_jh.UnidadReservada_380_jh,
                 "Reserva registrada. Solicitud: " + (reserva == null ? 0 : reserva.IdSolicitudTransfusional_380_jh) +
@@ -144,7 +141,7 @@ namespace Application
 
         public CodigoOperacionPN2_380_jh CancelarReserva_380_jh(int idReserva, string motivo)
         {
-            return Ejecutar_380_jh(PermisosSistema_380_jh.ReservaCancelar_380_jh,
+            return Ejecutar_380_jh(
                 idReserva > 0 && TextoValido_380_jh(motivo, 500, true), BitacoraAccion_380_jh.ReservaCancelada_380_jh,
                 "Reserva cancelada: " + idReserva + ".",
                 idUsuario => _repository_380_jh.CancelarReserva_380_jh(idReserva, Limpiar_380_jh(motivo), idUsuario));
@@ -153,14 +150,14 @@ namespace Application
         public List<Entrega_380_jh> ListarEntregas_380_jh(int? idSolicitudTransfusional = null)
         {
             Usuario_380_jh usuario = UsuarioActual_380_jh();
-            if (!TienePermiso_380_jh(usuario, PermisosSistema_380_jh.ReservaVer_380_jh)) return new List<Entrega_380_jh>();
+            if (usuario == null) return new List<Entrega_380_jh>();
             ValidarConsulta_380_jh(!idSolicitudTransfusional.HasValue || idSolicitudTransfusional.Value > 0);
             return _repository_380_jh.ListarEntregas_380_jh(idSolicitudTransfusional, usuario.Id_380_jh);
         }
 
         public CodigoOperacionPN2_380_jh Entregar_380_jh(int idReserva, string observacion)
         {
-            return Ejecutar_380_jh(PermisosSistema_380_jh.EntregaRegistrar_380_jh,
+            return Ejecutar_380_jh(
                 idReserva > 0 && TextoValido_380_jh(observacion, 500), BitacoraAccion_380_jh.UnidadEntregada_380_jh,
                 "Entrega registrada. Reserva: " + idReserva + ".",
                 idUsuario => _repository_380_jh.Entregar_380_jh(idReserva, Limpiar_380_jh(observacion), idUsuario));
@@ -179,7 +176,7 @@ namespace Application
             BitacoraAccion_380_jh accion = transfundida ? BitacoraAccion_380_jh.UnidadTransfundida_380_jh :
                 devuelta ? BitacoraAccion_380_jh.UnidadDevuelta_380_jh :
                 descartada ? BitacoraAccion_380_jh.UnidadDescartada_380_jh : BitacoraAccion_380_jh.UnidadDestinoIndependiente_380_jh;
-            return Ejecutar_380_jh(PermisosSistema_380_jh.DestinoRegistrar_380_jh,
+            return Ejecutar_380_jh(
                 idEntrega > 0 && opcion != null && TextoValido_380_jh(motivo, 500, opcion.MotivoObligatorio_380_jh), accion,
                 "Destino registrado. Entrega: " + idEntrega + ". Destino/estado: " + (opcion == null ? "" : opcion.Codigo_380_jh) + ".",
                 idUsuario => _repository_380_jh.RegistrarDestino_380_jh(idEntrega, destino, Limpiar_380_jh(motivo), idUsuario));
@@ -187,7 +184,7 @@ namespace Application
 
         public CodigoOperacionPN2_380_jh ReingresarUnidad_380_jh(int idUnidad, string observacion)
         {
-            return Ejecutar_380_jh(PermisosSistema_380_jh.UnidadReingresar_380_jh,
+            return Ejecutar_380_jh(
                 idUnidad > 0 && TextoValido_380_jh(observacion, 500, true), BitacoraAccion_380_jh.UnidadReingresada_380_jh,
                 "Unidad reingresada a revisión: " + idUnidad + ".",
                 idUsuario => _repository_380_jh.ReingresarUnidad_380_jh(idUnidad, Limpiar_380_jh(observacion), idUsuario));
@@ -196,7 +193,7 @@ namespace Application
         public List<MovimientoTrazabilidad_380_jh> ListarTrazabilidad_380_jh(TrazabilidadFiltro_380_jh filtro)
         {
             Usuario_380_jh usuario = UsuarioActual_380_jh();
-            if (!TienePermiso_380_jh(usuario, PermisosSistema_380_jh.TrazabilidadVer_380_jh))
+            if (usuario == null)
                 return new List<MovimientoTrazabilidad_380_jh>();
             ValidarConsulta_380_jh(FiltroValido_380_jh(filtro));
             return _repository_380_jh.ListarTrazabilidad_380_jh(filtro, usuario.Id_380_jh);
@@ -205,23 +202,20 @@ namespace Application
         public List<FilaReportePN2_380_jh> ListarReporte_380_jh(TrazabilidadFiltro_380_jh filtro)
         {
             Usuario_380_jh usuario = UsuarioActual_380_jh();
-            if (!TienePermiso_380_jh(usuario, PermisosSistema_380_jh.ReporteVer_380_jh)) return new List<FilaReportePN2_380_jh>();
+            if (usuario == null) return new List<FilaReportePN2_380_jh>();
             ValidarConsulta_380_jh(FiltroValido_380_jh(filtro));
             return _repository_380_jh.ListarReporte_380_jh(filtro, usuario.Id_380_jh);
         }
 
-        private CodigoOperacionPN2_380_jh Ejecutar_380_jh(string permiso, bool datosValidos,
+        private CodigoOperacionPN2_380_jh Ejecutar_380_jh(bool datosValidos,
             BitacoraAccion_380_jh accion, string descripcion, Func<int, CodigoOperacionPN2_380_jh> operacion)
         {
             Usuario_380_jh usuario = UsuarioActual_380_jh();
-            if (!TienePermiso_380_jh(usuario, permiso))
-            {
-                RegistrarFalla_380_jh(usuario, "Operación PN2 no autorizada: " + permiso + ".");
+            if (usuario == null)
                 return CodigoOperacionPN2_380_jh.NoAutorizado_380_jh;
-            }
             if (!datosValidos)
             {
-                RegistrarFalla_380_jh(usuario, "Operación PN2 rechazada por datos inválidos: " + permiso + ".");
+                RegistrarFalla_380_jh(usuario, "Operación PN2 rechazada por datos inválidos: " + accion + ".");
                 return CodigoOperacionPN2_380_jh.DatosInvalidos_380_jh;
             }
             InformeIntegridad_380_jh informe = _integridad_380_jh.Verificar_380_jh();
@@ -235,7 +229,7 @@ namespace Application
                 _bitacora_380_jh.RegistrarEvento_380_jh(BitacoraModulo_380_jh.BancoSangre_380_jh, accion,
                     BitacoraNivel_380_jh.Informacion_380_jh, usuario, descripcion);
             else
-                RegistrarFalla_380_jh(usuario, "Operación PN2 rechazada: " + permiso + ". Resultado: " + resultado + ".");
+                RegistrarFalla_380_jh(usuario, "Operación PN2 rechazada: " + accion + ". Resultado: " + resultado + ".");
             if (resultado == CodigoOperacionPN2_380_jh.IntegridadInvalida_380_jh) _integridad_380_jh.Verificar_380_jh();
             return resultado;
         }
@@ -244,11 +238,6 @@ namespace Application
         {
             _bitacora_380_jh.RegistrarEvento_380_jh(BitacoraModulo_380_jh.BancoSangre_380_jh,
                 BitacoraAccion_380_jh.OperacionFallida_380_jh, BitacoraNivel_380_jh.Advertencia_380_jh, usuario, descripcion);
-        }
-
-        private bool TienePermiso_380_jh(Usuario_380_jh usuario, string permiso)
-        {
-            return _autorizacion_380_jh.TienePermiso_380_jh(usuario, permiso);
         }
 
         private static Usuario_380_jh UsuarioActual_380_jh()

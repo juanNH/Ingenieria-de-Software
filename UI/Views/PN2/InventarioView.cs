@@ -9,6 +9,7 @@ namespace UI
     public class InventarioView_380_jh : LocalizedUserControl_380_jh
     {
         private readonly PN2ApplicationService_380_jh _pn2Service_380_jh;
+        private readonly bool _puedeConsultar_380_jh;
         private readonly List<Unidad_380_jh> _unidades_380_jh = new List<Unidad_380_jh>();
         private DataGridView _grid_380_jh;
         private TextBox _txtBuscar_380_jh;
@@ -20,6 +21,7 @@ namespace UI
         public InventarioView_380_jh(PN2ApplicationService_380_jh pn2Service)
         {
             _pn2Service_380_jh = pn2Service;
+            _puedeConsultar_380_jh = new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(PermisosSistema_380_jh.InventarioVer_380_jh);
             ConstruirInterfaz_380_jh();
             CargarInventario_380_jh();
         }
@@ -71,6 +73,7 @@ namespace UI
 
         private void CargarInventario_380_jh()
         {
+            if (!_puedeConsultar_380_jh) return;
             try
             {
                 new IntegridadApplicationService_380_jh().Verificar_380_jh();

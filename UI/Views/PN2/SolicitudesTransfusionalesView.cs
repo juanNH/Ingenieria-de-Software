@@ -10,6 +10,7 @@ namespace UI
     {
         private readonly PN2ApplicationService_380_jh _pn2Service_380_jh;
         private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
+        private readonly bool _puedeConsultar_380_jh;
         private readonly List<SolicitudTransfusional_380_jh> _solicitudes_380_jh = new List<SolicitudTransfusional_380_jh>();
         private readonly List<Receptor_380_jh> _receptores_380_jh = new List<Receptor_380_jh>();
         private ComboBox _cmbReceptor_380_jh;
@@ -33,6 +34,7 @@ namespace UI
         {
             _pn2Service_380_jh = pn2Service;
             _autorizacionService_380_jh = autorizacionService;
+            _puedeConsultar_380_jh = autorizacionService.TienePermiso_380_jh(PermisosSistema_380_jh.SolicitudVer_380_jh);
             ConstruirInterfaz_380_jh();
             new ProteccionIntegridad_380_jh(this, _btnRegistrar_380_jh);
             CargarSolicitudes_380_jh();
@@ -53,7 +55,7 @@ namespace UI
             actualizar.Click += delegate { CargarSolicitudes_380_jh(); };
             filtros.Controls.Add(actualizar);
             Button comprobante = ControlesPN2_380_jh.CrearBoton_380_jh("RECEIPT_CURRENT_PDF");
-            comprobante.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.SolicitudVer_380_jh) &&
+            comprobante.Visible = _puedeConsultar_380_jh &&
                 _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaVer_380_jh);
             comprobante.Click += delegate
             {
@@ -178,15 +180,17 @@ namespace UI
             try
             {
                 new IntegridadApplicationService_380_jh().Verificar_380_jh();
-                List<SolicitudTransfusional_380_jh> solicitudes = _pn2Service_380_jh.ListarSolicitudes_380_jh(_txtBuscar_380_jh.Text);
-                List<Receptor_380_jh> receptores = _pn2Service_380_jh.ListarReceptores_380_jh();
+                List<SolicitudTransfusional_380_jh> solicitudes = _puedeConsultar_380_jh
+                    ? _pn2Service_380_jh.ListarSolicitudes_380_jh(_txtBuscar_380_jh.Text) : new List<SolicitudTransfusional_380_jh>();
+                List<Receptor_380_jh> receptores = _puedeConsultar_380_jh
+                    ? _pn2Service_380_jh.ListarReceptores_380_jh() : new List<Receptor_380_jh>();
                 string documentoSeleccionado = (_cmbReceptor_380_jh.SelectedItem as Receptor_380_jh)?.Documento_380_jh;
                 _receptores_380_jh.Clear();
                 _receptores_380_jh.AddRange(receptores);
                 _cmbReceptor_380_jh.Items.Clear();
                 _cmbReceptor_380_jh.Items.AddRange(receptores.ToArray());
                 _cmbReceptor_380_jh.SelectedItem = receptores.Find(r => r.Documento_380_jh == documentoSeleccionado);
-                _cmbReceptor_380_jh.Enabled = true;
+                _cmbReceptor_380_jh.Enabled = _puedeConsultar_380_jh;
                 _solicitudes_380_jh.Clear();
                 _solicitudes_380_jh.AddRange(solicitudes);
                 _grid_380_jh.Enabled = true;

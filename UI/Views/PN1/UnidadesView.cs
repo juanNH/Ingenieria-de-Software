@@ -15,7 +15,7 @@ namespace UI
     public class UnidadesView_380_jh : LocalizedUserControl_380_jh
     {
         private readonly UnidadApplicationService_380_jh _unidadService_380_jh;
-        private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
+        private readonly bool _puedeConsultar_380_jh;
         private readonly List<Unidad_380_jh> _unidades_380_jh = new List<Unidad_380_jh>();
         private DataGridView _grid_380_jh;
         private TextBox _txtBuscar_380_jh;
@@ -48,8 +48,8 @@ namespace UI
             AutorizacionApplicationService_380_jh autorizacionService)
         {
             _unidadService_380_jh = unidadService;
-            _autorizacionService_380_jh = autorizacionService;
             ConstruirInterfaz_380_jh();
+            _puedeConsultar_380_jh = ConfigurarPermisos_380_jh(autorizacionService);
             new ProteccionIntegridad_380_jh(this, _btnClasificar_380_jh, _btnLiberar_380_jh, _btnBloquear_380_jh, _btnDescartar_380_jh);
             CargarUnidades_380_jh();
         }
@@ -185,7 +185,6 @@ namespace UI
             acciones.Controls.Add(_btnDescartar_380_jh);
             formulario.Controls.Add(acciones, 1, 5);
 
-            ConfigurarPermisos_380_jh();
         }
 
         private static void Split_SizeChanged_380_jh(object sender, EventArgs e)
@@ -257,26 +256,29 @@ namespace UI
             _grid_380_jh.Columns.Add(new DataGridViewTextBoxColumn { Name = nombre, Tag = key, FillWeight = peso });
         }
 
-        private void ConfigurarPermisos_380_jh()
+        private bool ConfigurarPermisos_380_jh(AutorizacionApplicationService_380_jh autorizacion)
         {
-            _btnClasificar_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadClasificar_380_jh);
-            _btnLiberar_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadLiberar_380_jh);
-            _btnBloquear_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadBloquear_380_jh);
-            _btnDescartar_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadDescartar_380_jh);
-            bool puedeXml = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadVer_380_jh) ||
-                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadClasificar_380_jh) ||
-                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadLiberar_380_jh) ||
-                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadBloquear_380_jh) ||
-                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadDescartar_380_jh);
-            _btnExportarXml_380_jh.Visible = puedeXml;
-            _btnImportarXml_380_jh.Visible = puedeXml;
-            _btnLimpiarXml_380_jh.Visible = puedeXml;
-            _btnComprobante_380_jh.Visible = puedeXml;
-            _btnReporteActual_380_jh.Visible = puedeXml;
+            bool clasificar = autorizacion.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadClasificar_380_jh);
+            bool liberar = autorizacion.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadLiberar_380_jh);
+            bool bloquear = autorizacion.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadBloquear_380_jh);
+            bool descartar = autorizacion.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadDescartar_380_jh);
+            bool consultar = clasificar || liberar || bloquear || descartar ||
+                autorizacion.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadVer_380_jh);
+            _btnClasificar_380_jh.Visible = clasificar;
+            _btnLiberar_380_jh.Visible = liberar;
+            _btnBloquear_380_jh.Visible = bloquear;
+            _btnDescartar_380_jh.Visible = descartar;
+            _btnExportarXml_380_jh.Visible = consultar;
+            _btnImportarXml_380_jh.Visible = consultar;
+            _btnLimpiarXml_380_jh.Visible = consultar;
+            _btnComprobante_380_jh.Visible = consultar;
+            _btnReporteActual_380_jh.Visible = consultar;
+            return consultar;
         }
 
         private void CargarUnidades_380_jh()
         {
+            if (!_puedeConsultar_380_jh) return;
             new IntegridadApplicationService_380_jh().Verificar_380_jh();
             List<Unidad_380_jh> unidades = _unidadService_380_jh.Listar_380_jh(_txtBuscar_380_jh == null ? null : _txtBuscar_380_jh.Text);
             _modoXml_380_jh = false;

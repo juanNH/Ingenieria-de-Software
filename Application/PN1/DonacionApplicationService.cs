@@ -8,32 +8,26 @@ namespace Application
     public class DonacionApplicationService_380_jh
     {
         private readonly DonacionRepository_380_jh _donacionRepository_380_jh;
-        private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
         private readonly BitacoraApplicationService_380_jh _bitacoraService_380_jh;
 
         public DonacionApplicationService_380_jh()
-            : this(new DonacionRepository_380_jh(), new AutorizacionApplicationService_380_jh(), new BitacoraApplicationService_380_jh())
+            : this(new DonacionRepository_380_jh(), new BitacoraApplicationService_380_jh())
         {
         }
 
         public DonacionApplicationService_380_jh(
             DonacionRepository_380_jh donacionRepository,
-            AutorizacionApplicationService_380_jh autorizacionService,
             BitacoraApplicationService_380_jh bitacoraService)
         {
             _donacionRepository_380_jh = donacionRepository;
-            _autorizacionService_380_jh = autorizacionService;
             _bitacoraService_380_jh = bitacoraService;
         }
 
         public CodigoOperacionPN1_380_jh Registrar_380_jh(Donacion_380_jh donacion)
         {
             Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-            if (!_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.DonacionCrear_380_jh))
-            {
-                RegistrarFalla_380_jh(usuario, "Intento no autorizado de registrar una donación.");
+            if (usuario == null)
                 return CodigoOperacionPN1_380_jh.NoAutorizado_380_jh;
-            }
 
             if (donacion == null || donacion.IdDonante_380_jh <= 0 || donacion.CantidadUnidades_380_jh <= 0 ||
                 string.IsNullOrWhiteSpace(donacion.TipoComponente_380_jh) || donacion.TipoComponente_380_jh.Length > 100 || donacion.FechaDonacion_380_jh == default(System.DateTime) ||
@@ -84,14 +78,13 @@ namespace Application
         public List<Donacion_380_jh> Listar_380_jh()
         {
             Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-            return _autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadVer_380_jh)
-                ? _donacionRepository_380_jh.Listar_380_jh(usuario.Id_380_jh) : new List<Donacion_380_jh>();
+            return usuario == null ? new List<Donacion_380_jh>() : _donacionRepository_380_jh.Listar_380_jh(usuario.Id_380_jh);
         }
 
         public CantidadDonacion_380_jh ConsultarCantidad_380_jh(int idDonacion)
         {
             Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-            if (!_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadVer_380_jh)) return null;
+            if (usuario == null) return null;
             return _donacionRepository_380_jh.ConsultarCantidad_380_jh(idDonacion, usuario.Id_380_jh);
         }
 
@@ -99,8 +92,7 @@ namespace Application
             IEnumerable<int> unidades, int? restaurar)
         {
             Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-            if (!_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadVer_380_jh) ||
-                !_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.DonacionAjustarCantidad_380_jh))
+            if (usuario == null)
                 return CodigoOperacionPN1_380_jh.NoAutorizado_380_jh;
             if (idDonacion <= 0 || version <= 0 || cantidad < 1 || cantidad > 1000 || string.IsNullOrWhiteSpace(motivo) || motivo.Trim().Length > 500 || unidades == null)
                 return CodigoOperacionPN1_380_jh.DatosInvalidos_380_jh;

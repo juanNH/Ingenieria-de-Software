@@ -91,25 +91,20 @@ internal static class PN1XmlTests
             // Evita cualquier conexión a una base real durante la prueba de interfaz.
             typeof(DatabaseContext_380_jh).GetField("ConnectionString_380_jh", BindingFlags.Static | BindingFlags.NonPublic).SetValue(null, "");
             Sesion_380_jh.ObtenerInstancia_380_jh().Logout_380_jh();
-            try
+            using (var vista = new UnidadesView_380_jh())
             {
-                using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(xml)))
-                    new UnidadApplicationService_380_jh().ImportarProcesoXml_380_jh(stream);
-                throw new Exception("Se permitió importar sin permiso.");
+                vista.CreateControl();
+                var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+                var importar = (Button)vista.GetType().GetField("_btnImportarXml_380_jh", flags).GetValue(vista);
+                var exportar = (Button)vista.GetType().GetField("_btnExportarXml_380_jh", flags).GetValue(vista);
+                Check(!importar.Visible && !exportar.Visible, "La pantalla oculta las acciones XML sin permiso de consulta");
             }
-            catch (UnauthorizedAccessException) { Check(true, "El servicio exige permiso de consulta"); }
-            try
-            {
-                new UnidadApplicationService_380_jh().SerializarTablaXml_380_jh(new List<FilaUnidadXml_380_jh>());
-                throw new Exception("Se permitió serializar sin permiso.");
-            }
-            catch (UnauthorizedAccessException) { Check(true, "Serializar la tabla exige permiso de consulta"); }
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(modificado)))
+                Check(new UnidadApplicationService_380_jh().ImportarProcesoXml_380_jh(stream).Donacion_380_jh.Unidades_380_jh.Count == 2,
+                    "El servicio importa la vista previa sin depender de los permisos de la pantalla");
             var usuario = new Usuario_380_jh { Id_380_jh = 1, Estado_380_jh = "ACTIVO" };
             usuario.ComponentesPermiso_380_jh.Add(new Permiso_380_jh { Codigo_380_jh = PermisosSistema_380_jh.UnidadVer_380_jh });
             Sesion_380_jh.ObtenerInstancia_380_jh().IniciarSesion_380_jh(usuario);
-            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(modificado)))
-                Check(new UnidadApplicationService_380_jh().ImportarProcesoXml_380_jh(stream).Donacion_380_jh.Unidades_380_jh.Count == 2,
-                    "El servicio autorizado importa la vista previa sin consultar ni escribir la base");
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(modificado)))
                 Check(new UnidadApplicationService_380_jh().DeserializarTablaXml_380_jh(stream).Unidades_380_jh.Count == 2,
                     "El nuevo importador acepta archivos exportados anteriormente");
@@ -181,6 +176,9 @@ internal static class PN1XmlTests
             vista.CreateControl();
             var tipo = vista.GetType();
             var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var importar = (Button)tipo.GetField("_btnImportarXml_380_jh", flags).GetValue(vista);
+            var exportar = (Button)tipo.GetField("_btnExportarXml_380_jh", flags).GetValue(vista);
+            Check(importar.Visible && exportar.Visible, "La pantalla habilita las acciones XML con permiso de consulta");
             var grid = (DataGridView)tipo.GetField("_grid_380_jh", flags).GetValue(vista);
             var unidades = (List<Unidad_380_jh>)tipo.GetField("_unidades_380_jh", flags).GetValue(vista);
             unidades.Add(new Unidad_380_jh { Id_380_jh = 1, IdDonacion_380_jh = 1, CodigoIdentificacion_380_jh = "UN-1", Donante_380_jh = "Donante A", TipoComponente_380_jh = "Sangre", FechaVencimiento_380_jh = new DateTime(2030, 1, 2), EstadoOperativo_380_jh = "EN_REVISION" });

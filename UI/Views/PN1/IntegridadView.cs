@@ -10,7 +10,8 @@ namespace UI
     public sealed class IntegridadView_380_jh : LocalizedUserControl_380_jh
     {
         private readonly IntegridadApplicationService_380_jh _servicio_380_jh = new IntegridadApplicationService_380_jh();
-        private readonly AutorizacionApplicationService_380_jh _autorizacion_380_jh = new AutorizacionApplicationService_380_jh();
+        private readonly bool _puedeConsultar_380_jh;
+        private readonly bool _puedeRecuperar_380_jh;
         private readonly Action _integridadRestaurada_380_jh;
         private InformeIntegridad_380_jh _informe_380_jh;
         private readonly Label _estado_380_jh = new Label { Dock = DockStyle.Fill };
@@ -33,6 +34,10 @@ namespace UI
         public IntegridadView_380_jh(Action integridadRestaurada)
         {
             _integridadRestaurada_380_jh = integridadRestaurada;
+            var autorizacion = new AutorizacionApplicationService_380_jh();
+            _puedeConsultar_380_jh = autorizacion.TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh);
+            _puedeRecuperar_380_jh = _puedeConsultar_380_jh &&
+                autorizacion.TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadRestaurar_380_jh);
             Padding = new Padding(16);
             BackColor = Color.White;
             var layout = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 6, AutoScroll = true };
@@ -68,7 +73,7 @@ namespace UI
 
         private void Cargar_380_jh()
         {
-            if (!_autorizacion_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadVer_380_jh))
+            if (!_puedeConsultar_380_jh)
             {
                 Enabled = false;
                 _estado_380_jh.Text = Traducir_380_jh("OPERATION_NOT_AUTHORIZED");
@@ -91,9 +96,8 @@ namespace UI
                 _informe_380_jh.EsValida_380_jh ? "INTEGRITY_OK" : _informe_380_jh.PuedeInicializar_380_jh ?
                 "INTEGRITY_PENDING" : _informe_380_jh.PuedeRestaurar_380_jh ? "INTEGRITY_BLOCKED" : "INTEGRITY_BACKUP_REQUIRED");
             _estado_380_jh.ForeColor = _informe_380_jh.EsValida_380_jh ? Color.DarkGreen : Color.DarkRed;
-            bool permiso = _autorizacion_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.IntegridadRestaurar_380_jh);
-            _inicializar_380_jh.Enabled = permiso && _informe_380_jh.PuedeInicializar_380_jh;
-            _restaurar_380_jh.Enabled = permiso && _informe_380_jh.PuedeRestaurar_380_jh;
+            _inicializar_380_jh.Enabled = _puedeRecuperar_380_jh && _informe_380_jh.PuedeInicializar_380_jh;
+            _restaurar_380_jh.Enabled = _puedeRecuperar_380_jh && _informe_380_jh.PuedeRestaurar_380_jh;
             _grilla_380_jh.Rows.Clear();
             _actual_380_jh.Clear();
             _confiable_380_jh.Clear();

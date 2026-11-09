@@ -66,10 +66,10 @@ internal static class CompatibilidadUITests
                 formulario.Close();
             }
             Sesion_380_jh.ObtenerInstancia_380_jh().IniciarSesion_380_jh(new Usuario_380_jh { Id_380_jh = -1, Estado_380_jh = "ACTIVO" });
-            Check(servicio.GuardarCompatibilidad_380_jh(regla) == "NO_AUTORIZADO", "Application exige permiso administrativo");
+            Check(servicio.GuardarCompatibilidad_380_jh(regla) == "NO_AUTORIZADO", "SQL rechaza guardar reglas sin permiso administrativo");
             bool denegado = false;
             try { servicio.ListarCompatibilidades_380_jh(); } catch (UnauthorizedAccessException) { denegado = true; }
-            Check(denegado, "Application restringe la consulta administrativa");
+            Check(denegado, "SQL restringe la consulta administrativa");
             return 0;
         }
         catch (Exception ex) { Console.Error.WriteLine(ex); return 1; }

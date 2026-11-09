@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Abstractions;
 using Domain;
 using Repository;
 
@@ -17,7 +16,7 @@ namespace Application
         public List<ReglaCompatibilidad_380_jh> ListarCompatibilidades_380_jh()
         {
             var usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-            if (!new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(usuario, PermisosSistema_380_jh.MaestrosAdministrar_380_jh))
+            if (usuario == null)
                 throw new UnauthorizedAccessException();
             return _repository.ListarCompatibilidades_380_jh(usuario.Id_380_jh);
         }
@@ -25,7 +24,7 @@ namespace Application
         public string GuardarCompatibilidad_380_jh(ReglaCompatibilidad_380_jh regla)
         {
             var usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-            if (!new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(usuario, PermisosSistema_380_jh.MaestrosAdministrar_380_jh))
+            if (usuario == null)
                 return "NO_AUTORIZADO";
             if (regla == null || regla.Id_380_jh < 0 || !CodigoValido_380_jh(regla.TipoComponente_380_jh, 100) ||
                 !CodigoValido_380_jh(regla.GrupoUnidad_380_jh, 5) || !CodigoValido_380_jh(regla.RhUnidad_380_jh, 5) ||
@@ -46,7 +45,7 @@ namespace Application
         public string Guardar_380_jh(string tipo, MaestroPN1_380_jh item)
         {
             var usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-            if (!new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(usuario, PermisosSistema_380_jh.MaestrosAdministrar_380_jh)) return "NO_AUTORIZADO";
+            if (usuario == null) return "NO_AUTORIZADO";
             if ((tipo != Componente_380_jh && tipo != Grupo_380_jh && tipo != Rh_380_jh && tipo != Destino_380_jh) || item == null ||
                 string.IsNullOrWhiteSpace(item.Codigo_380_jh) || string.IsNullOrWhiteSpace(item.Descripcion_380_jh)) return "DATOS_INVALIDOS";
             item.Codigo_380_jh = item.Codigo_380_jh.Trim();

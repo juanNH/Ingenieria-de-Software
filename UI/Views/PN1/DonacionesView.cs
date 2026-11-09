@@ -13,7 +13,8 @@ namespace UI
     {
         private readonly DonanteApplicationService_380_jh _donanteService_380_jh;
         private readonly DonacionApplicationService_380_jh _donacionService_380_jh;
-        private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
+        private readonly bool _puedeRegistrar_380_jh;
+        private readonly bool _puedeConsultar_380_jh;
         private readonly List<Unidad_380_jh> _unidades_380_jh = new List<Unidad_380_jh>();
         private ComboBox _cmbDonante_380_jh;
         private DateTimePicker _dtpDonacion_380_jh;
@@ -39,10 +40,15 @@ namespace UI
         {
             _donanteService_380_jh = donanteService;
             _donacionService_380_jh = donacionService;
-            _autorizacionService_380_jh = autorizacionService;
+            _puedeRegistrar_380_jh = autorizacionService.TienePermiso_380_jh(PermisosSistema_380_jh.DonacionCrear_380_jh);
+            _puedeConsultar_380_jh = autorizacionService.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadVer_380_jh);
+            bool puedeConsultarDonantes = autorizacionService.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteVer_380_jh) ||
+                autorizacionService.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteCrear_380_jh);
             ConstruirInterfaz_380_jh();
             new ProteccionIntegridad_380_jh(this, _btnRegistrar_380_jh);
-            CargarDonantes_380_jh();
+            new IntegridadApplicationService_380_jh().Verificar_380_jh();
+            if (_puedeRegistrar_380_jh && puedeConsultarDonantes)
+                CargarDonantes_380_jh();
             CargarDonaciones_380_jh();
         }
 
@@ -57,19 +63,17 @@ namespace UI
             BackColor = Color.White;
             Padding = new Padding(24);
 
-            bool puedeRegistrar = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonacionCrear_380_jh);
-            bool puedeConsultar = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadVer_380_jh);
             TableLayoutPanel layout = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 1, RowCount = 5, AutoScroll = true };
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 38));
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 32));
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, puedeRegistrar ? 195 : 0));
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, puedeConsultar ? 44 : 0));
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, _puedeRegistrar_380_jh ? 195 : 0));
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, _puedeConsultar_380_jh ? 44 : 0));
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             Controls.Add(layout);
             layout.Controls.Add(CrearLabel_380_jh("DONATION_TITLE", 18, true), 0, 0);
             layout.Controls.Add(CrearLabel_380_jh("DONATION_DESCRIPTION", 9, false), 0, 1);
 
-            GroupBox detalle = new GroupBox { Dock = DockStyle.Fill, Tag = "DONATION_NEW", Padding = new Padding(10), Visible = puedeRegistrar };
+            GroupBox detalle = new GroupBox { Dock = DockStyle.Fill, Tag = "DONATION_NEW", Padding = new Padding(10), Visible = _puedeRegistrar_380_jh };
             layout.Controls.Add(detalle, 0, 2);
 
             TableLayoutPanel formulario = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 4, RowCount = 4 };
@@ -104,7 +108,7 @@ namespace UI
             acciones.Controls.Add(actualizar);
             formulario.Controls.Add(acciones, 2, 3);
 
-            var consulta = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 4, RowCount = 1, Visible = puedeConsultar };
+            var consulta = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 4, RowCount = 1, Visible = _puedeConsultar_380_jh };
             consulta.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             consulta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
             consulta.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
@@ -150,7 +154,7 @@ namespace UI
             _lblEstado_380_jh = new Label { Dock = DockStyle.Bottom, Height = 24, TextAlign = ContentAlignment.MiddleLeft };
             unidadesPanel.Controls.Add(_lblEstado_380_jh);
 
-            _btnRegistrar_380_jh.Visible = puedeRegistrar;
+            _btnRegistrar_380_jh.Visible = _puedeRegistrar_380_jh;
         }
 
         private Label CrearLabel_380_jh(string key, float size, bool bold)
@@ -191,12 +195,6 @@ namespace UI
 
         private void CargarDonantes_380_jh()
         {
-            new IntegridadApplicationService_380_jh().Verificar_380_jh();
-            if (!_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonacionCrear_380_jh))
-            {
-                return;
-            }
-
             List<Donante_380_jh> donantes = _donanteService_380_jh.Listar_380_jh();
             _cmbDonante_380_jh.DataSource = null;
             _cmbDonante_380_jh.DisplayMember = "NombreCompleto_380_jh";
@@ -235,7 +233,7 @@ namespace UI
 
         private void CargarDonaciones_380_jh(int? idPreferido = null)
         {
-            if (!_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.UnidadVer_380_jh)) return;
+            if (!_puedeConsultar_380_jh) return;
             idPreferido = idPreferido ?? (_cmbDonacionRegistrada_380_jh.SelectedItem as Donacion_380_jh)?.Id_380_jh;
             List<Donacion_380_jh> donaciones;
             try { donaciones = _donacionService_380_jh.Listar_380_jh(); }

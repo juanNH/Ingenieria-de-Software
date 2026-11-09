@@ -68,9 +68,6 @@ namespace UI
             string nombre = idEntrega.HasValue ? "PN2_Entrega_" + idEntrega.Value + ".pdf" : "PN2_Solicitud_" + idSolicitud + ".pdf";
             Guardar_380_jh(propietario, nombre, archivo =>
             {
-                AutorizacionApplicationService_380_jh autorizacion = new AutorizacionApplicationService_380_jh();
-                if (!autorizacion.TienePermiso_380_jh(PermisosSistema_380_jh.SolicitudVer_380_jh) ||
-                    !autorizacion.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaVer_380_jh)) throw new InvalidOperationException();
                 InformeIntegridad_380_jh integridad = new IntegridadApplicationService_380_jh().Verificar_380_jh();
                 if (!integridad.Disponible_380_jh || !integridad.EsValida_380_jh) throw new InvalidOperationException();
                 SolicitudTransfusional_380_jh solicitud = servicio.ListarSolicitudes_380_jh().FirstOrDefault(s => s.Id_380_jh == idSolicitud);

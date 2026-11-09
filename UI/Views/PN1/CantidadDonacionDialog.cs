@@ -27,10 +27,12 @@ namespace UI
             _idDonacion = idDonacion;
             _datos = datos;
             _unidadesFijas = datos.Cantidad_380_jh - datos.Ajustables_380_jh.Count(EstaVigente_380_jh);
+            bool editable = datos.Editable_380_jh &&
+                new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(PermisosSistema_380_jh.DonacionAjustarCantidad_380_jh);
             Text = string.Format(T("DONATION_QUANTITY_TITLE"), idDonacion);
             StartPosition = FormStartPosition.CenterParent;
-            ClientSize = new Size(860, datos.Editable_380_jh ? 525 : 355);
-            MinimumSize = new Size(700, datos.Editable_380_jh ? 525 : 320);
+            ClientSize = new Size(860, editable ? 525 : 355);
+            MinimumSize = new Size(700, editable ? 525 : 320);
             ShowInTaskbar = false;
 
             var layout = new TableLayoutPanel { Dock = DockStyle.Fill, Padding = new Padding(12), ColumnCount = 1 };
@@ -39,13 +41,13 @@ namespace UI
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 64));
             layout.Controls.Add(new Label { AutoSize = true, Text = string.Format(T("DONATION_QUANTITY_CURRENT"), datos.Cantidad_380_jh) +
-                (datos.Editable_380_jh ? "" : " · " + T("DONATION_QUANTITY_READ_ONLY")) }, 0, 0);
+                (editable ? "" : " · " + T("DONATION_QUANTITY_READ_ONLY")) }, 0, 0);
             ConfigurarHistorial_380_jh();
             layout.Controls.Add(_historial, 0, 1);
             layout.Controls.Add(_codigos, 0, 2);
             _historial.SelectionChanged += delegate { _codigos.Text = Seleccion_380_jh()?.Codigos_380_jh ?? ""; };
             _codigos.Text = Seleccion_380_jh()?.Codigos_380_jh ?? "";
-            if (datos.Editable_380_jh) ConfigurarEdicion_380_jh(layout);
+            if (editable) ConfigurarEdicion_380_jh(layout);
         }
 
         private void ConfigurarHistorial_380_jh()

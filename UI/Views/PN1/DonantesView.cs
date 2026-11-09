@@ -11,7 +11,8 @@ namespace UI
     public class DonantesView_380_jh : LocalizedUserControl_380_jh
     {
         private readonly DonanteApplicationService_380_jh _donanteService_380_jh;
-        private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
+        private readonly bool _puedeEditar_380_jh;
+        private readonly bool _puedeConsultar_380_jh;
         private readonly List<Donante_380_jh> _donantes_380_jh = new List<Donante_380_jh>();
         private DataGridView _grid_380_jh;
         private TextBox _txtDocumento_380_jh;
@@ -44,7 +45,8 @@ namespace UI
             AutorizacionApplicationService_380_jh autorizacionService)
         {
             _donanteService_380_jh = donanteService;
-            _autorizacionService_380_jh = autorizacionService;
+            _puedeEditar_380_jh = autorizacionService.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteCrear_380_jh);
+            _puedeConsultar_380_jh = _puedeEditar_380_jh || autorizacionService.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteVer_380_jh);
             ConstruirInterfaz_380_jh();
             new ProteccionIntegridad_380_jh(this, _btnRegistrar_380_jh);
             CargarDonantes_380_jh();
@@ -216,7 +218,7 @@ namespace UI
             grillaPanel.Controls.Add(_lblEstado_380_jh);
             // Docked controls are laid out in reverse z-order: reserve filter and status space before filling the remainder.
             grillaPanel.Controls.Add(filtro);
-            _btnRegistrar_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteCrear_380_jh);
+            _btnRegistrar_380_jh.Visible = _puedeEditar_380_jh;
         }
 
         private Label CrearLabel_380_jh(string key, float size, bool bold)
@@ -281,8 +283,7 @@ namespace UI
             }
 
             new IntegridadApplicationService_380_jh().Verificar_380_jh();
-            if (_grid_380_jh == null || !_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteVer_380_jh) &&
-                !_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteCrear_380_jh))
+            if (_grid_380_jh == null || !_puedeConsultar_380_jh)
             {
                 return;
             }
@@ -386,16 +387,15 @@ namespace UI
                 _btnVerEmail_380_jh.Enabled = _tieneEmailSeleccionado_380_jh;
                 ActualizarBotonEmail_380_jh();
 
-                bool puedeEditar = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteCrear_380_jh);
-                _txtEmail_380_jh.ReadOnly = _tieneEmailSeleccionado_380_jh || !puedeEditar;
-                _txtDocumento_380_jh.ReadOnly = !puedeEditar;
-                _txtNombre_380_jh.ReadOnly = !puedeEditar;
-                _txtApellido_380_jh.ReadOnly = !puedeEditar;
-                _dtpNacimiento_380_jh.Enabled = puedeEditar;
-                _txtTelefono_380_jh.ReadOnly = !puedeEditar;
-                _txtDomicilio_380_jh.ReadOnly = !puedeEditar;
-                _btnRegistrar_380_jh.Visible = puedeEditar;
-                _btnRegistrar_380_jh.Tag = puedeEditar ? "BTN_UPDATE_DONOR" : null;
+                _txtEmail_380_jh.ReadOnly = _tieneEmailSeleccionado_380_jh || !_puedeEditar_380_jh;
+                _txtDocumento_380_jh.ReadOnly = !_puedeEditar_380_jh;
+                _txtNombre_380_jh.ReadOnly = !_puedeEditar_380_jh;
+                _txtApellido_380_jh.ReadOnly = !_puedeEditar_380_jh;
+                _dtpNacimiento_380_jh.Enabled = _puedeEditar_380_jh;
+                _txtTelefono_380_jh.ReadOnly = !_puedeEditar_380_jh;
+                _txtDomicilio_380_jh.ReadOnly = !_puedeEditar_380_jh;
+                _btnRegistrar_380_jh.Visible = _puedeEditar_380_jh;
+                _btnRegistrar_380_jh.Tag = _puedeEditar_380_jh ? "BTN_UPDATE_DONOR" : null;
                 TranslationApplier_380_jh.Apply_380_jh(_btnRegistrar_380_jh);
             }
             finally
@@ -435,7 +435,7 @@ namespace UI
 
                 _cargandoFormulario_380_jh = true;
                 _txtEmail_380_jh.Text = email;
-                _txtEmail_380_jh.ReadOnly = !_autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteCrear_380_jh);
+                _txtEmail_380_jh.ReadOnly = !_puedeEditar_380_jh;
                 _cargandoFormulario_380_jh = false;
                 _emailVisible_380_jh = true;
                 if (_emailEditado_380_jh == null)
@@ -510,7 +510,7 @@ namespace UI
             _dtpNacimiento_380_jh.Enabled = true;
             _txtTelefono_380_jh.ReadOnly = false;
             _txtDomicilio_380_jh.ReadOnly = false;
-            _btnRegistrar_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DonanteCrear_380_jh);
+            _btnRegistrar_380_jh.Visible = _puedeEditar_380_jh;
             _btnRegistrar_380_jh.Tag = "BTN_REGISTER";
             TranslationApplier_380_jh.Apply_380_jh(_btnRegistrar_380_jh);
             _grid_380_jh.ClearSelection();

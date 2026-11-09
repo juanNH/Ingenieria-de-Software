@@ -10,31 +10,27 @@ namespace Application
     public class DonanteApplicationService_380_jh
     {
         private readonly DonanteRepository_380_jh _donanteRepository_380_jh;
-        private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
         private readonly BitacoraApplicationService_380_jh _bitacoraService_380_jh;
         private readonly CifradoEmailService_380_jh _cifradoEmailService_380_jh;
 
         public DonanteApplicationService_380_jh()
-            : this(new DonanteRepository_380_jh(), new AutorizacionApplicationService_380_jh(), new BitacoraApplicationService_380_jh(), new CifradoEmailService_380_jh())
+            : this(new DonanteRepository_380_jh(), new BitacoraApplicationService_380_jh(), new CifradoEmailService_380_jh())
         {
         }
 
         public DonanteApplicationService_380_jh(
             DonanteRepository_380_jh donanteRepository,
-            AutorizacionApplicationService_380_jh autorizacionService,
             BitacoraApplicationService_380_jh bitacoraService)
-            : this(donanteRepository, autorizacionService, bitacoraService, new CifradoEmailService_380_jh())
+            : this(donanteRepository, bitacoraService, new CifradoEmailService_380_jh())
         {
         }
 
         public DonanteApplicationService_380_jh(
             DonanteRepository_380_jh donanteRepository,
-            AutorizacionApplicationService_380_jh autorizacionService,
             BitacoraApplicationService_380_jh bitacoraService,
             CifradoEmailService_380_jh cifradoEmailService)
         {
             _donanteRepository_380_jh = donanteRepository;
-            _autorizacionService_380_jh = autorizacionService;
             _bitacoraService_380_jh = bitacoraService;
             _cifradoEmailService_380_jh = cifradoEmailService;
         }
@@ -42,8 +38,7 @@ namespace Application
         public List<Donante_380_jh> Listar_380_jh(string buscar = null)
         {
             Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-            if (!_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.DonanteVer_380_jh) &&
-                !_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.DonanteCrear_380_jh))
+            if (usuario == null)
             {
                 return new List<Donante_380_jh>();
             }
@@ -88,9 +83,7 @@ namespace Application
         public string ObtenerEmail_380_jh(int idDonante)
         {
             Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-            if (idDonante <= 0 ||
-                (!_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.DonanteVer_380_jh) &&
-                 !_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.DonanteCrear_380_jh)))
+            if (idDonante <= 0 || usuario == null)
             {
                 return null;
             }
@@ -102,11 +95,8 @@ namespace Application
         public CodigoOperacionPN1_380_jh Registrar_380_jh(Donante_380_jh donante)
         {
             Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-            if (!_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.DonanteCrear_380_jh))
-            {
-                RegistrarFalla_380_jh(usuario, "Intento no autorizado de registrar un donante.");
+            if (usuario == null)
                 return CodigoOperacionPN1_380_jh.NoAutorizado_380_jh;
-            }
 
             if (donante == null || string.IsNullOrWhiteSpace(donante.Documento_380_jh) ||
                 string.IsNullOrWhiteSpace(donante.Nombre_380_jh) || string.IsNullOrWhiteSpace(donante.Apellido_380_jh))
@@ -157,11 +147,8 @@ namespace Application
         public CodigoOperacionPN1_380_jh Actualizar_380_jh(Donante_380_jh donante, bool actualizarEmail)
         {
             Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-            if (!_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.DonanteCrear_380_jh))
-            {
-                RegistrarFalla_380_jh(usuario, "Intento no autorizado de actualizar un donante.");
+            if (usuario == null)
                 return CodigoOperacionPN1_380_jh.NoAutorizado_380_jh;
-            }
 
             if (donante == null || donante.Id_380_jh <= 0 || string.IsNullOrWhiteSpace(donante.Documento_380_jh) ||
                 string.IsNullOrWhiteSpace(donante.Nombre_380_jh) || string.IsNullOrWhiteSpace(donante.Apellido_380_jh))

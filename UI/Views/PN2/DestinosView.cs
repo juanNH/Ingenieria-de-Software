@@ -11,6 +11,7 @@ namespace UI
     {
         private readonly PN2ApplicationService_380_jh _pn2Service_380_jh;
         private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
+        private readonly bool _puedeConsultarEntregas_380_jh;
         private readonly List<Entrega_380_jh> _entregas_380_jh = new List<Entrega_380_jh>();
         private readonly List<MaestroPN1_380_jh> _destinos_380_jh = new List<MaestroPN1_380_jh>();
         private TextBox _txtBuscar_380_jh;
@@ -28,6 +29,7 @@ namespace UI
         {
             _pn2Service_380_jh = pn2Service;
             _autorizacionService_380_jh = autorizacionService;
+            _puedeConsultarEntregas_380_jh = autorizacionService.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaVer_380_jh);
             ConstruirInterfaz_380_jh();
             new ProteccionIntegridad_380_jh(this, _btnRegistrar_380_jh);
             CargarEntregas_380_jh();
@@ -49,8 +51,9 @@ namespace UI
             actualizar.Click += delegate { CargarEntregas_380_jh(); };
             filtros.Controls.Add(actualizar);
             Button comprobante = ControlesPN2_380_jh.CrearBoton_380_jh("RECEIPT_COPY");
-            comprobante.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.SolicitudVer_380_jh) &&
-                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaVer_380_jh);
+            bool puedeEmitirComprobante = _puedeConsultarEntregas_380_jh &&
+                _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.SolicitudVer_380_jh);
+            comprobante.Visible = puedeEmitirComprobante;
             comprobante.Click += delegate
             {
                 Entrega_380_jh entrega = ControlesPN2_380_jh.Seleccionado_380_jh<Entrega_380_jh>(_grid_380_jh);
@@ -59,7 +62,7 @@ namespace UI
             };
             filtros.Controls.Add(comprobante);
             Button reporteActual = ControlesPN2_380_jh.CrearBoton_380_jh("RECEIPT_CURRENT_PDF");
-            reporteActual.Visible = comprobante.Visible;
+            reporteActual.Visible = puedeEmitirComprobante;
             reporteActual.Click += delegate
             {
                 Entrega_380_jh entrega = ControlesPN2_380_jh.Seleccionado_380_jh<Entrega_380_jh>(_grid_380_jh);
@@ -175,7 +178,8 @@ namespace UI
             {
                 CargarOpciones_380_jh();
                 new IntegridadApplicationService_380_jh().Verificar_380_jh();
-                List<Entrega_380_jh> entregas = _pn2Service_380_jh.ListarEntregas_380_jh();
+                List<Entrega_380_jh> entregas = _puedeConsultarEntregas_380_jh
+                    ? _pn2Service_380_jh.ListarEntregas_380_jh() : new List<Entrega_380_jh>();
                 _entregas_380_jh.Clear();
                 _entregas_380_jh.AddRange(entregas);
                 _grid_380_jh.Enabled = true;

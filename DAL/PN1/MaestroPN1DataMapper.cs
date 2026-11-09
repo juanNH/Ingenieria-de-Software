@@ -26,6 +26,10 @@ namespace DAL
                     });
                 return resultado;
             }
+            catch (SqlException ex) when (ex.Number == 51003)
+            {
+                throw new UnauthorizedAccessException(ex.Message, ex);
+            }
             finally { db.Cerrar_380_jh(); }
         }
 
@@ -43,6 +47,10 @@ namespace DAL
                 };
                 DataTable resultado = db.Leer_380_jh("sp_CompatibilidadTransfusional_Guardar", parametros);
                 return resultado.Rows.Count == 0 ? "ERROR" : Convert.ToString(resultado.Rows[0]["codigo_resultado"]);
+            }
+            catch (SqlException ex) when (ex.Number == 51003)
+            {
+                return "NO_AUTORIZADO";
             }
             finally { db.Cerrar_380_jh(); }
         }

@@ -11,6 +11,9 @@ namespace UI
     {
         private readonly PN2ApplicationService_380_jh _pn2Service_380_jh;
         private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
+        private readonly bool _puedeConsultarSolicitudes_380_jh;
+        private readonly bool _puedeConsultarReservas_380_jh;
+        private readonly bool _puedeConsultarCandidatas_380_jh;
         private readonly List<Unidad_380_jh> _unidades_380_jh = new List<Unidad_380_jh>();
         private readonly List<Reserva_380_jh> _reservas_380_jh = new List<Reserva_380_jh>();
         private ComboBox _cmbSolicitud_380_jh;
@@ -29,6 +32,10 @@ namespace UI
         {
             _pn2Service_380_jh = pn2Service;
             _autorizacionService_380_jh = autorizacionService;
+            _puedeConsultarSolicitudes_380_jh = autorizacionService.TienePermiso_380_jh(PermisosSistema_380_jh.SolicitudVer_380_jh);
+            _puedeConsultarReservas_380_jh = autorizacionService.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaVer_380_jh);
+            _puedeConsultarCandidatas_380_jh = _puedeConsultarReservas_380_jh &&
+                autorizacionService.TienePermiso_380_jh(PermisosSistema_380_jh.InventarioVer_380_jh);
             ConstruirInterfaz_380_jh();
             new ProteccionIntegridad_380_jh(this, _btnReservar_380_jh, _btnEntregar_380_jh, _btnCancelar_380_jh);
             CargarDatos_380_jh();
@@ -53,7 +60,8 @@ namespace UI
             actualizar.Click += delegate { CargarDatos_380_jh(); };
             filtros.Controls.Add(actualizar);
             Button validar = ControlesPN2_380_jh.CrearBoton_380_jh("PN2_VALIDATE_STUDY");
-            validar.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaCrear_380_jh);
+            bool puedeReservar = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaCrear_380_jh);
+            validar.Visible = puedeReservar;
             validar.Click += ValidarEstudio_Click_380_jh;
             filtros.Controls.Add(validar);
             layout.Controls.Add(filtros, 0, 2);
@@ -98,7 +106,7 @@ namespace UI
             formulario.SetColumnSpan(_txtObservacion_380_jh, 3);
             FlowLayoutPanel acciones = new FlowLayoutPanel { Dock = DockStyle.Fill, WrapContents = false, AutoScroll = true };
             _btnReservar_380_jh = ControlesPN2_380_jh.CrearBoton_380_jh("PN2_RESERVE");
-            _btnReservar_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReservaCrear_380_jh);
+            _btnReservar_380_jh.Visible = puedeReservar;
             _btnReservar_380_jh.Click += Reservar_Click_380_jh;
             _btnEntregar_380_jh = ControlesPN2_380_jh.CrearBoton_380_jh("PN2_DELIVER");
             _btnEntregar_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.EntregaRegistrar_380_jh);
@@ -124,7 +132,8 @@ namespace UI
             try
             {
                 new IntegridadApplicationService_380_jh().Verificar_380_jh();
-                List<SolicitudTransfusional_380_jh> solicitudes = _pn2Service_380_jh.ListarSolicitudes_380_jh();
+                List<SolicitudTransfusional_380_jh> solicitudes = _puedeConsultarSolicitudes_380_jh
+                    ? _pn2Service_380_jh.ListarSolicitudes_380_jh() : new List<SolicitudTransfusional_380_jh>();
                 _cargando_380_jh = true;
                 _cmbSolicitud_380_jh.DataSource = solicitudes;
                 _cmbSolicitud_380_jh.SelectedItem = solicitudes.FirstOrDefault(s => s.Id_380_jh == idPrevio) ?? solicitudes.FirstOrDefault();
@@ -139,8 +148,10 @@ namespace UI
             SolicitudTransfusional_380_jh solicitud = _cmbSolicitud_380_jh.SelectedItem as SolicitudTransfusional_380_jh;
             try
             {
-                List<Reserva_380_jh> reservas = solicitud == null ? new List<Reserva_380_jh>() : _pn2Service_380_jh.ListarReservas_380_jh(solicitud.Id_380_jh);
-                List<Unidad_380_jh> unidades = solicitud == null ? new List<Unidad_380_jh>() : _pn2Service_380_jh.ListarCandidatas_380_jh(solicitud.Id_380_jh);
+                List<Reserva_380_jh> reservas = solicitud != null && _puedeConsultarReservas_380_jh
+                    ? _pn2Service_380_jh.ListarReservas_380_jh(solicitud.Id_380_jh) : new List<Reserva_380_jh>();
+                List<Unidad_380_jh> unidades = solicitud != null && _puedeConsultarCandidatas_380_jh
+                    ? _pn2Service_380_jh.ListarCandidatas_380_jh(solicitud.Id_380_jh) : new List<Unidad_380_jh>();
                 _reservas_380_jh.Clear();
                 _reservas_380_jh.AddRange(reservas);
                 _unidades_380_jh.Clear();

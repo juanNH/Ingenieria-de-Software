@@ -11,38 +11,34 @@ namespace Application
     public class UnidadApplicationService_380_jh
     {
         private readonly UnidadRepository_380_jh _unidadRepository_380_jh;
-        private readonly AutorizacionApplicationService_380_jh _autorizacionService_380_jh;
         private readonly BitacoraApplicationService_380_jh _bitacoraService_380_jh;
         private readonly IXmlSerializer_380_jh _xmlSerializer_380_jh;
 
         public UnidadApplicationService_380_jh()
-            : this(new UnidadRepository_380_jh(), new AutorizacionApplicationService_380_jh(), new BitacoraApplicationService_380_jh(), new XmlSerializerService_380_jh())
+            : this(new UnidadRepository_380_jh(), new BitacoraApplicationService_380_jh(), new XmlSerializerService_380_jh())
         {
         }
 
         public UnidadApplicationService_380_jh(
             UnidadRepository_380_jh unidadRepository,
-            AutorizacionApplicationService_380_jh autorizacionService,
             BitacoraApplicationService_380_jh bitacoraService)
-            : this(unidadRepository, autorizacionService, bitacoraService, new XmlSerializerService_380_jh())
+            : this(unidadRepository, bitacoraService, new XmlSerializerService_380_jh())
         {
         }
 
         public UnidadApplicationService_380_jh(
             UnidadRepository_380_jh unidadRepository,
-            AutorizacionApplicationService_380_jh autorizacionService,
             BitacoraApplicationService_380_jh bitacoraService,
             IXmlSerializer_380_jh xmlSerializer)
         {
             _unidadRepository_380_jh = unidadRepository;
-            _autorizacionService_380_jh = autorizacionService;
             _bitacoraService_380_jh = bitacoraService;
             _xmlSerializer_380_jh = xmlSerializer;
         }
 
         public List<Unidad_380_jh> Listar_380_jh(string buscar = null)
         {
-            if (!PuedeConsultarUnidades_380_jh(Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh()))
+            if (Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh() == null)
             {
                 return new List<Unidad_380_jh>();
             }
@@ -52,8 +48,7 @@ namespace Application
 
         public string ExportarProcesoXml_380_jh(Unidad_380_jh unidad)
         {
-            if (unidad == null || unidad.Id_380_jh <= 0 || !PuedeConsultarUnidades_380_jh(
-                    Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh()))
+            if (unidad == null || unidad.Id_380_jh <= 0 || Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh() == null)
             {
                 return null;
             }
@@ -96,22 +91,16 @@ namespace Application
 
         public ProcesoPN1Xml_380_jh ImportarProcesoXml_380_jh(Stream stream)
         {
-            if (!PuedeConsultarUnidades_380_jh(Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh()))
-                throw new System.UnauthorizedAccessException();
             return new ProcesoPN1XmlImportService_380_jh(_xmlSerializer_380_jh).Importar_380_jh(stream);
         }
 
         public string SerializarTablaXml_380_jh(List<FilaUnidadXml_380_jh> filas)
         {
-            if (!PuedeConsultarUnidades_380_jh(Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh()))
-                throw new System.UnauthorizedAccessException();
             return new TablaUnidadesXmlService_380_jh(_xmlSerializer_380_jh).Serializar_380_jh(filas);
         }
 
         public TablaUnidadesXml_380_jh DeserializarTablaXml_380_jh(Stream stream)
         {
-            if (!PuedeConsultarUnidades_380_jh(Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh()))
-                throw new System.UnauthorizedAccessException();
             return new TablaUnidadesXmlService_380_jh(_xmlSerializer_380_jh).Deserializar_380_jh(stream);
         }
 
@@ -132,23 +121,11 @@ namespace Application
             };
         }
 
-        private bool PuedeConsultarUnidades_380_jh(Usuario_380_jh usuario)
-        {
-            return _autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadVer_380_jh) ||
-                   _autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadClasificar_380_jh) ||
-                   _autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadLiberar_380_jh) ||
-                   _autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadBloquear_380_jh) ||
-                   _autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadDescartar_380_jh);
-        }
-
         public CodigoOperacionPN1_380_jh Clasificar_380_jh(Unidad_380_jh unidad)
         {
             Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-            if (!_autorizacionService_380_jh.TienePermiso_380_jh(usuario, PermisosSistema_380_jh.UnidadClasificar_380_jh))
-            {
-                RegistrarFalla_380_jh(usuario, "Intento no autorizado de clasificar una unidad.");
+            if (usuario == null)
                 return CodigoOperacionPN1_380_jh.NoAutorizado_380_jh;
-            }
 
             if (unidad == null || string.IsNullOrWhiteSpace(unidad.TipoComponente_380_jh) || unidad.TipoComponente_380_jh.Length > 100 ||
                 string.IsNullOrWhiteSpace(unidad.GrupoSanguineo_380_jh) || string.IsNullOrWhiteSpace(unidad.FactorRh_380_jh) ||
@@ -190,15 +167,13 @@ namespace Application
         public CodigoOperacionPN1_380_jh CambiarEstado_380_jh(Unidad_380_jh unidad, string estadoNuevo, string observacion)
         {
             Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
-            string permiso = ObtenerPermisoEstado_380_jh(estadoNuevo);
-            if (string.IsNullOrWhiteSpace(permiso) || !_autorizacionService_380_jh.TienePermiso_380_jh(usuario, permiso))
-            {
-                RegistrarFalla_380_jh(usuario, "Intento no autorizado de cambiar el estado de una unidad.");
+            if (usuario == null)
                 return CodigoOperacionPN1_380_jh.NoAutorizado_380_jh;
-            }
 
-            if (unidad == null || string.IsNullOrWhiteSpace(observacion) &&
-                (estadoNuevo == EstadoUnidadPN1_380_jh.Bloqueada_380_jh || estadoNuevo == EstadoUnidadPN1_380_jh.Descartada_380_jh))
+            bool requiereObservacion = estadoNuevo == EstadoUnidadPN1_380_jh.Bloqueada_380_jh ||
+                estadoNuevo == EstadoUnidadPN1_380_jh.Descartada_380_jh;
+            bool estadoValido = estadoNuevo == EstadoUnidadPN1_380_jh.Liberada_380_jh || requiereObservacion;
+            if (unidad == null || !estadoValido || (requiereObservacion && string.IsNullOrWhiteSpace(observacion)))
             {
                 RegistrarFalla_380_jh(usuario, "Cambio de estado rechazado por datos inválidos.");
                 return CodigoOperacionPN1_380_jh.DatosInvalidos_380_jh;
@@ -238,17 +213,6 @@ namespace Application
                 BitacoraNivel_380_jh.Advertencia_380_jh,
                 usuario,
                 descripcion);
-        }
-
-        private static string ObtenerPermisoEstado_380_jh(string estado)
-        {
-            switch (estado)
-            {
-                case EstadoUnidadPN1_380_jh.Liberada_380_jh: return PermisosSistema_380_jh.UnidadLiberar_380_jh;
-                case EstadoUnidadPN1_380_jh.Bloqueada_380_jh: return PermisosSistema_380_jh.UnidadBloquear_380_jh;
-                case EstadoUnidadPN1_380_jh.Descartada_380_jh: return PermisosSistema_380_jh.UnidadDescartar_380_jh;
-                default: return null;
-            }
         }
 
         private static BitacoraAccion_380_jh ObtenerAccionEstado_380_jh(string estado)

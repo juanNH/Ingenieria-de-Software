@@ -180,7 +180,7 @@ internal static class IntegridadUITests
                 var integridadEnMenu = menu.Items["integridadToolStripMenuItem"];
                 Check(integridadEnMenu == null || !integridadEnMenu.Available, "Integrity menu is unavailable without view permission");
             }
-            Check(servicio.Recuperar_380_jh("", false) == "OPERATION_NOT_AUTHORIZED", "Application enforces recovery permissions");
+            Check(servicio.Recuperar_380_jh("", false) == "OPERATION_NOT_AUTHORIZED", "SQL enforces recovery permissions");
             Check(new AuditoriaApplicationService_380_jh().ListarNegocio_380_jh("Donante").Count == 0, "Application protects PN1 audit history");
             // Missing migration must never produce a green report.
             Sql("EXEC sp_rename 'dbo.sp_IntegridadPN1_Verificar','sp_IntegridadPN1_Verificar_test'");
