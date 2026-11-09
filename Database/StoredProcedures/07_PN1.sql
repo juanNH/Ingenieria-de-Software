@@ -339,6 +339,11 @@ BEGIN
         DECLARE @id_donacion INT = CONVERT(INT, SCOPE_IDENTITY());
         DECLARE @indice INT = 1;
         DECLARE @codigo VARCHAR(50);
+        DECLARE @grupo_donante VARCHAR(5), @rh_donante VARCHAR(5);
+
+        SELECT @grupo_donante = grupo_sanguineo, @rh_donante = factor_rh
+        FROM dbo.Donante
+        WHERE id_donante = @id_donante;
 
         WHILE @indice <= @cantidad_unidades
         BEGIN
@@ -347,12 +352,12 @@ BEGIN
             INSERT INTO dbo.Unidad
             (
                 codigo_identificacion, id_donacion, tipo_componente, fecha_vencimiento,
-                estado_operativo, id_usuario_ultima_modificacion
+                grupo_sanguineo, factor_rh, estado_operativo, id_usuario_ultima_modificacion
             )
             VALUES
             (
                 @codigo, @id_donacion, LTRIM(RTRIM(@tipo_componente)), @fecha_vencimiento,
-                'EN_REVISION', @id_usuario
+                @grupo_donante, @rh_donante, 'EN_REVISION', @id_usuario
             );
 
             DECLARE @id_unidad_nueva INT = CONVERT(INT, SCOPE_IDENTITY());
@@ -383,7 +388,7 @@ BEGIN
         SELECT u.id_unidad, u.codigo_identificacion, u.id_donacion, u.tipo_componente,
                u.fecha_vencimiento, u.grupo_sanguineo, u.factor_rh, u.observaciones,
                u.estado_operativo, u.fecha_alta, u.fecha_ultima_modificacion,
-               u.id_usuario_ultima_modificacion
+               u.id_usuario_ultima_modificacion, CONVERT(BIT, 1) AS clasificacion_pendiente
         FROM dbo.Unidad u
         WHERE u.id_donacion = @id_donacion
         ORDER BY u.id_unidad;
@@ -422,6 +427,11 @@ BEGIN
         d.documento AS documento_donante,
         d.grupo_sanguineo AS grupo_sanguineo_donante,
         d.factor_rh AS factor_rh_donante,
+        CONVERT(BIT, CASE WHEN u.estado_operativo = 'EN_REVISION' AND EXISTS (
+            SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad = u.id_unidad AND m.tipo_movimiento = 'REGISTRO'
+        ) AND NOT EXISTS (
+            SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad = u.id_unidad AND m.tipo_movimiento = 'CLASIFICACION'
+        ) THEN 1 ELSE 0 END) AS clasificacion_pendiente,
         d.nombre + ' ' + d.apellido AS donante
     FROM dbo.Unidad u
     INNER JOIN dbo.Donacion dn ON dn.id_donacion = u.id_donacion
@@ -585,6 +595,9 @@ BEGIN
         WHERE id_unidad = @id_unidad
           AND (estado_operativo <> 'EN_REVISION'
                OR tipo_componente IS NULL OR grupo_sanguineo IS NULL OR factor_rh IS NULL
+               -- Los datos del donante se guardan al registrar, pero la muestra se confirma aparte.
+               OR (EXISTS (SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad = @id_unidad AND m.tipo_movimiento = 'REGISTRO')
+                   AND NOT EXISTS (SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad = @id_unidad AND m.tipo_movimiento = 'CLASIFICACION'))
                OR (@estado_nuevo = 'LIBERADA' AND fecha_vencimiento < CONVERT(DATE, GETDATE())))
     )
     BEGIN

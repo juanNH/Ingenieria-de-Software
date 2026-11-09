@@ -39,8 +39,11 @@ internal static class TipificacionDonanteUiTests
             var saved = donors.Listar_380_jh().Single(d => d.Id_380_jh == donor.Id_380_jh);
             Check(saved.GrupoSanguineo_380_jh == "O" && saved.FactorRh_380_jh == "-", "El mapper recupera la tipificacion persistida");
             var next = Donate(donations, donor.Id_380_jh);
+            Check(next.GrupoSanguineo_380_jh == "O" && next.FactorRh_380_jh == "-" && !next.EstaClasificada_380_jh,
+                "Alta de segunda donacion devuelve grupo y Rh guardados pendientes de confirmar");
             next = units.Listar_380_jh().Single(u => u.Id_380_jh == next.Id_380_jh);
-            Check(next.GrupoSanguineo_380_jh == null && next.FactorRh_380_jh == null && next.GrupoSanguineoDonante_380_jh == "O" && next.FactorRhDonante_380_jh == "-", "Nueva muestra consulta antecedentes sin quedar clasificada");
+            Check(next.GrupoSanguineo_380_jh == "O" && next.FactorRh_380_jh == "-" && !next.EstaClasificada_380_jh,
+                "La segunda unidad conserva la tipificacion y sigue pendiente al recargar");
             using (var view = new DonantesView_380_jh())
             {
                 var row = Field<DataGridView>(view, "_grid_380_jh").Rows.Cast<DataGridViewRow>().Single(r => ((Donante_380_jh)r.Tag).Id_380_jh == donor.Id_380_jh);
@@ -50,7 +53,10 @@ internal static class TipificacionDonanteUiTests
             {
                 var grid = Field<DataGridView>(view, "_grid_380_jh");
                 grid.ClearSelection();
-                grid.Rows.Cast<DataGridViewRow>().Single(r => ((Unidad_380_jh)r.Tag).Id_380_jh == next.Id_380_jh).Selected = true;
+                var row = grid.Rows.Cast<DataGridViewRow>().Single(r => ((Unidad_380_jh)r.Tag).Id_380_jh == next.Id_380_jh);
+                Check(Convert.ToString(row.Cells["grupo"].Value) == "O" && Convert.ToString(row.Cells["rh"].Value) == "-",
+                    "La grilla muestra el grupo y Rh de la segunda unidad");
+                row.Selected = true;
                 view.GetType().GetMethod("Grid_SelectionChanged_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(view, new object[] { grid, EventArgs.Empty });
                 Check(((MaestroPN1_380_jh)Field<ComboBox>(view, "_cmbGrupo_380_jh").SelectedItem).Codigo_380_jh == "O" &&
                     ((MaestroPN1_380_jh)Field<ComboBox>(view, "_cmbRh_380_jh").SelectedItem).Codigo_380_jh == "-", "Formulario propone grupo y Rh del donante");
@@ -62,6 +68,7 @@ internal static class TipificacionDonanteUiTests
             Check(!string.IsNullOrWhiteSpace(message) && message != "UNIT_DONOR_BLOOD_CONFLICT", "Mensaje de conflicto traducido");
             next.GrupoSanguineo_380_jh = "O";
             Check(units.Clasificar_380_jh(next) == CodigoOperacionPN1_380_jh.Ok_380_jh, "Confirmar nueva muestra coincidente");
+            Check(next.EstaClasificada_380_jh, "El mapper reconoce la confirmacion");
             Check(new IntegridadApplicationService_380_jh().Verificar_380_jh().EsValida_380_jh, "Circuito completo conserva integridad");
             Console.WriteLine("Pruebas UI/Application/DAL de tipificacion completadas.");
             return 0;

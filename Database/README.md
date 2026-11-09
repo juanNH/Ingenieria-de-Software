@@ -66,8 +66,8 @@ mano esos mismos archivos además del instalador.
 
 La clasificación de una unidad guarda también el grupo sanguíneo y Rh en el
 donante, dentro de la misma transacción y con auditoría e integridad DVH/DVV.
-Las futuras unidades siguen sin clasificar y en revisión; al abrir su formulario
-se proponen los datos del donante y se requiere confirmar la clasificación.
+Las futuras unidades guardan el grupo y Rh conocidos del donante al registrar
+la donación. Quedan en revisión y requieren confirmar la clasificación de la muestra.
 Una discrepancia con el donante o sus unidades anteriores rechaza la operación.
 La edición administrativa del donante conserva estos campos.
 
