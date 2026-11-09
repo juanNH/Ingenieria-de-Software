@@ -90,7 +90,7 @@ EXEC dbo.sp_IntegridadPN1_Sellar $taskUser; COMMIT;
     Assert (Classify $taskUnit 'A' '+') 'OK' 'Primera clasificacion'
     Assert (Value "SELECT CONCAT(grupo_sanguineo,factor_rh) FROM dbo.Donante WHERE id_donante=$taskDonor") 'A+' 'Guardar tipificacion en el donante'
     $taskNextUnit = Donate $taskDonor
-    Assert (Value "SELECT COUNT(*) FROM dbo.Unidad WHERE id_unidad=$taskNextUnit AND grupo_sanguineo IS NULL AND factor_rh IS NULL AND estado_operativo='EN_REVISION'") 1 'Nueva muestra requiere clasificacion'
+    Assert (Value "SELECT COUNT(*) FROM dbo.Unidad WHERE id_unidad=$taskNextUnit AND grupo_sanguineo='A' AND factor_rh='+' AND estado_operativo='EN_REVISION'") 1 'Nueva muestra guarda grupo y Rh y queda en revision'
     $taskListed = (Sql 'EXEC dbo.sp_Unidad_Listar').Tables[0].Select("id_unidad=$taskNextUnit")[0]
     Assert ($taskListed.grupo_sanguineo_donante + $taskListed.factor_rh_donante) 'A+' 'Proponer datos del donante en nuevas muestras'
     $taskDonorListed = (Sql 'EXEC dbo.sp_Donante_Listar').Tables[0].Select("id_donante=$taskDonor")[0]
@@ -100,8 +100,9 @@ EXEC dbo.sp_IntegridadPN1_Sellar $taskUser; COMMIT;
     Assert (Classify $taskNextUnit 'B' '+') 'CONFLICTO_TIPIFICACION' 'Rechazar grupo contradictorio'
     Assert (Classify $taskNextUnit 'A' '-') 'CONFLICTO_TIPIFICACION' 'Rechazar Rh contradictorio'
     Assert (Value 'SELECT COUNT(*) FROM dbo.Auditoria') $taskAuditCount 'Rechazo sin cambios ni auditorias de datos'
-    Assert (Value "SELECT COUNT(*) FROM dbo.Unidad WHERE id_unidad=$taskNextUnit AND grupo_sanguineo IS NULL AND factor_rh IS NULL") 1 'Rechazo sin modificar unidad'
+    Assert (Value "SELECT COUNT(*) FROM dbo.Unidad WHERE id_unidad=$taskNextUnit AND grupo_sanguineo='A' AND factor_rh='+'") 1 'Rechazo conserva grupo y Rh guardados'
     Assert (Classify $taskNextUnit 'A' '+') 'OK' 'Confirmar nueva muestra coincidente'
+    Assert (Value "EXEC dbo.sp_Unidad_CambiarEstado $taskNextUnit,'LIBERADA',NULL,$taskUser") 'OK' 'Liberar solo despues de confirmar la muestra'
     Assert (Value "EXEC dbo.sp_Donante_Actualizar @id_donante=$taskDonor,@documento='DESCONOCIDO',@nombre='Eva editada',@apellido='Historial',@id_usuario=$taskUser") 'OK' 'Editar datos administrativos'
     Assert (Value "SELECT CONCAT(grupo_sanguineo,factor_rh) FROM dbo.Donante WHERE id_donante=$taskDonor") 'A+' 'Edicion conserva tipificacion'
     $taskConflictUnit = [int](Value "SELECT MIN(u.id_unidad) FROM dbo.Unidad u JOIN dbo.Donacion dn ON dn.id_donacion=u.id_donacion JOIN dbo.Donante d ON d.id_donante=dn.id_donante WHERE d.documento='CONFLICTIVO'")

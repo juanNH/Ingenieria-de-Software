@@ -23,12 +23,14 @@ namespace Domain
         public DateTime FechaAlta_380_jh { get; set; }
         public DateTime FechaUltimaModificacion_380_jh { get; set; }
         public int IdUsuarioUltimaModificacion_380_jh { get; set; }
+        public bool ClasificacionPendiente_380_jh { get; set; }
 
         public bool EstaClasificada_380_jh
         {
             get
             {
-                return !string.IsNullOrWhiteSpace(TipoComponente_380_jh) &&
+                return !ClasificacionPendiente_380_jh &&
+                       !string.IsNullOrWhiteSpace(TipoComponente_380_jh) &&
                        !string.IsNullOrWhiteSpace(GrupoSanguineo_380_jh) &&
                        !string.IsNullOrWhiteSpace(FactorRh_380_jh);
             }
