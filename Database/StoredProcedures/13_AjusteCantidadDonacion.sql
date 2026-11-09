@@ -35,7 +35,18 @@ CREATE OR ALTER VIEW dbo.v_Donacion_UnidadAnulable AS
 SELECT u.id_unidad,u.id_donacion,u.codigo_identificacion FROM dbo.Unidad u
 WHERE u.estado_operativo='EN_REVISION'
   AND (u.tipo_componente IS NULL OR u.grupo_sanguineo IS NULL OR u.factor_rh IS NULL
-       OR EXISTS (SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad=u.id_unidad AND m.tipo_movimiento IN ('REGISTRO','TIPIFICACION_DONANTE')))
+       OR EXISTS (SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad=u.id_unidad AND m.tipo_movimiento IN ('REGISTRO','TIPIFICACION_DONANTE','REACTIVACION_CANTIDAD')))
+  AND NOT EXISTS (SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad=u.id_unidad AND m.tipo_movimiento IN ('CLASIFICACION','REINGRESO','LIBERACION'));
+GO
+
+CREATE OR ALTER VIEW dbo.v_Donacion_UnidadAjustable AS
+SELECT id_unidad,id_donacion,codigo_identificacion,CAST('EN_REVISION' AS VARCHAR(20)) AS estado_operativo
+FROM dbo.v_Donacion_UnidadAnulable
+UNION ALL
+SELECT u.id_unidad,u.id_donacion,u.codigo_identificacion,u.estado_operativo
+FROM dbo.Unidad u
+WHERE u.estado_operativo='ANULADA'
+  AND EXISTS (SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad=u.id_unidad AND m.tipo_movimiento='ANULACION_CANTIDAD')
   AND NOT EXISTS (SELECT 1 FROM dbo.MovimientoUnidad m WHERE m.id_unidad=u.id_unidad AND m.tipo_movimiento IN ('CLASIFICACION','REINGRESO','LIBERACION'));
 GO
 
@@ -89,42 +100,34 @@ BEGIN
         SELECT @restaurada=cantidad_nueva FROM dbo.v_Donacion_HistorialCantidad WHERE id_donacion=@id AND id_auditoria=@restaurar;
         IF @restaurada IS NULL OR @restaurada<>@cantidad THROW 51120,'AJUSTE_INVALIDO',1;
     END;
-    IF @cantidad IS NULL OR @cantidad NOT BETWEEN 1 AND 1000 OR @cantidad=@anterior OR @motivo IS NULL
+    IF @cantidad IS NULL OR @cantidad NOT BETWEEN 1 AND 1000 OR @motivo IS NULL
        OR @json IS NULL OR LEFT(LTRIM(@json),1)<>'[' OR ISJSON(@json)<>1
        THROW 51120,'AJUSTE_INVALIDO',1;
     IF @anterior<>(SELECT COUNT(*) FROM dbo.Unidad WHERE id_donacion=@id AND estado_operativo<>'ANULADA')
         THROW 51120,'CANTIDAD_NO_COINCIDE_CON_UNIDADES',1;
 
-    DECLARE @delta INT=@cantidad-@anterior;
-    DECLARE @afectadas TABLE (id_unidad INT PRIMARY KEY,codigo VARCHAR(50));
-    IF @delta<0
-    BEGIN
-        INSERT @afectadas(id_unidad,codigo)
-        SELECT DISTINCT u.id_unidad,u.codigo_identificacion
-        FROM OPENJSON(@json) j JOIN dbo.v_Donacion_UnidadAnulable u ON u.id_unidad=TRY_CONVERT(INT,j.value)
-        WHERE j.type=2 AND u.id_donacion=@id;
-        IF (SELECT COUNT(*) FROM @afectadas)<>-@delta OR (SELECT COUNT(*) FROM OPENJSON(@json))<>-@delta
-            THROW 51124,'UNIDADES_NO_ANULABLES',1;
-        UPDATE u SET estado_operativo='ANULADA',fecha_ultima_modificacion=GETDATE(),id_usuario_ultima_modificacion=@actor
-        FROM dbo.Unidad u JOIN @afectadas a ON a.id_unidad=u.id_unidad;
-    END
-    ELSE
-    BEGIN
-        IF EXISTS (SELECT 1 FROM OPENJSON(@json)) THROW 51120,'AJUSTE_INVALIDO',1;
-        ;WITH numeros AS (SELECT 1 AS n UNION ALL SELECT n+1 FROM numeros WHERE n<@delta)
-        INSERT dbo.Unidad(codigo_identificacion,id_donacion,tipo_componente,fecha_vencimiento,grupo_sanguineo,factor_rh,estado_operativo,id_usuario_ultima_modificacion)
-        OUTPUT inserted.id_unidad,inserted.codigo_identificacion INTO @afectadas
-        SELECT 'UN-'+REPLACE(CONVERT(VARCHAR(36),NEWID()),'-',''),d.id_donacion,d.tipo_componente,d.fecha_vencimiento,
-               donante.grupo_sanguineo,donante.factor_rh,'EN_REVISION',@actor
-        FROM numeros CROSS JOIN dbo.Donacion d JOIN dbo.Donante donante ON donante.id_donante=d.id_donante
-        WHERE d.id_donacion=@id OPTION(MAXRECURSION 1000);
-    END;
+    DECLARE @afectadas TABLE (id_unidad INT PRIMARY KEY,codigo VARCHAR(50),estado_anterior VARCHAR(20),estado_nuevo VARCHAR(20));
+    INSERT @afectadas(id_unidad,codigo,estado_anterior,estado_nuevo)
+    SELECT DISTINCT u.id_unidad,u.codigo_identificacion,u.estado_operativo,
+           CASE WHEN u.estado_operativo='ANULADA' THEN 'EN_REVISION' ELSE 'ANULADA' END
+    FROM OPENJSON(@json) j JOIN dbo.v_Donacion_UnidadAjustable u ON u.id_unidad=TRY_CONVERT(INT,j.value)
+    WHERE j.type=2 AND u.id_donacion=@id;
+
+    DECLARE @seleccionadas INT,@delta INT;
+    SELECT @seleccionadas=COUNT(*),@delta=SUM(CASE WHEN estado_nuevo='EN_REVISION' THEN 1 ELSE -1 END) FROM @afectadas;
+    IF @seleccionadas=0 OR @seleccionadas<>(SELECT COUNT(*) FROM OPENJSON(@json)) OR @anterior+@delta<>@cantidad
+        THROW 51124,'UNIDADES_NO_AJUSTABLES',1;
+
+    UPDATE u SET estado_operativo=a.estado_nuevo,fecha_ultima_modificacion=GETDATE(),id_usuario_ultima_modificacion=@actor,
+                 grupo_sanguineo=CASE WHEN a.estado_nuevo='EN_REVISION' THEN donante.grupo_sanguineo ELSE u.grupo_sanguineo END,
+                 factor_rh=CASE WHEN a.estado_nuevo='EN_REVISION' THEN donante.factor_rh ELSE u.factor_rh END
+    FROM dbo.Unidad u JOIN @afectadas a ON a.id_unidad=u.id_unidad
+    JOIN dbo.Donacion d ON d.id_donacion=u.id_donacion JOIN dbo.Donante donante ON donante.id_donante=d.id_donante;
 
     UPDATE dbo.Donacion SET cantidad_unidades=@cantidad WHERE id_donacion=@id;
     INSERT dbo.MovimientoUnidad(id_unidad,tipo_movimiento,estado_anterior,estado_nuevo,observacion,id_usuario)
-    SELECT id_unidad,CASE WHEN @delta<0 THEN 'ANULACION_CANTIDAD' ELSE 'REGISTRO' END,
-           CASE WHEN @delta<0 THEN 'EN_REVISION' END,CASE WHEN @delta<0 THEN 'ANULADA' ELSE 'EN_REVISION' END,
-           @motivo,@actor FROM @afectadas;
+    SELECT id_unidad,CASE WHEN estado_nuevo='ANULADA' THEN 'ANULACION_CANTIDAD' ELSE 'REACTIVACION_CANTIDAD' END,
+           estado_anterior,estado_nuevo,@motivo,@actor FROM @afectadas;
 
     SELECT @estado_nuevo=datos_json FROM dbo.v_IntegridadPN1_Datos WHERE entidad='Donacion' AND id_entidad=@id;
     DECLARE @codigos NVARCHAR(MAX)=(SELECT STRING_AGG(CONVERT(NVARCHAR(MAX),codigo),N', ') WITHIN GROUP (ORDER BY id_unidad) FROM @afectadas);
@@ -173,7 +176,7 @@ BEGIN
         LEFT JOIN dbo.v_Donacion_CantidadCerrada c ON c.id_donacion=d.id_donacion WHERE d.id_donacion=@id_donacion;
         SELECT id_auditoria,accion,fecha_evento,identificador_usuario_actor,cantidad_anterior,cantidad_nueva,motivo,unidades_afectadas
         FROM dbo.v_Donacion_HistorialCantidad WHERE id_donacion=@id_donacion ORDER BY id_auditoria DESC;
-        SELECT id_unidad,codigo_identificacion FROM dbo.v_Donacion_UnidadAnulable WHERE id_donacion=@id_donacion ORDER BY id_unidad;
+        SELECT id_unidad,codigo_identificacion,estado_operativo FROM dbo.v_Donacion_UnidadAjustable WHERE id_donacion=@id_donacion ORDER BY id_unidad;
         SELECT id_unidad,codigo_identificacion,id_donacion,tipo_componente,fecha_vencimiento,grupo_sanguineo,
                factor_rh,observaciones,estado_operativo,fecha_alta,fecha_ultima_modificacion,id_usuario_ultima_modificacion
         FROM dbo.Unidad WHERE id_donacion=@id_donacion ORDER BY id_unidad;

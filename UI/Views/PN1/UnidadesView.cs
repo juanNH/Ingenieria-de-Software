@@ -599,7 +599,7 @@ namespace UI
                 case EstadoUnidadPN1_380_jh.Liberada_380_jh: clave = "UNIT_STATE_LIBERADA"; break;
                 case EstadoUnidadPN1_380_jh.Bloqueada_380_jh: clave = "UNIT_STATE_BLOQUEADA"; break;
                 case EstadoUnidadPN1_380_jh.Descartada_380_jh: clave = "UNIT_STATE_DESCARTADA"; break;
-                case "ANULADA": clave = "PN2_STATE_ANULADA"; break;
+                case EstadoUnidadPN1_380_jh.Anulada_380_jh: clave = "PN2_STATE_ANULADA"; break;
                 case EstadoUnidadPN2_380_jh.Reservada_380_jh: clave = "PN2_STATE_RESERVADA"; break;
                 case EstadoUnidadPN2_380_jh.Entregada_380_jh: clave = "PN2_STATE_ENTREGADA"; break;
                 case EstadoUnidadPN2_380_jh.Transfundida_380_jh: clave = "PN2_STATE_TRANSFUNDIDA"; break;

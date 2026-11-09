@@ -112,7 +112,7 @@ internal static class TipificacionDonanteUiTests
         var dialogType = typeof(DonacionesView_380_jh).Assembly.GetType("UI.CantidadDonacionDialog_380_jh", true);
         using (var vista = new DonacionesView_380_jh())
         {
-            var nueva = new Donacion_380_jh { IdDonante_380_jh = idDonante, FechaDonacion_380_jh = DateTime.Now, CantidadUnidades_380_jh = 1,
+            var nueva = new Donacion_380_jh { IdDonante_380_jh = idDonante, FechaDonacion_380_jh = DateTime.Now, CantidadUnidades_380_jh = 2,
                 TipoComponente_380_jh = "Concentrado de eritrocitos", FechaVencimiento_380_jh = DateTime.Today.AddDays(30) };
             Check(service.Registrar_380_jh(nueva) == CodigoOperacionPN1_380_jh.Ok_380_jh, "Registrar donacion para el ajuste");
             idDonacion = nueva.Id_380_jh;
@@ -123,26 +123,43 @@ internal static class TipificacionDonanteUiTests
             vista.OnLanguageChanged_380_jh(LanguageManager_380_jh.Instance_380_jh.CurrentLanguage_380_jh);
             vista.PerformLayout();
             var historial = Field<Button>(vista, "_btnCantidadHistorial_380_jh");
-            Check(((Donacion_380_jh)selector.SelectedItem).Id_380_jh == idDonacion && grilla.Rows.Count == 1 &&
+            Check(((Donacion_380_jh)selector.SelectedItem).Id_380_jh == idDonacion && grilla.Rows.Count == 2 &&
                   historial.Enabled && historial.Parent.ClientRectangle.Contains(historial.Bounds),
                 "Donaciones deja seleccionada la donacion recien registrada con acceso visible a su historial");
             var datos = service.ConsultarCantidad_380_jh(idDonacion);
-            Check(datos.Editable_380_jh && datos.Anulables_380_jh.Count == 1, "El formulario recibe la version y las unidades anulables");
+            Check(datos.Editable_380_jh && datos.Ajustables_380_jh.Count == 2, "El formulario recibe la version y las unidades ajustables");
             using (var dialog = (Form)Activator.CreateInstance(dialogType, service, idDonacion, datos))
             {
-                Field<NumericUpDown>(dialog, "_cantidad").Value = 2;
-                Field<TextBox>(dialog, "_motivo").Text = "Agregar unidad desde el formulario";
+                var unidades = Field<CheckedListBox>(dialog, "_unidades");
+                Check(unidades.CheckedItems.Count == 2, "La lista marca las unidades vigentes al abrirse");
+                unidades.SetItemChecked(0, false);
+                Field<TextBox>(dialog, "_motivo").Text = "Excluir una unidad desde el formulario";
                 dialogType.GetMethod("Guardar_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(dialog, new object[] { dialog, EventArgs.Empty });
                 Check(dialog.DialogResult == DialogResult.OK, "El formulario ejecuta el ajuste a traves de Application y DAL");
             }
             vista.GetType().GetMethod("CargarDonaciones_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(vista, new object[] { idDonacion });
-            Check(((Donacion_380_jh)selector.SelectedItem).CantidadUnidades_380_jh == 2 && grilla.Rows.Count == 2,
-                "Donaciones muestra la cantidad y las unidades actualizadas");
+            Check(((Donacion_380_jh)selector.SelectedItem).CantidadUnidades_380_jh == 1 && grilla.Rows.Count == 2,
+                "Donaciones muestra la cantidad ajustada y conserva las dos unidades");
         }
         var guardados = service.ConsultarCantidad_380_jh(idDonacion);
-        Check(guardados.Cantidad_380_jh == 2 && guardados.Historial_380_jh.Count == 2 && guardados.Historial_380_jh[0].Anterior_380_jh == 1 &&
-              guardados.Historial_380_jh[0].Codigos_380_jh == guardados.Anulables_380_jh[1].CodigoIdentificacion_380_jh,
-              "La consulta recupera el cambio y el codigo generado");
+        Check(guardados.Cantidad_380_jh == 1 && guardados.Historial_380_jh.Count == 2 && guardados.Historial_380_jh[0].Anterior_380_jh == 2 &&
+              guardados.Historial_380_jh[0].Codigos_380_jh == guardados.Ajustables_380_jh[0].CodigoIdentificacion_380_jh,
+              "La consulta recupera el cambio y el codigo original");
+        using (var dialog = (Form)Activator.CreateInstance(dialogType, service, idDonacion, guardados))
+        {
+            var unidades = Field<CheckedListBox>(dialog, "_unidades");
+            Check(!unidades.GetItemChecked(0) && unidades.GetItemChecked(1), "La unidad anulada aparece desmarcada al volver a abrir el historial");
+            unidades.SetItemChecked(0, true);
+            unidades.SetItemChecked(1, false);
+            Field<TextBox>(dialog, "_motivo").Text = "Cambiar la unidad vigente";
+            dialogType.GetMethod("Guardar_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(dialog, new object[] { dialog, EventArgs.Empty });
+            Check(dialog.DialogResult == DialogResult.OK, "La seleccion permite cambiar que unidad queda vigente sin cambiar la cantidad");
+        }
+        var intercambiadas = service.ConsultarCantidad_380_jh(idDonacion);
+        Check(intercambiadas.Cantidad_380_jh == 1 && intercambiadas.Unidades_380_jh.Select(u => u.Id_380_jh).SequenceEqual(guardados.Unidades_380_jh.Select(u => u.Id_380_jh)) &&
+              intercambiadas.Unidades_380_jh[0].EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.EnRevision_380_jh &&
+              intercambiadas.Unidades_380_jh[1].EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Anulada_380_jh,
+              "El intercambio conserva los identificadores y cambia solamente que unidades quedan vigentes");
         using (var vista = new DonacionesView_380_jh())
         {
             var selector = Field<ComboBox>(vista, "_cmbDonacionRegistrada_380_jh");

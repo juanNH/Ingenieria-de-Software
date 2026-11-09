@@ -133,9 +133,11 @@ namespace DAL
                         Codigos_380_jh = cambio["unidades_afectadas"].ToString()
                     });
                 foreach (DataRow unidad in conjunto.Tables[2].Rows)
-                    resultado.Anulables_380_jh.Add(new Unidad_380_jh
+                    resultado.Ajustables_380_jh.Add(new Unidad_380_jh
                     {
-                        Id_380_jh = (int)unidad["id_unidad"], CodigoIdentificacion_380_jh = unidad["codigo_identificacion"].ToString()
+                        Id_380_jh = (int)unidad["id_unidad"], CodigoIdentificacion_380_jh = unidad["codigo_identificacion"].ToString(),
+                        EstadoOperativo_380_jh = unidad.Table.Columns.Contains("estado_operativo")
+                            ? unidad["estado_operativo"].ToString() : EstadoUnidadPN1_380_jh.EnRevision_380_jh
                     });
                 if (conjunto.Tables.Count > 3)
                     foreach (DataRow unidad in conjunto.Tables[3].Rows)
@@ -173,7 +175,7 @@ namespace DAL
                     case 51121: return CodigoOperacionPN1_380_jh.NoEncontrado_380_jh;
                     case 51122: return CodigoOperacionPN1_380_jh.ConflictoVersion_380_jh;
                     case 51123: return CodigoOperacionPN1_380_jh.DonacionCerrada_380_jh;
-                    case 51124: return CodigoOperacionPN1_380_jh.UnidadesNoAnulables_380_jh;
+                    case 51124: return CodigoOperacionPN1_380_jh.UnidadesNoAjustables_380_jh;
                     default: return CodigoOperacionPN1_380_jh.Error_380_jh;
                 }
             }

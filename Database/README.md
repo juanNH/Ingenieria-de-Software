@@ -68,7 +68,9 @@ mano esos mismos archivos además del instalador.
 
 En **PN1 → Donaciones**, elegí una donación registrada y abrí **Cantidad e historial**. Al registrar una donación, la pantalla la selecciona automáticamente. `UNIDAD_VER` habilita la consulta y `DONACION_AJUSTAR_CANTIDAD` habilita los cambios. El responsable autorizado y el administrador reciben ambos permisos. El historial queda en solo lectura desde la primera liberación o al registrarse el comprobante de PN1.
 
-`tr_Donacion_AjusteCantidad` recibe la versión que estaba viendo el responsable, la cantidad nueva, el motivo y los códigos seleccionados para la baja. La aplicación envía los identificadores de esas unidades y el trigger registra sus códigos en la auditoría. El ajuste, los movimientos y el historial protegido se confirman juntos. Al aumentar, el trigger genera unidades en revisión. Al reducir, anula las unidades seleccionadas en revisión sin clasificar y conserva sus códigos. Usar una cantidad anterior aplica las mismas reglas y agrega una versión al historial.
+Marcá las unidades existentes que deben quedar vigentes. La cantidad se calcula a partir de la selección y de las unidades que quedan fijas. Desmarcar una unidad en revisión sin clasificar la anula. Marcar una que se había anulado por un ajuste la devuelve a revisión con el mismo código. Las unidades nuevas se generan al registrar la donación.
+
+`tr_Donacion_AjusteCantidad` valida la versión, el motivo, los identificadores modificados y la cantidad resultante. El ajuste, los movimientos y el historial protegido se confirman juntos.
 
 `./Tests/Comprobantes.Automaticos.Tests.ps1` prueba el circuito en una base temporal, incluidos la reversión ante fallas y el cierre de PN1.
 

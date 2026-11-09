@@ -429,9 +429,9 @@ BEGIN
         d.factor_rh AS factor_rh_donante,
         CONVERT(BIT, CASE WHEN u.estado_operativo = 'EN_REVISION' AND (
             SELECT TOP (1) m.tipo_movimiento FROM dbo.MovimientoUnidad m
-            WHERE m.id_unidad = u.id_unidad AND m.tipo_movimiento IN ('REGISTRO','CLASIFICACION','TIPIFICACION_DONANTE','REINGRESO')
+            WHERE m.id_unidad = u.id_unidad AND m.tipo_movimiento IN ('REGISTRO','CLASIFICACION','TIPIFICACION_DONANTE','REINGRESO','REACTIVACION_CANTIDAD')
             ORDER BY m.id_movimiento_unidad DESC
-        ) IN ('REGISTRO','TIPIFICACION_DONANTE','REINGRESO') THEN 1 ELSE 0 END) AS clasificacion_pendiente,
+        ) IN ('REGISTRO','TIPIFICACION_DONANTE','REINGRESO','REACTIVACION_CANTIDAD') THEN 1 ELSE 0 END) AS clasificacion_pendiente,
         d.nombre + ' ' + d.apellido AS donante
     FROM dbo.Unidad u
     INNER JOIN dbo.Donacion dn ON dn.id_donacion = u.id_donacion
@@ -571,8 +571,8 @@ BEGIN
           AND (estado_operativo <> 'EN_REVISION'
                OR tipo_componente IS NULL OR grupo_sanguineo IS NULL OR factor_rh IS NULL
                OR (SELECT TOP (1) m.tipo_movimiento FROM dbo.MovimientoUnidad m
-                   WHERE m.id_unidad = @id_unidad AND m.tipo_movimiento IN ('REGISTRO','CLASIFICACION','TIPIFICACION_DONANTE')
-                   ORDER BY m.id_movimiento_unidad DESC) IN ('REGISTRO','TIPIFICACION_DONANTE')
+                   WHERE m.id_unidad = @id_unidad AND m.tipo_movimiento IN ('REGISTRO','CLASIFICACION','TIPIFICACION_DONANTE','REACTIVACION_CANTIDAD')
+                   ORDER BY m.id_movimiento_unidad DESC) IN ('REGISTRO','TIPIFICACION_DONANTE','REACTIVACION_CANTIDAD')
                OR (@estado_nuevo = 'LIBERADA' AND (fecha_vencimiento < CONVERT(DATE, GETDATE())
                    OR (@grupo_esperado IS NOT NULL AND grupo_sanguineo <> @grupo_esperado)
                    OR (@rh_esperado IS NOT NULL AND factor_rh <> @rh_esperado))))

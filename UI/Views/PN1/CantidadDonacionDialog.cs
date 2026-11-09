@@ -14,19 +14,19 @@ namespace UI
         private readonly int _idDonacion;
         private readonly CantidadDonacion_380_jh _datos;
         private readonly DataGridView _historial = new DataGridView();
-        private readonly NumericUpDown _cantidad = new NumericUpDown { Minimum = 1, Maximum = 1000, Width = 85 };
         private readonly TextBox _motivo = new TextBox { Dock = DockStyle.Fill, MaxLength = 500 };
         private readonly TextBox _codigos = new TextBox { Dock = DockStyle.Fill, ReadOnly = true, Multiline = true, ScrollBars = ScrollBars.Vertical };
         private readonly CheckedListBox _unidades = new CheckedListBox { Dock = DockStyle.Fill, CheckOnClick = true, DisplayMember = nameof(Unidad_380_jh.CodigoIdentificacion_380_jh) };
         private readonly Label _seleccion = new Label { Dock = DockStyle.Fill };
-        private readonly Label _restauracion = new Label { AutoSize = true };
-        private int? _versionRestaurada;
+        private readonly Label _cantidad = new Label { Dock = DockStyle.Fill };
+        private readonly int _unidadesFijas;
 
         public CantidadDonacionDialog_380_jh(DonacionApplicationService_380_jh service, int idDonacion, CantidadDonacion_380_jh datos)
         {
             _service = service;
             _idDonacion = idDonacion;
             _datos = datos;
+            _unidadesFijas = datos.Cantidad_380_jh - datos.Ajustables_380_jh.Count(EstaVigente_380_jh);
             Text = string.Format(T("DONATION_QUANTITY_TITLE"), idDonacion);
             StartPosition = FormStartPosition.CenterParent;
             ClientSize = new Size(860, datos.Editable_380_jh ? 525 : 355);
@@ -77,12 +77,7 @@ namespace UI
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 23));
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 104));
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 37));
-            var valores = new FlowLayoutPanel { Dock = DockStyle.Fill, WrapContents = false };
-            valores.Controls.Add(new Label { AutoSize = true, Text = T("DONATION_QUANTITY_AFTER") });
-            _cantidad.Value = Math.Min(_cantidad.Maximum, _datos.Cantidad_380_jh);
-            valores.Controls.Add(_cantidad);
-            valores.Controls.Add(_restauracion);
-            layout.Controls.Add(valores, 0, 3);
+            layout.Controls.Add(_cantidad, 0, 3);
             _motivo.AccessibleName = T("DONATION_QUANTITY_REASON");
             var motivo = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 2 };
             motivo.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
@@ -92,58 +87,51 @@ namespace UI
             layout.Controls.Add(motivo, 0, 4);
             layout.Controls.Add(_seleccion, 0, 5);
             layout.Controls.Add(_unidades, 0, 6);
-            _unidades.Items.AddRange(_datos.Anulables_380_jh.ToArray());
-            _cantidad.ValueChanged += delegate
+            foreach (var unidad in _datos.Ajustables_380_jh)
+                _unidades.Items.Add(unidad, EstaVigente_380_jh(unidad));
+            _seleccion.Text = T("DONATION_QUANTITY_SELECT_EXISTING");
+            ActualizarCantidad_380_jh(_unidades.CheckedItems.Count);
+            _unidades.ItemCheck += (sender, args) =>
             {
-                _versionRestaurada = null;
-                _restauracion.Text = "";
-                ActualizarSeleccion_380_jh();
+                int antes = args.CurrentValue == CheckState.Checked ? 1 : 0;
+                int despues = args.NewValue == CheckState.Checked ? 1 : 0;
+                ActualizarCantidad_380_jh(_unidades.CheckedItems.Count - antes + despues);
             };
-            ActualizarSeleccion_380_jh();
 
             var botones = new FlowLayoutPanel { Dock = DockStyle.Fill, WrapContents = false };
             var guardar = new Button { Text = T("MASTERS_SAVE"), AutoSize = true };
             guardar.Click += Guardar_380_jh;
-            var restaurar = new Button { Text = T("DONATION_QUANTITY_RESTORE"), AutoSize = true };
-            restaurar.Click += delegate
-            {
-                var cambio = Seleccion_380_jh();
-                if (cambio == null || cambio.Nueva_380_jh < 1 || cambio.Nueva_380_jh > _cantidad.Maximum) return;
-                _cantidad.Value = cambio.Nueva_380_jh;
-                _versionRestaurada = cambio.Version_380_jh;
-                _restauracion.Text = string.Format(T("DONATION_QUANTITY_VERSION"), cambio.Version_380_jh);
-            };
             botones.Controls.Add(guardar);
-            botones.Controls.Add(restaurar);
             layout.Controls.Add(botones, 0, 7);
         }
 
-        private void ActualizarSeleccion_380_jh()
+        private static bool EstaVigente_380_jh(Unidad_380_jh unidad) => unidad.EstadoOperativo_380_jh != EstadoUnidadPN1_380_jh.Anulada_380_jh;
+
+        private void ActualizarCantidad_380_jh(int seleccionadas)
         {
-            int excedente = _datos.Cantidad_380_jh - (int)_cantidad.Value;
-            _unidades.Enabled = excedente > 0;
-            _seleccion.Text = excedente > 0 ? string.Format(T("DONATION_QUANTITY_SELECT"), excedente) : T("DONATION_QUANTITY_INCREASE");
+            _cantidad.Text = string.Format(T("DONATION_QUANTITY_NEXT_TOTAL"), _unidadesFijas + seleccionadas);
         }
 
         private void Guardar_380_jh(object sender, EventArgs e)
         {
-            int cantidad = (int)_cantidad.Value;
-            int excedente = Math.Max(0, _datos.Cantidad_380_jh - cantidad);
-            int[] anulables = excedente == 0 ? new int[0] : _unidades.CheckedItems.Cast<Unidad_380_jh>().Select(u => u.Id_380_jh).ToArray();
-            if (cantidad == _datos.Cantidad_380_jh || string.IsNullOrWhiteSpace(_motivo.Text) || anulables.Length != excedente)
+            int cantidad = _unidadesFijas + _unidades.CheckedItems.Count;
+            var afectadas = _unidades.Items.Cast<Unidad_380_jh>()
+                .Where((unidad, indice) => _unidades.GetItemChecked(indice) != EstaVigente_380_jh(unidad))
+                .Select(unidad => unidad.Id_380_jh).ToArray();
+            if (cantidad < 1 || cantidad > 1000 || string.IsNullOrWhiteSpace(_motivo.Text) || afectadas.Length == 0)
             {
                 MessageBox.Show(this, T("DONATION_QUANTITY_INVALID"));
                 return;
             }
 
             CodigoOperacionPN1_380_jh resultado;
-            try { resultado = _service.AjustarCantidad_380_jh(_idDonacion, _datos.Version_380_jh, cantidad, _motivo.Text, anulables, _versionRestaurada); }
+            try { resultado = _service.AjustarCantidad_380_jh(_idDonacion, _datos.Version_380_jh, cantidad, _motivo.Text, afectadas, null); }
             catch (InvalidOperationException) { resultado = CodigoOperacionPN1_380_jh.Error_380_jh; }
             switch (resultado)
             {
                 case CodigoOperacionPN1_380_jh.Ok_380_jh: DialogResult = DialogResult.OK; break;
                 case CodigoOperacionPN1_380_jh.ConflictoVersion_380_jh:
-                case CodigoOperacionPN1_380_jh.UnidadesNoAnulables_380_jh:
+                case CodigoOperacionPN1_380_jh.UnidadesNoAjustables_380_jh:
                     MessageBox.Show(this, T("DONATION_QUANTITY_STALE")); DialogResult = DialogResult.Retry; break;
                 case CodigoOperacionPN1_380_jh.DonacionCerrada_380_jh:
                     MessageBox.Show(this, T("DONATION_QUANTITY_READ_ONLY")); DialogResult = DialogResult.Retry; break;

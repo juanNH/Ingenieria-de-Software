@@ -8,6 +8,7 @@ namespace Domain
         public const string Liberada_380_jh = "LIBERADA";
         public const string Bloqueada_380_jh = "BLOQUEADA";
         public const string Descartada_380_jh = "DESCARTADA";
+        public const string Anulada_380_jh = "ANULADA";
 
         public static bool EsEstadoFinal_380_jh(string estado)
         {

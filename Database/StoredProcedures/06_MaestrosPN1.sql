@@ -116,7 +116,7 @@ BEGIN TRY
  IF OBJECT_ID('dbo.CK_MovimientoUnidad_EstadoNuevo','C') IS NOT NULL ALTER TABLE dbo.MovimientoUnidad DROP CONSTRAINT CK_MovimientoUnidad_EstadoNuevo;
  IF OBJECT_ID('dbo.CK_MovimientoUnidad_Tipo','C') IS NOT NULL ALTER TABLE dbo.MovimientoUnidad DROP CONSTRAINT CK_MovimientoUnidad_Tipo;
  ALTER TABLE dbo.MovimientoUnidad ADD CONSTRAINT CK_MovimientoUnidad_Tipo CHECK
-  (tipo_movimiento IN ('REGISTRO','CLASIFICACION','TIPIFICACION_DONANTE','LIBERACION','BLOQUEO','DESCARTE','RESTAURACION','UBICACION','RESERVA','ENTREGA','TRANSFUSION','DEVOLUCION','CANCELACION','REINGRESO','DESTINO','ANULACION_CANTIDAD'));
+  (tipo_movimiento IN ('REGISTRO','CLASIFICACION','TIPIFICACION_DONANTE','LIBERACION','BLOQUEO','DESCARTE','RESTAURACION','UBICACION','RESERVA','ENTREGA','TRANSFUSION','DEVOLUCION','CANCELACION','REINGRESO','DESTINO','ANULACION_CANTIDAD','REACTIVACION_CANTIDAD'));
  IF OBJECT_ID('dbo.FK_DestinoEntrega_Codigo_EstadoUnidad','F') IS NULL ALTER TABLE dbo.DestinoEntrega WITH CHECK ADD CONSTRAINT FK_DestinoEntrega_Codigo_EstadoUnidad FOREIGN KEY(codigo) REFERENCES dbo.EstadoUnidad(codigo);
  IF OBJECT_ID('dbo.FK_Unidad_EstadoUnidad','F') IS NULL ALTER TABLE dbo.Unidad WITH CHECK ADD CONSTRAINT FK_Unidad_EstadoUnidad FOREIGN KEY(estado_operativo) REFERENCES dbo.EstadoUnidad(codigo);
  IF OBJECT_ID('dbo.FK_MovimientoUnidad_EstadoAnterior','F') IS NULL ALTER TABLE dbo.MovimientoUnidad WITH CHECK ADD CONSTRAINT FK_MovimientoUnidad_EstadoAnterior FOREIGN KEY(estado_anterior) REFERENCES dbo.EstadoUnidad(codigo);
