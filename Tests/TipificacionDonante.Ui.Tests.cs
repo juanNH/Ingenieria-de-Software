@@ -160,6 +160,11 @@ internal static class TipificacionDonanteUiTests
               intercambiadas.Unidades_380_jh[0].EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.EnRevision_380_jh &&
               intercambiadas.Unidades_380_jh[1].EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Anulada_380_jh,
               "El intercambio conserva los identificadores y cambia solamente que unidades quedan vigentes");
+        var unidadesService = new UnidadApplicationService_380_jh();
+        var procesoXml = XDocument.Parse(unidadesService.ExportarProcesoXml_380_jh(intercambiadas.Unidades_380_jh[0]));
+        var donacionXml = procesoXml.Root.Element("Donacion");
+        Check((int)donacionXml.Attribute("cantidadUnidades") == 1 && donacionXml.Element("Unidades").Elements("Unidad").Count() == 2,
+            "El XML de la donacion declara solo la cantidad vigente y conserva las dos unidades");
         using (var vista = new DonacionesView_380_jh())
         {
             var selector = Field<ComboBox>(vista, "_cmbDonacionRegistrada_380_jh");

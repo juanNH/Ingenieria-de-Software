@@ -99,7 +99,9 @@ namespace Application
                     throw new InvalidDataException(ubicacion + "la fecha de vencimiento no es válida.");
                 bool grupo = !string.IsNullOrWhiteSpace(fila.GrupoSanguineo_380_jh);
                 bool rh = !string.IsNullOrWhiteSpace(fila.FactorRh_380_jh);
-                bool estadoValido = fila.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.EnRevision_380_jh ||
+                bool admiteSinClasificar = fila.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.EnRevision_380_jh ||
+                    fila.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Anulada_380_jh;
+                bool estadoValido = admiteSinClasificar ||
                     fila.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Liberada_380_jh ||
                     fila.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Bloqueada_380_jh ||
                     fila.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Descartada_380_jh ||
@@ -111,7 +113,7 @@ namespace Application
                 if (grupo != rh ||
                     (grupo && fila.GrupoSanguineo_380_jh.Length > 5) ||
                     (rh && fila.FactorRh_380_jh.Length > 5) ||
-                    (fila.EstadoOperativo_380_jh != EstadoUnidadPN1_380_jh.EnRevision_380_jh && !grupo))
+                    (!admiteSinClasificar && !grupo))
                     throw new InvalidDataException(ubicacion + "revisá el grupo sanguíneo y el factor Rh.");
             }
         }
@@ -128,6 +130,7 @@ namespace Application
   <xs:element name='EstadoOperativo'><xs:simpleType><xs:restriction base='xs:string'>
    <xs:enumeration value='EN_REVISION'/><xs:enumeration value='LIBERADA'/><xs:enumeration value='BLOQUEADA'/><xs:enumeration value='DESCARTADA'/>
    <xs:enumeration value='RESERVADA'/><xs:enumeration value='ENTREGADA'/><xs:enumeration value='TRANSFUNDIDA'/><xs:enumeration value='DEVUELTA'/>
+   <xs:enumeration value='ANULADA'/>
   </xs:restriction></xs:simpleType></xs:element>
  </xs:sequence></xs:complexType></xs:element>
 </xs:sequence><xs:attribute name='version' use='required' fixed='1.0'/></xs:complexType></xs:element>
