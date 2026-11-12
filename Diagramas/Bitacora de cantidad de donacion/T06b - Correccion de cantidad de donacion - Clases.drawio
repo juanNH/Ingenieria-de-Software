@@ -8,7 +8,7 @@
         <mxCell id="titulo" value="CDUN — Diagrama de clases: Restaurar cantidad declarada" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontFamily=Arial;align=center;fontStyle=1;fontSize=26;" vertex="1" parent="1" connectable="0">
           <mxGeometry x="35" y="20" width="1512" height="45" as="geometry" />
         </mxCell>
-        <mxCell id="subtitulo" value="PN1 · Extensión propuesta de CDUN-04 Definir estado operativo" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontFamily=Arial;align=center;fontSize=14;" vertex="1" parent="1" connectable="0">
+        <mxCell id="subtitulo" value="PN1 · Extensión propuesta de CDUN-03 Clasificar estado de unidad" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;verticalAlign=middle;fontFamily=Arial;align=center;fontSize=14;" vertex="1" parent="1" connectable="0">
           <mxGeometry x="35" y="68" width="1512" height="29" as="geometry" />
         </mxCell>
         <mxCell id="ui" value="" style="shape=folder;tabWidth=120;tabHeight=29;tabPosition=left;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;html=1;" vertex="1" parent="1" connectable="0">

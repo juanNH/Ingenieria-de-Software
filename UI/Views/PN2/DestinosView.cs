@@ -221,7 +221,6 @@ namespace UI
             if (opcion.MotivoObligatorio_380_jh && string.IsNullOrWhiteSpace(_txtMotivo_380_jh.Text))
             { MessageBox.Show(this, ControlesPN2_380_jh.Traducir_380_jh("PN2_REASON_REQUIRED")); return; }
             if (!ControlesPN2_380_jh.Confirmar_380_jh(this, "PN2_CONFIRM_DESTINATION", entrega.CodigoIdentificacion_380_jh + " · " + NombreDestino_380_jh(opcion))) return;
-            if (!ComprobantePdfUI_380_jh.VerificarInstalacion_380_jh(this)) return;
             CodigoOperacionPN2_380_jh resultado = _pn2Service_380_jh.RegistrarDestino_380_jh(entrega.Id_380_jh, destino, _txtMotivo_380_jh.Text);
             ControlesPN2_380_jh.MostrarResultado_380_jh(this, resultado);
             if (resultado != CodigoOperacionPN2_380_jh.Ok_380_jh) return;

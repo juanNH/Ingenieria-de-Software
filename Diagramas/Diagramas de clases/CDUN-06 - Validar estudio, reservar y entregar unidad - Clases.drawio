@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="Electron" agent="Codex" version="24.7.17">
+  <diagram id="case-07" name="CDUN-06 Validar estudio, reservar y entregar unidad">
+    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3930" pageHeight="1330" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pkg-ui" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="900" height="625" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-ui-label" value="UI" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="52" y="102" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-app" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="980" y="100" width="900" height="625" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-app-label" value="Application" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="992" y="102" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-repo" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="100" width="900" height="625" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-repo-label" value="Repository" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1932" y="102" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-dal" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2860" y="100" width="1020" height="625" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-dal-label" value="DAL" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2872" y="102" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-domain" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="790" width="3840" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-domain-label" value="Domain" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="52" y="792" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="diagram-title" value="CDUN-06 — Diagrama de clases: Validar estudio, reservar y entregar unidad" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=26;fontStyle=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="3840" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ui" value="ReservasView_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="72" y="157" width="836" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="ui-attr" value="- _pn2Service_380_jh: PN2ApplicationService_380_jh {readOnly}&lt;br/&gt;- _unidades_380_jh: List&amp;lt;Unidad_380_jh&amp;gt; {readOnly}&lt;br/&gt;- _reservas_380_jh: List&amp;lt;Reserva_380_jh&amp;gt; {readOnly}&lt;br/&gt;- _cmbSolicitud_380_jh: ComboBox&lt;br/&gt;- _gridUnidades_380_jh: DataGridView&lt;br/&gt;- _gridReservas_380_jh: DataGridView&lt;br/&gt;- _txtObservacion_380_jh: TextBox&lt;br/&gt;- _lblCantidades_380_jh: Label" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="ui">
+          <mxGeometry x="0" y="46" width="836" height="161" as="geometry" />
+        </mxCell>
+        <mxCell id="ui-op" value="- CargarReservas_380_jh(): void&lt;br/&gt;- PintarDatos_380_jh(): void&lt;br/&gt;- ValidarEstudio_Click_380_jh(object sender, EventArgs e): void&lt;br/&gt;- Reservar_Click_380_jh(object sender, EventArgs e): void&lt;br/&gt;- Entregar_Click_380_jh(object sender, EventArgs e): void&lt;br/&gt;- Cancelar_Click_380_jh(object sender, EventArgs e): void&lt;br/&gt;- FinalizarOperacion_380_jh(CodigoOperacionPN2_380_jh resultado): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="ui">
+          <mxGeometry x="0" y="207" width="836" height="143" as="geometry" />
+        </mxCell>
+        <mxCell id="app" value="PN2ApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1012" y="157" width="836" height="242" as="geometry" />
+        </mxCell>
+        <mxCell id="app-attr" value="- _repository_380_jh: PN2Repository_380_jh {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="app">
+          <mxGeometry x="0" y="46" width="836" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="app-op" value="+ ValidarEstudio_380_jh(int idSolicitud): CodigoOperacionPN2_380_jh&lt;br/&gt;+ ListarCandidatas_380_jh(int idSolicitud): List&amp;lt;Unidad_380_jh&amp;gt;&lt;br/&gt;+ ListarReservas_380_jh(int? idSolicitudTransfusional = null): List&amp;lt;Reserva_380_jh&amp;gt;&lt;br/&gt;+ Reservar_380_jh(Reserva_380_jh reserva): CodigoOperacionPN2_380_jh&lt;br/&gt;+ Entregar_380_jh(int idReserva, string observacion): CodigoOperacionPN2_380_jh&lt;br/&gt;+ CancelarReserva_380_jh(int idReserva, string motivo): CodigoOperacionPN2_380_jh&lt;br/&gt;- static TextoValido_380_jh(string valor, int maximo, bool requerido = false): bool&lt;br/&gt;- static Limpiar_380_jh(string valor): string" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="app">
+          <mxGeometry x="0" y="81" width="836" height="161" as="geometry" />
+        </mxCell>
+        <mxCell id="repo" value="PN2Repository_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1952" y="157" width="836" height="206" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-attr" value="- _mapper_380_jh: PN2DataMapper_380_jh {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="repo">
+          <mxGeometry x="0" y="46" width="836" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-op" value="+ ValidarEstudio_380_jh(int idSolicitud, int idUsuario): CodigoOperacionPN2_380_jh&lt;br/&gt;+ ListarCandidatas_380_jh(int idSolicitud, int idUsuario): List&amp;lt;Unidad_380_jh&amp;gt;&lt;br/&gt;+ ListarReservas_380_jh(int? idSolicitudTransfusional, int idUsuario): List&amp;lt;Reserva_380_jh&amp;gt;&lt;br/&gt;+ Reservar_380_jh(Reserva_380_jh reserva, int idUsuario): CodigoOperacionPN2_380_jh&lt;br/&gt;+ Entregar_380_jh(int idReserva, string observacion, int idUsuario): CodigoOperacionPN2_380_jh&lt;br/&gt;+ CancelarReserva_380_jh(int idReserva, string motivo, int idUsuario): CodigoOperacionPN2_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="repo">
+          <mxGeometry x="0" y="81" width="836" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="mapper" value="PN2DataMapper_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="2892" y="157" width="956" height="278" as="geometry" />
+        </mxCell>
+        <mxCell id="mapper-attr" value="- _databaseContext_380_jh: DatabaseContext_380_jh {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="mapper">
+          <mxGeometry x="0" y="46" width="956" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="mapper-op" value="+ ValidarEstudio_380_jh(int idSolicitud, int idUsuario): CodigoOperacionPN2_380_jh&lt;br/&gt;+ ListarCandidatas_380_jh(int idSolicitud, int idUsuario): List&amp;lt;Unidad_380_jh&amp;gt;&lt;br/&gt;+ ListarReservas_380_jh(int? idSolicitudTransfusional, int idUsuario): List&amp;lt;Reserva_380_jh&amp;gt;&lt;br/&gt;+ Reservar_380_jh(Reserva_380_jh reserva, int idUsuario): CodigoOperacionPN2_380_jh&lt;br/&gt;+ Entregar_380_jh(int idReserva, string observacion, int idUsuario): CodigoOperacionPN2_380_jh&lt;br/&gt;+ CancelarReserva_380_jh(int idReserva, string motivo, int idUsuario): CodigoOperacionPN2_380_jh&lt;br/&gt;- Leer_380_jh&amp;lt;T&amp;gt;(string procedimiento, List&amp;lt;SqlParameter&amp;gt; parametros, Func&amp;lt;DataRow, T&amp;gt; mapear): List&amp;lt;T&amp;gt;&lt;br/&gt;- Ejecutar_380_jh(string procedimiento, List&amp;lt;SqlParameter&amp;gt; parametros, out int idResultado): CodigoOperacionPN2_380_jh&lt;br/&gt;- static MapearResultado_380_jh(string codigo): CodigoOperacionPN2_380_jh&lt;br/&gt;- static MapearReserva_380_jh(DataRow fila): Reserva_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="mapper">
+          <mxGeometry x="0" y="81" width="956" height="197" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="DatabaseContext_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="2892" y="520" width="590" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="db-attr" value="+ Conexion_380_jh: SqlConnection {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="db">
+          <mxGeometry x="0" y="46" width="590" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="db-op" value="+ Abrir_380_jh(): void&lt;br/&gt;+ Leer_380_jh(string sql, List&amp;lt;SqlParameter&amp;gt; parametros = null): DataTable&lt;br/&gt;+ Cerrar_380_jh(): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="db">
+          <mxGeometry x="0" y="81" width="590" height="71" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-mapper" value="UnidadDataMapper_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="3510" y="520" width="338" height="99" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-mapper-op" value="~ static MapearPublico_380_jh(&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;DataRow fila): Unidad_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="unidad-mapper">
+          <mxGeometry x="0" y="46" width="338" height="53" as="geometry" />
+        </mxCell>
+        <mxCell id="solicitud" value="SolicitudTransfusional_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="72" y="842" width="836" height="369" as="geometry" />
+        </mxCell>
+        <mxCell id="solicitud-attr" value="+ Id_380_jh: int&lt;br/&gt;+ PacienteReceptor_380_jh: string&lt;br/&gt;+ DocumentoReceptor_380_jh: string&lt;br/&gt;+ GrupoReceptor_380_jh: string&lt;br/&gt;+ RhReceptor_380_jh: string&lt;br/&gt;+ LaboratorioEstudio_380_jh: string&lt;br/&gt;+ ReferenciaEstudio_380_jh: string&lt;br/&gt;+ FechaEstudio_380_jh: DateTime?&lt;br/&gt;+ ResultadoAnticuerpos_380_jh: string&lt;br/&gt;+ IdUsuarioValidacion_380_jh: int?&lt;br/&gt;+ FechaValidacion_380_jh: DateTime?&lt;br/&gt;+ TipoComponente_380_jh: string&lt;br/&gt;+ CantidadRequerida_380_jh: int&lt;br/&gt;+ CantidadReservada_380_jh: int&lt;br/&gt;+ CantidadEntregada_380_jh: int&lt;br/&gt;+ SaldoPendiente_380_jh: int&lt;br/&gt;+ EstadoSolicitud_380_jh: string" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="solicitud">
+          <mxGeometry x="0" y="46" width="836" height="323" as="geometry" />
+        </mxCell>
+        <mxCell id="reserva" value="Reserva_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1012" y="842" width="836" height="297" as="geometry" />
+        </mxCell>
+        <mxCell id="reserva-attr" value="+ Id_380_jh: int&lt;br/&gt;+ IdSolicitudTransfusional_380_jh: int&lt;br/&gt;+ IdUnidad_380_jh: int&lt;br/&gt;+ CodigoIdentificacion_380_jh: string&lt;br/&gt;+ PacienteReceptor_380_jh: string&lt;br/&gt;+ TipoComponente_380_jh: string&lt;br/&gt;+ EstadoReserva_380_jh: string&lt;br/&gt;+ FechaReserva_380_jh: DateTime&lt;br/&gt;+ IdUsuarioResponsable_380_jh: int&lt;br/&gt;+ Responsable_380_jh: string&lt;br/&gt;+ Observacion_380_jh: string&lt;br/&gt;+ FechaCierre_380_jh: DateTime?&lt;br/&gt;+ MotivoCancelacion_380_jh: string" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="reserva">
+          <mxGeometry x="0" y="46" width="836" height="251" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad" value="Unidad_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1952" y="842" width="836" height="423" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-attr" value="+ Id_380_jh: int&lt;br/&gt;+ CodigoIdentificacion_380_jh: string&lt;br/&gt;+ IdDonacion_380_jh: int&lt;br/&gt;+ IdDonante_380_jh: int?&lt;br/&gt;+ DocumentoDonante_380_jh: string&lt;br/&gt;+ Donante_380_jh: string&lt;br/&gt;+ GrupoSanguineoDonante_380_jh: string&lt;br/&gt;+ FactorRhDonante_380_jh: string&lt;br/&gt;+ TipoComponente_380_jh: string&lt;br/&gt;+ FechaVencimiento_380_jh: DateTime&lt;br/&gt;+ GrupoSanguineo_380_jh: string&lt;br/&gt;+ FactorRh_380_jh: string&lt;br/&gt;+ Observaciones_380_jh: string&lt;br/&gt;+ EstadoOperativo_380_jh: string&lt;br/&gt;+ EstadoOperativoDescripcion_380_jh: string&lt;br/&gt;+ Ubicacion_380_jh: string&lt;br/&gt;+ FechaAlta_380_jh: DateTime&lt;br/&gt;+ FechaUltimaModificacion_380_jh: DateTime&lt;br/&gt;+ IdUsuarioUltimaModificacion_380_jh: int&lt;br/&gt;+ ClasificacionPendiente_380_jh: bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="unidad">
+          <mxGeometry x="0" y="46" width="836" height="377" as="geometry" />
+        </mxCell>
+        <mxCell id="resultado" value="«enumeration»&lt;br/&gt;CodigoOperacionPN2_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="2892" y="842" width="956" height="171" as="geometry" />
+        </mxCell>
+        <mxCell id="resultado-attr" value="Ok_380_jh&lt;br/&gt;DatosInvalidos_380_jh&lt;br/&gt;NoEncontrado_380_jh&lt;br/&gt;ConflictoEstado_380_jh&lt;br/&gt;SinDisponibilidad_380_jh&lt;br/&gt;CantidadCompleta_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="resultado">
+          <mxGeometry x="0" y="46" width="956" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ui-app" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=1;exitY=0.171429;entryX=0;entryY=0.247934;" edge="1" parent="1" source="ui" target="app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-app-repo" value="delega" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=1;exitY=0.247934;entryX=0;entryY=0.291262;" edge="1" parent="1" source="app" target="repo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-repo-mapper" value="delega" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=1;exitY=0.291262;entryX=0;entryY=0.215827;" edge="1" parent="1" source="repo" target="mapper">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-mapper-db" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=0.3;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="mapper" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-mapper-unidad-mapper" value="mapea candidatas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.82;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="mapper" target="unidad-mapper">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ui-solicitud" value="consulta y valida" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="ui" target="solicitud">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ui-reserva" value="crea y selecciona" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.78;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="ui" target="reserva">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ui-unidad" value="selecciona" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=1;exitY=0.98;entryX=0.5;entryY=0;" edge="1" parent="1" source="ui" target="unidad">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-solicitud-reserva" value="corresponde a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=0;exitY=0.2;entryX=1;entryY=0.16;" edge="1" parent="1" source="reserva" target="solicitud">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-reserva-unidad" value="unidad reservada" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=1;exitY=0.2;entryX=0;entryY=0.14;" edge="1" parent="1" source="reserva" target="unidad">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-mapper-resultado" value="devuelve" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=1;exitY=0.85;entryX=1;entryY=0.5;" edge="1" parent="1" source="mapper" target="resultado">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

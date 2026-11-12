@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="Electron" agent="Codex" version="24.7.17">
+  <diagram id="seq-06" name="CDUN-05 Registrar solicitud transfusional">
+    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="5485" pageHeight="5030" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sequence-title" value="CDUN-05 — Secuencia: Registrar solicitud transfusional" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=30;fontStyle=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="35" y="20" width="5415" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-actor" value="Personal de registro" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#ffe6cc;strokeColor=#d79b00;participant=seqActorStick;" vertex="1" parent="1">
+          <mxGeometry x="55" y="96" width="180" height="4910" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-ui" value="UI" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="538" y="96" width="264" height="4910" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-solicitud" value="Domain.&lt;br/&gt;SolicitudTransfusional_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="1165" y="96" width="330" height="4910" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-app" value="Application.&lt;br/&gt;PN2ApplicationService_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1835" y="96" width="350" height="4910" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-repo" value="Repository.&lt;br/&gt;PN2Repository_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="2560" y="96" width="300" height="4910" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-mapper" value="DAL.&lt;br/&gt;PN2DataMapper_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="3250" y="96" width="300" height="4910" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-db" value="DAL.&lt;br/&gt;DatabaseContext_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="4370" y="96" width="300" height="4910" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-sql" value="SQL Server" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="5068" y="96" width="264" height="4910" as="geometry" />
+        </mxCell>
+        <mxCell id="registro-datos-invalidos" value="break [4.1 · !valida: datos del pedido inválidos o estudio parcial/inválido]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="702" width="2070" height="244" as="geometry" />
+        </mxCell>
+        <mxCell id="asignar-identificador" value="opt [resultado == CodigoOperacionPN2_380_jh.Ok_380_jh]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1285" y="2112" width="2255" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="registro-rechazado" value="break [4.1 · resultado == CodigoOperacionPN2_380_jh.DatosInvalidos_380_jh]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="2502" width="820" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="registro" value="sd   CDUN-05 · Registrar solicitud transfusional" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="232" width="5290" height="2488" as="geometry" />
+        </mxCell>
+        <mxCell id="estudio-datos-invalidos" value="break [!valida: identificador o datos del estudio inválidos; fecha ausente o futura]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="3326" width="2070" height="244" as="geometry" />
+        </mxCell>
+        <mxCell id="estudio-rechazado" value="break [resultado != CodigoOperacionPN2_380_jh.Ok_380_jh]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="4724" width="820" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="carga-posterior" value="opt [2.1 · Completar o corregir después el estudio sin validar y sin reservas activas o entregadas]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="2748" width="5290" height="2212" as="geometry" />
+        </mxCell>
+        <mxCell id="cdun05-msg-1" value="Confirma el registro del pedido y los datos del receptor.&lt;br/&gt;2.1 · Si falta el informe, deja el estudio vacío." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="145" y="344" as="sourcePoint" />
+            <mxPoint x="670" y="344" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-2" value="SolicitudesTransfusionalesView_380_jh.Registrar_Click_380_jh(sender, e)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="670" y="394" as="sourcePoint" />
+            <mxPoint x="670" y="416" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="742" y="394" /><mxPoint x="742" y="416" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-3" value="new SolicitudTransfusional_380_jh&lt;br/&gt;PacienteReceptor_380_jh · DocumentoReceptor_380_jh&lt;br/&gt;ProfesionalSolicitante_380_jh&lt;br/&gt;GrupoReceptor_380_jh · RhReceptor_380_jh&lt;br/&gt;LaboratorioEstudio_380_jh · ReferenciaEstudio_380_jh&lt;br/&gt;FechaEstudio_380_jh · ResultadoAnticuerpos_380_jh&lt;br/&gt;TipoComponente_380_jh · CantidadRequerida_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="670" y="574" as="sourcePoint" />
+            <mxPoint x="1330" y="574" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-4" value="solicitud" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1330" y="624" as="sourcePoint" />
+            <mxPoint x="670" y="624" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-5" value="RegistrarSolicitud_380_jh(solicitud)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="670" y="674" as="sourcePoint" />
+            <mxPoint x="2010" y="674" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-6" value="CodigoOperacionPN2_380_jh.DatosInvalidos_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2010" y="796" as="sourcePoint" />
+            <mxPoint x="670" y="796" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-7" value="ControlesPN2_380_jh.MostrarResultado_380_jh(this, resultado)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="670" y="846" as="sourcePoint" />
+            <mxPoint x="670" y="868" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="742" y="846" /><mxPoint x="742" y="868" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-8" value="Informa datos inválidos; la operación no se registra." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="670" y="918" as="sourcePoint" />
+            <mxPoint x="145" y="918" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-9" value="solicitud.PacienteReceptor_380_jh =&lt;br/&gt;Limpiar_380_jh(solicitud.PacienteReceptor_380_jh)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="2010" y="1014" as="sourcePoint" />
+            <mxPoint x="2010" y="1036" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="2082" y="1014" /><mxPoint x="2082" y="1036" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-10" value="solicitud.TipoComponente_380_jh =&lt;br/&gt;Limpiar_380_jh(solicitud.TipoComponente_380_jh)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="2010" y="1104" as="sourcePoint" />
+            <mxPoint x="2010" y="1126" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="2082" y="1104" /><mxPoint x="2082" y="1126" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-11" value="RegistrarSolicitud_380_jh(solicitud, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2010" y="1176" as="sourcePoint" />
+            <mxPoint x="2710" y="1176" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-12" value="RegistrarSolicitud_380_jh(solicitud, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2710" y="1226" as="sourcePoint" />
+            <mxPoint x="3400" y="1226" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-13" value="Ejecutar_380_jh(&amp;quot;sp_SolicitudTransfusional_Registrar&amp;quot;,&lt;br/&gt;    ParametrosUsuario_380_jh(idUsuario, Texto_380_jh(&amp;quot;@paciente_receptor&amp;quot;, solicitud.PacienteReceptor_380_jh, 150),&lt;br/&gt;        Texto_380_jh(&amp;quot;@tipo_componente&amp;quot;, solicitud.TipoComponente_380_jh, 100),&lt;br/&gt;        Entero_380_jh(&amp;quot;@cantidad_requerida&amp;quot;, solicitud.CantidadRequerida_380_jh),&lt;br/&gt;        Texto_380_jh(&amp;quot;@documento_receptor&amp;quot;, solicitud.DocumentoReceptor_380_jh, 50),&lt;br/&gt;        Texto_380_jh(&amp;quot;@grupo_receptor&amp;quot;, solicitud.GrupoReceptor_380_jh, 5, false),&lt;br/&gt;        Texto_380_jh(&amp;quot;@rh_receptor&amp;quot;, solicitud.RhReceptor_380_jh, 5, false),&lt;br/&gt;        Texto_380_jh(&amp;quot;@laboratorio_estudio&amp;quot;, solicitud.LaboratorioEstudio_380_jh, 150),&lt;br/&gt;        Texto_380_jh(&amp;quot;@referencia_estudio&amp;quot;, solicitud.ReferenciaEstudio_380_jh, 150),&lt;br/&gt;        Fecha_380_jh(&amp;quot;@fecha_estudio&amp;quot;, solicitud.FechaEstudio_380_jh),&lt;br/&gt;        Texto_380_jh(&amp;quot;@resultado_anticuerpos&amp;quot;, solicitud.ResultadoAnticuerpos_380_jh, 500),&lt;br/&gt;        Texto_380_jh(&amp;quot;@nombre_solicitante&amp;quot;, solicitud.ProfesionalSolicitante_380_jh, 150)), out id)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3400" y="1474" as="sourcePoint" />
+            <mxPoint x="3400" y="1496" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3472" y="1474" /><mxPoint x="3472" y="1496" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-14" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3400" y="1546" as="sourcePoint" />
+            <mxPoint x="4520" y="1546" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-15" value="Leer_380_jh(procedimiento, parametros)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3400" y="1596" as="sourcePoint" />
+            <mxPoint x="4520" y="1596" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-16" value="sp_SolicitudTransfusional_Registrar(@paciente_receptor, @tipo_componente,&lt;br/&gt;@cantidad_requerida, @id_usuario, @documento_receptor, @grupo_receptor,&lt;br/&gt;@rh_receptor, @laboratorio_estudio, @referencia_estudio, @fecha_estudio,&lt;br/&gt;@resultado_anticuerpos, @nombre_solicitante)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="4520" y="1700" as="sourcePoint" />
+            <mxPoint x="5200" y="1700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-17" value="codigo_resultado: OK o DATOS_INVALIDOS&lt;br/&gt;id_resultado: identificador de la solicitud o null" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5200" y="1768" as="sourcePoint" />
+            <mxPoint x="4520" y="1768" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-18" value="tabla" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="4520" y="1818" as="sourcePoint" />
+            <mxPoint x="3400" y="1818" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-19" value="MapearResultado_380_jh(fila[&amp;quot;codigo_resultado&amp;quot;].ToString())" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3400" y="1868" as="sourcePoint" />
+            <mxPoint x="3400" y="1890" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3472" y="1868" /><mxPoint x="3472" y="1890" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-20" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3400" y="1940" as="sourcePoint" />
+            <mxPoint x="3400" y="1962" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3472" y="1940" /><mxPoint x="3472" y="1962" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-21" value="Cerrar_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3400" y="2012" as="sourcePoint" />
+            <mxPoint x="4520" y="2012" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-22" value="resultado · out idResultado → id" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3400" y="2062" as="sourcePoint" />
+            <mxPoint x="3400" y="2084" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3472" y="2062" /><mxPoint x="3472" y="2084" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-23" value="solicitud.Id_380_jh = id&lt;br/&gt;solicitud.IdUsuarioSolicitante_380_jh = idUsuario" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3400" y="2224" as="sourcePoint" />
+            <mxPoint x="1330" y="2224" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-24" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3400" y="2302" as="sourcePoint" />
+            <mxPoint x="2710" y="2302" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-25" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2710" y="2352" as="sourcePoint" />
+            <mxPoint x="2010" y="2352" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-26" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2010" y="2402" as="sourcePoint" />
+            <mxPoint x="670" y="2402" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-27" value="ControlesPN2_380_jh.MostrarResultado_380_jh(this, resultado)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="670" y="2452" as="sourcePoint" />
+            <mxPoint x="670" y="2474" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="742" y="2452" /><mxPoint x="742" y="2474" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-28" value="Informa los datos inválidos; la solicitud no se registra." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="670" y="2596" as="sourcePoint" />
+            <mxPoint x="145" y="2596" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-29" value="Confirma la solicitud con los datos del paciente registrados.&lt;br/&gt;El estudio queda pendiente de validación." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="670" y="2692" as="sourcePoint" />
+            <mxPoint x="145" y="2692" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-30" value="Pulsa Actualizar estudio sobre la solicitud registrada." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="145" y="2842" as="sourcePoint" />
+            <mxPoint x="670" y="2842" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-31" value="SolicitudesTransfusionalesView_380_jh.ActualizarEstudio_Click_380_jh(sender, e)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="670" y="2892" as="sourcePoint" />
+            <mxPoint x="670" y="2914" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="742" y="2892" /><mxPoint x="742" y="2914" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-32" value="ControlesPN2_380_jh.Seleccionado_380_jh&amp;lt;SolicitudTransfusional_380_jh&amp;gt;(_grid_380_jh)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="670" y="2964" as="sourcePoint" />
+            <mxPoint x="670" y="2986" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="742" y="2964" /><mxPoint x="742" y="2986" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-33" value="seleccion" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="670" y="3036" as="sourcePoint" />
+            <mxPoint x="670" y="3058" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="742" y="3036" /><mxPoint x="742" y="3058" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-34" value="new SolicitudTransfusional_380_jh&lt;br/&gt;Id_380_jh · DocumentoReceptor_380_jh&lt;br/&gt;ProfesionalSolicitante_380_jh&lt;br/&gt;GrupoReceptor_380_jh · RhReceptor_380_jh&lt;br/&gt;LaboratorioEstudio_380_jh · ReferenciaEstudio_380_jh&lt;br/&gt;FechaEstudio_380_jh · ResultadoAnticuerpos_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="670" y="3198" as="sourcePoint" />
+            <mxPoint x="1330" y="3198" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-35" value="datos" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1330" y="3248" as="sourcePoint" />
+            <mxPoint x="670" y="3248" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-36" value="ActualizarEstudio_380_jh(datos)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="670" y="3298" as="sourcePoint" />
+            <mxPoint x="2010" y="3298" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-37" value="CodigoOperacionPN2_380_jh.DatosInvalidos_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2010" y="3420" as="sourcePoint" />
+            <mxPoint x="670" y="3420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-38" value="ControlesPN2_380_jh.MostrarResultado_380_jh(this, resultado)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="670" y="3470" as="sourcePoint" />
+            <mxPoint x="670" y="3492" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="742" y="3470" /><mxPoint x="742" y="3492" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-39" value="Informa datos inválidos; la operación no se registra." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="670" y="3542" as="sourcePoint" />
+            <mxPoint x="145" y="3542" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-40" value="ActualizarEstudio_380_jh(solicitud, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2010" y="3620" as="sourcePoint" />
+            <mxPoint x="2710" y="3620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-41" value="ActualizarEstudio_380_jh(solicitud, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2710" y="3670" as="sourcePoint" />
+            <mxPoint x="3400" y="3670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-42" value="Ejecutar_380_jh(&amp;quot;sp_PN2_ActualizarEstudio&amp;quot;, ParametrosUsuario_380_jh(idUsuario,&lt;br/&gt;    Entero_380_jh(&amp;quot;@id_solicitud&amp;quot;, solicitud.Id_380_jh),&lt;br/&gt;    Texto_380_jh(&amp;quot;@documento_receptor&amp;quot;, solicitud.DocumentoReceptor_380_jh, 50),&lt;br/&gt;    Texto_380_jh(&amp;quot;@grupo_receptor&amp;quot;, solicitud.GrupoReceptor_380_jh, 5, false),&lt;br/&gt;    Texto_380_jh(&amp;quot;@rh_receptor&amp;quot;, solicitud.RhReceptor_380_jh, 5, false),&lt;br/&gt;    Texto_380_jh(&amp;quot;@laboratorio_estudio&amp;quot;, solicitud.LaboratorioEstudio_380_jh, 150),&lt;br/&gt;    Texto_380_jh(&amp;quot;@referencia_estudio&amp;quot;, solicitud.ReferenciaEstudio_380_jh, 150),&lt;br/&gt;    Fecha_380_jh(&amp;quot;@fecha_estudio&amp;quot;, solicitud.FechaEstudio_380_jh),&lt;br/&gt;    Texto_380_jh(&amp;quot;@resultado_anticuerpos&amp;quot;, solicitud.ResultadoAnticuerpos_380_jh, 500),&lt;br/&gt;    Texto_380_jh(&amp;quot;@nombre_solicitante&amp;quot;, solicitud.ProfesionalSolicitante_380_jh, 150)), out id)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3400" y="3882" as="sourcePoint" />
+            <mxPoint x="3400" y="3904" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3472" y="3882" /><mxPoint x="3472" y="3904" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-43" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3400" y="3954" as="sourcePoint" />
+            <mxPoint x="4520" y="3954" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-44" value="Leer_380_jh(procedimiento, parametros)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3400" y="4004" as="sourcePoint" />
+            <mxPoint x="4520" y="4004" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-45" value="sp_PN2_ActualizarEstudio(@id_solicitud, @id_usuario, @documento_receptor,&lt;br/&gt;@grupo_receptor, @rh_receptor, @laboratorio_estudio, @referencia_estudio,&lt;br/&gt;@fecha_estudio, @resultado_anticuerpos, @nombre_solicitante)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="4520" y="4090" as="sourcePoint" />
+            <mxPoint x="5200" y="4090" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-46" value="codigo_resultado: OK, DATOS_INVALIDOS o CONFLICTO_ESTADO&lt;br/&gt;id_resultado: identificador de la solicitud o null" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5200" y="4158" as="sourcePoint" />
+            <mxPoint x="4520" y="4158" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-47" value="tabla" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="4520" y="4208" as="sourcePoint" />
+            <mxPoint x="3400" y="4208" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-48" value="MapearResultado_380_jh(fila[&amp;quot;codigo_resultado&amp;quot;].ToString())" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3400" y="4258" as="sourcePoint" />
+            <mxPoint x="3400" y="4280" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3472" y="4258" /><mxPoint x="3472" y="4280" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-49" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3400" y="4330" as="sourcePoint" />
+            <mxPoint x="3400" y="4352" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3472" y="4330" /><mxPoint x="3472" y="4352" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-50" value="Cerrar_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3400" y="4402" as="sourcePoint" />
+            <mxPoint x="4520" y="4402" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-51" value="resultado · out idResultado → id" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3400" y="4452" as="sourcePoint" />
+            <mxPoint x="3400" y="4474" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3472" y="4452" /><mxPoint x="3472" y="4474" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-52" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3400" y="4524" as="sourcePoint" />
+            <mxPoint x="2710" y="4524" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-53" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2710" y="4574" as="sourcePoint" />
+            <mxPoint x="2010" y="4574" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-54" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2010" y="4624" as="sourcePoint" />
+            <mxPoint x="670" y="4624" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-55" value="ControlesPN2_380_jh.MostrarResultado_380_jh(this, resultado)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="670" y="4674" as="sourcePoint" />
+            <mxPoint x="670" y="4696" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="742" y="4674" /><mxPoint x="742" y="4696" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-56" value="Informa datos inválidos o que el estudio no puede modificarse.&lt;br/&gt;La actualización no se registra." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="670" y="4836" as="sourcePoint" />
+            <mxPoint x="145" y="4836" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun05-msg-57" value="Confirma el estudio actualizado,&lt;br/&gt;pendiente de validación." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="670" y="4932" as="sourcePoint" />
+            <mxPoint x="145" y="4932" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -53,7 +53,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Common\TranslationApplier.cs" />
-    <Compile Include="Views\PN1\CompatibilidadesView.cs" />
+    <Compile Include="Views\PN1\CompatibilidadesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Common\ComprobantePdfUI.cs" />
     <Compile Include="Views\Idiomas\IdiomasView.cs">
       <SubType>UserControl</SubType>
@@ -105,14 +107,18 @@
     </Compile>
     <Compile Include="Views\PN1\ProteccionIntegridad.cs" />
     <Compile Include="Views\PN1\MaestrosCombo.cs" />
-    <Compile Include="Views\PN1\MaestrosView.cs"><SubType>UserControl</SubType></Compile>
+    <Compile Include="Views\PN1\MaestrosView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Views\PN1\DonantesView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\PN1\DonacionesView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\PN1\CantidadDonacionDialog.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="Views\PN1\CantidadDonacionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\PN1\UnidadesView.cs">
       <SubType>UserControl</SubType>
     </Compile>

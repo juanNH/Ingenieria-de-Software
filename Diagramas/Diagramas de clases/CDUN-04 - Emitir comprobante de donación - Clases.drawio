@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="Electron" agent="Codex" version="24.7.17">
+  <diagram id="case-05" name="CDUN-04 Emitir comprobante de donación">
+    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3850" pageHeight="1160" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pkg0" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="700" height="510" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg0-label" value="UI" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="52" y="102" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg1" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="780" y="100" width="700" height="510" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg1-label" value="Application" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="792" y="102" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg2" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="100" width="700" height="510" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg2-label" value="Repository" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1532" y="102" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg3" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="2260" y="100" width="700" height="510" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg3-label" value="DAL" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2272" y="102" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg4" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="3000" y="100" width="800" height="510" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg4-label" value="Services" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="3012" y="102" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-domain" value="" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="700" width="3760" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="pkg-domain-label" value="Domain" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="52" y="702" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="diagram-title" value="CDUN-04 — Diagrama de clases: Emitir comprobante de donación" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=26;fontStyle=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="3760" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ui" value="«static»&lt;br/&gt;ComprobantePdfUI_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="72" y="157" width="636" height="99" as="geometry" />
+        </mxCell>
+        <mxCell id="ui-op" value="~ static ProcesarPendientes_380_jh(Control propietario, bool mostrarExito,&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;bool mostrarSinPendientes = true): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="ui">
+          <mxGeometry x="0" y="46" width="636" height="53" as="geometry" />
+        </mxCell>
+        <mxCell id="app" value="ComprobanteAutomaticoApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="812" y="157" width="636" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="app-attr" value="- _repositorio: ComprobanteRepository_380_jh {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="app">
+          <mxGeometry x="0" y="46" width="636" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="app-op" value="+ ProcesarPendientes_380_jh(): ResultadoComprobantes_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="app">
+          <mxGeometry x="0" y="81" width="636" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="domain2" value="ResultadoComprobantes_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="812" y="385" width="636" height="117" as="geometry" />
+        </mxCell>
+        <mxCell id="domain2-attr" value="+ Archivos_380_jh: List&amp;lt;string&amp;gt; {readOnly}&lt;br/&gt;+ Pendientes_380_jh: int&lt;br/&gt;+ ErrorConsulta_380_jh: bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="domain2">
+          <mxGeometry x="0" y="46" width="636" height="71" as="geometry" />
+        </mxCell>
+        <mxCell id="repo" value="ComprobanteRepository_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1552" y="157" width="636" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-attr" value="- _mapper: ComprobanteDataMapper_380_jh {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="repo">
+          <mxGeometry x="0" y="46" width="636" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-op" value="+ ListarPendientes_380_jh(int idUsuario): List&amp;lt;ComprobantePendiente_380_jh&amp;gt;&lt;br/&gt;+ MarcarGenerado_380_jh(long id, int idUsuario, string ruta): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="repo">
+          <mxGeometry x="0" y="81" width="636" height="53" as="geometry" />
+        </mxCell>
+        <mxCell id="mapper" value="ComprobanteDataMapper_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="2292" y="157" width="636" height="99" as="geometry" />
+        </mxCell>
+        <mxCell id="mapper-op" value="+ ListarPendientes_380_jh(int idUsuario): List&amp;lt;ComprobantePendiente_380_jh&amp;gt;&lt;br/&gt;+ MarcarGenerado_380_jh(long id, int idUsuario, string ruta): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="mapper">
+          <mxGeometry x="0" y="46" width="636" height="53" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="DatabaseContext_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="2292" y="390" width="636" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="db-attr" value="+ Conexion_380_jh: SqlConnection {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="db">
+          <mxGeometry x="0" y="46" width="636" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="db-op" value="+ Abrir_380_jh(): void&lt;br/&gt;+ Leer_380_jh(string sql, List&amp;lt;SqlParameter&amp;gt; parametros = null): DataTable&lt;br/&gt;+ Cerrar_380_jh(): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="db">
+          <mxGeometry x="0" y="81" width="636" height="71" as="geometry" />
+        </mxCell>
+        <mxCell id="pdf" value="ComprobantePdfService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="3032" y="157" width="736" height="99" as="geometry" />
+        </mxCell>
+        <mxCell id="pdf-op" value="+ GuardarPN1_380_jh(string archivo, IList&amp;lt;Unidad_380_jh&amp;gt; unidades,&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;string usuario, bool instantaneaOperacion, string identificador = null): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="pdf">
+          <mxGeometry x="0" y="46" width="736" height="53" as="geometry" />
+        </mxCell>
+        <mxCell id="domain0" value="ComprobantePendiente_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="72" y="752" width="600" height="153" as="geometry" />
+        </mxCell>
+        <mxCell id="domain0-attr" value="+ Id_380_jh: long&lt;br/&gt;+ Identificador_380_jh: Guid&lt;br/&gt;+ Proceso_380_jh: string&lt;br/&gt;+ IdReferencia_380_jh: int&lt;br/&gt;+ DatosXml_380_jh: string" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="domain0">
+          <mxGeometry x="0" y="46" width="600" height="107" as="geometry" />
+        </mxCell>
+        <mxCell id="domain1" value="DatosComprobanteAutomatico_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="812" y="752" width="650" height="117" as="geometry" />
+        </mxCell>
+        <mxCell id="domain1-attr" value="+ Tipo: string&lt;br/&gt;+ Usuario: string&lt;br/&gt;+ Unidades: List&amp;lt;Unidad_380_jh&amp;gt;" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="domain1">
+          <mxGeometry x="0" y="46" width="650" height="71" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad" value="Unidad_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="3032" y="752" width="736" height="333" as="geometry" />
+        </mxCell>
+        <mxCell id="unidad-attr" value="+ Id_380_jh: int&lt;br/&gt;+ CodigoIdentificacion_380_jh: string&lt;br/&gt;+ IdDonacion_380_jh: int&lt;br/&gt;+ IdDonante_380_jh: int?&lt;br/&gt;+ Donante_380_jh: string&lt;br/&gt;+ DocumentoDonante_380_jh: string&lt;br/&gt;+ TipoComponente_380_jh: string&lt;br/&gt;+ GrupoSanguineo_380_jh: string&lt;br/&gt;+ FactorRh_380_jh: string&lt;br/&gt;+ FechaVencimiento_380_jh: DateTime&lt;br/&gt;+ EstadoOperativo_380_jh: string&lt;br/&gt;+ FechaAlta_380_jh: DateTime&lt;br/&gt;+ FechaUltimaModificacion_380_jh: DateTime&lt;br/&gt;+ IdUsuarioUltimaModificacion_380_jh: int&lt;br/&gt;+ Observaciones_380_jh: string" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="unidad">
+          <mxGeometry x="0" y="46" width="736" height="287" as="geometry" />
+        </mxCell>
+        <mxCell id="e0" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=1;exitY=0.606061;entryX=0;entryY=0.517241;" edge="1" parent="1" source="ui" target="app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="delega" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=1;exitY=0.517241;entryX=0;entryY=0.447761;" edge="1" parent="1" source="app" target="repo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="delega" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=1;exitY=0.447761;entryX=0;entryY=0.606061;" edge="1" parent="1" source="repo" target="mapper">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="genera el PDF" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.85;exitY=1;entryX=0;entryY=0.6;" edge="1" parent="1" source="app" target="pdf">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1353" y="330" />
+              <mxPoint x="2980" y="330" />
+              <mxPoint x="2980" y="217" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="mapper" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-resultado" value="devuelve" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="app" target="domain2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-domain0" value="procesa los pendientes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0;exitY=0.6;entryX=0.5;entryY=0;" edge="1" parent="1" source="app" target="domain0">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="227" />
+              <mxPoint x="760" y="650" />
+              <mxPoint x="372" y="650" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dep-domain1" value="utiliza los datos del comprobante" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=1;exitY=0.8;entryX=0.5;entryY=0;" edge="1" parent="1" source="app" target="domain1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1500" y="250" />
+              <mxPoint x="1500" y="650" />
+              <mxPoint x="1137" y="650" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="datos-unidades" value="1..* unidades de la donación" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=1;exitY=0.6;entryX=0;entryY=0.210811;" edge="1" parent="1" source="domain1" target="unidad">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pdf-unidades" value="incluye sus datos en el comprobante" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="pdf" target="unidad">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -26,7 +26,7 @@ permisos para crear y modificar la base `HemovidaGest`:
 12. `StoredProcedures/09a_RelacionesSolicitudPN2.sql` — aplica las claves foráneas de la solicitud a los catálogos y al usuario que valida el estudio.
 13. `StoredProcedures/10_IntegridadPN2.sql` — extiende la integridad para PN2.
 14. `StoredProcedures/11_ComprobantesAutomaticos.sql` — comprobantes automáticos.
-15. `StoredProcedures/12_DiagramasSSMS.sql` — crea los diagramas CDUN-01 a CDUN-11 en Database Diagrams de SSMS, con sus diseños guardados.
+15. `StoredProcedures/12_DiagramasSSMS.sql` — crea los diagramas CDUN-01 a CDUN-08 en Database Diagrams de SSMS, con sus diseños guardados; CDUN-06 conserva tres vistas complementarias del mismo caso.
 16. `StoredProcedures/13_AjusteCantidadDonacion.sql` — corrección de cantidades e historial de donaciones.
 
 Para instalar solo PN1, detenete después del paso 9. Los pasos 10 a 14 son la
@@ -49,7 +49,7 @@ integridad al finalizar:
 | Incorporar la corrección de cantidades en una base con PN2 y comprobantes | `./Database/InstalarMaestrosPN1.ps1` |
 
 `InstalarPN2.ps1` aplica, en orden, `08_PN2_Catalogos.sql`, `06_MaestrosPN1.sql`,
-`06a_CompatibilidadTransfusional.sql`, `06b_TipificacionDonante.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql`, `12_DiagramasSSMS.sql` y `13_AjusteCantidadDonacion.sql`. El script 12 crea los diagramas que falten y conserva los existentes. Requiere permisos de propietario de la base. Los diagramas dependen del esquema de tablas instalado.
+`06a_CompatibilidadTransfusional.sql`, `06b_TipificacionDonante.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql`, `12_DiagramasSSMS.sql` y `13_AjusteCantidadDonacion.sql`. El script 12 crea los diagramas que falten y actualiza la numeración a CDUN-01–08. Conserva la disposición del nombre canónico cuando ya existe y retira las entradas anteriores duplicadas, incluida la decisión operativa unificada en CDUN-03. Requiere permisos de propietario de la base. Los diagramas dependen del esquema de tablas instalado.
 
 Para recuperar solo los diagramas después de reconstruir el esquema, ejecutá desde
 la raíz del proyecto `sqlcmd -S . -E -d HemovidaGest -b -i Database/StoredProcedures/12_DiagramasSSMS.sql`.

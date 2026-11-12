@@ -1,329 +1,237 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <mxfile host="Electron" agent="Codex" version="24.7.17">
   <diagram id="4b3f48f7739043cab43cc27f7eb3df61" name="CDUN-01 Registrar donante">
-    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3350" pageHeight="3138" math="0" shadow="0">
+    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3625" pageHeight="1662" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="sequence-title" value="CDUN-01 — Secuencia: Registrar donante" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=30;fontStyle=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="80" y="20" width="2940" height="60" as="geometry" />
+          <mxGeometry x="35" y="20" width="3555" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="participant-0" value="Personal de&lt;br/&gt;extracción" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;participant=seqActorStick;" vertex="1" parent="1">
-          <mxGeometry x="45" y="96" width="210" height="3028.0" as="geometry" />
+        <mxCell id="participant-actor" value="Personal de&lt;br/&gt;extracción" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#ffe6cc;strokeColor=#d79b00;participant=seqActorStick;" vertex="1" parent="1">
+          <mxGeometry x="23" y="96" width="244" height="1542" as="geometry" />
         </mxCell>
-        <mxCell id="participant-2" value="UI" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="545" y="96" width="210" height="3028.0" as="geometry" />
+        <mxCell id="participant-ui" value="UI" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="443" y="96" width="244" height="1542" as="geometry" />
         </mxCell>
-        <mxCell id="participant-3" value="Domain.Donante_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="795" y="96" width="210" height="3028.0" as="geometry" />
+        <mxCell id="participant-donor" value="Domain.&lt;br/&gt;Donante_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="1053" y="96" width="244" height="1542" as="geometry" />
         </mxCell>
-        <mxCell id="participant-4" value="Application.&lt;br/&gt;DonanteApplicationService&lt;br/&gt;_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="1045" y="96" width="210" height="3028.0" as="geometry" />
+        <mxCell id="participant-app" value="Application.&lt;br/&gt;DonanteApplicationService_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1438" y="96" width="244" height="1542" as="geometry" />
         </mxCell>
-        <mxCell id="participant-5" value="Application.&lt;br/&gt;AutorizacionApplicationService&lt;br/&gt;_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="1545.0" y="96" width="210" height="3028.0" as="geometry" />
+        <mxCell id="participant-repo" value="Repository.&lt;br/&gt;DonanteRepository_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1873" y="96" width="244" height="1542" as="geometry" />
         </mxCell>
-        <mxCell id="participant-6" value="Application.&lt;br/&gt;IntegridadApplicationService&lt;br/&gt;_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="1795.0" y="96" width="210" height="3028.0" as="geometry" />
+        <mxCell id="participant-mapper" value="DAL.&lt;br/&gt;DonanteDataMapper_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="2293" y="96" width="244" height="1542" as="geometry" />
         </mxCell>
-        <mxCell id="participant-7" value="Repository.&lt;br/&gt;DonanteRepository_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="2045.0" y="96" width="210" height="3028.0" as="geometry" />
+        <mxCell id="participant-db" value="DAL.&lt;br/&gt;DatabaseContext_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="2748" y="96" width="244" height="1542" as="geometry" />
         </mxCell>
-        <mxCell id="participant-8" value="DAL.DonanteDataMapper_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="2295.0" y="96" width="210" height="3028.0" as="geometry" />
+        <mxCell id="participant-sql" value="SQL Server" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="3298" y="96" width="244" height="1542" as="geometry" />
         </mxCell>
-        <mxCell id="participant-9" value="DAL.DatabaseContext_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#f8cecc;strokeColor=#b85450;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="2545.0" y="96" width="210" height="3028.0" as="geometry" />
+        <mxCell id="validacion-alta" value="alt [Faltan documento, nombre o apellido]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="520" y="431" width="2990" height="761" as="geometry" />
         </mxCell>
-        <mxCell id="participant-10" value="SQL Server" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="2795.0" y="96" width="210" height="3028.0" as="geometry" />
+        <mxCell id="validacion-alta-branch-1-separator" value="" style="shape=line;strokeColor=#d79b00;dashed=1;dashPattern=6 4;" vertex="1" parent="1">
+          <mxGeometry x="520" y="512" width="2990" height="1" as="geometry" />
         </mxCell>
-        <mxCell id="participant-11" value="Application.&lt;br/&gt;BitacoraApplicationService&lt;br/&gt;_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="3045.0" y="96" width="210" height="3028.0" as="geometry" />
+        <mxCell id="validacion-alta-branch-1-guard" value="[Datos obligatorios presentes]" style="text;html=1;whiteSpace=nowrap;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;strokeColor=none;fillColor=#ffffff;spacingLeft=4;fontStyle=2;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="528" y="515" width="260" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="alt-frame" value="alt" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
-          <mxGeometry x="530" y="1641" width="2710.0" height="1355.0" as="geometry" />
+        <mxCell id="documento-duplicado" value="alt [Documento duplicado]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="2825" y="788" width="685" height="161" as="geometry" />
         </mxCell>
-        <mxCell id="alt-separator" value="" style="shape=line;strokeColor=#d79b00;dashed=1;dashPattern=6 4;" vertex="1" parent="1">
-          <mxGeometry x="530" y="1836" width="2710.0" height="1" as="geometry" />
+        <mxCell id="documento-duplicado-branch-1-separator" value="" style="shape=line;strokeColor=#d79b00;dashed=1;dashPattern=6 4;" vertex="1" parent="1">
+          <mxGeometry x="2825" y="869" width="685" height="1" as="geometry" />
         </mxCell>
-        <mxCell id="guard-error" value="[sin permiso, datos inválidos o integridad inválida]" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=12;fontColor=#b85450;fontStyle=2;align=left;verticalAlign=middle;strokeColor=none;fillColor=#ffffff;spacingLeft=4;" vertex="1" parent="1">
-          <mxGeometry x="570" y="1671" width="1000" height="24" as="geometry" />
+        <mxCell id="documento-duplicado-branch-1-guard" value="[Documento único]" style="text;html=1;whiteSpace=nowrap;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;strokeColor=none;fillColor=#ffffff;spacingLeft=4;fontStyle=2;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="2833" y="872" width="156" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="guard-success" value="[permiso, datos e integridad correctos: ejecutar operación]" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=12;fontColor=#b85450;fontStyle=2;align=left;verticalAlign=middle;strokeColor=none;fillColor=#ffffff;spacingLeft=4;" vertex="1" parent="1">
-          <mxGeometry x="570" y="1842" width="900" height="24" as="geometry" />
+        <mxCell id="resultado-alta" value="alt [resultado == Ok_380_jh]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1310" width="1025" height="292" as="geometry" />
         </mxCell>
-        <mxCell id="msg-0" value="Selecciona «Registrar donante»" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="resultado-alta-branch-1-separator" value="" style="shape=line;strokeColor=#d79b00;dashed=1;dashPattern=6 4;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1444" width="1025" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="resultado-alta-branch-1-guard" value="[resultado == DatosInvalidos_380_jh]" style="text;html=1;whiteSpace=nowrap;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;strokeColor=none;fillColor=#ffffff;spacingLeft=4;fontStyle=2;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="108" y="1447" width="308" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="resultado-alta-branch-2-separator" value="" style="shape=line;strokeColor=#d79b00;dashed=1;dashPattern=6 4;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1522" width="1025" height="1" as="geometry" />
+        </mxCell>
+        <mxCell id="resultado-alta-branch-2-guard" value="[resultado == Duplicado_380_jh]" style="text;html=1;whiteSpace=nowrap;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;strokeColor=none;fillColor=#ffffff;spacingLeft=4;fontStyle=2;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="108" y="1525" width="268" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="cdun01-msg-1" value="Pulsa Registrar con los datos del donante cargados." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="150" y="220" as="sourcePoint" />
-            <mxPoint x="650" y="220" as="targetPoint" />
+            <mxPoint x="145" y="232" as="sourcePoint" />
+            <mxPoint x="565" y="232" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-1" value="TienePermiso_380_jh(&lt;br/&gt;DONANTE_VER o DONANTE_CREAR)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="650" y="280" as="sourcePoint" />
-            <mxPoint x="1650.0" y="280" as="targetPoint" />
+        <mxCell id="cdun01-msg-2" value="DonantesView_380_jh.Registrar_Click_380_jh(sender, e)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="565" y="266" as="sourcePoint" />
+            <mxPoint x="565" y="285" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="637" y="266" /><mxPoint x="637" y="285" /></Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-2" value="autorizado" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-3" value="new Donante_380_jh&lt;br/&gt;Id_380_jh = 0 · Documento_380_jh · Nombre_380_jh · Apellido_380_jh&lt;br/&gt;FechaNacimiento_380_jh · Telefono_380_jh · Email_380_jh · Domicilio_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1650.0" y="342" as="sourcePoint" />
-            <mxPoint x="650" y="342" as="targetPoint" />
+            <mxPoint x="565" y="351" as="sourcePoint" />
+            <mxPoint x="1175" y="351" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-4" value="Listar_380_jh(buscar)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-4" value="donante" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="650" y="462" as="sourcePoint" />
-            <mxPoint x="1150" y="462" as="targetPoint" />
+            <mxPoint x="1175" y="385" as="sourcePoint" />
+            <mxPoint x="565" y="385" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-5" value="Listar_380_jh(buscar)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-5" value="Registrar_380_jh(donante)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1150" y="522" as="sourcePoint" />
-            <mxPoint x="2150.0" y="522" as="targetPoint" />
+            <mxPoint x="565" y="419" as="sourcePoint" />
+            <mxPoint x="1560" y="419" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-6" value="Listar_380_jh(buscar)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-6" value="DatosInvalidos_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2150.0" y="582" as="sourcePoint" />
-            <mxPoint x="2400.0" y="582" as="targetPoint" />
+            <mxPoint x="1560" y="494" as="sourcePoint" />
+            <mxPoint x="565" y="494" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-7" value="Leer_380_jh(&lt;br/&gt;&quot;sp_Donante_Listar&quot;)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2400.0" y="702" as="sourcePoint" />
-            <mxPoint x="2650.0" y="702" as="targetPoint" />
+        <mxCell id="cdun01-msg-7" value="Normalizar_380_jh(donante)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="1560" y="572" as="sourcePoint" />
+            <mxPoint x="1560" y="591" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="1632" y="572" /><mxPoint x="1632" y="591" /></Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-8" value="EXEC sp_Donante_Listar" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-8" value="Registrar_380_jh(donanteProtegido, usuario.Id_380_jh)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2650.0" y="764" as="sourcePoint" />
-            <mxPoint x="2900.0" y="764" as="targetPoint" />
+            <mxPoint x="1560" y="625" as="sourcePoint" />
+            <mxPoint x="1995" y="625" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-9" value="filas consultadas" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-9" value="Registrar_380_jh(donante, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="2900.0" y="824" />
-            <mxPoint as="targetPoint" x="2650.0" y="824" />
+            <mxPoint x="1995" y="659" as="sourcePoint" />
+            <mxPoint x="2415" y="659" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-10" value="Completa datos y pulsa Registrar" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-10" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="150" y="1184" as="sourcePoint" />
-            <mxPoint x="650" y="1184" as="targetPoint" />
+            <mxPoint x="2415" y="693" as="sourcePoint" />
+            <mxPoint x="2870" y="693" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-11" value="new Donante_380_jh" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-11" value="Leer_380_jh(&amp;quot;sp_Donante_Registrar&amp;quot;, parametros)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="650" y="1244" as="sourcePoint" />
-            <mxPoint x="900" y="1244" as="targetPoint" />
+            <mxPoint x="2415" y="727" as="sourcePoint" />
+            <mxPoint x="2870" y="727" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-12" value="Registrar_380_jh(donante)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-12" value="sp_Donante_Registrar(@documento, @nombre, @apellido,&lt;br/&gt;@fecha_nacimiento, @telefono, @email, @domicilio, @id_usuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="650" y="1304" as="sourcePoint" />
-            <mxPoint x="1150" y="1304" as="targetPoint" />
+            <mxPoint x="2870" y="776" as="sourcePoint" />
+            <mxPoint x="3420" y="776" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-13" value="TienePermiso_380_jh(&lt;br/&gt;DONANTE_CREAR)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-13" value="DUPLICADO" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1150" y="1364" as="sourcePoint" />
-            <mxPoint x="1650.0" y="1364" as="targetPoint" />
+            <mxPoint x="3420" y="851" as="sourcePoint" />
+            <mxPoint x="2870" y="851" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-14" value="autorizado / denegado" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-14" value="OK e identificador del nuevo donante" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1650.0" y="1426" as="sourcePoint" />
-            <mxPoint x="1150" y="1426" as="targetPoint" />
+            <mxPoint x="3420" y="929" as="sourcePoint" />
+            <mxPoint x="2870" y="929" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-15" value="[autorizado y datos válidos]&lt;br/&gt;Verificar_380_jh()" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-15" value="tabla" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1150" y="1564" as="sourcePoint" />
-            <mxPoint x="1900.0" y="1564" as="targetPoint" />
+            <mxPoint x="2870" y="983" as="sourcePoint" />
+            <mxPoint x="2415" y="983" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-16" value="[si se verificó] InformeIntegridad_380_jh" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1900.0" y="1626" as="sourcePoint" />
-            <mxPoint x="1150" y="1626" as="targetPoint" />
+        <mxCell id="cdun01-msg-16" value="MapearResultado_380_jh(tabla.Rows[0])" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="2415" y="1017" as="sourcePoint" />
+            <mxPoint x="2415" y="1036" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="2487" y="1017" /><mxPoint x="2487" y="1036" /></Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-17" value="RegistrarEvento_380_jh(&lt;br/&gt;OperacionFallida)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-17" value="Cerrar_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1150" y="1736" as="sourcePoint" />
-            <mxPoint x="3150.0" y="1736" as="targetPoint" />
+            <mxPoint x="2415" y="1070" as="sourcePoint" />
+            <mxPoint x="2870" y="1070" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-18" value="código de error" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-18" value="Duplicado_380_jh u Ok_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1150" y="1798" as="sourcePoint" />
-            <mxPoint x="650" y="1798" as="targetPoint" />
+            <mxPoint x="2415" y="1104" as="sourcePoint" />
+            <mxPoint x="1995" y="1104" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-19" value="Registrar_380_jh(&lt;br/&gt;donante, idUsuario)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-19" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1150" y="2082.0" as="sourcePoint" />
-            <mxPoint x="2150.0" y="2082.0" as="targetPoint" />
+            <mxPoint x="1995" y="1138" as="sourcePoint" />
+            <mxPoint x="1560" y="1138" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-20" value="Registrar_380_jh(...)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-20" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2150.0" y="2144.0" as="sourcePoint" />
-            <mxPoint x="2400.0" y="2144.0" as="targetPoint" />
+            <mxPoint x="1560" y="1172" as="sourcePoint" />
+            <mxPoint x="565" y="1172" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-21" value="Leer_380_jh(&lt;br/&gt;&quot;sp_Donante_Registrar&quot;)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2400.0" y="2264.0" as="sourcePoint" />
-            <mxPoint x="2650.0" y="2264.0" as="targetPoint" />
+        <mxCell id="cdun01-msg-21" value="DonantesView_380_jh.ObtenerClaveResultado_380_jh(resultado)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="565" y="1226" as="sourcePoint" />
+            <mxPoint x="565" y="1245" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="637" y="1226" /><mxPoint x="637" y="1245" /></Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-22" value="EXEC sp_Donante_Registrar" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2650.0" y="2326.0" as="sourcePoint" />
-            <mxPoint x="2900.0" y="2326.0" as="targetPoint" />
+        <mxCell id="cdun01-msg-22" value="MessageBox.Show(Traducir_380_jh(claveResultado))" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="565" y="1279" as="sourcePoint" />
+            <mxPoint x="565" y="1298" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="637" y="1279" /><mxPoint x="637" y="1298" /></Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-23" value="BEGIN TRAN; exigir integridad; validar datos y duplicado;&lt;br/&gt;[válidos] insertar Donante, sellar y COMMIT;&lt;br/&gt;[rechazo / error] ROLLBACK" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-23" value="Confirma el registro del donante." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2900.0" y="2386.0" as="sourcePoint" />
-            <mxPoint x="2900.0" y="2412.0" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="2982.0" y="2386.0" />
-              <mxPoint x="2982.0" y="2412.0" />
-            </Array>
+            <mxPoint x="565" y="1373" as="sourcePoint" />
+            <mxPoint x="145" y="1373" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-24" value="OK / DUPLICADO / DATOS_INVALIDOS / error + fila" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="2900.0" y="2482.0" />
-            <mxPoint as="targetPoint" x="2650.0" y="2482.0" />
+        <mxCell id="cdun01-msg-24" value="DonantesView_380_jh.Limpiar_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="565" y="1407" as="sourcePoint" />
+            <mxPoint x="565" y="1426" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="637" y="1407" /><mxPoint x="637" y="1426" /></Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-25" value="CodigoOperacionPN1_380_jh" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-25" value="Informa los datos obligatorios faltantes." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="2400.0" y="2662.0" />
-            <mxPoint as="targetPoint" x="2150.0" y="2662.0" />
+            <mxPoint x="565" y="1504" as="sourcePoint" />
+            <mxPoint x="145" y="1504" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="msg-26" value="[resultado == OK] RegistrarEvento_380_jh(&lt;br/&gt;DonanteRegistrado)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
+        <mxCell id="cdun01-msg-26" value="Informa que el documento ya está registrado." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1150" y="2782.0" as="sourcePoint" />
-            <mxPoint x="3150.0" y="2782.0" as="targetPoint" />
+            <mxPoint x="565" y="1582" as="sourcePoint" />
+            <mxPoint x="145" y="1582" as="targetPoint" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="msg-27" value="resultado" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1150" y="2966.0" as="sourcePoint" />
-            <mxPoint x="650" y="2966.0" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="msg-28" value="Mostrar resultado;&lt;br/&gt;solo si OK, limpiar y recargar donantes" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="650" y="3026.0" as="sourcePoint" />
-            <mxPoint x="150" y="3026.0" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="repair-list-open" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="2400.0" y="642" />
-            <mxPoint as="targetPoint" x="2650.0" y="642" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="repair-list-table" value="DataTable" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="2650.0" y="884" />
-            <mxPoint as="targetPoint" x="2400.0" y="884" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="repair-list-close" value="Cerrar_380_jh() [finally]" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="2400.0" y="944" />
-            <mxPoint as="targetPoint" x="2650.0" y="944" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="repair-list-mapped" value="List&amp;lt;Donante_380_jh&amp;gt;" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="2400.0" y="1004" />
-            <mxPoint as="targetPoint" x="2150.0" y="1004" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="repair-list-repository" value="List&amp;lt;Donante_380_jh&amp;gt;" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="2150.0" y="1064" />
-            <mxPoint as="targetPoint" x="1150" y="1064" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="repair-list-view" value="List&amp;lt;Donante_380_jh&amp;gt;" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="1150" y="1124" />
-            <mxPoint as="targetPoint" x="650" y="1124" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="repair-validation" value="[autorizado] Validar documento, nombre&lt;br/&gt;y apellido; normalizar donante" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="1150" y="1486" />
-            <mxPoint as="targetPoint" x="1150" y="1512" />
-            <Array as="points">
-              <mxPoint x="1232" y="1486" />
-              <mxPoint x="1232" y="1512" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="repair-save-open" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="2400.0" y="2204.0" />
-            <mxPoint as="targetPoint" x="2650.0" y="2204.0" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="repair-save-table" value="DataTable" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="2650.0" y="2542.0" />
-            <mxPoint as="targetPoint" x="2400.0" y="2542.0" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="repair-save-close" value="Cerrar_380_jh() [finally]" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="2400.0" y="2602.0" />
-            <mxPoint as="targetPoint" x="2650.0" y="2602.0" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="repair-save-repository" value="CodigoOperacionPN1_380_jh" style="edgeStyle=none;rounded=0;html=1;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="2150.0" y="2722.0" />
-            <mxPoint as="targetPoint" x="1150" y="2722.0" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="repair-save-error-log" value="[resultado != OK] RegistrarEvento_380_jh(&lt;br/&gt;OperacionFallida)" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="1150" y="2844.0" />
-            <mxPoint as="targetPoint" x="3150.0" y="2844.0" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="repair-integrity-refresh" value="[IntegridadInvalida] Verificar_380_jh()" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="sourcePoint" x="1150" y="2906.0" />
-            <mxPoint as="targetPoint" x="1900.0" y="2906.0" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="participant-cifrado" value="Services.&lt;br/&gt;CifradoEmailService_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;size=90;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Arial;fontSize=12;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="1295" y="96" width="210" height="3028" as="geometry" />
-        </mxCell>
-        <mxCell id="msg-cifrar" value="Cifrar_380_jh(donante.Email_380_jh)" style="edgeStyle=none;html=1;endArrow=block;endFill=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1150" y="1902" as="sourcePoint" />
-            <mxPoint x="1400" y="1902" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="msg-cifrado" value="correo protegido / excepción" style="edgeStyle=none;html=1;endArrow=open;dashed=1;strokeWidth=1.5;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1400" y="1964" as="sourcePoint" />
-            <mxPoint x="1150" y="1964" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="nota-cifrado" value="[Error al cifrar] RegistrarFalla_380_jh y devolver Error_380_jh; no se registra el donante." style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=12;fontColor=#b85450;align=left;fillColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="1470" y="1990" width="800" height="48" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

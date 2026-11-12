@@ -1,0 +1,924 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="Electron" agent="Codex" version="24.7.17">
+  <diagram id="seq-06-unificado" name="CDUN-06 Validar estudio, reservar y entregar unidad">
+    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="6565" pageHeight="9712" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sequence-title" value="CDUN-06 — Secuencia: Validar estudio, reservar y entregar unidad" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=30;fontStyle=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="35" y="20" width="6495" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-actor" value="Operador autorizado" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#ffe6cc;strokeColor=#d79b00;participant=seqActorStick;" vertex="1" parent="1">
+          <mxGeometry x="55" y="96" width="180" height="9592" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-ui" value="UI" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="628" y="96" width="264" height="9592" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-reserva" value="Domain.&lt;br/&gt;Reserva_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="96" width="300" height="9592" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-app" value="Application.&lt;br/&gt;PN2ApplicationService_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1945" y="96" width="350" height="9592" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-repo" value="Repository.&lt;br/&gt;PN2Repository_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="2680" y="96" width="300" height="9592" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-mapper" value="DAL.&lt;br/&gt;PN2DataMapper_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="3390" y="96" width="300" height="9592" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-unitMapper" value="DAL.&lt;br/&gt;UnidadDataMapper_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="4100" y="96" width="300" height="9592" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-unidad" value="Domain.&lt;br/&gt;Unidad_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="4780" y="96" width="300" height="9592" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-db" value="DAL.&lt;br/&gt;DatabaseContext_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="5460" y="96" width="300" height="9592" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-sql" value="SQL Server" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="6158" y="96" width="264" height="9592" as="geometry" />
+        </mxCell>
+        <mxCell id="estudio-incompleto" value="break [2.1 · resultado == CodigoOperacionPN2_380_jh.DatosInvalidos_380_jh]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1512" width="1010" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="validar-estudio" value="sd   1–4 · Validar estudio" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="232" width="6380" height="1480" as="geometry" />
+        </mxCell>
+        <mxCell id="mapear-candidatas" value="loop [Por cada DataRow fila de tabla.Rows]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="3495" y="2302" width="1585" height="416" as="geometry" />
+        </mxCell>
+        <mxCell id="sin-candidatas" value="opt [5.1 · No hay unidades candidatas]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="2996" width="1010" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="consultar-candidatas" value="sd   5 · Consultar candidatas para reservar" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1740" width="6380" height="1406" as="geometry" />
+        </mxCell>
+        <mxCell id="reserva-identificada" value="opt [resultado == CodigoOperacionPN2_380_jh.Ok_380_jh]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="4368" width="2325" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="reserva-rechazada" value="break [7.1 · resultado != CodigoOperacionPN2_380_jh.Ok_380_jh]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="4848" width="1010" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="reservar-unidad" value="opt [6–7 · Registrar una nueva reserva]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="3174" width="6380" height="1892" as="geometry" />
+        </mxCell>
+        <mxCell id="mapear-reservas" value="loop [Por cada DataRow fila de tabla.Rows]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="5728" width="2335" height="424" as="geometry" />
+        </mxCell>
+        <mxCell id="listar-reservas-interaccion" value="sd   ListarReservas_380_jh(solicitud.Id_380_jh)" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="96" y="5166" width="6348" height="1264" as="geometry" />
+        </mxCell>
+        <mxCell id="consultar-reservas" value="sd   8 · Consultar las reservas registradas" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="5094" width="6380" height="1364" as="geometry" />
+        </mxCell>
+        <mxCell id="cancelacion-rechazada" value="break [resultado != CodigoOperacionPN2_380_jh.Ok_380_jh]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="7766" width="1010" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="ref-consultar-tras-cancelar" value="ref&lt;br/&gt;ListarReservas_380_jh(solicitud.Id_380_jh)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="715" y="7984" width="5745" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="cancelar-reserva" value="opt [7.2 · Se decide cancelar una reserva activa antes de entregarla]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="6486" width="6380" height="1630" as="geometry" />
+        </mxCell>
+        <mxCell id="entrega-rechazada" value="break [11.1 · resultado != CodigoOperacionPN2_380_jh.Ok_380_jh]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="9442" width="1010" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="entregar-reserva" value="opt [8–11 · Entregar una reserva activa]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="8144" width="6380" height="1498" as="geometry" />
+        </mxCell>
+        <mxCell id="cdun06u-msg-1" value="Valida el estudio pendiente de la solicitud seleccionada." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="145" y="326" as="sourcePoint" />
+            <mxPoint x="760" y="326" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-2" value="ReservasView_380_jh.ValidarEstudio_Click_380_jh(sender, e)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="760" y="376" as="sourcePoint" />
+            <mxPoint x="760" y="398" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="832" y="376" /><mxPoint x="832" y="398" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-3" value="ValidarEstudio_380_jh(s.Id_380_jh)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="448" as="sourcePoint" />
+            <mxPoint x="2120" y="448" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-4" value="ValidarEstudio_380_jh(idSolicitud, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2120" y="498" as="sourcePoint" />
+            <mxPoint x="2830" y="498" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-5" value="ValidarEstudio_380_jh(idSolicitud, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2830" y="548" as="sourcePoint" />
+            <mxPoint x="3540" y="548" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-6" value="Ejecutar_380_jh(&amp;quot;sp_PN2_ValidarEstudio&amp;quot;, ParametrosUsuario_380_jh(idUsuario,&lt;br/&gt;    Entero_380_jh(&amp;quot;@id_solicitud&amp;quot;, idSolicitud)), out id)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="616" as="sourcePoint" />
+            <mxPoint x="3540" y="638" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="616" /><mxPoint x="3612" y="638" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-7" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="688" as="sourcePoint" />
+            <mxPoint x="5610" y="688" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-8" value="Leer_380_jh(procedimiento, parametros)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="738" as="sourcePoint" />
+            <mxPoint x="5610" y="738" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-9" value="sp_PN2_ValidarEstudio(@id_solicitud, @id_usuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5610" y="788" as="sourcePoint" />
+            <mxPoint x="6290" y="788" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-10" value="codigo_resultado: OK o DATOS_INVALIDOS&lt;br/&gt;id_resultado: identificador de la solicitud o null" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="6290" y="856" as="sourcePoint" />
+            <mxPoint x="5610" y="856" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-11" value="tabla" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5610" y="906" as="sourcePoint" />
+            <mxPoint x="3540" y="906" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-12" value="MapearResultado_380_jh(fila[&amp;quot;codigo_resultado&amp;quot;].ToString())" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="956" as="sourcePoint" />
+            <mxPoint x="3540" y="978" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="956" /><mxPoint x="3612" y="978" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-13" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="1028" as="sourcePoint" />
+            <mxPoint x="3540" y="1050" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="1028" /><mxPoint x="3612" y="1050" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-14" value="Cerrar_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="1100" as="sourcePoint" />
+            <mxPoint x="5610" y="1100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-15" value="resultado · out idResultado → id" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="1150" as="sourcePoint" />
+            <mxPoint x="3540" y="1172" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="1150" /><mxPoint x="3612" y="1172" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-16" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="1222" as="sourcePoint" />
+            <mxPoint x="2830" y="1222" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-17" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2830" y="1272" as="sourcePoint" />
+            <mxPoint x="2120" y="1272" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-18" value="CodigoOperacionPN2_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2120" y="1322" as="sourcePoint" />
+            <mxPoint x="760" y="1322" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-19" value="ReservasView_380_jh.FinalizarOperacion_380_jh(&lt;br/&gt;_pn2Service_380_jh.ValidarEstudio_380_jh(s.Id_380_jh))" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="760" y="1390" as="sourcePoint" />
+            <mxPoint x="760" y="1412" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="832" y="1390" /><mxPoint x="832" y="1412" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-20" value="ControlesPN2_380_jh.MostrarResultado_380_jh(this, resultado)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="760" y="1462" as="sourcePoint" />
+            <mxPoint x="760" y="1484" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="832" y="1462" /><mxPoint x="832" y="1484" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-21" value="Informa que el estudio no pudo validarse." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="1606" as="sourcePoint" />
+            <mxPoint x="145" y="1606" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-22" value="Confirma el estudio validado con usuario y fecha." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="1684" as="sourcePoint" />
+            <mxPoint x="145" y="1684" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-23" value="ListarCandidatas_380_jh(solicitud.Id_380_jh)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="1834" as="sourcePoint" />
+            <mxPoint x="2120" y="1834" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-24" value="ListarCandidatas_380_jh(idSolicitud, usuario.Id_380_jh)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2120" y="1884" as="sourcePoint" />
+            <mxPoint x="2830" y="1884" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-25" value="ListarCandidatas_380_jh(idSolicitud, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2830" y="1934" as="sourcePoint" />
+            <mxPoint x="3540" y="1934" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-26" value="Leer_380_jh(&amp;quot;sp_PN2_UnidadesCandidatas&amp;quot;, ParametrosUsuario_380_jh(idUsuario,&lt;br/&gt;    Entero_380_jh(&amp;quot;@id_solicitud&amp;quot;, idSolicitud)), UnidadDataMapper_380_jh.MapearPublico_380_jh)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="2002" as="sourcePoint" />
+            <mxPoint x="3540" y="2024" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="2002" /><mxPoint x="3612" y="2024" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-27" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="2074" as="sourcePoint" />
+            <mxPoint x="5610" y="2074" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-28" value="Leer_380_jh(procedimiento, parametros)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="2124" as="sourcePoint" />
+            <mxPoint x="5610" y="2124" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-29" value="sp_PN2_UnidadesCandidatas(@id_solicitud, @id_usuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5610" y="2174" as="sourcePoint" />
+            <mxPoint x="6290" y="2174" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-30" value="Filas de unidades candidatas de la solicitud" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="6290" y="2224" as="sourcePoint" />
+            <mxPoint x="5610" y="2224" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-31" value="tabla" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5610" y="2274" as="sourcePoint" />
+            <mxPoint x="3540" y="2274" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-32" value="MapearPublico_380_jh(fila)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="2396" as="sourcePoint" />
+            <mxPoint x="4250" y="2396" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-33" value="new Unidad_380_jh&lt;br/&gt;Id_380_jh · CodigoIdentificacion_380_jh · IdDonacion_380_jh&lt;br/&gt;IdDonante_380_jh · DocumentoDonante_380_jh · Donante_380_jh&lt;br/&gt;GrupoSanguineoDonante_380_jh · FactorRhDonante_380_jh&lt;br/&gt;TipoComponente_380_jh · FechaVencimiento_380_jh&lt;br/&gt;GrupoSanguineo_380_jh · FactorRh_380_jh · Observaciones_380_jh&lt;br/&gt;EstadoOperativo_380_jh · EstadoOperativoDescripcion_380_jh&lt;br/&gt;Ubicacion_380_jh · FechaAlta_380_jh · FechaUltimaModificacion_380_jh&lt;br/&gt;IdUsuarioUltimaModificacion_380_jh · ClasificacionPendiente_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="4250" y="2590" as="sourcePoint" />
+            <mxPoint x="4930" y="2590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-34" value="Unidad_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="4930" y="2640" as="sourcePoint" />
+            <mxPoint x="4250" y="2640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-35" value="Unidad_380_jh → resultados" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="4250" y="2690" as="sourcePoint" />
+            <mxPoint x="3540" y="2690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-36" value="Cerrar_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="2768" as="sourcePoint" />
+            <mxPoint x="5610" y="2768" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-37" value="resultados" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="2818" as="sourcePoint" />
+            <mxPoint x="2830" y="2818" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-38" value="List&amp;lt;Unidad_380_jh&amp;gt;" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2830" y="2868" as="sourcePoint" />
+            <mxPoint x="2120" y="2868" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-39" value="unidades" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2120" y="2918" as="sourcePoint" />
+            <mxPoint x="760" y="2918" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-40" value="Muestra las unidades candidatas de la solicitud." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="2968" as="sourcePoint" />
+            <mxPoint x="145" y="2968" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-41" value="Muestra el listado vacío." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="3090" as="sourcePoint" />
+            <mxPoint x="145" y="3090" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-42" value="Confirma la reserva de la unidad candidata&lt;br/&gt;con la referencia de compatibilidad cargada." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="145" y="3286" as="sourcePoint" />
+            <mxPoint x="760" y="3286" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-43" value="ReservasView_380_jh.Reservar_Click_380_jh(sender, e)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="760" y="3336" as="sourcePoint" />
+            <mxPoint x="760" y="3358" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="832" y="3336" /><mxPoint x="832" y="3358" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-44" value="new Reserva_380_jh&lt;br/&gt;IdSolicitudTransfusional_380_jh · IdUnidad_380_jh · Observacion_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="3426" as="sourcePoint" />
+            <mxPoint x="1400" y="3426" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-45" value="reserva" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1400" y="3476" as="sourcePoint" />
+            <mxPoint x="760" y="3476" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-46" value="Reservar_380_jh(reserva)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="3526" as="sourcePoint" />
+            <mxPoint x="2120" y="3526" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-47" value="Reservar_380_jh(reserva, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2120" y="3576" as="sourcePoint" />
+            <mxPoint x="2830" y="3576" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-48" value="Reservar_380_jh(reserva, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2830" y="3626" as="sourcePoint" />
+            <mxPoint x="3540" y="3626" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-49" value="Ejecutar_380_jh(&amp;quot;sp_Reserva_Registrar&amp;quot;, ParametrosUsuario_380_jh(idUsuario,&lt;br/&gt;    Entero_380_jh(&amp;quot;@id_solicitud_transfusional&amp;quot;, reserva.IdSolicitudTransfusional_380_jh),&lt;br/&gt;    Entero_380_jh(&amp;quot;@id_unidad&amp;quot;, reserva.IdUnidad_380_jh),&lt;br/&gt;    Texto_380_jh(&amp;quot;@observacion&amp;quot;, null, 500),&lt;br/&gt;    Texto_380_jh(&amp;quot;@referencia_compatibilidad&amp;quot;, reserva.Observacion_380_jh, 450)), out id)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="3748" as="sourcePoint" />
+            <mxPoint x="3540" y="3770" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="3748" /><mxPoint x="3612" y="3770" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-50" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="3820" as="sourcePoint" />
+            <mxPoint x="5610" y="3820" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-51" value="Leer_380_jh(procedimiento, parametros)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="3870" as="sourcePoint" />
+            <mxPoint x="5610" y="3870" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-52" value="sp_Reserva_Registrar(@id_solicitud_transfusional, @id_unidad,&lt;br/&gt;@observacion, @id_usuario, @referencia_compatibilidad)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5610" y="3938" as="sourcePoint" />
+            <mxPoint x="6290" y="3938" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-53" value="codigo_resultado: OK, DATOS_INVALIDOS, NO_ENCONTRADO,&lt;br/&gt;CANTIDAD_COMPLETA o SIN_DISPONIBILIDAD&lt;br/&gt;id_resultado: identificador de la reserva o null" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="6290" y="4024" as="sourcePoint" />
+            <mxPoint x="5610" y="4024" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-54" value="tabla" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5610" y="4074" as="sourcePoint" />
+            <mxPoint x="3540" y="4074" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-55" value="MapearResultado_380_jh(fila[&amp;quot;codigo_resultado&amp;quot;].ToString())" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="4124" as="sourcePoint" />
+            <mxPoint x="3540" y="4146" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="4124" /><mxPoint x="3612" y="4146" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-56" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="4196" as="sourcePoint" />
+            <mxPoint x="3540" y="4218" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="4196" /><mxPoint x="3612" y="4218" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-57" value="Cerrar_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="4268" as="sourcePoint" />
+            <mxPoint x="5610" y="4268" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-58" value="resultado · out idResultado → id" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="4318" as="sourcePoint" />
+            <mxPoint x="3540" y="4340" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="4318" /><mxPoint x="3612" y="4340" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-59" value="reserva.Id_380_jh = id&lt;br/&gt;reserva.IdUsuarioResponsable_380_jh = idUsuario" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="4480" as="sourcePoint" />
+            <mxPoint x="1400" y="4480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-60" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="4558" as="sourcePoint" />
+            <mxPoint x="2830" y="4558" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-61" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2830" y="4608" as="sourcePoint" />
+            <mxPoint x="2120" y="4608" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-62" value="CodigoOperacionPN2_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2120" y="4658" as="sourcePoint" />
+            <mxPoint x="760" y="4658" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-63" value="ReservasView_380_jh.FinalizarOperacion_380_jh(&lt;br/&gt;_pn2Service_380_jh.Reservar_380_jh(reserva))" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="760" y="4726" as="sourcePoint" />
+            <mxPoint x="760" y="4748" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="832" y="4726" /><mxPoint x="832" y="4748" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-64" value="ControlesPN2_380_jh.MostrarResultado_380_jh(this, resultado)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="760" y="4798" as="sourcePoint" />
+            <mxPoint x="760" y="4820" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="832" y="4798" /><mxPoint x="832" y="4820" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-65" value="Informa el rechazo: datos inválidos, solicitud o unidad inexistente,&lt;br/&gt;saldo completo o unidad/estudio sin disponibilidad." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="4960" as="sourcePoint" />
+            <mxPoint x="145" y="4960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-66" value="Confirma la reserva; la unidad queda Reservada." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="5038" as="sourcePoint" />
+            <mxPoint x="145" y="5038" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-67" value="ListarReservas_380_jh(solicitud.Id_380_jh)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="5260" as="sourcePoint" />
+            <mxPoint x="2120" y="5260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-68" value="ListarReservas_380_jh(idSolicitudTransfusional, usuario.Id_380_jh)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2120" y="5310" as="sourcePoint" />
+            <mxPoint x="2830" y="5310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-69" value="ListarReservas_380_jh(idSolicitudTransfusional, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2830" y="5360" as="sourcePoint" />
+            <mxPoint x="3540" y="5360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-70" value="Leer_380_jh(&amp;quot;sp_Reserva_Listar&amp;quot;, ParametrosUsuario_380_jh(idUsuario,&lt;br/&gt;    Entero_380_jh(&amp;quot;@id_solicitud_transfusional&amp;quot;, idSolicitudTransfusional)), MapearReserva_380_jh)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="5428" as="sourcePoint" />
+            <mxPoint x="3540" y="5450" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="5428" /><mxPoint x="3612" y="5450" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-71" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="5500" as="sourcePoint" />
+            <mxPoint x="5610" y="5500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-72" value="Leer_380_jh(procedimiento, parametros)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="5550" as="sourcePoint" />
+            <mxPoint x="5610" y="5550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-73" value="sp_Reserva_Listar(@id_solicitud_transfusional, @id_usuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5610" y="5600" as="sourcePoint" />
+            <mxPoint x="6290" y="5600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-74" value="Filas de reservas de la solicitud" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="6290" y="5650" as="sourcePoint" />
+            <mxPoint x="5610" y="5650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-75" value="tabla" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5610" y="5700" as="sourcePoint" />
+            <mxPoint x="3540" y="5700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-76" value="MapearReserva_380_jh(fila)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="5822" as="sourcePoint" />
+            <mxPoint x="3540" y="5844" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="5822" /><mxPoint x="3612" y="5844" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-77" value="new Reserva_380_jh&lt;br/&gt;Id_380_jh · IdSolicitudTransfusional_380_jh · IdUnidad_380_jh&lt;br/&gt;CodigoIdentificacion_380_jh · PacienteReceptor_380_jh&lt;br/&gt;TipoComponente_380_jh · EstadoReserva_380_jh&lt;br/&gt;FechaReserva_380_jh · IdUsuarioResponsable_380_jh&lt;br/&gt;Responsable_380_jh · Observacion_380_jh&lt;br/&gt;FechaCierre_380_jh · MotivoCancelacion_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="6002" as="sourcePoint" />
+            <mxPoint x="1400" y="6002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-78" value="Reserva_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1400" y="6052" as="sourcePoint" />
+            <mxPoint x="3540" y="6052" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-79" value="Reserva_380_jh → resultados" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="6102" as="sourcePoint" />
+            <mxPoint x="3540" y="6124" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="6102" /><mxPoint x="3612" y="6124" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-80" value="Cerrar_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="6202" as="sourcePoint" />
+            <mxPoint x="5610" y="6202" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-81" value="resultados" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="6252" as="sourcePoint" />
+            <mxPoint x="2830" y="6252" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-82" value="List&amp;lt;Reserva_380_jh&amp;gt;" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2830" y="6302" as="sourcePoint" />
+            <mxPoint x="2120" y="6302" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-83" value="reservas" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2120" y="6352" as="sourcePoint" />
+            <mxPoint x="760" y="6352" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-84" value="Muestra las reservas registradas para seleccionar la entrega." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="6402" as="sourcePoint" />
+            <mxPoint x="145" y="6402" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-85" value="Confirma cancelar la reserva activa con el motivo cargado." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="145" y="6580" as="sourcePoint" />
+            <mxPoint x="760" y="6580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-86" value="ReservasView_380_jh.Cancelar_Click_380_jh(sender, e)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="760" y="6630" as="sourcePoint" />
+            <mxPoint x="760" y="6652" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="832" y="6630" /><mxPoint x="832" y="6652" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-87" value="CancelarReserva_380_jh(reserva.Id_380_jh, _txtObservacion_380_jh.Text)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="6702" as="sourcePoint" />
+            <mxPoint x="2120" y="6702" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-88" value="CancelarReserva_380_jh(idReserva, Limpiar_380_jh(motivo), idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2120" y="6752" as="sourcePoint" />
+            <mxPoint x="2830" y="6752" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-89" value="CancelarReserva_380_jh(idReserva, motivo, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2830" y="6802" as="sourcePoint" />
+            <mxPoint x="3540" y="6802" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-90" value="Ejecutar_380_jh(&amp;quot;sp_Reserva_Cancelar&amp;quot;, ParametrosUsuario_380_jh(idUsuario,&lt;br/&gt;    Entero_380_jh(&amp;quot;@id_reserva&amp;quot;, idReserva), Texto_380_jh(&amp;quot;@motivo&amp;quot;, motivo, 500)), out id)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="6870" as="sourcePoint" />
+            <mxPoint x="3540" y="6892" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="6870" /><mxPoint x="3612" y="6892" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-91" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="6942" as="sourcePoint" />
+            <mxPoint x="5610" y="6942" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-92" value="Leer_380_jh(procedimiento, parametros)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="6992" as="sourcePoint" />
+            <mxPoint x="5610" y="6992" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-93" value="sp_Reserva_Cancelar(@id_reserva, @motivo, @id_usuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5610" y="7042" as="sourcePoint" />
+            <mxPoint x="6290" y="7042" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-94" value="codigo_resultado: OK, DATOS_INVALIDOS, NO_ENCONTRADO o CONFLICTO_ESTADO&lt;br/&gt;id_resultado: identificador de la reserva o null" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="6290" y="7110" as="sourcePoint" />
+            <mxPoint x="5610" y="7110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-95" value="tabla" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5610" y="7160" as="sourcePoint" />
+            <mxPoint x="3540" y="7160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-96" value="MapearResultado_380_jh(fila[&amp;quot;codigo_resultado&amp;quot;].ToString())" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="7210" as="sourcePoint" />
+            <mxPoint x="3540" y="7232" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="7210" /><mxPoint x="3612" y="7232" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-97" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="7282" as="sourcePoint" />
+            <mxPoint x="3540" y="7304" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="7282" /><mxPoint x="3612" y="7304" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-98" value="Cerrar_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="7354" as="sourcePoint" />
+            <mxPoint x="5610" y="7354" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-99" value="resultado · out idResultado → id" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="7404" as="sourcePoint" />
+            <mxPoint x="3540" y="7426" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="7404" /><mxPoint x="3612" y="7426" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-100" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="7476" as="sourcePoint" />
+            <mxPoint x="2830" y="7476" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-101" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2830" y="7526" as="sourcePoint" />
+            <mxPoint x="2120" y="7526" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-102" value="CodigoOperacionPN2_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2120" y="7576" as="sourcePoint" />
+            <mxPoint x="760" y="7576" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-103" value="ReservasView_380_jh.FinalizarOperacion_380_jh(&lt;br/&gt;_pn2Service_380_jh.CancelarReserva_380_jh(reserva.Id_380_jh, _txtObservacion_380_jh.Text))" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="760" y="7644" as="sourcePoint" />
+            <mxPoint x="760" y="7666" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="832" y="7644" /><mxPoint x="832" y="7666" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-104" value="ControlesPN2_380_jh.MostrarResultado_380_jh(this, resultado)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="760" y="7716" as="sourcePoint" />
+            <mxPoint x="760" y="7738" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="832" y="7716" /><mxPoint x="832" y="7738" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-105" value="Informa que la reserva no pudo cancelarse." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="7860" as="sourcePoint" />
+            <mxPoint x="145" y="7860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-106" value="Confirma la cancelación; la unidad vuelve a Liberada&lt;br/&gt;y se actualiza el saldo de la solicitud." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="7956" as="sourcePoint" />
+            <mxPoint x="145" y="7956" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-107" value="Confirma la entrega de la reserva activa." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="145" y="8238" as="sourcePoint" />
+            <mxPoint x="760" y="8238" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-108" value="ReservasView_380_jh.Entregar_Click_380_jh(sender, e)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="760" y="8288" as="sourcePoint" />
+            <mxPoint x="760" y="8310" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="832" y="8288" /><mxPoint x="832" y="8310" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-109" value="Entregar_380_jh(reserva.Id_380_jh, _txtObservacion_380_jh.Text)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="8360" as="sourcePoint" />
+            <mxPoint x="2120" y="8360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-110" value="Entregar_380_jh(idReserva, Limpiar_380_jh(observacion), idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2120" y="8410" as="sourcePoint" />
+            <mxPoint x="2830" y="8410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-111" value="Entregar_380_jh(idReserva, observacion, idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2830" y="8460" as="sourcePoint" />
+            <mxPoint x="3540" y="8460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-112" value="Ejecutar_380_jh(&amp;quot;sp_Entrega_Registrar&amp;quot;, ParametrosUsuario_380_jh(idUsuario,&lt;br/&gt;    Entero_380_jh(&amp;quot;@id_reserva&amp;quot;, idReserva), Texto_380_jh(&amp;quot;@observacion&amp;quot;, observacion, 500)), out id)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="8528" as="sourcePoint" />
+            <mxPoint x="3540" y="8550" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="8528" /><mxPoint x="3612" y="8550" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-113" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="8600" as="sourcePoint" />
+            <mxPoint x="5610" y="8600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-114" value="Leer_380_jh(procedimiento, parametros)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="8650" as="sourcePoint" />
+            <mxPoint x="5610" y="8650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-115" value="sp_Entrega_Registrar(@id_reserva, @observacion, @id_usuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5610" y="8700" as="sourcePoint" />
+            <mxPoint x="6290" y="8700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-116" value="codigo_resultado: OK, DATOS_INVALIDOS, NO_ENCONTRADO,&lt;br/&gt;CONFLICTO_ESTADO o SIN_DISPONIBILIDAD&lt;br/&gt;id_resultado: identificador de la entrega o null" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="6290" y="8786" as="sourcePoint" />
+            <mxPoint x="5610" y="8786" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-117" value="tabla" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5610" y="8836" as="sourcePoint" />
+            <mxPoint x="3540" y="8836" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-118" value="MapearResultado_380_jh(fila[&amp;quot;codigo_resultado&amp;quot;].ToString())" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="8886" as="sourcePoint" />
+            <mxPoint x="3540" y="8908" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="8886" /><mxPoint x="3612" y="8908" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-119" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="8958" as="sourcePoint" />
+            <mxPoint x="3540" y="8980" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="8958" /><mxPoint x="3612" y="8980" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-120" value="Cerrar_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="9030" as="sourcePoint" />
+            <mxPoint x="5610" y="9030" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-121" value="resultado · out idResultado → id" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="3540" y="9080" as="sourcePoint" />
+            <mxPoint x="3540" y="9102" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="3612" y="9080" /><mxPoint x="3612" y="9102" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-122" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3540" y="9152" as="sourcePoint" />
+            <mxPoint x="2830" y="9152" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-123" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2830" y="9202" as="sourcePoint" />
+            <mxPoint x="2120" y="9202" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-124" value="CodigoOperacionPN2_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2120" y="9252" as="sourcePoint" />
+            <mxPoint x="760" y="9252" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-125" value="ReservasView_380_jh.FinalizarOperacion_380_jh(&lt;br/&gt;_pn2Service_380_jh.Entregar_380_jh(reserva.Id_380_jh, _txtObservacion_380_jh.Text))" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="760" y="9320" as="sourcePoint" />
+            <mxPoint x="760" y="9342" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="832" y="9320" /><mxPoint x="832" y="9342" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-126" value="ControlesPN2_380_jh.MostrarResultado_380_jh(this, resultado)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="760" y="9392" as="sourcePoint" />
+            <mxPoint x="760" y="9414" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="832" y="9392" /><mxPoint x="832" y="9414" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-127" value="Informa que la reserva o la unidad ya no permiten la entrega." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="9536" as="sourcePoint" />
+            <mxPoint x="145" y="9536" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun06u-msg-128" value="Confirma la entrega y los estados actualizados." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="9614" as="sourcePoint" />
+            <mxPoint x="145" y="9614" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

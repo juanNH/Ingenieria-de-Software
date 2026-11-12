@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="Electron" agent="Codex" version="24.7.17">
+  <diagram id="seq-05" name="CDUN-04 Emitir comprobante de donación">
+    <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4775" pageHeight="1801" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sequence-title" value="CDUN-04 — Secuencia: Emitir comprobante de donación" style="text;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=30;fontStyle=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="35" y="20" width="4705" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-actor" value="Responsable&lt;br/&gt;autorizado" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#ffe6cc;strokeColor=#d79b00;participant=seqActorStick;" vertex="1" parent="1">
+          <mxGeometry x="13" y="96" width="264" height="1681" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-ui" value="UI" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="478" y="96" width="264" height="1681" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-app" value="Application.&lt;br/&gt;ComprobanteAutomaticoApplicationService_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="96" width="420" height="1681" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-repo" value="Repository.&lt;br/&gt;ComprobanteRepository_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1828" y="96" width="264" height="1681" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-mapper" value="DAL.&lt;br/&gt;ComprobanteDataMapper_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="2468" y="96" width="264" height="1681" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-db" value="DAL.&lt;br/&gt;DatabaseContext_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="3138" y="96" width="264" height="1681" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-sql" value="SQL Server" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="3808" y="96" width="264" height="1681" as="geometry" />
+        </mxCell>
+        <mxCell id="participant-pdf" value="Services.&lt;br/&gt;ComprobantePdfService_380_jh" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;lifelineDashed=1;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;size=90;fontColor=#333333;fontFamily=Arial;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="4438" y="96" width="264" height="1681" as="geometry" />
+        </mxCell>
+        <mxCell id="emitir-comprobantes" value="loop [Por cada comprobante pendiente de PN1 sin PDF generado]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1245" y="778" width="3420" height="817" as="geometry" />
+        </mxCell>
+        <mxCell id="cdun04-msg-1" value="Completa las decisiones de las unidades vigentes&lt;br/&gt;de la donación." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="145" y="258" as="sourcePoint" />
+            <mxPoint x="610" y="258" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-2" value="ComprobantePdfUI_380_jh.ProcesarPendientes_380_jh(this, true, false)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="610" y="294" as="sourcePoint" />
+            <mxPoint x="610" y="314" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="682" y="294" /><mxPoint x="682" y="314" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-3" value="ProcesarPendientes_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="610" y="350" as="sourcePoint" />
+            <mxPoint x="1290" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-4" value="ListarPendientes_380_jh(usuario.Id_380_jh)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1290" y="386" as="sourcePoint" />
+            <mxPoint x="1960" y="386" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-5" value="ListarPendientes_380_jh(idUsuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1960" y="422" as="sourcePoint" />
+            <mxPoint x="2600" y="422" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-6" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2600" y="458" as="sourcePoint" />
+            <mxPoint x="3270" y="458" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-7" value="Leer_380_jh(&amp;quot;sp_Comprobante_Pendientes&amp;quot;,&lt;br/&gt;new List&amp;lt;SqlParameter&amp;gt; {&lt;br/&gt;    db.CrearParametro_380_jh(&amp;quot;@id_usuario&amp;quot;, idUsuario)&lt;br/&gt;})" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2600" y="548" as="sourcePoint" />
+            <mxPoint x="3270" y="548" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-8" value="sp_Comprobante_Pendientes(@id_usuario)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3270" y="584" as="sourcePoint" />
+            <mxPoint x="3940" y="584" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-9" value="Filas de comprobantes pendientes" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3940" y="620" as="sourcePoint" />
+            <mxPoint x="3270" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-10" value="filas" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3270" y="656" as="sourcePoint" />
+            <mxPoint x="2600" y="656" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-11" value="Cerrar_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2600" y="692" as="sourcePoint" />
+            <mxPoint x="3270" y="692" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-12" value="resultado: List&amp;lt;ComprobantePendiente_380_jh&amp;gt;" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2600" y="728" as="sourcePoint" />
+            <mxPoint x="1960" y="728" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-13" value="pendientes" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1960" y="764" as="sourcePoint" />
+            <mxPoint x="1290" y="764" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-14" value="new XmlSerializer(typeof(DatosComprobanteAutomatico_380_jh)).Deserialize(lector)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="1290" y="845" as="sourcePoint" />
+            <mxPoint x="1290" y="865" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="1362" y="845" /><mxPoint x="1362" y="865" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-15" value="datos" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="1290" y="901" as="sourcePoint" />
+            <mxPoint x="1290" y="921" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="1362" y="901" /><mxPoint x="1362" y="921" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-16" value="GuardarPN1_380_jh(temporal, datos.Unidades, datos.Usuario, true,&lt;br/&gt;pendiente.Identificador_380_jh.ToString(&amp;quot;D&amp;quot;))" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1290" y="975" as="sourcePoint" />
+            <mxPoint x="4570" y="975" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-17" value="void" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="4570" y="1011" as="sourcePoint" />
+            <mxPoint x="1290" y="1011" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-18" value="File.Move(temporal, ruta)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="1290" y="1047" as="sourcePoint" />
+            <mxPoint x="1290" y="1067" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="1362" y="1047" /><mxPoint x="1362" y="1067" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-19" value="MarcarGenerado_380_jh(pendiente.Id_380_jh, usuario.Id_380_jh, ruta)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1290" y="1103" as="sourcePoint" />
+            <mxPoint x="1960" y="1103" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-20" value="MarcarGenerado_380_jh(id, idUsuario, ruta)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1960" y="1139" as="sourcePoint" />
+            <mxPoint x="2600" y="1139" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-21" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2600" y="1175" as="sourcePoint" />
+            <mxPoint x="3270" y="1175" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-22" value="Leer_380_jh(&amp;quot;sp_Comprobante_MarcarGenerado&amp;quot;,&lt;br/&gt;new List&amp;lt;SqlParameter&amp;gt; {&lt;br/&gt;    new SqlParameter(&amp;quot;@id_comprobante&amp;quot;, SqlDbType.BigInt) { Value = id },&lt;br/&gt;    db.CrearParametro_380_jh(&amp;quot;@id_usuario&amp;quot;, idUsuario),&lt;br/&gt;    new SqlParameter(&amp;quot;@ruta&amp;quot;, SqlDbType.NVarChar, 2048) { Value = ruta }&lt;br/&gt;})" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2600" y="1301" as="sourcePoint" />
+            <mxPoint x="3270" y="1301" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-23" value="sp_Comprobante_MarcarGenerado(@id_comprobante, @id_usuario, @ruta)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3270" y="1337" as="sourcePoint" />
+            <mxPoint x="3940" y="1337" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-24" value="Marcado completado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3940" y="1373" as="sourcePoint" />
+            <mxPoint x="3270" y="1373" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-25" value="DataTable" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="3270" y="1409" as="sourcePoint" />
+            <mxPoint x="2600" y="1409" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-26" value="Cerrar_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2600" y="1445" as="sourcePoint" />
+            <mxPoint x="3270" y="1445" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-27" value="void" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2600" y="1481" as="sourcePoint" />
+            <mxPoint x="1960" y="1481" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-28" value="void" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1960" y="1517" as="sourcePoint" />
+            <mxPoint x="1290" y="1517" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-29" value="resultado.Archivos_380_jh.Add(ruta)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="1290" y="1553" as="sourcePoint" />
+            <mxPoint x="1290" y="1573" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="1362" y="1553" /><mxPoint x="1362" y="1573" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-30" value="resultado: ResultadoComprobantes_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1290" y="1631" as="sourcePoint" />
+            <mxPoint x="610" y="1631" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-31" value="MessageBox.Show(propietario, mensaje, &amp;quot;PDF&amp;quot;,&lt;br/&gt;MessageBoxButtons.YesNo, MessageBoxIcon.Information)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="610" y="1685" as="sourcePoint" />
+            <mxPoint x="610" y="1705" as="targetPoint" />
+            <mxPoint x="9" y="0" as="offset" />
+            <Array as="points"><mxPoint x="682" y="1685" /><mxPoint x="682" y="1705" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cdun04-msg-32" value="Informa el archivo generado." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="610" y="1741" as="sourcePoint" />
+            <mxPoint x="145" y="1741" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

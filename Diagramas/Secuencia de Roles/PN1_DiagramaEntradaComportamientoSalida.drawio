@@ -1,41 +1,26 @@
 <mxfile host="Electron">
-  <diagram name="PN1 - Entrada Comportamiento Salida" id="pn1-entrada-comportamiento-salida">
-    <mxGraphModel dx="1533" dy="749" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+  <diagram name="PN1 - Entrada, comportamiento y salida" id="pn1-entrada-comportamiento-salida">
+    <mxGraphModel grid="1" gridSize="10" guides="1" connect="1" arrows="1" page="1" pageScale="1" pageWidth="1160" pageHeight="465">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="titulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=22;align=center;verticalAlign=middle;fontFamily=Arial;" value="PN1 — Diagrama de Entrada, Comportamiento y Salida" vertex="1">
-          <mxGeometry height="42" width="1100" x="250" y="25" as="geometry" />
+        <mxCell id="titulo" value="PN1 — Entrada, comportamiento y salida" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="18" y="18" width="1124" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="entrada" parent="1" style="swimlane;horizontal=1;startSize=52;whiteSpace=wrap;html=1;rounded=0;fillColor=#bfe3f2;swimlaneFillColor=#d9eef8;strokeColor=#6c8ebf;strokeWidth=2;fontSize=17;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;&lt;u&gt;Entrada&lt;/u&gt;&lt;/b&gt;" vertex="1">
-          <mxGeometry height="430" width="410" x="60" y="170" as="geometry" />
+        <mxCell id="entrada" value="&lt;div style=&quot;padding:12px&quot;&gt;&lt;b&gt;Entrada&lt;/b&gt;&lt;br&gt;&lt;br&gt;Datos del donante y de la donación&lt;br&gt;&lt;br&gt;Datos de clasificación de las unidades&lt;/div&gt;" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;rounded=1;arcSize=14;strokeWidth=1.5;align=center;verticalAlign=middle;fillColor=#fff2cc;strokeColor=#c39a36;" vertex="1" parent="1">
+          <mxGeometry x="25" y="95" width="300" height="314" as="geometry" />
         </mxCell>
-        <mxCell id="entrada-contenido" parent="1" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;fontSize=14;fontFamily=Arial;align=left;verticalAlign=top;spacingLeft=12;spacingRight=12;spacingTop=10;" value="&lt;b&gt;E1.&lt;/b&gt; Datos del donante y de la donación.&lt;br&gt;&lt;br&gt;&lt;b&gt;E2.&lt;/b&gt; Datos de clasificación de la unidad." vertex="1">
-          <mxGeometry height="335" width="370" x="80" y="240" as="geometry" />
+        <mxCell id="comportamiento" value="&lt;div style=&quot;padding:12px&quot;&gt;&lt;b&gt;Comportamiento&lt;/b&gt;&lt;br&gt;&lt;br&gt;Buscar y, si hace falta, registrar al donante&lt;br&gt;&lt;br&gt;Registrar donación y generar unidades&lt;br&gt;&lt;br&gt;Clasificar y decidir por unidad&lt;/div&gt;" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;rounded=1;arcSize=14;strokeWidth=1.5;align=center;verticalAlign=middle;fillColor=#e4f2dc;strokeColor=#74a157;" vertex="1" parent="1">
+          <mxGeometry x="370" y="95" width="420" height="314" as="geometry" />
         </mxCell>
-        <mxCell id="comportamiento" parent="1" style="swimlane;horizontal=1;startSize=52;whiteSpace=wrap;html=1;rounded=0;fillColor=#f4c7c3;swimlaneFillColor=#f9dedb;strokeColor=#b85450;strokeWidth=2;fontSize=17;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;&lt;u&gt;Comportamiento&lt;/u&gt;&lt;/b&gt;" vertex="1">
-          <mxGeometry height="560" width="450" x="590" y="130" as="geometry" />
+        <mxCell id="salida" value="&lt;div style=&quot;padding:12px&quot;&gt;&lt;b&gt;Salida&lt;/b&gt;&lt;br&gt;&lt;br&gt;Donación y unidades registradas&lt;br&gt;&lt;br&gt;Decisiones por unidad&lt;br&gt;&lt;br&gt;Comprobante de la donación al completar las decisiones&lt;/div&gt;" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;rounded=1;arcSize=14;strokeWidth=1.5;align=center;verticalAlign=middle;fillColor=#dceafa;strokeColor=#678ebb;" vertex="1" parent="1">
+          <mxGeometry x="835" y="95" width="300" height="314" as="geometry" />
         </mxCell>
-        <mxCell id="comportamiento-contenido" parent="1" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;fontSize=14;fontFamily=Arial;align=left;verticalAlign=top;spacingLeft=12;spacingRight=12;spacingTop=10;" value="&lt;b&gt;C1.&lt;/b&gt; Registrar donante.&lt;br&gt;&lt;br&gt;&lt;b&gt;C2.&lt;/b&gt; Registrar donación y generar unidades identificadas en estado «En revisión».&lt;br&gt;&lt;br&gt;&lt;b&gt;C3.&lt;/b&gt; Cargar y validar la clasificación.&lt;br&gt;&lt;br&gt;&lt;b&gt;C4.&lt;/b&gt; Definir estado operativo: liberar, bloquear o descartar la unidad.&lt;br&gt;&lt;br&gt;&lt;b&gt;C5.&lt;/b&gt; Generar/exportar el reporte PDF del estado actual." vertex="1">
-          <mxGeometry height="490" width="410" x="610" y="200" as="geometry" />
+        <mxCell id="flujo-entrada" value="" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="entrada" target="comportamiento">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="salida" parent="1" style="swimlane;horizontal=1;startSize=52;whiteSpace=wrap;html=1;rounded=0;fillColor=#d8d0ed;swimlaneFillColor=#e9e4f5;strokeColor=#9673a6;strokeWidth=2;fontSize=17;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;&lt;u&gt;Salida&lt;/u&gt;&lt;/b&gt;" vertex="1">
-          <mxGeometry height="430" width="380" x="1160" y="170" as="geometry" />
-        </mxCell>
-        <mxCell id="salida-contenido" parent="1" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;fontSize=14;fontFamily=Arial;align=left;verticalAlign=top;spacingLeft=12;spacingRight=12;spacingTop=10;" value="&lt;b&gt;S1.&lt;/b&gt; Donación registrada.&lt;br&gt;&lt;br&gt;&lt;b&gt;S2.&lt;/b&gt; Unidades en estado «En revisión» para clasificación.&lt;br&gt;&lt;br&gt;&lt;b&gt;S3.&lt;/b&gt; Unidad clasificada y entregada al Responsable autorizado.&lt;br&gt;&lt;br&gt;&lt;b&gt;S4.&lt;/b&gt; Documento de la unidad con su estado operativo actual." vertex="1">
-          <mxGeometry height="335" width="340" x="1180" y="240" as="geometry" />
-        </mxCell>
-        <mxCell id="flujo-entrada" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=2;" value="">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="470" y="385" as="sourcePoint" />
-            <mxPoint x="590" y="385" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="flujo-salida" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#666666;strokeWidth=2;" value="">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1040" y="385" as="sourcePoint" />
-            <mxPoint x="1160" y="385" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="flujo-salida" value="" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="comportamiento" target="salida">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -8,3 +8,4 @@ DAL/App.local.config
 /tmp/
 /output/
 *.drawio.bkp
+*.drawio.dtmp

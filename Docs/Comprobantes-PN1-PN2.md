@@ -2,7 +2,7 @@
 
 ## Cuándo se generan
 
-- **PN1:** al registrarse la última decisión de una donación. Todas sus unidades deben tener una decisión PN1 guardada: liberada, bloqueada o descartada. Se consulta el historial: una unidad que ya pasó a PN2 sigue contando por su decisión PN1. El PDF conserva las decisiones registradas cuando se completó la donación.
+- **PN1.** Se emite un comprobante cuando todas las unidades vigentes de la donación tienen una decisión de PN1 guardada (liberada, bloqueada o descartada). Se consulta el historial para contar la decisión de una unidad que ya pasó a PN2. Un ajuste que anula la última unidad pendiente también puede completar la donación. El PDF conserva las decisiones registradas en ese momento.
 - **PN2:** al registrar el destino de cada entrega: transfundida, devuelta o descartada. Cada entrega tiene su comprobante. Registrar una entrega sin destino todavía no lo genera. Una reserva cancelada o una solicitud sin stock no equivalen a una entrega con destino.
 
 La solicitud de PN2 puede tener varias entregas y saldo pendiente. La aplicación no tiene un cierre formal de solicitud: el botón **Exportar reporte PDF** en Solicitudes genera un resumen manual del estado actual; no es un cierre ni un comprobante automático consolidado.
@@ -21,7 +21,7 @@ Con la aplicación cerrada y PN2 e IntegridadPN2 instalados, ejecutar desde la r
 ./Database/InstalarComprobantes.ps1
 ```
 
-El instalador verifica integridad, crea y verifica un respaldo SQL, instala [11_ComprobantesAutomaticos.sql](../Database/StoredProcedures/11_ComprobantesAutomaticos.sql) en una transacción y vuelve a verificar integridad. `InstalarPN2.ps1` también instala esta actualización. Si falta la migración o el disparador está deshabilitado, la aplicación informa el problema e impide registrar la decisión PN1 o el destino PN2 hasta instalarla.
+El instalador verifica integridad, crea y verifica un respaldo SQL, instala [11_ComprobantesAutomaticos.sql](../Database/StoredProcedures/11_ComprobantesAutomaticos.sql) en una transacción y vuelve a verificar integridad. `InstalarPN2.ps1` también instala esta actualización. Las decisiones de PN1 comprueban la disponibilidad de comprobantes antes de registrarse. El registro de destino de PN2 asume que la base ya está correctamente instalada: guarda el destino e intenta generar su comprobante después de confirmar la operación.
 
 Por defecto, los archivos se guardan en la carpeta **Documentos/HemovidaGest/Comprobantes**, en subcarpetas `PN1` y `PN2`. Para que distintos puestos puedan acceder a los originales, configurar la misma ruta absoluta compartida en la clave `ComprobantesDirectorio` del archivo `UI.exe.config` de cada instalación. La cuenta que ejecuta la aplicación necesita permiso de lectura y escritura en esa carpeta. Una ruta vacía usa Documentos del usuario del equipo.
 
@@ -31,7 +31,7 @@ La tabla `ComprobantePendiente` conserva la instantánea necesaria para reintent
 
 | Proceso | Entrada | Comportamiento | Salida |
 | --- | --- | --- | --- |
-| PN1 | E4. Decisiones guardadas para todas las unidades de la donación. | C8. Registrar el evento y generar automáticamente el comprobante. | S5. PDF con las decisiones o comprobante pendiente de reintento. |
+| PN1 | Decisiones guardadas para todas las unidades vigentes de la donación. | Registrar el evento y generar automáticamente el comprobante. | PDF de la donación con las decisiones o comprobante pendiente de reintento. |
 | PN2 | E9. Destino de una entrega guardado. | C11. Registrar el evento y generar automáticamente el comprobante de esa entrega. | S10. PDF con el destino o comprobante pendiente de reintento. |
 
 Las referencias figuran en los diagramas editables de [entrada, comportamiento y salida PN1](../Diagramas/Secuencia%20de%20Roles/PN1_DiagramaEntradaComportamientoSalida.drawio) y [PN2](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaEntradaComportamientoSalida.drawio), y en roles, actividad, secuencia de roles y casos de uso. Los modelos conceptuales incluyen el comprobante automático y su relación con la donación o la entrega.
