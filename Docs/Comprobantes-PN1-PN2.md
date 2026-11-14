@@ -31,8 +31,8 @@ La tabla `ComprobantePendiente` conserva la instantánea necesaria para reintent
 
 | Proceso | Entrada | Comportamiento | Salida |
 | --- | --- | --- | --- |
-| PN1 | Decisiones guardadas para todas las unidades vigentes de la donación. | Registrar el evento y generar automáticamente el comprobante. | PDF de la donación con las decisiones o comprobante pendiente de reintento. |
-| PN2 | E9. Destino de una entrega guardado. | C11. Registrar el evento y generar automáticamente el comprobante de esa entrega. | S10. PDF con el destino o comprobante pendiente de reintento. |
+| PN1 | Decisiones guardadas para todas las unidades vigentes de la donación. | C5. Generar automáticamente el comprobante de la donación. | S4. PDF de la donación con las decisiones o comprobante pendiente de reintento. |
+| PN2 | Destino de una entrega guardado. | C12. Generar automáticamente el comprobante de esa entrega. | S7. PDF con el destino o comprobante pendiente de reintento. |
 
 Las referencias figuran en los diagramas editables de [entrada, comportamiento y salida PN1](../Diagramas/Secuencia%20de%20Roles/PN1_DiagramaEntradaComportamientoSalida.drawio) y [PN2](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaEntradaComportamientoSalida.drawio), y en roles, actividad, secuencia de roles y casos de uso. Los modelos conceptuales incluyen el comprobante automático y su relación con la donación o la entrega.
 

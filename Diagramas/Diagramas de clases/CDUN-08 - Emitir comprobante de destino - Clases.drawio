@@ -56,7 +56,7 @@
         <mxCell id="app-attr" value="- _repositorio: ComprobanteRepository_380_jh {readOnly}&lt;br/&gt;- _directorioRaiz: string {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="app">
           <mxGeometry x="0" y="46" width="716" height="53" as="geometry" />
         </mxCell>
-        <mxCell id="app-op" value="+ ProcesarPendientes_380_jh(): ResultadoComprobantes_380_jh&lt;br/&gt;+ static DirectorioRaiz_380_jh(): string" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="app">
+        <mxCell id="app-op" value="+ ProcesarPendientes_380_jh(): ResultadoComprobantes_380_jh" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="app">
           <mxGeometry x="0" y="99" width="716" height="53" as="geometry" />
         </mxCell>
         <mxCell id="resultado" value="ResultadoComprobantes_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
@@ -95,15 +95,6 @@
         <mxCell id="pdf-op" value="+ GuardarPN2_380_jh(string archivo, SolicitudTransfusional_380_jh solicitud,&lt;br/&gt;    IList&amp;lt;Entrega_380_jh&amp;gt; entregas, string usuario, int? idEntrega,&lt;br/&gt;    bool instantaneaOperacion, string identificador = null): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="pdf">
           <mxGeometry x="0" y="46" width="1016" height="71" as="geometry" />
         </mxCell>
-        <mxCell id="documento" value="«private sealed»&lt;br/&gt;ComprobantePdfService_380_jh.Documento_380_jh : IDisposable" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
-          <mxGeometry x="3452" y="390" width="1016" height="440" as="geometry" />
-        </mxCell>
-        <mxCell id="documento-attr" value="- _pdf: PdfDocument {readOnly}&lt;br/&gt;- _normal: XFont {readOnly}&lt;br/&gt;- _negrita: XFont {readOnly}&lt;br/&gt;- _titulo: XFont {readOnly}&lt;br/&gt;- _nombre: string {readOnly}&lt;br/&gt;- _referencia: string {readOnly}&lt;br/&gt;- _emitido: DateTime {readOnly}&lt;br/&gt;- _grafico: XGraphics&lt;br/&gt;- _y: double" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="documento">
-          <mxGeometry x="0" y="46" width="1016" height="179" as="geometry" />
-        </mxCell>
-        <mxCell id="documento-op" value="+ Documento_380_jh(string nombre, string referencia, string usuario,&lt;br/&gt;    bool instantaneaOperacion, string identificador, DateTime? fechaOperacion)&lt;br/&gt;- NuevaPagina_380_jh(): void&lt;br/&gt;+ Campo_380_jh(string etiqueta, string valor): void&lt;br/&gt;+ Texto_380_jh(string texto): void&lt;br/&gt;+ Seccion_380_jh(string texto): void&lt;br/&gt;+ Subtitulo_380_jh(string texto): void&lt;br/&gt;- TextoConFuente_380_jh(string texto, XFont fuente): void&lt;br/&gt;- ImprimirLinea_380_jh(string linea, XFont fuente): void&lt;br/&gt;+ Guardar_380_jh(string archivo): void&lt;br/&gt;+ Dispose(): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingRight=7;spacingTop=5;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="documento">
-          <mxGeometry x="0" y="225" width="1016" height="215" as="geometry" />
-        </mxCell>
         <mxCell id="pendiente" value="ComprobantePendiente_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
           <mxGeometry x="72" y="1162" width="716" height="153" as="geometry" />
         </mxCell>
@@ -141,34 +132,70 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="edge-app-pdf" value="genera el PDF" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=0.9;exitY=1;entryX=0;entryY=0.6;" edge="1" source="app" target="pdf" parent="1">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1536.4" y="350" /><mxPoint x="3388" y="350" /><mxPoint x="3388" y="227.2" /></Array></mxGeometry>
-        </mxCell>
-        <mxCell id="edge-pdf-documento" value="crea y utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="pdf" target="documento" parent="1">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1536.4" y="350" />
+              <mxPoint x="3388" y="350" />
+              <mxPoint x="3388" y="227.2" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="edge-app-resultado" value="devuelve" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="app" target="resultado" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="edge-ui-resultado" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" edge="1" source="ui" target="resultado" parent="1">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="430" y="558.5" /></Array></mxGeometry>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="558.5" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="edge-app-pendiente" value="procesa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=0;exitY=0.8;entryX=0.5;entryY=0;" edge="1" source="app" target="pendiente" parent="1">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="840" y="278.6" /><mxPoint x="840" y="1050" /><mxPoint x="430" y="1050" /></Array></mxGeometry>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="840" y="278.6" />
+              <mxPoint x="840" y="1050" />
+              <mxPoint x="430" y="1050" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="edge-app-datos" value="deserializa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=1;exitY=0.8;entryX=0.5;entryY=0;" edge="1" source="app" target="datos" parent="1">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1644" y="278.6" /><mxPoint x="1644" y="1065" /><mxPoint x="1250" y="1065" /></Array></mxGeometry>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1644" y="278.6" />
+              <mxPoint x="1644" y="1065" />
+              <mxPoint x="1250" y="1065" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="edge-datos-solicitud" value="Solicitud" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=1;exitY=0.6;entryX=0;entryY=0.4;" edge="1" source="datos" target="solicitud" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="edge-datos-entregas" value="Entregas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=1;exitY=0.85;entryX=0.5;entryY=1;" edge="1" source="datos" target="entrega" parent="1">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1650" y="1276.75" /><mxPoint x="1650" y="1500" /><mxPoint x="2930" y="1500" /></Array></mxGeometry>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1650" y="1276.75" />
+              <mxPoint x="1650" y="1500" />
+              <mxPoint x="2930" y="1500" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="edge-pdf-solicitud" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=0;exitY=0.8;entryX=0.5;entryY=0;" edge="1" source="pdf" target="solicitud" parent="1">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="3402" y="250.60000000000002" /><mxPoint x="3402" y="1080" /><mxPoint x="2070" y="1080" /></Array></mxGeometry>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="3402" y="250.60000000000002" />
+              <mxPoint x="3402" y="1080" />
+              <mxPoint x="2070" y="1080" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="edge-pdf-entrega" value="utiliza" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;dashed=1;exitX=1;exitY=0.8;entryX=1;entryY=0.5;" edge="1" source="pdf" target="entrega" parent="1">
-          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="4484" y="250.60000000000002" /><mxPoint x="4484" y="1310.5" /></Array></mxGeometry>
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="4484" y="250.60000000000002" />
+              <mxPoint x="4484" y="1310.5" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

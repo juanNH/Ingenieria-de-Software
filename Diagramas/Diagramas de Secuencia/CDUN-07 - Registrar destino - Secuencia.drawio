@@ -65,7 +65,7 @@
         <mxCell id="destino-registrado" value="opt [resultado == CodigoOperacionPN2_380_jh.Ok_380_jh]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
           <mxGeometry x="100" y="3570" width="7220" height="290" as="geometry" />
         </mxCell>
-        <mxCell id="registrar-destino" value="sd   CDUN-07 · Registrar destino" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+        <mxCell id="registrar-destino" value="opt [Confirma registrar destino; 3.1: si cancela no se registra]" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
           <mxGeometry x="50" y="232" width="7270" height="3656" as="geometry" />
         </mxCell>
         <mxCell id="cdun07-msg-1" value="Confirma el destino de la entrega seleccionada,&lt;br/&gt;con el motivo informado cuando corresponde." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
@@ -79,7 +79,10 @@
             <mxPoint x="760" y="394" as="sourcePoint" />
             <mxPoint x="760" y="416" as="targetPoint" />
             <mxPoint x="9" y="0" as="offset" />
-            <Array as="points"><mxPoint x="832" y="394" /><mxPoint x="832" y="416" /></Array>
+            <Array as="points">
+              <mxPoint x="832" y="394" />
+              <mxPoint x="832" y="416" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="cdun07-msg-3" value="RegistrarDestino_380_jh(entrega.Id_380_jh, destino,&lt;br/&gt;_txtMotivo_380_jh.Text)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
@@ -93,7 +96,10 @@
             <mxPoint x="1500" y="534" as="sourcePoint" />
             <mxPoint x="1500" y="556" as="targetPoint" />
             <mxPoint x="9" y="0" as="offset" />
-            <Array as="points"><mxPoint x="1572" y="534" /><mxPoint x="1572" y="556" /></Array>
+            <Array as="points">
+              <mxPoint x="1572" y="534" />
+              <mxPoint x="1572" y="556" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="cdun07-msg-5" value="destino" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
@@ -101,7 +107,10 @@
             <mxPoint x="1500" y="606" as="sourcePoint" />
             <mxPoint x="1500" y="628" as="targetPoint" />
             <mxPoint x="9" y="0" as="offset" />
-            <Array as="points"><mxPoint x="1572" y="606" /><mxPoint x="1572" y="628" /></Array>
+            <Array as="points">
+              <mxPoint x="1572" y="606" />
+              <mxPoint x="1572" y="628" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="cdun07-msg-6" value="destino.ToUpperInvariant()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=block;endFill=1;" edge="1" parent="1">
@@ -109,7 +118,10 @@
             <mxPoint x="1500" y="750" as="sourcePoint" />
             <mxPoint x="1500" y="772" as="targetPoint" />
             <mxPoint x="9" y="0" as="offset" />
-            <Array as="points"><mxPoint x="1572" y="750" /><mxPoint x="1572" y="772" /></Array>
+            <Array as="points">
+              <mxPoint x="1572" y="750" />
+              <mxPoint x="1572" y="772" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="cdun07-msg-7" value="destino" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
@@ -117,7 +129,10 @@
             <mxPoint x="1500" y="822" as="sourcePoint" />
             <mxPoint x="1500" y="844" as="targetPoint" />
             <mxPoint x="9" y="0" as="offset" />
-            <Array as="points"><mxPoint x="1572" y="822" /><mxPoint x="1572" y="844" /></Array>
+            <Array as="points">
+              <mxPoint x="1572" y="822" />
+              <mxPoint x="1572" y="844" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="cdun07-msg-8" value="Listar_380_jh(&lt;br/&gt;MaestroPN1ApplicationService_380_jh.Destino_380_jh)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
@@ -209,7 +224,10 @@
             <mxPoint x="1500" y="1884" as="sourcePoint" />
             <mxPoint x="1500" y="1906" as="targetPoint" />
             <mxPoint x="9" y="0" as="offset" />
-            <Array as="points"><mxPoint x="1572" y="1884" /><mxPoint x="1572" y="1906" /></Array>
+            <Array as="points">
+              <mxPoint x="1572" y="1884" />
+              <mxPoint x="1572" y="1906" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="cdun07-msg-23" value="bool" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
@@ -217,7 +235,10 @@
             <mxPoint x="1500" y="1956" as="sourcePoint" />
             <mxPoint x="1500" y="1978" as="targetPoint" />
             <mxPoint x="9" y="0" as="offset" />
-            <Array as="points"><mxPoint x="1572" y="1956" /><mxPoint x="1572" y="1978" /></Array>
+            <Array as="points">
+              <mxPoint x="1572" y="1956" />
+              <mxPoint x="1572" y="1978" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="cdun07-msg-24" value="CodigoOperacionPN2_380_jh.DatosInvalidos_380_jh" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
@@ -231,7 +252,10 @@
             <mxPoint x="760" y="2178" as="sourcePoint" />
             <mxPoint x="760" y="2200" as="targetPoint" />
             <mxPoint x="9" y="0" as="offset" />
-            <Array as="points"><mxPoint x="832" y="2178" /><mxPoint x="832" y="2200" /></Array>
+            <Array as="points">
+              <mxPoint x="832" y="2178" />
+              <mxPoint x="832" y="2200" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="cdun07-msg-26" value="Informa que los datos del destino o el motivo son inválidos." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
@@ -257,7 +281,10 @@
             <mxPoint x="5750" y="2518" as="sourcePoint" />
             <mxPoint x="5750" y="2540" as="targetPoint" />
             <mxPoint x="9" y="0" as="offset" />
-            <Array as="points"><mxPoint x="5822" y="2518" /><mxPoint x="5822" y="2540" /></Array>
+            <Array as="points">
+              <mxPoint x="5822" y="2518" />
+              <mxPoint x="5822" y="2540" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="cdun07-msg-30" value="Abrir_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
@@ -295,7 +322,10 @@
             <mxPoint x="5750" y="2858" as="sourcePoint" />
             <mxPoint x="5750" y="2880" as="targetPoint" />
             <mxPoint x="9" y="0" as="offset" />
-            <Array as="points"><mxPoint x="5822" y="2858" /><mxPoint x="5822" y="2880" /></Array>
+            <Array as="points">
+              <mxPoint x="5822" y="2858" />
+              <mxPoint x="5822" y="2880" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="cdun07-msg-36" value="resultado" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=left;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">
@@ -303,7 +333,10 @@
             <mxPoint x="5750" y="2930" as="sourcePoint" />
             <mxPoint x="5750" y="2952" as="targetPoint" />
             <mxPoint x="9" y="0" as="offset" />
-            <Array as="points"><mxPoint x="5822" y="2930" /><mxPoint x="5822" y="2952" /></Array>
+            <Array as="points">
+              <mxPoint x="5822" y="2930" />
+              <mxPoint x="5822" y="2952" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="cdun07-msg-37" value="Cerrar_380_jh()" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=block;endFill=1;" edge="1" parent="1">
@@ -335,7 +368,10 @@
             <mxPoint x="760" y="3202" as="sourcePoint" />
             <mxPoint x="760" y="3224" as="targetPoint" />
             <mxPoint x="9" y="0" as="offset" />
-            <Array as="points"><mxPoint x="832" y="3202" /><mxPoint x="832" y="3224" /></Array>
+            <Array as="points">
+              <mxPoint x="832" y="3202" />
+              <mxPoint x="832" y="3224" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="cdun07-msg-42" value="Informa que el destino o el motivo ya no son válidos." style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.5;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;verticalAlign=bottom;align=center;endArrow=open;endFill=0;dashed=1;dashPattern=5 5;" edge="1" parent="1">

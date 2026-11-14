@@ -1,68 +1,172 @@
 <mxfile host="Electron">
   <diagram name="PN1 - Secuencia de roles" id="pn1-secuencia-roles">
-    <mxGraphModel grid="1" gridSize="10" guides="1" connect="1" arrows="1" page="1" pageScale="1" pageWidth="1280" pageHeight="815">
+    <mxGraphModel dx="1212" dy="736" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1250" pageHeight="1200" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="titulo" value="PN1 — Secuencia de roles" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="18" y="18" width="1244" height="48" as="geometry" />
+        <mxCell id="titulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=21;align=center;verticalAlign=middle;fontFamily=Arial;" value="PN1 — Secuencia de roles: Registro, clasificación y estado de unidades" vertex="1">
+          <mxGeometry height="40" width="1210" x="20" y="20" as="geometry" />
         </mxCell>
-        <mxCell id="extraccion" value="&lt;b&gt;Personal de extracción&lt;/b&gt;" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;rounded=1;arcSize=14;strokeWidth=1.5;align=center;verticalAlign=middle;fillColor=#fff2cc;strokeColor=#c39a36;" vertex="1" parent="1">
-          <mxGeometry x="29" y="79" width="212" height="52" as="geometry" />
+        <mxCell id="flujo-principal" parent="1" style="swimlane;startSize=30;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;strokeWidth=2;fontStyle=1;fontSize=14;fontFamily=Arial;" value="Flujo principal PN1" vertex="1">
+          <mxGeometry height="950" width="1190" x="30" y="165" as="geometry" />
         </mxCell>
-        <mxCell id="life-extraccion" value="" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;edgeStyle=none;dashed=1;endArrow=none;strokeColor=#a1a9b4;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry"><mxPoint x="135" y="131" as="sourcePoint" /><mxPoint x="135" y="760" as="targetPoint" /></mxGeometry>
+        <mxCell id="frame-registro" parent="1" style="swimlane;startSize=28;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=1.5;fontStyle=1;fontSize=13;fontFamily=Arial;" value="1. Registrar donante y donación; generar unidades en revisión" vertex="1">
+          <mxGeometry height="285" width="1150" x="50" y="195" as="geometry" />
         </mxCell>
-        <mxCell id="operador" value="&lt;b&gt;Operador autorizado&lt;/b&gt;" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;rounded=1;arcSize=14;strokeWidth=1.5;align=center;verticalAlign=middle;fillColor=#e4f2dc;strokeColor=#74a157;" vertex="1" parent="1">
-          <mxGeometry x="334" y="79" width="212" height="52" as="geometry" />
+        <mxCell id="frame-clasificar" parent="1" style="swimlane;startSize=28;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=1.5;fontStyle=1;fontSize=13;fontFamily=Arial;align=left;spacingLeft=190;" value="2. Cargar clasificación de la unidad" vertex="1">
+          <mxGeometry height="250" width="1150" x="50" y="480" as="geometry" />
         </mxCell>
-        <mxCell id="life-operador" value="" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;edgeStyle=none;dashed=1;endArrow=none;strokeColor=#a1a9b4;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry"><mxPoint x="440" y="131" as="sourcePoint" /><mxPoint x="440" y="760" as="targetPoint" /></mxGeometry>
+        <mxCell id="frame-estado" parent="1" style="swimlane;startSize=28;horizontal=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9673a6;strokeWidth=1.5;fontStyle=1;fontSize=13;fontFamily=Arial;align=left;spacingLeft=190;" value="3. Definir estado operativo y emitir comprobante" vertex="1">
+          <mxGeometry height="335" width="1150" x="50" y="760" as="geometry" />
         </mxCell>
-        <mxCell id="responsable" value="&lt;b&gt;Responsable autorizado&lt;/b&gt;" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;rounded=1;arcSize=14;strokeWidth=1.5;align=center;verticalAlign=middle;fillColor=#efe5f7;strokeColor=#906db4;" vertex="1" parent="1">
-          <mxGeometry x="639" y="79" width="212" height="52" as="geometry" />
+        <mxCell id="actor-extraccion" parent="1" style="shape=umlActor;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="55" width="34" x="283" y="68" as="geometry" />
         </mxCell>
-        <mxCell id="life-responsable" value="" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;edgeStyle=none;dashed=1;endArrow=none;strokeColor=#a1a9b4;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry"><mxPoint x="745" y="131" as="sourcePoint" /><mxPoint x="745" y="760" as="targetPoint" /></mxGeometry>
+        <mxCell id="label-extraccion" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value=":Personal de extracción" vertex="1">
+          <mxGeometry height="26" width="210" x="195" y="136" as="geometry" />
         </mxCell>
-        <mxCell id="sistema" value="&lt;b&gt;HemovidaGest&lt;/b&gt;" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;rounded=1;arcSize=14;strokeWidth=1.5;align=center;verticalAlign=middle;fillColor=#dceafa;strokeColor=#678ebb;" vertex="1" parent="1">
-          <mxGeometry x="984" y="79" width="212" height="52" as="geometry" />
+        <mxCell id="actor-unidades" parent="1" style="shape=umlActor;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="55" width="34" x="883" y="68" as="geometry" />
         </mxCell>
-        <mxCell id="life-sistema" value="" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;edgeStyle=none;dashed=1;endArrow=none;strokeColor=#a1a9b4;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry"><mxPoint x="1090" y="131" as="sourcePoint" /><mxPoint x="1090" y="760" as="targetPoint" /></mxGeometry>
+        <mxCell id="label-unidades" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=13;fontFamily=Arial;align=center;verticalAlign=middle;" value=":Personal autorizado de unidades" vertex="1">
+          <mxGeometry height="26" width="330" x="735" y="136" as="geometry" />
         </mxCell>
-        <mxCell id="buscar" value="Buscar donante" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;edgeStyle=none;whiteSpace=nowrap;verticalAlign=bottom;verticalLabelPosition=top;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry"><mxPoint x="135" y="181" as="sourcePoint" /><mxPoint x="1090" y="181" as="targetPoint" /></mxGeometry>
+        <mxCell id="life-extraccion" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#999999;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="162" as="sourcePoint" />
+            <mxPoint x="300" y="1115" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="opt-alta" value="Si el donante no existe" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;rounded=0;fillColor=none;strokeColor=#97a4b3;align=left;verticalAlign=top;spacingTop=5;spacingLeft=10;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="22" y="204" width="1230" height="86" as="geometry" />
+        <mxCell id="life-unidades" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#999999;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="900" y="162" as="sourcePoint" />
+            <mxPoint x="900" y="1115" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="alta" value="Registrar donante" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;edgeStyle=none;whiteSpace=nowrap;verticalAlign=bottom;verticalLabelPosition=top;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry"><mxPoint x="135" y="265" as="sourcePoint" /><mxPoint x="1090" y="265" as="targetPoint" /></mxGeometry>
+        <mxCell id="act-extraccion" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="" vertex="1">
+          <mxGeometry height="255" width="14" x="293" y="215" as="geometry" />
         </mxCell>
-        <mxCell id="donacion" value="Registrar donación" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;edgeStyle=none;whiteSpace=nowrap;verticalAlign=bottom;verticalLabelPosition=top;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry"><mxPoint x="135" y="339" as="sourcePoint" /><mxPoint x="1090" y="339" as="targetPoint" /></mxGeometry>
+        <mxCell id="act-clasificacion" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="" vertex="1">
+          <mxGeometry height="265" width="14" x="893" y="450" as="geometry" />
         </mxCell>
-        <mxCell id="unidades" value="Donación y unidades generadas en revisión" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;edgeStyle=none;whiteSpace=nowrap;verticalAlign=bottom;verticalLabelPosition=top;dashed=1;endArrow=open;endFill=0;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry"><mxPoint x="1090" y="393" as="sourcePoint" /><mxPoint x="135" y="393" as="targetPoint" /></mxGeometry>
+        <mxCell id="act-estado" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="" vertex="1">
+          <mxGeometry height="260" width="14" x="893" y="790" as="geometry" />
         </mxCell>
-        <mxCell id="loop-unidades" value="Por cada unidad vigente" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;rounded=0;fillColor=none;strokeColor=#97a4b3;align=left;verticalAlign=top;spacingTop=5;spacingLeft=10;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="22" y="428" width="1230" height="192" as="geometry" />
+        <mxCell id="m01" edge="1" parent="1" style="endArrow=block;endFill=1;strokeColor=#000000;strokeWidth=1.5;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;verticalLabelPosition=top;verticalAlign=bottom;" value="Entrada E1: Datos del donante y de la donación">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="470" y="255" />
+              <mxPoint x="470" y="275" />
+            </Array>
+            <mxPoint x="307" y="255" as="sourcePoint" />
+            <mxPoint x="307" y="275" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="clasificar" value="Guardar clasificación" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;edgeStyle=none;whiteSpace=nowrap;verticalAlign=bottom;verticalLabelPosition=top;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry"><mxPoint x="440" y="483" as="sourcePoint" /><mxPoint x="1090" y="483" as="targetPoint" /></mxGeometry>
+        <mxCell id="m02" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="C1: Registrar donante">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="470" y="285" />
+              <mxPoint x="470" y="305" />
+            </Array>
+            <mxPoint x="307" y="285" as="sourcePoint" />
+            <mxPoint x="307" y="305" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="clasificada" value="Unidad clasificada disponible para revisión" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;edgeStyle=none;whiteSpace=nowrap;verticalAlign=bottom;verticalLabelPosition=top;dashed=1;endArrow=open;endFill=0;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry"><mxPoint x="1090" y="534" as="sourcePoint" /><mxPoint x="745" y="534" as="targetPoint" /></mxGeometry>
+        <mxCell id="m03" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="C2: Registrar donación y generar unidades identificadas en estado En revisión">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="470" y="345" />
+              <mxPoint x="470" y="370" />
+            </Array>
+            <mxPoint x="307" y="345" as="sourcePoint" />
+            <mxPoint x="307" y="370" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="decidir" value="Liberar, bloquear o descartar" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;edgeStyle=none;whiteSpace=nowrap;verticalAlign=bottom;verticalLabelPosition=top;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry"><mxPoint x="745" y="585" as="sourcePoint" /><mxPoint x="1090" y="585" as="targetPoint" /></mxGeometry>
+        <mxCell id="m04" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S1: Donación registrada">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="470" y="410" />
+              <mxPoint x="470" y="435" />
+            </Array>
+            <mxPoint x="307" y="410" as="sourcePoint" />
+            <mxPoint x="307" y="435" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="opt-comprobante" value="Cuando todas las unidades vigentes tienen una decisión" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;rounded=0;fillColor=none;strokeColor=#97a4b3;align=left;verticalAlign=top;spacingTop=5;spacingLeft=10;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="22" y="650" width="1230" height="96" as="geometry" />
+        <mxCell id="m05a" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S2: Unidades en revisión para clasificar">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="307" y="450" as="sourcePoint" />
+            <mxPoint x="893" y="450" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="comprobante" value="Comprobante generado o pendiente de reintento" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;endFill=1;strokeColor=#495669;strokeWidth=1.5;fontSize=14;labelBackgroundColor=#ffffff;edgeStyle=none;whiteSpace=nowrap;verticalAlign=bottom;verticalLabelPosition=top;dashed=1;endArrow=open;endFill=0;" edge="1" parent="1">
-          <mxGeometry relative="1" as="geometry"><mxPoint x="1090" y="719" as="sourcePoint" /><mxPoint x="745" y="719" as="targetPoint" /></mxGeometry>
+        <mxCell id="m05" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Entrada E2: Datos de clasificación y decisión de la unidad">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="1070" y="535" />
+              <mxPoint x="1070" y="555" />
+            </Array>
+            <mxPoint x="907" y="535" as="sourcePoint" />
+            <mxPoint x="907" y="555" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m05b" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="C3: Cargar y validar la clasificación">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="1070" y="590" />
+              <mxPoint x="1070" y="615" />
+            </Array>
+            <mxPoint x="907" y="590" as="sourcePoint" />
+            <mxPoint x="907" y="615" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m07" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;rounded=0;dashed=1;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S3: Clasificación guardada, disponible para decidir">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="1070" y="675" />
+              <mxPoint x="1070" y="705" />
+            </Array>
+            <mxPoint x="907" y="675" as="sourcePoint" />
+            <mxPoint x="907" y="705" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m08" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="C4: Liberar la unidad (alternativas: bloquear o descartar)">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="1070" y="835" />
+              <mxPoint x="1070" y="870" />
+            </Array>
+            <mxPoint x="907" y="835" as="sourcePoint" />
+            <mxPoint x="907" y="870" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m09" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="C5: Emitir comprobante automático al completar las decisiones vigentes">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="1070" y="935" />
+              <mxPoint x="1070" y="960" />
+            </Array>
+            <mxPoint x="907" y="935" as="sourcePoint" />
+            <mxPoint x="907" y="960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m09b" edge="1" parent="1" style="endArrow=block;html=1;rounded=0;fontSize=11;fontFamily=Arial;labelBackgroundColor=#ffffff;" value="Salida S4: Comprobante de donación generado o pendiente de reintento">
+          <mxGeometry relative="1" x="-0.6" y="0" as="geometry">
+            <mxPoint x="0" y="-12" as="offset" />
+            <Array as="points">
+              <mxPoint x="1070" y="1000" />
+              <mxPoint x="1070" y="1025" />
+            </Array>
+            <mxPoint x="907" y="1000" as="sourcePoint" />
+            <mxPoint x="907" y="1025" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

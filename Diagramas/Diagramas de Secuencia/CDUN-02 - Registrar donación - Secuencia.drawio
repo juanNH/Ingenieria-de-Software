@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <mxfile host="Electron" agent="Codex">
   <diagram id="13222bc8d6f440a088d33965f1180ec8" name="CDUN-02 Registrar donación">
     <mxGraphModel dx="2226" dy="1098" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4055" pageHeight="1676" math="0" shadow="0">
@@ -35,7 +36,7 @@
           <mxGeometry height="1556" width="244" x="3728" y="96" as="geometry" />
         </mxCell>
         <mxCell id="validacion-alta" parent="1" style="swimlane;startSize=28;horizontal=1;html=1;rounded=0;fillColor=none;strokeColor=#d79b00;dashed=1;fontFamily=Arial;fontSize=13;fontStyle=1;align=left;spacingLeft=8;" value="alt [Datos inválidos en la aplicación]" vertex="1">
-          <mxGeometry height="698" width="3420" x="410" y="520" as="geometry" />
+          <mxGeometry height="698" width="3420" x="520" y="443" as="geometry" />
         </mxCell>
         <mxCell id="validacion-alta-branch-1-separator" parent="1" style="shape=line;strokeColor=#d79b00;dashed=1;dashPattern=6 4;" value="" vertex="1">
           <mxGeometry height="1" width="3420" x="520" y="512" as="geometry" />

@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <mxfile host="Electron" agent="Codex">
   <diagram id="pn2-modelo-conceptual" name="PN2 - Modelo conceptual">
     <mxGraphModel dx="2900" dy="1370" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2900" pageHeight="1370" math="0" shadow="0">
@@ -8,7 +8,7 @@
         <mxCell id="usuario" value="Usuario" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry x="60" y="70" width="400" height="369" as="geometry" />
         </mxCell>
-        <mxCell id="usuario-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- Username : string&lt;br&gt;- Email : string&lt;br&gt;- Password : string&lt;br&gt;- Nombre : string&lt;br&gt;- Apellido : string&lt;br&gt;- Idioma : string&lt;br&gt;- IdiomaPreferidoId : int?&lt;br&gt;- Estado : string&lt;br&gt;- IntentosLoginFallidos : int&lt;br&gt;- BloqueoDigitoVerificador : bool&lt;br&gt;- Dvh : string&lt;br&gt;- ComponentesPermiso : List&amp;lt;ComponentePermiso&amp;gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="usuario">
+        <mxCell id="usuario-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Id : int&lt;br&gt;- Username : string&lt;br&gt;- Nombre : string&lt;br&gt;- Apellido : string&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="usuario">
           <mxGeometry x="0" y="42" width="400" height="327" as="geometry" />
         </mxCell>
         <mxCell id="solicitud" value="SolicitudTransfusional" style="swimlane;html=1;horizontal=1;startSize=42;collapsible=0;rounded=0;fillColor=#EFE9DF;swimlaneFillColor=#F8F5EF;strokeColor=#555555;strokeWidth=1.5;fontFamily=Arial;fontSize=20;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
@@ -75,7 +75,7 @@
         </mxCell>
         <mxCell id="usuario-solicitud-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="usuario-solicitud" connectable="0">
           <mxGeometry x="0.82" y="0" width="52" height="24" relative="1" as="geometry">
-            <mxPoint x="0" y="-14" as="offset" />
+            <mxPoint x="-36" y="-14" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="solicitud-reserva-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="solicitud-reserva" connectable="0">
@@ -85,7 +85,7 @@
         </mxCell>
         <mxCell id="solicitud-reserva-destino" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="solicitud-reserva" connectable="0">
           <mxGeometry x="0.82" y="0" width="52" height="24" relative="1" as="geometry">
-            <mxPoint x="0" y="-14" as="offset" />
+            <mxPoint x="-36" y="-14" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="unidad-reserva-origen" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" vertex="1" parent="unidad-reserva" connectable="0">

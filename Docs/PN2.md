@@ -12,6 +12,8 @@ La descomposición funcional y las fichas de CDUN-05 a CDUN-08 están en RFN2 de
 
 El receptor presenta el pedido del profesional y el estudio al personal de registro. Un usuario habilitado transcribe los datos y el operador autorizado valida el estudio y atiende la reserva. El profesional identificado en el pedido y el usuario que lo carga son datos distintos.
 
+El recorte de los diagramas comprende tres actores funcionales: **Personal de registro** (CDUN-05), **Operador autorizado** (CDUN-06) y **Operador del banco de sangre** (CDUN-07 y su comprobante automático CDUN-08). El flujo comienza en Personal de registro con E3, el pedido, los datos del receptor y el estudio disponible. Esta distribución representa responsabilidades del proceso; los perfiles y permisos existentes se conservan en el código.
+
 Desde **Receptor registrado** se puede recuperar un receptor para otra solicitud; también se busca automáticamente al salir del campo documento. Cada documento aparece una sola vez, con el nombre de su última solicitud y el último par grupo sanguíneo/Rh conocido (prioriza la fecha del estudio). **Nuevo receptor** limpia el formulario. El registro se obtiene de las solicitudes persistidas y protegidas por integridad: incluye datos históricos y continúa disponible al reiniciar. Una solicitud posterior sin grupo no borra el grupo conocido.
 
 La selección completa nombre, documento, grupo y Rh, y limpia los datos del estudio. Se permite registrar el grupo y factor sin un estudio; el pedido queda pendiente hasta cargar y validar el informe de esa solicitud. No se reutilizan laboratorios, resultados ni validaciones anteriores. Los profesionales sólo ven receptores de sus solicitudes; los operadores con acceso general conservan ese alcance. Para actualizar una base existente, ejecutar `Database/InstalarPN2.ps1` con la aplicación cerrada.
@@ -30,7 +32,7 @@ La secuencia de roles describe el flujo de negocio. Las secuencias de clases mue
 | Actividad | [Actividad de negocio](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaActividadNegocio.drawio) | Flujo principal, decisiones, destinos y alternativas. |
 | Modelo conceptual | [Modelo conceptual](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaModeloConceptual.drawio) | Conceptos, datos y multiplicidades del negocio. |
 | Secuencia de roles | [Secuencia de roles](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaSecuenciaRoles.drawio) | Interacciones entre las personas y el sistema durante la atención. |
-| Entrada, Comportamiento y Salida | [E/C/S](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaEntradaComportamientoSalida.drawio) | Flujo operativo y E9/C11/S10 del comprobante automático al registrar destino. |
+| Entrada, Comportamiento y Salida | [E/C/S](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaEntradaComportamientoSalida.drawio) | Flujo operativo y C12/S7 del comprobante automático al registrar destino. |
 | Casos de uso | [CDUN-05 a CDUN-08](../Diagramas/Casos%20de%20Uso/PN2%20-%20CDUN-05%20a%20CDUN-08%20-%20Casos%20de%20uso.drawio) | Registro, validación, reserva, entrega, destino y comprobante. |
 | Clases | [CDUN-05 a CDUN-08](../Diagramas/Diagramas%20de%20clases/PN2%20-%20CDUN-05%20a%20CDUN-08%20-%20Clases.drawio) | Una página por caso. |
 | Secuencia de clases | [CDUN-05 a CDUN-08](../Diagramas/Diagramas%20de%20Secuencia/PN2%20-%20CDUN-05%20a%20CDUN-08%20-%20Secuencia.drawio) | Una página por caso con el flujo principal y las alternativas. |
@@ -49,7 +51,7 @@ La carga posterior del estudio es una alternativa del CDUN-05. El CDUN-06 —Val
 | Auditor | Consultar trazabilidad. | PN2_AUDITOR |
 | Administrador del banco de sangre | Acceso a las operaciones de PN2 mediante la familia administrativa existente. | ADMINISTRADOR |
 
-Los permisos se comprueban en Application y SQL. La instalación agrega las familias y sus relaciones sin crear usuarios de demostración. Para revisar el circuito con distintos actores, asignar las familias mediante la gestión de permisos existente y volver a iniciar sesión. El profesional sin permisos operativos adicionales ve solamente sus solicitudes.
+La UI habilita las pantallas y acciones según los permisos del usuario. Las operaciones de registro no repiten esas comprobaciones en Application; las consultas SQL conservan los controles de acceso y de alcance de los datos. La instalación agrega las familias y sus relaciones sin crear usuarios de demostración. Para revisar el circuito con distintos actores, asignar las familias mediante la gestión de permisos existente y volver a iniciar sesión. El profesional sin permisos operativos adicionales ve solamente sus solicitudes.
 
 ## Flujo en lenguaje coloquial
 
@@ -92,19 +94,18 @@ Estados de reserva: ACTIVA, ENTREGADA y CANCELADA. Estados nuevos de unidad: RES
 
 ## Entradas, comportamientos y salidas
 
+Las referencias E3, C7–C12 y S5–S7 corresponden al flujo principal del recorte en los diagramas de roles, actividad, secuencia de roles y E/C/S. Las consultas y operaciones complementarias se describen aparte.
+
 | Entrada | Comportamiento | Salida |
 | --- | --- | --- |
-| E1. Solicitud, datos del receptor y estudio de laboratorio. | C1. Registrar el pedido y transcribir el estudio. | S1. Solicitud registrada con estudio pendiente de validación. |
-| E2. Solicitud e informe original. | C2. Validar estudio y consultar candidatos por componente, estado, vigencia y grupo. | S2. Estudio validado y unidades candidatas. |
-| E1, E2 y E10. Solicitud, inventario y resultado de pruebas. | C3. Verificar saldo y confirmar compatibilidad según el protocolo. | S1 si falta disponibilidad o validación; de lo contrario continúa la atención. |
-| E10. Unidad candidata, resultado de compatibilidad y su referencia. | C4. Confirmar la evaluación y reservar la unidad. | S3. Reserva registrada con referencia. |
-| E3. Reserva y datos de entrega. | C5. Confirmar habilitación y registrar entrega. | S4. Entrega registrada. |
-| E4. Entrega, estado de destino, responsable, fecha y motivo cuando corresponde. | C6. Registrar el estado de destino configurado. | S5. Estado registrado y saldo actualizado. |
-| E5. Unidad, período, estado, grupo o componente. | C7. Consultar trazabilidad. | S6. Historial consultado. |
-| E6. Consulta de reportes y alertas. | C8. Generar reportes y alertas. | S7. Resultados disponibles. |
-| E7. Reserva activa y motivo. | C9. Cancelar reserva. | S8. Reserva cancelada, unidad liberada y saldo actualizado. |
-| E8. Unidad devuelta, responsable autorizado y motivo. | C10. Reingresar a En revisión. | S9. Unidad pendiente de nueva clasificación y liberación PN1. |
-| E9. Destino guardado de una entrega. | C11. Generar automáticamente el comprobante de esa entrega. | S10. PDF con el destino o comprobante pendiente de reintento. |
+| E3. Pedido, datos del receptor y estudio disponible. | C7. Registrar la solicitud y transcribir el estudio informado. | S5. Solicitud registrada con estudio pendiente de validación. |
+| Solicitud e informe original. | C8. Validar estudio. | Estudio validado para continuar la reserva. |
+| Unidad candidata, resultado de compatibilidad y su referencia. | C9. Reservar unidad compatible. | Reserva registrada con referencia. |
+| Reserva y datos de entrega. | C10. Confirmar habilitación y registrar entrega. | S6. Entrega registrada. |
+| Entrega, estado de destino, responsable, fecha y motivo cuando corresponde. | C11. Registrar el estado de destino configurado. | Estado registrado y saldo actualizado. |
+| Destino guardado de una entrega. | C12. Generar automáticamente el comprobante de esa entrega. | S7. PDF con el destino o comprobante pendiente de reintento. |
+
+La consulta de candidatas forma parte de la reserva de CDUN-06, y la cancelación de una reserva activa es una alternativa de ese mismo caso. Trazabilidad, reportes y reingreso se conservan como operaciones complementarias fuera del flujo principal de este recorte.
 
 ## Pantallas y consultas
 
@@ -130,7 +131,7 @@ Se conservan las capas y la nomenclatura `_380_jh` del proyecto:
 | Modelos y estados | [Domain/PN2](../Domain/PN2/) |
 | Acceso SQL | [DAL/PN2](../DAL/PN2/) |
 | Repositorio | [Repository/PN2](../Repository/PN2/) |
-| Operaciones y permisos | [PN2ApplicationService](../Application/PN2/PN2ApplicationService.cs) |
+| Operaciones de PN2 | [PN2ApplicationService](../Application/PN2/PN2ApplicationService.cs) |
 | Pantallas | [UI/Views/PN2](../UI/Views/PN2/) |
 | Tablas y procedimientos | [09_PN2.sql](../Database/StoredProcedures/09_PN2.sql) |
 | Permisos y traducciones | [08_PN2_Catalogos.sql](../Database/StoredProcedures/08_PN2_Catalogos.sql) |
@@ -188,7 +189,7 @@ La implementación anterior completó comprobaciones SQL, controles de concurren
 
 ## Continuación después de validar
 
-Con las observaciones funcionales resueltas se podrán preparar los diagramas de clases y la secuencia de clases siguiendo PN1 y los nombres reales del código.
+Los diagramas de clases y secuencia de CDUN-05 a CDUN-08 ya representan el recorte acordado, con las firmas del código, el camino principal y los alternos documentados. Las observaciones de la validación funcional del usuario se incorporarán sobre estos diagramas.
 
 Para retomar la bitácora, el pedido puede ser:
 
