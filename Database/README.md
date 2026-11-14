@@ -47,6 +47,7 @@ integridad al finalizar:
 | Actualizar únicamente los comprobantes de una base PN2 | `./Database/InstalarComprobantes.ps1` |
 | Incorporar grupo sanguíneo y Rh persistidos en el donante (PN1 o PN1+PN2) | `./Database/InstalarMaestrosPN1.ps1` |
 | Incorporar la corrección de cantidades en una base con PN2 y comprobantes | `./Database/InstalarMaestrosPN1.ps1` |
+| Actualizar PN1 para descartar unidades vencidas sin clasificación, con motivo | `./Database/InstalarMaestrosPN1.ps1` |
 
 `InstalarPN2.ps1` aplica, en orden, `08_PN2_Catalogos.sql`, `06_MaestrosPN1.sql`,
 `06a_CompatibilidadTransfusional.sql`, `06b_TipificacionDonante.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql`, `12_DiagramasSSMS.sql` y `13_AjusteCantidadDonacion.sql`. El script 12 crea los diagramas que falten y actualiza la numeración a CDUN-01–08. Conserva la disposición del nombre canónico cuando ya existe y retira las entradas anteriores duplicadas, incluida la decisión operativa unificada en CDUN-03. Requiere permisos de propietario de la base. Los diagramas dependen del esquema de tablas instalado.

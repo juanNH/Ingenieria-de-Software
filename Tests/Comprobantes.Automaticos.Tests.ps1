@@ -153,6 +153,42 @@ try {
     $versionLiberada = [int](Sql 'EXEC dbo.sp_Donacion_ConsultarCantidad 1,1').Tables[0].Rows[0].version_actual
     Assert-RechazoAjuste "EXEC dbo.sp_Donacion_AjustarCantidad 1,$versionLiberada,4,N'Cerrada',N'[]',1" 51123 'Se rechaza el ajuste de una donación liberada'
     Assert ((Sql 'SELECT COUNT(*) n FROM dbo.v_IntegridadPN1_Errores').Tables[0].Rows[0].n -eq 0) 'El ajuste conserva la integridad de PN1'
+
+    # Excepción de CU03: descartar una unidad vencida antes de clasificarla.
+    [void](Sql "EXEC dbo.sp_Donante_Registrar @documento='VENCIDA',@nombre='Eva',@apellido='Prueba',@id_usuario=1")
+    $donanteVencido = [int](Sql "SELECT id_donante FROM dbo.Donante WHERE documento='VENCIDA'").Tables[0].Rows[0].id_donante
+    $donacionVencida = Sql "DECLARE @f DATETIME=DATEADD(day,-10,GETDATE()),@v DATE=DATEADD(day,-1,GETDATE()); EXEC dbo.sp_Donacion_Registrar @id_donante=$donanteVencido,@fecha_donacion=@f,@cantidad_unidades=1,@tipo_componente='Concentrado de eritrocitos',@fecha_vencimiento=@v,@id_usuario=1"
+    $idDonacionVencida = [int]$donacionVencida.Tables[0].Rows[0].id_donacion
+    $unidadVencida = [int]$donacionVencida.Tables[1].Rows[0].id_unidad
+    Assert ((Sql "EXEC dbo.sp_Unidad_CambiarEstado $unidadVencida,'DESCARTADA',' ',1").Tables[0].Rows[0].codigo_resultado -eq 'DATOS_INVALIDOS') 'El descarte vencido exige motivo'
+    Assert ((Sql "EXEC dbo.sp_Unidad_CambiarEstado $unidadVencida,'LIBERADA',NULL,1").Tables[0].Rows[0].codigo_resultado -eq 'CONFLICTO_ESTADO') 'La excepción no libera una unidad vencida sin clasificar'
+    Assert ((Sql "EXEC dbo.sp_Unidad_CambiarEstado $unidadVencida,'BLOQUEADA','Prueba',1").Tables[0].Rows[0].codigo_resultado -eq 'CONFLICTO_ESTADO') 'La excepción no bloquea sin clasificar'
+    foreach ($diasVencimiento in @(0, 1)) {
+        $donacionVigente = Sql "DECLARE @f DATETIME=GETDATE(),@v DATE=DATEADD(day,$diasVencimiento,GETDATE()); EXEC dbo.sp_Donacion_Registrar @id_donante=$donanteVencido,@fecha_donacion=@f,@cantidad_unidades=1,@tipo_componente='Concentrado de eritrocitos',@fecha_vencimiento=@v,@id_usuario=1"
+        $unidadVigente = [int]$donacionVigente.Tables[1].Rows[0].id_unidad
+        Assert ((Sql "EXEC dbo.sp_Unidad_CambiarEstado $unidadVigente,'DESCARTADA','Prueba',1").Tables[0].Rows[0].codigo_resultado -eq 'CONFLICTO_ESTADO') "Sin clasificación se rechaza el descarte cuando vence en $diasVencimiento días"
+    }
+    $auditoriasAntes = [int](Sql 'SELECT COUNT(*) n FROM dbo.Auditoria').Tables[0].Rows[0].n
+    [void](Sql "BEGIN TRANSACTION; EXEC dbo.sp_Unidad_CambiarEstado $unidadVencida,'DESCARTADA','Vencimiento',1; ROLLBACK")
+    Assert ((CountPending "proceso='PN1' AND id_referencia=$idDonacionVencida") -eq 0 -and
+        (Sql "SELECT COUNT(*) n FROM dbo.Unidad WHERE id_unidad=$unidadVencida AND estado_operativo='EN_REVISION'").Tables[0].Rows[0].n -eq 1 -and
+        (Sql 'SELECT COUNT(*) n FROM dbo.Auditoria').Tables[0].Rows[0].n -eq $auditoriasAntes) 'Un rollback del descarte revierte unidad, auditoría y comprobante'
+    Assert ((Sql "EXEC dbo.sp_Unidad_CambiarEstado $unidadVencida,'DESCARTADA','Vencimiento sin clasificación',1").Tables[0].Rows[0].codigo_resultado -eq 'OK') 'Se descarta una unidad vencida sin clasificar'
+    Assert ((Sql "SELECT COUNT(*) n FROM dbo.Unidad WHERE id_unidad=$unidadVencida AND estado_operativo='DESCARTADA' AND grupo_sanguineo IS NULL AND factor_rh IS NULL").Tables[0].Rows[0].n -eq 1 -and
+        (Sql "SELECT COUNT(*) n FROM dbo.Donante WHERE id_donante=$donanteVencido AND grupo_sanguineo IS NULL AND factor_rh IS NULL").Tables[0].Rows[0].n -eq 1) 'El descarte conserva la tipificación desconocida de unidad y donante'
+    Assert ((Sql "SELECT COUNT(*) n FROM dbo.MovimientoUnidad WHERE id_unidad=$unidadVencida AND tipo_movimiento='DESCARTE' AND estado_anterior='EN_REVISION' AND estado_nuevo='DESCARTADA' AND observacion='Vencimiento sin clasificación'").Tables[0].Rows[0].n -eq 1) 'El motivo y la transición quedan en el historial'
+    Assert ((CountPending "proceso='PN1' AND id_referencia=$idDonacionVencida") -eq 1) 'El descarte completa la donación y registra su comprobante'
+    $snapshotVencido = [xml](Sql "SELECT CONVERT(NVARCHAR(MAX),datos) xml_datos FROM dbo.ComprobantePendiente WHERE proceso='PN1' AND id_referencia=$idDonacionVencida").Tables[0].Rows[0].xml_datos
+    Assert ($snapshotVencido.Comprobante.Unidades.Unidad.EstadoOperativo_380_jh -eq 'DESCARTADA' -and
+        $snapshotVencido.Comprobante.Unidades.Unidad.Observaciones_380_jh -eq 'Vencimiento sin clasificación') 'La instantánea conserva el descarte y su motivo'
+    $auditoriasDespues = [int](Sql 'SELECT COUNT(*) n FROM dbo.Auditoria').Tables[0].Rows[0].n
+    Assert ((Sql "EXEC dbo.sp_Unidad_CambiarEstado $unidadVencida,'DESCARTADA','Repetido',1").Tables[0].Rows[0].codigo_resultado -eq 'CONFLICTO_ESTADO' -and
+        (CountPending "proceso='PN1' AND id_referencia=$idDonacionVencida") -eq 1 -and
+        (Sql 'SELECT COUNT(*) n FROM dbo.Auditoria').Tables[0].Rows[0].n -eq $auditoriasDespues) 'El doble descarte no duplica historial ni comprobantes'
+    Assert ((Sql 'SELECT COUNT(*) n FROM dbo.v_IntegridadPN1_Errores').Tables[0].Rows[0].n -eq 0) 'El descarte sin clasificación conserva DVH y DVV'
+    $result = $service.ProcesarPendientes_380_jh()
+    $originalVencido = $service.ObtenerOriginal_380_jh('PN1', $idDonacionVencida)
+    Assert (!$result.ErrorConsulta_380_jh -and $result.Pendientes_380_jh -eq 0 -and (Test-Path -LiteralPath $originalVencido)) 'Se genera el PDF de la unidad descartada sin grupo ni Rh'
     Write-Host "PDF de prueba: $output"
 }
 finally {

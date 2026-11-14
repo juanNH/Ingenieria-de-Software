@@ -79,6 +79,30 @@ internal static class PN1XmlTests
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(tablaAnulada)))
                 Check(tablaService.Deserializar_380_jh(stream).Unidades_380_jh.Single().EstadoOperativo_380_jh == "ANULADA",
                     "La tabla XML conserva una unidad anulada sin clasificación");
+            extra.Element("EstadoOperativo").Value = "DESCARTADA";
+            extra.Element("FechaVencimiento").Value = DateTime.Today.AddDays(-1).ToString("o");
+            extra.Element("FechaUltimaModificacion").Value = DateTime.Today.ToString("o");
+            // Observaciones precede las fechas de auditoría en el esquema de proceso.
+            extra.Element("EstadoOperativo").AddAfterSelf(new XElement("Observaciones", "Descarte por vencimiento"));
+            Check(Importar(importer, document.ToString()).Donacion_380_jh.Unidades_380_jh[1].GrupoSanguineo_380_jh == null,
+                "El proceso conserva un descarte vencido con motivo sin inventar clasificación");
+            extra.Element("Observaciones").Value = " ";
+            Rechazado(importer, document.ToString(), "Rechaza descarte sin clasificación ni motivo");
+            extra.Element("Observaciones").Value = "Descarte por vencimiento";
+            extra.Element("FechaVencimiento").Value = DateTime.Today.ToString("o");
+            Rechazado(importer, document.ToString(), "Rechaza descarte sin clasificación cuando aún no venció");
+            var filaDescartada = new FilaUnidadXml_380_jh
+            {
+                CodigoIdentificacion_380_jh = "UN-VENCIDA", Donante_380_jh = "Donante de prueba", TipoComponente_380_jh = "Sangre",
+                FechaVencimiento_380_jh = DateTime.Today.AddDays(-1), EstadoOperativo_380_jh = "DESCARTADA"
+            };
+            string tablaDescartada = tablaService.Serializar_380_jh(new List<FilaUnidadXml_380_jh> { filaDescartada });
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(tablaDescartada)))
+                Check(tablaService.Deserializar_380_jh(stream).Unidades_380_jh.Single().GrupoSanguineo_380_jh == null,
+                    "La vista XML permite exportar e importar una unidad descartada por vencimiento sin clasificación");
+            filaDescartada.EstadoOperativo_380_jh = "LIBERADA";
+            try { tablaService.Serializar_380_jh(new List<FilaUnidadXml_380_jh> { filaDescartada }); throw new Exception("Se permitió liberar sin clasificación."); }
+            catch (InvalidDataException) { Check(true, "La excepción XML no admite una unidad liberada sin clasificación"); }
             extra.Element("EstadoOperativo").Value = "EN_REVISION";
             extra.Element("FechaVencimiento").Remove();
             Rechazado(importer, document.ToString(), "Rechaza campo obligatorio ausente");

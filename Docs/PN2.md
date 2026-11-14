@@ -38,7 +38,7 @@ La secuencia de roles describe el flujo de negocio. Las secuencias de clases mue
 | Secuencia de clases | [CDUN-05 a CDUN-08](../Diagramas/Diagramas%20de%20Secuencia/PN2%20-%20CDUN-05%20a%20CDUN-08%20-%20Secuencia.drawio) | Una página por caso con el flujo principal y las alternativas. |
 | DER | [Diagramas y exportaciones de SSMS](../Diagramas/Diagramas%20Entidad%20Relacion/LEEME.md) | Tablas y claves foráneas de cada caso. |
 
-La carga posterior del estudio es una alternativa del CDUN-05. El CDUN-06 —Validar estudio, reservar y entregar unidad— reúne las acciones de la pantalla Reservas y entregas e incluye la cancelación de una reserva activa como alternativa. El CDUN-08 extiende al CDUN-07 cuando se registra el destino correctamente.
+La carga posterior del estudio es una alternativa del CDUN-05. El CDUN-06 —Validar estudio, reservar y entregar unidad— reúne las acciones de la pantalla Reservas y entregas e incluye la cancelación de una reserva activa como alternativa. El CDUN-07 incluye al CDUN-08: el comprobante se emite automáticamente cuando se registra el destino correctamente; si falla la emisión queda pendiente de reintento.
 
 ## Roles y permisos
 

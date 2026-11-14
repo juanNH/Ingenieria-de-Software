@@ -569,10 +569,13 @@ BEGIN
         SELECT 1 FROM dbo.Unidad
         WHERE id_unidad = @id_unidad
           AND (estado_operativo <> 'EN_REVISION'
-               OR tipo_componente IS NULL OR grupo_sanguineo IS NULL OR factor_rh IS NULL
-               OR (SELECT TOP (1) m.tipo_movimiento FROM dbo.MovimientoUnidad m
-                   WHERE m.id_unidad = @id_unidad AND m.tipo_movimiento IN ('REGISTRO','CLASIFICACION','TIPIFICACION_DONANTE','REACTIVACION_CANTIDAD')
-                   ORDER BY m.id_movimiento_unidad DESC) IN ('REGISTRO','TIPIFICACION_DONANTE','REACTIVACION_CANTIDAD')
+               -- Una unidad vencida puede descartarse sin completar su clasificación.
+               -- El estado de origen y el motivo obligatorio se validan igualmente.
+               OR (NOT (@estado_nuevo = 'DESCARTADA' AND fecha_vencimiento < CONVERT(DATE, GETDATE()))
+                   AND (tipo_componente IS NULL OR grupo_sanguineo IS NULL OR factor_rh IS NULL
+                        OR (SELECT TOP (1) m.tipo_movimiento FROM dbo.MovimientoUnidad m
+                            WHERE m.id_unidad = @id_unidad AND m.tipo_movimiento IN ('REGISTRO','CLASIFICACION','TIPIFICACION_DONANTE','REACTIVACION_CANTIDAD')
+                            ORDER BY m.id_movimiento_unidad DESC) IN ('REGISTRO','TIPIFICACION_DONANTE','REACTIVACION_CANTIDAD')))
                OR (@estado_nuevo = 'LIBERADA' AND (fecha_vencimiento < CONVERT(DATE, GETDATE())
                    OR (@grupo_esperado IS NOT NULL AND grupo_sanguineo <> @grupo_esperado)
                    OR (@rh_esperado IS NOT NULL AND factor_rh <> @rh_esperado))))

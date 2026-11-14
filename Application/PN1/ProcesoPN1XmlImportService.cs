@@ -40,8 +40,11 @@ namespace Application
 
                 bool tieneGrupo = !string.IsNullOrWhiteSpace(unidad.GrupoSanguineo_380_jh);
                 bool tieneRh = !string.IsNullOrWhiteSpace(unidad.FactorRh_380_jh);
+                bool descarteVencido = unidad.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Descartada_380_jh &&
+                    unidad.FechaVencimiento_380_jh.Date < unidad.FechaUltimaModificacion_380_jh.Date &&
+                    !string.IsNullOrWhiteSpace(unidad.Observaciones_380_jh);
                 bool admiteSinClasificar = unidad.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.EnRevision_380_jh ||
-                    unidad.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Anulada_380_jh;
+                    unidad.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Anulada_380_jh || descarteVencido;
                 if (tieneGrupo != tieneRh ||
                     (tieneGrupo && unidad.GrupoSanguineo_380_jh.Length > 5) ||
                     (tieneRh && unidad.FactorRh_380_jh.Length > 5) ||

@@ -7,6 +7,8 @@
 
 La solicitud de PN2 puede tener varias entregas y saldo pendiente. La aplicación no tiene un cierre formal de solicitud: el botón **Exportar reporte PDF** en Solicitudes genera un resumen manual del estado actual; no es un cierre ni un comprobante automático consolidado.
 
+Una unidad **En revisión** cuya fecha de vencimiento ya pasó puede marcarse **Descartada** sin guardar clasificación, con motivo obligatorio. El descarte conserva el vencimiento real y no completa grupo ni Rh desconocidos. Cuenta como decisión PN1 para emitir el comprobante; liberar y bloquear siguen requiriendo clasificación.
+
 El evento y su instantánea se guardan en la misma transacción que la decisión o el destino. Una vez confirmada la operación, la aplicación intenta crear el PDF y muestra su ubicación, con opción para abrirlo. El documento incluye un identificador único y las fechas de la operación y de emisión; el archivo no se sobrescribe. Las operaciones fallidas o revertidas no producen un evento.
 
 Si falla el guardado, la operación queda confirmada y el comprobante permanece pendiente en SQL. La aplicación vuelve a intentarlo al iniciar sesión y al registrar una operación; también se puede usar **Reintentar comprobantes** en Unidades o Destino de unidades. Cada usuario procesa sus eventos mientras conserve permisos para la operación; un administrador puede procesar los pendientes de todos. Si el archivo ya se creó y faltó confirmar su registro, el reintento reutiliza el archivo existente.

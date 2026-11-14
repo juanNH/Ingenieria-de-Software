@@ -100,7 +100,9 @@ namespace Application
                 bool grupo = !string.IsNullOrWhiteSpace(fila.GrupoSanguineo_380_jh);
                 bool rh = !string.IsNullOrWhiteSpace(fila.FactorRh_380_jh);
                 bool admiteSinClasificar = fila.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.EnRevision_380_jh ||
-                    fila.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Anulada_380_jh;
+                    fila.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Anulada_380_jh ||
+                    (fila.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Descartada_380_jh &&
+                     fila.FechaVencimiento_380_jh.Date < DateTime.Today);
                 bool estadoValido = admiteSinClasificar ||
                     fila.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Liberada_380_jh ||
                     fila.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.Bloqueada_380_jh ||
