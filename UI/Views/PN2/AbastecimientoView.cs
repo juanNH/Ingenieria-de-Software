@@ -22,7 +22,6 @@ namespace UI
         private Button _generar_380_jh;
         private DataGridView _grilla_380_jh;
         private Label _stock_380_jh, _vence_380_jh, _deficit_380_jh, _estudio_380_jh, _detalle_380_jh, _estado_380_jh;
-        private ComparacionAbastecimientoPanel_380_jh _grafico_380_jh;
         private AbastecimientoFiltro_380_jh _filtroAplicado_380_jh;
         private string _errorConsulta_380_jh;
         private bool _cargando_380_jh;
@@ -99,10 +98,6 @@ namespace UI
             _estudio_380_jh = Tarjeta_380_jh(tarjetas, 3, "SUPPLY_KPI_STUDY", Color.FromArgb(94, 82, 131));
             layout.Controls.Add(tarjetas, 0, 3);
 
-            TabControl pestanas = new TabControl { Dock = DockStyle.Fill };
-            TabPage detalle = new TabPage { Tag = "SUPPLY_TAB_DETAIL", Text = T_380_jh("SUPPLY_TAB_DETAIL"), BackColor = Color.White, Padding = new Padding(4) };
-            TabPage comparacion = new TabPage { Tag = "SUPPLY_TAB_CHART", Text = T_380_jh("SUPPLY_TAB_CHART"), BackColor = Color.White };
-            pestanas.TabPages.Add(detalle); pestanas.TabPages.Add(comparacion);
             _grilla_380_jh = ControlesPN2_380_jh.CrearGrilla_380_jh();
             _grilla_380_jh.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _grilla_380_jh.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -124,10 +119,7 @@ namespace UI
             Columna_380_jh("deficit", "SUPPLY_COL_DEFICIT", 70, "N0");
             Columna_380_jh("prioridad", "SUPPLY_COL_PRIORITY", 178);
             _grilla_380_jh.SelectionChanged += delegate { PintarDetalle_380_jh(); };
-            detalle.Controls.Add(_grilla_380_jh);
-            _grafico_380_jh = new ComparacionAbastecimientoPanel_380_jh(T_380_jh) { Dock = DockStyle.Fill };
-            comparacion.Controls.Add(_grafico_380_jh);
-            layout.Controls.Add(pestanas, 0, 4);
+            layout.Controls.Add(_grilla_380_jh, 0, 4);
             _detalle_380_jh = new Label { Dock = DockStyle.Fill, Padding = new Padding(10, 7, 10, 2), BackColor = Color.FromArgb(242, 246, 250), AutoEllipsis = true };
             layout.Controls.Add(_detalle_380_jh, 0, 5);
             _estado_380_jh = new Label { Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft, ForeColor = Color.DimGray, AutoEllipsis = true };
@@ -247,7 +239,6 @@ namespace UI
             _vence_380_jh.Text = visibles.Sum(x => x.StockPorVencer_380_jh ?? 0).ToString("N0");
             _deficit_380_jh.Text = visibles.Sum(x => x.DeficitUnidades_380_jh ?? 0).ToString("N0");
             _estudio_380_jh.Text = visibles.Where(x => !x.CohorteValidada_380_jh).Sum(x => x.PendienteVigente_380_jh).ToString("N0");
-            _grafico_380_jh.Mostrar_380_jh(visibles);
             _estado_380_jh.ForeColor = _errorConsulta_380_jh == null ? Color.DimGray : Color.Firebrick;
             _estado_380_jh.Text = _errorConsulta_380_jh != null ? T_380_jh(_errorConsulta_380_jh) : _filtroAplicado_380_jh == null ? string.Empty : string.Format(T_380_jh("SUPPLY_STATUS"), visibles.Count,
                 _filas_380_jh.Count == 0 ? DateTime.Today : _filas_380_jh[0].FechaCorte_380_jh,
@@ -272,41 +263,4 @@ namespace UI
         }
     }
 
-    internal class ComparacionAbastecimientoPanel_380_jh : Panel
-    {
-        private readonly Func<string, string> _traducir_380_jh;
-        private List<FilaAbastecimiento_380_jh> _filas_380_jh = new List<FilaAbastecimiento_380_jh>();
-        internal ComparacionAbastecimientoPanel_380_jh(Func<string, string> traducir) { _traducir_380_jh = traducir; DoubleBuffered = true; BackColor = Color.White; }
-        internal void Mostrar_380_jh(List<FilaAbastecimiento_380_jh> filas) { _filas_380_jh = filas; Invalidate(); }
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-            var grupos = _filas_380_jh.Where(x => x.CohorteValidada_380_jh).GroupBy(x => x.TipoComponente_380_jh)
-                .Select(x => new { Nombre = x.Key, Stock = x.Sum(f => f.StockLiberadoVigente_380_jh ?? 0), Saldo = x.Sum(f => f.PendienteVigente_380_jh) })
-                .OrderByDescending(x => x.Saldo).ThenBy(x => x.Nombre).Take(6).ToList();
-            using (Font font = new Font("Segoe UI", 10))
-            using (Brush texto = new SolidBrush(Color.FromArgb(40, 55, 70)))
-            using (Brush stock = new SolidBrush(Color.FromArgb(52, 108, 156)))
-            using (Brush saldo = new SolidBrush(Color.FromArgb(207, 147, 57)))
-            {
-                e.Graphics.FillRectangle(stock, 18, 17, 14, 12); e.Graphics.DrawString(_traducir_380_jh("SUPPLY_CHART_STOCK"), font, texto, 38, 12);
-                e.Graphics.FillRectangle(saldo, 250, 17, 14, 12); e.Graphics.DrawString(_traducir_380_jh("SUPPLY_CHART_PENDING"), font, texto, 270, 12);
-                if (grupos.Count == 0) { e.Graphics.DrawString(_traducir_380_jh("SUPPLY_EMPTY"), font, texto, 18, 70); return; }
-                long maximo = Math.Max(1, grupos.Max(x => Math.Max(x.Stock, x.Saldo)));
-                float alto = Math.Max(31, Math.Min(66, (ClientSize.Height - 75F) / grupos.Count));
-                float ancho = Math.Max(40, ClientSize.Width - 270F);
-                for (int n = 0; n < grupos.Count; n++)
-                {
-                    float y = 52 + n * alto;
-                    e.Graphics.DrawString(grupos[n].Nombre, font, texto, new RectangleF(18, y + 5, 185, alto - 2));
-                    float wStock = ancho * grupos[n].Stock / maximo, wSaldo = ancho * grupos[n].Saldo / maximo;
-                    e.Graphics.FillRectangle(stock, 210, y, wStock, 13); e.Graphics.FillRectangle(saldo, 210, y + 17, wSaldo, 13);
-                    e.Graphics.DrawString(grupos[n].Stock.ToString("N0"), font, texto, 216 + wStock, y - 3);
-                    e.Graphics.DrawString(grupos[n].Saldo.ToString("N0"), font, texto, 216 + wSaldo, y + 14);
-                }
-                e.Graphics.DrawString(_traducir_380_jh("SUPPLY_CHART_HELP"), font, texto, 18, ClientSize.Height - 24);
-            }
-        }
-    }
 }

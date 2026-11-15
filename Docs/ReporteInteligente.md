@@ -8,7 +8,7 @@ Se accede desde **Consultas → Abastecimiento y riesgo de vencimiento**, con el
 
 El período **Desde–Hasta** comprende ambos días completos y se aplica a la demanda registrada. Hasta no puede ser posterior a hoy. El valor inicial comprende los últimos treinta días, incluido hoy. El horizonte de vencimiento admite entre 1 y 365 días y comienza en la fecha de corte indicada por SQL Server.
 
-Los filtros de componente, grupo y Rh son exactos y opcionales. Al filtrar un grupo o Rh, las solicitudes sin estudio validado quedan fuera de ese filtro porque todavía no pertenecen a una cohorte validada. **Solo alertas** filtra las filas obtenidas y actualiza las tarjetas y el gráfico con las filas visibles.
+Los filtros de componente, grupo y Rh son exactos y opcionales. Al filtrar un grupo o Rh, las solicitudes sin estudio validado quedan fuera de ese filtro porque todavía no pertenecen a una cohorte validada. **Solo alertas** filtra las filas obtenidas y actualiza las tarjetas con las filas visibles.
 
 El stock y el pendiente representan la situación actual; el período seleccionado no reconstruye inventarios históricos. El pendiente incluye solicitudes anteriores al período que todavía tienen saldo.
 
@@ -42,13 +42,11 @@ La cobertura es una relación con la demanda histórica registrada, no una predi
 
 Las tarjetas suman el stock vigente, el stock por vencer y los déficits de las cohortes visibles; la cuarta muestra unidades pendientes sin estudio validado. El déficit total se obtiene sumando los déficits de cada cohorte exacta, sin compensarlos con excedentes de otro grupo o Rh.
 
-La pestaña **Comparación por componente** muestra hasta seis componentes con stock y pendiente de las cohortes validadas. El pendiente sin estudio validado permanece identificado en su tarjeta y en la grilla. Las barras comparan totales y no representan una asignación compatible.
-
-Para interpretar una fila, seleccionarla en el detalle y consultar el texto inferior. Ante fechas inválidas o fallas de consulta se vacían las cifras anteriores y se muestra el error; cambiar el idioma conserva ese estado hasta una consulta válida.
+La pantalla presenta una única grilla con todas las métricas por cohorte y cuatro tarjetas de resumen. Para interpretar una fila, seleccionarla y consultar el texto inferior. Ante fechas inválidas o fallas de consulta se vacían las cifras anteriores y se muestra el error; cambiar el idioma conserva ese estado hasta una consulta válida.
 
 ## Casos de demostración
 
-Las capturas de prueba usan datos ficticios y lo indican en una franja visible. La captura de integración utiliza el servicio, repositorio, DAL y procedimiento reales contra una base temporal creada desde cero.
+La captura de la pantalla usa datos ficticios y lo indica en una franja visible. La evidencia de integración utiliza el servicio, repositorio, DAL y procedimiento reales contra una base temporal creada desde cero.
 
 - **Déficit junto a vencimientos:** en la cohorte de eritrocitos A+, hay 3 unidades vigentes, 2 próximas a vencer y 8 pendientes actuales. El déficit exacto es 5. Con 10 unidades solicitadas en treinta días, la cobertura histórica es 9 días. Corresponde revisar conjuntamente abastecimiento y vencimientos.
 - **Falta de estudio validado:** 5 unidades pendientes aparecen en la fila del componente sin grupo/Rh validado. La acción informada es validar el estudio; el reporte conserva stock, cobertura y déficit como N/A.
@@ -61,7 +59,7 @@ Las capturas de prueba usan datos ficticios y lo indican en una franja visible. 
 - [Servicio de aplicación](../Application/PN2/PN2ApplicationService.cs), [repositorio](../Repository/PN2/PN2Repository.cs) y [DataMapper](../DAL/PN2/PN2DataMapper.cs): método `ListarAbastecimiento_380_jh`.
 - [Consulta agregada](../Database/StoredProcedures/15_AbastecimientoRiesgo.sql): CTE de stock, solicitudes, cohortes y métricas, con parámetros, autorización e integridad.
 - [Textos en español e inglés](../Database/StoredProcedures/15a_AbastecimientoUI.sql): inserción de claves faltantes que conserva personalizaciones existentes.
-- [Pantalla y gráfico](../UI/Views/PN2/AbastecimientoView.cs).
-- [Pruebas SQL](../Tests/Abastecimiento.Tests.ps1) y [runner de interfaz e integración](../Tests/Abastecimiento.UI.Tests.ps1): base temporal aislada, métricas, fechas, permisos, integridad, traducciones, filtros, navegación y capturas mediante `DrawToBitmap`.
+- [Pantalla de abastecimiento](../UI/Views/PN2/AbastecimientoView.cs).
+- [Pruebas SQL](../Tests/Abastecimiento.Tests.ps1) y [runner de interfaz e integración](../Tests/Abastecimiento.UI.Tests.ps1): base temporal aislada, métricas, fechas, permisos, integridad, traducciones, filtros, menú y captura mediante `DrawToBitmap`. La regresión de interfaz abre la vista con handles reales, selecciona las cohortes, cambia el idioma, cierra y vuelve a abrir tres veces; también comprueba que las vistas cerradas dejen de recibir notificaciones de idioma.
 
 Las pruebas construyen explícitamente una conexión de seguridad integrada y no leen la configuración privada de la aplicación. Las bases y carpetas temporales se eliminan después de ejecutarse.

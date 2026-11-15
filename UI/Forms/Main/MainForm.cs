@@ -23,8 +23,6 @@ namespace UI
         private ToolStripMenuItem _solicitudesToolStripMenuItem_380_jh;
         private ToolStripMenuItem _reservasToolStripMenuItem_380_jh;
         private ToolStripMenuItem _destinosToolStripMenuItem_380_jh;
-        private ToolStripMenuItem _trazabilidadToolStripMenuItem_380_jh;
-        private ToolStripMenuItem _reportesToolStripMenuItem_380_jh;
         private ToolStripMenuItem _abastecimientoToolStripMenuItem_380_jh;
         private ToolStripMenuItem _cambiarContrasenaToolStripMenuItem_380_jh;
         private bool _cargandoIdiomas_380_jh;
@@ -93,8 +91,6 @@ namespace UI
             _solicitudesToolStripMenuItem_380_jh.Tag = "MENU_TRANSFUSION_REQUESTS";
             _reservasToolStripMenuItem_380_jh.Tag = "MENU_RESERVATIONS";
             _destinosToolStripMenuItem_380_jh.Tag = "MENU_UNIT_DESTINATION";
-            _trazabilidadToolStripMenuItem_380_jh.Tag = "MENU_TRACEABILITY";
-            _reportesToolStripMenuItem_380_jh.Tag = "MENU_REPORTS_ALERTS";
             _abastecimientoToolStripMenuItem_380_jh.Tag = "SUPPLY_TITLE";
             salirToolStripMenuItem_380_jh.Tag = "MENU_LOGOUT";
             _cambiarContrasenaToolStripMenuItem_380_jh.Tag = "MENU_CHANGE_PASSWORD";
@@ -168,16 +164,6 @@ namespace UI
             {
                 if (ValidarPermiso_380_jh(PermisosSistema_380_jh.DestinoRegistrar_380_jh)) ShowScreen_380_jh(new DestinosView_380_jh());
             };
-            _trazabilidadToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "trazabilidadToolStripMenuItem" };
-            _trazabilidadToolStripMenuItem_380_jh.Click += delegate
-            {
-                if (ValidarPermiso_380_jh(PermisosSistema_380_jh.TrazabilidadVer_380_jh)) ShowScreen_380_jh(new TrazabilidadView_380_jh());
-            };
-            _reportesToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "reportesToolStripMenuItem" };
-            _reportesToolStripMenuItem_380_jh.Click += delegate
-            {
-                if (ValidarPermiso_380_jh(PermisosSistema_380_jh.ReporteVer_380_jh)) ShowScreen_380_jh(new ReportesView_380_jh());
-            };
             _pn1ToolStripMenuItem_380_jh.DropDownItems.AddRange(new ToolStripItem[]
             {
                 _donantesToolStripMenuItem_380_jh,
@@ -190,17 +176,12 @@ namespace UI
                 _reservasToolStripMenuItem_380_jh,
                 _destinosToolStripMenuItem_380_jh
             });
-            _consultasToolStripMenuItem_380_jh.DropDownItems.AddRange(new ToolStripItem[]
-            {
-                _trazabilidadToolStripMenuItem_380_jh,
-                _reportesToolStripMenuItem_380_jh
-            });
             _abastecimientoToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "abastecimientoToolStripMenuItem" };
             _abastecimientoToolStripMenuItem_380_jh.Click += delegate
             {
                 if (ValidarPermiso_380_jh(PermisosSistema_380_jh.ReporteVer_380_jh)) ShowScreen_380_jh(new AbastecimientoView_380_jh());
             };
-            _consultasToolStripMenuItem_380_jh.DropDownItems.Insert(0, _abastecimientoToolStripMenuItem_380_jh);
+            _consultasToolStripMenuItem_380_jh.DropDownItems.Add(_abastecimientoToolStripMenuItem_380_jh);
 
             _cambiarContrasenaToolStripMenuItem_380_jh = new ToolStripMenuItem
             {
@@ -407,18 +388,15 @@ namespace UI
             bool mostrarSolicitudes = TienePermisoSolicitudes_380_jh();
             bool mostrarReservas = TienePermisoReservas_380_jh();
             bool mostrarDestinos = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DestinoRegistrar_380_jh);
-            bool mostrarTrazabilidad = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.TrazabilidadVer_380_jh);
             bool mostrarReportes = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReporteVer_380_jh);
             _abastecimientoToolStripMenuItem_380_jh.Visible = mostrarReportes;
             _solicitudesToolStripMenuItem_380_jh.Visible = mostrarSolicitudes;
             _reservasToolStripMenuItem_380_jh.Visible = mostrarReservas;
             _destinosToolStripMenuItem_380_jh.Visible = mostrarDestinos;
-            _trazabilidadToolStripMenuItem_380_jh.Visible = mostrarTrazabilidad;
-            _reportesToolStripMenuItem_380_jh.Visible = mostrarReportes;
             _pn1ToolStripMenuItem_380_jh.Visible = mostrarDonantes || mostrarDonaciones || mostrarUnidades;
             _maestrosToolStripMenuItem_380_jh.Visible = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.MaestrosAdministrar_380_jh);
             _pn2ToolStripMenuItem_380_jh.Visible = mostrarSolicitudes || mostrarReservas || mostrarDestinos;
-            _consultasToolStripMenuItem_380_jh.Visible = mostrarTrazabilidad || mostrarReportes;
+            _consultasToolStripMenuItem_380_jh.Visible = mostrarReportes;
         }
 
         private bool TienePermisoSolicitudes_380_jh()
@@ -521,14 +499,9 @@ namespace UI
                 ShowScreen_380_jh(new DestinosView_380_jh());
                 return;
             }
-            if (_trazabilidadToolStripMenuItem_380_jh.Available)
+            if (_abastecimientoToolStripMenuItem_380_jh.Available)
             {
-                ShowScreen_380_jh(new TrazabilidadView_380_jh());
-                return;
-            }
-            if (_reportesToolStripMenuItem_380_jh.Available)
-            {
-                ShowScreen_380_jh(new ReportesView_380_jh());
+                ShowScreen_380_jh(new AbastecimientoView_380_jh());
                 return;
             }
             if (_integridadToolStripMenuItem_380_jh.Available)

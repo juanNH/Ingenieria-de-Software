@@ -32,7 +32,7 @@ El mapa de navegación relaciona las pantallas de autenticación y el formulario
 
 [Editable publicado en Drive](https://drive.google.com/file/d/18TrQLSn9kP8ACrTR0zQ_XEG4oI9ghJbc/view).
 
-El mapa representa las rutas de los menús disponibles y los diálogos que abren. Al ingresar, el formulario principal elige automáticamente la primera vista autorizada. El menú Consultas reúne Abastecimiento y vencimientos, Reportes y alertas operativas y Trazabilidad. La visibilidad y el acceso se controlan por permisos; el reporte de abastecimiento utiliza `REPORTE_VER`. La correspondencia se puede revisar en [MainForm](../UI/Forms/Main/MainForm.cs), métodos `ConfigurarMenuNegocio_380_jh`, `ConfigurarMenuPorPermisos_380_jh` y `MostrarPantallaInicial_380_jh`.
+El mapa representa las rutas de los menús disponibles y los diálogos que abren. Al ingresar, el formulario principal elige automáticamente la primera vista autorizada. El menú Consultas contiene únicamente Abastecimiento y riesgo de vencimiento. Su vista presenta filtros, indicadores, una grilla de detalle y la información de la fila seleccionada. El permiso `REPORTE_VER` controla la visibilidad y el acceso a esta consulta. La correspondencia se puede revisar en [MainForm](../UI/Forms/Main/MainForm.cs), métodos `ConfigurarMenuNegocio_380_jh`, `ConfigurarMenuPorPermisos_380_jh` y `MostrarPantallaInicial_380_jh`, y en [AbastecimientoView](../UI/Views/PN2/AbastecimientoView.cs).
 
 ## Esquema de persistencia
 

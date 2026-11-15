@@ -17,6 +17,9 @@ using UI;
 internal static class AbastecimientoUiTests
 {
     private static readonly List<string> Passed = new List<string>();
+    private static readonly List<Exception> UiExceptions = new List<Exception>();
+    private static readonly List<string> Captures = new List<string>();
+    private static bool CaptureImages = true;
     private static string Output;
 
     [STAThread]
@@ -25,6 +28,10 @@ internal static class AbastecimientoUiTests
         try
         {
             GuardIsolatedRuntime();
+            CaptureImages = !args.Contains("--no-captures");
+            args = args.Where(x => x != "--no-captures").ToArray();
+            System.Windows.Forms.Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            System.Windows.Forms.Application.ThreadException += delegate(object sender, System.Threading.ThreadExceptionEventArgs e) { UiExceptions.Add(e.Exception); };
             System.Windows.Forms.Application.EnableVisualStyles();
             if (args.Length == 2 && args[0] == "--unit") { Output = args[1]; Directory.CreateDirectory(Output); Unit(); }
             else if (args.Length == 5 && args[0] == "--sql")
@@ -32,7 +39,9 @@ internal static class AbastecimientoUiTests
                 Output = args[4]; Directory.CreateDirectory(Output); Integration(args[1], args[2], int.Parse(args[3]));
             }
             else throw new ArgumentException("Expected --unit output or --sql server database user output.");
-            var data = new { status = "passed", checkCount = Passed.Count, checks = Passed, privateConfigurationRead = false };
+            Pump();
+            var data = new { status = "passed", checkCount = Passed.Count, checks = Passed, privateConfigurationRead = false,
+                reportViews = 1, asynchronousUiErrors = UiExceptions.Count, captures = Captures };
             File.WriteAllText(Path.Combine(Output, args[0] == "--unit" ? "ui-unit-tests.json" : "ui-integration-tests.json"), new JavaScriptSerializer().Serialize(data));
             return 0;
         }
@@ -99,11 +108,9 @@ internal static class AbastecimientoUiTests
             Snapshot(form, "abastecimiento-en-1280x920.png", new Size(1280, 920));
             language = "es-AR"; view.OnLanguageChanged_380_jh(new Idioma_380_jh { Codigo_380_jh = language }); Pump();
             Snapshot(form, "abastecimiento-detalle-1280x920.png", new Size(1280, 920));
-            var tabs = Controls(view).OfType<TabControl>().Single(); tabs.SelectedIndex = 1; Pump();
-            Check(tabs.SelectedTab.Text == "Comparación por componente", "Component comparison tab is reachable and localized");
-            Snapshot(form, "abastecimiento-comparacion-1280x920.png", new Size(1280, 920));
-            Snapshot(form, "abastecimiento-comparacion-1000x620.png", new Size(1000, 620));
-            tabs.SelectedIndex = 0; Pump(); Snapshot(form, "abastecimiento-detalle-1000x620.png", new Size(1000, 620));
+            Check(!Controls(view).OfType<TabControl>().Any() && Controls(view).OfType<DataGridView>().Count() == 1,
+                "A single report grid is presented directly without tabs");
+            Snapshot(form, "abastecimiento-detalle-1000x620.png", new Size(1000, 620));
             Snapshot(form, "abastecimiento-detalle-1000x700.png", new Size(1000, 700));
             Check(grid.Controls.OfType<HScrollBar>().All(x => !x.Visible) && grid.Columns.Cast<DataGridViewColumn>().Sum(x => x.Width) <= grid.ClientSize.Width &&
                 grid.Rows.Count == 5 && grid.Rows.Cast<DataGridViewRow>().All(x => x.Displayed), "Narrow 1000x700 viewport shows every column and all five cohorts");
@@ -121,6 +128,68 @@ internal static class AbastecimientoUiTests
             Check(queries == before && Field<Label>(view, "_estado_380_jh").Text == texts[language]["SUPPLY_INVALID_PERIOD"], "Invalid date order is rejected before querying");
             Check(grid.Rows.Count == 0 && Field<Label>(view, "_stock_380_jh").Text == "0", "Invalid date order does not leave stale result figures");
         }
+        Lifecycle(texts);
+    }
+
+    private static void Lifecycle(Dictionary<string, Dictionary<string, string>> texts)
+    {
+        var manager = LanguageManager_380_jh.Instance_380_jh;
+        var observers = (IList<IObserverLanguage_380_jh>)typeof(LanguageManager_380_jh)
+            .GetField("_observers_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(manager);
+        int initialObserverCount = observers.Count;
+        int handlesCreated = 0, selections = 0, translated = 0, disposed = 0, detached = 0;
+        for (int cycle = 0; cycle < 3; cycle++)
+        {
+            string language = "es-AR";
+            Func<string, string> translate = key => texts[language].ContainsKey(key) ? texts[language][key] : key;
+            using (var view = new LifecycleProbeView(filter => Samples(), translate))
+            using (var form = Host(view))
+            {
+                form.Show(); Pump();
+                var grid = Field<DataGridView>((AbastecimientoView_380_jh)view, "_grilla_380_jh");
+                Require(form.IsHandleCreated && view.IsHandleCreated && grid.IsHandleCreated && observers.Contains(view),
+                    "Lifecycle cycle " + cycle + " must load actual handles and attach its language observer.");
+                handlesCreated++;
+                foreach (DataGridViewRow row in grid.Rows)
+                {
+                    grid.ClearSelection(); grid.CurrentCell = row.Cells[0]; row.Selected = true; Pump();
+                    Require(!string.IsNullOrWhiteSpace(Field<Label>((AbastecimientoView_380_jh)view, "_detalle_380_jh").Text), "Selected row must have an explanation.");
+                    selections++;
+                }
+                language = "en-US";
+                manager.ChangeLanguage_380_jh(new Idioma_380_jh { Id_380_jh = 2, Codigo_380_jh = language, Activo_380_jh = true }, null);
+                Pump();
+                Require(grid.Columns["prioridad"].HeaderText == "Priority" && grid.Rows.Count == 5, "Live observer notification must preserve and translate the grid.");
+                language = "es-AR";
+                manager.ChangeLanguage_380_jh(new Idioma_380_jh { Id_380_jh = 1, Codigo_380_jh = language, Activo_380_jh = true }, null);
+                Pump();
+                Require(grid.Columns["prioridad"].HeaderText == "Prioridad", "Second live language switch must restore Spanish.");
+                translated++;
+                Field<Button>((AbastecimientoView_380_jh)view, "_generar_380_jh").PerformClick(); Pump();
+                grid.CurrentCell = grid.Rows[grid.Rows.Count - 1].Cells[0]; grid.Rows[grid.Rows.Count - 1].Selected = true; Pump();
+                form.Close(); Pump();
+                Require(form.IsDisposed && view.IsDisposed && grid.IsDisposed && !view.IsHandleCreated,
+                    "Closing a loaded report with a selected row must dispose controls and destroy handles.");
+                disposed++;
+                int notificationsAtClose = view.LanguageNotifications;
+                manager.Notify_380_jh(); Pump();
+                Require(!observers.Contains(view) && observers.Count == initialObserverCount && view.LanguageNotifications == notificationsAtClose,
+                    "A disposed report must detach before subsequent language notifications.");
+                detached++;
+            }
+        }
+        Check(handlesCreated == 3, "Report can be opened and reopened three times with real form/view/grid handles");
+        Check(selections == 15, "Every cohort can be selected across repeated report lifecycles");
+        Check(translated == 3, "Real language-manager notifications update a loaded report before closure");
+        Check(disposed == 3, "Closing a selected and refreshed report disposes controls without UI exceptions");
+        Check(detached == 3, "Closed reports detach their observer and receive no later language callbacks");
+    }
+
+    private sealed class LifecycleProbeView : AbastecimientoView_380_jh
+    {
+        internal int LanguageNotifications;
+        internal LifecycleProbeView(Func<AbastecimientoFiltro_380_jh, List<FilaAbastecimiento_380_jh>> query, Func<string, string> translate) : base(query, translate) { }
+        public override void OnLanguageChanged_380_jh(Idioma_380_jh language) { LanguageNotifications++; base.OnLanguageChanged_380_jh(language); }
     }
 
     private static void Integration(string server, string database, int userId)
@@ -144,28 +213,93 @@ internal static class AbastecimientoUiTests
             form.Show(); Pump();
             Check(Field<DataGridView>(view, "_grilla_380_jh").Rows.Count == 5, "Production service constructor loads real SQL fixture data");
             Check(!Controls(view).Any(x => x.Text.StartsWith("SUPPLY_")), "SQL translations resolve UI supply keys");
-            Snapshot(form, "abastecimiento-integracion-sql.png", new Size(1280, 920));
             Snapshot(form, "abastecimiento-integracion-sql-1000x700.png", new Size(1000, 700));
-            Controls(view).OfType<TabControl>().Single().SelectedIndex = 1; Pump();
-            Snapshot(form, "abastecimiento-integracion-sql-comparacion-1000x700.png", new Size(1000, 700));
         }
         using (var main = new MainForm_380_jh())
         {
-            var consultations = Field<ToolStripMenuItem>(main, "_consultasToolStripMenuItem_380_jh");
-            var supply = Field<ToolStripMenuItem>(main, "_abastecimientoToolStripMenuItem_380_jh");
-            var menu = Field<MenuStrip>(main, "menuStrip1_380_jh");
-            Check(menu.Items.Contains(consultations) && consultations.DropDownItems.Contains(supply) && (string)supply.Tag == "SUPPLY_TITLE", "Consultations menu is attached to MenuStrip and contains the localized supply item");
-            typeof(MainForm_380_jh).GetMethod("ConfigurarMenuPorPermisos_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(main, null);
-            Check(consultations.Available && supply.Available && !Field<ToolStripMenuItem>(main, "_trazabilidadToolStripMenuItem_380_jh").Available, "Report-only role sees consultations and supply without trace permission");
-            supply.PerformClick(); Pump();
-            var loaded = Controls(main).OfType<AbastecimientoView_380_jh>().Single();
-            Check(Field<DataGridView>(loaded, "_grilla_380_jh").Rows.Count == 5, "Supply menu click opens the real view and SQL data");
-            Sesion_380_jh.ObtenerInstancia_380_jh().IniciarSesion_380_jh(new Usuario_380_jh { Id_380_jh = userId, Username_380_jh = "without_permissions", Estado_380_jh = "ACTIVO" });
-            typeof(MainForm_380_jh).GetMethod("ConfigurarMenuPorPermisos_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(main, null);
-            Check(!consultations.Available && !supply.Available, "Without report and trace permissions both menu entries are hidden");
-            Sesion_380_jh.ObtenerInstancia_380_jh().IniciarSesion_380_jh(user);
+            main.WindowState = FormWindowState.Normal;
+            main.StartPosition = FormStartPosition.Manual;
+            main.Location = new Point(-30000, -30000);
+            main.ClientSize = new Size(1280, 800);
+            main.ShowInTaskbar = false;
+            Exception lifecycleError = null;
+            AbastecimientoView_380_jh loaded = null;
+            DataGridView selectedGrid = null;
+            main.Shown += delegate
+            {
+                main.BeginInvoke(new Action(delegate
+                {
+                    try
+                    {
+                        var consultations = Field<ToolStripMenuItem>(main, "_consultasToolStripMenuItem_380_jh");
+                        var supply = Field<ToolStripMenuItem>(main, "_abastecimientoToolStripMenuItem_380_jh");
+                        var menu = Field<MenuStrip>(main, "menuStrip1_380_jh");
+                        Check(menu.Items.Contains(consultations) && consultations.DropDownItems.Count == 1 && consultations.DropDownItems.Contains(supply) && (string)supply.Tag == "SUPPLY_TITLE", "Consultations menu is attached and contains only the localized supply item");
+                        typeof(MainForm_380_jh).GetMethod("ConfigurarMenuPorPermisos_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(main, null);
+                        Check(consultations.Available && supply.Available, "Report-only role sees consultations and its single supply option");
+                        var initial = Controls(main).OfType<AbastecimientoView_380_jh>().Single();
+                        Check(main.IsHandleCreated && initial.IsHandleCreated && Field<DataGridView>(initial, "_grilla_380_jh").IsHandleCreated,
+                            "A real MainForm load opens the supply view for a report-only role");
+                        MenuSnapshot(main, menu, consultations);
+                        supply.PerformClick(); Pump();
+                        loaded = Controls(main).OfType<AbastecimientoView_380_jh>().Single();
+                        Check(initial.IsDisposed && Field<DataGridView>(loaded, "_grilla_380_jh").Rows.Count == 5,
+                            "Supply menu click disposes the previous view and opens real SQL data");
+                        Sesion_380_jh.ObtenerInstancia_380_jh().IniciarSesion_380_jh(new Usuario_380_jh { Id_380_jh = userId, Username_380_jh = "without_permissions", Estado_380_jh = "ACTIVO" });
+                        typeof(MainForm_380_jh).GetMethod("ConfigurarMenuPorPermisos_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(main, null);
+                        Check(!consultations.Available && !supply.Available, "Without report and trace permissions both menu entries are hidden");
+                        Sesion_380_jh.ObtenerInstancia_380_jh().IniciarSesion_380_jh(new Usuario_380_jh { Id_380_jh = userId, Username_380_jh = "trace_only", Estado_380_jh = "ACTIVO",
+                            ComponentesPermiso_380_jh = new List<ComponentePermiso_380_jh> { new Permiso_380_jh { Codigo_380_jh = PermisosSistema_380_jh.TrazabilidadVer_380_jh } } });
+                        typeof(MainForm_380_jh).GetMethod("ConfigurarMenuPorPermisos_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(main, null);
+                        Check(!consultations.Available && !supply.Available, "Trace-only role cannot see consultations or supply without report permission");
+                        Sesion_380_jh.ObtenerInstancia_380_jh().IniciarSesion_380_jh(user);
+                        selectedGrid = Field<DataGridView>(loaded, "_grilla_380_jh");
+                        selectedGrid.CurrentCell = selectedGrid.Rows[selectedGrid.Rows.Count - 1].Cells[0];
+                        selectedGrid.Rows[selectedGrid.Rows.Count - 1].Selected = true; Pump();
+                        main.Close();
+                    }
+                    catch (Exception ex) { lifecycleError = ex; main.Close(); }
+                }));
+            };
+            System.Windows.Forms.Application.Run(main);
+            if (lifecycleError != null) throw new InvalidOperationException("Real MainForm lifecycle failed.", lifecycleError);
+            Pump();
+            Check(main.IsDisposed && loaded.IsDisposed && selectedGrid.IsDisposed,
+                "Closing the real MainForm disposes its selected report without UI exceptions");
         }
         Check(new IntegridadApplicationService_380_jh().Verificar_380_jh().EsValida_380_jh, "Real report leaves integrity valid");
+    }
+
+    private static void MenuSnapshot(MainForm_380_jh main, MenuStrip menu, ToolStripMenuItem consultations)
+    {
+        consultations.ShowDropDown();
+        // Keep the native popup offscreen while rendering the real controls into the evidence image.
+        consultations.DropDown.Location = new Point(-30000, -30000);
+        Pump();
+        Check(consultations.DropDown.Visible && consultations.DropDownItems.Count == 1 && consultations.DropDownItems[0].Available,
+            "Opening consultations displays exactly one available supply entry");
+        if (CaptureImages)
+        {
+            Point clientOffset = main.PointToScreen(Point.Empty);
+            clientOffset.Offset(-main.Left, -main.Top);
+            using (var bitmap = new Bitmap(main.Width, main.Height))
+            using (var popup = new Bitmap(consultations.DropDown.Width, consultations.DropDown.Height))
+            {
+                main.DrawToBitmap(bitmap, new Rectangle(Point.Empty, main.Size));
+                consultations.DropDown.DrawToBitmap(popup, new Rectangle(Point.Empty, popup.Size));
+                using (var graphics = Graphics.FromImage(bitmap))
+                {
+                    graphics.DrawImageUnscaled(popup, clientOffset.X + menu.Left + consultations.Bounds.Left, clientOffset.Y + menu.Top + consultations.Bounds.Bottom);
+                    using (var background = new SolidBrush(Color.FromArgb(235, 239, 243)))
+                        graphics.FillRectangle(background, 0, bitmap.Height - 26, bitmap.Width, 26);
+                    TextRenderer.DrawText(graphics, "DATOS FICTICIOS DE PRUEBA · PERFIL REPORTE_VER", main.Font,
+                        new Rectangle(0, bitmap.Height - 26, bitmap.Width, 26), Color.Black, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+                }
+                const string filename = "mainform-consultas-unica-entrada.png";
+                bitmap.Save(Path.Combine(Output, filename)); Captures.Add(filename);
+            }
+        }
+        consultations.HideDropDown(); Pump();
     }
 
     private static Form Host(Control view)
@@ -185,9 +319,11 @@ internal static class AbastecimientoUiTests
         if (root.Size != size) throw new InvalidOperationException("Capture size differs from requested size: " + root.Size);
         var metrics = Controls(root).OfType<Label>().Where(x => x.Font.Size >= 20).Select(x => new { text = x.Text, height = x.Height, fontHeight = x.Font.Height, preferredHeight = x.PreferredSize.Height, bounds = x.Bounds.ToString(), visible = x.Visible }).ToArray();
         File.WriteAllText(Path.Combine(Output, "layout-" + filename + ".json"), new JavaScriptSerializer().Serialize(metrics));
+        if (!CaptureImages) return;
         using (var warmup = new Bitmap(root.Width, root.Height)) root.DrawToBitmap(warmup, new Rectangle(Point.Empty, root.Size));
         Pump();
         using (var bitmap = new Bitmap(root.Width, root.Height)) { root.DrawToBitmap(bitmap, new Rectangle(Point.Empty, root.Size)); bitmap.Save(Path.Combine(Output, filename)); }
+        Captures.Add(filename);
     }
     private static List<FilaAbastecimiento_380_jh> Samples()
     {
@@ -204,7 +340,15 @@ internal static class AbastecimientoUiTests
             StockLiberadoVigente_380_jh = stock, StockPorVencer_380_jh = expiry, DemandaPeriodo_380_jh = demand, PendienteVigente_380_jh = pending,
             DemandaDiariaPromedio_380_jh = rate, CoberturaDias_380_jh = coverage, DeficitUnidades_380_jh = deficit, Prioridad_380_jh = priority, FechaCorte_380_jh = DateTime.Today };
     }
-    private static T Field<T>(object instance, string name) { return (T)instance.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(instance); }
+    private static T Field<T>(object instance, string name)
+    {
+        for (Type type = instance.GetType(); type != null; type = type.BaseType)
+        {
+            var field = type.GetField(name, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+            if (field != null) return (T)field.GetValue(instance);
+        }
+        throw new MissingFieldException(instance.GetType().FullName, name);
+    }
     private static bool NumberRenders(Label label)
     {
         if (label.Height < label.Font.Height || !label.Parent.ClientRectangle.Contains(label.Bounds)) return false;
@@ -221,6 +365,11 @@ internal static class AbastecimientoUiTests
         }
     }
     private static IEnumerable<Control> Controls(Control root) { foreach (Control child in root.Controls) { yield return child; foreach (var nested in Controls(child)) yield return nested; } }
-    private static void Pump() { System.Windows.Forms.Application.DoEvents(); }
+    private static void Pump()
+    {
+        System.Windows.Forms.Application.DoEvents();
+        if (UiExceptions.Count > 0) throw new InvalidOperationException("An asynchronous WinForms callback failed.", UiExceptions[0]);
+    }
+    private static void Require(bool condition, string message) { if (!condition) throw new Exception(message); }
     private static void Check(bool condition, string name) { if (!condition) throw new Exception(name); Passed.Add(name); Console.WriteLine("OK " + name); }
 }

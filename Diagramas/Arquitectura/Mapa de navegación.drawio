@@ -264,36 +264,14 @@
         <mxCell id="consultas" value="Consultas" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=28;fontColor=#17324D;strokeWidth=2;align=center;verticalAlign=middle;spacing=10;rounded=1;arcSize=8;fillColor=#DCEAF7;strokeColor=#557B9C;fontStyle=1;fontSize=32;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="1210" y="575" width="350" height="75" />
         </mxCell>
-        <mxCell id="abastecimiento" value="Abastecimiento&#10;y vencimientos" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=28;fontColor=#17324D;strokeWidth=2;align=center;verticalAlign=middle;spacing=10;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#8AA4BC;" vertex="1" parent="1">
+        <mxCell id="abastecimiento" value="Abastecimiento" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=28;fontColor=#17324D;strokeWidth=2;align=center;verticalAlign=middle;spacing=10;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#8AA4BC;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="1230" y="730" width="310" height="100" />
-        </mxCell>
-        <mxCell id="reports" value="Reportes y alertas&#10;operativas" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=28;fontColor=#17324D;strokeWidth=2;align=center;verticalAlign=middle;spacing=10;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#8AA4BC;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="1230" y="915" width="310" height="100" />
-        </mxCell>
-        <mxCell id="traceability" value="Trazabilidad" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=28;fontColor=#17324D;strokeWidth=2;align=center;verticalAlign=middle;spacing=10;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#8AA4BC;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="1230" y="1100" width="310" height="100" />
         </mxCell>
         <mxCell id="consultas-abastecimiento" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#557B9C;strokeWidth=2.5;fontFamily=Arial;fontSize=24;fontColor=#17324D;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="consultas" target="abastecimiento">
           <mxGeometry as="geometry" relative="1">
             <Array as="points">
               <mxPoint x="1190" y="612.5" />
               <mxPoint x="1190" y="780" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="consultas-reports" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#557B9C;strokeWidth=2.5;fontFamily=Arial;fontSize=24;fontColor=#17324D;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="consultas" target="reports">
-          <mxGeometry as="geometry" relative="1">
-            <Array as="points">
-              <mxPoint x="1190" y="612.5" />
-              <mxPoint x="1190" y="965" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="consultas-traceability" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#557B9C;strokeWidth=2.5;fontFamily=Arial;fontSize=24;fontColor=#17324D;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="consultas" target="traceability">
-          <mxGeometry as="geometry" relative="1">
-            <Array as="points">
-              <mxPoint x="1190" y="612.5" />
-              <mxPoint x="1190" y="1150" />
             </Array>
           </mxGeometry>
         </mxCell>
