@@ -50,11 +50,18 @@
       "assets": {
         "useCase": {
           "source": "Diagramas/Casos de Uso/T02 - CDU-01 a CDU-03 - Casos de uso.drawio",
-          "driveUrl": "https://drive.google.com/file/d/1eNhlgz1xRuTapo-NrGGJfOu_JaiWSYII/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/1eNhlgz1xRuTapo-NrGGJfOu_JaiWSYII/view?usp=drivesdk",
+          "sha256": "ee7ba0774cfa27e483df69e7952d6482745f6bad81504a2d77363faee13d3d3a",
+          "systemBoundary": "HemovidaGest"
         },
         "classes": {
           "source": "Diagramas/Diagramas de clases/CDU-01 - Log In - Clases.drawio",
-          "driveUrl": "https://drive.google.com/file/d/195czwMbqFLRDE7by8xH__6KOjvZUo-al/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/195czwMbqFLRDE7by8xH__6KOjvZUo-al/view?usp=drivesdk",
+          "sha256": "78a91e87c7f38c2085eb8cbd0d4878f43157854769b75961ab105790678fe7cc",
+          "classCount": 41,
+          "relationCount": 61,
+          "layout": "UI, Application, Repository y DAL; Domain y Services debajo.",
+          "modelStatus": "classes_and_collaborators_verified_against_code_and_sequences"
         },
         "sequences": [
           {
@@ -62,7 +69,8 @@
             "driveUrl": "https://drive.google.com/file/d/1BpiYiRTRRVCO2TXrZsLdKK4ZIHdn3xQ1/view?usp=drivesdk",
             "views": [
               "CDU-01 · Iniciar sesión · Secuencia"
-            ]
+            ],
+            "sha256": "7c9f6b062cd467c30950db420155f87e23757b749ee9c463a3b9fbfe6b01c405"
           }
         ],
         "screen": {
@@ -71,9 +79,9 @@
           "form": "UI.Login_380_jh"
         },
         "reviewRenderNames": [
-          "T02_CasosDeUso.png",
-          "CDU-01_classes.png",
-          "CDU-01_sequence.png"
+          "CDU-01-casos.png",
+          "CDU-01-clases.png",
+          "CDU-01-secuencia.png"
         ],
         "der": {
           "status": "native_ssms_verified",
@@ -168,11 +176,18 @@
       "assets": {
         "useCase": {
           "source": "Diagramas/Casos de Uso/T02 - CDU-01 a CDU-03 - Casos de uso.drawio",
-          "driveUrl": "https://drive.google.com/file/d/1eNhlgz1xRuTapo-NrGGJfOu_JaiWSYII/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/1eNhlgz1xRuTapo-NrGGJfOu_JaiWSYII/view?usp=drivesdk",
+          "sha256": "ee7ba0774cfa27e483df69e7952d6482745f6bad81504a2d77363faee13d3d3a",
+          "systemBoundary": "HemovidaGest"
         },
         "classes": {
           "source": "Diagramas/Diagramas de clases/CDU-02 - Registrarse - Clases.drawio",
-          "driveUrl": "https://drive.google.com/file/d/1HpA0EYuHAJYix4jfk_ydNgJegZUucdiC/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/1HpA0EYuHAJYix4jfk_ydNgJegZUucdiC/view?usp=drivesdk",
+          "sha256": "9505724c949927c8aa57c798731c848f4a01fe75f2627dac4b715b858d00d9ed",
+          "classCount": 27,
+          "relationCount": 39,
+          "layout": "UI, Application, Repository y DAL; Domain y Services debajo.",
+          "modelStatus": "classes_and_collaborators_verified_against_code_and_sequences"
         },
         "sequences": [
           {
@@ -180,7 +195,8 @@
             "driveUrl": "https://drive.google.com/file/d/1_FseS3gFqcO_7RvbAyc9h0X_3y7DqkzE/view?usp=drivesdk",
             "views": [
               "CDU-02 · Registrarse · Secuencia"
-            ]
+            ],
+            "sha256": "2512a507c32545cac2693e2f643375d469ab2be023d89225333fe45c8bab5661"
           }
         ],
         "screen": {
@@ -189,8 +205,8 @@
           "form": "UI.Registro_380_jh"
         },
         "reviewRenderNames": [
-          "T02_CasosDeUso.png",
-          "CDU-02_classes.png",
+          "CDU-01-casos.png",
+          "CDU-02-clases.png",
           "CDU-02_sequence.png"
         ],
         "der": {
@@ -273,11 +289,18 @@
       "assets": {
         "useCase": {
           "source": "Diagramas/Casos de Uso/T02 - CDU-01 a CDU-03 - Casos de uso.drawio",
-          "driveUrl": "https://drive.google.com/file/d/1eNhlgz1xRuTapo-NrGGJfOu_JaiWSYII/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/1eNhlgz1xRuTapo-NrGGJfOu_JaiWSYII/view?usp=drivesdk",
+          "sha256": "ee7ba0774cfa27e483df69e7952d6482745f6bad81504a2d77363faee13d3d3a",
+          "systemBoundary": "HemovidaGest"
         },
         "classes": {
           "source": "Diagramas/Diagramas de clases/CDU-03 - Logout - Clases.drawio",
-          "driveUrl": "https://drive.google.com/file/d/1ThzOkytAVQZ0M9uOUBKiB7yPNB70IAT3/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/1ThzOkytAVQZ0M9uOUBKiB7yPNB70IAT3/view?usp=drivesdk",
+          "sha256": "99297853983a9713c3fa9124e19565238d903ce1b815f8743a40fc233f6e6c15",
+          "classCount": 12,
+          "relationCount": 12,
+          "layout": "UI, Application, Repository y DAL; Domain y Services debajo.",
+          "modelStatus": "classes_and_collaborators_verified_against_code_and_sequences"
         },
         "sequences": [
           {
@@ -285,7 +308,8 @@
             "driveUrl": "https://drive.google.com/file/d/114YWBoi95Y9AgbvrmUu40htoXqowcDRN/view?usp=drivesdk",
             "views": [
               "CDU-03 · Cerrar sesión · Secuencia"
-            ]
+            ],
+            "sha256": "7a3494d18ba926047c7fe0a7f7e13a2db27f96a94cd39f1749076a511bc9ffd4"
           }
         ],
         "screen": {
@@ -294,8 +318,8 @@
           "form": "UI.Login_380_jh"
         },
         "reviewRenderNames": [
-          "T02_CasosDeUso.png",
-          "CDU-03_classes.png",
+          "CDU-01-casos.png",
+          "CDU-03-clases.png",
           "CDU-03_sequence.png"
         ],
         "der": {
@@ -356,11 +380,18 @@
       "assets": {
         "useCase": {
           "source": "Diagramas/Casos de Uso/T06a - CDU-04 - Consultar bitácora - Casos de uso.drawio",
-          "driveUrl": "https://drive.google.com/file/d/1bbKjeoYTydg6qJd0Yz3rDyWADRWH-xk-/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/1bbKjeoYTydg6qJd0Yz3rDyWADRWH-xk-/view?usp=drivesdk",
+          "sha256": "9d2b458d3be18a1e5b10e033298cda634eba8e932f63d570ccd9eae2f39d2290",
+          "systemBoundary": "HemovidaGest"
         },
         "classes": {
           "source": "Diagramas/Diagramas de clases/CDU-04 - Consultar bitácora - Clases.drawio",
-          "driveUrl": "https://drive.google.com/file/d/1-s7XpsQc8RvN2s_kIU-5TIkqvqb22Gom/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/1-s7XpsQc8RvN2s_kIU-5TIkqvqb22Gom/view?usp=drivesdk",
+          "sha256": "7e269e2155e373fbe2b2b8a67e459ab93c734c761f814304ae9ded2ded4b0aaa",
+          "classCount": 15,
+          "relationCount": 22,
+          "layout": "UI, Application, Repository y DAL; Domain y Services debajo.",
+          "modelStatus": "classes_and_collaborators_verified_against_code_and_sequences"
         },
         "sequences": [
           {
@@ -368,7 +399,8 @@
             "driveUrl": "https://drive.google.com/file/d/16RBYyb4SE3VKXwl3kbNHbv54Q-lZIcBs/view?usp=drivesdk",
             "views": [
               "CDU-04 — Secuencia: Consultar bitácora"
-            ]
+            ],
+            "sha256": "0c0415d5beddc64445c5a8fb887d07e1a2b519c562da5f33706f42ff9f3fd5c1"
           }
         ],
         "screen": {
@@ -377,8 +409,8 @@
           "form": "UI.BitacoraView_380_jh"
         },
         "reviewRenderNames": [
-          "CDU04_CasosDeUso.png",
-          "CDU04_Clases.png",
+          "CDU-04-casos.png",
+          "CDU-04-clases.png",
           "CDU04_Secuencia.png"
         ],
         "der": {
@@ -446,11 +478,28 @@
       "assets": {
         "useCase": {
           "source": "Diagramas/Casos de Uso/T04 - CDU-05 - Edición de usuario - Casos de uso.drawio",
-          "driveUrl": "https://drive.google.com/file/d/1jyGZXJhtat8t-GhLh0J_EVgwyCUuzJn7/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/1jyGZXJhtat8t-GhLh0J_EVgwyCUuzJn7/view?usp=drivesdk",
+          "sha256": "60093a5e52125e50f9029e61a7c7252fa69aeb5ee6fa85b66e5c6f7f932f2b6d",
+          "systemBoundary": "HemovidaGest"
         },
         "classes": {
           "source": "Diagramas/Diagramas de clases/CDU-05 - Edición de usuario - Clases.drawio",
-          "driveUrl": "https://drive.google.com/file/d/1fXCV-Lmz_0E-HrJ5CoxSYrPuh6NW_NTK/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/1fXCV-Lmz_0E-HrJ5CoxSYrPuh6NW_NTK/view?usp=drivesdk",
+          "sha256": "b97b33be117498c89c666ebf84370dd83c63eb2d273a3db8eea1f6e08ca74af5",
+          "classCount": 27,
+          "relationCount": 42,
+          "layout": "UI, Application, Repository y DAL; Domain y Services debajo.",
+          "modelStatus": "classes_and_collaborators_verified_against_code_and_sequences",
+          "support": [
+            {
+              "source": "Diagramas/Diagramas de clases/CDU-05 - Edición de usuario - Clases - T04 Roles y permisos (soporte).drawio",
+              "driveUrl": "https://drive.google.com/file/d/1pFSlC8L3CiH6hhsGqKd08nnMIqPeCsUq/view?usp=drivesdk",
+              "scope": "RolesView: crear familias y administrar relaciones de componentes.",
+              "classCount": 17,
+              "relationCount": 24,
+              "sha256": "ad90bec3402cec159d60a170f5398c336c2537bc015a176267c045dbffd594a9"
+            }
+          ]
         },
         "sequences": [
           {
@@ -459,7 +508,8 @@
             "views": [
               "CDU-05 · Gestionar usuarios · Modificar usuario",
               "CDU-05 · Modificar usuario · Detalle de soporte"
-            ]
+            ],
+            "sha256": "383aa274f9dea6f00a78f1660b0164a09a516f45ecceaba284a645331d34a18c"
           },
           {
             "source": "Diagramas/Diagramas de Secuencia/CDU-05 - Edición de usuario - Secuencia - Inhabilitar usuario.drawio",
@@ -467,7 +517,8 @@
             "views": [
               "CDU-05 · Gestionar usuarios · Inhabilitar usuario",
               "CDU-05 · Inhabilitar usuario · Detalle de soporte"
-            ]
+            ],
+            "sha256": "10e7c47495407179c6320af3b0579a5834a516249b7da5d371c0edb7a45efb10"
           }
         ],
         "screen": {
@@ -476,10 +527,10 @@
           "form": "UI.UsuariosView_380_jh"
         },
         "reviewRenderNames": [
-          "CDU05_Casos.png",
-          "CDU05_Clases.png",
-          "CDU05_Secuencia_Inhabilitar.png",
-          "CDU05_Secuencia_Modificar.png"
+          "CDU-05-casos.png",
+          "CDU-05-clases.png",
+          "CDU05_Secuencia_Modificar.png",
+          "CDU05_Secuencia_Inhabilitar.png"
         ],
         "der": {
           "status": "native_ssms_verified",
@@ -562,11 +613,18 @@
       "assets": {
         "useCase": {
           "source": "Diagramas/Casos de Uso/T05 - CDU-06 - Gestión de idiomas y traducciones - Casos de uso.drawio",
-          "driveUrl": "https://drive.google.com/file/d/1W-ZPKiVaejtdTzflbGRmLDqQn6cF0NTq/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/1W-ZPKiVaejtdTzflbGRmLDqQn6cF0NTq/view?usp=drivesdk",
+          "sha256": "ddc4d522f444bacf056b0d41441efe0b8e1324c329ff7b0c5a516a1056049e90",
+          "systemBoundary": "HemovidaGest"
         },
         "classes": {
           "source": "Diagramas/Diagramas de clases/CDU-06 - Gestión de idiomas y traducciones - Clases.drawio",
-          "driveUrl": "https://drive.google.com/file/d/1lVn7R4nJTrFTAylbndUqSgI7AH2PzfuH/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/1lVn7R4nJTrFTAylbndUqSgI7AH2PzfuH/view?usp=drivesdk",
+          "sha256": "52b734f50825b54406052cad1de61ab538478d0036d87363b6c5d3750d7028f7",
+          "classCount": 29,
+          "relationCount": 55,
+          "layout": "UI, Application, Repository y DAL; Domain y Services debajo.",
+          "modelStatus": "classes_and_collaborators_verified_against_code_and_sequences"
         },
         "sequences": [
           {
@@ -576,7 +634,8 @@
               "CDU-06 · Gestionar idiomas y traducciones · Guardar traducción",
               "CDU-06 · Gestionar idiomas y traducciones · Administrar idioma",
               "CDU-06 · Cambiar idioma preferido · Soporte"
-            ]
+            ],
+            "sha256": "d18298cfec6001e26b053994e3565b4f1029bd9f950818a2088084440d86eeaa"
           }
         ],
         "screen": {
@@ -585,10 +644,10 @@
           "form": "UI.IdiomasView_380_jh"
         },
         "reviewRenderNames": [
-          "CDU06_Casos.png",
-          "CDU06_Clases.png",
-          "CDU06_Secuencia_Idioma.png",
-          "CDU06_Secuencia_Traduccion.png"
+          "CDU-06-casos.png",
+          "CDU-06-clases.png",
+          "CDU06_Secuencia_Traduccion.png",
+          "CDU06_Secuencia_Idioma.png"
         ],
         "der": {
           "status": "native_ssms_verified",
@@ -657,11 +716,18 @@
       "assets": {
         "useCase": {
           "source": "Diagramas/Casos de Uso/T06b - CDU-07 - Control de cambios - Casos de uso.drawio",
-          "driveUrl": "https://drive.google.com/file/d/1AXd74vmAPE-61QF2dI6bzppaA8FxAaGW/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/1AXd74vmAPE-61QF2dI6bzppaA8FxAaGW/view?usp=drivesdk",
+          "sha256": "6854660cc96eda88ed23071aaf6879e15e533122aef44a449f2fe687bb5c783e",
+          "systemBoundary": "HemovidaGest"
         },
         "classes": {
           "source": "Diagramas/Diagramas de clases/CDU-07 - Control de cambios - Clases.drawio",
-          "driveUrl": "https://drive.google.com/file/d/1WnjvPKuu1eGVZfL0IYb_sLbPpW5fDlDE/view?usp=drivesdk"
+          "driveUrl": "https://drive.google.com/file/d/1WnjvPKuu1eGVZfL0IYb_sLbPpW5fDlDE/view?usp=drivesdk",
+          "sha256": "02d50dbcddac572a87e42938b5c56ab7b9f70c10df0b877ac9c43f9b830564fb",
+          "classCount": 27,
+          "relationCount": 53,
+          "layout": "UI, Application, Repository y DAL; Domain y Services debajo.",
+          "modelStatus": "classes_and_collaborators_verified_against_code_and_sequences"
         },
         "sequences": [
           {
@@ -670,7 +736,8 @@
             "views": [
               "CDU-07 — Secuencia: Consultar el historial",
               "CDU-07 — Secuencia: Restaurar un campo de Usuario"
-            ]
+            ],
+            "sha256": "726ba2abedc184f1b37bc8d7270c45523da3fa6fb2008b7d11732ac0e0488a97"
           }
         ],
         "screen": {
@@ -679,10 +746,10 @@
           "form": "UI.AuditoriaCambiosView_380_jh"
         },
         "reviewRenderNames": [
-          "CDU07_CasosDeUso.png",
-          "CDU07_Clases.png",
+          "CDU-07-casos.png",
+          "CDU-07-clases.png",
           "CDU07_Secuencia_Consulta.png",
-          "CDU07_Secuencia_Restauracion.png"
+          "CDU-07-secuencia-restauracion.png"
         ],
         "der": {
           "status": "native_ssms_verified",
@@ -738,5 +805,25 @@
     "targetFunctionalTableObjectIdsDiffer": 32,
     "nativeOpenEvidence": "output/normalizacion-cdu-2026-11-14/ssms-base-nueva-ids-distintos-standard.png",
     "observedBy": "Agente principal mediante SSMS nativo"
+  },
+  "designReview": {
+    "classModels": 8,
+    "primaryUseCaseSources": 5,
+    "sequenceSources": 8,
+    "editableSourceCount": 21,
+    "classModelLayers": [
+      "UI",
+      "Application",
+      "Repository",
+      "DAL",
+      "Domain",
+      "Services"
+    ],
+    "businessDiagramsChanged": false,
+    "sequencePagesReviewed": 13,
+    "technicalParticipantOccurrencesResolved": 91,
+    "sequenceOperationNamesResolved": 180,
+    "driveSourcesVerified": 21,
+    "method": "Firmas y atributos contrastados con código; nodos, relaciones UML y participantes de secuencias verificados."
   }
 }

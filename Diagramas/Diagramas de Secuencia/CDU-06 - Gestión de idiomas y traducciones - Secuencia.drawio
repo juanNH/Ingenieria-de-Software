@@ -883,7 +883,7 @@
             </mxGeometry>
           </mxCell>
         </UserObject>
-        <mxCell id="3Skj98DNAFseSrNNjw5E-104" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;" value="CalcularDvvDesdeUsuarios_380_jh()" vertex="1">
+        <mxCell id="3Skj98DNAFseSrNNjw5E-104" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;" value="CalcularDvv_380_jh(dvhs)" vertex="1">
           <mxGeometry height="18" width="290" x="4785" y="2989" as="geometry" />
         </mxCell>
         <UserObject label="Guardar_380_jh DVV general de usuarios" mermaidId="e:DigitoDM-&gt;SQL#1" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Guardar_380_jh DVV general de usuarios" id="3Skj98DNAFseSrNNjw5E-105">

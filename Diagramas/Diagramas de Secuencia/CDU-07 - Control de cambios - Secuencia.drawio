@@ -464,7 +464,7 @@
             <mxPoint as="targetPoint" x="1390" y="1060" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="label10" value="Abrir_380_jh(); Leer_380_jh(...)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+        <mxCell id="label10" value="Abrir_380_jh(); LeerTexto_380_jh(sql, parametros)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="1153.0" y="1005" width="229" height="50" />
         </mxCell>
         <mxCell id="msg11" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
