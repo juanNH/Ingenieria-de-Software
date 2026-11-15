@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace UI
@@ -31,7 +32,25 @@ namespace UI
                     System.Windows.Forms.Application.Run(mainForm);
                     mostrarLogin = mainForm.DialogResult == DialogResult.Retry;
                 }
+
+                DesconectarProveedoresAccesibilidad_380_jh();
             }
         }
+
+        private static void DesconectarProveedoresAccesibilidad_380_jh()
+        {
+            // La API existe desde Windows 8 / Server 2012; se conserva el soporte anterior.
+            if (Environment.OSVersion.Version < new Version(6, 2))
+            {
+                return;
+            }
+
+            // Run y Dispose ya terminaron. El siguiente Login no debe atender proveedores
+            // UIA retenidos de celdas destruidas. Los controles nuevos publican los suyos.
+            Marshal.ThrowExceptionForHR(UiaDisconnectAllProviders_380_jh());
+        }
+
+        [DllImport("UIAutomationCore.dll", EntryPoint = "UiaDisconnectAllProviders", ExactSpelling = true)]
+        private static extern int UiaDisconnectAllProviders_380_jh();
     }
 }
