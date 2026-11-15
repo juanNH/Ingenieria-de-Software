@@ -111,7 +111,10 @@ $scripts = @(
     '09_PN2.sql',
     '09a_RelacionesSolicitudPN2.sql',
     '10_IntegridadPN2.sql',
-    '11_ComprobantesAutomaticos.sql'
+    '11_ComprobantesAutomaticos.sql',
+    '12_DiagramasSSMS.sql',
+    '13_AjusteCantidadDonacion.sql',
+    '14_DiagramasCDUSSMS.sql'
 )
 if ($DatosPrueba) {
     $scripts += 'DatosPrueba.sql'
@@ -224,12 +227,21 @@ LOG ON (NAME = N'HemovidaGest_log', FILENAME = N'$log');
         Write-Output "Aplicado $script"
     }
 
-    $etapa = 'Verificar la integridad de la base'
+    $etapa = 'Verificar la integridad y los diagramas de la base'
     Invoke-SqlBatch $base $transaccion @'
 IF OBJECT_ID(N'dbo.v_IntegridadPN2_Instalada', N'V') IS NULL
     THROW 51000, 'Falta el módulo de integridad PN2.', 1;
 IF EXISTS (SELECT 1 FROM dbo.v_IntegridadPN1_Errores)
     THROW 51000, 'La base nueva presenta errores de integridad.', 1;
+IF OBJECT_ID(N'dbo.sysdiagrams', N'U') IS NULL
+    THROW 51000, 'No se instalaron los diagramas nativos de SSMS.', 1;
+IF dbo.fn_diagramobjects() <> 255
+    THROW 51000, 'El soporte nativo de diagramas de SSMS está incompleto.', 1;
+IF (SELECT COUNT(DISTINCT LEFT(name, 6)) FROM dbo.sysdiagrams
+    WHERE principal_id = DATABASE_PRINCIPAL_ID(N'dbo')
+      AND name LIKE N'CDU-0[1-7] - %'
+      AND version IS NOT NULL AND DATALENGTH(definition) > 0) <> 7
+    THROW 51000, 'Falta al menos un diagrama nativo de CDU-01 a CDU-07.', 1;
 '@
 
     $etapa = 'Guardar App.local.config'

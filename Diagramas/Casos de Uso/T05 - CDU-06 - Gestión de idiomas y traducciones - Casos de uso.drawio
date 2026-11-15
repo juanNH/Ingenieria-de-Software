@@ -1,16 +1,16 @@
 <mxfile host="Electron">
-  <diagram name="T05 - CDU-06 Gestión de idiomas y traducciones" id="t05-casos-de-uso">
+  <diagram name="T05 - CDU-06 Gestionar idiomas y traducciones" id="t05-casos-de-uso">
     <mxGraphModel dx="1454" dy="877" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="660" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="titulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=22;align=center;verticalAlign=middle;fontFamily=Arial;" value="T05 - Diagrama de casos de uso: Gestión de múltiples idiomas" vertex="1">
+        <mxCell id="titulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=22;align=center;verticalAlign=middle;fontFamily=Arial;" value="CDU-06 · Casos de uso · Gestionar idiomas y traducciones" vertex="1">
           <mxGeometry height="42" width="1260" x="170" y="28" as="geometry" />
         </mxCell>
-        <mxCell id="subtitulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;align=center;verticalAlign=middle;fontColor=#666666;fontFamily=Arial;" value="CDU-06: administración de idiomas, etiquetas y traducciones" vertex="1">
+        <mxCell id="subtitulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;align=center;verticalAlign=middle;fontColor=#666666;fontFamily=Arial;" value="Administración de idiomas y traducciones; cambio de idioma como soporte" vertex="1">
           <mxGeometry height="28" width="900" x="350" y="70" as="geometry" />
         </mxCell>
-        <mxCell id="uc06" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDU-06&lt;/b&gt;&lt;br&gt;Gestión de idiomas&lt;br&gt;y traducciones" vertex="1">
+        <mxCell id="uc06" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDU-06&lt;/b&gt;&lt;br&gt;Gestionar idiomas y traducciones" vertex="1">
           <mxGeometry height="130" width="330" x="635" y="265" as="geometry" />
         </mxCell>
         <mxCell id="actor06" parent="1" style="shape=umlActor;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;" value="" vertex="1">

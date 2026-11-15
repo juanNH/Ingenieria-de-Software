@@ -35,7 +35,7 @@ try {
     $taskCommand.Dispose()
     Write-Host "Respaldo verificado: $taskBackupPath"
     $taskTransaction = $taskConnection.BeginTransaction()
-    foreach ($taskScript in @('08_PN2_Catalogos.sql','06_MaestrosPN1.sql','06a_CompatibilidadTransfusional.sql','06b_TipificacionDonante.sql','07_PN1.sql','09_PN2.sql','09a_RelacionesSolicitudPN2.sql','10_IntegridadPN2.sql','11_ComprobantesAutomaticos.sql','12_DiagramasSSMS.sql','13_AjusteCantidadDonacion.sql')) {
+    foreach ($taskScript in @('08_PN2_Catalogos.sql','06_MaestrosPN1.sql','06a_CompatibilidadTransfusional.sql','06b_TipificacionDonante.sql','07_PN1.sql','09_PN2.sql','09a_RelacionesSolicitudPN2.sql','10_IntegridadPN2.sql','11_ComprobantesAutomaticos.sql','12_DiagramasSSMS.sql','13_AjusteCantidadDonacion.sql','14_DiagramasCDUSSMS.sql')) {
         $taskScriptPath = Join-Path $PSScriptRoot ('StoredProcedures/' + $taskScript)
         $taskSql = (Get-Content -Raw -Encoding UTF8 -LiteralPath $taskScriptPath).Replace('USE [HemovidaGest];','')
         foreach ($taskBatch in [regex]::Split($taskSql,'(?im)^\s*GO\s*(?:--[^\r\n]*)?$')) {
@@ -54,6 +54,15 @@ try {
     $taskCommand.CommandText = 'SELECT COUNT(*) FROM dbo.v_IntegridadPN1_Errores'
     try {
         if ([int]$taskCommand.ExecuteScalar() -ne 0) { throw 'La actualización no conserva la integridad. Se revierte la transacción.' }
+        $taskCommand.CommandText = 'SELECT dbo.fn_diagramobjects()'
+        if ([int]$taskCommand.ExecuteScalar() -ne 255) { throw 'El soporte nativo de diagramas de SSMS está incompleto. Se revierte la actualización.' }
+        $taskCommand.CommandText = @'
+SELECT COUNT(DISTINCT LEFT(name, 6)) FROM dbo.sysdiagrams
+WHERE principal_id = DATABASE_PRINCIPAL_ID(N'dbo')
+  AND name LIKE N'CDU-0[1-7] - %'
+  AND version IS NOT NULL AND DATALENGTH(definition) > 0
+'@
+        if ([int]$taskCommand.ExecuteScalar() -ne 7) { throw 'Falta al menos un diagrama nativo de CDU-01 a CDU-07. Se revierte la actualización.' }
     } finally { $taskCommand.Dispose() }
     $taskTransaction.Commit()
     $taskTransaction.Dispose()

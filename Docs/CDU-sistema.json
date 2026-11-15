@@ -1,0 +1,742 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-11-14",
+  "documentUrl": "https://docs.google.com/document/d/1EUrkuuLmCq6YnOGA_lSNvpeQSwCAK-Xd34jLIo4du58/edit",
+  "scope": "CDU-01 a CDU-07: casos de uso funcionales del sistema.",
+  "rowOrder": [
+    "Nombre",
+    "Objetivo",
+    "Actor principal",
+    "Actor secundario",
+    "Precondiciones",
+    "Postcondiciones",
+    "Flujo principal",
+    "Flujos alternativos"
+  ],
+  "screenProvenance": "Docs/Pantallas/origen-capturas.json",
+  "renderPolicy": "Los renders de revisión se identifican por nombre de assetmap. Los DER provienen del diseñador nativo de SSMS con vista Standard; se conservan la fuente EMF, la vista previa PNG y las definiciones instalables del script 14.",
+  "cases": [
+    {
+      "code": "CDU-01",
+      "title": "Iniciar sesión",
+      "actor": "Usuario registrado",
+      "rows": [
+        "Nombre: CDU-01 · Iniciar sesión",
+        "Objetivo: Permitir que un usuario registrado acceda a las funciones habilitadas para su perfil.",
+        "Actor principal: Usuario registrado.",
+        "Actor secundario: Ninguno.",
+        "Precondiciones: La aplicación muestra la pantalla de inicio de sesión y no hay una sesión activa.",
+        "Postcondiciones: El usuario queda autenticado, con una sesión activa y el menú disponible según sus permisos. Sus intentos fallidos se reinician y el sistema solicita registrar el acceso exitoso.",
+        "Flujo principal:\n1. El usuario ingresa su nombre de usuario o correo electrónico y su contraseña.\n2. El usuario selecciona Iniciar sesión.\n3. El sistema comprueba los datos ingresados, el estado activo de la cuenta y los controles de integridad que condicionan el acceso.\n4. El sistema recupera los permisos, reinicia los intentos fallidos, solicita registrar el acceso exitoso e inicia la sesión.\n5. El sistema presenta la bienvenida y el menú principal con las opciones habilitadas y el idioma del usuario.",
+        "Flujos alternativos:\n3.1- Si falta el identificador o la contraseña, el sistema informa que las credenciales son incorrectas y mantiene la pantalla de inicio. El usuario completa los datos y vuelve al paso 2.\n3.2- Si el identificador no corresponde a una cuenta registrada, el sistema informa que las credenciales son incorrectas y no inicia la sesión.\n3.3- Si la contraseña es incorrecta para una cuenta activa y la integridad de usuarios es válida, el sistema registra el intento fallido y aumenta su contador. Al alcanzar tres intentos, inhabilita la cuenta e informa que debe contactar a un administrador.\n3.4- Si la cuenta está inactiva o bloqueada, el sistema informa el bloqueo y no inicia la sesión.\n3.5- Si hay una inconsistencia de integridad y el usuario no es administrador, el sistema rechaza el acceso e informa que solo un administrador puede iniciar sesión. Un administrador con credenciales válidas puede acceder para atender la inconsistencia."
+      ],
+      "evidence": [
+        {
+          "file": "Application/Usuarios/UsuarioApplicationService.cs",
+          "line": 135,
+          "detail": "Login: credenciales, integridad, permisos, tres fallos, reinicio y bitácora."
+        },
+        {
+          "file": "UI/Forms/Auth/Login.cs",
+          "line": 28,
+          "detail": "Identificador/contraseña, sesión, idioma, mensajes y bienvenida."
+        },
+        {
+          "file": "DAL/Usuarios/UsuarioDataMapper.cs",
+          "line": 258,
+          "detail": "El tercer fallo deja estado INACTIVO."
+        }
+      ],
+      "assets": {
+        "useCase": {
+          "source": "Diagramas/Casos de Uso/T02 - CDU-01 a CDU-03 - Casos de uso.drawio",
+          "driveUrl": "https://drive.google.com/file/d/1eNhlgz1xRuTapo-NrGGJfOu_JaiWSYII/view?usp=drivesdk"
+        },
+        "classes": {
+          "source": "Diagramas/Diagramas de clases/CDU-01 - Log In - Clases.drawio",
+          "driveUrl": "https://drive.google.com/file/d/195czwMbqFLRDE7by8xH__6KOjvZUo-al/view?usp=drivesdk"
+        },
+        "sequences": [
+          {
+            "source": "Diagramas/Diagramas de Secuencia/CDU-01 - Log In - Secuencia.drawio",
+            "driveUrl": "https://drive.google.com/file/d/1BpiYiRTRRVCO2TXrZsLdKK4ZIHdn3xQ1/view?usp=drivesdk",
+            "views": [
+              "CDU-01 · Iniciar sesión · Secuencia"
+            ]
+          }
+        ],
+        "screen": {
+          "file": "Docs/Pantallas/CDU-01-Pantalla.png",
+          "driveUrl": "https://drive.google.com/file/d/10EMgEz8ABbkTYaemAcDIh0328svfzocG/view?usp=drivesdk",
+          "form": "UI.Login_380_jh"
+        },
+        "reviewRenderNames": [
+          "T02_CasosDeUso.png",
+          "CDU-01_classes.png",
+          "CDU-01_sequence.png"
+        ],
+        "der": {
+          "status": "native_ssms_verified",
+          "tool": "SQL Server Management Studio",
+          "capture": "Diagramas/Diagramas Entidad Relacion/CDU-01 - Iniciar sesion - DER.emf",
+          "definitionExport": "Database/StoredProcedures/14_DiagramasCDUSSMS.sql",
+          "schema": "dbo",
+          "tables": [
+            "Bitacora",
+            "ComponentePermiso",
+            "ComponentePermisoRelacion",
+            "DigitoVerificadorVertical",
+            "Idioma",
+            "Permiso",
+            "Rol",
+            "RolPermiso",
+            "Usuario",
+            "UsuarioComponentePermiso",
+            "UsuarioRol"
+          ],
+          "foreignKeys": [
+            "FK_ComponentePermisoRelacion_Padre",
+            "FK_ComponentePermisoRelacion_Hijo",
+            "FK_RolPermiso_Rol",
+            "FK_RolPermiso_Permiso",
+            "FK_UsuarioRol_Rol",
+            "FK_UsuarioComponentePermiso_Componente",
+            "FK_Usuario_Idioma",
+            "FK_Bitacora_Usuario",
+            "FK_UsuarioRol_Usuario",
+            "FK_UsuarioComponentePermiso_Usuario"
+          ],
+          "notes": "El login carga permisos de componentes y compatibilidad con roles anteriores. Rol.nombre y Permiso.codigo se enlazan lógicamente a ComponentePermiso, sin FK. DVV queda aislada. Traducciones e integridad de negocio se detallan en CDU-06 y PN1/PN2.",
+          "preview": "Diagramas/Diagramas Entidad Relacion/CDU-01 - Iniciar sesion - DER.png",
+          "definitionManifest": "Database/StoredProcedures/14_DiagramasCDUSSMS.manifest.json",
+          "definitionExportSha256": "002565f6a787da88fefb01ad87591d0f7c327d62ab97ae7e55fb925488e1d576",
+          "nativeDiagramName": "CDU-01 - Iniciar sesion - DER",
+          "nativeVersion": 1,
+          "nativeDefinitionSha256": "c3919ca2b84007c99f29c1d2a415ed499a88082e0da260e3c087a62d52e0efcf",
+          "nativeDefinitionBytes": 53764,
+          "tableView": "Standard",
+          "nativeTableViewMode": 0,
+          "sourceEmfSha256": "c14baa40486eed7aa5871f69f105dcf7431d7c38d35409d807a27e7c5142e255",
+          "previewSha256": "1f4ffdd632f368af8fd8a7169ee6e9b717a209ee2b509d057df7b335f97a9c77",
+          "captureOrigin": "SQL Server Management Studio · Copy Diagram to Clipboard",
+          "nativeClipboardFormat": "CF_ENHMETAFILE (14)",
+          "drivePngUrl": "https://drive.google.com/file/d/1EHknznjISuqcvHXBwH7abug5I83-NaCg/view?usp=drivesdk",
+          "drivePngSha256": "1f4ffdd632f368af8fd8a7169ee6e9b717a209ee2b509d057df7b335f97a9c77",
+          "driveReadbackVerified": true,
+          "definitionExportDriveUrl": "https://drive.google.com/file/d/1rLIp0yW6KC1CiUeF7nkPtY_d5KnkQbso/view?usp=drivesdk",
+          "definitionManifestDriveUrl": "https://drive.google.com/file/d/1yB1Bto4ZzDtCFiOAB1JxLmIxJ7E-ANol/view?usp=drivesdk",
+          "definitionManifestSha256": "24d25b4863eda36e6e48e194f024ecbd6bab263faa3fef251dc4c10d08f90376"
+        }
+      }
+    },
+    {
+      "code": "CDU-02",
+      "title": "Registrarse",
+      "actor": "Usuario no registrado",
+      "rows": [
+        "Nombre: CDU-02 · Registrarse",
+        "Objetivo: Permitir que una persona registre una cuenta para iniciar sesión posteriormente.",
+        "Actor principal: Usuario no registrado.",
+        "Actor secundario: Ninguno.",
+        "Precondiciones: No hay una sesión activa y la persona accede a Registrarse desde la pantalla de inicio de sesión.",
+        "Postcondiciones: La cuenta queda creada en estado Activo, con el idioma predeterminado y sin asignación automática de perfiles operativos. El sistema vuelve al inicio de sesión y completa el nombre registrado; la persona todavía no está autenticada.",
+        "Flujo principal:\n1. La persona selecciona Registrarse en la pantalla de inicio de sesión.\n2. El sistema muestra el formulario de registro.\n3. La persona completa nombre, apellido, nombre de usuario, correo electrónico y contraseña, y selecciona Crear cuenta.\n4. El sistema valida los datos obligatorios y el formato del correo, comprueba que usuario y correo no estén registrados y que exista el idioma predeterminado.\n5. El sistema crea la cuenta activa y solicita registrar su alta.\n6. El sistema confirma el registro y vuelve al inicio de sesión con el nombre de usuario completado y la contraseña vacía.",
+        "Flujos alternativos:\n3.1- Si la persona selecciona Cancelar, el sistema vuelve al inicio de sesión sin crear una cuenta.\n4.1- Si faltan datos obligatorios o el correo tiene un formato inválido, el sistema informa el motivo y mantiene el formulario. La persona corrige los datos y vuelve al paso 3.\n4.2- Si el nombre de usuario o el correo ya está registrado, el sistema informa la duplicación, registra el intento fallido y no crea otra cuenta. La persona modifica los datos y vuelve al paso 3.\n4.3- Si no existe el idioma predeterminado, el sistema informa que no pudo registrar la cuenta y no la crea.\n5.1- Si el registro devuelve un error de persistencia, el sistema informa el error y mantiene el formulario sin confirmar el alta."
+      ],
+      "evidence": [
+        {
+          "file": "UI/Forms/Auth/Registro.cs",
+          "line": 24,
+          "detail": "Los cinco campos son obligatorios en el formulario, cancelación y mensajes."
+        },
+        {
+          "file": "Application/Usuarios/UsuarioApplicationService.cs",
+          "line": 76,
+          "detail": "Validación, hash, creación, DV, alta auditada y duplicados."
+        },
+        {
+          "file": "Database/StoredProcedures/01_AuthUsuario.sql",
+          "line": 83,
+          "detail": "sp_Usuario_Registrar: idioma por defecto, unicidad e inserción activa; no asigna roles."
+        },
+        {
+          "file": "UI/Forms/Auth/Login.cs",
+          "line": 68,
+          "detail": "Completa usuario y limpia contraseña tras el alta."
+        }
+      ],
+      "assets": {
+        "useCase": {
+          "source": "Diagramas/Casos de Uso/T02 - CDU-01 a CDU-03 - Casos de uso.drawio",
+          "driveUrl": "https://drive.google.com/file/d/1eNhlgz1xRuTapo-NrGGJfOu_JaiWSYII/view?usp=drivesdk"
+        },
+        "classes": {
+          "source": "Diagramas/Diagramas de clases/CDU-02 - Registrarse - Clases.drawio",
+          "driveUrl": "https://drive.google.com/file/d/1HpA0EYuHAJYix4jfk_ydNgJegZUucdiC/view?usp=drivesdk"
+        },
+        "sequences": [
+          {
+            "source": "Diagramas/Diagramas de Secuencia/CDU-02 - Registrarse - Secuencia.drawio",
+            "driveUrl": "https://drive.google.com/file/d/1_FseS3gFqcO_7RvbAyc9h0X_3y7DqkzE/view?usp=drivesdk",
+            "views": [
+              "CDU-02 · Registrarse · Secuencia"
+            ]
+          }
+        ],
+        "screen": {
+          "file": "Docs/Pantallas/CDU-02-Pantalla.png",
+          "driveUrl": "https://drive.google.com/file/d/1UnSKBIhH0hy_fB4ZcyBZqb2NDINWLjFB/view?usp=drivesdk",
+          "form": "UI.Registro_380_jh"
+        },
+        "reviewRenderNames": [
+          "T02_CasosDeUso.png",
+          "CDU-02_classes.png",
+          "CDU-02_sequence.png"
+        ],
+        "der": {
+          "status": "native_ssms_verified",
+          "tool": "SQL Server Management Studio",
+          "capture": "Diagramas/Diagramas Entidad Relacion/CDU-02 - Registrarse - DER.emf",
+          "definitionExport": "Database/StoredProcedures/14_DiagramasCDUSSMS.sql",
+          "schema": "dbo",
+          "tables": [
+            "Auditoria",
+            "Bitacora",
+            "DigitoVerificadorVertical",
+            "Idioma",
+            "Usuario"
+          ],
+          "foreignKeys": [
+            "FK_Usuario_Idioma",
+            "FK_Auditoria_UsuarioActor",
+            "FK_Bitacora_Usuario"
+          ],
+          "notes": "Auditoria.id_usuario_actor referencia al actor; entidad + id_entidad identifica lógicamente al usuario creado. El autorregistro no asigna perfiles. DVV queda aislada.",
+          "preview": "Diagramas/Diagramas Entidad Relacion/CDU-02 - Registrarse - DER.png",
+          "definitionManifest": "Database/StoredProcedures/14_DiagramasCDUSSMS.manifest.json",
+          "definitionExportSha256": "002565f6a787da88fefb01ad87591d0f7c327d62ab97ae7e55fb925488e1d576",
+          "nativeDiagramName": "CDU-02 - Registrarse - DER",
+          "nativeVersion": 1,
+          "nativeDefinitionSha256": "eafba2e64c54f0936d082116ea3e19779164479960d803c1354300ae6a48493b",
+          "nativeDefinitionBytes": 23044,
+          "tableView": "Standard",
+          "nativeTableViewMode": 0,
+          "sourceEmfSha256": "395ed06a1c7516308789d958edec2cb784399669e8bfa3ece9e04d74fb954648",
+          "previewSha256": "089874f168d34f7ed080a970b12171d61166a2ce6d5ef9cf7027366fe0082dce",
+          "captureOrigin": "SQL Server Management Studio · Copy Diagram to Clipboard",
+          "nativeClipboardFormat": "CF_ENHMETAFILE (14)",
+          "drivePngUrl": "https://drive.google.com/file/d/1Tnak4bWLN4MVBDfWYbGg3l_C1fDLHbSx/view?usp=drivesdk",
+          "drivePngSha256": "089874f168d34f7ed080a970b12171d61166a2ce6d5ef9cf7027366fe0082dce",
+          "driveReadbackVerified": true,
+          "definitionExportDriveUrl": "https://drive.google.com/file/d/1rLIp0yW6KC1CiUeF7nkPtY_d5KnkQbso/view?usp=drivesdk",
+          "definitionManifestDriveUrl": "https://drive.google.com/file/d/1yB1Bto4ZzDtCFiOAB1JxLmIxJ7E-ANol/view?usp=drivesdk",
+          "definitionManifestSha256": "24d25b4863eda36e6e48e194f024ecbd6bab263faa3fef251dc4c10d08f90376"
+        }
+      }
+    },
+    {
+      "code": "CDU-03",
+      "title": "Cerrar sesión",
+      "actor": "Usuario autenticado",
+      "rows": [
+        "Nombre: CDU-03 · Cerrar sesión",
+        "Objetivo: Permitir que un usuario finalice su sesión y vuelva a la pantalla de inicio de sesión.",
+        "Actor principal: Usuario autenticado.",
+        "Actor secundario: Ninguno.",
+        "Precondiciones: Existe una sesión activa y el usuario se encuentra en la ventana principal.",
+        "Postcondiciones: La sesión queda finalizada, se cierra la ventana principal y se muestra el inicio de sesión. Para acceder nuevamente a las funciones protegidas, el usuario debe autenticarse.",
+        "Flujo principal:\n1. El usuario selecciona Cerrar sesión en el menú principal.\n2. El sistema finaliza la sesión activa y cierra la ventana principal.\n3. El sistema muestra nuevamente la pantalla de inicio de sesión.",
+        "Flujos alternativos:\nNo se contemplan alternativas: al seleccionar Cerrar sesión, el sistema finaliza la sesión directamente."
+      ],
+      "evidence": [
+        {
+          "file": "UI/Forms/Main/MainForm.cs",
+          "line": 277,
+          "detail": "Recalcula DV, limpia Sesion, DialogResult.Retry y Close; no confirma."
+        },
+        {
+          "file": "Domain/Seguridad/Sesion.cs",
+          "line": 55,
+          "detail": "Limpia usuario y fecha de inicio en memoria; no implementa expiración."
+        },
+        {
+          "file": "UI/Program.cs",
+          "line": 18,
+          "detail": "El bucle vuelve a crear Login cuando MainForm devuelve Retry."
+        },
+        {
+          "file": "UI/Forms/Main/MainForm.cs",
+          "line": 561,
+          "detail": "Desuscribe el observador de idioma al cerrar."
+        }
+      ],
+      "assets": {
+        "useCase": {
+          "source": "Diagramas/Casos de Uso/T02 - CDU-01 a CDU-03 - Casos de uso.drawio",
+          "driveUrl": "https://drive.google.com/file/d/1eNhlgz1xRuTapo-NrGGJfOu_JaiWSYII/view?usp=drivesdk"
+        },
+        "classes": {
+          "source": "Diagramas/Diagramas de clases/CDU-03 - Logout - Clases.drawio",
+          "driveUrl": "https://drive.google.com/file/d/1ThzOkytAVQZ0M9uOUBKiB7yPNB70IAT3/view?usp=drivesdk"
+        },
+        "sequences": [
+          {
+            "source": "Diagramas/Diagramas de Secuencia/CDU-03 - Logout - Secuencia.drawio",
+            "driveUrl": "https://drive.google.com/file/d/114YWBoi95Y9AgbvrmUu40htoXqowcDRN/view?usp=drivesdk",
+            "views": [
+              "CDU-03 · Cerrar sesión · Secuencia"
+            ]
+          }
+        ],
+        "screen": {
+          "file": "Docs/Pantallas/CDU-03-Pantalla.png",
+          "driveUrl": "https://drive.google.com/file/d/1yIA5d5bEmvWX91K0e8iqyZ_jQESEgVTy/view?usp=drivesdk",
+          "form": "UI.Login_380_jh"
+        },
+        "reviewRenderNames": [
+          "T02_CasosDeUso.png",
+          "CDU-03_classes.png",
+          "CDU-03_sequence.png"
+        ],
+        "der": {
+          "status": "native_ssms_verified",
+          "tool": "SQL Server Management Studio",
+          "capture": "Diagramas/Diagramas Entidad Relacion/CDU-03 - Cerrar sesion - DER.emf",
+          "definitionExport": "Database/StoredProcedures/14_DiagramasCDUSSMS.sql",
+          "schema": "dbo",
+          "tables": [
+            "DigitoVerificadorVertical",
+            "Usuario"
+          ],
+          "foreignKeys": [],
+          "notes": "La sesión y su fecha están en memoria. Antes de cerrarla se solicita recalcular Usuario.dvh, despejar su bloqueo por integridad y actualizar DVV para entidad Usuario. No hay FK entre las tablas, tabla Sesion ni evento de Bitacora del cierre.",
+          "preview": "Diagramas/Diagramas Entidad Relacion/CDU-03 - Cerrar sesion - DER.png",
+          "definitionManifest": "Database/StoredProcedures/14_DiagramasCDUSSMS.manifest.json",
+          "definitionExportSha256": "002565f6a787da88fefb01ad87591d0f7c327d62ab97ae7e55fb925488e1d576",
+          "nativeDiagramName": "CDU-03 - Cerrar sesion - DER",
+          "nativeVersion": 1,
+          "nativeDefinitionSha256": "4f147b943eaaddc5a0ae130358d068ce6719a510b75310ee5a9e25e3eb41b82a",
+          "nativeDefinitionBytes": 9732,
+          "tableView": "Standard",
+          "nativeTableViewMode": 0,
+          "sourceEmfSha256": "d06bd28606a0b6a0d5e8f2bb8d57b23a8a8faf61b3866ffe0065554d5b533dc1",
+          "previewSha256": "cf9e5ecb5ece0530f3fc81de2646431b795438b5a5a082050b42343f7c649c4a",
+          "captureOrigin": "SQL Server Management Studio · Copy Diagram to Clipboard",
+          "nativeClipboardFormat": "CF_ENHMETAFILE (14)",
+          "drivePngUrl": "https://drive.google.com/file/d/1j2T_ToXWK-h3J_XHqnsQ6uj7QviTTkuI/view?usp=drivesdk",
+          "drivePngSha256": "cf9e5ecb5ece0530f3fc81de2646431b795438b5a5a082050b42343f7c649c4a",
+          "driveReadbackVerified": true,
+          "definitionExportDriveUrl": "https://drive.google.com/file/d/1rLIp0yW6KC1CiUeF7nkPtY_d5KnkQbso/view?usp=drivesdk",
+          "definitionManifestDriveUrl": "https://drive.google.com/file/d/1yB1Bto4ZzDtCFiOAB1JxLmIxJ7E-ANol/view?usp=drivesdk",
+          "definitionManifestSha256": "24d25b4863eda36e6e48e194f024ecbd6bab263faa3fef251dc4c10d08f90376"
+        }
+      }
+    },
+    {
+      "code": "CDU-04",
+      "title": "Consultar bitácora",
+      "actor": "Usuario autorizado",
+      "rows": [
+        "Nombre: CDU-04 · Consultar bitácora",
+        "Objetivo: Consultar los eventos del sistema y localizar los que coincidan con los filtros indicados.",
+        "Actor principal: Usuario autorizado.",
+        "Actor secundario: Ninguno.",
+        "Precondiciones: El usuario tiene una sesión activa y permiso para consultar la bitácora.",
+        "Postcondiciones: El listado muestra los eventos recuperados y su cantidad, o informa que no hay eventos. La consulta no modifica los registros de la bitácora.",
+        "Flujo principal:\n1. El usuario selecciona «Bitácora» en el menú principal.\n2. El sistema comprueba el permiso y muestra los eventos disponibles y los controles de búsqueda.\n3. El usuario indica los filtros que necesita y selecciona «Buscar». Puede filtrar por fechas, usuario, módulo, acción, nivel y descripción.\n4. El sistema muestra los eventos coincidentes, ordenados del más reciente al más antiguo, con fecha, usuario, módulo, acción, nivel, descripción y equipo; informa la cantidad encontrada.\n5. El usuario consulta los resultados.",
+        "Flujos alternativos:\n2.1- Si el usuario no tiene permiso, el sistema deniega el acceso a la pantalla.\n3.1- Si el usuario selecciona «Actualizar», el sistema repite la consulta con los filtros actuales y continúa en el paso 4.\n3.2- Si selecciona «Limpiar filtros», el sistema borra los criterios, consulta nuevamente y continúa en el paso 4.\n4.1- Si no hay eventos coincidentes, el sistema muestra el listado vacío e informa que no hay eventos. El usuario puede cambiar los filtros y volver al paso 3.\n4.2- Si no pueden recuperarse los eventos por un error de consulta, el listado queda vacío y se muestra el mismo estado de ausencia de eventos; la pantalla actual no distingue ese error de una búsqueda sin resultados."
+      ],
+      "evidence": [
+        "UI/Forms/Main/MainForm.cs:225: bitacoraToolStripMenuItem_Click y permiso BITACORA_VER.",
+        "UI/Views/Bitacora/BitacoraView.cs:26: construcción y carga inicial; :69, :74, :79: actualizar, buscar y limpiar filtros; :184: ObtenerFiltro; :211: CargarBitacora; :308: ActualizarEstado.",
+        "Application/BitacoraApplicationService.cs:26: Listar(filtro); Repository/Bitacora/BitacoraRepository.cs:37: delegación con filtro.",
+        "DAL/Bitacora/BitacoraDataMapper.cs:89: consulta SQL parametrizada, orden descendente, catch devuelve lista vacía.",
+        "Database/StoredProcedures/02_Bitacora.sql:6: dbo.Bitacora y FK_Bitacora_Usuario."
+      ],
+      "assets": {
+        "useCase": {
+          "source": "Diagramas/Casos de Uso/T06a - CDU-04 - Consultar bitácora - Casos de uso.drawio",
+          "driveUrl": "https://drive.google.com/file/d/1bbKjeoYTydg6qJd0Yz3rDyWADRWH-xk-/view?usp=drivesdk"
+        },
+        "classes": {
+          "source": "Diagramas/Diagramas de clases/CDU-04 - Consultar bitácora - Clases.drawio",
+          "driveUrl": "https://drive.google.com/file/d/1-s7XpsQc8RvN2s_kIU-5TIkqvqb22Gom/view?usp=drivesdk"
+        },
+        "sequences": [
+          {
+            "source": "Diagramas/Diagramas de Secuencia/CDU-04 - Consultar bitácora - Secuencia.drawio",
+            "driveUrl": "https://drive.google.com/file/d/16RBYyb4SE3VKXwl3kbNHbv54Q-lZIcBs/view?usp=drivesdk",
+            "views": [
+              "CDU-04 — Secuencia: Consultar bitácora"
+            ]
+          }
+        ],
+        "screen": {
+          "file": "Docs/Pantallas/CDU-04-Pantalla.png",
+          "driveUrl": "https://drive.google.com/file/d/12Dm3G4j_ivOMzT85QYH-cI7AFmsW2BfP/view?usp=drivesdk",
+          "form": "UI.BitacoraView_380_jh"
+        },
+        "reviewRenderNames": [
+          "CDU04_CasosDeUso.png",
+          "CDU04_Clases.png",
+          "CDU04_Secuencia.png"
+        ],
+        "der": {
+          "status": "native_ssms_verified",
+          "tool": "SQL Server Management Studio",
+          "capture": "Diagramas/Diagramas Entidad Relacion/CDU-04 - Consultar bitacora - DER.emf",
+          "definitionExport": "Database/StoredProcedures/14_DiagramasCDUSSMS.sql",
+          "schema": "dbo",
+          "tables": [
+            "Bitacora",
+            "Usuario"
+          ],
+          "foreignKeys": [
+            "FK_Bitacora_Usuario"
+          ],
+          "notes": "Bitacora.id_usuario es nullable. identificador_usuario es una instantánea de texto, sin FK propia.",
+          "preview": "Diagramas/Diagramas Entidad Relacion/CDU-04 - Consultar bitacora - DER.png",
+          "definitionManifest": "Database/StoredProcedures/14_DiagramasCDUSSMS.manifest.json",
+          "definitionExportSha256": "002565f6a787da88fefb01ad87591d0f7c327d62ab97ae7e55fb925488e1d576",
+          "nativeDiagramName": "CDU-04 - Consultar bitacora - DER",
+          "nativeVersion": 1,
+          "nativeDefinitionSha256": "c3f87649fdf4163a7c048751557fe5e451403fc64a64db70f83cda8225d11d40",
+          "nativeDefinitionBytes": 11780,
+          "tableView": "Standard",
+          "nativeTableViewMode": 0,
+          "sourceEmfSha256": "2e2355ecc16f033d7ec62377009ca8eacc921ba3f3a498e8cb6e85216a351c45",
+          "previewSha256": "f960ebf7f569833a7706eb8541b8c81195a042f7dda2092784ac96257761be28",
+          "captureOrigin": "SQL Server Management Studio · Copy Diagram to Clipboard",
+          "nativeClipboardFormat": "CF_ENHMETAFILE (14)",
+          "drivePngUrl": "https://drive.google.com/file/d/1aOOyyMTNO-4lCf5-kKiuyGEmeCSicKAd/view?usp=drivesdk",
+          "drivePngSha256": "f960ebf7f569833a7706eb8541b8c81195a042f7dda2092784ac96257761be28",
+          "driveReadbackVerified": true,
+          "definitionExportDriveUrl": "https://drive.google.com/file/d/1rLIp0yW6KC1CiUeF7nkPtY_d5KnkQbso/view?usp=drivesdk",
+          "definitionManifestDriveUrl": "https://drive.google.com/file/d/1yB1Bto4ZzDtCFiOAB1JxLmIxJ7E-ANol/view?usp=drivesdk",
+          "definitionManifestSha256": "24d25b4863eda36e6e48e194f024ecbd6bab263faa3fef251dc4c10d08f90376"
+        }
+      }
+    },
+    {
+      "code": "CDU-05",
+      "title": "Gestionar usuarios",
+      "actor": "Administrador",
+      "rows": [
+        "Nombre: CDU-05 · Gestionar usuarios",
+        "Objetivo: Consultar y mantener las cuentas de usuario y asignarles un rol según los permisos del administrador.",
+        "Actor principal: Administrador.",
+        "Actor secundario: Ninguno.",
+        "Precondiciones: El administrador tiene una sesión activa y permiso para consultar usuarios. Para crear, modificar, inhabilitar o asignar un rol debe tener el permiso de la operación correspondiente. Para el camino principal existe un usuario registrado.",
+        "Postcondiciones: En el camino principal, los datos del usuario quedan modificados y el listado se actualiza. Las altas crean cuentas activas; la inhabilitación impide nuevos inicios de sesión y la asignación guarda el rol seleccionado. Tras un cambio de datos exitoso, el sistema solicita registrar la auditoría y recalcular los dígitos verificadores.",
+        "Flujo principal:\n1. El administrador selecciona Usuarios en el menú principal.\n2. El sistema muestra el listado y las acciones disponibles según sus permisos.\n3. El administrador selecciona la cuenta que desea modificar.\n4. El sistema muestra usuario, correo electrónico, nombre, apellido y estado, y deja vacío el campo de nueva contraseña.\n5. El administrador modifica los datos necesarios y deja vacía la nueva contraseña para conservar la actual.\n6. El administrador selecciona Guardar.\n7. El sistema valida los datos y guarda la modificación.\n8. El sistema informa el resultado, actualiza el listado y prepara el formulario para una nueva operación.",
+        "Flujos alternativos:\n1.1- Si el usuario no tiene permiso de consulta, el sistema no permite abrir Usuarios. Las acciones de alta, edición e inhabilitación solo se ofrecen cuando dispone del permiso correspondiente.\n3.1- Para crear una cuenta, el administrador selecciona Nuevo, completa usuario, correo electrónico y contraseña; puede informar nombre y apellido. Selecciona Crear. El sistema valida los datos, crea la cuenta activa e informa el resultado; continúa en el paso 8.\n5.1- Si informa una nueva contraseña al modificar, el sistema la reemplaza al guardar; no muestra ni recupera la anterior.\n6.1- Para inhabilitar la cuenta seleccionada, el administrador elige Inhabilitar y confirma. El sistema guarda el estado Inactivo y actualiza el listado. Si cancela la confirmación, conserva el estado anterior.\n6.2- Para asignar un rol, el administrador selecciona un usuario y un rol disponible en el panel Roles y elige Guardar en ese panel. El sistema registra el rol seleccionado e informa el resultado. Si no hay usuario o rol seleccionado, solicita completarlo; si no tiene permiso de edición, deniega la acción.\n6.3- Recalcular dígitos verificadores es una operación administrativa de soporte de T08: requiere permiso de edición y confirmación; si se cancela no realiza el recálculo.\n7.1- Si falta usuario o correo electrónico, el correo es inválido o falta contraseña al crear, el sistema informa el error y no guarda; el administrador corrige y vuelve al paso 6 o a Crear, según la operación.\n7.2- Si el alta detecta un usuario o correo ya registrado, el sistema informa la duplicación y no crea otra cuenta. Si no existe el idioma predeterminado o el alta falla, informa que no pudo crearla.\n7.3- Si la modificación o inhabilitación no puede completarse y devuelve un resultado negativo, el sistema informa que no pudo realizar la operación; no confirma un cambio exitoso."
+      ],
+      "evidence": [
+        "UI/Views/Usuarios/UsuariosView.cs:173-205 (alta/modificación)",
+        "UI/Views/Usuarios/UsuariosView.cs:148-170 (inhabilitar)",
+        "UI/Views/Usuarios/UsuariosView.cs:225-250 (validación de campos)",
+        "UI/Views/Usuarios/UsuariosView.cs:434-465 (asignación de un rol)",
+        "UI/Views/Usuarios/UsuariosView.cs:467-493 (soporte DV)",
+        "Application/Usuarios/UsuarioApplicationService.cs:65-115,223-274,283-303",
+        "UI/Views/Usuarios/UsuariosView.cs:128,364-389,434-465: carga el rol de la cuenta seleccionada y vuelve a consultarlo después de guardar.",
+        "Application/Permisos/PermisoApplicationService.cs:49-52,129-148: obtiene los IDs asignados y los consulta antes y después de persistir el rol.",
+        "Repository/Permisos/PermisoRepository.cs:41-44,61-64: delegación de la consulta y guardado de asignaciones.",
+        "DAL/Permisos/PermisoDataMapper.cs:105-113,231-307,450-501: la consulta usa UsuarioComponentePermiso y los UNION reales con UsuarioRol/Rol/RolPermiso/Permiso; el guardado escribe UsuarioComponentePermiso."
+      ],
+      "assets": {
+        "useCase": {
+          "source": "Diagramas/Casos de Uso/T04 - CDU-05 - Edición de usuario - Casos de uso.drawio",
+          "driveUrl": "https://drive.google.com/file/d/1jyGZXJhtat8t-GhLh0J_EVgwyCUuzJn7/view?usp=drivesdk"
+        },
+        "classes": {
+          "source": "Diagramas/Diagramas de clases/CDU-05 - Edición de usuario - Clases.drawio",
+          "driveUrl": "https://drive.google.com/file/d/1fXCV-Lmz_0E-HrJ5CoxSYrPuh6NW_NTK/view?usp=drivesdk"
+        },
+        "sequences": [
+          {
+            "source": "Diagramas/Diagramas de Secuencia/CDU-05 - Edición de usuario - Secuencia - Modificar usuario.drawio",
+            "driveUrl": "https://drive.google.com/file/d/16N-qJhJIUgyO2S_Y9W_9Tn-dgbhkw08c/view?usp=drivesdk",
+            "views": [
+              "CDU-05 · Gestionar usuarios · Modificar usuario",
+              "CDU-05 · Modificar usuario · Detalle de soporte"
+            ]
+          },
+          {
+            "source": "Diagramas/Diagramas de Secuencia/CDU-05 - Edición de usuario - Secuencia - Inhabilitar usuario.drawio",
+            "driveUrl": "https://drive.google.com/file/d/1RrAv--iwoZyyam1TcXWcHvnkWSViahux/view?usp=drivesdk",
+            "views": [
+              "CDU-05 · Gestionar usuarios · Inhabilitar usuario",
+              "CDU-05 · Inhabilitar usuario · Detalle de soporte"
+            ]
+          }
+        ],
+        "screen": {
+          "file": "Docs/Pantallas/CDU-05-Pantalla.png",
+          "driveUrl": "https://drive.google.com/file/d/1qDvg7XAqs8J2PKchQeFut3YxU9z6rGcR/view?usp=drivesdk",
+          "form": "UI.UsuariosView_380_jh"
+        },
+        "reviewRenderNames": [
+          "CDU05_Casos.png",
+          "CDU05_Clases.png",
+          "CDU05_Secuencia_Inhabilitar.png",
+          "CDU05_Secuencia_Modificar.png"
+        ],
+        "der": {
+          "status": "native_ssms_verified",
+          "tool": "SQL Server Management Studio",
+          "capture": "Diagramas/Diagramas Entidad Relacion/CDU-05 - Gestionar usuarios - DER.emf",
+          "definitionExport": "Database/StoredProcedures/14_DiagramasCDUSSMS.sql",
+          "schema": "dbo",
+          "tables": [
+            "Auditoria",
+            "ComponentePermiso",
+            "ComponentePermisoRelacion",
+            "DigitoVerificadorVertical",
+            "Idioma",
+            "Permiso",
+            "Rol",
+            "RolPermiso",
+            "Usuario",
+            "UsuarioComponentePermiso",
+            "UsuarioRol"
+          ],
+          "foreignKeys": [
+            "FK_ComponentePermisoRelacion_Padre",
+            "FK_ComponentePermisoRelacion_Hijo",
+            "FK_UsuarioComponentePermiso_Componente",
+            "FK_Usuario_Idioma",
+            "FK_Auditoria_UsuarioActor",
+            "FK_UsuarioComponentePermiso_Usuario",
+            "FK_RolPermiso_Rol",
+            "FK_RolPermiso_Permiso",
+            "FK_UsuarioRol_Usuario",
+            "FK_UsuarioRol_Rol"
+          ],
+          "notes": "La pantalla guarda la asignación en UsuarioComponentePermiso. Para mostrar el rol actual y comparar los IDs antes y después de guardar, consulta también UsuarioRol, Rol, RolPermiso y Permiso mediante los UNION de compatibilidad de CargarIdsAsignados. Los enlaces por nombre de rol o código de permiso hacia ComponentePermiso son lógicos, sin FK. Auditoria.id_entidad y DigitoVerificadorVertical.entidad tampoco son FK.",
+          "preview": "Diagramas/Diagramas Entidad Relacion/CDU-05 - Gestionar usuarios - DER.png",
+          "definitionManifest": "Database/StoredProcedures/14_DiagramasCDUSSMS.manifest.json",
+          "definitionExportSha256": "002565f6a787da88fefb01ad87591d0f7c327d62ab97ae7e55fb925488e1d576",
+          "nativeDiagramName": "CDU-05 - Gestionar usuarios - DER",
+          "nativeVersion": 1,
+          "nativeDefinitionSha256": "041f6465791efd54032a47afa95468c1197a1d70b7202ee4a417dbe554586502",
+          "nativeDefinitionBytes": 53764,
+          "tableView": "Standard",
+          "nativeTableViewMode": 0,
+          "sourceEmfSha256": "ff576abdcd5f6ebcbb2701ccd8407ddd88013b9837d3879025ac2a083d19beb8",
+          "previewSha256": "5aad5caf9d6750a4033e6d4752e5085ae7f547fe10d19b1c7301112789dbb2db",
+          "captureOrigin": "SQL Server Management Studio · Copy Diagram to Clipboard",
+          "nativeClipboardFormat": "CF_ENHMETAFILE (14)",
+          "drivePngUrl": "https://drive.google.com/file/d/13u6Cd--RjiXaQ0e_-p8GvbYOtkaVcg8t/view?usp=drivesdk",
+          "drivePngSha256": "5aad5caf9d6750a4033e6d4752e5085ae7f547fe10d19b1c7301112789dbb2db",
+          "driveReadbackVerified": true,
+          "definitionExportDriveUrl": "https://drive.google.com/file/d/1rLIp0yW6KC1CiUeF7nkPtY_d5KnkQbso/view?usp=drivesdk",
+          "definitionManifestDriveUrl": "https://drive.google.com/file/d/1yB1Bto4ZzDtCFiOAB1JxLmIxJ7E-ANol/view?usp=drivesdk",
+          "definitionManifestSha256": "24d25b4863eda36e6e48e194f024ecbd6bab263faa3fef251dc4c10d08f90376"
+        }
+      }
+    },
+    {
+      "code": "CDU-06",
+      "title": "Gestionar idiomas y traducciones",
+      "actor": "Administrador",
+      "rows": [
+        "Nombre: CDU-06 · Gestionar idiomas y traducciones",
+        "Objetivo: Mantener los idiomas disponibles y los textos traducidos de la interfaz.",
+        "Actor principal: Administrador.",
+        "Actor secundario: Ninguno.",
+        "Precondiciones: El administrador tiene una sesión activa y permiso para consultar idiomas o traducciones. Para el camino principal dispone del permiso de editar traducciones, existe un idioma registrado y se puede seleccionar una etiqueta o componente traducible.",
+        "Postcondiciones: La traducción queda guardada para el idioma y la etiqueta seleccionados. Si corresponde al idioma actual, los textos visibles de la interfaz se actualizan. Los cambios de activación de un idioma conservan su historial.",
+        "Flujo principal:\n1. El administrador selecciona Idiomas en el menú principal.\n2. El sistema muestra los idiomas y los componentes o etiquetas de la interfaz que puede consultar según sus permisos.\n3. El administrador selecciona un componente o etiqueta y el idioma cuya traducción desea mantener.\n4. El sistema muestra la clave y la descripción de la etiqueta y, si existe, su traducción para ese idioma.\n5. El administrador completa o modifica el texto traducido y selecciona Guardar en el panel de traducción.\n6. El sistema valida la selección y el texto y guarda la traducción asociada a la etiqueta y al idioma.\n7. El sistema informa el resultado y vuelve a mostrar la traducción guardada.\n8. Si la traducción corresponde al idioma actual, el sistema actualiza los textos visibles de la interfaz.",
+        "Flujos alternativos:\n1.1- Si el usuario no tiene permiso para consultar idiomas ni traducciones, el sistema deniega el acceso. Cada panel y acción se ofrece de acuerdo con el permiso correspondiente.\n3.1- Para crear un idioma, el administrador selecciona Nuevo, completa código, nombre y estado y selecciona Guardar. El sistema valida los campos, crea el idioma y actualiza el catálogo y el selector principal.\n3.2- Para modificar un idioma, el administrador lo selecciona en el listado, cambia código, nombre o estado y selecciona Guardar. El sistema guarda los cambios; si cambia la activación, conserva su historial y actualiza el catálogo y el selector principal.\n3.3- Si el componente no tiene una etiqueta traducible, el sistema lo indica. El administrador selecciona otro componente o una etiqueta disponible.\n4.1- Si la clave detectada todavía no está registrada como etiqueta, el sistema la incorpora al guardar una traducción válida.\n5.1- Si el usuario no tiene permiso para editar traducciones, crear idiomas o editar idiomas, el sistema no permite ejecutar esa acción.\n6.1- Si falta idioma, clave de etiqueta o texto de traducción, el sistema informa que no pudo guardar y no registra la traducción. Si falta código o nombre al mantener un idioma, no guarda ese idioma.\n6.2- Si el guardado devuelve un resultado negativo, el sistema informa que no pudo completarlo; no confirma un guardado exitoso.\n8.1- Si la traducción pertenece a otro idioma, se conserva guardada y los textos de la interfaz actual permanecen iguales."
+      ],
+      "evidence": [
+        "UI/Views/Idiomas/IdiomasView.cs:180-303 (carga y guardado)",
+        "UI/Views/Idiomas/IdiomasView.cs:303-321 (permisos por panel/acción)",
+        "UI/Views/Idiomas/IdiomasView.cs:344-405 (selección de componente/etiqueta)",
+        "Application/Idiomas/IdiomaApplicationService.cs:40-76,104-184 (reglas, persistencia, auditoría)",
+        "UI/Forms/Main/MainForm.cs:340-376 (selector preferido de soporte)",
+        "Database/00_tecni_salud_schema.sql:20-63,199-216 (DER)",
+        "Application/Auditoria/AuditoriaApplicationService.cs:35-40: RegistrarCambio retorna sin persistir cuando la entidad no es Usuario.",
+        "DAL/Idiomas/IdiomaDataMapper.cs:RegistrarHistorialEnConexion_380_jh: historial propio de alta y cambio de activación de Idioma."
+      ],
+      "assets": {
+        "useCase": {
+          "source": "Diagramas/Casos de Uso/T05 - CDU-06 - Gestión de idiomas y traducciones - Casos de uso.drawio",
+          "driveUrl": "https://drive.google.com/file/d/1W-ZPKiVaejtdTzflbGRmLDqQn6cF0NTq/view?usp=drivesdk"
+        },
+        "classes": {
+          "source": "Diagramas/Diagramas de clases/CDU-06 - Gestión de idiomas y traducciones - Clases.drawio",
+          "driveUrl": "https://drive.google.com/file/d/1lVn7R4nJTrFTAylbndUqSgI7AH2PzfuH/view?usp=drivesdk"
+        },
+        "sequences": [
+          {
+            "source": "Diagramas/Diagramas de Secuencia/CDU-06 - Gestión de idiomas y traducciones - Secuencia.drawio",
+            "driveUrl": "https://drive.google.com/file/d/1v6EeZVAZdDTYiZq5kmpH4mS4fZUGooXJ/view?usp=drivesdk",
+            "views": [
+              "CDU-06 · Gestionar idiomas y traducciones · Guardar traducción",
+              "CDU-06 · Gestionar idiomas y traducciones · Administrar idioma",
+              "CDU-06 · Cambiar idioma preferido · Soporte"
+            ]
+          }
+        ],
+        "screen": {
+          "file": "Docs/Pantallas/CDU-06-Pantalla.png",
+          "driveUrl": "https://drive.google.com/file/d/1hyLLpmukkacJS4onkgKE7NVJ7Tb8NP4o/view?usp=drivesdk",
+          "form": "UI.IdiomasView_380_jh"
+        },
+        "reviewRenderNames": [
+          "CDU06_Casos.png",
+          "CDU06_Clases.png",
+          "CDU06_Secuencia_Idioma.png",
+          "CDU06_Secuencia_Traduccion.png"
+        ],
+        "der": {
+          "status": "native_ssms_verified",
+          "tool": "SQL Server Management Studio",
+          "capture": "Diagramas/Diagramas Entidad Relacion/CDU-06 - Gestionar idiomas y traducciones - DER.emf",
+          "definitionExport": "Database/StoredProcedures/14_DiagramasCDUSSMS.sql",
+          "schema": "dbo",
+          "tables": [
+            "Etiqueta",
+            "Idioma",
+            "IdiomaEstadoHistorial",
+            "Traduccion",
+            "Usuario"
+          ],
+          "foreignKeys": [
+            "FK_Usuario_Idioma",
+            "FK_IdiomaEstadoHistorial_Idioma",
+            "FK_IdiomaEstadoHistorial_Usuario",
+            "FK_Traduccion_Etiqueta",
+            "FK_Traduccion_Idioma"
+          ],
+          "notes": "IdiomaEstadoHistorial registra el estado inicial y cambios de activación. No incluir Auditoria: el servicio descarta Idioma, Etiqueta y Traduccion sin persistir sus llamadas.",
+          "preview": "Diagramas/Diagramas Entidad Relacion/CDU-06 - Gestionar idiomas y traducciones - DER.png",
+          "definitionManifest": "Database/StoredProcedures/14_DiagramasCDUSSMS.manifest.json",
+          "definitionExportSha256": "002565f6a787da88fefb01ad87591d0f7c327d62ab97ae7e55fb925488e1d576",
+          "nativeDiagramName": "CDU-06 - Gestionar idiomas y traducciones - DER",
+          "nativeVersion": 1,
+          "nativeDefinitionSha256": "6ddd3f5f06b1966180c49f4f31e8f6dc806b275a1095a1f1dad3fa7560b0782c",
+          "nativeDefinitionBytes": 27652,
+          "tableView": "Standard",
+          "nativeTableViewMode": 0,
+          "sourceEmfSha256": "1c9a1fbe4679f954a6179dea333d3698cffa90106d05f8db10072e8542240689",
+          "previewSha256": "7a9add6f6971af1690427254e71a16507aa587e2f382aeb534c5f42192a1776f",
+          "captureOrigin": "SQL Server Management Studio · Copy Diagram to Clipboard",
+          "nativeClipboardFormat": "CF_ENHMETAFILE (14)",
+          "drivePngUrl": "https://drive.google.com/file/d/1DXupezUt3fXs_771sq1NLpx5gotqJWCp/view?usp=drivesdk",
+          "drivePngSha256": "7a9add6f6971af1690427254e71a16507aa587e2f382aeb534c5f42192a1776f",
+          "driveReadbackVerified": true,
+          "definitionExportDriveUrl": "https://drive.google.com/file/d/1rLIp0yW6KC1CiUeF7nkPtY_d5KnkQbso/view?usp=drivesdk",
+          "definitionManifestDriveUrl": "https://drive.google.com/file/d/1yB1Bto4ZzDtCFiOAB1JxLmIxJ7E-ANol/view?usp=drivesdk",
+          "definitionManifestSha256": "24d25b4863eda36e6e48e194f024ecbd6bab263faa3fef251dc4c10d08f90376"
+        }
+      }
+    },
+    {
+      "code": "CDU-07",
+      "title": "Consultar y restaurar cambios",
+      "actor": "Usuario autorizado",
+      "rows": [
+        "Nombre: CDU-07 · Consultar y restaurar cambios",
+        "Objetivo: Consultar el historial de cambios auditados y recuperar el valor anterior de un campo restaurable de un usuario.",
+        "Actor principal: Usuario autorizado.",
+        "Actor secundario: Ninguno.",
+        "Precondiciones: El usuario tiene una sesión activa y permiso para consultar la auditoría de cambios. Para restaurar, existe un cambio de Usuario con un valor anterior válido y un campo admitido por la operación.",
+        "Postcondiciones: El historial consultado queda visible. En el camino principal, el campo seleccionado del usuario recupera su valor anterior; el sistema recalcula la integridad de usuarios y solicita registrar la restauración como un nuevo cambio.",
+        "Flujo principal:\n1. El usuario selecciona «Auditoría cambios» en el menú principal.\n2. El sistema comprueba el permiso y muestra los usuarios disponibles y el historial general de cambios de Usuario.\n3. El usuario selecciona el usuario cuyo historial desea consultar.\n4. El sistema muestra sus cambios, con fecha, responsable, campo, valor anterior y valor nuevo.\n5. El usuario selecciona un cambio restaurable y revisa el estado anterior y el nuevo.\n6. El usuario selecciona «Restaurar campo» y confirma la operación.\n7. El sistema comprueba que el usuario exista y que el campo y su valor anterior sean válidos; restaura ese campo, recalcula la integridad de usuarios y solicita registrar el cambio de restauración.\n8. El sistema informa el resultado y actualiza los usuarios y el historial manteniendo la selección del usuario consultado.",
+        "Flujos alternativos:\n2.1- Si el usuario no tiene permiso, el sistema deniega el acceso a la pantalla.\n3.1- Si selecciona «Todos los usuarios», el sistema muestra el historial general de cambios de Usuario. «Actualizar» vuelve a consultar la selección actual.\n3.2- Si además tiene permiso para consultar integridad, puede seleccionar las entidades de negocio y los maestros disponibles. El sistema verifica la integridad y muestra su historial; estas consultas no habilitan restaurar campos de esas entidades desde esta pantalla.\n4.1- Si no hay cambios para la consulta, el sistema muestra el listado vacío e informa que no hay cambios registrados.\n5.1- Si solo desea consultar, el usuario finaliza sin restaurar ni modificar datos.\n5.2- Si el cambio no pertenece a Usuario o su campo no es restaurable, el sistema mantiene deshabilitada la restauración. Se admiten nombre de usuario, correo, nombre, apellido, idioma preferido, estado, intentos fallidos y bloqueo por integridad; no se restaura la contraseña.\n6.1- Si el usuario cancela la confirmación, el sistema conserva los datos.\n7.1- Si faltan datos del cambio, el estado anterior no puede recuperarse, el campo o valor no son válidos, el usuario ya no existe o la actualización devuelve un resultado fallido, el sistema informa que no pudo restaurar el campo."
+      ],
+      "evidence": [
+        "UI/Forms/Main/MainForm.cs:235: permiso AUDITORIA_CAMBIOS_VER.",
+        "UI/Views/Auditoria/AuditoriaCambiosView.cs:52: selector de entidad condicionado a IntegridadVer; :300: consulta por usuario, todos o negocio; :343: selección y detalle; :368: confirmación y restauración; :501: campos admitidos.",
+        "Application/Auditoria/AuditoriaApplicationService.cs:81: ListarTodos filtra Usuario; :100: ListarHistorial; :107: ListarNegocio comprueba permiso y entidades admitidas.",
+        "Application/Usuarios/UsuarioApplicationService.cs:323: RestaurarCampoDesdeAuditoria valida, recupera Usuario, restaura el campo, recalcula usuarios y solicita RESTORE_FIELD; :480: campos restaurables; :499: validación de valores.",
+        "DAL/Usuarios/UsuarioDataMapper.cs:480: UPDATE parametrizado de una columna permitida; Database/StoredProcedures/03_Auditoria.sql:6: Auditoria y FK al usuario actor."
+      ],
+      "assets": {
+        "useCase": {
+          "source": "Diagramas/Casos de Uso/T06b - CDU-07 - Control de cambios - Casos de uso.drawio",
+          "driveUrl": "https://drive.google.com/file/d/1AXd74vmAPE-61QF2dI6bzppaA8FxAaGW/view?usp=drivesdk"
+        },
+        "classes": {
+          "source": "Diagramas/Diagramas de clases/CDU-07 - Control de cambios - Clases.drawio",
+          "driveUrl": "https://drive.google.com/file/d/1WnjvPKuu1eGVZfL0IYb_sLbPpW5fDlDE/view?usp=drivesdk"
+        },
+        "sequences": [
+          {
+            "source": "Diagramas/Diagramas de Secuencia/CDU-07 - Control de cambios - Secuencia.drawio",
+            "driveUrl": "https://drive.google.com/file/d/16qNi14retNzCDvce7TYs4RydECQXmOXh/view?usp=drivesdk",
+            "views": [
+              "CDU-07 — Secuencia: Consultar el historial",
+              "CDU-07 — Secuencia: Restaurar un campo de Usuario"
+            ]
+          }
+        ],
+        "screen": {
+          "file": "Docs/Pantallas/CDU-07-Pantalla.png",
+          "driveUrl": "https://drive.google.com/file/d/1Kb7OEhaBAE-EJzTUP1az-pU4wjiw7ne3/view?usp=drivesdk",
+          "form": "UI.AuditoriaCambiosView_380_jh"
+        },
+        "reviewRenderNames": [
+          "CDU07_CasosDeUso.png",
+          "CDU07_Clases.png",
+          "CDU07_Secuencia_Consulta.png",
+          "CDU07_Secuencia_Restauracion.png"
+        ],
+        "der": {
+          "status": "native_ssms_verified",
+          "tool": "SQL Server Management Studio",
+          "capture": "Diagramas/Diagramas Entidad Relacion/CDU-07 - Consultar y restaurar cambios - DER.emf",
+          "definitionExport": "Database/StoredProcedures/14_DiagramasCDUSSMS.sql",
+          "schema": "dbo",
+          "tables": [
+            "Auditoria",
+            "DigitoVerificadorVertical",
+            "Idioma",
+            "Usuario"
+          ],
+          "foreignKeys": [
+            "FK_Usuario_Idioma",
+            "FK_Auditoria_UsuarioActor"
+          ],
+          "notes": "Auditoria.id_usuario_actor referencia al actor; entidad + id_entidad y DigitoVerificadorVertical.entidad son referencias lógicas, sin FK. Solo se restauran campos de Usuario.",
+          "preview": "Diagramas/Diagramas Entidad Relacion/CDU-07 - Consultar y restaurar cambios - DER.png",
+          "definitionManifest": "Database/StoredProcedures/14_DiagramasCDUSSMS.manifest.json",
+          "definitionExportSha256": "002565f6a787da88fefb01ad87591d0f7c327d62ab97ae7e55fb925488e1d576",
+          "nativeDiagramName": "CDU-07 - Consultar y restaurar cambios - DER",
+          "nativeVersion": 1,
+          "nativeDefinitionSha256": "b84ccd976ac81b10b53768908548c5cd49642f3d8d6b88f8c24818482c9f15e9",
+          "nativeDefinitionBytes": 18436,
+          "tableView": "Standard",
+          "nativeTableViewMode": 0,
+          "sourceEmfSha256": "9b5a3a8ccce2c0eeb54ce36e23903dc97315109c994df3d32f471491ec61c245",
+          "previewSha256": "18638718484fa654d65d8e125eb25f996b4bad02af5a7d8cb4f86f389d9b00f7",
+          "captureOrigin": "SQL Server Management Studio · Copy Diagram to Clipboard",
+          "nativeClipboardFormat": "CF_ENHMETAFILE (14)",
+          "drivePngUrl": "https://drive.google.com/file/d/1bzqU-lGYCoV-_vdfp9af_gCSS6lSc-18/view?usp=drivesdk",
+          "drivePngSha256": "18638718484fa654d65d8e125eb25f996b4bad02af5a7d8cb4f86f389d9b00f7",
+          "driveReadbackVerified": true,
+          "definitionExportDriveUrl": "https://drive.google.com/file/d/1rLIp0yW6KC1CiUeF7nkPtY_d5KnkQbso/view?usp=drivesdk",
+          "definitionManifestDriveUrl": "https://drive.google.com/file/d/1yB1Bto4ZzDtCFiOAB1JxLmIxJ7E-ANol/view?usp=drivesdk",
+          "definitionManifestSha256": "24d25b4863eda36e6e48e194f024ecbd6bab263faa3fef251dc4c10d08f90376"
+        }
+      }
+    }
+  ],
+  "nativeInstallationVerification": {
+    "completeSqlPipelineValidated": true,
+    "idempotencyAndRepairValidated": true,
+    "standaloneBootstrapValidated": true,
+    "supportObjectsMask": 255,
+    "nativeDiagramCount": 17,
+    "businessDiagramsPreserved": 10,
+    "sourceCatalogUnchanged": true,
+    "freshNativeDesignerVerified": true,
+    "freshNativeDesignerCase": "CDU-06",
+    "freshNativeDesignerTableView": "Standard",
+    "targetFunctionalTableObjectIdsDiffer": 32,
+    "nativeOpenEvidence": "output/normalizacion-cdu-2026-11-14/ssms-base-nueva-ids-distintos-standard.png",
+    "observedBy": "Agente principal mediante SSMS nativo"
+  }
+}

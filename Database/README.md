@@ -28,6 +28,11 @@ permisos para crear y modificar la base `HemovidaGest`:
 14. `StoredProcedures/11_ComprobantesAutomaticos.sql` — comprobantes automáticos.
 15. `StoredProcedures/12_DiagramasSSMS.sql` — crea los diagramas CDUN-01 a CDUN-08 en Database Diagrams de SSMS, con sus diseños guardados; CDUN-06 conserva tres vistas complementarias del mismo caso.
 16. `StoredProcedures/13_AjusteCantidadDonacion.sql` — corrección de cantidades e historial de donaciones.
+17. `StoredProcedures/14_DiagramasCDUSSMS.sql` — instala los siete DER nativos de CDU-01 a CDU-07, exportados de SSMS. Si ya existen, solo actualiza una definición cuando su versión o contenido difieren; conserva los diagramas de negocio.
+
+El script 14 también crea los objetos de soporte nativos que falten, incluida `fn_diagramobjects`, para abrir los diagramas directamente en SSMS sin completar su instalación a mano.
+
+El [instalador de la aplicación](../Installer/InstalarBase.ps1) ejecuta esta secuencia al crear `HemovidaGest`. El paquete incluye los scripts 12 y 14: la base nueva queda con diez vistas de los casos de negocio y siete de los casos de uso del sistema en **Database Diagrams**. Las definiciones son editables en SSMS; la instalación no exporta imágenes PNG.
 
 Para instalar solo PN1, detenete después del paso 9. Los pasos 10 a 14 son la
 extensión PN2. `09_PN2.sql` requiere PN1 y `06a_CompatibilidadTransfusional.sql` instalados; `10_IntegridadPN2.sql` requiere
@@ -50,14 +55,19 @@ integridad al finalizar:
 | Actualizar PN1 para descartar unidades vencidas sin clasificación, con motivo | `./Database/InstalarMaestrosPN1.ps1` |
 
 `InstalarPN2.ps1` aplica, en orden, `08_PN2_Catalogos.sql`, `06_MaestrosPN1.sql`,
-`06a_CompatibilidadTransfusional.sql`, `06b_TipificacionDonante.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql`, `12_DiagramasSSMS.sql` y `13_AjusteCantidadDonacion.sql`. El script 12 crea los diagramas que falten y actualiza la numeración a CDUN-01–08. Conserva la disposición del nombre canónico cuando ya existe y retira las entradas anteriores duplicadas, incluida la decisión operativa unificada en CDUN-03. Requiere permisos de propietario de la base. Los diagramas dependen del esquema de tablas instalado.
+`06a_CompatibilidadTransfusional.sql`, `06b_TipificacionDonante.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql`, `12_DiagramasSSMS.sql`, `13_AjusteCantidadDonacion.sql` y `14_DiagramasCDUSSMS.sql`. El script 12 crea los diagramas que falten y actualiza la numeración a CDUN-01–08. Conserva la disposición del nombre canónico cuando ya existe y retira las entradas anteriores duplicadas, incluida la decisión operativa unificada en CDUN-03. El script 14 agrega los siete CDU del sistema sin eliminar los diagramas PN1/PN2. Requiere permisos de propietario de la base. Los diagramas dependen del esquema de tablas instalado.
 
 Para recuperar solo los diagramas después de reconstruir el esquema, ejecutá desde
-la raíz del proyecto `sqlcmd -S . -E -d HemovidaGest -b -i Database/StoredProcedures/12_DiagramasSSMS.sql`.
+la raíz del proyecto:
+
+```powershell
+sqlcmd -S . -E -d HemovidaGest -b -i Database/StoredProcedures/12_DiagramasSSMS.sql
+sqlcmd -S . -E -d HemovidaGest -b -i Database/StoredProcedures/14_DiagramasCDUSSMS.sql
+```
 Si tu instancia tiene otro nombre, reemplazá `.` por el nombre del servidor.
-Después actualizá la carpeta **Database Diagrams** en SSMS. El script restaura los
-diseños guardados en el repositorio; no recopila automáticamente cambios que
-hagas después en SSMS ni exporta imágenes.
+Después actualizá la carpeta **Database Diagrams** en SSMS. Los scripts restauran los
+diseños guardados en el repositorio; no recopilan automáticamente cambios que
+hagas después en SSMS ni exportan imágenes.
 
 `InstalarMaestrosPN1.ps1` actualiza maestros y procedimientos relacionados; si
 PN2 ya está instalado, también actualiza PN2 y los comprobantes. Incluye las

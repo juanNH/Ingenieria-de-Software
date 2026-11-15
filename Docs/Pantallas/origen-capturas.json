@@ -1,0 +1,43 @@
+{
+  "fecha": "2026-11-14",
+  "origen": "Formularios y controles reales de UI/bin/Release/UI.exe, renderizados con una base temporal HemovidaGest_Doc_CDU_<guid> creada desde los scripts del repositorio y eliminada al finalizar.",
+  "alcance": "Prototipos de interfaz para documentar CDU-01 a CDU-07. Datos de demostración; no acreditan ejecución de los casos funcionales ni usan la base de trabajo.",
+  "vistas": [
+    {
+      "code": "CDU-01",
+      "source": "UI.Login_380_jh",
+      "file": "CDU-01-Pantalla.png"
+    },
+    {
+      "code": "CDU-02",
+      "source": "UI.Registro_380_jh",
+      "file": "CDU-02-Pantalla.png"
+    },
+    {
+      "code": "CDU-03",
+      "source": "UI.Login_380_jh",
+      "file": "CDU-03-Pantalla.png",
+      "nota": "Resultado esperado del cierre de sesión: vuelve a la pantalla de acceso. No existe una pantalla de confirmación separada."
+    },
+    {
+      "code": "CDU-04",
+      "source": "UI.BitacoraView_380_jh",
+      "file": "CDU-04-Pantalla.png"
+    },
+    {
+      "code": "CDU-05",
+      "source": "UI.UsuariosView_380_jh",
+      "file": "CDU-05-Pantalla.png"
+    },
+    {
+      "code": "CDU-06",
+      "source": "UI.IdiomasView_380_jh",
+      "file": "CDU-06-Pantalla.png"
+    },
+    {
+      "code": "CDU-07",
+      "source": "UI.AuditoriaCambiosView_380_jh",
+      "file": "CDU-07-Pantalla.png"
+    }
+  ]
+}

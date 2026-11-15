@@ -1,8 +1,8 @@
-# PN2 Solicitud, reserva, entrega y trazabilidad
+# PN2 · Solicitud, reserva, entrega y destino de unidades
 
-Estado: implementado para validación funcional. Actualizado: 17 de octubre de 2026.
+Alcance: CDUN-05 a CDUN-08. Documentación normalizada: 14 de noviembre de 2026.
 
-Actualización en curso (octubre de 2026): el pedido incorpora datos de identificación y estudios del receptor, validación por un operador y búsqueda preliminar por componente y grupo. Véanse las reglas, límites y pasos de instalación de [Compatibilidad en PN2](PN2-compatibilidad.md).
+La solicitud incorpora la identificación y el estudio del receptor, su validación por un operador y la búsqueda preliminar de unidades por componente y grupo. Las reglas y los pasos de instalación están en [Compatibilidad en PN2](PN2-compatibilidad.md).
 
 PN2 continúa el trabajo de PN1: utiliza las unidades registradas, clasificadas y liberadas allí para atender solicitudes transfusionales. Incluye código C#, persistencia SQL Server, permisos, tres pantallas operativas disponibles desde PN2 y diagramas de negocio editables en draw.io. PN1 y PN2 aparecen como opciones separadas del menú principal. El tab Consultas está oculto por ahora; las vistas Trazabilidad y Reportes y alertas, junto con sus permisos, se conservan en el código. La pantalla independiente de Inventario también se conserva en el código, pero no aparece en el menú.
 
@@ -20,7 +20,7 @@ La selección completa nombre, documento, grupo y Rh, y limpia los datos del est
 
 Las pruebas de reutilización están incluidas en `Tests/PN2.Compatibilidad.Tests.ps1`, sobre una copia descartable de la base configurada. Para incluir Application, DAL y WinForms, compilar `Tests/PN2.Receptores.Tests.csproj` con MSBuild de Visual Studio (`/restore`) y ejecutar el script con `-ReceptoresUiRunner (Resolve-Path Tests/bin/Receptores/PN2.Receptores.Tests.exe)`. No se modifica la base de trabajo ni `App.local.config`.
 
-También se confirmaron entregas parciales, cancelación manual con motivo, devolución con reingreso explícito autorizado y reapertura del saldo cuando una entrega se devuelve o descarta. Estas decisiones están implementadas.
+El circuito operativo admite entregas parciales, cancelación de reservas con motivo y reapertura del saldo cuando una entrega se devuelve o descarta. La lógica de reingreso se conserva en el servicio, pero no es una acción disponible en la interfaz actual.
 
 La secuencia de roles describe el flujo de negocio. Las secuencias de clases muestran los pasos y alternativas de cada CDUN desde la UI hasta SQL Server. Los DER muestran las tablas y claves foráneas que intervienen en cada caso.
 
@@ -28,7 +28,7 @@ La secuencia de roles describe el flujo de negocio. Las secuencias de clases mue
 
 | Artefacto | Archivo editable | Contenido |
 | --- | --- | --- |
-| Roles | [Diagrama de roles](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaRoles.drawio) | Responsabilidades e intercambios, cancelación y reingreso. |
+| Roles | [Diagrama de roles](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaRoles.drawio) | Responsabilidades e intercambios de los tres actores del recorte operativo. |
 | Actividad | [Actividad de negocio](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaActividadNegocio.drawio) | Flujo principal, decisiones, destinos y alternativas. |
 | Modelo conceptual | [Modelo conceptual](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaModeloConceptual.drawio) | Conceptos, datos y multiplicidades del negocio. |
 | Secuencia de roles | [Secuencia de roles](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaSecuenciaRoles.drawio) | Interacciones entre las personas y el sistema durante la atención. |
@@ -53,18 +53,22 @@ La carga posterior del estudio es una alternativa del CDUN-05. El CDUN-06 —Val
 
 La UI habilita las pantallas y acciones según los permisos del usuario. Las operaciones de registro no repiten esas comprobaciones en Application; las consultas SQL conservan los controles de acceso y de alcance de los datos. La instalación agrega las familias y sus relaciones sin crear usuarios de demostración. Para revisar el circuito con distintos actores, asignar las familias mediante la gestión de permisos existente y volver a iniciar sesión. El profesional sin permisos operativos adicionales ve solamente sus solicitudes.
 
-## Flujo en lenguaje coloquial
+## Flujo operativo
 
 1. **Preparar las unidades en PN1.** Registrar donante y donación, generar unidades, clasificarlas y liberarlas. La unidad debe estar vigente y su componente debe corresponder al solicitado.
 2. **Registrar el pedido.** El profesional presenta la orden y el informe. El personal carga solicitante, nombre y documento del receptor, componente, cantidad, grupo ABO, RhD, resultado de anticuerpos, laboratorio, referencia y fecha del estudio. La solicitud puede guardarse sin stock o sin estudio; este se completa después y permanece pendiente de validación.
 3. **Validar el estudio y buscar.** Un operador autorizado revisa los datos, la identidad y la vigencia del informe y registra su validación. En **Reservas y entregas**, el sistema muestra unidades candidatas liberadas, vigentes y del componente solicitado, filtradas según el grupo registrado. El filtro es preliminar y utiliza las combinaciones activas configuradas en Maestros → Compatibilidades.
 4. **Reservar por unidad.** El operador verifica la compatibilidad para el receptor según el protocolo del servicio, ingresa la referencia de esa comprobación y confirma. El sistema vuelve a controlar el estudio, el filtro, el saldo y la disponibilidad; la unidad pasa a Reservada. La atención puede ser parcial.
 5. **Entregar la reserva.** Se selecciona una reserva activa y se confirma la entrega. Se vuelven a controlar vigencia, estado y relación con la solicitud. La unidad pasa a Entregada; una reserva sólo puede producir una entrega.
-6. **Registrar el estado de destino.** En Destino de unidades se elige un estado configurado en Maestros. Transfundida cubre el pedido; cualquier otro estado reabre el saldo para reemplazo y queda en el historial. Devolución y descarte requieren motivo; solo Devuelta habilita el reingreso autorizado de esa unidad.
+6. **Registrar el destino.** En Destino de unidades se elige un estado configurado en Maestros. Transfundida cubre el pedido; cualquier otro estado reabre el saldo para reemplazo y queda en el historial. Devolución y descarte requieren motivo.
 7. **Cancelar si no se entregará.** Una reserva activa puede cancelarse con motivo. Se conserva el registro y la unidad vuelve a Liberada. La vigencia se vuelve a comprobar antes de cualquier nueva reserva; no hay vencimiento automático de reservas.
-8. **Reingresar una devolución.** La lógica de reingreso queda preservada en el servicio: un Responsable autorizado puede llevar una unidad Devuelta a En revisión. La interfaz actual no expone esa acción; antes de volver a reservarla, la unidad debe clasificarse otra vez y liberarse desde PN1.
-9. **Consultar el recorrido.** Trazabilidad muestra movimientos con usuario, fecha, estado anterior y nuevo, observación y vínculos con solicitud, reserva y entrega. Reportes y alertas permite revisar stock, pedidos y problemas operativos. Ambas son consultas independientes del circuito de entrega.
-10. **Emitir el comprobante.** Al registrar un destino, el sistema genera el PDF de esa entrega. Si el archivo no puede guardarse, queda pendiente para reintento. En Solicitudes transfusionales se puede exportar aparte un reporte manual del estado actual de la solicitud.
+8. **Emitir el comprobante.** Al registrar un destino, el sistema genera el PDF de esa entrega. Si el archivo no puede guardarse, queda pendiente para reintento. En Solicitudes transfusionales se puede exportar aparte un reporte manual del estado actual de la solicitud.
+
+### Funciones conservadas fuera de la navegación actual
+
+El servicio conserva el reingreso de una unidad Devuelta a En revisión por un Responsable autorizado. Antes de reservarla otra vez, debe clasificarse y liberarse desde PN1. La interfaz actual no ofrece esa acción.
+
+Las vistas Trazabilidad y Reportes y alertas también permanecen en el código, con el tab Consultas oculto. Son consultas de soporte y no forman parte de las pantallas operativas de CDUN-05 a CDUN-08.
 
 El sistema filtra por componente y una regla preliminar de ABO/RhD; la evaluación clínica y las pruebas aplicables corresponden al personal autorizado. No determina por sí solo la aptitud definitiva. No se implementa gestión automatizada de anticuerpos, prioridades ni FEFO.
 
@@ -154,7 +158,7 @@ La protección DVH/DVV y la recuperación existentes incluyen las nuevas tablas 
 
 Opcionalmente se pueden indicar `-Servidor` y `-Base`. El instalador usa la conexión local sin mostrar sus credenciales, comprueba la integridad y crea un backup COPY_ONLY con checksum en la carpeta de backups de SQL Server; verifica ese archivo antes de migrar. La cuenta SQL necesita permisos de backup y de modificación de esquema.
 
-Luego ejecuta 08_PN2_Catalogos.sql, 06_MaestrosPN1.sql, 06a_CompatibilidadTransfusional.sql, 06b_TipificacionDonante.sql, la actualización de 07_PN1.sql, 09_PN2.sql, 10_IntegridadPN2.sql y 11_ComprobantesAutomaticos.sql en una transacción y verifica nuevamente la integridad antes de confirmar. Un error revierte la actualización. No usar el esquema inicial completo para actualizar una base con datos. Una base que ya tiene PN2 puede actualizar solo comprobantes con `./Database/InstalarComprobantes.ps1`.
+Luego ejecuta `08_PN2_Catalogos.sql`, `06_MaestrosPN1.sql`, `06a_CompatibilidadTransfusional.sql`, `06b_TipificacionDonante.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql`, `12_DiagramasSSMS.sql`, `13_AjusteCantidadDonacion.sql` y `14_DiagramasCDUSSMS.sql` en una transacción y verifica nuevamente la integridad y la presencia de los siete CDU nativos antes de confirmar. Los scripts 12 y 14 dejan diez vistas de los casos de negocio y siete de los casos de uso del sistema en **Database Diagrams** de SSMS; la creación de una base nueva mediante el instalador también los incluye. Un error revierte la actualización. No usar el esquema inicial completo para actualizar una base con datos. Una base que ya tiene PN2 puede actualizar solo comprobantes con `./Database/InstalarComprobantes.ps1`.
 
 Los componentes, grupos sanguíneos y factores Rh se administran en **Maestros** y se comparten con PN1. El filtro de candidatos mantiene las reglas conocidas de PN2: un código nuevo necesita sus reglas en **Maestros → Compatibilidades** para generar candidatos. Ver [Compatibilidad configurable](Compatibilidad-configurable.md).
 
@@ -162,13 +166,13 @@ Los destinos de entrega también se administran en **Maestros**. El código de c
 
 4. Compilar `IngDeSoftware.sln` y abrir la UI. Volver a iniciar sesión para cargar los permisos. El administrador existente recibe las operaciones de PN2; los demás usuarios usan las familias asignadas.
 
-### Estado de la instalación local
+### Antecedente de instalación local
 
 La versión anterior de PN2 se aplicó el 17 de octubre de 2026 a `HemovidaGest` en el servidor local `.`. Los cambios de estudios y compatibilidad descritos en [PN2-compatibilidad](PN2-compatibilidad.md) requieren una nueva migración; no se aplican automáticamente.
 
-El respaldo anterior a la actualización se conserva en la carpeta de backups de SQL Server con el nombre `HemovidaGest_AntesPN2_20261017_184644_18913565e0f147428488c69e24604568.bak`; se verificó con `RESTORE VERIFYONLY` y checksum. Para comenzar la revisión local alcanza con abrir la aplicación e iniciar sesión nuevamente.
+En esa instalación se generó el respaldo `HemovidaGest_AntesPN2_20261017_184644_18913565e0f147428488c69e24604568.bak` en la carpeta de backups de SQL Server y se verificó con `RESTORE VERIFYONLY` y checksum. Si la base conserva esa versión anterior, completar la actualización indicada antes de revisar el alcance actual, abrir la aplicación y volver a iniciar sesión.
 
-## Recorrido para la validación funcional
+## Recorrido de las pantallas operativas
 
 1. Preparar en PN1 al menos tres unidades vigentes, clasificadas y liberadas con un componente reconocido y grupos candidatos para el estudio del receptor.
 2. Crear una solicitud por tres unidades, cargar el estudio y comprobar **3 / 0 / 0 / 3**. Un operador autorizado valida el informe.
@@ -176,23 +180,19 @@ El respaldo anterior a la actualización se conserva en la carpeta de backups de
 4. Entregar una reserva y comprobar **3 / 1 / 1 / 1**. No debe poder entregarse otra vez la misma reserva.
 5. Devolverla con motivo: comprobar **3 / 1 / 0 / 2** y conservar la entrega en el historial.
 6. Cancelar la reserva restante con motivo: comprobar **3 / 0 / 0 / 3**. La unidad queda Liberada.
-7. Intentar reservar directamente la Devuelta: debe rechazarse. La interfaz no ofrece el reingreso; la operación de servicio se conserva y, al volver a habilitarse desde una pantalla, debe dejar la unidad En revisión para que se clasifique otra vez en PN1.
-8. Clasificar y liberar; reservarla nuevamente, entregarla y registrar Transfundida. Revisar que aparezcan ambos ciclos en Trazabilidad.
+7. Intentar reservar directamente la unidad Devuelta: debe rechazarse. La unidad se conserva en ese estado; este recorrido no requiere la operación de reingreso del servicio.
+8. Seleccionar otra unidad liberada y vigente, reservarla, entregarla y registrar Transfundida. Comprobar el saldo desde la solicitud y conservar el comprobante de esa entrega.
 9. En otra entrega registrar Descartada: debe reabrir saldo y dejar la unidad terminal, sin permitir reingreso.
 10. Completar el pedido con reemplazos y comprobar ENTREGADA, saldo cero y rechazo de reservas adicionales.
 11. Probar sin stock y con una unidad vencida o bloqueada: la solicitud se conserva pendiente y no se confirma una reserva inválida.
-12. Revisar reportes con y sin período, y probar cuentas con permisos de profesional, operador, responsable y auditor.
+12. Exportar el reporte de la solicitud y comprobar el acceso a cada pantalla operativa con cuentas que tengan los permisos correspondientes.
 
 ### Comprobaciones realizadas
 
 La implementación anterior completó comprobaciones SQL, controles de concurrencia, vencimiento y migración, además de integración Application/UI y revisión de las pantallas PN2. La navegación actual expone las pantallas operativas de PN2; oculta el tab Consultas y la pantalla independiente de Inventario. La validación funcional del usuario queda pendiente.
 
-## Continuación después de validar
+## Referencias técnicas
 
-Los diagramas de clases y secuencia de CDUN-05 a CDUN-08 ya representan el recorte acordado, con las firmas del código, el camino principal y los alternos documentados. Las observaciones de la validación funcional del usuario se incorporarán sobre estos diagramas.
+Los diagramas de clases y secuencia de CDUN-05 a CDUN-08 representan el mismo recorte que las fichas funcionales. Las firmas y los procedimientos se detallan en esos diagramas; las fichas describen las acciones de las personas y las respuestas observables del sistema.
 
-Para retomar la bitácora, el pedido puede ser:
-
-> Tomá como base Docs/PN2.md, el código y los diagramas de negocio PN2 validados. Documentá la bitácora de cambios con su DER, tabla copia, casos de uso y funcionamiento previsto de los triggers. Conservá la nomenclatura del proyecto y distinguí lo implementado de lo propuesto. La entrega de bitácora es únicamente documental.
-
-Ese diseño deberá precisar operaciones auditadas, datos anteriores y nuevos, identificación del actor, comportamiento si falla el registro y consulta del historial. La interpretación de tabla copia se acordará con lo exigido por la cátedra.
+Cada caso mantiene su especificación, clases, secuencia, DER y pantalla de referencia. CDUN-06 tiene tres vistas DER complementarias: Estudio, Reserva y Entrega. La emisión automática y sus alternativas se describen en [Comprobantes de PN1 y PN2](Comprobantes-PN1-PN2.md).

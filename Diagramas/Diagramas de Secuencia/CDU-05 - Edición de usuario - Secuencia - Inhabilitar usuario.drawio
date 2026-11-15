@@ -1,10 +1,199 @@
 <mxfile host="app.diagrams.net">
-  <diagram name="CDU-05 Edición de usuario — Inhabilitar usuario" id="u8aPTgO_lLOnAPxTEb01">
+  <diagram name="CDU-05 · Gestionar usuarios · Inhabilitar usuario" id="cdu05-inhabilitar-usuario">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="2110" pageHeight="1490" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="titulo" value="CDU-05 · Gestionar usuarios · Inhabilitar usuario" parent="1" vertex="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=1;align=center;verticalAlign=middle;">
+          <mxGeometry x="20" y="10" width="2070" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="actor" value="Administrador" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="80" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="151" as="sourcePoint" />
+            <mxPoint x="190" y="1370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ui" value="UI&lt;br&gt;UsuariosView_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="350" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="ui-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="151" as="sourcePoint" />
+            <mxPoint x="460" y="1370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="app" value="Application&lt;br&gt;UsuarioApplicationService_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="620" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="app-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="151" as="sourcePoint" />
+            <mxPoint x="730" y="1370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="repo" value="Repository&lt;br&gt;UsuarioRepository_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="890" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="151" as="sourcePoint" />
+            <mxPoint x="1000" y="1370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dal" value="DAL&lt;br&gt;UsuarioDataMapper_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="1160" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="dal-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1270" y="151" as="sourcePoint" />
+            <mxPoint x="1270" y="1370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="db" value="DAL&lt;br&gt;DatabaseContext_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="1430" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="db-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1540" y="151" as="sourcePoint" />
+            <mxPoint x="1540" y="1370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sql" value="SQL Server" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="1700" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="sql-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1810" y="151" as="sourcePoint" />
+            <mxPoint x="1810" y="1370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-0" parent="1" value="Selecciona una cuenta activa y pulsa Inhabilitar" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="190" as="sourcePoint" />
+            <mxPoint x="460" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-1" parent="1" value="Solicita confirmación" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="245" as="sourcePoint" />
+            <mxPoint x="190" y="245" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ref-2" value="&lt;b&gt;ref&lt;/b&gt;  alt [Cancela] Conserva el estado anterior y no llama al servicio" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;spacing=10;">
+          <mxGeometry x="85" y="290" width="480" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="m-3" parent="1" value="Confirma la inhabilitación" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="355" as="sourcePoint" />
+            <mxPoint x="460" y="355" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-4" parent="1" value="InhabilitarUsuario_380_jh(usuarioSeleccionado)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="410" as="sourcePoint" />
+            <mxPoint x="730" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-5" parent="1" value="ObtenerPorId_380_jh(usuario.Id_380_jh)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="465" as="sourcePoint" />
+            <mxPoint x="1000" y="465" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-6" parent="1" value="ObtenerPorId_380_jh(id)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="520" as="sourcePoint" />
+            <mxPoint x="1270" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-7" parent="1" value="LeerTexto_380_jh(SELECT Usuario, parametros)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1270" y="575" as="sourcePoint" />
+            <mxPoint x="1540" y="575" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-8" parent="1" value="SELECT dbo.Usuario WHERE id_usuario = @id_usuario" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1540" y="630" as="sourcePoint" />
+            <mxPoint x="1810" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ref-9" value="&lt;b&gt;ref&lt;/b&gt;  Retorna el estado anterior por DatabaseContext, UsuarioDataMapper y UsuarioRepository" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;spacing=10;">
+          <mxGeometry x="625" y="675" width="1290" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="m-10" parent="1" value="Inhabilitar_380_jh(usuario)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="740" as="sourcePoint" />
+            <mxPoint x="1000" y="740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-11" parent="1" value="Borrar_380_jh(usuario)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="795" as="sourcePoint" />
+            <mxPoint x="1270" y="795" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-12" parent="1" value="EscribirTexto_380_jh(UPDATE Usuario, parametros)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1270" y="850" as="sourcePoint" />
+            <mxPoint x="1540" y="850" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-13" parent="1" value="UPDATE dbo.Usuario SET estado_usuario = 'INACTIVO' WHERE id_usuario = @id_usuario" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1540" y="905" as="sourcePoint" />
+            <mxPoint x="1810" y="905" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-14" parent="1" value="Filas afectadas" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1810" y="960" as="sourcePoint" />
+            <mxPoint x="1540" y="960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ref-15" value="&lt;b&gt;ref&lt;/b&gt;  Retorna filas afectadas y bool por la misma cadena. La operación no borra físicamente al usuario." parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;spacing=10;">
+          <mxGeometry x="625" y="1005" width="1290" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="ref-16" value="&lt;b&gt;ref&lt;/b&gt;  [Inhabilitado] RecalcularUsuarios_380_jh (T08); consultar estado posterior; RegistrarCambio_380_jh con acción DISABLE (T06b)" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;spacing=10;">
+          <mxGeometry x="625" y="1060" width="1290" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="m-17" parent="1" value="bool" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="1125" as="sourcePoint" />
+            <mxPoint x="460" y="1125" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-18" parent="1" value="Informa el resultado de la inhabilitación" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="1180" as="sourcePoint" />
+            <mxPoint x="190" y="1180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-19" parent="1" value="CargarUsuarios_380_jh(); PrepararNuevoUsuario_380_jh()" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="1235" as="sourcePoint" />
+            <mxPoint x="460" y="1260" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="565" y="1235" />
+              <mxPoint x="565" y="1260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nota" value="Alternativa 6.1 de CDU-05. La UI ofrece Inhabilitar solo con permiso específico y una cuenta seleccionada que no esté Inactiva. La cancelación conserva los datos. Borrar_380_jh es el nombre del método técnico; SQL realiza una baja lógica mediante UPDATE. El usuario inactivo no puede iniciar una nueva sesión." parent="1" vertex="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontFamily=Arial;align=left;spacing=10;">
+          <mxGeometry x="60" y="1390" width="1990" height="75" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="CDU-05 · Inhabilitar usuario · Detalle de soporte" id="u8aPTgO_lLOnAPxTEb01">
     <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1199.15" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <UserObject label="" mermaidData="{&#xA;  &quot;data&quot;: &quot;%%{init: {\n  \&quot;theme\&quot;: \&quot;base\&quot;,\n  \&quot;themeVariables\&quot;: {\n    \&quot;fontFamily\&quot;: \&quot;Arial\&quot;,\n    \&quot;actorBorder\&quot;: \&quot;#333333\&quot;,\n    \&quot;actorBkg\&quot;: \&quot;#ffffff\&quot;,\n    \&quot;actorTextColor\&quot;: \&quot;#333333\&quot;,\n    \&quot;participantBorder\&quot;: \&quot;#999999\&quot;,\n    \&quot;participantBkg\&quot;: \&quot;#f8f8f8\&quot;,\n    \&quot;participantTextColor\&quot;: \&quot;#333333\&quot;,\n    \&quot;activationBorderColor\&quot;: \&quot;#6ea8fe\&quot;,\n    \&quot;activationBkgColor\&quot;: \&quot;#dbeafe\&quot;,\n    \&quot;signalColor\&quot;: \&quot;#444444\&quot;,\n    \&quot;signalTextColor\&quot;: \&quot;#333333\&quot;,\n    \&quot;labelBoxBkgColor\&quot;: \&quot;#ffffff\&quot;,\n    \&quot;labelBoxBorderColor\&quot;: \&quot;#ff9999\&quot;,\n    \&quot;loopTextColor\&quot;: \&quot;#cc0000\&quot;,\n    \&quot;noteBkgColor\&quot;: \&quot;#fff7cc\&quot;,\n    \&quot;noteBorderColor\&quot;: \&quot;#e0c15a\&quot;\n  }\n}}%%\n\nsequenceDiagram\n    actor Usuario\n    participant MainForm_380_jh as UI.MainForm_380_jh\n    participant UsuariosView_380_jh as UI.UsuariosView_380_jh\n    participant PermisosSistema_380_jh as Domain.PermisosSistema_380_jh\n    participant UsuarioApp as Application.UsuarioApplicationService_380_jh\n    participant UsuarioRepo as Repository.UsuarioRepository_380_jh\n    participant UsuarioDM as DAL.UsuarioDataMapper_380_jh\n    participant DBContext as DAL.DatabaseContext_380_jh\n    participant SQL as SQL Server\n    participant UsuarioDomain as Domain.Usuario_380_jh\n    participant DigitoSvc as Application.DigitoVerificadorApplicationService_380_jh\n    participant AuditoriaSvc as Application.AuditoriaApplicationService_380_jh\n\n    Usuario-&gt;&gt;MainForm_380_jh: Click en menú Usuarios\n    activate MainForm_380_jh\n    MainForm_380_jh-&gt;&gt;MainForm_380_jh: usuariosToolStripMenuItem_Click_380_jh()\n    MainForm_380_jh-&gt;&gt;MainForm_380_jh: ValidarPermiso_380_jh(UsuarioVer_380_jh)\n\n    alt [Tiene permiso]\n        MainForm_380_jh-&gt;&gt;UsuariosView_380_jh: new UsuariosView_380_jh()\n        activate UsuariosView_380_jh\n        MainForm_380_jh-&gt;&gt;MainForm_380_jh: ShowScreen_380_jh(UsuariosView_380_jh)\n        MainForm_380_jh--&gt;&gt;Usuario_380_jh: Pantalla Usuarios\n        deactivate MainForm_380_jh\n\n        UsuariosView_380_jh-&gt;&gt;UsuarioApp: Listar_380_jh()\n        activate UsuarioApp\n        UsuarioApp-&gt;&gt;UsuarioRepo: Listar_380_jh()\n        activate UsuarioRepo\n        UsuarioRepo-&gt;&gt;UsuarioDM: Listar_380_jh()\n        activate UsuarioDM\n        UsuarioDM-&gt;&gt;DBContext: Abrir_380_jh()\n        activate DBContext\n        DBContext-&gt;&gt;SQL: SELECT usuarios\n        activate SQL\n        SQL--&gt;&gt;DBContext: Usuarios\n        deactivate SQL\n        DBContext--&gt;&gt;UsuarioDM: DataTable\n        DBContext-&gt;&gt;DBContext: Cerrar_380_jh()\n        deactivate DBContext\n        UsuarioDM--&gt;&gt;UsuarioRepo: List&lt;Usuario_380_jh&gt;\n        deactivate UsuarioDM\n        UsuarioRepo--&gt;&gt;UsuarioApp: List&lt;Usuario_380_jh&gt;\n        deactivate UsuarioRepo\n        UsuarioApp--&gt;&gt;UsuariosView_380_jh: List&lt;Usuario_380_jh&gt;\n        deactivate UsuarioApp\n\n        UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: CargarUsuarios_380_jh()\n\n        Usuario-&gt;&gt;UsuariosView_380_jh: Selecciona usuario en grilla\n        UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: dgvUsuarios_SelectionChanged_380_jh()\n        UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: _usuarioSeleccionado_380_jh = usuario\n        UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: Cargar datos en formulario\n\n        UsuariosView_380_jh-&gt;&gt;PermisosSistema_380_jh: UsuarioInhabilitar_380_jh\n        activate PermisosSistema_380_jh\n        PermisosSistema_380_jh--&gt;&gt;UsuariosView_380_jh: \&quot;USUARIO_INHABILITAR\&quot;\n        deactivate PermisosSistema_380_jh\n\n        UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: Validar permiso UsuarioInhabilitar_380_jh\n        UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: Validar estado != INACTIVO\n\n        alt [Sin permiso o usuario ya INACTIVO]\n            UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: Botón Inhabilitar_380_jh deshabilitado\n        else [Puede inhabilitar]\n            Usuario-&gt;&gt;UsuariosView_380_jh: Click en botón Inhabilitar_380_jh\n            UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: btnInhabilitar_Click_380_jh()\n\n            alt [_usuarioSeleccionado_380_jh == null]\n                UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: Selecciona un usuario para inhabilitar\n            else [_usuarioSeleccionado_380_jh != null]\n                UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: Confirmar_380_jh inhabilitación\n\n                alt [Usuario_380_jh cancela]\n                    Usuario_380_jh--&gt;&gt;UsuariosView_380_jh: No\n                    UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: Operación cancelada\n                else [Usuario_380_jh confirma]\n                    Usuario_380_jh--&gt;&gt;UsuariosView_380_jh: Sí\n\n                    UsuariosView_380_jh-&gt;&gt;UsuarioApp: InhabilitarUsuario_380_jh(_usuarioSeleccionado_380_jh)\n                    activate UsuarioApp\n\n                    UsuarioApp-&gt;&gt;UsuarioApp: Validar usuario != null &amp;&amp; Id_380_jh != 0\n\n                    alt [Usuario_380_jh inválido]\n                        UsuarioApp--&gt;&gt;UsuariosView_380_jh: false\n                        UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: No se pudo inhabilitar el usuario\n                    else [Usuario_380_jh válido]\n                        UsuarioApp-&gt;&gt;UsuarioRepo: ObtenerPorId_380_jh(usuario.Id_380_jh)\n                        activate UsuarioRepo\n                        UsuarioRepo-&gt;&gt;UsuarioDM: ObtenerPorId_380_jh(id)\n                        activate UsuarioDM\n                        UsuarioDM-&gt;&gt;DBContext: Abrir_380_jh()\n                        activate DBContext\n                        DBContext-&gt;&gt;SQL: SELECT Usuario WHERE id_usuario = @id_usuario\n                        activate SQL\n                        SQL--&gt;&gt;DBContext: Usuario anterior\n                        deactivate SQL\n                        DBContext--&gt;&gt;UsuarioDM: DataTable\n                        DBContext-&gt;&gt;DBContext: Cerrar_380_jh()\n                        deactivate DBContext\n                        UsuarioDM--&gt;&gt;UsuarioRepo: Usuario anterior\n                        deactivate UsuarioDM\n                        UsuarioRepo--&gt;&gt;UsuarioApp: Usuario anterior\n                        deactivate UsuarioRepo\n\n                        UsuarioApp-&gt;&gt;UsuarioRepo: Inhabilitar_380_jh(usuario)\n                        activate UsuarioRepo\n                        UsuarioRepo-&gt;&gt;UsuarioRepo: Validar usuario != null &amp;&amp; Id_380_jh != 0\n                        UsuarioRepo-&gt;&gt;UsuarioDM: Borrar_380_jh(usuario)\n                        activate UsuarioDM\n\n                        Note over UsuarioRepo,UsuarioDM: Aunque se llama Borrar_380_jh,&lt;br/&gt;realiza una baja lógica\n\n                        UsuarioDM-&gt;&gt;DBContext: CrearParametro_380_jh(\&quot;@id_usuario\&quot;, usuario.Id_380_jh)\n                        UsuarioDM-&gt;&gt;DBContext: Abrir_380_jh()\n                        activate DBContext\n                        DBContext-&gt;&gt;SQL: UPDATE dbo.Usuario SET estado_usuario = 'INACTIVO'\n                        activate SQL\n                        Note over SQL: WHERE id_usuario = @id_usuario\n                        SQL--&gt;&gt;DBContext: Filas afectadas\n                        deactivate SQL\n                        DBContext--&gt;&gt;UsuarioDM: ExecuteNonQuery()\n                        DBContext-&gt;&gt;DBContext: Cerrar_380_jh()\n                        deactivate DBContext\n\n                        UsuarioDM--&gt;&gt;UsuarioRepo: int filasAfectadas\n                        deactivate UsuarioDM\n                        UsuarioRepo--&gt;&gt;UsuarioApp: true/false\n                        deactivate UsuarioRepo\n\n                        alt [No se actualizó ninguna fila]\n                            UsuarioApp--&gt;&gt;UsuariosView_380_jh: false\n                            UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: No se pudo inhabilitar el usuario\n                        else [Inhabilitación exitosa]\n                            UsuarioApp-&gt;&gt;DigitoSvc: RecalcularUsuarios_380_jh()\n                            activate DigitoSvc\n                            DigitoSvc--&gt;&gt;UsuarioApp: true/false\n                            deactivate DigitoSvc\n\n                            UsuarioApp-&gt;&gt;UsuarioRepo: ObtenerPorId_380_jh(usuario.Id_380_jh)\n                            activate UsuarioRepo\n                            UsuarioRepo-&gt;&gt;UsuarioDM: ObtenerPorId_380_jh(id)\n                            activate UsuarioDM\n                            UsuarioDM-&gt;&gt;DBContext: Abrir_380_jh()\n                            activate DBContext\n                            DBContext-&gt;&gt;SQL: SELECT Usuario actualizado\n                            activate SQL\n                            SQL--&gt;&gt;DBContext: Usuario posterior\n                            deactivate SQL\n                            DBContext--&gt;&gt;UsuarioDM: DataTable\n                            DBContext-&gt;&gt;DBContext: Cerrar_380_jh()\n                            deactivate DBContext\n                            UsuarioDM--&gt;&gt;UsuarioRepo: Usuario posterior\n                            deactivate UsuarioDM\n                            UsuarioRepo--&gt;&gt;UsuarioApp: Usuario posterior\n                            deactivate UsuarioRepo\n\n                            alt [Usuario anterior y posterior existen]\n                                UsuarioApp-&gt;&gt;UsuarioDomain: usuarioAnterior.CrearMemento_380_jh()\n                                activate UsuarioDomain\n                                UsuarioDomain--&gt;&gt;UsuarioApp: estadoAnterior\n                                deactivate UsuarioDomain\n\n                                UsuarioApp-&gt;&gt;UsuarioDomain: usuarioPosterior.CrearMemento_380_jh()\n                                activate UsuarioDomain\n                                UsuarioDomain--&gt;&gt;UsuarioApp: estadoPosterior\n                                deactivate UsuarioDomain\n\n                                UsuarioApp-&gt;&gt;AuditoriaSvc: RegistrarCambio_380_jh(estadoAnterior, estadoPosterior, \&quot;DISABLE\&quot;)\n                                activate AuditoriaSvc\n                                AuditoriaSvc--&gt;&gt;UsuarioApp: true/false\n                                deactivate AuditoriaSvc\n                            end\n\n                            UsuarioApp--&gt;&gt;UsuariosView_380_jh: true\n                            deactivate UsuarioApp\n\n                            UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: Usuario_380_jh inhabilitado correctamente\n                            UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: CargarUsuarios_380_jh()\n                            UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: PrepararNuevoUsuario_380_jh()\n\n                            Note over SQL: Efecto posterior:&lt;br/&gt;el login filtra con estado_usuario = 'ACTIVO',&lt;br/&gt;por eso el usuario INACTIVO no puede iniciar sesión\n                        end\n                    end\n                end\n            end\n        end\n\n        deactivate UsuariosView_380_jh\n    else [Sin permiso]\n        MainForm_380_jh--&gt;&gt;Usuario_380_jh: Acceso denegado\n        deactivate MainForm_380_jh\n    end&quot;,&#xA;  &quot;config&quot;: null&#xA;}" id="wIlDSw7W2LBWPlbbdUxF-166">
+        <UserObject label="" mermaidData="{&#10;  &quot;data&quot;: &quot;%%{init: {\n  \&quot;theme\&quot;: \&quot;base\&quot;,\n  \&quot;themeVariables\&quot;: {\n    \&quot;fontFamily\&quot;: \&quot;Arial\&quot;,\n    \&quot;actorBorder\&quot;: \&quot;#333333\&quot;,\n    \&quot;actorBkg\&quot;: \&quot;#ffffff\&quot;,\n    \&quot;actorTextColor\&quot;: \&quot;#333333\&quot;,\n    \&quot;participantBorder\&quot;: \&quot;#999999\&quot;,\n    \&quot;participantBkg\&quot;: \&quot;#f8f8f8\&quot;,\n    \&quot;participantTextColor\&quot;: \&quot;#333333\&quot;,\n    \&quot;activationBorderColor\&quot;: \&quot;#6ea8fe\&quot;,\n    \&quot;activationBkgColor\&quot;: \&quot;#dbeafe\&quot;,\n    \&quot;signalColor\&quot;: \&quot;#444444\&quot;,\n    \&quot;signalTextColor\&quot;: \&quot;#333333\&quot;,\n    \&quot;labelBoxBkgColor\&quot;: \&quot;#ffffff\&quot;,\n    \&quot;labelBoxBorderColor\&quot;: \&quot;#ff9999\&quot;,\n    \&quot;loopTextColor\&quot;: \&quot;#cc0000\&quot;,\n    \&quot;noteBkgColor\&quot;: \&quot;#fff7cc\&quot;,\n    \&quot;noteBorderColor\&quot;: \&quot;#e0c15a\&quot;\n  }\n}}%%\n\nsequenceDiagram\n    actor Usuario\n    participant MainForm_380_jh as UI.MainForm_380_jh\n    participant UsuariosView_380_jh as UI.UsuariosView_380_jh\n    participant PermisosSistema_380_jh as Domain.PermisosSistema_380_jh\n    participant UsuarioApp as Application.UsuarioApplicationService_380_jh\n    participant UsuarioRepo as Repository.UsuarioRepository_380_jh\n    participant UsuarioDM as DAL.UsuarioDataMapper_380_jh\n    participant DBContext as DAL.DatabaseContext_380_jh\n    participant SQL as SQL Server\n    participant UsuarioDomain as Domain.Usuario_380_jh\n    participant DigitoSvc as Application.DigitoVerificadorApplicationService_380_jh\n    participant AuditoriaSvc as Application.AuditoriaApplicationService_380_jh\n\n    Usuario-&gt;&gt;MainForm_380_jh: Click en menú Usuarios\n    activate MainForm_380_jh\n    MainForm_380_jh-&gt;&gt;MainForm_380_jh: usuariosToolStripMenuItem_Click_380_jh()\n    MainForm_380_jh-&gt;&gt;MainForm_380_jh: ValidarPermiso_380_jh(UsuarioVer_380_jh)\n\n    alt [Tiene permiso]\n        MainForm_380_jh-&gt;&gt;UsuariosView_380_jh: new UsuariosView_380_jh()\n        activate UsuariosView_380_jh\n        MainForm_380_jh-&gt;&gt;MainForm_380_jh: ShowScreen_380_jh(UsuariosView_380_jh)\n        MainForm_380_jh--&gt;&gt;Usuario_380_jh: Pantalla Usuarios\n        deactivate MainForm_380_jh\n\n        UsuariosView_380_jh-&gt;&gt;UsuarioApp: Listar_380_jh()\n        activate UsuarioApp\n        UsuarioApp-&gt;&gt;UsuarioRepo: Listar_380_jh()\n        activate UsuarioRepo\n        UsuarioRepo-&gt;&gt;UsuarioDM: Listar_380_jh()\n        activate UsuarioDM\n        UsuarioDM-&gt;&gt;DBContext: Abrir_380_jh()\n        activate DBContext\n        DBContext-&gt;&gt;SQL: SELECT usuarios\n        activate SQL\n        SQL--&gt;&gt;DBContext: Usuarios\n        deactivate SQL\n        DBContext--&gt;&gt;UsuarioDM: DataTable\n        DBContext-&gt;&gt;DBContext: Cerrar_380_jh()\n        deactivate DBContext\n        UsuarioDM--&gt;&gt;UsuarioRepo: List&lt;Usuario_380_jh&gt;\n        deactivate UsuarioDM\n        UsuarioRepo--&gt;&gt;UsuarioApp: List&lt;Usuario_380_jh&gt;\n        deactivate UsuarioRepo\n        UsuarioApp--&gt;&gt;UsuariosView_380_jh: List&lt;Usuario_380_jh&gt;\n        deactivate UsuarioApp\n\n        UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: CargarUsuarios_380_jh()\n\n        Usuario-&gt;&gt;UsuariosView_380_jh: Selecciona usuario en grilla\n        UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: dgvUsuarios_SelectionChanged_380_jh()\n        UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: _usuarioSeleccionado_380_jh = usuario\n        UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: Cargar datos en formulario\n\n        UsuariosView_380_jh-&gt;&gt;PermisosSistema_380_jh: UsuarioInhabilitar_380_jh\n        activate PermisosSistema_380_jh\n        PermisosSistema_380_jh--&gt;&gt;UsuariosView_380_jh: \&quot;USUARIO_INHABILITAR\&quot;\n        deactivate PermisosSistema_380_jh\n\n        UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: Validar permiso UsuarioInhabilitar_380_jh\n        UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: Validar estado != INACTIVO\n\n        alt [Sin permiso o usuario ya INACTIVO]\n            UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: Botón Inhabilitar_380_jh deshabilitado\n        else [Puede inhabilitar]\n            Usuario-&gt;&gt;UsuariosView_380_jh: Click en botón Inhabilitar_380_jh\n            UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: btnInhabilitar_Click_380_jh()\n\n            alt [_usuarioSeleccionado_380_jh == null]\n                UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: Selecciona un usuario para inhabilitar\n            else [_usuarioSeleccionado_380_jh != null]\n                UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: Confirmar_380_jh inhabilitación\n\n                alt [Usuario_380_jh cancela]\n                    Usuario_380_jh--&gt;&gt;UsuariosView_380_jh: No\n                    UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: Operación cancelada\n                else [Usuario_380_jh confirma]\n                    Usuario_380_jh--&gt;&gt;UsuariosView_380_jh: Sí\n\n                    UsuariosView_380_jh-&gt;&gt;UsuarioApp: InhabilitarUsuario_380_jh(_usuarioSeleccionado_380_jh)\n                    activate UsuarioApp\n\n                    UsuarioApp-&gt;&gt;UsuarioApp: Validar usuario != null &amp;&amp; Id_380_jh != 0\n\n                    alt [Usuario_380_jh inválido]\n                        UsuarioApp--&gt;&gt;UsuariosView_380_jh: false\n                        UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: No se pudo inhabilitar el usuario\n                    else [Usuario_380_jh válido]\n                        UsuarioApp-&gt;&gt;UsuarioRepo: ObtenerPorId_380_jh(usuario.Id_380_jh)\n                        activate UsuarioRepo\n                        UsuarioRepo-&gt;&gt;UsuarioDM: ObtenerPorId_380_jh(id)\n                        activate UsuarioDM\n                        UsuarioDM-&gt;&gt;DBContext: Abrir_380_jh()\n                        activate DBContext\n                        DBContext-&gt;&gt;SQL: SELECT Usuario WHERE id_usuario = @id_usuario\n                        activate SQL\n                        SQL--&gt;&gt;DBContext: Usuario anterior\n                        deactivate SQL\n                        DBContext--&gt;&gt;UsuarioDM: DataTable\n                        DBContext-&gt;&gt;DBContext: Cerrar_380_jh()\n                        deactivate DBContext\n                        UsuarioDM--&gt;&gt;UsuarioRepo: Usuario anterior\n                        deactivate UsuarioDM\n                        UsuarioRepo--&gt;&gt;UsuarioApp: Usuario anterior\n                        deactivate UsuarioRepo\n\n                        UsuarioApp-&gt;&gt;UsuarioRepo: Inhabilitar_380_jh(usuario)\n                        activate UsuarioRepo\n                        UsuarioRepo-&gt;&gt;UsuarioRepo: Validar usuario != null &amp;&amp; Id_380_jh != 0\n                        UsuarioRepo-&gt;&gt;UsuarioDM: Borrar_380_jh(usuario)\n                        activate UsuarioDM\n\n                        Note over UsuarioRepo,UsuarioDM: Aunque se llama Borrar_380_jh,&lt;br/&gt;realiza una baja lógica\n\n                        UsuarioDM-&gt;&gt;DBContext: CrearParametro_380_jh(\&quot;@id_usuario\&quot;, usuario.Id_380_jh)\n                        UsuarioDM-&gt;&gt;DBContext: Abrir_380_jh()\n                        activate DBContext\n                        DBContext-&gt;&gt;SQL: UPDATE dbo.Usuario SET estado_usuario = 'INACTIVO'\n                        activate SQL\n                        Note over SQL: WHERE id_usuario = @id_usuario\n                        SQL--&gt;&gt;DBContext: Filas afectadas\n                        deactivate SQL\n                        DBContext--&gt;&gt;UsuarioDM: ExecuteNonQuery()\n                        DBContext-&gt;&gt;DBContext: Cerrar_380_jh()\n                        deactivate DBContext\n\n                        UsuarioDM--&gt;&gt;UsuarioRepo: int filasAfectadas\n                        deactivate UsuarioDM\n                        UsuarioRepo--&gt;&gt;UsuarioApp: true/false\n                        deactivate UsuarioRepo\n\n                        alt [No se actualizó ninguna fila]\n                            UsuarioApp--&gt;&gt;UsuariosView_380_jh: false\n                            UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: No se pudo inhabilitar el usuario\n                        else [Inhabilitación exitosa]\n                            UsuarioApp-&gt;&gt;DigitoSvc: RecalcularUsuarios_380_jh()\n                            activate DigitoSvc\n                            DigitoSvc--&gt;&gt;UsuarioApp: true/false\n                            deactivate DigitoSvc\n\n                            UsuarioApp-&gt;&gt;UsuarioRepo: ObtenerPorId_380_jh(usuario.Id_380_jh)\n                            activate UsuarioRepo\n                            UsuarioRepo-&gt;&gt;UsuarioDM: ObtenerPorId_380_jh(id)\n                            activate UsuarioDM\n                            UsuarioDM-&gt;&gt;DBContext: Abrir_380_jh()\n                            activate DBContext\n                            DBContext-&gt;&gt;SQL: SELECT Usuario actualizado\n                            activate SQL\n                            SQL--&gt;&gt;DBContext: Usuario posterior\n                            deactivate SQL\n                            DBContext--&gt;&gt;UsuarioDM: DataTable\n                            DBContext-&gt;&gt;DBContext: Cerrar_380_jh()\n                            deactivate DBContext\n                            UsuarioDM--&gt;&gt;UsuarioRepo: Usuario posterior\n                            deactivate UsuarioDM\n                            UsuarioRepo--&gt;&gt;UsuarioApp: Usuario posterior\n                            deactivate UsuarioRepo\n\n                            alt [Usuario anterior y posterior existen]\n                                UsuarioApp-&gt;&gt;UsuarioDomain: usuarioAnterior.CrearMemento_380_jh()\n                                activate UsuarioDomain\n                                UsuarioDomain--&gt;&gt;UsuarioApp: estadoAnterior\n                                deactivate UsuarioDomain\n\n                                UsuarioApp-&gt;&gt;UsuarioDomain: usuarioPosterior.CrearMemento_380_jh()\n                                activate UsuarioDomain\n                                UsuarioDomain--&gt;&gt;UsuarioApp: estadoPosterior\n                                deactivate UsuarioDomain\n\n                                UsuarioApp-&gt;&gt;AuditoriaSvc: RegistrarCambio_380_jh(estadoAnterior, estadoPosterior, \&quot;DISABLE\&quot;)\n                                activate AuditoriaSvc\n                                AuditoriaSvc--&gt;&gt;UsuarioApp: true/false\n                                deactivate AuditoriaSvc\n                            end\n\n                            UsuarioApp--&gt;&gt;UsuariosView_380_jh: true\n                            deactivate UsuarioApp\n\n                            UsuariosView_380_jh--&gt;&gt;Usuario_380_jh: Usuario_380_jh inhabilitado correctamente\n                            UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: CargarUsuarios_380_jh()\n                            UsuariosView_380_jh-&gt;&gt;UsuariosView_380_jh: PrepararNuevoUsuario_380_jh()\n\n                            Note over SQL: Efecto posterior:&lt;br/&gt;el login filtra con estado_usuario = 'ACTIVO',&lt;br/&gt;por eso el usuario INACTIVO no puede iniciar sesión\n                        end\n                    end\n                end\n            end\n        end\n\n        deactivate UsuariosView_380_jh\n    else [Sin permiso]\n        MainForm_380_jh--&gt;&gt;Usuario_380_jh: Acceso denegado\n        deactivate MainForm_380_jh\n    end&quot;,&#10;  &quot;config&quot;: null&#10;}" id="wIlDSw7W2LBWPlbbdUxF-166">
           <mxCell connectable="0" parent="1" style="group;transparentBounds=1;editIcon=1;lockedGroup=0;groupPadding=20;" vertex="1">
             <mxGeometry height="6960" width="4196.3" as="geometry" />
           </mxCell>
@@ -34,7 +223,7 @@
             <mxGeometry height="6460" width="217.5" x="3058.05" y="40" as="geometry" />
           </mxCell>
         </UserObject>
-        <UserObject label="Usuario" mermaidId="n:Usuario" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);participant=seqActorStick;verticalAlign=bottom;align=center;spacingBottom=4;size=90;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Usuario" id="wIlDSw7W2LBWPlbbdUxF-333">
+        <UserObject label="Administrador" mermaidId="n:Usuario" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);participant=seqActorStick;verticalAlign=bottom;align=center;spacingBottom=4;size=90;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Usuario" id="wIlDSw7W2LBWPlbbdUxF-333">
           <mxCell parent="wIlDSw7W2LBWPlbbdUxF-166" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);participant=seqActorStick;verticalAlign=bottom;align=center;spacingBottom=4;size=90;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;" vertex="1">
             <mxGeometry height="6430" width="217.5" x="87" y="40" as="geometry" />
           </mxCell>
@@ -307,7 +496,6 @@
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-229" parent="wIlDSw7W2LBWPlbbdUxF-166" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[Usuario anterior y posterior existen]]" vertex="1">
           <mxGeometry height="16" width="2459.2" x="1534.1" y="5523" as="geometry" />
         </mxCell>
-
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-210" parent="wIlDSw7W2LBWPlbbdUxF-166" style="shape=line;dashed=1;fixDash=1;dashPattern=2 2;strokeColor=#ff9999;" vertex="1">
           <mxGeometry height="1" width="4094.8" x="72.5" y="2319" as="geometry" />
         </mxCell>
@@ -413,10 +601,14 @@
           </mxCell>
         </UserObject>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-232" parent="wIlDSw7W2LBWPlbbdUxF-231" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="usuariosToolStripMenuItem_Click_380_jh()" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-234" parent="wIlDSw7W2LBWPlbbdUxF-233" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="ValidarPermiso_380_jh&lt;br&gt;(UsuarioVer_380_jh)" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="new UsuariosView_380_jh()" mermaidId="e:MainForm_380_jh-&gt;UsuariosView_380_jh#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="new UsuariosView_380_jh()" id="wIlDSw7W2LBWPlbbdUxF-235">
           <mxCell edge="1" parent="wIlDSw7W2LBWPlbbdUxF-166" source="wIlDSw7W2LBWPlbbdUxF-169" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="wIlDSw7W2LBWPlbbdUxF-171">
@@ -430,7 +622,9 @@
           </mxCell>
         </UserObject>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-237" parent="wIlDSw7W2LBWPlbbdUxF-236" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="ShowScreen_380_jh&lt;br&gt;(UsuariosView_380_jh)" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="Pantalla Usuarios" mermaidId="e:MainForm_380_jh-&gt;Usuario_380_jh#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Pantalla Usuarios" id="wIlDSw7W2LBWPlbbdUxF-238">
           <mxCell edge="1" parent="wIlDSw7W2LBWPlbbdUxF-166" source="wIlDSw7W2LBWPlbbdUxF-169" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;">
@@ -487,7 +681,7 @@
             </mxGeometry>
           </mxCell>
         </UserObject>
-        <UserObject label="ObtenerUsuarios()" mermaidId="e:DBContext-&gt;SQL#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="SELECT usuarios" id="wIlDSw7W2LBWPlbbdUxF-243">
+        <UserObject label="SELECT … FROM dbo.Usuario ORDER BY nombre_usuario" mermaidId="e:DBContext-&gt;SQL#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="SELECT usuarios" id="wIlDSw7W2LBWPlbbdUxF-243">
           <mxCell edge="1" parent="wIlDSw7W2LBWPlbbdUxF-166" source="wIlDSw7W2LBWPlbbdUxF-188" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="wIlDSw7W2LBWPlbbdUxF-193">
             <mxGeometry relative="1" as="geometry">
               <Array as="points">
@@ -554,7 +748,9 @@
           </mxCell>
         </UserObject>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-252" parent="wIlDSw7W2LBWPlbbdUxF-251" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="CargarUsuarios_380_jh()" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="Selecciona usuario en grilla" mermaidId="e:Usuario-&gt;UsuariosView_380_jh#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Selecciona usuario en grilla" id="wIlDSw7W2LBWPlbbdUxF-253">
           <mxCell edge="1" parent="wIlDSw7W2LBWPlbbdUxF-166" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="wIlDSw7W2LBWPlbbdUxF-171">
@@ -568,13 +764,19 @@
           </mxCell>
         </UserObject>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-255" parent="wIlDSw7W2LBWPlbbdUxF-254" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="dgvUsuarios_SelectionChanged_380_jh()" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-257" parent="wIlDSw7W2LBWPlbbdUxF-256" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="_usuarioSeleccionado_380_jh = usuario" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-259" parent="wIlDSw7W2LBWPlbbdUxF-258" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="Cargar datos en formulario" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="UsuarioInhabilitar_380_jh" mermaidId="e:UsuariosView_380_jh-&gt;PermisosSistema_380_jh#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="UsuarioInhabilitar_380_jh" id="wIlDSw7W2LBWPlbbdUxF-260">
           <mxCell edge="1" parent="wIlDSw7W2LBWPlbbdUxF-166" source="wIlDSw7W2LBWPlbbdUxF-171" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="wIlDSw7W2LBWPlbbdUxF-173">
@@ -599,10 +801,14 @@
           </mxCell>
         </UserObject>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-263" parent="wIlDSw7W2LBWPlbbdUxF-262" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="Validar permiso UsuarioInhabilitar_380_jh" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-265" parent="wIlDSw7W2LBWPlbbdUxF-264" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="Validar estado != INACTIVO" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="Botón Inhabilitar_380_jh deshabilitado" mermaidId="e:UsuariosView_380_jh-&gt;Usuario_380_jh#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Botón Inhabilitar_380_jh deshabilitado" id="wIlDSw7W2LBWPlbbdUxF-266">
           <mxCell edge="1" parent="wIlDSw7W2LBWPlbbdUxF-166" source="wIlDSw7W2LBWPlbbdUxF-171" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;">
@@ -627,7 +833,9 @@
           </mxCell>
         </UserObject>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-269" parent="wIlDSw7W2LBWPlbbdUxF-268" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="btnInhabilitar_Click_380_jh()" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="Selecciona un usuario para inhabilitar" mermaidId="e:UsuariosView_380_jh-&gt;Usuario_380_jh#1" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Selecciona un usuario para inhabilitar" id="wIlDSw7W2LBWPlbbdUxF-270">
           <mxCell edge="1" parent="wIlDSw7W2LBWPlbbdUxF-166" source="wIlDSw7W2LBWPlbbdUxF-171" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;">
@@ -696,7 +904,9 @@
           </mxCell>
         </UserObject>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-277" parent="wIlDSw7W2LBWPlbbdUxF-276" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="Validar usuario != null &amp;&amp; Id_380_jh != 0" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="false" mermaidId="e:UsuarioApp-&gt;UsuariosView_380_jh#1" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="false" id="wIlDSw7W2LBWPlbbdUxF-278">
           <mxCell edge="1" parent="wIlDSw7W2LBWPlbbdUxF-166" source="wIlDSw7W2LBWPlbbdUxF-176" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="wIlDSw7W2LBWPlbbdUxF-171">
@@ -753,7 +963,7 @@
             </mxGeometry>
           </mxCell>
         </UserObject>
-        <UserObject label="ObtenerUsuario_380_jh()" mermaidId="e:DBContext-&gt;SQL#1" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="SELECT Usuario WHERE id_usuario = @id_usuario" id="wIlDSw7W2LBWPlbbdUxF-283">
+        <UserObject label="SELECT … FROM dbo.Usuario WHERE id_usuario = @id_usuario" mermaidId="e:DBContext-&gt;SQL#1" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="SELECT Usuario WHERE id_usuario = @id_usuario" id="wIlDSw7W2LBWPlbbdUxF-283">
           <mxCell edge="1" parent="wIlDSw7W2LBWPlbbdUxF-166" source="wIlDSw7W2LBWPlbbdUxF-189" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="wIlDSw7W2LBWPlbbdUxF-194">
             <mxGeometry relative="1" as="geometry">
               <Array as="points">
@@ -820,7 +1030,9 @@
           </mxCell>
         </UserObject>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-292" parent="wIlDSw7W2LBWPlbbdUxF-291" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="Validar usuario != null &amp;&amp; Id_380_jh != 0" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="Borrar_380_jh(usuario)" mermaidId="e:UsuarioRepo-&gt;UsuarioDM#2" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Borrar_380_jh(usuario)" id="wIlDSw7W2LBWPlbbdUxF-293">
           <mxCell edge="1" parent="wIlDSw7W2LBWPlbbdUxF-166" source="wIlDSw7W2LBWPlbbdUxF-180" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="wIlDSw7W2LBWPlbbdUxF-185">
@@ -855,7 +1067,7 @@
             </mxGeometry>
           </mxCell>
         </UserObject>
-        <UserObject label="DeshabilitarUsuarios()" mermaidId="e:DBContext-&gt;SQL#2" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="UPDATE dbo.Usuario SET estado_usuario = 'INACTIVO'" id="wIlDSw7W2LBWPlbbdUxF-296">
+        <UserObject label="UPDATE dbo.Usuario (estado INACTIVO)" mermaidId="e:DBContext-&gt;SQL#2" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="UPDATE dbo.Usuario SET estado_usuario = 'INACTIVO'" id="wIlDSw7W2LBWPlbbdUxF-296">
           <mxCell edge="1" parent="wIlDSw7W2LBWPlbbdUxF-166" source="wIlDSw7W2LBWPlbbdUxF-190" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="wIlDSw7W2LBWPlbbdUxF-195">
             <mxGeometry relative="1" as="geometry">
               <Array as="points">
@@ -1131,7 +1343,9 @@
           </mxCell>
         </UserObject>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-326" parent="wIlDSw7W2LBWPlbbdUxF-325" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="CargarUsuarios_380_jh()" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="" mermaidId="e:UsuariosView_380_jh-&gt;UsuariosView_380_jh#8" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="wIlDSw7W2LBWPlbbdUxF-327">
           <mxCell edge="1" parent="wIlDSw7W2LBWPlbbdUxF-166" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;">
@@ -1147,7 +1361,9 @@
           </mxCell>
         </UserObject>
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-328" parent="wIlDSw7W2LBWPlbbdUxF-327" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="PrepararNuevoUsuario_380_jh()" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="Acceso denegado" mermaidId="e:MainForm_380_jh-&gt;Usuario_380_jh#1" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Acceso denegado" id="wIlDSw7W2LBWPlbbdUxF-329">
           <mxCell edge="1" parent="wIlDSw7W2LBWPlbbdUxF-166" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;">
@@ -1163,7 +1379,6 @@
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-209" parent="wIlDSw7W2LBWPlbbdUxF-166" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[Sin permiso o usuario ya INACTIVO]]" vertex="1">
           <mxGeometry height="16" width="4016.5" x="150.8" y="2200" as="geometry" />
         </mxCell>
-
         <UserObject label="Repository.&lt;br&gt;Usuario&lt;br&gt;Repository_380_jh" mermaidId="n:UAS" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Application.UsuarioApplicationService_380_jh" id="wIlDSw7W2LBWPlbbdUxF-340">
           <mxCell parent="wIlDSw7W2LBWPlbbdUxF-166" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
             <mxGeometry height="6430" width="217.5" x="1634.15" y="40" as="geometry" />
@@ -1175,7 +1390,7 @@
         <mxCell id="wIlDSw7W2LBWPlbbdUxF-517" parent="wIlDSw7W2LBWPlbbdUxF-166" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;glass=1;" value="&lt;span style=&quot;font-family: &amp;quot;Trebuchet MS&amp;quot;, Verdana, Arial, sans-serif; font-size: 16px;&quot;&gt;UI.UsuariosView_380_jh&lt;/span&gt;" vertex="1">
           <mxGeometry height="120" width="283.475" x="664.462" y="10" as="geometry" />
         </mxCell>
-        <mxCell id="wIlDSw7W2LBWPlbbdUxF-347" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;font style=&quot;font-size: 80px;&quot;&gt;&lt;b&gt;INHABILITAR&lt;/b&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 80px;&quot;&gt;&lt;b&gt;&amp;nbsp;USUARIO&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="wIlDSw7W2LBWPlbbdUxF-347" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="CDU-05 · Gestionar usuarios · Inhabilitar usuario" vertex="1">
           <mxGeometry height="30" width="1406.5" x="1682" y="-170" as="geometry" />
         </mxCell>
       </root>

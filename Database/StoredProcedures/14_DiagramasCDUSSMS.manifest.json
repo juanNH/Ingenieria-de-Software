@@ -1,0 +1,156 @@
+[
+  {
+    "Name": "CDU-01 - Iniciar sesion - DER",
+    "Owner": 1,
+    "Version": 1,
+    "Bytes": 53764,
+    "SHA256": "C3919CA2B84007C99F29C1D2A415ED499A88082E0DA260E3C087A62D52E0EFCF",
+    "Tables": [
+      "Bitacora",
+      "ComponentePermiso",
+      "ComponentePermisoRelacion",
+      "DigitoVerificadorVertical",
+      "Idioma",
+      "Permiso",
+      "Rol",
+      "RolPermiso",
+      "Usuario",
+      "UsuarioComponentePermiso",
+      "UsuarioRol"
+    ],
+    "ForeignKeys": [
+      "Relationship 'FK_ComponentePermisoRelacion_Padre' between 'ComponentePermiso' and 'ComponentePermisoRelacion'",
+      "Relationship 'FK_ComponentePermisoRelacion_Hijo' between 'ComponentePermiso' and 'ComponentePermisoRelacion'",
+      "Relationship 'FK_RolPermiso_Rol' between 'Rol' and 'RolPermiso'",
+      "Relationship 'FK_RolPermiso_Permiso' between 'Permiso' and 'RolPermiso'",
+      "Relationship 'FK_UsuarioRol_Rol' between 'Rol' and 'UsuarioRol'",
+      "Relationship 'FK_UsuarioComponentePermiso_Componente' between 'ComponentePermiso' and 'UsuarioComponentePermiso'",
+      "Relationship 'FK_Usuario_Idioma' between 'Idioma' and 'Usuario'",
+      "Relationship 'FK_Bitacora_Usuario' between 'Usuario' and 'Bitacora'",
+      "Relationship 'FK_UsuarioRol_Usuario' between 'Usuario' and 'UsuarioRol'",
+      "Relationship 'FK_UsuarioComponentePermiso_Usuario' between 'Usuario' and 'UsuarioComponentePermiso'"
+    ],
+    "AllTablesStandard": true
+  },
+  {
+    "Name": "CDU-02 - Registrarse - DER",
+    "Owner": 1,
+    "Version": 1,
+    "Bytes": 23044,
+    "SHA256": "EAFBA2E64C54F0936D082116EA3E19779164479960D803C1354300AE6A48493B",
+    "Tables": [
+      "Auditoria",
+      "Bitacora",
+      "DigitoVerificadorVertical",
+      "Idioma",
+      "Usuario"
+    ],
+    "ForeignKeys": [
+      "Relationship 'FK_Usuario_Idioma' between 'Idioma' and 'Usuario'",
+      "Relationship 'FK_Auditoria_UsuarioActor' between 'Usuario' and 'Auditoria'",
+      "Relationship 'FK_Bitacora_Usuario' between 'Usuario' and 'Bitacora'"
+    ],
+    "AllTablesStandard": true
+  },
+  {
+    "Name": "CDU-03 - Cerrar sesion - DER",
+    "Owner": 1,
+    "Version": 1,
+    "Bytes": 9732,
+    "SHA256": "4F147B943EAADDC5A0AE130358D068CE6719A510B75310EE5A9E25E3EB41B82A",
+    "Tables": [
+      "DigitoVerificadorVertical",
+      "Usuario"
+    ],
+    "ForeignKeys": [],
+    "AllTablesStandard": true
+  },
+  {
+    "Name": "CDU-04 - Consultar bitacora - DER",
+    "Owner": 1,
+    "Version": 1,
+    "Bytes": 11780,
+    "SHA256": "C3F87649FDF4163A7C048751557FE5E451403FC64A64DB70F83CDA8225D11D40",
+    "Tables": [
+      "Bitacora",
+      "Usuario"
+    ],
+    "ForeignKeys": [
+      "Relationship 'FK_Bitacora_Usuario' between 'Usuario' and 'Bitacora'"
+    ],
+    "AllTablesStandard": true
+  },
+  {
+    "Name": "CDU-05 - Gestionar usuarios - DER",
+    "Owner": 1,
+    "Version": 1,
+    "Bytes": 53764,
+    "SHA256": "041F6465791EFD54032A47AFA95468C1197A1D70B7202EE4A417DBE554586502",
+    "Tables": [
+      "Auditoria",
+      "ComponentePermiso",
+      "ComponentePermisoRelacion",
+      "DigitoVerificadorVertical",
+      "Idioma",
+      "Permiso",
+      "Rol",
+      "RolPermiso",
+      "Usuario",
+      "UsuarioComponentePermiso",
+      "UsuarioRol"
+    ],
+    "ForeignKeys": [
+      "Relationship 'FK_ComponentePermisoRelacion_Padre' between 'ComponentePermiso' and 'ComponentePermisoRelacion'",
+      "Relationship 'FK_ComponentePermisoRelacion_Hijo' between 'ComponentePermiso' and 'ComponentePermisoRelacion'",
+      "Relationship 'FK_UsuarioComponentePermiso_Componente' between 'ComponentePermiso' and 'UsuarioComponentePermiso'",
+      "Relationship 'FK_Usuario_Idioma' between 'Idioma' and 'Usuario'",
+      "Relationship 'FK_Auditoria_UsuarioActor' between 'Usuario' and 'Auditoria'",
+      "Relationship 'FK_UsuarioComponentePermiso_Usuario' between 'Usuario' and 'UsuarioComponentePermiso'",
+      "Relationship 'FK_RolPermiso_Rol' between 'Rol' and 'RolPermiso'",
+      "Relationship 'FK_RolPermiso_Permiso' between 'Permiso' and 'RolPermiso'",
+      "Relationship 'FK_UsuarioRol_Usuario' between 'Usuario' and 'UsuarioRol'",
+      "Relationship 'FK_UsuarioRol_Rol' between 'Rol' and 'UsuarioRol'"
+    ],
+    "AllTablesStandard": true
+  },
+  {
+    "Name": "CDU-06 - Gestionar idiomas y traducciones - DER",
+    "Owner": 1,
+    "Version": 1,
+    "Bytes": 27652,
+    "SHA256": "6DDD3F5F06B1966180C49F4F31E8F6DC806B275A1095A1F1DAD3FA7560B0782C",
+    "Tables": [
+      "Etiqueta",
+      "Idioma",
+      "IdiomaEstadoHistorial",
+      "Traduccion",
+      "Usuario"
+    ],
+    "ForeignKeys": [
+      "Relationship 'FK_Usuario_Idioma' between 'Idioma' and 'Usuario'",
+      "Relationship 'FK_IdiomaEstadoHistorial_Idioma' between 'Idioma' and 'IdiomaEstadoHistorial'",
+      "Relationship 'FK_IdiomaEstadoHistorial_Usuario' between 'Usuario' and 'IdiomaEstadoHistorial'",
+      "Relationship 'FK_Traduccion_Etiqueta' between 'Etiqueta' and 'Traduccion'",
+      "Relationship 'FK_Traduccion_Idioma' between 'Idioma' and 'Traduccion'"
+    ],
+    "AllTablesStandard": true
+  },
+  {
+    "Name": "CDU-07 - Consultar y restaurar cambios - DER",
+    "Owner": 1,
+    "Version": 1,
+    "Bytes": 18436,
+    "SHA256": "B84CCD976AC81B10B53768908548C5CD49642F3D8D6B88F8C24818482C9F15E9",
+    "Tables": [
+      "Auditoria",
+      "DigitoVerificadorVertical",
+      "Idioma",
+      "Usuario"
+    ],
+    "ForeignKeys": [
+      "Relationship 'FK_Usuario_Idioma' between 'Idioma' and 'Usuario'",
+      "Relationship 'FK_Auditoria_UsuarioActor' between 'Usuario' and 'Auditoria'"
+    ],
+    "AllTablesStandard": true
+  }
+]

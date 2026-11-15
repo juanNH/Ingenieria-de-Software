@@ -1,6 +1,8 @@
 # Diagramas entidad-relación por caso de uso
 
-Los diagramas corresponden a CDUN-01 a CDUN-08 y se encuentran en la carpeta **Database Diagrams** de la base `HemovidaGest` de SQL Server. Cada uno muestra las tablas seleccionadas para ese caso; no es un esquema completo de la base.
+Los diagramas corresponden a CDUN-01 a CDUN-08 y CDU-01 a CDU-07 y se encuentran en la carpeta **Database Diagrams** de la base `HemovidaGest` de SQL Server. Cada uno muestra las tablas seleccionadas para ese caso; no es un esquema completo de la base. Todos usan **Table View → Standard**, con columnas, tipos y nulabilidad.
+
+## Casos de negocio
 
 Los PNG con sufijo `- SSMS.png` son copias obtenidas del diseñador nativo de SQL Server Management Studio. Los diagramas se restauran y sus nombres se actualizan mediante `Database/StoredProcedures/12_DiagramasSSMS.sql`; sus líneas corresponden a claves foráneas de SQL Server.
 
@@ -24,3 +26,21 @@ Las líneas representan claves foráneas declaradas en SQL Server; las referenci
 Los datos del receptor y de su estudio están en `SolicitudTransfusional`. En CDUN-05 y CDUN-06, SSMS dibuja las relaciones de `tipo_componente`, `grupo_receptor` y `rh_receptor` con los códigos de sus catálogos, y las dos relaciones con `Usuario` (solicitante y validador). El grupo, el factor Rh y el usuario validador pueden quedar vacíos cuando aún no se cuenta con esa información. Las claves se instalan con `Database/StoredProcedures/09a_RelacionesSolicitudPN2.sql`.
 
 En CDUN-04 y CDUN-08, `ComprobantePendiente` se conecta con el resto de las tablas mediante la FK a `Usuario`. Sus campos `proceso` e `id_referencia` identifican la donación o la entrega sin una clave foránea directa; el disparador captura los datos del comprobante en XML.
+
+## Casos de uso del sistema
+
+Los archivos `CDU-01` a `CDU-07` con sufijo `- DER.emf` son exportaciones vectoriales del diseñador nativo de SSMS. Los PNG del mismo nombre permiten consultar las imágenes completas. Las siete definiciones editables se instalan mediante [14_DiagramasCDUSSMS.sql](../../Database/StoredProcedures/14_DiagramasCDUSSMS.sql); su [manifiesto](../../Database/StoredProcedures/14_DiagramasCDUSSMS.manifest.json) registra tablas, claves foráneas, versión y SHA256.
+
+| Caso | Nombre en SSMS | Tablas | Claves foráneas |
+| --- | --- | ---: | ---: |
+| CDU-01 | Iniciar sesion | 11 | 10 |
+| CDU-02 | Registrarse | 5 | 3 |
+| CDU-03 | Cerrar sesion | 2 | 0 |
+| CDU-04 | Consultar bitacora | 2 | 1 |
+| CDU-05 | Gestionar usuarios | 11 | 10 |
+| CDU-06 | Gestionar idiomas y traducciones | 5 | 5 |
+| CDU-07 | Consultar y restaurar cambios | 4 | 2 |
+
+Los diagramas incluyen la persistencia que consulta o modifica cada caso. La sesión de CDU-03 reside en memoria; no se agrega una tabla de sesión. Las asociaciones lógicas sin FK, como las consultas de permisos heredados por nombre o código, se explican en clases y secuencias.
+
+[InstalarBase.ps1](../../Installer/InstalarBase.ps1) e [InstalarPN2.ps1](../../Database/InstalarPN2.ps1) ejecutan los scripts 12 y 14: al crear o actualizar la base quedan las diez vistas de negocio y los siete CDU del sistema. Al finalizar, actualizar **Database Diagrams** en SSMS. Las fichas y sus referencias están en [Docs/CDU.md](../../Docs/CDU.md).

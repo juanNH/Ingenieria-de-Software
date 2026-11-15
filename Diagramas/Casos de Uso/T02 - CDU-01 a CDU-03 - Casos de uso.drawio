@@ -4,13 +4,16 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="limite-sistema" value="&lt;b&gt;HemovidaGest · Acceso al sistema&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;verticalAlign=top;spacingTop=20;fontSize=16;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="930" y="150" width="510" height="1110" as="geometry" />
+        </mxCell>
         <mxCell id="titulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=22;align=center;verticalAlign=middle;fontFamily=Arial;" value="T02 - Diagrama de casos de uso: Gestión de acceso al sistema" vertex="1">
           <mxGeometry height="42" width="1500" x="170" y="28" as="geometry" />
         </mxCell>
         <mxCell id="subtitulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;align=center;verticalAlign=middle;fontColor=#666666;fontFamily=Arial;" value="Casos CDU-01 a CDU-03 y roles del sistema definidos en G04" vertex="1">
           <mxGeometry height="28" width="900" x="470" y="70" as="geometry" />
         </mxCell>
-        <mxCell id="uc01" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDU-01&lt;/b&gt;&lt;br&gt;Log In" vertex="1">
+        <mxCell id="uc01" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDU-01&lt;/b&gt;&lt;br&gt;Iniciar sesión" vertex="1">
           <mxGeometry height="130" width="330" x="1020" y="430" as="geometry" />
         </mxCell>
         <mxCell id="actor01" parent="1" style="shape=umlActor;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;" value="" vertex="1">
@@ -34,7 +37,7 @@
         <mxCell id="a-02" edge="1" parent="1" source="actor02" style="rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#d6b656;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="uc02" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="uc03" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDU-03&lt;/b&gt;&lt;br&gt;Logout" vertex="1">
+        <mxCell id="uc03" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=15;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDU-03&lt;/b&gt;&lt;br&gt;Cerrar sesión" vertex="1">
           <mxGeometry height="130" width="330" x="1020" y="725" as="geometry" />
         </mxCell>
         <mxCell id="actor-administrador" parent="1" style="shape=umlActor;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;" value="" vertex="1">
@@ -79,7 +82,7 @@
         <mxCell id="label-auditor" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;fontFamily=Arial;align=center;verticalAlign=middle;whiteSpace=wrap;" value="&lt;b&gt;Auditor&lt;/b&gt;" vertex="1">
           <mxGeometry height="50" width="230" x="15" y="1155" as="geometry" />
         </mxCell>
-        <mxCell id="a-03" edge="1" parent="1" source="actor01" style="rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#82b366;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="uc03" value="">
+        <mxCell id="a-03" edge="1" parent="1" source="actor03" style="rounded=0;html=1;endArrow=none;startArrow=none;strokeColor=#82b366;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="uc03" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="g-administrador-usuario" edge="1" parent="1" source="actor-administrador" style="edgeStyle=none;rounded=0;html=1;endArrow=block;endFill=0;endSize=16;startArrow=none;strokeColor=#666666;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="actor01" value="">
@@ -137,6 +140,12 @@
               <mxPoint x="405" y="660" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="actor03" value="" style="shape=umlActor;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="740" y="745" width="40" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="label03" value="&lt;b&gt;Usuario autenticado&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="650" y="835" width="230" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

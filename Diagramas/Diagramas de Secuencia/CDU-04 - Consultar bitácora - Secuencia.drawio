@@ -1,587 +1,273 @@
-<mxfile host="app.diagrams.net">
-  <diagram name="CDU-04 Consultar bitácora" id="HbqhETmPYxgJsAMf3kOy">
-    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1199.15" pageHeight="1169" math="0" shadow="0">
+<mxfile host="Electron">
+  <diagram name="CDU-04 — Secuencia: Consultar bitácora" id="cdu04-consulta">
+    <mxGraphModel grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2090" pageHeight="2340" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <UserObject label="UI.ListViewBitacora" mermaidId="n:UAS" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Application.UsuarioApplicationService_380_jh" id="Cgh9YPN3L66CRgxnLfrv-94">
-          <mxCell parent="1" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
-            <mxGeometry height="2950" width="217.5" x="3313.25" y="40" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="Domain.&lt;br&gt;BitacoraRegistro_380_jh" mermaidId="n:UAS" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Application.UsuarioApplicationService_380_jh" id="Cgh9YPN3L66CRgxnLfrv-93">
-          <mxCell parent="1" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
-            <mxGeometry height="2950" width="217.5" x="3023.25" y="40" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="SQL Server" mermaidId="n:UAS" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Application.UsuarioApplicationService_380_jh" id="Cgh9YPN3L66CRgxnLfrv-92">
-          <mxCell parent="1" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
-            <mxGeometry height="2950" width="217.5" x="2733.25" y="40" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="DAL.&lt;br&gt;DatabaseContext_380_jh" mermaidId="n:UAS" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Application.UsuarioApplicationService_380_jh" id="Cgh9YPN3L66CRgxnLfrv-91">
-          <mxCell parent="1" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
-            <mxGeometry height="2950" width="217.5" x="2285.2" y="40" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="DAL.&lt;br&gt;Bitacora&lt;br&gt;DataMapper_380_jh" mermaidId="n:UAS" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Application.UsuarioApplicationService_380_jh" id="Cgh9YPN3L66CRgxnLfrv-90">
-          <mxCell parent="1" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
-            <mxGeometry height="2950" width="217.5" x="1995.2" y="40" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="Repository.&lt;br&gt;Bitacora&lt;br&gt;Repository_380_jh" mermaidId="n:UAS" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Application.UsuarioApplicationService_380_jh" id="Cgh9YPN3L66CRgxnLfrv-89">
-          <mxCell parent="1" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
-            <mxGeometry height="2950" width="217.5" x="1703.75" y="40" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="Application.&lt;br&gt;Bitacora&lt;br&gt;ApplicationService_380_jh" mermaidId="n:UAS" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Application.UsuarioApplicationService_380_jh" id="Cgh9YPN3L66CRgxnLfrv-88">
-          <mxCell parent="1" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
-            <mxGeometry height="2950" width="217.5" x="1415.2" y="40" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="UI.BitacoraView_380_jh" mermaidId="n:UAS" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Application.UsuarioApplicationService_380_jh" id="Cgh9YPN3L66CRgxnLfrv-87">
-          <mxCell parent="1" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
-            <mxGeometry height="2950" width="217.5" x="997.6" y="40" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="Domain.&lt;br&gt;PermisosSistema_380_jh" mermaidId="n:UAS" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Application.UsuarioApplicationService_380_jh" id="Cgh9YPN3L66CRgxnLfrv-86">
-          <mxCell parent="1" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
-            <mxGeometry height="2950" width="217.5" x="707.6" y="40" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="UI.MainForm_380_jh" mermaidId="n:UAS" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Application.UsuarioApplicationService_380_jh" id="Cgh9YPN3L66CRgxnLfrv-85">
-          <mxCell parent="1" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
-            <mxGeometry height="2950" width="217.5" x="417.6" y="40" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="alt" mermaidId="n:f0" mermaidBaseStyle="html=1;shape=umlFrame;dashed=1;fixDash=1;dashPattern=2 2;strokeWidth=2;pointerEvents=0;dropTarget=0;fillColor=#ffffff;strokeColor=#ff9999;fontSize=16;align=center;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;height=20;width=50;" mermaidBaseValue="alt" id="Cgh9YPN3L66CRgxnLfrv-25">
-          <mxCell parent="1" style="html=1;shape=umlFrame;dashed=1;fixDash=1;dashPattern=2 2;strokeWidth=2;pointerEvents=0;dropTarget=0;fillColor=#ffffff;strokeColor=#ff9999;fontSize=16;align=center;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;height=20;width=50;container=0;" vertex="1">
-            <mxGeometry height="2456" width="3509" x="58" y="489" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="loop" mermaidId="n:f1" mermaidBaseStyle="html=1;shape=umlFrame;dashed=1;fixDash=1;dashPattern=2 2;strokeWidth=2;pointerEvents=0;dropTarget=0;fillColor=#ffffff;strokeColor=#ff9999;fontSize=16;align=center;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;height=20;width=50;" mermaidBaseValue="loop" id="Cgh9YPN3L66CRgxnLfrv-29">
-          <mxCell parent="1" style="html=1;shape=umlFrame;dashed=1;fixDash=1;dashPattern=2 2;strokeWidth=2;pointerEvents=0;dropTarget=0;fillColor=#ffffff;strokeColor=#ff9999;fontSize=16;align=center;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;height=20;width=50;container=0;" vertex="1">
-            <mxGeometry height="223" width="1289.05" x="1973.45" y="1476" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="loop" mermaidId="n:f2" mermaidBaseStyle="html=1;shape=umlFrame;dashed=1;fixDash=1;dashPattern=2 2;strokeWidth=2;pointerEvents=0;dropTarget=0;fillColor=#ffffff;strokeColor=#ff9999;fontSize=16;align=center;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;height=20;width=50;" mermaidBaseValue="loop" id="Cgh9YPN3L66CRgxnLfrv-31">
-          <mxCell parent="1" style="html=1;shape=umlFrame;dashed=1;fixDash=1;dashPattern=2 2;strokeWidth=2;pointerEvents=0;dropTarget=0;fillColor=#ffffff;strokeColor=#ff9999;fontSize=16;align=center;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;height=20;width=50;container=0;" vertex="1">
-            <mxGeometry height="220" width="2373.65" x="1077.35" y="1925" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="alt" mermaidId="n:f3" mermaidBaseStyle="html=1;shape=umlFrame;dashed=1;fixDash=1;dashPattern=2 2;strokeWidth=2;pointerEvents=0;dropTarget=0;fillColor=#ffffff;strokeColor=#ff9999;fontSize=16;align=center;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;height=20;width=50;" mermaidBaseValue="alt" id="Cgh9YPN3L66CRgxnLfrv-33">
-          <mxCell parent="1" style="html=1;shape=umlFrame;dashed=1;fixDash=1;dashPattern=2 2;strokeWidth=2;pointerEvents=0;dropTarget=0;fillColor=#ffffff;strokeColor=#ff9999;fontSize=16;align=center;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;height=20;width=50;container=0;" vertex="1">
-            <mxGeometry height="175" width="961.35" x="174" y="2286" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <UserObject label="Click en menú Bitácora" mermaidId="e:Usuario-&gt;MainForm_380_jh#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Click en menú Bitácora" id="Cgh9YPN3L66CRgxnLfrv-37">
-          <mxCell edge="1" parent="1" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-4">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="361.05" y="149" />
-              </Array>
-              <mxPoint x="202.638" y="149" as="sourcePoint" />
-              <mxPoint x="519.1" y="149" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="BitacoraVer_380_jh" mermaidId="e:MainForm_380_jh-&gt;PermisosSistema_380_jh#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="BitacoraVer_380_jh" id="Cgh9YPN3L66CRgxnLfrv-38">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-4" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-6">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="671.35" y="193" />
-              </Array>
-              <mxPoint x="533.6" y="193" as="sourcePoint" />
-              <mxPoint x="809.1" y="193" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="&quot;BITACORA_VER&quot;" mermaidId="e:PermisosSistema_380_jh-&gt;MainForm_380_jh#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="&quot;BITACORA_VER&quot;" id="Cgh9YPN3L66CRgxnLfrv-39">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-6" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-4">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="671.35" y="237" />
-              </Array>
-              <mxPoint x="809.1" y="237" as="sourcePoint" />
-              <mxPoint x="533.6" y="237" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-41" parent="Cgh9YPN3L66CRgxnLfrv-40" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="bitacoraToolStripMenuItem_Click_380_jh()" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+        <mxCell id="life-actor" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="165" y="150" />
+            <mxPoint as="targetPoint" x="165" y="2290" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-43" parent="Cgh9YPN3L66CRgxnLfrv-42" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="ValidarPermiso_380_jh&lt;br&gt;(PermisosSistema_380_jh.&lt;br&gt;BitacoraVer_380_jh)" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+        <mxCell id="life-main" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="410" y="150" />
+            <mxPoint as="targetPoint" x="410" y="2290" />
+          </mxGeometry>
         </mxCell>
-        <UserObject label="Acceso denegado" mermaidId="e:MainForm_380_jh-&gt;Usuario_380_jh#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Acceso denegado" id="Cgh9YPN3L66CRgxnLfrv-44">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-4" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="361.05" y="564" />
-              </Array>
-              <mxPoint x="519.1" y="564" as="sourcePoint" />
-              <mxPoint x="202.638" y="564" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="new BitacoraView_380_jh()" mermaidId="e:MainForm_380_jh-&gt;BitacoraView_380_jh#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="new BitacoraView_380_jh()" id="Cgh9YPN3L66CRgxnLfrv-45">
-          <mxCell edge="1" parent="1" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-8">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="813.45" y="654" />
-              </Array>
-              <mxPoint x="525.988" y="654" as="sourcePoint" />
-              <mxPoint x="1099.1" y="654" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="new BitacoraApplicationService_380_jh()" mermaidId="e:BitacoraView_380_jh-&gt;BitacoraApp#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="new BitacoraApplicationService_380_jh()" id="Cgh9YPN3L66CRgxnLfrv-46">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-8" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-10">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="1315.15" y="708" />
-              </Array>
-              <mxPoint x="1113.6" y="708" as="sourcePoint" />
-              <mxPoint x="1516.7" y="708" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="Servicio creado" mermaidId="e:BitacoraApp-&gt;BitacoraView_380_jh#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Servicio creado" id="Cgh9YPN3L66CRgxnLfrv-47">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-10" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-8">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="1315.15" y="762" />
-              </Array>
-              <mxPoint x="1516.7" y="762" as="sourcePoint" />
-              <mxPoint x="1113.6" y="762" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-49" parent="Cgh9YPN3L66CRgxnLfrv-48" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="CargarBitacora_380_jh()" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+        <mxCell id="life-view" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="655" y="150" />
+            <mxPoint as="targetPoint" x="655" y="2290" />
+          </mxGeometry>
         </mxCell>
-        <UserObject label="Items.Clear()" mermaidId="e:BitacoraView_380_jh-&gt;ListView#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Items.Clear()" id="Cgh9YPN3L66CRgxnLfrv-50">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-8" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-23">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="2264.9" y="930" />
-              </Array>
-              <mxPoint x="1113.6" y="930" as="sourcePoint" />
-              <mxPoint x="3414.75" y="930" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="ListView limpio" mermaidId="e:ListView-&gt;BitacoraView_380_jh#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="ListView limpio" id="Cgh9YPN3L66CRgxnLfrv-51">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-23" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-8">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="2264.9" y="984" />
-              </Array>
-              <mxPoint x="3414.75" y="984" as="sourcePoint" />
-              <mxPoint x="1113.6" y="984" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="Listar_380_jh()" mermaidId="e:BitacoraView_380_jh-&gt;BitacoraApp#1" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Listar_380_jh()" id="Cgh9YPN3L66CRgxnLfrv-52">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-8" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-11">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="1315.15" y="1038" />
-              </Array>
-              <mxPoint x="1113.6" y="1038" as="sourcePoint" />
-              <mxPoint x="1516.7" y="1038" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="Listar_380_jh()" mermaidId="e:BitacoraApp-&gt;BitacoraRepo#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Listar_380_jh()" id="Cgh9YPN3L66CRgxnLfrv-53">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-11" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-13">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="1668.95" y="1092" />
-              </Array>
-              <mxPoint x="1531.2" y="1092" as="sourcePoint" />
-              <mxPoint x="1806.7" y="1092" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="Listar_380_jh()" mermaidId="e:BitacoraRepo-&gt;BitacoraDM#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Listar_380_jh()" id="Cgh9YPN3L66CRgxnLfrv-54">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-13" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-15">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="1958.95" y="1146" />
-              </Array>
-              <mxPoint x="1821.2" y="1146" as="sourcePoint" />
-              <mxPoint x="2096.7" y="1146" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="Abrir_380_jh()" mermaidId="e:BitacoraDM-&gt;DBContext#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Abrir_380_jh()" id="Cgh9YPN3L66CRgxnLfrv-55">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-15" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-17">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="2248.95" y="1200" />
-              </Array>
-              <mxPoint x="2111.2" y="1200" as="sourcePoint" />
-              <mxPoint x="2386.7" y="1200" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="SELECT registros FROM dbo.Bitacora" mermaidId="e:DBContext-&gt;SQL#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="SELECT registros FROM dbo.Bitacora" id="Cgh9YPN3L66CRgxnLfrv-56">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-17" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-19">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="2618.7" y="1254" />
-              </Array>
-              <mxPoint x="2401.2" y="1254" as="sourcePoint" />
-              <mxPoint x="2834.75" y="1254" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="DataTable" mermaidId="e:SQL-&gt;DBContext#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="DataTable" id="Cgh9YPN3L66CRgxnLfrv-57">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-19" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-17">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="2618.7" y="1372" />
-              </Array>
-              <mxPoint x="2834.75" y="1372" as="sourcePoint" />
-              <mxPoint x="2401.2" y="1372" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="Resultado SQL" mermaidId="e:DBContext-&gt;BitacoraDM#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Resultado SQL" id="Cgh9YPN3L66CRgxnLfrv-58">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-17" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-15">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="2248.95" y="1426" />
-              </Array>
-              <mxPoint x="2386.7" y="1426" as="sourcePoint" />
-              <mxPoint x="2111.2" y="1426" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-60" parent="Cgh9YPN3L66CRgxnLfrv-59" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="MapearBitacora_380_jh&lt;br&gt;(fila)" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+        <mxCell id="life-app" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="900" y="150" />
+            <mxPoint as="targetPoint" x="900" y="2290" />
+          </mxGeometry>
         </mxCell>
-        <UserObject label="new BitacoraRegistro_380_jh { ... }" mermaidId="e:BitacoraDM-&gt;BitacoraRegistro_380_jh#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="new BitacoraRegistro_380_jh { ... }" id="Cgh9YPN3L66CRgxnLfrv-61">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-15" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-21">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="2618.7" y="1635" />
-              </Array>
-              <mxPoint x="2111.2" y="1635" as="sourcePoint" />
-              <mxPoint x="3124.75" y="1635" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="Registro de dominio" mermaidId="e:BitacoraRegistro_380_jh-&gt;BitacoraDM#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Registro de dominio" id="Cgh9YPN3L66CRgxnLfrv-62">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-21" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-15">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="2618.7" y="1689" />
-              </Array>
-              <mxPoint x="3124.75" y="1689" as="sourcePoint" />
-              <mxPoint x="2111.2" y="1689" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="Cerrar_380_jh()" mermaidId="e:BitacoraDM-&gt;DBContext#1" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Cerrar_380_jh()" id="Cgh9YPN3L66CRgxnLfrv-63">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-15" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="2253.3" y="1743" />
-              </Array>
-              <mxPoint x="2111.2" y="1743" as="sourcePoint" />
-              <mxPoint x="2392.5" y="1742.9999999999995" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="List&amp;lt;BitacoraRegistro_380_jh&amp;gt;" mermaidId="e:BitacoraDM-&gt;BitacoraRepo#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="List&lt;BitacoraRegistro_380_jh&gt;" id="Cgh9YPN3L66CRgxnLfrv-64">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-15" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;html=1;" target="Cgh9YPN3L66CRgxnLfrv-13">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="1958.95" y="1797" />
-              </Array>
-              <mxPoint x="2096.7" y="1797" as="sourcePoint" />
-              <mxPoint x="1821.2" y="1797" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="List&amp;lt;BitacoraRegistro_380_jh&amp;gt;" mermaidId="e:BitacoraRepo-&gt;BitacoraApp#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="List&lt;BitacoraRegistro_380_jh&gt;" id="Cgh9YPN3L66CRgxnLfrv-65">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-13" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;html=1;" target="Cgh9YPN3L66CRgxnLfrv-11">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="1668.95" y="1851" />
-              </Array>
-              <mxPoint x="1806.7" y="1851" as="sourcePoint" />
-              <mxPoint x="1531.2" y="1851" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="registros" mermaidId="e:BitacoraApp-&gt;BitacoraView_380_jh#1" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="registros" id="Cgh9YPN3L66CRgxnLfrv-66">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-11" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-8">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="1315.15" y="1905" />
-              </Array>
-              <mxPoint x="1516.7" y="1905" as="sourcePoint" />
-              <mxPoint x="1113.6" y="1905" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="Agregar_380_jh item" mermaidId="e:BitacoraView_380_jh-&gt;ListView#1" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Agregar_380_jh item" id="Cgh9YPN3L66CRgxnLfrv-67">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-8" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-24">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="2264.9" y="2000" />
-              </Array>
-              <mxPoint x="1113.6" y="2000" as="sourcePoint" />
-              <mxPoint x="3414.75" y="2000" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="Item agregado" mermaidId="e:ListView-&gt;BitacoraView_380_jh#1" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Item agregado" id="Cgh9YPN3L66CRgxnLfrv-68">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-24" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="Cgh9YPN3L66CRgxnLfrv-8">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="2264.9" y="2135" />
-              </Array>
-              <mxPoint x="3414.75" y="2135" as="sourcePoint" />
-              <mxPoint x="1113.6" y="2135" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-70" parent="Cgh9YPN3L66CRgxnLfrv-69" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="ActualizarEstado_380_jh&lt;br&gt;(registros.Count)" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+        <mxCell id="life-repo" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1145" y="150" />
+            <mxPoint as="targetPoint" x="1145" y="2290" />
+          </mxGeometry>
         </mxCell>
-        <UserObject label="No hay eventos registrados" mermaidId="e:BitacoraView_380_jh-&gt;Usuario_380_jh#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="No hay eventos registrados" id="Cgh9YPN3L66CRgxnLfrv-71">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-8" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="651.05" y="2361" />
-              </Array>
-              <mxPoint x="1099.1" y="2361" as="sourcePoint" />
-              <mxPoint x="202.638" y="2361" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="Cantidad de registros cargados" mermaidId="e:BitacoraView_380_jh-&gt;Usuario_380_jh#1" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Cantidad de registros cargados" id="Cgh9YPN3L66CRgxnLfrv-72">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-8" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="651.05" y="2451" />
-              </Array>
-              <mxPoint x="1099.1" y="2451" as="sourcePoint" />
-              <mxPoint x="202.638" y="2451" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="" mermaidId="e:MainForm_380_jh-&gt;MainForm_380_jh#2" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="Cgh9YPN3L66CRgxnLfrv-73">
-          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="577.1" y="2535" />
-                <mxPoint x="582.9" y="2547" />
-                <mxPoint x="577.1" y="2559" />
-              </Array>
-              <mxPoint x="525.988" y="2535" as="sourcePoint" />
-              <mxPoint x="525.988" y="2559" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-74" parent="Cgh9YPN3L66CRgxnLfrv-73" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="ShowScreen_380_jh&lt;br&gt;(BitacoraView_380_jh)" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+        <mxCell id="life-mapper" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1390" y="150" />
+            <mxPoint as="targetPoint" x="1390" y="2290" />
+          </mxGeometry>
         </mxCell>
-        <UserObject label="" mermaidId="e:MainForm_380_jh-&gt;MainForm_380_jh#3" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="Cgh9YPN3L66CRgxnLfrv-75">
-          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="577.1" y="2666" />
-                <mxPoint x="582.9" y="2678" />
-                <mxPoint x="577.1" y="2690" />
-              </Array>
-              <mxPoint x="525.988" y="2666" as="sourcePoint" />
-              <mxPoint x="525.988" y="2690" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-76" parent="Cgh9YPN3L66CRgxnLfrv-75" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="contentPanel_380_jh.Controls.Clear()" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+        <mxCell id="life-db" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1635" y="150" />
+            <mxPoint as="targetPoint" x="1635" y="2290" />
+          </mxGeometry>
         </mxCell>
-        <UserObject label="Dock = DockStyle.Fill" mermaidId="e:MainForm_380_jh-&gt;BitacoraView_380_jh#1" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Dock = DockStyle.Fill" id="Cgh9YPN3L66CRgxnLfrv-77">
-          <mxCell edge="1" parent="1" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="816.35" y="2750" />
-              </Array>
-              <mxPoint x="525.988" y="2750" as="sourcePoint" />
-              <mxPoint x="1104.9" y="2750" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="" mermaidId="e:MainForm_380_jh-&gt;MainForm_380_jh#4" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="Cgh9YPN3L66CRgxnLfrv-78">
-          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="577.1" y="2851" />
-                <mxPoint x="582.9" y="2863" />
-                <mxPoint x="577.1" y="2875" />
-              </Array>
-              <mxPoint x="525.988" y="2851" as="sourcePoint" />
-              <mxPoint x="525.988" y="2875" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-79" parent="Cgh9YPN3L66CRgxnLfrv-78" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="contentPanel_380_jh.Controls.Add(BitacoraView_380_jh)" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+        <mxCell id="life-sql" edge="1" parent="1" style="endArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1880" y="150" />
+            <mxPoint as="targetPoint" x="1880" y="2290" />
+          </mxGeometry>
         </mxCell>
-        <UserObject label="Pantalla Bitácora visible" mermaidId="e:MainForm_380_jh-&gt;Usuario_380_jh#1" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Pantalla Bitácora visible" id="Cgh9YPN3L66CRgxnLfrv-80">
-          <mxCell edge="1" parent="1" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="365.4" y="2935" />
-              </Array>
-              <mxPoint x="524.9" y="2935" as="sourcePoint" />
-              <mxPoint x="202.638" y="2935" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-
-
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-4" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
-          <mxGeometry height="415" width="14.5" x="519.1" y="149" as="geometry" />
+        <mxCell id="title" value="CDU-04 — Secuencia: Consultar bitácora" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=25;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="20" y="18" width="2050" height="46" />
         </mxCell>
-        <UserObject label="" mermaidId="e:MainForm_380_jh-&gt;MainForm_380_jh#0" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="Cgh9YPN3L66CRgxnLfrv-40">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-4" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" target="Cgh9YPN3L66CRgxnLfrv-4">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="584.35" y="328" />
-                <mxPoint x="590.15" y="340" />
-                <mxPoint x="584.35" y="352" />
-              </Array>
-              <mxPoint x="533.6" y="328" as="sourcePoint" />
-              <mxPoint x="533.6" y="352" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="" mermaidId="e:MainForm_380_jh-&gt;MainForm_380_jh#1" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="Cgh9YPN3L66CRgxnLfrv-42">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-4" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" target="Cgh9YPN3L66CRgxnLfrv-4">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="584.35" y="449" />
-                <mxPoint x="590.15" y="461" />
-                <mxPoint x="584.35" y="473" />
-              </Array>
-              <mxPoint x="533.6" y="449" as="sourcePoint" />
-              <mxPoint x="533.6" y="473" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-6" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
-          <mxGeometry height="44" width="14.5" x="809.1" y="193" as="geometry" />
+        <mxCell id="actor" value="Usuario autorizado" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Arial;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="80" width="210" height="70" />
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-8" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
-          <mxGeometry height="1797" width="14.5" x="1099.1" y="654" as="geometry" />
+        <mxCell id="main" value="UI&lt;br&gt;MainForm_380_jh" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Arial;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="305" y="80" width="210" height="70" />
         </mxCell>
-        <UserObject label="" mermaidId="e:BitacoraView_380_jh-&gt;BitacoraView_380_jh#0" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="Cgh9YPN3L66CRgxnLfrv-48">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-8" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" target="Cgh9YPN3L66CRgxnLfrv-8">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="1164.35" y="846" />
-                <mxPoint x="1170.15" y="858" />
-                <mxPoint x="1164.35" y="870" />
-              </Array>
-              <mxPoint x="1113.6" y="846" as="sourcePoint" />
-              <mxPoint x="1113.6" y="870" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <UserObject label="" mermaidId="e:BitacoraView_380_jh-&gt;BitacoraView_380_jh#1" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="Cgh9YPN3L66CRgxnLfrv-69">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-8" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" target="Cgh9YPN3L66CRgxnLfrv-8">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="1164.35" y="2236" />
-                <mxPoint x="1170.15" y="2248" />
-                <mxPoint x="1164.35" y="2260" />
-              </Array>
-              <mxPoint x="1113.6" y="2236" as="sourcePoint" />
-              <mxPoint x="1113.6" y="2260" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-10" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
-          <mxGeometry height="54" width="14.5" x="1516.7" y="708" as="geometry" />
+        <mxCell id="view" value="UI&lt;br&gt;BitacoraView_380_jh" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontFamily=Arial;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="550" y="80" width="210" height="70" />
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-11" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
-          <mxGeometry height="867" width="14.5" x="1516.7" y="1038" as="geometry" />
+        <mxCell id="app" value="Application&lt;br&gt;BitacoraApplication&lt;br&gt;Service_380_jh" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Arial;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="795" y="80" width="210" height="70" />
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-13" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
-          <mxGeometry height="759" width="14.5" x="1806.7" y="1092" as="geometry" />
+        <mxCell id="repo" value="Repository&lt;br&gt;BitacoraRepository&lt;br&gt;_380_jh" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Arial;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1040" y="80" width="210" height="70" />
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-15" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
-          <mxGeometry height="651" width="14.5" x="2096.7" y="1146" as="geometry" />
+        <mxCell id="mapper" value="DAL&lt;br&gt;BitacoraDataMapper&lt;br&gt;_380_jh" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Arial;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1285" y="80" width="210" height="70" />
         </mxCell>
-        <UserObject label="" mermaidId="e:BitacoraDM-&gt;BitacoraDM#0" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="Cgh9YPN3L66CRgxnLfrv-59">
-          <mxCell edge="1" parent="1" source="Cgh9YPN3L66CRgxnLfrv-15" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" target="Cgh9YPN3L66CRgxnLfrv-15">
-            <mxGeometry relative="1" as="geometry">
-              <Array as="points">
-                <mxPoint x="2161.95" y="1551" />
-                <mxPoint x="2167.75" y="1563" />
-                <mxPoint x="2161.95" y="1575" />
-              </Array>
-              <mxPoint x="2111.2" y="1551" as="sourcePoint" />
-              <mxPoint x="2111.2" y="1575" as="targetPoint" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-17" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
-          <mxGeometry height="226" width="14.5" x="2386.7" y="1200" as="geometry" />
+        <mxCell id="db" value="DAL&lt;br&gt;DatabaseContext&lt;br&gt;_380_jh" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;fontFamily=Arial;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1530" y="80" width="210" height="70" />
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-19" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
-          <mxGeometry height="118" width="14.5" x="2834.75" y="1254" as="geometry" />
+        <mxCell id="sql" value="SQL Server" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Arial;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1775" y="80" width="210" height="70" />
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-21" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
-          <mxGeometry height="54" width="14.5" x="3124.75" y="1635" as="geometry" />
+        <mxCell id="section1" value="Flujo principal — consulta inicial y búsqueda con filtros" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontStyle=1;align=left;fillColor=#f5f5f5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="180" width="2030" height="36" />
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-23" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
-          <mxGeometry height="54" width="14.5" x="3414.75" y="930" as="geometry" />
+        <mxCell id="msg2" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="165" y="290" />
+            <mxPoint as="targetPoint" x="410" y="290" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-24" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
-          <mxGeometry height="135" width="14.5" x="3414.75" y="2000" as="geometry" />
+        <mxCell id="label2" value="1. Selecciona «Bitácora»." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="173.0" y="235" width="229" height="50" />
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-26" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[Sin permiso BITACORA_VER]]" vertex="1">
-          <mxGeometry height="16" width="3430.7" x="136.3" y="491" as="geometry" />
+        <mxCell id="msg3" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="410" y="370" />
+            <mxPoint as="targetPoint" x="410" y="392" />
+            <Array as="points">
+              <mxPoint x="450" y="370" />
+              <mxPoint x="450" y="392" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-27" parent="1" style="shape=line;dashed=1;fixDash=1;dashPattern=2 2;strokeColor=#ff9999;container=0;" vertex="1">
-          <mxGeometry height="1" width="3509" x="58" y="610" as="geometry" />
+        <mxCell id="label3" value="2. ValidarPermiso_380_jh(BitacoraVer_380_jh)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;align=left;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="458" y="352" width="187" height="54" />
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-28" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[Tiene permiso BITACORA_VER]]" vertex="1">
-          <mxGeometry height="16" width="3509" x="58" y="612" as="geometry" />
+        <mxCell id="note4" value="Si no hay permiso, MainForm informa la denegación y no construye la pantalla. Si está autorizado, continúa con la carga inicial." style="shape=note;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Arial;fontSize=15;align=left;verticalAlign=top;spacing=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="470" width="2010" height="94" />
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-30" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[Por cada fila del DataTable]" vertex="1">
-          <mxGeometry height="16" width="1210.75" x="2051.75" y="1478" as="geometry" />
+        <mxCell id="msg5" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="410" y="640" />
+            <mxPoint as="targetPoint" x="655" y="640" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-32" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[Por cada BitacoraRegistro_380_jh]" vertex="1">
-          <mxGeometry height="16" width="2295.35" x="1155.65" y="1927" as="geometry" />
+        <mxCell id="label5" value="new BitacoraView_380_jh()" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="418.0" y="585" width="229" height="50" />
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-34" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[Sin eventos]]" vertex="1">
-          <mxGeometry height="16" width="883.05" x="252.3" y="2288" as="geometry" />
+        <mxCell id="msg6" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="655" y="720" />
+            <mxPoint as="targetPoint" x="655" y="742" />
+            <Array as="points">
+              <mxPoint x="695" y="720" />
+              <mxPoint x="695" y="742" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-35" parent="1" style="shape=line;dashed=1;fixDash=1;dashPattern=2 2;strokeColor=#ff9999;container=0;" vertex="1">
-          <mxGeometry height="1" width="961.35" x="174" y="2407" as="geometry" />
+        <mxCell id="label6" value="ConfigurarFiltros_380_jh(); CargarBitacora_380_jh()" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;align=left;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="703" y="702" width="187" height="54" />
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-36" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[Con eventos]]" vertex="1">
-          <mxGeometry height="16" width="961.35" x="174" y="2409" as="geometry" />
+        <mxCell id="msg7" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="165" y="820" />
+            <mxPoint as="targetPoint" x="655" y="820" />
+          </mxGeometry>
         </mxCell>
-        <UserObject label="Usuario" mermaidId="n:Usuario" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);participant=seqActorStick;verticalAlign=bottom;align=center;spacingBottom=4;size=90;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Usuario" id="Cgh9YPN3L66CRgxnLfrv-83">
-          <mxCell parent="1" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);participant=seqActorStick;verticalAlign=bottom;align=center;spacingBottom=4;size=90;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;" vertex="1">
-            <mxGeometry height="2940" width="217.5" x="87" y="40" as="geometry" />
-          </mxCell>
-        </UserObject>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-84" parent="Cgh9YPN3L66CRgxnLfrv-83" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
-          <mxGeometry height="2837" width="14.5" x="101.5" y="103" as="geometry" />
+        <mxCell id="label7" value="3. Indica filtros y pulsa «Buscar»." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="173.0" y="765" width="474" height="50" />
         </mxCell>
-        <mxCell id="Cgh9YPN3L66CRgxnLfrv-95" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;span style=&quot;font-size: 80px;&quot;&gt;&lt;b&gt;CONSULTAR BITACORA&lt;/b&gt;&lt;/span&gt;" vertex="1">
-          <mxGeometry height="30" width="1406.5" x="1077.35" y="-280" as="geometry" />
+        <mxCell id="msg8" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="655" y="900" />
+            <mxPoint as="targetPoint" x="655" y="922" />
+            <Array as="points">
+              <mxPoint x="695" y="900" />
+              <mxPoint x="695" y="922" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label8" value="btnBuscar_Click_380_jh(); ObtenerFiltro_380_jh()" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;align=left;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="703" y="882" width="187" height="54" />
+        </mxCell>
+        <mxCell id="msg9" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="655" y="1000" />
+            <mxPoint as="targetPoint" x="900" y="1000" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label9" value="Listar_380_jh(filtro)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="663.0" y="945" width="229" height="50" />
+        </mxCell>
+        <mxCell id="msg10" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="900" y="1080" />
+            <mxPoint as="targetPoint" x="1145" y="1080" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label10" value="Listar_380_jh(filtro)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="908.0" y="1025" width="229" height="50" />
+        </mxCell>
+        <mxCell id="msg11" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1145" y="1160" />
+            <mxPoint as="targetPoint" x="1390" y="1160" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label11" value="Listar_380_jh(filtro)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1153.0" y="1105" width="229" height="50" />
+        </mxCell>
+        <mxCell id="msg12" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1390" y="1240" />
+            <mxPoint as="targetPoint" x="1635" y="1240" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label12" value="Abrir_380_jh(); LeerTexto_380_jh(sql, parametros)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1398.0" y="1185" width="229" height="50" />
+        </mxCell>
+        <mxCell id="msg13" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1635" y="1320" />
+            <mxPoint as="targetPoint" x="1880" y="1320" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label13" value="SELECT dbo.Bitacora con filtros parametrizados" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1643.0" y="1265" width="229" height="50" />
+        </mxCell>
+        <mxCell id="msg14" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1880" y="1400" />
+            <mxPoint as="targetPoint" x="1635" y="1400" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label14" value="Filas por fecha_evento DESC, id_bitacora DESC" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1643.0" y="1345" width="229" height="50" />
+        </mxCell>
+        <mxCell id="msg15" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1635" y="1480" />
+            <mxPoint as="targetPoint" x="1390" y="1480" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label15" value="DataTable" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1398.0" y="1425" width="229" height="50" />
+        </mxCell>
+        <mxCell id="msg16" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1390" y="1560" />
+            <mxPoint as="targetPoint" x="1390" y="1582" />
+            <Array as="points">
+              <mxPoint x="1430" y="1560" />
+              <mxPoint x="1430" y="1582" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label16" value="MapearBitacora_380_jh(fila), por cada fila" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;align=left;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1438" y="1542" width="187" height="54" />
+        </mxCell>
+        <mxCell id="msg17" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1390" y="1660" />
+            <mxPoint as="targetPoint" x="1145" y="1660" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label17" value="List&amp;lt;BitacoraRegistro_380_jh&amp;gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1153.0" y="1605" width="229" height="50" />
+        </mxCell>
+        <mxCell id="msg18" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="1145" y="1740" />
+            <mxPoint as="targetPoint" x="900" y="1740" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label18" value="registros" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="908.0" y="1685" width="229" height="50" />
+        </mxCell>
+        <mxCell id="msg19" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="900" y="1820" />
+            <mxPoint as="targetPoint" x="655" y="1820" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label19" value="registros" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="663.0" y="1765" width="229" height="50" />
+        </mxCell>
+        <mxCell id="msg20" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;dashed=1;">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="sourcePoint" x="655" y="1900" />
+            <mxPoint as="targetPoint" x="165" y="1900" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="label20" value="4–5. Muestra eventos y cantidad para consulta." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="173.0" y="1845" width="474" height="50" />
+        </mxCell>
+        <mxCell id="section21" value="Alternativas — actualización, limpieza y ausencia de resultados" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontStyle=1;align=left;fillColor=#f5f5f5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="30" y="1980" width="2030" height="36" />
+        </mxCell>
+        <mxCell id="note22" value="«Actualizar» repite CargarBitacora con los criterios actuales. «Limpiar filtros» borra fechas, usuario, descripción y selecciones y vuelve a cargar. Si no hay coincidencias, la vista muestra el listado vacío. El catch de la DAL también devuelve una lista vacía ante un error de consulta; no existe un mensaje distinto en la pantalla actual." style="shape=note;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Arial;fontSize=15;align=left;verticalAlign=top;spacing=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="2090" width="2010" height="94" />
         </mxCell>
       </root>
     </mxGraphModel>

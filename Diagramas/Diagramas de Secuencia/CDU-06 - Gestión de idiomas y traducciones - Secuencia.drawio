@@ -1,9 +1,419 @@
 <mxfile host="app.diagrams.net">
-  <diagram name="CDU-06 Gestión de idiomas y traducciones" id="tO-YfC1dVPqZIbcCyCzK">
+  <diagram name="CDU-06 · Gestionar idiomas y traducciones · Guardar traducción" id="cdu06-guardar-traduccion">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="2380" pageHeight="1820" math="0" shadow="0">
+      <root>
+        <mxCell id="0" value="" />
+        <mxCell id="1" parent="0" value="" />
+        <mxCell id="titulo" value="CDU-06 · Gestionar idiomas y traducciones · Guardar traducción" parent="1" vertex="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=1;align=center;verticalAlign=middle;">
+          <mxGeometry x="20" y="10" width="2340" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="actor" value="Administrador" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="80" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="151" as="sourcePoint" />
+            <mxPoint x="190" y="1700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ui" value="UI&lt;br&gt;IdiomasView_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="350" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="ui-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="151" as="sourcePoint" />
+            <mxPoint x="460" y="1700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="app" value="Application&lt;br&gt;IdiomaApplicationService_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="620" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="app-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="151" as="sourcePoint" />
+            <mxPoint x="730" y="1700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="repo" value="Repository&lt;br&gt;TranslationRepository_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="890" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="151" as="sourcePoint" />
+            <mxPoint x="1000" y="1700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dal" value="DAL&lt;br&gt;TraduccionDataMapper_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="1160" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="dal-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1270" y="151" as="sourcePoint" />
+            <mxPoint x="1270" y="1700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="db" value="DAL&lt;br&gt;DatabaseContext_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="1430" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="db-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1540" y="151" as="sourcePoint" />
+            <mxPoint x="1540" y="1700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sql" value="SQL Server" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="1700" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="sql-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1810" y="151" as="sourcePoint" />
+            <mxPoint x="1810" y="1700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lm" value="Services&lt;br&gt;LanguageManager_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="1970" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="lm-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2080" y="151" as="sourcePoint" />
+            <mxPoint x="2080" y="1700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-0" parent="1" value="Selecciona componente e idioma, completa el texto y pulsa Guardar" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="190" as="sourcePoint" />
+            <mxPoint x="460" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-1" parent="1" value="GuardarTraduccionDetectada_380_jh(key, descripcion, idiomaId, texto)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="245" as="sourcePoint" />
+            <mxPoint x="730" y="245" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-2" parent="1" value="ListarEtiquetas_380_jh()" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="300" as="sourcePoint" />
+            <mxPoint x="1000" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-3" parent="1" value="ListarEtiquetas_380_jh()" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="355" as="sourcePoint" />
+            <mxPoint x="1270" y="355" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-4" parent="1" value="LeerTexto_380_jh(SELECT Etiqueta, parametros)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1270" y="410" as="sourcePoint" />
+            <mxPoint x="1540" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-5" parent="1" value="SELECT id_etiqueta, clave, descripcion FROM dbo.Etiqueta" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1540" y="465" as="sourcePoint" />
+            <mxPoint x="1810" y="465" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-6" parent="1" value="Filas de etiquetas" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1810" y="520" as="sourcePoint" />
+            <mxPoint x="1540" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-7" parent="1" value="DataTable" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1540" y="575" as="sourcePoint" />
+            <mxPoint x="1270" y="575" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-8" parent="1" value="List&amp;lt;Etiqueta_380_jh&amp;gt;" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1270" y="630" as="sourcePoint" />
+            <mxPoint x="1000" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-9" parent="1" value="Etiquetas" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="685" as="sourcePoint" />
+            <mxPoint x="730" y="685" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ref-10" value="&lt;b&gt;ref&lt;/b&gt;  opt [La clave detectada no existe] CrearEtiqueta_380_jh → INSERT dbo.Etiqueta; se invoca RegistrarAlta_380_jh, sin persistencia de auditoría para Etiqueta." parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;spacing=10;">
+          <mxGeometry x="625" y="730" width="1290" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="m-11" parent="1" value="GuardarTraduccion_380_jh(traduccion)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="795" as="sourcePoint" />
+            <mxPoint x="730" y="820" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="835" y="795" />
+              <mxPoint x="835" y="820" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ref-12" value="&lt;b&gt;ref&lt;/b&gt;  ObtenerTraduccion_380_jh(etiquetaId, idiomaId): recuperar el estado anterior" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;spacing=10;">
+          <mxGeometry x="625" y="840" width="1290" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="m-13" parent="1" value="GuardarTraduccion_380_jh(traduccion)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="905" as="sourcePoint" />
+            <mxPoint x="1000" y="905" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-14" parent="1" value="GuardarTraduccion_380_jh(traduccion)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="960" as="sourcePoint" />
+            <mxPoint x="1270" y="960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-15" parent="1" value="EscribirTexto_380_jh(MERGE Traduccion, parametros)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1270" y="1015" as="sourcePoint" />
+            <mxPoint x="1540" y="1015" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-16" parent="1" value="MERGE dbo.Traduccion por id_etiqueta + id_idioma" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1540" y="1070" as="sourcePoint" />
+            <mxPoint x="1810" y="1070" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-17" parent="1" value="Filas afectadas" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1810" y="1125" as="sourcePoint" />
+            <mxPoint x="1540" y="1125" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-18" parent="1" value="int" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1540" y="1180" as="sourcePoint" />
+            <mxPoint x="1270" y="1180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-19" parent="1" value="bool" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1270" y="1235" as="sourcePoint" />
+            <mxPoint x="1000" y="1235" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-20" parent="1" value="bool" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="1290" as="sourcePoint" />
+            <mxPoint x="730" y="1290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ref-21" value="&lt;b&gt;ref&lt;/b&gt;  [Guardada] ObtenerTraduccion_380_jh posterior e invocar RegistrarAlta_380_jh o RegistrarModificacion_380_jh; el servicio omite la entidad Traduccion." parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;spacing=10;">
+          <mxGeometry x="625" y="1335" width="1290" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="m-22" parent="1" value="Resultado del guardado" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="1400" as="sourcePoint" />
+            <mxPoint x="460" y="1400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-23" parent="1" value="Informa resultado y actualiza el listado" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="1455" as="sourcePoint" />
+            <mxPoint x="190" y="1455" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ref-24" value="&lt;b&gt;ref&lt;/b&gt;  opt [Guardada y pertenece al idioma actual] Notify_380_jh → observadores actualizan textos visibles" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;spacing=10;">
+          <mxGeometry x="355" y="1500" width="1830" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="m-25" parent="1" value="ListarIdiomas_380_jh(false), ListarEtiquetas_380_jh() y ObtenerTraduccion_380_jh(...)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="1565" as="sourcePoint" />
+            <mxPoint x="730" y="1565" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nota" value="Precondición: sesión activa y permiso de editar traducciones. Clave, idioma y texto son obligatorios. La etiqueta se crea solo si la clave detectada aún no existe. Se invoca el servicio de auditoría, pero este retorna sin persistir para Etiqueta y Traduccion porque solo registra Usuario." parent="1" vertex="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontFamily=Arial;align=left;spacing=10;">
+          <mxGeometry x="60" y="1720" width="2260" height="75" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="CDU-06 · Gestionar idiomas y traducciones · Administrar idioma" id="cdu06-administrar-idioma">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="2110" pageHeight="1435" math="0" shadow="0">
+      <root>
+        <mxCell id="0" value="" />
+        <mxCell id="1" parent="0" value="" />
+        <mxCell id="titulo" value="CDU-06 · Gestionar idiomas y traducciones · Administrar idioma" parent="1" vertex="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=24;fontStyle=1;align=center;verticalAlign=middle;">
+          <mxGeometry x="20" y="10" width="2070" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="actor" value="Administrador" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="80" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="151" as="sourcePoint" />
+            <mxPoint x="190" y="1315" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ui" value="UI&lt;br&gt;IdiomasView_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="350" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="ui-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="151" as="sourcePoint" />
+            <mxPoint x="460" y="1315" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="app" value="Application&lt;br&gt;IdiomaApplicationService_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="620" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="app-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="151" as="sourcePoint" />
+            <mxPoint x="730" y="1315" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="repo" value="Repository&lt;br&gt;LanguageRepository_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="890" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="repo-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="151" as="sourcePoint" />
+            <mxPoint x="1000" y="1315" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dal" value="DAL&lt;br&gt;IdiomaDataMapper_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="1160" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="dal-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1270" y="151" as="sourcePoint" />
+            <mxPoint x="1270" y="1315" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="db" value="DAL&lt;br&gt;DatabaseContext_380_jh" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="1430" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="db-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1540" y="151" as="sourcePoint" />
+            <mxPoint x="1540" y="1315" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sql" value="SQL Server" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#6c757d;fontFamily=Arial;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;spacing=6;">
+          <mxGeometry x="1700" y="75" width="220" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="sql-life" parent="1" edge="1" style="endArrow=none;dashed=1;strokeColor=#adb5bd;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1810" y="151" as="sourcePoint" />
+            <mxPoint x="1810" y="1315" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-0" parent="1" value="Selecciona un idioma o Nuevo; completa código, nombre y estado; pulsa Guardar" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="190" as="sourcePoint" />
+            <mxPoint x="460" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-1" parent="1" value="GuardarIdioma_380_jh(idioma, idUsuarioResponsable, motivo)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="245" as="sourcePoint" />
+            <mxPoint x="730" y="245" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ref-2" value="&lt;b&gt;ref&lt;/b&gt;  alt [Idioma nuevo] Crear_380_jh → INSERT Idioma + IdiomaEstadoHistorial; se invoca RegistrarAlta_380_jh, sin persistencia de auditoría para Idioma." parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;spacing=10;">
+          <mxGeometry x="625" y="290" width="1290" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="m-3" parent="1" value="ObtenerPorId_380_jh(idioma.Id_380_jh) [para editar]" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="355" as="sourcePoint" />
+            <mxPoint x="1000" y="355" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-4" parent="1" value="ObtenerPorId_380_jh(id)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="410" as="sourcePoint" />
+            <mxPoint x="1270" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-5" parent="1" value="LeerTexto_380_jh(SELECT Idioma, parametros)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1270" y="465" as="sourcePoint" />
+            <mxPoint x="1540" y="465" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-6" parent="1" value="SELECT dbo.Idioma WHERE id_idioma = @id_idioma" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1540" y="520" as="sourcePoint" />
+            <mxPoint x="1810" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-7" parent="1" value="Idioma anterior" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1810" y="575" as="sourcePoint" />
+            <mxPoint x="1540" y="575" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ref-8" value="&lt;b&gt;ref&lt;/b&gt;  Retorna Idioma anterior a través de DatabaseContext, IdiomaDataMapper y LanguageRepository" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;spacing=10;">
+          <mxGeometry x="625" y="620" width="1290" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="m-9" parent="1" value="Actualizar_380_jh(idioma, responsable, motivo)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="685" as="sourcePoint" />
+            <mxPoint x="1000" y="685" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-10" parent="1" value="Actualizar_380_jh(idioma, responsable, motivo)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1000" y="740" as="sourcePoint" />
+            <mxPoint x="1270" y="740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ref-11" value="&lt;b&gt;ref&lt;/b&gt;  ObtenerPorId_380_jh para conocer el estado anterior" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;spacing=10;">
+          <mxGeometry x="1165" y="785" width="750" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="m-12" parent="1" value="EscribirTexto_380_jh(UPDATE Idioma, parametros)" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1270" y="850" as="sourcePoint" />
+            <mxPoint x="1540" y="850" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-13" parent="1" value="UPDATE dbo.Idioma SET codigo, nombre, estado_idioma" edge="1" style="endArrow=block;endFill=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1540" y="905" as="sourcePoint" />
+            <mxPoint x="1810" y="905" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ref-14" value="&lt;b&gt;ref&lt;/b&gt;  opt [Cambió la activación] INSERT dbo.IdiomaEstadoHistorial con responsable y motivo" parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;spacing=10;">
+          <mxGeometry x="1165" y="950" width="750" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="m-15" parent="1" value="Filas afectadas" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1810" y="1015" as="sourcePoint" />
+            <mxPoint x="1540" y="1015" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ref-16" value="&lt;b&gt;ref&lt;/b&gt;  ObtenerPorId_380_jh posterior e invocar RegistrarModificacion_380_jh; el servicio retorna sin persistir para Idioma." parent="1" vertex="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=middle;spacing=10;">
+          <mxGeometry x="625" y="1060" width="1290" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="m-17" parent="1" value="bool" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="1125" as="sourcePoint" />
+            <mxPoint x="460" y="1125" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m-18" parent="1" value="Informa resultado y refresca idiomas y selector principal" edge="1" style="endArrow=open;dashed=1;html=1;rounded=0;strokeColor=#495057;fontSize=13;fontFamily=Arial;labelBackgroundColor=#ffffff;align=center;verticalAlign=bottom;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="1180" as="sourcePoint" />
+            <mxPoint x="190" y="1180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nota" value="Crear o editar requiere el permiso específico; código y nombre son obligatorios. La creación y los cambios de activación conservan el historial propio de IdiomaEstadoHistorial. Las llamadas al servicio de auditoría no persisten la entidad Idioma. El selector principal solo ofrece idiomas activos." parent="1" vertex="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontFamily=Arial;align=left;spacing=10;">
+          <mxGeometry x="60" y="1335" width="1990" height="75" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="CDU-06 · Cambiar idioma preferido · Soporte" id="tO-YfC1dVPqZIbcCyCzK">
     <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1199.15" pageHeight="1169" math="0" shadow="0">
       <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
+        <mxCell id="0" value="" />
+        <mxCell id="1" parent="0" value="" />
         <UserObject label="UI.Pantallas&lt;div&gt;Observadoras&lt;/div&gt;" mermaidId="n:UAS" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Application.UsuarioApplicationService_380_jh" id="3Skj98DNAFseSrNNjw5E-154">
           <mxCell parent="1" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
             <mxGeometry height="4410" width="217.5" x="5394" y="40" as="geometry" />
@@ -252,7 +662,7 @@
           </mxCell>
         </UserObject>
         <UserObject label="" mermaidId="e:LanguageManager_380_jh-&gt;LanguageManager_380_jh#3" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="3Skj98DNAFseSrNNjw5E-75">
-          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;">
+          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" value="">
             <mxGeometry relative="1" as="geometry">
               <Array as="points">
                 <mxPoint x="2338.85" y="1160" />
@@ -265,7 +675,9 @@
           </mxCell>
         </UserObject>
         <mxCell id="3Skj98DNAFseSrNNjw5E-76" parent="3Skj98DNAFseSrNNjw5E-75" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="CurrentLanguage_380_jh = idioma" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="usuario.IdiomaPreferidoId_380_jh = idioma.Id_380_jh" mermaidId="e:LanguageManager_380_jh-&gt;UsuarioDomain#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="usuario.IdiomaPreferidoId_380_jh = idioma.Id_380_jh" id="3Skj98DNAFseSrNNjw5E-77">
           <mxCell edge="1" parent="1" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="3Skj98DNAFseSrNNjw5E-15">
@@ -530,7 +942,7 @@
           </mxCell>
         </UserObject>
         <UserObject label="" mermaidId="e:LanguageManager_380_jh-&gt;LanguageManager_380_jh#4" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="3Skj98DNAFseSrNNjw5E-112">
-          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;">
+          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" value="">
             <mxGeometry relative="1" as="geometry">
               <Array as="points">
                 <mxPoint x="2338.85" y="3647" />
@@ -543,7 +955,9 @@
           </mxCell>
         </UserObject>
         <mxCell id="3Skj98DNAFseSrNNjw5E-113" parent="3Skj98DNAFseSrNNjw5E-112" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="Notify_380_jh()" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="OnLanguageChanged_380_jh()" mermaidId="e:LanguageManager_380_jh-&gt;MainForm_380_jh#1" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="OnLanguageChanged_380_jh()" id="3Skj98DNAFseSrNNjw5E-114">
           <mxCell edge="1" parent="1" style="endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;dashed=1;" target="3Skj98DNAFseSrNNjw5E-5">
@@ -601,10 +1015,14 @@
           </mxCell>
         </UserObject>
         <mxCell id="3Skj98DNAFseSrNNjw5E-120" parent="3Skj98DNAFseSrNNjw5E-119" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="Actualizar_380_jh título" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="3Skj98DNAFseSrNNjw5E-122" parent="3Skj98DNAFseSrNNjw5E-121" style="edgeLabel;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;fontColor=#333333;container=0;whiteSpace=wrap;labelBackgroundColor=#ffffff;" value="Sincronizar selector con CurrentLanguage_380_jh" vertex="1" connectable="0">
-          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1"><mxPoint x="18" y="-32" as="offset" /></mxGeometry>
+          <mxGeometry height="64" width="220" x="0" y="0" as="geometry" relative="1">
+            <mxPoint x="18" y="-32" as="offset" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="Interfaz traducida" mermaidId="e:MainForm_380_jh-&gt;Usuario_380_jh#1" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Interfaz traducida" id="3Skj98DNAFseSrNNjw5E-123">
           <mxCell edge="1" parent="1" source="3Skj98DNAFseSrNNjw5E-5" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;fontSize=16;labelBackgroundColor=#ffffff;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;">
@@ -651,7 +1069,7 @@
           </mxCell>
         </UserObject>
         <UserObject label="" mermaidId="e:MainForm_380_jh-&gt;MainForm_380_jh#0" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="3Skj98DNAFseSrNNjw5E-119">
-          <mxCell edge="1" parent="1" source="3Skj98DNAFseSrNNjw5E-5" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" target="3Skj98DNAFseSrNNjw5E-5">
+          <mxCell edge="1" parent="1" source="3Skj98DNAFseSrNNjw5E-5" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" target="3Skj98DNAFseSrNNjw5E-5" value="">
             <mxGeometry relative="1" as="geometry">
               <Array as="points">
                 <mxPoint x="551" y="4031" />
@@ -664,7 +1082,7 @@
           </mxCell>
         </UserObject>
         <UserObject label="" mermaidId="e:MainForm_380_jh-&gt;MainForm_380_jh#1" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="3Skj98DNAFseSrNNjw5E-121">
-          <mxCell edge="1" parent="1" source="3Skj98DNAFseSrNNjw5E-5" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" target="3Skj98DNAFseSrNNjw5E-5">
+          <mxCell edge="1" parent="1" source="3Skj98DNAFseSrNNjw5E-5" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" target="3Skj98DNAFseSrNNjw5E-5" value="">
             <mxGeometry relative="1" as="geometry">
               <Array as="points">
                 <mxPoint x="551" y="4162" />
@@ -694,7 +1112,7 @@
         <mxCell id="3Skj98DNAFseSrNNjw5E-39" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[Idioma_380_jh inválido o inactivo]]" vertex="1">
           <mxGeometry height="16" width="5511.45" x="136.3" y="913" as="geometry" />
         </mxCell>
-        <mxCell id="3Skj98DNAFseSrNNjw5E-40" parent="1" style="shape=line;dashed=1;fixDash=1;dashPattern=2 2;strokeColor=#ff9999;container=0;" vertex="1">
+        <mxCell id="3Skj98DNAFseSrNNjw5E-40" parent="1" style="shape=line;dashed=1;fixDash=1;dashPattern=2 2;strokeColor=#ff9999;container=0;" vertex="1" value="">
           <mxGeometry height="1" width="5589.75" x="58" y="1116" as="geometry" />
         </mxCell>
         <mxCell id="3Skj98DNAFseSrNNjw5E-41" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[Idioma_380_jh válido]]" vertex="1">
@@ -703,7 +1121,7 @@
         <mxCell id="3Skj98DNAFseSrNNjw5E-43" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[Usuario_380_jh logueado]]" vertex="1">
           <mxGeometry height="16" width="3282.8" x="1770.45" y="1212" as="geometry" />
         </mxCell>
-        <mxCell id="3Skj98DNAFseSrNNjw5E-44" parent="1" style="shape=line;dashed=1;fixDash=1;dashPattern=2 2;strokeColor=#ff9999;container=0;" vertex="1">
+        <mxCell id="3Skj98DNAFseSrNNjw5E-44" parent="1" style="shape=line;dashed=1;fixDash=1;dashPattern=2 2;strokeColor=#ff9999;container=0;" vertex="1" value="">
           <mxGeometry height="1" width="3361.1" x="1692.15" y="3603" as="geometry" />
         </mxCell>
         <mxCell id="3Skj98DNAFseSrNNjw5E-45" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[Sin usuario logueado]]" vertex="1">
@@ -712,7 +1130,7 @@
         <mxCell id="3Skj98DNAFseSrNNjw5E-47" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[IDs inválidos]]" vertex="1">
           <mxGeometry height="16" width="2788.35" x="2250.4" y="1654" as="geometry" />
         </mxCell>
-        <mxCell id="3Skj98DNAFseSrNNjw5E-48" parent="1" style="shape=line;dashed=1;fixDash=1;dashPattern=2 2;strokeColor=#ff9999;container=0;" vertex="1">
+        <mxCell id="3Skj98DNAFseSrNNjw5E-48" parent="1" style="shape=line;dashed=1;fixDash=1;dashPattern=2 2;strokeColor=#ff9999;container=0;" vertex="1" value="">
           <mxGeometry height="1" width="2866.65" x="2172.1" y="1773" as="geometry" />
         </mxCell>
         <mxCell id="3Skj98DNAFseSrNNjw5E-49" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[IDs válidos]]" vertex="1">
@@ -721,7 +1139,7 @@
         <mxCell id="3Skj98DNAFseSrNNjw5E-51" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[Actualización exitosa]]" vertex="1">
           <mxGeometry height="16" width="2759.35" x="2264.9" y="2381" as="geometry" />
         </mxCell>
-        <mxCell id="3Skj98DNAFseSrNNjw5E-52" parent="1" style="shape=line;dashed=1;fixDash=1;dashPattern=2 2;strokeColor=#ff9999;container=0;" vertex="1">
+        <mxCell id="3Skj98DNAFseSrNNjw5E-52" parent="1" style="shape=line;dashed=1;fixDash=1;dashPattern=2 2;strokeColor=#ff9999;container=0;" vertex="1" value="">
           <mxGeometry height="1" width="2837.65" x="2186.6" y="3419" as="geometry" />
         </mxCell>
         <mxCell id="3Skj98DNAFseSrNNjw5E-53" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#cc0000;container=0;" value="[[No se actualizó]]" vertex="1">
@@ -738,7 +1156,7 @@
         <mxCell id="3Skj98DNAFseSrNNjw5E-131" parent="3Skj98DNAFseSrNNjw5E-130" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#ffe6cc;strokeColor=#d79b00;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
           <mxGeometry height="4257" width="14.5" x="101.5" y="103" as="geometry" />
         </mxCell>
-        <mxCell id="3Skj98DNAFseSrNNjw5E-156" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="&lt;span style=&quot;font-size: 80px;&quot;&gt;&lt;b&gt;IDIOMAS&lt;/b&gt;&lt;/span&gt;" vertex="1">
+        <mxCell id="3Skj98DNAFseSrNNjw5E-156" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=16;" value="CDU-06 · Cambiar idioma preferido (soporte)" vertex="1">
           <mxGeometry height="30" width="1406.5" x="2073.5" y="-300" as="geometry" />
         </mxCell>
         <UserObject label="SQL Server" mermaidId="n:UAS" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=6;lifelineColor=light-dark(#9370DB,#cccccc);size=65;fillColor=light-dark(#ECECFF,#1f2020);strokeColor=light-dark(#9370DB,#cccccc);fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="Application.UsuarioApplicationService_380_jh" id="3Skj98DNAFseSrNNjw5E-148">
@@ -758,8 +1176,6 @@
         <mxCell id="oNJ2s1Zs6e0oiLpQpdqn-21" parent="3Skj98DNAFseSrNNjw5E-148" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
           <mxGeometry height="80" width="14.5" x="102.225" y="3040" as="geometry" />
         </mxCell>
-
-
         <mxCell id="3Skj98DNAFseSrNNjw5E-4" parent="1" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};fillColor=#dbeafe;strokeColor=#6ea8fe;fontColor=light-dark(#333333,#cccccc);fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;container=0;" value="" vertex="1">
           <mxGeometry height="847" width="14.5" x="485.75" y="193" as="geometry" />
         </mxCell>
@@ -810,7 +1226,7 @@
           </mxCell>
         </UserObject>
         <UserObject label="" mermaidId="e:LanguageManager_380_jh-&gt;LanguageManager_380_jh#3" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="oNJ2s1Zs6e0oiLpQpdqn-3">
-          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;">
+          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" value="">
             <mxGeometry relative="1" as="geometry">
               <Array as="points">
                 <mxPoint x="2346.342" y="657" />
@@ -823,7 +1239,7 @@
           </mxCell>
         </UserObject>
         <UserObject label="" mermaidId="e:LanguageManager_380_jh-&gt;LanguageManager_380_jh#3" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="oNJ2s1Zs6e0oiLpQpdqn-4">
-          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;">
+          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" value="">
             <mxGeometry relative="1" as="geometry">
               <Array as="points">
                 <mxPoint x="2346.342" y="761" />
@@ -836,7 +1252,7 @@
           </mxCell>
         </UserObject>
         <UserObject label="" mermaidId="e:LanguageManager_380_jh-&gt;LanguageManager_380_jh#3" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="oNJ2s1Zs6e0oiLpQpdqn-5">
-          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;">
+          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" value="">
             <mxGeometry relative="1" as="geometry">
               <Array as="points">
                 <mxPoint x="2346.342" y="870" />
@@ -858,7 +1274,7 @@
           <mxGeometry height="18" width="290" x="2150.35" y="847" as="geometry" />
         </mxCell>
         <UserObject label="" mermaidId="e:LanguageManager_380_jh-&gt;LanguageManager_380_jh#3" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="oNJ2s1Zs6e0oiLpQpdqn-8">
-          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;">
+          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" value="">
             <mxGeometry relative="1" as="geometry">
               <Array as="points">
                 <mxPoint x="2922.717" y="1610" />
@@ -883,7 +1299,7 @@
           <mxGeometry height="80" width="14.5" x="4915.5" y="2440" as="geometry" />
         </mxCell>
         <UserObject label="" mermaidId="e:LanguageManager_380_jh-&gt;LanguageManager_380_jh#3" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="oNJ2s1Zs6e0oiLpQpdqn-18">
-          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;">
+          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" value="">
             <mxGeometry relative="1" as="geometry">
               <Array as="points">
                 <mxPoint x="4981.717" y="2750" />
@@ -899,7 +1315,7 @@
           <mxGeometry height="612.5" width="14.5" x="4915.5" y="2737.5" as="geometry" />
         </mxCell>
         <UserObject label="" mermaidId="e:LanguageManager_380_jh-&gt;LanguageManager_380_jh#3" mermaidBaseStyle="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="" id="oNJ2s1Zs6e0oiLpQpdqn-20">
-          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;">
+          <mxCell edge="1" parent="1" style="edgeStyle=none;curved=1;endArrow=block;endSize=9;verticalAlign=bottom;align=center;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#444444;fontColor=#333333;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;rounded=0;" value="">
             <mxGeometry relative="1" as="geometry">
               <Array as="points">
                 <mxPoint x="4981.717" y="3010" />
