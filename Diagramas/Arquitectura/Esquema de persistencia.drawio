@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="29.0.3" type="device">
+  <diagram id="esquema-persistencia" name="Esquema de persistencia">
+    <mxGraphModel dx="1400" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="0" page="0" pageScale="1" pageWidth="1400" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Esquema de persistencia de datos" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;text;strokeColor=none;fillColor=none;fontSize=36;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="0" y="8" width="1400" height="64" as="geometry"/>
+        </mxCell>
+        <mxCell id="application" value="Servicios de&#10;aplicación" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=8;fillColor=#E8F1FA;strokeColor=#557B9C;align=center;verticalAlign=middle;fontStyle=1;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="20" y="270" width="230" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="repository" value="Repositorios" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=8;fillColor=#E8F1FA;strokeColor=#557B9C;align=center;verticalAlign=middle;fontStyle=1;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="320" y="270" width="230" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="mapper" value="DataMappers&#10;DAL" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=8;fillColor=#E8F1FA;strokeColor=#557B9C;align=center;verticalAlign=middle;fontStyle=1;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="620" y="270" width="230" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="context" value="DatabaseContext_380_jh&#10;&#10;ADO.NET · System.Data.SqlClient&#10;SqlConnection / SqlCommand&#10;Commit / Rollback" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=8;fillColor=#DCEAF7;strokeColor=#3D6485;align=center;verticalAlign=middle;spacing=12;" vertex="1" parent="1">
+          <mxGeometry x="930" y="235" width="450" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="configuration" value="Configuración local&#10;de conexión" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=8;fillColor=#F4F6F8;strokeColor=#7B8793;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="995" y="105" width="320" height="85" as="geometry"/>
+        </mxCell>
+        <mxCell id="sql" value="SQL Server · HemovidaGest · dbo" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=5;fillColor=#EDF4FB;strokeColor=#557B9C;verticalAlign=top;spacingTop=20;fontSize=30;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="160" y="530" width="1220" height="320" as="geometry"/>
+        </mxCell>
+        <mxCell id="storage-pn1" value="PN1" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#9BB4CB;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="sql">
+          <mxGeometry x="30" y="82" width="275" height="94" as="geometry"/>
+        </mxCell>
+        <mxCell id="storage-pn2" value="PN2" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#9BB4CB;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="sql">
+          <mxGeometry x="325" y="82" width="275" height="94" as="geometry"/>
+        </mxCell>
+        <mxCell id="storage-masters" value="Maestros&#10;compartidos" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#9BB4CB;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="sql">
+          <mxGeometry x="620" y="82" width="275" height="94" as="geometry"/>
+        </mxCell>
+        <mxCell id="storage-security" value="Usuarios /&#10;Permisos" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#9BB4CB;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="sql">
+          <mxGeometry x="915" y="82" width="275" height="94" as="geometry"/>
+        </mxCell>
+        <mxCell id="storage-i18n" value="Idiomas /&#10;Traducciones" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#9BB4CB;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="sql">
+          <mxGeometry x="30" y="198" width="275" height="94" as="geometry"/>
+        </mxCell>
+        <mxCell id="storage-audit" value="Bitácora /&#10;Auditoría" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#9BB4CB;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="sql">
+          <mxGeometry x="325" y="198" width="275" height="94" as="geometry"/>
+        </mxCell>
+        <mxCell id="storage-integrity" value="DVH / DVV /&#10;Integridad" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#9BB4CB;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="sql">
+          <mxGeometry x="620" y="198" width="275" height="94" as="geometry"/>
+        </mxCell>
+        <mxCell id="storage-receipts" value="ComprobantePendiente&#10;XML / ruta" style="whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=24;fontColor=#17324D;strokeWidth=2;rounded=1;arcSize=6;fillColor=#FFFFFF;strokeColor=#9BB4CB;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="sql">
+          <mxGeometry x="915" y="198" width="275" height="94" as="geometry"/>
+        </mxCell>
+        <mxCell id="application-repository" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#3D6485;strokeWidth=2.8;fontFamily=Arial;fontSize=24;fontColor=#17324D;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="application" target="repository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="repository-mapper" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#3D6485;strokeWidth=2.8;fontFamily=Arial;fontSize=24;fontColor=#17324D;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="repository" target="mapper">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="mapper-context" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#3D6485;strokeWidth=2.8;fontFamily=Arial;fontSize=24;fontColor=#17324D;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="mapper" target="context">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="configuration-context" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#3D6485;strokeWidth=2.8;fontFamily=Arial;fontSize=24;fontColor=#17324D;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 5;endArrow=open;endFill=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="configuration" target="context">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="context-sql" value="SP + SQL parametrizado" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#3D6485;strokeWidth=2.8;fontFamily=Arial;fontSize=24;fontColor=#17324D;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="context" target="sql">
+          <mxGeometry relative="1" as="geometry" x="0" y="-2">
+            <Array as="points">
+              <mxPoint x="1155" y="482"/>
+              <mxPoint x="770" y="482"/>
+            </Array>
+            <mxPoint x="0" y="-16" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
