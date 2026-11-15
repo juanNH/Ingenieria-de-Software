@@ -1,263 +1,263 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <mxfile host="Electron" agent="Codex" version="24.7.17">
   <diagram id="cdu-03-clases" name="CDU-03 · Cerrar sesión · Clases">
     <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3026" pageHeight="1333" math="0" shadow="0">
       <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
         <mxCell id="pkg-UI" value="" style="shape=folder;fontStyle=1;tabWidth=160;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="40" y="132" width="696" height="568" as="geometry" />
+          <mxGeometry x="40" y="132" width="696" height="568" as="geometry"/>
         </mxCell>
         <mxCell id="pkg-UI-title" value="UI" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="52" y="135" width="672" height="28" as="geometry" />
+          <mxGeometry x="52" y="135" width="672" height="28" as="geometry"/>
         </mxCell>
         <mxCell id="pkg-Application" value="" style="shape=folder;fontStyle=1;tabWidth=160;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="790" y="132" width="696" height="568" as="geometry" />
+          <mxGeometry x="790" y="132" width="696" height="568" as="geometry"/>
         </mxCell>
         <mxCell id="pkg-Application-title" value="Application" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="802" y="135" width="672" height="28" as="geometry" />
+          <mxGeometry x="802" y="135" width="672" height="28" as="geometry"/>
         </mxCell>
         <mxCell id="pkg-Repository" value="" style="shape=folder;fontStyle=1;tabWidth=160;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="1540" y="132" width="696" height="568" as="geometry" />
+          <mxGeometry x="1540" y="132" width="696" height="568" as="geometry"/>
         </mxCell>
         <mxCell id="pkg-Repository-title" value="Repository" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1552" y="135" width="672" height="28" as="geometry" />
+          <mxGeometry x="1552" y="135" width="672" height="28" as="geometry"/>
         </mxCell>
         <mxCell id="pkg-DAL" value="" style="shape=folder;fontStyle=1;tabWidth=160;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="2290" y="132" width="696" height="568" as="geometry" />
+          <mxGeometry x="2290" y="132" width="696" height="568" as="geometry"/>
         </mxCell>
         <mxCell id="pkg-DAL-title" value="DAL" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="2302" y="135" width="672" height="28" as="geometry" />
+          <mxGeometry x="2302" y="135" width="672" height="28" as="geometry"/>
         </mxCell>
         <mxCell id="pkg-Domain" value="" style="shape=folder;fontStyle=1;tabWidth=160;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="40.0" y="840" width="1446.0" height="248" as="geometry" />
+          <mxGeometry x="40.0" y="840" width="1446.0" height="248" as="geometry"/>
         </mxCell>
         <mxCell id="pkg-Domain-title" value="Domain" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="52.0" y="843" width="1422.0" height="28" as="geometry" />
+          <mxGeometry x="52.0" y="843" width="1422.0" height="28" as="geometry"/>
         </mxCell>
         <mxCell id="pkg-Services" value="" style="shape=folder;fontStyle=1;tabWidth=160;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="1540.0" y="840" width="1446.0" height="248" as="geometry" />
+          <mxGeometry x="1540.0" y="840" width="1446.0" height="248" as="geometry"/>
         </mxCell>
         <mxCell id="pkg-Services-title" value="Services" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="1552.0" y="843" width="1422.0" height="28" as="geometry" />
+          <mxGeometry x="1552.0" y="843" width="1422.0" height="28" as="geometry"/>
         </mxCell>
         <mxCell id="diagram-title" value="CDU-03 — Diagrama de clases: Cerrar sesión" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=26;fontStyle=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="40" y="24" width="2946" height="50" as="geometry" />
+          <mxGeometry x="40" y="24" width="2946" height="50" as="geometry"/>
         </mxCell>
 
         <mxCell id="Program_380_jh" value="Program_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;horizontal=1;startSize=46;horizontalStack=0;collapsible=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
-          <mxGeometry x="68" y="189" width="640" height="112" as="geometry" />
+          <mxGeometry x="68" y="189" width="640" height="130" as="geometry"/>
         </mxCell>
         <mxCell id="Program_380_jh-attributes" value="" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Program_380_jh">
-          <mxGeometry x="0" y="46" width="640" height="30" as="geometry" />
+          <mxGeometry x="0" y="46" width="640" height="30" as="geometry"/>
         </mxCell>
-        <mxCell id="Program_380_jh-operations" value="- {static} Main(): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Program_380_jh">
-          <mxGeometry x="0" y="76" width="640" height="36" as="geometry" />
+        <mxCell id="Program_380_jh-operations" value="- {static} Main(): void&lt;br/&gt;- {static} DesconectarProveedoresAccesibilidad_380_jh(): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Program_380_jh">
+          <mxGeometry x="0" y="76" width="640" height="54" as="geometry"/>
         </mxCell>
         <mxCell id="MainForm_380_jh" value="MainForm_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;horizontal=1;startSize=46;horizontalStack=0;collapsible=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
-          <mxGeometry x="68" y="349" width="640" height="158" as="geometry" />
+          <mxGeometry x="68" y="349" width="640" height="158" as="geometry"/>
         </mxCell>
         <mxCell id="MainForm_380_jh-attributes" value="- _usuarioService_380_jh: UsuarioApplicationService_380_jh {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="MainForm_380_jh">
-          <mxGeometry x="0" y="46" width="640" height="36" as="geometry" />
+          <mxGeometry x="0" y="46" width="640" height="36" as="geometry"/>
         </mxCell>
         <mxCell id="MainForm_380_jh-operations" value="- salirToolStripMenuItem_Click_380_jh(sender: object, e: EventArgs): void&lt;br/&gt;- MainForm_FormClosed_380_jh(sender: object, e: FormClosedEventArgs): void&lt;br/&gt;+ OnLanguageChanged_380_jh(idioma: Idioma_380_jh): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="MainForm_380_jh">
-          <mxGeometry x="0" y="82" width="640" height="76" as="geometry" />
+          <mxGeometry x="0" y="82" width="640" height="76" as="geometry"/>
         </mxCell>
         <mxCell id="Login_380_jh" value="Login_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;horizontal=1;startSize=46;horizontalStack=0;collapsible=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
-          <mxGeometry x="68" y="555" width="640" height="112" as="geometry" />
+          <mxGeometry x="68" y="555" width="640" height="112" as="geometry"/>
         </mxCell>
         <mxCell id="Login_380_jh-attributes" value="" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Login_380_jh">
-          <mxGeometry x="0" y="46" width="640" height="30" as="geometry" />
+          <mxGeometry x="0" y="46" width="640" height="30" as="geometry"/>
         </mxCell>
         <mxCell id="Login_380_jh-operations" value="+ Login_380_jh()" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Login_380_jh">
-          <mxGeometry x="0" y="76" width="640" height="36" as="geometry" />
+          <mxGeometry x="0" y="76" width="640" height="36" as="geometry"/>
         </mxCell>
         <mxCell id="UsuarioApplicationService_380_jh" value="UsuarioApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;horizontal=1;startSize=46;horizontalStack=0;collapsible=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
-          <mxGeometry x="818" y="189" width="640" height="118" as="geometry" />
+          <mxGeometry x="818" y="189" width="640" height="118" as="geometry"/>
         </mxCell>
         <mxCell id="UsuarioApplicationService_380_jh-attributes" value="- _digitoVerificadorService_380_jh: DigitoVerificadorApplicationService_380_jh {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="UsuarioApplicationService_380_jh">
-          <mxGeometry x="0" y="46" width="640" height="36" as="geometry" />
+          <mxGeometry x="0" y="46" width="640" height="36" as="geometry"/>
         </mxCell>
         <mxCell id="UsuarioApplicationService_380_jh-operations" value="+ RecalcularDigitosVerificadoresUsuarios_380_jh(): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="UsuarioApplicationService_380_jh">
-          <mxGeometry x="0" y="82" width="640" height="36" as="geometry" />
+          <mxGeometry x="0" y="82" width="640" height="36" as="geometry"/>
         </mxCell>
         <mxCell id="DigitoVerificadorApplicationService_380_jh" value="DigitoVerificadorApplicationService_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;horizontal=1;startSize=46;horizontalStack=0;collapsible=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
-          <mxGeometry x="818" y="355" width="640" height="118" as="geometry" />
+          <mxGeometry x="818" y="355" width="640" height="118" as="geometry"/>
         </mxCell>
         <mxCell id="DigitoVerificadorApplicationService_380_jh-attributes" value="- _digitoVerificadorRepository_380_jh: DigitoVerificadorRepository_380_jh {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DigitoVerificadorApplicationService_380_jh">
-          <mxGeometry x="0" y="46" width="640" height="36" as="geometry" />
+          <mxGeometry x="0" y="46" width="640" height="36" as="geometry"/>
         </mxCell>
         <mxCell id="DigitoVerificadorApplicationService_380_jh-operations" value="+ RecalcularUsuarios_380_jh(): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DigitoVerificadorApplicationService_380_jh">
-          <mxGeometry x="0" y="82" width="640" height="36" as="geometry" />
+          <mxGeometry x="0" y="82" width="640" height="36" as="geometry"/>
         </mxCell>
         <mxCell id="DigitoVerificadorRepository_380_jh" value="DigitoVerificadorRepository_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;horizontal=1;startSize=46;horizontalStack=0;collapsible=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
-          <mxGeometry x="1568" y="189" width="640" height="118" as="geometry" />
+          <mxGeometry x="1568" y="189" width="640" height="118" as="geometry"/>
         </mxCell>
         <mxCell id="DigitoVerificadorRepository_380_jh-attributes" value="- _digitoVerificadorDataMapper_380_jh: DigitoVerificadorDataMapper_380_jh {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DigitoVerificadorRepository_380_jh">
-          <mxGeometry x="0" y="46" width="640" height="36" as="geometry" />
+          <mxGeometry x="0" y="46" width="640" height="36" as="geometry"/>
         </mxCell>
         <mxCell id="DigitoVerificadorRepository_380_jh-operations" value="+ RecalcularUsuarios_380_jh(): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DigitoVerificadorRepository_380_jh">
-          <mxGeometry x="0" y="82" width="640" height="36" as="geometry" />
+          <mxGeometry x="0" y="82" width="640" height="36" as="geometry"/>
         </mxCell>
         <mxCell id="DigitoVerificadorDataMapper_380_jh" value="DigitoVerificadorDataMapper_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;horizontal=1;startSize=46;horizontalStack=0;collapsible=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
-          <mxGeometry x="2318" y="189" width="640" height="118" as="geometry" />
+          <mxGeometry x="2318" y="189" width="640" height="118" as="geometry"/>
         </mxCell>
         <mxCell id="DigitoVerificadorDataMapper_380_jh-attributes" value="- _databaseContext_380_jh: DatabaseContext_380_jh {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DigitoVerificadorDataMapper_380_jh">
-          <mxGeometry x="0" y="46" width="640" height="36" as="geometry" />
+          <mxGeometry x="0" y="46" width="640" height="36" as="geometry"/>
         </mxCell>
         <mxCell id="DigitoVerificadorDataMapper_380_jh-operations" value="+ RecalcularUsuarios_380_jh(): bool" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DigitoVerificadorDataMapper_380_jh">
-          <mxGeometry x="0" y="82" width="640" height="36" as="geometry" />
+          <mxGeometry x="0" y="82" width="640" height="36" as="geometry"/>
         </mxCell>
         <mxCell id="Sesion_380_jh" value="Sesion_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;horizontal=1;startSize=46;horizontalStack=0;collapsible=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
-          <mxGeometry x="68.0" y="897" width="640" height="158" as="geometry" />
+          <mxGeometry x="68.0" y="897" width="640" height="158" as="geometry"/>
         </mxCell>
         <mxCell id="Sesion_380_jh-attributes" value="- _usuario_380_jh: Usuario_380_jh&lt;br/&gt;- _fechaInicio_380_jh: DateTime" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Sesion_380_jh">
-          <mxGeometry x="0" y="46" width="640" height="56" as="geometry" />
+          <mxGeometry x="0" y="46" width="640" height="56" as="geometry"/>
         </mxCell>
         <mxCell id="Sesion_380_jh-operations" value="+ {static} ObtenerInstancia_380_jh(): Sesion_380_jh&lt;br/&gt;+ Logout_380_jh(): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Sesion_380_jh">
-          <mxGeometry x="0" y="102" width="640" height="56" as="geometry" />
+          <mxGeometry x="0" y="102" width="640" height="56" as="geometry"/>
         </mxCell>
         <mxCell id="Usuario_380_jh" value="Usuario_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;horizontal=1;startSize=46;horizontalStack=0;collapsible=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
-          <mxGeometry x="750.0" y="897" width="640" height="132" as="geometry" />
+          <mxGeometry x="750.0" y="897" width="640" height="132" as="geometry"/>
         </mxCell>
         <mxCell id="Usuario_380_jh-attributes" value="+ Id_380_jh: int&lt;br/&gt;+ Username_380_jh: string" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Usuario_380_jh">
-          <mxGeometry x="0" y="46" width="640" height="56" as="geometry" />
+          <mxGeometry x="0" y="46" width="640" height="56" as="geometry"/>
         </mxCell>
         <mxCell id="Usuario_380_jh-operations" value="" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="Usuario_380_jh">
-          <mxGeometry x="0" y="102" width="640" height="30" as="geometry" />
+          <mxGeometry x="0" y="102" width="640" height="30" as="geometry"/>
         </mxCell>
         <mxCell id="LanguageManager_380_jh" value="LanguageManager_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;horizontal=1;startSize=46;horizontalStack=0;collapsible=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
-          <mxGeometry x="1568.0" y="897" width="640" height="138" as="geometry" />
+          <mxGeometry x="1568.0" y="897" width="640" height="138" as="geometry"/>
         </mxCell>
         <mxCell id="LanguageManager_380_jh-attributes" value="+ {static} Instance_380_jh: LanguageManager_380_jh&lt;br/&gt;- _observers_380_jh: List&amp;lt;IObserverLanguage_380_jh&amp;gt; {readOnly}" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="LanguageManager_380_jh">
-          <mxGeometry x="0" y="46" width="640" height="56" as="geometry" />
+          <mxGeometry x="0" y="46" width="640" height="56" as="geometry"/>
         </mxCell>
         <mxCell id="LanguageManager_380_jh-operations" value="+ Detach_380_jh(observer: IObserverLanguage_380_jh): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="LanguageManager_380_jh">
-          <mxGeometry x="0" y="102" width="640" height="36" as="geometry" />
+          <mxGeometry x="0" y="102" width="640" height="36" as="geometry"/>
         </mxCell>
         <mxCell id="IObserverLanguage_380_jh" value="«interface»&lt;br/&gt;IObserverLanguage_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;horizontal=1;startSize=58;horizontalStack=0;collapsible=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
-          <mxGeometry x="2250.0" y="897" width="640" height="124" as="geometry" />
+          <mxGeometry x="2250.0" y="897" width="640" height="124" as="geometry"/>
         </mxCell>
         <mxCell id="IObserverLanguage_380_jh-attributes" value="" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="IObserverLanguage_380_jh">
-          <mxGeometry x="0" y="58" width="640" height="30" as="geometry" />
+          <mxGeometry x="0" y="58" width="640" height="30" as="geometry"/>
         </mxCell>
         <mxCell id="IObserverLanguage_380_jh-operations" value="+ OnLanguageChanged_380_jh(idioma: Idioma_380_jh): void" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="IObserverLanguage_380_jh">
-          <mxGeometry x="0" y="88" width="640" height="36" as="geometry" />
+          <mxGeometry x="0" y="88" width="640" height="36" as="geometry"/>
         </mxCell>
         <mxCell id="DatabaseContext_380_jh" value="DatabaseContext_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;horizontal=1;startSize=46;horizontalStack=0;collapsible=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
-          <mxGeometry x="2318" y="355" width="640" height="172" as="geometry" />
+          <mxGeometry x="2318" y="355" width="640" height="172" as="geometry"/>
         </mxCell>
         <mxCell id="DatabaseContext_380_jh-attributes" value="" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DatabaseContext_380_jh">
-          <mxGeometry x="0" y="46" width="640" height="30" as="geometry" />
+          <mxGeometry x="0" y="46" width="640" height="30" as="geometry"/>
         </mxCell>
         <mxCell id="DatabaseContext_380_jh-operations" value="+ Abrir_380_jh(): void&lt;br/&gt;+ Cerrar_380_jh(): void&lt;br/&gt;+ LeerTexto_380_jh(sql: string, parametros: List&amp;lt;SqlParameter&amp;gt; = null): DataTable&lt;br/&gt;+ EscribirTexto_380_jh(sql: string, parametros: List&amp;lt;SqlParameter&amp;gt; = null): int" style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=9;spacingRight=9;spacingTop=7;overflow=hidden;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" vertex="1" parent="DatabaseContext_380_jh">
-          <mxGeometry x="0" y="76" width="640" height="96" as="geometry" />
+          <mxGeometry x="0" y="76" width="640" height="96" as="geometry"/>
         </mxCell>
         <mxCell id="rel-1" value="" style="edgeStyle=none;rounded=0;orthogonal=1;html=1;strokeColor=#495057;strokeWidth=1.3;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;spacing=3;endArrow=open;endFill=0;dashed=1;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;" edge="1" parent="1" source="Program_380_jh" target="MainForm_380_jh">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="388.0" y="319" />
-              <mxPoint x="388.0" y="331" />
+              <mxPoint x="388.0" y="319"/>
+              <mxPoint x="388.0" y="331"/>
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="rel-2" value="" style="edgeStyle=none;rounded=0;orthogonal=1;html=1;strokeColor=#495057;strokeWidth=1.3;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;spacing=3;endArrow=open;endFill=0;dashed=1;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;" edge="1" parent="1" source="Program_380_jh" target="Login_380_jh">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="388.0" y="319" />
-              <mxPoint x="50" y="319" />
-              <mxPoint x="50" y="537" />
-              <mxPoint x="388.0" y="537" />
+              <mxPoint x="388.0" y="319"/>
+              <mxPoint x="50" y="319"/>
+              <mxPoint x="50" y="537"/>
+              <mxPoint x="388.0" y="537"/>
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="rel-3" value="" style="edgeStyle=none;rounded=0;orthogonal=1;html=1;strokeColor=#495057;strokeWidth=1.3;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;spacing=3;endArrow=open;endFill=0;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="MainForm_380_jh" target="UsuarioApplicationService_380_jh">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="726" y="428.0" />
-              <mxPoint x="726" y="248.0" />
-              <mxPoint x="800" y="248.0" />
+              <mxPoint x="726" y="428.0"/>
+              <mxPoint x="726" y="248.0"/>
+              <mxPoint x="800" y="248.0"/>
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="rel-4" value="" style="edgeStyle=none;rounded=0;orthogonal=1;html=1;strokeColor=#495057;strokeWidth=1.3;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;spacing=3;endArrow=open;endFill=0;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;" edge="1" parent="1" source="UsuarioApplicationService_380_jh" target="DigitoVerificadorApplicationService_380_jh">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1138.0" y="325" />
-              <mxPoint x="1138.0" y="337" />
+              <mxPoint x="1138.0" y="325"/>
+              <mxPoint x="1138.0" y="337"/>
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="rel-5" value="" style="edgeStyle=none;rounded=0;orthogonal=1;html=1;strokeColor=#495057;strokeWidth=1.3;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;spacing=3;endArrow=open;endFill=0;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="DigitoVerificadorApplicationService_380_jh" target="DigitoVerificadorRepository_380_jh">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1476" y="414.0" />
-              <mxPoint x="1476" y="248.0" />
-              <mxPoint x="1550" y="248.0" />
+              <mxPoint x="1476" y="414.0"/>
+              <mxPoint x="1476" y="248.0"/>
+              <mxPoint x="1550" y="248.0"/>
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="rel-6" value="" style="edgeStyle=none;rounded=0;orthogonal=1;html=1;strokeColor=#495057;strokeWidth=1.3;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;spacing=3;endArrow=open;endFill=0;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="DigitoVerificadorRepository_380_jh" target="DigitoVerificadorDataMapper_380_jh">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="2226" y="248.0" />
-              <mxPoint x="2300" y="248.0" />
+              <mxPoint x="2226" y="248.0"/>
+              <mxPoint x="2300" y="248.0"/>
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="rel-7" value="" style="edgeStyle=none;rounded=0;orthogonal=1;html=1;strokeColor=#495057;strokeWidth=1.3;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;spacing=3;endArrow=open;endFill=0;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;" edge="1" parent="1" source="DigitoVerificadorDataMapper_380_jh" target="DatabaseContext_380_jh">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="2638.0" y="325" />
-              <mxPoint x="2638.0" y="337" />
+              <mxPoint x="2638.0" y="325"/>
+              <mxPoint x="2638.0" y="337"/>
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="rel-8" value="" style="edgeStyle=none;rounded=0;orthogonal=1;html=1;strokeColor=#495057;strokeWidth=1.3;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;spacing=3;endArrow=open;endFill=0;dashed=1;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;" edge="1" parent="1" source="MainForm_380_jh" target="Sesion_380_jh">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="388.0" y="525" />
-              <mxPoint x="726" y="525" />
-              <mxPoint x="726" y="879" />
-              <mxPoint x="388.0" y="879" />
+              <mxPoint x="388.0" y="525"/>
+              <mxPoint x="726" y="525"/>
+              <mxPoint x="726" y="879"/>
+              <mxPoint x="388.0" y="879"/>
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="rel-9" value="" style="edgeStyle=none;rounded=0;orthogonal=1;html=1;strokeColor=#495057;strokeWidth=1.3;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;spacing=3;endArrow=open;endFill=0;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="Sesion_380_jh" target="Usuario_380_jh">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="726" y="976.0" />
-              <mxPoint x="726" y="963.0" />
-              <mxPoint x="732.0" y="963.0" />
+              <mxPoint x="726" y="976.0"/>
+              <mxPoint x="726" y="963.0"/>
+              <mxPoint x="732.0" y="963.0"/>
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="rel-10" value="" style="edgeStyle=none;rounded=0;orthogonal=1;html=1;strokeColor=#495057;strokeWidth=1.3;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;spacing=3;endArrow=open;endFill=0;dashed=1;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="MainForm_380_jh" target="LanguageManager_380_jh">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="726" y="428.0" />
-              <mxPoint x="726" y="525" />
-              <mxPoint x="1550" y="525" />
-              <mxPoint x="1550" y="966.0" />
+              <mxPoint x="726" y="428.0"/>
+              <mxPoint x="726" y="525"/>
+              <mxPoint x="1550" y="525"/>
+              <mxPoint x="1550" y="966.0"/>
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="rel-11" value="" style="edgeStyle=none;rounded=0;orthogonal=1;html=1;strokeColor=#495057;strokeWidth=1.3;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;spacing=3;endArrow=block;endFill=0;dashed=1;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="MainForm_380_jh" target="IObserverLanguage_380_jh">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="726" y="428.0" />
-              <mxPoint x="726" y="491" />
-              <mxPoint x="2232.0" y="491" />
-              <mxPoint x="2232.0" y="959.0" />
+              <mxPoint x="726" y="428.0"/>
+              <mxPoint x="726" y="491"/>
+              <mxPoint x="2232.0" y="491"/>
+              <mxPoint x="2232.0" y="959.0"/>
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="rel-12" value="" style="edgeStyle=none;rounded=0;orthogonal=1;html=1;strokeColor=#495057;strokeWidth=1.3;fontFamily=Arial;fontSize=12;labelBackgroundColor=#ffffff;spacing=3;endArrow=open;endFill=0;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;" edge="1" parent="1" source="LanguageManager_380_jh" target="IObserverLanguage_380_jh">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="2226" y="966.0" />
-              <mxPoint x="2226" y="959.0" />
-              <mxPoint x="2232.0" y="959.0" />
+              <mxPoint x="2226" y="966.0"/>
+              <mxPoint x="2226" y="959.0"/>
+              <mxPoint x="2232.0" y="959.0"/>
             </Array>
           </mxGeometry>
         </mxCell>

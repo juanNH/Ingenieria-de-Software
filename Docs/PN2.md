@@ -1,10 +1,10 @@
 # PN2 · Solicitud, reserva, entrega y destino de unidades
 
-Alcance: CDUN-05 a CDUN-08. Documentación normalizada: 14 de noviembre de 2026.
+Alcance: CDUN-05 a CDUN-08 y su consulta de abastecimiento complementaria. Documentación actualizada: 15 de noviembre de 2026.
 
 La solicitud incorpora la identificación y el estudio del receptor, su validación por un operador y la búsqueda preliminar de unidades por componente y grupo. Las reglas y los pasos de instalación están en [Compatibilidad en PN2](PN2-compatibilidad.md).
 
-PN2 continúa el trabajo de PN1: utiliza las unidades registradas, clasificadas y liberadas allí para atender solicitudes transfusionales. Incluye código C#, persistencia SQL Server, permisos, tres pantallas operativas disponibles desde PN2 y diagramas de negocio editables en draw.io. PN1 y PN2 aparecen como opciones separadas del menú principal. El tab Consultas está oculto por ahora; las vistas Trazabilidad y Reportes y alertas, junto con sus permisos, se conservan en el código. La pantalla independiente de Inventario también se conserva en el código, pero no aparece en el menú.
+PN2 continúa el trabajo de PN1: utiliza las unidades registradas, clasificadas y liberadas allí para atender solicitudes transfusionales. Incluye código C#, persistencia SQL Server, permisos, tres pantallas operativas disponibles desde PN2 y diagramas de negocio editables en draw.io. PN1 y PN2 aparecen como opciones separadas del menú principal. **Consultas** contiene únicamente **Abastecimiento y riesgo de vencimiento**, visible con el permiso `REPORTE_VER`. Las vistas Trazabilidad, Reportes y alertas e Inventario se conservan en el código, pero no aparecen en la navegación actual.
 
 ## Referencias y alcance
 
@@ -22,7 +22,7 @@ Las pruebas de reutilización están incluidas en `Tests/PN2.Compatibilidad.Test
 
 El circuito operativo admite entregas parciales, cancelación de reservas con motivo y reapertura del saldo cuando una entrega se devuelve o descarta. La lógica de reingreso se conserva en el servicio, pero no es una acción disponible en la interfaz actual.
 
-La secuencia de roles describe el flujo de negocio. Las secuencias de clases muestran los pasos y alternativas de cada CDUN desde la UI hasta SQL Server. Los DER muestran las tablas y claves foráneas que intervienen en cada caso.
+La secuencia de roles describe el flujo de negocio. Las secuencias de clases muestran los pasos y alternativas de cada CDUN desde la UI hasta SQL Server. Los DER muestran las tablas y claves foráneas que intervienen en cada caso. Los [CDU del sistema](CDU.md) también cuentan con clases y secuencias normalizadas. El [modelo final G06](Modelo-clases-final.md) integra los tipos y relaciones de las siete capas, y el [modelo final G07](Modelo-datos-final.md) reúne las 32 tablas y 53 claves foráneas del esquema físico completo.
 
 ## Diagramas de negocio
 
@@ -48,10 +48,12 @@ La carga posterior del estudio es una alternativa del CDUN-05. El CDUN-06 —Val
 | Operador del banco de sangre | Registrar y consultar solicitudes, consultar reservas, registrar destino y consultar reportes. | PN2_OPERADOR_BANCO |
 | Operador autorizado | Registrar solicitudes, validar estudios, consultar unidades candidatas; reservar, cancelar y entregar. | PN1_OPERADOR_AUTORIZADO, ampliada |
 | Responsable autorizado | Consultar reportes. La lógica de reingreso de una unidad Devuelta se conserva en el servicio, pero no tiene una acción disponible en la interfaz actual. | PN1_RESPONSABLE_AUTORIZADO, ampliada |
-| Auditor | Consultar trazabilidad. | PN2_AUDITOR |
+| Auditor | Permiso de trazabilidad conservado para la vista de soporte, fuera de la navegación actual. | PN2_AUDITOR |
 | Administrador del banco de sangre | Acceso a las operaciones de PN2 mediante la familia administrativa existente. | ADMINISTRADOR |
 
 La UI habilita las pantallas y acciones según los permisos del usuario. Las operaciones de registro no repiten esas comprobaciones en Application; las consultas SQL conservan los controles de acceso y de alcance de los datos. La instalación agrega las familias y sus relaciones sin crear usuarios de demostración. Para revisar el circuito con distintos actores, asignar las familias mediante la gestión de permisos existente y volver a iniciar sesión. El profesional sin permisos operativos adicionales ve solamente sus solicitudes.
+
+El reporte de abastecimiento requiere `REPORTE_VER` en la navegación, el servicio de aplicación y SQL, además de integridad válida. Su presencia en Consultas no incorpora las vistas de soporte conservadas en el código.
 
 ## Flujo operativo
 
@@ -68,9 +70,9 @@ La UI habilita las pantallas y acciones según los permisos del usuario. Las ope
 
 El servicio conserva el reingreso de una unidad Devuelta a En revisión por un Responsable autorizado. Antes de reservarla otra vez, debe clasificarse y liberarse desde PN1. La interfaz actual no ofrece esa acción.
 
-Las vistas Trazabilidad y Reportes y alertas también permanecen en el código, con el tab Consultas oculto. Son consultas de soporte y no forman parte de las pantallas operativas de CDUN-05 a CDUN-08.
+Las vistas Trazabilidad y Reportes y alertas permanecen en el código sin entradas de menú. Trazabilidad consulta movimientos por unidad, período, estado resultante, grupo y componente. Reportes y alertas reúne inventario, solicitudes, saldos, reservas, movimientos y alertas operativas. Sus filtros de fecha delimitan registros y movimientos; no reconstruyen el stock de una fecha pasada. La vista independiente de Inventario tampoco tiene una entrada de menú: la lista de unidades disponibles está dentro de Reservas y entregas.
 
-El sistema filtra por componente y una regla preliminar de ABO/RhD; la evaluación clínica y las pruebas aplicables corresponden al personal autorizado. No determina por sí solo la aptitud definitiva. No se implementa gestión automatizada de anticuerpos, prioridades ni FEFO.
+El sistema filtra por componente y una regla preliminar de ABO/RhD; la evaluación clínica y las pruebas aplicables corresponden al personal autorizado. No determina por sí solo la aptitud definitiva. No se implementa gestión automatizada de anticuerpos, prioridades clínicas ni FEFO.
 
 ## Cantidades y estados
 
@@ -109,20 +111,20 @@ Las referencias E3, C7–C12 y S5–S7 corresponden al flujo principal del recor
 | Entrega, estado de destino, responsable, fecha y motivo cuando corresponde. | C11. Registrar el estado de destino configurado. | Estado registrado y saldo actualizado. |
 | Destino guardado de una entrega. | C12. Generar automáticamente el comprobante de esa entrega. | S7. PDF con el destino o comprobante pendiente de reintento. |
 
-La consulta de candidatas forma parte de la reserva de CDUN-06, y la cancelación de una reserva activa es una alternativa de ese mismo caso. Trazabilidad, reportes y reingreso se conservan como operaciones complementarias fuera del flujo principal de este recorte.
+La consulta de candidatas forma parte de la reserva de CDUN-06, y la cancelación de una reserva activa es una alternativa de ese mismo caso. El reporte de abastecimiento complementa el análisis del proceso sin agregar una operación al flujo principal de CDUN-05 a CDUN-08. Las vistas de soporte y el reingreso conservados en el código mantienen el alcance indicado anteriormente.
 
 ## Pantallas y consultas
 
 Desde el menú principal aparecen las opciones habilitadas por los permisos de la sesión:
 
-- **Solicitudes transfusionales:** registro del pedido y cantidades de atención.
-- **Reservas y entregas:** selección de solicitud y stock, reserva, cancelación y entrega; historial de reservas.
-- **Destino de unidades:** entregas y registro del estado de destino configurado en Maestros.
-- **Consultas (oculto en la navegación actual):** las vistas Trazabilidad y Reportes y alertas permanecen implementadas. Trazabilidad permite filtrar por unidad, período, estado resultante del movimiento, grupo y componente. Reportes y alertas muestra inventario actual, solicitudes, saldos, reservas, movimientos y alertas operativas.
+- **PN2 → Solicitudes transfusionales:** registro del pedido y cantidades de atención.
+- **PN2 → Reservas y entregas:** selección de solicitud y stock, reserva, cancelación y entrega; historial de reservas.
+- **PN2 → Destino de unidades:** entregas y registro del estado de destino configurado en Maestros.
+- **Consultas → Abastecimiento y riesgo de vencimiento:** única pantalla de reporte inteligente, habilitada por `REPORTE_VER`. Presenta filtros, cuatro indicadores, una grilla por cohorte exacta e interpretación de la fila seleccionada, sin pestañas adicionales.
 
-Las alertas incluyen unidades vencidas, reservas activas cuya unidad ya no reúne las condiciones y solicitudes con saldo sin stock apto del componente. Son resultados de consulta, sin envío automático ni umbrales de días agregados. Los filtros de fecha delimitan registros y movimientos; no reconstruyen el stock de una fecha pasada. El período incluye el día completo seleccionado como Hasta.
+El reporte relaciona stock liberado vigente y no reservado, unidades próximas a vencer, demanda del período y saldo actual. Calcula cobertura histórica y déficit por componente, grupo y Rh exactos; las solicitudes sin estudio validado aparecen separadas con las métricas por cohorte como N/A. El período incluye ambos días completos y el horizonte de vencimiento admite entre 1 y 365 días. **Solo alertas** filtra las filas visibles y actualiza los indicadores. Los cálculos y prioridades se detallan en [ReporteInteligente.md](ReporteInteligente.md).
 
-Las tres pantallas PN2 disponibles en la navegación tienen textos en español e inglés y utilizan el mecanismo de integridad de PN1. Las vistas de consultas también se conservan implementadas, pero su tab superior no se agrega al menú. La lista de unidades disponibles está dentro de Reservas y entregas. Un error de consulta se informa y bloquea la selección de resultados anteriores para evitar operar sobre datos desactualizados.
+Las tres pantallas operativas y el reporte de abastecimiento tienen textos en español e inglés y utilizan el mecanismo de integridad. Un error de consulta se informa e impide operar con resultados anteriores; en el reporte también se vacían las cifras anteriores hasta una consulta válida. Las métricas no asignan unidades ni sustituyen la validación del estudio y de la compatibilidad.
 
 **Copiar comprobante PDF** permite recuperar el original de una entrega; **Exportar reporte PDF** genera un documento con datos actuales. Para ambas consultas PN2 se requieren `SOLICITUD_VER` y `RESERVA_VER`. El estado Entregada no es un cierre irreversible: una devolución o descarte posterior puede reabrir el saldo. Véase [Comprobantes y balanceo](Comprobantes-PN1-PN2.md).
 
@@ -197,7 +199,9 @@ En esa instalación se generó el respaldo `HemovidaGest_AntesPN2_20261017_18464
 
 ### Comprobaciones realizadas
 
-La implementación anterior completó comprobaciones SQL, controles de concurrencia, vencimiento y migración, además de integración Application/UI y revisión de las pantallas PN2. La navegación actual expone las pantallas operativas de PN2; oculta el tab Consultas y la pantalla independiente de Inventario. La validación funcional del usuario queda pendiente.
+Las comprobaciones técnicas cubren SQL, concurrencia, vencimiento, migración, integración Application/UI y las pantallas operativas de PN2. El reporte único completó 22 comprobaciones de interfaz, 13 de integración SQL/UI y 22 de SQL, con salida `0`. También se verificó desde Visual Studio el ingreso real, la apertura del reporte y cinco cierres de sesión consecutivos; tras el sexto ingreso se cerró la aplicación mediante la X con el reporte abierto y salida `0`. La causa y la regresión se documentan en [Cierre de sesión y accesibilidad](Cierre-sesion-accesibilidad.md).
+
+Los modelos finales G06 y G07 y las figuras del documento tienen sus verificaciones descritas en [Modelo de clases final](Modelo-clases-final.md) y [Modelo de datos final](Modelo-datos-final.md). Estas evidencias técnicas no constituyen aceptación formal del usuario ni aprobación docente.
 
 ## Referencias técnicas
 

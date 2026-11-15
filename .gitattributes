@@ -1,2 +1,5 @@
 # Preserve the bytes referenced by the G06 editable-source SHA-256.
 "Diagramas/Arquitectura/G06 - Clases completas por capa.drawio" text eol=lf
+# Preserve CDU-03 source hashes shared by its catalog and Drive editables.
+"Diagramas/Diagramas de clases/CDU-03 - Logout - Clases.drawio" text eol=lf
+"Diagramas/Diagramas de Secuencia/CDU-03 - Logout - Secuencia.drawio" text eol=lf

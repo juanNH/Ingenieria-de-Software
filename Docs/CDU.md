@@ -31,6 +31,8 @@ Los diagramas de clases comparten paquetes UI, Application, Repository, DAL, Dom
 
 La vista complementaria [T04 · Roles y permisos](../Diagramas/Diagramas%20de%20clases/CDU-05%20-%20Edici%C3%B3n%20de%20usuario%20-%20Clases%20-%20T04%20Roles%20y%20permisos%20%28soporte%29.drawio) representa `RolesView`: crear familias y administrar sus relaciones. La vista principal de CDU-05 representa `UsuariosView` y la asignación de un rol a una cuenta.
 
+El cierre técnico de CDU-03 incluye la desconexión de proveedores UI Automation antes de volver al ingreso. El problema reproducido, la corrección y la regresión real desde Visual Studio se describen en [Cierre de sesión y accesibilidad](Cierre-sesion-accesibilidad.md).
+
 ## Artefactos
 
 Las 20 fuentes principales draw.io comprenden cinco diagramas de casos de uso, siete de clases y ocho de secuencia. Se conserva además la fuente complementaria de clases T04 · Roles y permisos: 21 archivos editables en total. Sus páginas generan las vistas necesarias para los siete casos. El documento incluye 36 figuras principales:

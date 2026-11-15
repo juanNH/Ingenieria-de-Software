@@ -1,12 +1,12 @@
-# Sistema de Gestión de Clínica
+# HemovidaGest · Gestión de banco de sangre
 
-Sistema de software orientado a la administración de una clínica médica. Este proyecto forma parte de la materia Ingeniería de Software, con el objetivo de aplicar conceptos de diseño, patrones y documentación técnica.
+Sistema de software para registrar donaciones y unidades de sangre y atender solicitudes transfusionales. Este proyecto forma parte de la materia Ingeniería de Software, con el objetivo de aplicar conceptos de diseño, patrones y documentación técnica.
 
 ---
 
 ## Objetivo
 
-Desarrollar un sistema que permita gestionar las operaciones principales de una clínica, aplicando buenas prácticas de ingeniería de software.
+Gestionar el registro, la clasificación y la disponibilidad de unidades de sangre, así como su reserva, entrega y destino, con trazabilidad y controles de integridad.
 
 ---
 
@@ -16,10 +16,20 @@ El proceso de banco de sangre PN1 incluye protección DVH/DVV, detección de
 inconsistencias y recuperación administrativa.
 Ver [instalación, tratamiento de incidentes y pruebas](Database/INTEGRIDAD_PN1.md).
 
-PN2 incluye solicitudes transfusionales, inventario, reservas y entregas parciales,
-destinos, trazabilidad y reportes. Ver [flujo, diagramas draw.io, instalación y
-recorrido de validación funcional](Docs/PN2.md). Los diagramas de clases y la secuencia
-de clases quedan pendientes de esa validación.
+PN2 incluye solicitudes transfusionales, reservas, entregas parciales y registro del
+destino de las unidades. Ver [flujo, diagramas draw.io, instalación y recorrido de
+comprobación funcional](Docs/PN2.md).
+
+El menú **Consultas** contiene una única pantalla: [Abastecimiento y riesgo de
+vencimiento](Docs/ReporteInteligente.md), habilitada por `REPORTE_VER`. Relaciona
+stock vigente, demanda registrada, saldos y vencimientos por componente, grupo y Rh.
+
+Los [CDU del sistema](Docs/CDU.md) tienen sus diagramas de clases y secuencia
+normalizados y contrastados con la implementación. El [modelo final G06](Docs/Modelo-clases-final.md)
+integra las clases de las siete capas y el [modelo final G07](Docs/Modelo-datos-final.md)
+reúne el esquema físico completo en diagramas nativos de SSMS. La
+[arquitectura y persistencia T01](Docs/Arquitectura.md) documenta los componentes,
+la navegación y el almacenamiento actuales.
 
 El menú **Maestros** permite administrar componentes, grupos sanguíneos, factor Rh y destinos de entrega.
 Para actualizar una base existente, ejecutar [InstalarMaestrosPN1.ps1](Database/InstalarMaestrosPN1.ps1); la migración conserva los códigos históricos y crea un respaldo verificado.

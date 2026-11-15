@@ -267,8 +267,8 @@
       "evidence": [
         {
           "file": "UI/Forms/Main/MainForm.cs",
-          "line": 277,
-          "detail": "Recalcula DV, limpia Sesion, DialogResult.Retry y Close; no confirma."
+          "line": 267,
+          "detail": "Recalcula DV, limpia Sesion, establece DialogResult.Retry y cierra MainForm; no confirma."
         },
         {
           "file": "Domain/Seguridad/Sesion.cs",
@@ -277,12 +277,17 @@
         },
         {
           "file": "UI/Program.cs",
-          "line": 18,
-          "detail": "El bucle vuelve a crear Login cuando MainForm devuelve Retry."
+          "line": 33,
+          "detail": "Conserva Retry al terminar Application.Run; dispone MainForm y vuelve a crear Login si corresponde."
+        },
+        {
+          "file": "UI/Program.cs",
+          "line": 36,
+          "detail": "Después de Run y Dispose, desconecta los proveedores UIA antes del siguiente Login; el helper comprueba HRESULT y conserva compatibilidad con Windows anteriores a 8."
         },
         {
           "file": "UI/Forms/Main/MainForm.cs",
-          "line": 561,
+          "line": 544,
           "detail": "Desuscribe el observador de idioma al cerrar."
         }
       ],
@@ -296,7 +301,7 @@
         "classes": {
           "source": "Diagramas/Diagramas de clases/CDU-03 - Logout - Clases.drawio",
           "driveUrl": "https://drive.google.com/file/d/1WGqSzu6lNqzCvTUZKJbNsbOCYUqOk8Sa/view?usp=drivesdk",
-          "sha256": "82074fefedcf84888cab56aaaf757dbb3c708bff002645626ab856ed61e875e7",
+          "sha256": "5e06c03f05c4e2f671fc5e8a57a205bb91a5fea036822d6f3d1426f92935545b",
           "classCount": 12,
           "relationCount": 12,
           "layout": "UI, Application, Repository y DAL; Domain y Services debajo.",
@@ -309,7 +314,7 @@
             "views": [
               "CDU-03 · Cerrar sesión · Secuencia"
             ],
-            "sha256": "5361e9f1d6c78c941a9a203d4f99274ce64611c7fd6e8336e5f04c70bcc32967"
+            "sha256": "69c488be359e8639488633be540bd888cac22fd07b22a57e4b83341248ac7965"
           }
         ],
         "screen": {
