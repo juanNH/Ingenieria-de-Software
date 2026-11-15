@@ -25,6 +25,7 @@ namespace UI
         private ToolStripMenuItem _destinosToolStripMenuItem_380_jh;
         private ToolStripMenuItem _trazabilidadToolStripMenuItem_380_jh;
         private ToolStripMenuItem _reportesToolStripMenuItem_380_jh;
+        private ToolStripMenuItem _abastecimientoToolStripMenuItem_380_jh;
         private ToolStripMenuItem _cambiarContrasenaToolStripMenuItem_380_jh;
         private bool _cargandoIdiomas_380_jh;
 
@@ -94,6 +95,7 @@ namespace UI
             _destinosToolStripMenuItem_380_jh.Tag = "MENU_UNIT_DESTINATION";
             _trazabilidadToolStripMenuItem_380_jh.Tag = "MENU_TRACEABILITY";
             _reportesToolStripMenuItem_380_jh.Tag = "MENU_REPORTS_ALERTS";
+            _abastecimientoToolStripMenuItem_380_jh.Tag = "SUPPLY_TITLE";
             salirToolStripMenuItem_380_jh.Tag = "MENU_LOGOUT";
             _cambiarContrasenaToolStripMenuItem_380_jh.Tag = "MENU_CHANGE_PASSWORD";
             lblIdioma_380_jh.Tag = "LANGUAGE_SELECTOR";
@@ -193,6 +195,12 @@ namespace UI
                 _trazabilidadToolStripMenuItem_380_jh,
                 _reportesToolStripMenuItem_380_jh
             });
+            _abastecimientoToolStripMenuItem_380_jh = new ToolStripMenuItem { Name = "abastecimientoToolStripMenuItem" };
+            _abastecimientoToolStripMenuItem_380_jh.Click += delegate
+            {
+                if (ValidarPermiso_380_jh(PermisosSistema_380_jh.ReporteVer_380_jh)) ShowScreen_380_jh(new AbastecimientoView_380_jh());
+            };
+            _consultasToolStripMenuItem_380_jh.DropDownItems.Insert(0, _abastecimientoToolStripMenuItem_380_jh);
 
             _cambiarContrasenaToolStripMenuItem_380_jh = new ToolStripMenuItem
             {
@@ -209,6 +217,7 @@ namespace UI
             menuStrip1_380_jh.Items.Insert(posicionProcesos, _pn1ToolStripMenuItem_380_jh);
             menuStrip1_380_jh.Items.Insert(posicionProcesos + 1, _pn2ToolStripMenuItem_380_jh);
             menuStrip1_380_jh.Items.Insert(posicionProcesos + 2, _maestrosToolStripMenuItem_380_jh);
+            menuStrip1_380_jh.Items.Insert(posicionProcesos + 3, _consultasToolStripMenuItem_380_jh);
             int posicionSalidaActualizada = menuStrip1_380_jh.Items.IndexOf(salirToolStripMenuItem_380_jh);
             menuStrip1_380_jh.Items.Insert(posicionSalidaActualizada, _cambiarContrasenaToolStripMenuItem_380_jh);
         }
@@ -400,6 +409,7 @@ namespace UI
             bool mostrarDestinos = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.DestinoRegistrar_380_jh);
             bool mostrarTrazabilidad = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.TrazabilidadVer_380_jh);
             bool mostrarReportes = _autorizacionService_380_jh.TienePermiso_380_jh(PermisosSistema_380_jh.ReporteVer_380_jh);
+            _abastecimientoToolStripMenuItem_380_jh.Visible = mostrarReportes;
             _solicitudesToolStripMenuItem_380_jh.Visible = mostrarSolicitudes;
             _reservasToolStripMenuItem_380_jh.Visible = mostrarReservas;
             _destinosToolStripMenuItem_380_jh.Visible = mostrarDestinos;

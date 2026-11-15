@@ -32,11 +32,15 @@ El mapa de navegación relaciona las pantallas de autenticación y el formulario
 
 [Editable publicado en Drive](https://drive.google.com/file/d/18TrQLSn9kP8ACrTR0zQ_XEG4oI9ghJbc/view).
 
-El mapa representa las rutas de los menús disponibles y los diálogos que abren. Al ingresar, el formulario principal elige automáticamente la primera vista autorizada. En la implementación actual se crean las opciones Trazabilidad y Reportes bajo Consultas, pero ese menú no se agrega a la barra; por eso no se representa como un acceso de menú disponible. Ambas vistas aparecen como alternativas en la selección automática de inicio. La correspondencia se puede revisar en [MainForm](../UI/Forms/Main/MainForm.cs), métodos `ConfigurarMenuNegocio_380_jh` y `MostrarPantallaInicial_380_jh`.
+El mapa representa las rutas de los menús disponibles y los diálogos que abren. Al ingresar, el formulario principal elige automáticamente la primera vista autorizada. El menú Consultas reúne Abastecimiento y vencimientos, Reportes y alertas operativas y Trazabilidad. La visibilidad y el acceso se controlan por permisos; el reporte de abastecimiento utiliza `REPORTE_VER`. La correspondencia se puede revisar en [MainForm](../UI/Forms/Main/MainForm.cs), métodos `ConfigurarMenuNegocio_380_jh`, `ConfigurarMenuPorPermisos_380_jh` y `MostrarPantallaInicial_380_jh`.
 
 ## Esquema de persistencia
 
 El acceso a SQL Server, los grupos de datos persistidos y la relación con los archivos de intercambio y comprobantes se describen en [Persistencia.md](Persistencia.md).
+
+## Modelos finales
+
+El [modelo de clases integrado G06](Modelo-clases-final.md) reúne los tipos de las siete capas, sus contratos y relaciones, con trazabilidad al código y balance con los diagramas parciales. El [modelo de datos físico G07](Modelo-datos-final.md) presenta las tablas, columnas y claves foráneas reales de SQL Server mediante diagramas nativos de SSMS.
 
 ## Referencias de implementación
 

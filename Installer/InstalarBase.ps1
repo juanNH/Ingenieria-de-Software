@@ -114,7 +114,10 @@ $scripts = @(
     '11_ComprobantesAutomaticos.sql',
     '12_DiagramasSSMS.sql',
     '13_AjusteCantidadDonacion.sql',
-    '14_DiagramasCDUSSMS.sql'
+    '14_DiagramasCDUSSMS.sql',
+    '15_AbastecimientoRiesgo.sql',
+    '15a_AbastecimientoUI.sql',
+    '16_DiagramasFinalesSSMS.sql'
 )
 if ($DatosPrueba) {
     $scripts += 'DatosPrueba.sql'

@@ -19,7 +19,7 @@ La configuración de conexión se resuelve desde `App.local.config`. No se inclu
 
 Los archivos de intercambio XML de unidades se cargan en una vista temporal; no insertan filas en SQL. Los comprobantes PDF se generan como archivos después de confirmar la operación. SQL conserva la instantánea y la ruta para permitir reintentos. Véanse [serialización XML](PN1-serializacion-xml.md) y [comprobantes PN1 y PN2](Comprobantes-PN1-PN2.md).
 
-El detalle de tablas, columnas y relaciones corresponde a los DER nativos de SSMS. El instalador incorpora esos diagramas mediante los scripts `12_DiagramasSSMS.sql` y `14_DiagramasCDUSSMS.sql`, según se describe en [Database/README.md](../Database/README.md).
+El detalle de tablas, columnas y relaciones corresponde a los DER nativos de SSMS. El instalador incorpora los diagramas por caso mediante `12_DiagramasSSMS.sql` y `14_DiagramasCDUSSMS.sql`, y las cuatro vistas del [modelo final G07](Modelo-datos-final.md) mediante `16_DiagramasFinalesSSMS.sql`. En total quedan 21 DER nativos editables, según el orden de [Database/README.md](../Database/README.md).
 
 ## Referencias de implementación
 

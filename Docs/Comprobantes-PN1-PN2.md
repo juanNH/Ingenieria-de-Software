@@ -40,4 +40,4 @@ Las referencias figuran en los diagramas editables de [entrada, comportamiento y
 
 ## Verificación
 
-Compilar `IngDeSoftware.sln` con restauración de NuGet. `Tests/Comprobantes.Tests.ps1` verifica los PDF manuales; `Tests/Comprobantes.Automaticos.Tests.ps1` utiliza una base SQL temporal y comprueba los resultados alternativos, rollback, instantáneas, reintento, permisos y ausencia de duplicados. El reporte inteligente de estadísticas queda para una etapa posterior.
+Compilar `IngDeSoftware.sln` con restauración de NuGet. `Tests/Comprobantes.Tests.ps1` verifica los PDF manuales; `Tests/Comprobantes.Automaticos.Tests.ps1` utiliza una base SQL temporal y comprueba los resultados alternativos, rollback, instantáneas, reintento, permisos y ausencia de duplicados. El reporte de [abastecimiento y riesgo de vencimiento](ReporteInteligente.md) analiza stock, demanda histórica y saldos actuales; es independiente de los comprobantes automáticos.

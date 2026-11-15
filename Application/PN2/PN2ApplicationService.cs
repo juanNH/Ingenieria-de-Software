@@ -207,6 +207,23 @@ namespace Application
             return _repository_380_jh.ListarReporte_380_jh(filtro, usuario.Id_380_jh);
         }
 
+        public List<FilaAbastecimiento_380_jh> ListarAbastecimiento_380_jh(AbastecimientoFiltro_380_jh filtro)
+        {
+            Usuario_380_jh usuario = UsuarioActual_380_jh();
+            if (!new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(usuario, PermisosSistema_380_jh.ReporteVer_380_jh))
+                throw new UnauthorizedAccessException("OPERATION_NOT_AUTHORIZED");
+            ValidarConsulta_380_jh(filtro != null &&
+                filtro.Desde_380_jh.Date >= new DateTime(1753, 1, 1) &&
+                filtro.Desde_380_jh.Date <= filtro.Hasta_380_jh.Date && filtro.Hasta_380_jh.Date <= DateTime.Today &&
+                filtro.HorizonteVencimientoDias_380_jh >= 1 && filtro.HorizonteVencimientoDias_380_jh <= 365 &&
+                TextoValido_380_jh(filtro.TipoComponente_380_jh, 100) &&
+                TextoValido_380_jh(filtro.GrupoSanguineo_380_jh, 5) && TextoValido_380_jh(filtro.FactorRh_380_jh, 5));
+            InformeIntegridad_380_jh informe = _integridad_380_jh.Verificar_380_jh();
+            if (!informe.Disponible_380_jh || !informe.EsValida_380_jh)
+                throw new InvalidOperationException("INTEGRITY_BLOCKED");
+            return _repository_380_jh.ListarAbastecimiento_380_jh(filtro, usuario.Id_380_jh);
+        }
+
         private CodigoOperacionPN2_380_jh Ejecutar_380_jh(bool datosValidos,
             BitacoraAccion_380_jh accion, string descripcion, Func<int, CodigoOperacionPN2_380_jh> operacion)
         {

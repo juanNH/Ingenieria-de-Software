@@ -40,8 +40,9 @@ Source: "{#LocalDbMsi}"; DestName: "SqlLocalDB.msi"; Flags: dontcopy
 Source: "{#VcRedistX64}"; DestName: "vc_redist.x64.exe"; Flags: dontcopy
 Source: "{#VcRedistX86}"; DestName: "vc_redist.x86.exe"; Flags: dontcopy
 Source: "..\Database\00_tecni_salud_schema.sql"; Flags: dontcopy
-Source: "..\Database\StoredProcedures\*.sql"; Excludes: "14_DiagramasCDUSSMS.sql,99_I18n_Reset_Es_En.sql"; Flags: dontcopy
+Source: "..\Database\StoredProcedures\*.sql"; Excludes: "14_DiagramasCDUSSMS.sql,16_DiagramasFinalesSSMS.sql,99_I18n_Reset_Es_En.sql"; Flags: dontcopy
 Source: "..\Database\StoredProcedures\14_DiagramasCDUSSMS.sql"; Flags: dontcopy
+Source: "..\Database\StoredProcedures\16_DiagramasFinalesSSMS.sql"; Flags: dontcopy
 Source: "..\UI\bin\Release\UI.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\UI\bin\Release\UI.exe.config"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\UI\bin\Release\*.dll"; DestDir: "{app}"; Flags: ignoreversion

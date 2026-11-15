@@ -158,7 +158,15 @@ La protección DVH/DVV y la recuperación existentes incluyen las nuevas tablas 
 
 Opcionalmente se pueden indicar `-Servidor` y `-Base`. El instalador usa la conexión local sin mostrar sus credenciales, comprueba la integridad y crea un backup COPY_ONLY con checksum en la carpeta de backups de SQL Server; verifica ese archivo antes de migrar. La cuenta SQL necesita permisos de backup y de modificación de esquema.
 
-Luego ejecuta `08_PN2_Catalogos.sql`, `06_MaestrosPN1.sql`, `06a_CompatibilidadTransfusional.sql`, `06b_TipificacionDonante.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql`, `12_DiagramasSSMS.sql`, `13_AjusteCantidadDonacion.sql` y `14_DiagramasCDUSSMS.sql` en una transacción y verifica nuevamente la integridad y la presencia de los siete CDU nativos antes de confirmar. Los scripts 12 y 14 dejan diez vistas de los casos de negocio y siete de los casos de uso del sistema en **Database Diagrams** de SSMS; la creación de una base nueva mediante el instalador también los incluye. Un error revierte la actualización. No usar el esquema inicial completo para actualizar una base con datos. Una base que ya tiene PN2 puede actualizar solo comprobantes con `./Database/InstalarComprobantes.ps1`.
+Luego ejecuta `08_PN2_Catalogos.sql`, `06_MaestrosPN1.sql`, `06a_CompatibilidadTransfusional.sql`, `06b_TipificacionDonante.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql`, `12_DiagramasSSMS.sql`, `13_AjusteCantidadDonacion.sql`, `14_DiagramasCDUSSMS.sql`, `15_AbastecimientoRiesgo.sql`, `15a_AbastecimientoUI.sql` y `16_DiagramasFinalesSSMS.sql` en una transacción y verifica nuevamente la integridad y la presencia de los siete CDU nativos antes de confirmar. Los scripts 15 y 15a incorporan el [reporte de abastecimiento](ReporteInteligente.md) y sus traducciones. Los scripts 12, 14 y 16 dejan **21 DER nativos** en **Database Diagrams** de SSMS: diez vistas de los casos de negocio, siete de los casos de uso del sistema y cuatro del [modelo final G07](Modelo-datos-final.md). La creación de una base nueva mediante el instalador incluye los mismos reportes y diagramas. Un error revierte la actualización. No usar el esquema inicial completo para actualizar una base con datos.
+
+Una base PN2 actualizada que ya tiene comprobantes puede incorporar solo los scripts 15, 15a y 16 con:
+
+```powershell
+./Database/InstalarEntregaFinal.ps1 -Servidor . -Base HemovidaGest
+```
+
+Este actualizador usa autenticación integrada, crea y verifica un respaldo antes de aplicar los tres scripts en una transacción y comprueba la integridad al finalizar. Para actualizar únicamente comprobantes, continúa disponible `./Database/InstalarComprobantes.ps1`. El [índice de Database](../Database/README.md) detalla el orden completo y las opciones para cada estado de la base.
 
 Los componentes, grupos sanguíneos y factores Rh se administran en **Maestros** y se comparten con PN1. El filtro de candidatos mantiene las reglas conocidas de PN2: un código nuevo necesita sus reglas en **Maestros → Compatibilidades** para generar candidatos. Ver [Compatibilidad configurable](Compatibilidad-configurable.md).
 

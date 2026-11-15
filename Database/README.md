@@ -9,8 +9,9 @@ la secuencia de migración adecuada.
 
 ## Base nueva con PN1 y PN2
 
-Ejecutá los archivos uno por uno, en este orden, conectado a SQL Server con
-permisos para crear y modificar la base `HemovidaGest`:
+El instalador ejecuta estos **21 scripts**, en este orden, al crear
+`HemovidaGest`. Para una ejecución manual, usá el mismo orden y una cuenta con
+permisos para crear y modificar la base:
 
 1. `00_tecni_salud_schema.sql` — crea la base, tablas y datos iniciales.
 2. `StoredProcedures/01_AuthUsuario.sql` — procedimientos de usuarios.
@@ -20,22 +21,27 @@ permisos para crear y modificar la base `HemovidaGest`:
 6. `StoredProcedures/05_IntegridadPN1.sql` — controles e historial protegido de PN1.
 7. `StoredProcedures/06_MaestrosPN1.sql` — catálogos administrables y sus controles.
 8. `StoredProcedures/06a_CompatibilidadTransfusional.sql` — matriz configurable, reglas iniciales, auditoría e integridad.
-9. `StoredProcedures/06b_TipificacionDonante.sql` y luego `StoredProcedures/07_PN1.sql` — procedimientos de donantes, donaciones y unidades.
-10. `StoredProcedures/08_PN2_Catalogos.sql` — permisos y traducciones de PN2.
-11. `StoredProcedures/09_PN2.sql` — solicitudes, reservas, entregas y trazabilidad.
-12. `StoredProcedures/09a_RelacionesSolicitudPN2.sql` — aplica las claves foráneas de la solicitud a los catálogos y al usuario que valida el estudio.
-13. `StoredProcedures/10_IntegridadPN2.sql` — extiende la integridad para PN2.
-14. `StoredProcedures/11_ComprobantesAutomaticos.sql` — comprobantes automáticos.
-15. `StoredProcedures/12_DiagramasSSMS.sql` — crea los diagramas CDUN-01 a CDUN-08 en Database Diagrams de SSMS, con sus diseños guardados; CDUN-06 conserva tres vistas complementarias del mismo caso.
-16. `StoredProcedures/13_AjusteCantidadDonacion.sql` — corrección de cantidades e historial de donaciones.
-17. `StoredProcedures/14_DiagramasCDUSSMS.sql` — instala los siete DER nativos de CDU-01 a CDU-07, exportados de SSMS. Si ya existen, solo actualiza una definición cuando su versión o contenido difieren; conserva los diagramas de negocio.
+9. `StoredProcedures/06b_TipificacionDonante.sql` — tipificación persistida del donante y recuperación de antecedentes válidos.
+10. `StoredProcedures/07_PN1.sql` — procedimientos de donantes, donaciones y unidades.
+11. `StoredProcedures/08_PN2_Catalogos.sql` — permisos y traducciones de PN2.
+12. `StoredProcedures/09_PN2.sql` — solicitudes, reservas, entregas y trazabilidad.
+13. `StoredProcedures/09a_RelacionesSolicitudPN2.sql` — aplica las claves foráneas de la solicitud a los catálogos y al usuario que valida el estudio.
+14. `StoredProcedures/10_IntegridadPN2.sql` — extiende la integridad para PN2.
+15. `StoredProcedures/11_ComprobantesAutomaticos.sql` — comprobantes automáticos.
+16. `StoredProcedures/12_DiagramasSSMS.sql` — crea los diagramas CDUN-01 a CDUN-08 en Database Diagrams de SSMS, con sus diseños guardados; CDUN-06 conserva tres vistas complementarias del mismo caso.
+17. `StoredProcedures/13_AjusteCantidadDonacion.sql` — corrección de cantidades e historial de donaciones.
+18. `StoredProcedures/14_DiagramasCDUSSMS.sql` — instala los siete DER nativos de CDU-01 a CDU-07, exportados de SSMS. Si ya existen, solo actualiza una definición cuando su versión o contenido difieren; conserva los diagramas de negocio.
+19. `StoredProcedures/15_AbastecimientoRiesgo.sql` — procedimiento del reporte de abastecimiento y riesgo de vencimiento, con autorización e integridad de PN2.
+20. `StoredProcedures/15a_AbastecimientoUI.sql` — textos del reporte en español e inglés, conservando las traducciones existentes.
+21. `StoredProcedures/16_DiagramasFinalesSSMS.sql` — instala el modelo general G07 y sus tres vistas de detalle, guardados en SSMS con todas las tablas en Standard; valida el esquema y actualiza solo las definiciones G07 que difieran.
 
 El script 14 también crea los objetos de soporte nativos que falten, incluida `fn_diagramobjects`, para abrir los diagramas directamente en SSMS sin completar su instalación a mano.
 
-El [instalador de la aplicación](../Installer/InstalarBase.ps1) ejecuta esta secuencia al crear `HemovidaGest`. El paquete incluye los scripts 12 y 14: la base nueva queda con diez vistas de los casos de negocio y siete de los casos de uso del sistema en **Database Diagrams**. Las definiciones son editables en SSMS; la instalación no exporta imágenes PNG.
+El [instalador de la aplicación](../Installer/InstalarBase.ps1) y su paquete incluyen esta secuencia. La base nueva queda con **21 DER nativos** en **Database Diagrams**: diez vistas de los casos de negocio, siete de los casos de uso del sistema y cuatro G07 del modelo final. Las definiciones son editables en SSMS; la instalación no exporta imágenes PNG. El [modelo final](../Docs/Modelo-datos-final.md) cubre 32 tablas, 221 columnas y 53 FK; el [reporte de abastecimiento](../Docs/ReporteInteligente.md) describe el alcance de los scripts 15 y 15a. Si se eligen datos de demostración, el instalador agrega al final el script opcional `Installer/DatosPrueba.sql`, fuera de los 21 scripts base.
 
-Para instalar solo PN1, detenete después del paso 9. Los pasos 10 a 14 son la
-extensión PN2. `09_PN2.sql` requiere PN1 y `06a_CompatibilidadTransfusional.sql` instalados; `10_IntegridadPN2.sql` requiere
+Para instalar solo PN1, detenete después del paso 10. Los pasos 11 a 15 son la
+extensión PN2. Los pasos 16 a 21 completan los diagramas, el ajuste de cantidades
+y el reporte de la entrega final. `09_PN2.sql` requiere PN1 y `06a_CompatibilidadTransfusional.sql` instalados; `10_IntegridadPN2.sql` requiere
 PN2; y los comprobantes requieren ambas integridades.
 
 ## Base existente
@@ -50,19 +56,25 @@ integridad al finalizar:
 | Incorporar PN2 a una base PN1 válida | `./Database/InstalarPN2.ps1` |
 | Configurar compatibilidades en una base con PN2 | `./Database/InstalarCompatibilidad.ps1` |
 | Actualizar únicamente los comprobantes de una base PN2 | `./Database/InstalarComprobantes.ps1` |
+| Incorporar el reporte de abastecimiento, sus traducciones y los cuatro G07 a una base PN2 actualizada con comprobantes | `./Database/InstalarEntregaFinal.ps1 -Servidor . -Base HemovidaGest` |
 | Incorporar grupo sanguíneo y Rh persistidos en el donante (PN1 o PN1+PN2) | `./Database/InstalarMaestrosPN1.ps1` |
 | Incorporar la corrección de cantidades en una base con PN2 y comprobantes | `./Database/InstalarMaestrosPN1.ps1` |
 | Actualizar PN1 para descartar unidades vencidas sin clasificación, con motivo | `./Database/InstalarMaestrosPN1.ps1` |
 
 `InstalarPN2.ps1` aplica, en orden, `08_PN2_Catalogos.sql`, `06_MaestrosPN1.sql`,
-`06a_CompatibilidadTransfusional.sql`, `06b_TipificacionDonante.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql`, `12_DiagramasSSMS.sql`, `13_AjusteCantidadDonacion.sql` y `14_DiagramasCDUSSMS.sql`. El script 12 crea los diagramas que falten y actualiza la numeración a CDUN-01–08. Conserva la disposición del nombre canónico cuando ya existe y retira las entradas anteriores duplicadas, incluida la decisión operativa unificada en CDUN-03. El script 14 agrega los siete CDU del sistema sin eliminar los diagramas PN1/PN2. Requiere permisos de propietario de la base. Los diagramas dependen del esquema de tablas instalado.
+`06a_CompatibilidadTransfusional.sql`, `06b_TipificacionDonante.sql`, `07_PN1.sql`, `09_PN2.sql`, `09a_RelacionesSolicitudPN2.sql`, `10_IntegridadPN2.sql`, `11_ComprobantesAutomaticos.sql`, `12_DiagramasSSMS.sql`, `13_AjusteCantidadDonacion.sql`, `14_DiagramasCDUSSMS.sql`, `15_AbastecimientoRiesgo.sql`, `15a_AbastecimientoUI.sql` y `16_DiagramasFinalesSSMS.sql`. El script 12 crea los diagramas que falten y actualiza la numeración a CDUN-01–08. Conserva la disposición del nombre canónico cuando ya existe y retira las entradas anteriores duplicadas, incluida la decisión operativa unificada en CDUN-03. El script 14 agrega los siete CDU del sistema sin eliminar los diagramas PN1/PN2, y el 16 agrega los cuatro G07 conservando los 17 anteriores. Requiere permisos de propietario de la base. Los diagramas dependen del esquema de tablas instalado.
 
-Para recuperar solo los diagramas después de reconstruir el esquema, ejecutá desde
+[InstalarEntregaFinal.ps1](InstalarEntregaFinal.ps1) usa autenticación integrada de Windows y los parámetros explícitos de servidor y base, sin leer `App.local.config`. Exige PN2, comprobantes e integridad válida; crea un respaldo `COPY_ONLY` con checksum en la carpeta de backups de SQL Server y lo comprueba con `RESTORE VERIFYONLY`. Después aplica únicamente 15, 15a y 16 en una transacción, verifica nuevamente la integridad, el reporte y el modelo general y confirma los cambios. Una falla revierte la actualización. Cerrá la aplicación antes de ejecutarlo y reiniciala al terminar para cargar las traducciones. Si todavía faltan migraciones anteriores de PN2, usá primero `InstalarPN2.ps1`.
+
+Para recuperar solo los diagramas después de reconstruir el esquema completo de
+PN1/PN2 y comprobantes, ejecutá los scripts 12, 14 y 16 en ese orden desde SSMS,
+conectado a la base destino. Si usás `sqlcmd`, estos comandos se ejecutan desde
 la raíz del proyecto:
 
 ```powershell
 sqlcmd -S . -E -d HemovidaGest -b -i Database/StoredProcedures/12_DiagramasSSMS.sql
 sqlcmd -S . -E -d HemovidaGest -b -i Database/StoredProcedures/14_DiagramasCDUSSMS.sql
+sqlcmd -S . -E -d HemovidaGest -b -i Database/StoredProcedures/16_DiagramasFinalesSSMS.sql
 ```
 Si tu instancia tiene otro nombre, reemplazá `.` por el nombre del servidor.
 Después actualizá la carpeta **Database Diagrams** en SSMS. Los scripts restauran los

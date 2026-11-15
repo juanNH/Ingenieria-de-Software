@@ -71,6 +71,8 @@
     <Compile Include="PN2\TrazabilidadFiltro.cs" />
     <Compile Include="PN2\MovimientoTrazabilidad.cs" />
     <Compile Include="PN2\FilaReportePN2.cs" />
+    <Compile Include="PN2\AbastecimientoFiltro.cs" />
+    <Compile Include="PN2\FilaAbastecimiento.cs" />
     <Compile Include="PN2\CodigoOperacionPN2.cs" />
     <Compile Include="PN2\EstadoUnidadPN2.cs" />
     <Compile Include="PN2\EstadoReserva.cs" />

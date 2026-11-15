@@ -1,0 +1,5152 @@
+{
+  "FormatVersion": 1,
+  "Origin": "Exact binary definitions saved by SQL Server Management Studio",
+  "TableView": "Standard",
+  "ApplicationTableCount": 32,
+  "ColumnCount": 221,
+  "PrimaryKeyCount": 32,
+  "ForeignKeyCount": 53,
+  "UniqueConstraintCount": 22,
+  "CheckConstraintCount": 24,
+  "DefaultConstraintCount": 36,
+  "ExcludedSupportTables": [
+    "sysdiagrams",
+    "sysdiagram_properties",
+    "dtproperties"
+  ],
+  "Diagrams": [
+    {
+      "Name": "G07 - Modelo de datos completo",
+      "SourceDiagramId": 19,
+      "Owner": 1,
+      "OwnerName": "dbo",
+      "Version": 1,
+      "Bytes": 202244,
+      "SHA256": "B8ADCE2F8CAFB89A3E8BFD32334AD5743B4D876CE449A9436B48317D75EF0F89",
+      "Tables": [
+        "Auditoria",
+        "Bitacora",
+        "CompatibilidadTransfusional",
+        "CompatibilidadTransfusionalControl",
+        "ComponentePermiso",
+        "ComponentePermisoRelacion",
+        "ComponenteTransfusional",
+        "ComprobantePendiente",
+        "DestinoEntrega",
+        "DigitoVerificadorVertical",
+        "Donacion",
+        "Donante",
+        "Entrega",
+        "EstadoUnidad",
+        "Etiqueta",
+        "FactorRh",
+        "GrupoSanguineo",
+        "Idioma",
+        "IdiomaEstadoHistorial",
+        "IntegridadIncidente",
+        "MaestrosPN1Control",
+        "MovimientoUnidad",
+        "Permiso",
+        "Reserva",
+        "Rol",
+        "RolPermiso",
+        "SolicitudTransfusional",
+        "Traduccion",
+        "Unidad",
+        "Usuario",
+        "UsuarioComponentePermiso",
+        "UsuarioRol"
+      ],
+      "TableCount": 32,
+      "ColumnCount": 221,
+      "ForeignKeys": [
+        "FK_Auditoria_UsuarioActor",
+        "FK_Bitacora_Usuario",
+        "FK_Compatibilidad_Componente",
+        "FK_Compatibilidad_GrupoReceptor",
+        "FK_Compatibilidad_GrupoUnidad",
+        "FK_Compatibilidad_RhReceptor",
+        "FK_Compatibilidad_RhUnidad",
+        "FK_ComponentePermisoRelacion_Hijo",
+        "FK_ComponentePermisoRelacion_Padre",
+        "FK_ComprobantePendiente_Usuario",
+        "FK_DestinoEntrega_Codigo_EstadoUnidad",
+        "FK_Donacion_Componente",
+        "FK_Donacion_Donante",
+        "FK_Donacion_UsuarioResponsable",
+        "FK_Donante_Grupo",
+        "FK_Donante_Rh",
+        "FK_Donante_UsuarioAlta",
+        "FK_Entrega_Destino",
+        "FK_Entrega_Reserva",
+        "FK_Entrega_Usuario",
+        "FK_Entrega_UsuarioDestino",
+        "FK_IdiomaEstadoHistorial_Idioma",
+        "FK_IdiomaEstadoHistorial_Usuario",
+        "FK_MovimientoUnidad_Entrega",
+        "FK_MovimientoUnidad_EstadoAnterior",
+        "FK_MovimientoUnidad_EstadoNuevo",
+        "FK_MovimientoUnidad_Reserva",
+        "FK_MovimientoUnidad_Solicitud",
+        "FK_MovimientoUnidad_Unidad",
+        "FK_MovimientoUnidad_Usuario",
+        "FK_Reserva_Solicitud",
+        "FK_Reserva_Unidad",
+        "FK_Reserva_Usuario",
+        "FK_RolPermiso_Permiso",
+        "FK_RolPermiso_Rol",
+        "FK_SolicitudTransfusional_Componente",
+        "FK_SolicitudTransfusional_Grupo",
+        "FK_SolicitudTransfusional_Rh",
+        "FK_SolicitudTransfusional_Usuario",
+        "FK_SolicitudTransfusional_UsuarioValidacion",
+        "FK_Traduccion_Etiqueta",
+        "FK_Traduccion_Idioma",
+        "FK_Unidad_Componente",
+        "FK_Unidad_Donacion",
+        "FK_Unidad_EstadoUnidad",
+        "FK_Unidad_Grupo",
+        "FK_Unidad_Rh",
+        "FK_Unidad_UsuarioModificacion",
+        "FK_Usuario_Idioma",
+        "FK_UsuarioComponentePermiso_Componente",
+        "FK_UsuarioComponentePermiso_Usuario",
+        "FK_UsuarioRol_Rol",
+        "FK_UsuarioRol_Usuario"
+      ],
+      "ForeignKeyCount": 53,
+      "AllTablesStandard": true,
+      "NativeBinaryPath": "Diagramas/Diagramas Entidad Relacion/G07 - Modelo de datos completo.ssms.bin",
+      "Origin": "Native SSMS open, Arrange Tables, save, exact dbo.sysdiagrams bytes"
+    },
+    {
+      "Name": "G07 - Seguridad, idiomas y auditoria",
+      "SourceDiagramId": 21,
+      "Owner": 1,
+      "OwnerName": "dbo",
+      "Version": 1,
+      "Bytes": 77828,
+      "SHA256": "414A669BE97CF6E38BF695FC845B8B0FD0DCAA7E566141A6F67F01414D4133E7",
+      "Tables": [
+        "Auditoria",
+        "Bitacora",
+        "ComponentePermiso",
+        "ComponentePermisoRelacion",
+        "DigitoVerificadorVertical",
+        "Etiqueta",
+        "Idioma",
+        "IdiomaEstadoHistorial",
+        "IntegridadIncidente",
+        "Permiso",
+        "Rol",
+        "RolPermiso",
+        "Traduccion",
+        "Usuario",
+        "UsuarioComponentePermiso",
+        "UsuarioRol"
+      ],
+      "TableCount": 16,
+      "ColumnCount": 93,
+      "ForeignKeys": [
+        "FK_Auditoria_UsuarioActor",
+        "FK_Bitacora_Usuario",
+        "FK_ComponentePermisoRelacion_Hijo",
+        "FK_ComponentePermisoRelacion_Padre",
+        "FK_IdiomaEstadoHistorial_Idioma",
+        "FK_IdiomaEstadoHistorial_Usuario",
+        "FK_RolPermiso_Permiso",
+        "FK_RolPermiso_Rol",
+        "FK_Traduccion_Etiqueta",
+        "FK_Traduccion_Idioma",
+        "FK_Usuario_Idioma",
+        "FK_UsuarioComponentePermiso_Componente",
+        "FK_UsuarioComponentePermiso_Usuario",
+        "FK_UsuarioRol_Rol",
+        "FK_UsuarioRol_Usuario"
+      ],
+      "ForeignKeyCount": 15,
+      "AllTablesStandard": true,
+      "NativeBinaryPath": "Diagramas/Diagramas Entidad Relacion/G07 - Seguridad, idiomas y auditoria.ssms.bin",
+      "Origin": "Native SSMS open, Arrange Tables, save, exact dbo.sysdiagrams bytes"
+    },
+    {
+      "Name": "G07 - Operaciones PN1 y PN2",
+      "SourceDiagramId": 22,
+      "Owner": 1,
+      "OwnerName": "dbo",
+      "Version": 1,
+      "Bytes": 112644,
+      "SHA256": "7F04D5F0FF5ECA9FDDEAEC30BEA5F63603AC73068222E581A91EAB996203EE53",
+      "Tables": [
+        "ComponenteTransfusional",
+        "ComprobantePendiente",
+        "DestinoEntrega",
+        "Donacion",
+        "Donante",
+        "Entrega",
+        "EstadoUnidad",
+        "FactorRh",
+        "GrupoSanguineo",
+        "MovimientoUnidad",
+        "Reserva",
+        "SolicitudTransfusional",
+        "Unidad",
+        "Usuario"
+      ],
+      "TableCount": 14,
+      "ColumnCount": 129,
+      "ForeignKeys": [
+        "FK_ComprobantePendiente_Usuario",
+        "FK_DestinoEntrega_Codigo_EstadoUnidad",
+        "FK_Donacion_Componente",
+        "FK_Donacion_Donante",
+        "FK_Donacion_UsuarioResponsable",
+        "FK_Donante_Grupo",
+        "FK_Donante_Rh",
+        "FK_Donante_UsuarioAlta",
+        "FK_Entrega_Destino",
+        "FK_Entrega_Reserva",
+        "FK_Entrega_Usuario",
+        "FK_Entrega_UsuarioDestino",
+        "FK_MovimientoUnidad_Entrega",
+        "FK_MovimientoUnidad_EstadoAnterior",
+        "FK_MovimientoUnidad_EstadoNuevo",
+        "FK_MovimientoUnidad_Reserva",
+        "FK_MovimientoUnidad_Solicitud",
+        "FK_MovimientoUnidad_Unidad",
+        "FK_MovimientoUnidad_Usuario",
+        "FK_Reserva_Solicitud",
+        "FK_Reserva_Unidad",
+        "FK_Reserva_Usuario",
+        "FK_SolicitudTransfusional_Componente",
+        "FK_SolicitudTransfusional_Grupo",
+        "FK_SolicitudTransfusional_Rh",
+        "FK_SolicitudTransfusional_Usuario",
+        "FK_SolicitudTransfusional_UsuarioValidacion",
+        "FK_Unidad_Componente",
+        "FK_Unidad_Donacion",
+        "FK_Unidad_EstadoUnidad",
+        "FK_Unidad_Grupo",
+        "FK_Unidad_Rh",
+        "FK_Unidad_UsuarioModificacion"
+      ],
+      "ForeignKeyCount": 33,
+      "AllTablesStandard": true,
+      "NativeBinaryPath": "Diagramas/Diagramas Entidad Relacion/G07 - Operaciones PN1 y PN2.ssms.bin",
+      "Origin": "Native SSMS open, Arrange Tables, save, exact dbo.sysdiagrams bytes"
+    },
+    {
+      "Name": "G07 - Catalogos y compatibilidad",
+      "SourceDiagramId": 23,
+      "Owner": 1,
+      "OwnerName": "dbo",
+      "Version": 1,
+      "Bytes": 38404,
+      "SHA256": "E7F60058EC72A8BA7162F4B3040E707CAE2F94E9FA45AF8D7EE80CD98372573C",
+      "Tables": [
+        "CompatibilidadTransfusional",
+        "CompatibilidadTransfusionalControl",
+        "ComponenteTransfusional",
+        "DestinoEntrega",
+        "EstadoUnidad",
+        "FactorRh",
+        "GrupoSanguineo",
+        "MaestrosPN1Control"
+      ],
+      "TableCount": 8,
+      "ColumnCount": 30,
+      "ForeignKeys": [
+        "FK_Compatibilidad_Componente",
+        "FK_Compatibilidad_GrupoReceptor",
+        "FK_Compatibilidad_GrupoUnidad",
+        "FK_Compatibilidad_RhReceptor",
+        "FK_Compatibilidad_RhUnidad",
+        "FK_DestinoEntrega_Codigo_EstadoUnidad"
+      ],
+      "ForeignKeyCount": 6,
+      "AllTablesStandard": true,
+      "NativeBinaryPath": "Diagramas/Diagramas Entidad Relacion/G07 - Catalogos y compatibilidad.ssms.bin",
+      "Origin": "Native SSMS open, Arrange Tables, save, exact dbo.sysdiagrams bytes"
+    }
+  ],
+  "Schema": {
+    "tables": [
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Bitacora"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusional"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusionalControl"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermiso"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermisoRelacion"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponenteTransfusional"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DestinoEntrega"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DigitoVerificadorVertical"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "EstadoUnidad"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Etiqueta"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "FactorRh"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "GrupoSanguineo"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Idioma"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IdiomaEstadoHistorial"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IntegridadIncidente"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MaestrosPN1Control"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Permiso"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Rol"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "RolPermiso"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Traduccion"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioComponentePermiso"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioRol"
+      }
+    ],
+    "columns": [
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria",
+        "columnName": "accion",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria",
+        "columnName": "cambios_json",
+        "dataType": "nvarchar",
+        "maxLengthBytes": -1,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria",
+        "columnName": "dvh_integridad",
+        "dataType": "varchar",
+        "maxLengthBytes": 64,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria",
+        "columnName": "entidad",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 200,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria",
+        "columnName": "estado_anterior_json",
+        "dataType": "nvarchar",
+        "maxLengthBytes": -1,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria",
+        "columnName": "estado_nuevo_json",
+        "dataType": "nvarchar",
+        "maxLengthBytes": -1,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria",
+        "columnName": "fecha_evento",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria",
+        "columnName": "id_auditoria",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria",
+        "columnName": "id_entidad",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria",
+        "columnName": "id_usuario_actor",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria",
+        "columnName": "identificador_usuario_actor",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 510,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Bitacora",
+        "columnName": "accion",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 200,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Bitacora",
+        "columnName": "descripcion",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 1000,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Bitacora",
+        "columnName": "equipo",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 256,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Bitacora",
+        "columnName": "fecha_evento",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Bitacora",
+        "columnName": "id_bitacora",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Bitacora",
+        "columnName": "id_usuario",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Bitacora",
+        "columnName": "identificador_usuario",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 510,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Bitacora",
+        "columnName": "modulo",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 200,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Bitacora",
+        "columnName": "nivel",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusional",
+        "columnName": "activo",
+        "dataType": "bit",
+        "maxLengthBytes": 1,
+        "precision": 1,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusional",
+        "columnName": "grupo_receptor",
+        "dataType": "varchar",
+        "maxLengthBytes": 5,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusional",
+        "columnName": "grupo_unidad",
+        "dataType": "varchar",
+        "maxLengthBytes": 5,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusional",
+        "columnName": "id_compatibilidad",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusional",
+        "columnName": "rh_receptor",
+        "dataType": "varchar",
+        "maxLengthBytes": 5,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusional",
+        "columnName": "rh_unidad",
+        "dataType": "varchar",
+        "maxLengthBytes": 5,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusional",
+        "columnName": "tipo_componente",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusionalControl",
+        "columnName": "huella",
+        "dataType": "varchar",
+        "maxLengthBytes": 64,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusionalControl",
+        "columnName": "id",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermiso",
+        "columnName": "codigo",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermiso",
+        "columnName": "descripcion",
+        "dataType": "varchar",
+        "maxLengthBytes": 255,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermiso",
+        "columnName": "estado_componente",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermiso",
+        "columnName": "id_componente",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermiso",
+        "columnName": "nombre",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermiso",
+        "columnName": "tipo",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermisoRelacion",
+        "columnName": "id_hijo",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermisoRelacion",
+        "columnName": "id_padre",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermisoRelacion",
+        "columnName": "id_relacion",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponenteTransfusional",
+        "columnName": "activo",
+        "dataType": "bit",
+        "maxLengthBytes": 1,
+        "precision": 1,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponenteTransfusional",
+        "columnName": "codigo",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponenteTransfusional",
+        "columnName": "descripcion",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 300,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponenteTransfusional",
+        "columnName": "id",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "columnName": "datos",
+        "dataType": "xml",
+        "maxLengthBytes": -1,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "columnName": "fecha_evento",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "columnName": "fecha_generacion",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "columnName": "id_comprobante",
+        "dataType": "bigint",
+        "maxLengthBytes": 8,
+        "precision": 19,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "columnName": "id_referencia",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "columnName": "id_usuario",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "columnName": "identificador",
+        "dataType": "uniqueidentifier",
+        "maxLengthBytes": 16,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "columnName": "proceso",
+        "dataType": "varchar",
+        "maxLengthBytes": 3,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "columnName": "ruta",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 4096,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DestinoEntrega",
+        "columnName": "activo",
+        "dataType": "bit",
+        "maxLengthBytes": 1,
+        "precision": 1,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DestinoEntrega",
+        "columnName": "codigo",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DestinoEntrega",
+        "columnName": "descripcion",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 300,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DestinoEntrega",
+        "columnName": "id",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DestinoEntrega",
+        "columnName": "motivo_obligatorio",
+        "dataType": "bit",
+        "maxLengthBytes": 1,
+        "precision": 1,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DigitoVerificadorVertical",
+        "columnName": "dvv",
+        "dataType": "varchar",
+        "maxLengthBytes": 64,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DigitoVerificadorVertical",
+        "columnName": "entidad",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DigitoVerificadorVertical",
+        "columnName": "fecha_calculo",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DigitoVerificadorVertical",
+        "columnName": "id_digito_verificador_vertical",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "columnName": "cantidad_unidades",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "columnName": "dvh",
+        "dataType": "varchar",
+        "maxLengthBytes": 64,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "columnName": "fecha_alta",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "columnName": "fecha_donacion",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "columnName": "fecha_vencimiento",
+        "dataType": "date",
+        "maxLengthBytes": 3,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "columnName": "id_donacion",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "columnName": "id_donante",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "columnName": "id_usuario_responsable",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "columnName": "observaciones",
+        "dataType": "varchar",
+        "maxLengthBytes": 500,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "columnName": "tipo_componente",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "apellido",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "documento",
+        "dataType": "varchar",
+        "maxLengthBytes": 30,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "domicilio",
+        "dataType": "varchar",
+        "maxLengthBytes": 255,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "dvh",
+        "dataType": "varchar",
+        "maxLengthBytes": 64,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "email",
+        "dataType": "varchar",
+        "maxLengthBytes": 512,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "estado_donante",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "factor_rh",
+        "dataType": "varchar",
+        "maxLengthBytes": 5,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "fecha_alta",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "fecha_nacimiento",
+        "dataType": "date",
+        "maxLengthBytes": 3,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "grupo_sanguineo",
+        "dataType": "varchar",
+        "maxLengthBytes": 5,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "id_donante",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "id_usuario_alta",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "nombre",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "telefono",
+        "dataType": "varchar",
+        "maxLengthBytes": 50,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "columnName": "destino",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "columnName": "dvh",
+        "dataType": "varchar",
+        "maxLengthBytes": 64,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "columnName": "fecha_destino",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "columnName": "fecha_entrega",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "columnName": "id_entrega",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "columnName": "id_reserva",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "columnName": "id_usuario_destino",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "columnName": "id_usuario_responsable",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "columnName": "motivo_destino",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 1000,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "columnName": "observacion",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 1000,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "EstadoUnidad",
+        "columnName": "codigo",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "EstadoUnidad",
+        "columnName": "descripcion",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 300,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Etiqueta",
+        "columnName": "clave",
+        "dataType": "varchar",
+        "maxLengthBytes": 150,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Etiqueta",
+        "columnName": "descripcion",
+        "dataType": "varchar",
+        "maxLengthBytes": 255,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Etiqueta",
+        "columnName": "id_etiqueta",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "FactorRh",
+        "columnName": "activo",
+        "dataType": "bit",
+        "maxLengthBytes": 1,
+        "precision": 1,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "FactorRh",
+        "columnName": "codigo",
+        "dataType": "varchar",
+        "maxLengthBytes": 5,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "FactorRh",
+        "columnName": "descripcion",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 300,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "FactorRh",
+        "columnName": "id",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "GrupoSanguineo",
+        "columnName": "activo",
+        "dataType": "bit",
+        "maxLengthBytes": 1,
+        "precision": 1,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "GrupoSanguineo",
+        "columnName": "codigo",
+        "dataType": "varchar",
+        "maxLengthBytes": 5,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "GrupoSanguineo",
+        "columnName": "descripcion",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 300,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "GrupoSanguineo",
+        "columnName": "id",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Idioma",
+        "columnName": "codigo",
+        "dataType": "varchar",
+        "maxLengthBytes": 10,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Idioma",
+        "columnName": "estado_idioma",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Idioma",
+        "columnName": "id_idioma",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Idioma",
+        "columnName": "nombre",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IdiomaEstadoHistorial",
+        "columnName": "estado_anterior",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IdiomaEstadoHistorial",
+        "columnName": "estado_nuevo",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IdiomaEstadoHistorial",
+        "columnName": "fecha_cambio",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IdiomaEstadoHistorial",
+        "columnName": "id_idioma",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IdiomaEstadoHistorial",
+        "columnName": "id_idioma_estado_historial",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IdiomaEstadoHistorial",
+        "columnName": "id_usuario_responsable",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IdiomaEstadoHistorial",
+        "columnName": "motivo",
+        "dataType": "varchar",
+        "maxLengthBytes": 255,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IntegridadIncidente",
+        "columnName": "entidad",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IntegridadIncidente",
+        "columnName": "fecha_deteccion",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IntegridadIncidente",
+        "columnName": "fecha_resolucion",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IntegridadIncidente",
+        "columnName": "id_entidad",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IntegridadIncidente",
+        "columnName": "id_incidente",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IntegridadIncidente",
+        "columnName": "tipo",
+        "dataType": "varchar",
+        "maxLengthBytes": 40,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MaestrosPN1Control",
+        "columnName": "huella",
+        "dataType": "varchar",
+        "maxLengthBytes": 64,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MaestrosPN1Control",
+        "columnName": "id",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "columnName": "dvh",
+        "dataType": "varchar",
+        "maxLengthBytes": 64,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "columnName": "estado_anterior",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "columnName": "estado_nuevo",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "columnName": "fecha_movimiento",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "columnName": "id_entrega",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "columnName": "id_movimiento_unidad",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "columnName": "id_reserva",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "columnName": "id_solicitud_transfusional",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "columnName": "id_unidad",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "columnName": "id_usuario",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "columnName": "observacion",
+        "dataType": "varchar",
+        "maxLengthBytes": 500,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "columnName": "tipo_movimiento",
+        "dataType": "varchar",
+        "maxLengthBytes": 30,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Permiso",
+        "columnName": "accion",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Permiso",
+        "columnName": "codigo",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Permiso",
+        "columnName": "descripcion",
+        "dataType": "varchar",
+        "maxLengthBytes": 255,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Permiso",
+        "columnName": "estado_permiso",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Permiso",
+        "columnName": "id_permiso",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Permiso",
+        "columnName": "modulo",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Permiso",
+        "columnName": "nombre",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "columnName": "dvh",
+        "dataType": "varchar",
+        "maxLengthBytes": 64,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "columnName": "estado_reserva",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "columnName": "fecha_cierre",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "columnName": "fecha_reserva",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "columnName": "id_reserva",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "columnName": "id_solicitud_transfusional",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "columnName": "id_unidad",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "columnName": "id_usuario_responsable",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "columnName": "motivo_cancelacion",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 1000,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "columnName": "observacion",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 1000,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Rol",
+        "columnName": "descripcion",
+        "dataType": "varchar",
+        "maxLengthBytes": 255,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Rol",
+        "columnName": "estado_rol",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Rol",
+        "columnName": "id_rol",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Rol",
+        "columnName": "nombre",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "RolPermiso",
+        "columnName": "id_permiso",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "RolPermiso",
+        "columnName": "id_rol",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "RolPermiso",
+        "columnName": "id_rol_permiso",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "cantidad_requerida",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "documento_receptor",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "dvh",
+        "dataType": "varchar",
+        "maxLengthBytes": 64,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "estado_solicitud",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "fecha_estudio",
+        "dataType": "date",
+        "maxLengthBytes": 3,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "fecha_solicitud",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "fecha_validacion",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "grupo_receptor",
+        "dataType": "varchar",
+        "maxLengthBytes": 5,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "id_solicitud_transfusional",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "id_usuario_solicitante",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "id_usuario_validacion",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "laboratorio_estudio",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 300,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "nombre_solicitante",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 300,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "observaciones",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 1000,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "paciente_receptor",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 300,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "referencia_estudio",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 300,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "resultado_anticuerpos",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 1000,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "rh_receptor",
+        "dataType": "varchar",
+        "maxLengthBytes": 5,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "tipo_componente",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Traduccion",
+        "columnName": "id_etiqueta",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Traduccion",
+        "columnName": "id_idioma",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Traduccion",
+        "columnName": "id_traduccion",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Traduccion",
+        "columnName": "texto",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 1000,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "codigo_identificacion",
+        "dataType": "varchar",
+        "maxLengthBytes": 50,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "dvh",
+        "dataType": "varchar",
+        "maxLengthBytes": 64,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "estado_operativo",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "factor_rh",
+        "dataType": "varchar",
+        "maxLengthBytes": 5,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "fecha_alta",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "fecha_ultima_modificacion",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "fecha_vencimiento",
+        "dataType": "date",
+        "maxLengthBytes": 3,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "grupo_sanguineo",
+        "dataType": "varchar",
+        "maxLengthBytes": 5,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "id_donacion",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "id_unidad",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "id_usuario_ultima_modificacion",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "observaciones",
+        "dataType": "varchar",
+        "maxLengthBytes": 500,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "tipo_componente",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "ubicacion",
+        "dataType": "nvarchar",
+        "maxLengthBytes": 300,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "apellido",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "bloqueo_digitoverificador",
+        "dataType": "bit",
+        "maxLengthBytes": 1,
+        "precision": 1,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "dvh",
+        "dataType": "varchar",
+        "maxLengthBytes": 64,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "email",
+        "dataType": "varchar",
+        "maxLengthBytes": 150,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "estado_usuario",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "fecha_alta",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "id_idioma",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "id_usuario",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "intentos_login_fallidos",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "nombre",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": true,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "nombre_usuario",
+        "dataType": "varchar",
+        "maxLengthBytes": 100,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "password_hash",
+        "dataType": "varchar",
+        "maxLengthBytes": 255,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioComponentePermiso",
+        "columnName": "estado_usuario_componente",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioComponentePermiso",
+        "columnName": "fecha_asignacion",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioComponentePermiso",
+        "columnName": "id_componente",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioComponentePermiso",
+        "columnName": "id_usuario",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioComponentePermiso",
+        "columnName": "id_usuario_componente",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioRol",
+        "columnName": "estado_usuario_rol",
+        "dataType": "varchar",
+        "maxLengthBytes": 20,
+        "precision": 0,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioRol",
+        "columnName": "fecha_asignacion",
+        "dataType": "datetime",
+        "maxLengthBytes": 8,
+        "precision": 23,
+        "scale": 3,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioRol",
+        "columnName": "id_rol",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioRol",
+        "columnName": "id_usuario",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": false,
+        "isComputed": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioRol",
+        "columnName": "id_usuario_rol",
+        "dataType": "int",
+        "maxLengthBytes": 4,
+        "precision": 10,
+        "scale": 0,
+        "isNullable": false,
+        "isIdentity": true,
+        "isComputed": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "name": "FK_Auditoria_UsuarioActor",
+        "fromSchema": "dbo",
+        "fromTable": "Auditoria",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario_actor",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Bitacora_Usuario",
+        "fromSchema": "dbo",
+        "fromTable": "Bitacora",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Compatibilidad_Componente",
+        "fromSchema": "dbo",
+        "fromTable": "CompatibilidadTransfusional",
+        "toSchema": "dbo",
+        "toTable": "ComponenteTransfusional",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "tipo_componente",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Compatibilidad_GrupoReceptor",
+        "fromSchema": "dbo",
+        "fromTable": "CompatibilidadTransfusional",
+        "toSchema": "dbo",
+        "toTable": "GrupoSanguineo",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "grupo_receptor",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Compatibilidad_GrupoUnidad",
+        "fromSchema": "dbo",
+        "fromTable": "CompatibilidadTransfusional",
+        "toSchema": "dbo",
+        "toTable": "GrupoSanguineo",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "grupo_unidad",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Compatibilidad_RhReceptor",
+        "fromSchema": "dbo",
+        "fromTable": "CompatibilidadTransfusional",
+        "toSchema": "dbo",
+        "toTable": "FactorRh",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "rh_receptor",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Compatibilidad_RhUnidad",
+        "fromSchema": "dbo",
+        "fromTable": "CompatibilidadTransfusional",
+        "toSchema": "dbo",
+        "toTable": "FactorRh",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "rh_unidad",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_ComponentePermisoRelacion_Hijo",
+        "fromSchema": "dbo",
+        "fromTable": "ComponentePermisoRelacion",
+        "toSchema": "dbo",
+        "toTable": "ComponentePermiso",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_hijo",
+            "toColumn": "id_componente",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_ComponentePermisoRelacion_Padre",
+        "fromSchema": "dbo",
+        "fromTable": "ComponentePermisoRelacion",
+        "toSchema": "dbo",
+        "toTable": "ComponentePermiso",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_padre",
+            "toColumn": "id_componente",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_ComprobantePendiente_Usuario",
+        "fromSchema": "dbo",
+        "fromTable": "ComprobantePendiente",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_DestinoEntrega_Codigo_EstadoUnidad",
+        "fromSchema": "dbo",
+        "fromTable": "DestinoEntrega",
+        "toSchema": "dbo",
+        "toTable": "EstadoUnidad",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "codigo",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Donacion_Componente",
+        "fromSchema": "dbo",
+        "fromTable": "Donacion",
+        "toSchema": "dbo",
+        "toTable": "ComponenteTransfusional",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "tipo_componente",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Donacion_Donante",
+        "fromSchema": "dbo",
+        "fromTable": "Donacion",
+        "toSchema": "dbo",
+        "toTable": "Donante",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_donante",
+            "toColumn": "id_donante",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Donacion_UsuarioResponsable",
+        "fromSchema": "dbo",
+        "fromTable": "Donacion",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario_responsable",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Donante_Grupo",
+        "fromSchema": "dbo",
+        "fromTable": "Donante",
+        "toSchema": "dbo",
+        "toTable": "GrupoSanguineo",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "grupo_sanguineo",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Donante_Rh",
+        "fromSchema": "dbo",
+        "fromTable": "Donante",
+        "toSchema": "dbo",
+        "toTable": "FactorRh",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "factor_rh",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Donante_UsuarioAlta",
+        "fromSchema": "dbo",
+        "fromTable": "Donante",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario_alta",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Entrega_Destino",
+        "fromSchema": "dbo",
+        "fromTable": "Entrega",
+        "toSchema": "dbo",
+        "toTable": "DestinoEntrega",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "destino",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Entrega_Reserva",
+        "fromSchema": "dbo",
+        "fromTable": "Entrega",
+        "toSchema": "dbo",
+        "toTable": "Reserva",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_reserva",
+            "toColumn": "id_reserva",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Entrega_Usuario",
+        "fromSchema": "dbo",
+        "fromTable": "Entrega",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario_responsable",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Entrega_UsuarioDestino",
+        "fromSchema": "dbo",
+        "fromTable": "Entrega",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario_destino",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_IdiomaEstadoHistorial_Idioma",
+        "fromSchema": "dbo",
+        "fromTable": "IdiomaEstadoHistorial",
+        "toSchema": "dbo",
+        "toTable": "Idioma",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_idioma",
+            "toColumn": "id_idioma",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_IdiomaEstadoHistorial_Usuario",
+        "fromSchema": "dbo",
+        "fromTable": "IdiomaEstadoHistorial",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario_responsable",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_MovimientoUnidad_Entrega",
+        "fromSchema": "dbo",
+        "fromTable": "MovimientoUnidad",
+        "toSchema": "dbo",
+        "toTable": "Entrega",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_entrega",
+            "toColumn": "id_entrega",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_MovimientoUnidad_EstadoAnterior",
+        "fromSchema": "dbo",
+        "fromTable": "MovimientoUnidad",
+        "toSchema": "dbo",
+        "toTable": "EstadoUnidad",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "estado_anterior",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_MovimientoUnidad_EstadoNuevo",
+        "fromSchema": "dbo",
+        "fromTable": "MovimientoUnidad",
+        "toSchema": "dbo",
+        "toTable": "EstadoUnidad",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "estado_nuevo",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_MovimientoUnidad_Reserva",
+        "fromSchema": "dbo",
+        "fromTable": "MovimientoUnidad",
+        "toSchema": "dbo",
+        "toTable": "Reserva",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_reserva",
+            "toColumn": "id_reserva",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_MovimientoUnidad_Solicitud",
+        "fromSchema": "dbo",
+        "fromTable": "MovimientoUnidad",
+        "toSchema": "dbo",
+        "toTable": "SolicitudTransfusional",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_solicitud_transfusional",
+            "toColumn": "id_solicitud_transfusional",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_MovimientoUnidad_Unidad",
+        "fromSchema": "dbo",
+        "fromTable": "MovimientoUnidad",
+        "toSchema": "dbo",
+        "toTable": "Unidad",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_unidad",
+            "toColumn": "id_unidad",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_MovimientoUnidad_Usuario",
+        "fromSchema": "dbo",
+        "fromTable": "MovimientoUnidad",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Reserva_Solicitud",
+        "fromSchema": "dbo",
+        "fromTable": "Reserva",
+        "toSchema": "dbo",
+        "toTable": "SolicitudTransfusional",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_solicitud_transfusional",
+            "toColumn": "id_solicitud_transfusional",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Reserva_Unidad",
+        "fromSchema": "dbo",
+        "fromTable": "Reserva",
+        "toSchema": "dbo",
+        "toTable": "Unidad",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_unidad",
+            "toColumn": "id_unidad",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Reserva_Usuario",
+        "fromSchema": "dbo",
+        "fromTable": "Reserva",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario_responsable",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_RolPermiso_Permiso",
+        "fromSchema": "dbo",
+        "fromTable": "RolPermiso",
+        "toSchema": "dbo",
+        "toTable": "Permiso",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_permiso",
+            "toColumn": "id_permiso",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_RolPermiso_Rol",
+        "fromSchema": "dbo",
+        "fromTable": "RolPermiso",
+        "toSchema": "dbo",
+        "toTable": "Rol",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_rol",
+            "toColumn": "id_rol",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_SolicitudTransfusional_Componente",
+        "fromSchema": "dbo",
+        "fromTable": "SolicitudTransfusional",
+        "toSchema": "dbo",
+        "toTable": "ComponenteTransfusional",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "tipo_componente",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_SolicitudTransfusional_Grupo",
+        "fromSchema": "dbo",
+        "fromTable": "SolicitudTransfusional",
+        "toSchema": "dbo",
+        "toTable": "GrupoSanguineo",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "grupo_receptor",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_SolicitudTransfusional_Rh",
+        "fromSchema": "dbo",
+        "fromTable": "SolicitudTransfusional",
+        "toSchema": "dbo",
+        "toTable": "FactorRh",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "rh_receptor",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_SolicitudTransfusional_Usuario",
+        "fromSchema": "dbo",
+        "fromTable": "SolicitudTransfusional",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario_solicitante",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_SolicitudTransfusional_UsuarioValidacion",
+        "fromSchema": "dbo",
+        "fromTable": "SolicitudTransfusional",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario_validacion",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Traduccion_Etiqueta",
+        "fromSchema": "dbo",
+        "fromTable": "Traduccion",
+        "toSchema": "dbo",
+        "toTable": "Etiqueta",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_etiqueta",
+            "toColumn": "id_etiqueta",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Traduccion_Idioma",
+        "fromSchema": "dbo",
+        "fromTable": "Traduccion",
+        "toSchema": "dbo",
+        "toTable": "Idioma",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_idioma",
+            "toColumn": "id_idioma",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Unidad_Componente",
+        "fromSchema": "dbo",
+        "fromTable": "Unidad",
+        "toSchema": "dbo",
+        "toTable": "ComponenteTransfusional",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "tipo_componente",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Unidad_Donacion",
+        "fromSchema": "dbo",
+        "fromTable": "Unidad",
+        "toSchema": "dbo",
+        "toTable": "Donacion",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_donacion",
+            "toColumn": "id_donacion",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Unidad_EstadoUnidad",
+        "fromSchema": "dbo",
+        "fromTable": "Unidad",
+        "toSchema": "dbo",
+        "toTable": "EstadoUnidad",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "estado_operativo",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Unidad_Grupo",
+        "fromSchema": "dbo",
+        "fromTable": "Unidad",
+        "toSchema": "dbo",
+        "toTable": "GrupoSanguineo",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "grupo_sanguineo",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Unidad_Rh",
+        "fromSchema": "dbo",
+        "fromTable": "Unidad",
+        "toSchema": "dbo",
+        "toTable": "FactorRh",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "factor_rh",
+            "toColumn": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Unidad_UsuarioModificacion",
+        "fromSchema": "dbo",
+        "fromTable": "Unidad",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario_ultima_modificacion",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_Usuario_Idioma",
+        "fromSchema": "dbo",
+        "fromTable": "Usuario",
+        "toSchema": "dbo",
+        "toTable": "Idioma",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_idioma",
+            "toColumn": "id_idioma",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_UsuarioComponentePermiso_Componente",
+        "fromSchema": "dbo",
+        "fromTable": "UsuarioComponentePermiso",
+        "toSchema": "dbo",
+        "toTable": "ComponentePermiso",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_componente",
+            "toColumn": "id_componente",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_UsuarioComponentePermiso_Usuario",
+        "fromSchema": "dbo",
+        "fromTable": "UsuarioComponentePermiso",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_UsuarioRol_Rol",
+        "fromSchema": "dbo",
+        "fromTable": "UsuarioRol",
+        "toSchema": "dbo",
+        "toTable": "Rol",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_rol",
+            "toColumn": "id_rol",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "name": "FK_UsuarioRol_Usuario",
+        "fromSchema": "dbo",
+        "fromTable": "UsuarioRol",
+        "toSchema": "dbo",
+        "toTable": "Usuario",
+        "isDisabled": false,
+        "isNotTrusted": false,
+        "onDelete": "NO_ACTION",
+        "onUpdate": "NO_ACTION",
+        "columns": [
+          {
+            "fromColumn": "id_usuario",
+            "toColumn": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      }
+    ],
+    "keys": [
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria",
+        "name": "PK_Auditoria",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_auditoria",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Bitacora",
+        "name": "PK_Bitacora",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_bitacora",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusional",
+        "name": "PK__Compatib__6538901A316A3FE3",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_compatibilidad",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusional",
+        "name": "UQ_Compatibilidad_Combinacion",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "tipo_componente",
+            "ordinal": 1
+          },
+          {
+            "name": "grupo_unidad",
+            "ordinal": 2
+          },
+          {
+            "name": "rh_unidad",
+            "ordinal": 3
+          },
+          {
+            "name": "grupo_receptor",
+            "ordinal": 4
+          },
+          {
+            "name": "rh_receptor",
+            "ordinal": 5
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusionalControl",
+        "name": "PK__Compatib__3213E83FD43B2879",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermiso",
+        "name": "PK_ComponentePermiso",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_componente",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermiso",
+        "name": "UQ_ComponentePermiso_Codigo",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermisoRelacion",
+        "name": "PK_ComponentePermisoRelacion",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_relacion",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermisoRelacion",
+        "name": "UQ_ComponentePermisoRelacion",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "id_padre",
+            "ordinal": 1
+          },
+          {
+            "name": "id_hijo",
+            "ordinal": 2
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponenteTransfusional",
+        "name": "PK__Componen__3213E83F15F778BC",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponenteTransfusional",
+        "name": "UQ__Componen__40F9A20620C736C2",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "name": "PK_ComprobantePendiente",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_comprobante",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "name": "UQ_ComprobantePendiente_Referencia",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "proceso",
+            "ordinal": 1
+          },
+          {
+            "name": "id_referencia",
+            "ordinal": 2
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DestinoEntrega",
+        "name": "PK__DestinoE__3213E83F216D2F3A",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DestinoEntrega",
+        "name": "UQ__DestinoE__40F9A206BD320890",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DigitoVerificadorVertical",
+        "name": "PK_DigitoVerificadorVertical",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_digito_verificador_vertical",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DigitoVerificadorVertical",
+        "name": "UQ_DVV_Entidad",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "entidad",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "name": "PK_Donacion",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_donacion",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "name": "PK_Donante",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_donante",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "name": "UQ_Donante_Documento",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "documento",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "name": "PK_Entrega",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_entrega",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "name": "UQ_Entrega_Reserva",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "id_reserva",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "EstadoUnidad",
+        "name": "PK_EstadoUnidad",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Etiqueta",
+        "name": "PK_Etiqueta",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_etiqueta",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Etiqueta",
+        "name": "UQ_Etiqueta_Clave",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "clave",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "FactorRh",
+        "name": "PK__FactorRh__3213E83F719F2B6B",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "FactorRh",
+        "name": "UQ__FactorRh__40F9A206E34922D4",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "GrupoSanguineo",
+        "name": "PK__GrupoSan__3213E83FF3CB6919",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "GrupoSanguineo",
+        "name": "UQ__GrupoSan__40F9A20678CFE345",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Idioma",
+        "name": "PK_Idioma",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_idioma",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Idioma",
+        "name": "UQ_Idioma_Codigo",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IdiomaEstadoHistorial",
+        "name": "PK_IdiomaEstadoHistorial",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_idioma_estado_historial",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IntegridadIncidente",
+        "name": "PK__Integrid__7DD868DCC041DDF3",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_incidente",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MaestrosPN1Control",
+        "name": "PK__Maestros__3213E83F467B7032",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "name": "PK_MovimientoUnidad",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_movimiento_unidad",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Permiso",
+        "name": "PK_Permiso",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_permiso",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Permiso",
+        "name": "UQ_Permiso_Codigo",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "codigo",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "name": "PK_Reserva",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_reserva",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Rol",
+        "name": "PK_Rol",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_rol",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Rol",
+        "name": "UQ_Rol_Nombre",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "nombre",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "RolPermiso",
+        "name": "PK_RolPermiso",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_rol_permiso",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "RolPermiso",
+        "name": "UQ_RolPermiso",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "id_rol",
+            "ordinal": 1
+          },
+          {
+            "name": "id_permiso",
+            "ordinal": 2
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "name": "PK_SolicitudTransfusional",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_solicitud_transfusional",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Traduccion",
+        "name": "PK_Traduccion",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_traduccion",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Traduccion",
+        "name": "UQ_Traduccion",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "id_etiqueta",
+            "ordinal": 1
+          },
+          {
+            "name": "id_idioma",
+            "ordinal": 2
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "name": "PK_Unidad",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_unidad",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "name": "UQ_Unidad_Codigo",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "codigo_identificacion",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "name": "PK_Usuario",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "name": "UQ_Usuario_Email",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "email",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "name": "UQ_Usuario_Nombre",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "nombre_usuario",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioComponentePermiso",
+        "name": "PK_UsuarioComponentePermiso",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_usuario_componente",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioComponentePermiso",
+        "name": "UQ_UsuarioComponentePermiso",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "id_usuario",
+            "ordinal": 1
+          },
+          {
+            "name": "id_componente",
+            "ordinal": 2
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioRol",
+        "name": "PK_UsuarioRol",
+        "type": "PK",
+        "columns": [
+          {
+            "name": "id_usuario_rol",
+            "ordinal": 1
+          }
+        ]
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioRol",
+        "name": "UQ_UsuarioRol",
+        "type": "UQ",
+        "columns": [
+          {
+            "name": "id_usuario",
+            "ordinal": 1
+          },
+          {
+            "name": "id_rol",
+            "ordinal": 2
+          }
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusionalControl",
+        "name": "CK__Compatibilid__id__2EA5EC27",
+        "definition": "([id]=(1))",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermiso",
+        "name": "CK_ComponentePermiso_Estado",
+        "definition": "([estado_componente]='INACTIVO' OR [estado_componente]='ACTIVO')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermiso",
+        "name": "CK_ComponentePermiso_Tipo",
+        "definition": "([tipo]='PERMISO' OR [tipo]='FAMILIA')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermisoRelacion",
+        "name": "CK_ComponentePermisoRelacion_NoAutoReferencia",
+        "definition": "([id_padre]<>[id_hijo])",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "name": "CK_ComprobantePendiente_Proceso",
+        "definition": "([proceso]='PN2' OR [proceso]='PN1')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DestinoEntrega",
+        "name": "CK_DestinoEntrega_Codigo",
+        "definition": "([codigo]<>'SIN_DESTINO')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DestinoEntrega",
+        "name": "CK_DestinoEntrega_Motivo",
+        "definition": "(NOT ([codigo]='DESCARTADA' OR [codigo]='DEVUELTA') OR [motivo_obligatorio]=(1))",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "name": "CK_Donacion_Cantidad",
+        "definition": "([cantidad_unidades]>(0))",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "name": "CK_Donacion_Vencimiento",
+        "definition": "([fecha_vencimiento]>=CONVERT([date],[fecha_donacion]))",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "name": "CK_Donante_Estado",
+        "definition": "([estado_donante]='INACTIVO' OR [estado_donante]='ACTIVO')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "name": "CK_Donante_Tipificacion",
+        "definition": "([grupo_sanguineo] IS NULL AND [factor_rh] IS NULL OR [grupo_sanguineo] IS NOT NULL AND [factor_rh] IS NOT NULL)",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "name": "CK_Entrega_DestinoCompleto",
+        "definition": "([destino] IS NULL AND [fecha_destino] IS NULL AND [id_usuario_destino] IS NULL OR [destino] IS NOT NULL AND [fecha_destino] IS NOT NULL AND [id_usuario_destino] IS NOT NULL)",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Idioma",
+        "name": "CK_Idioma_Estado",
+        "definition": "([estado_idioma]='INACTIVO' OR [estado_idioma]='ACTIVO')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MaestrosPN1Control",
+        "name": "CK__MaestrosPN1C__id__55009F39",
+        "definition": "([id]=(1))",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "name": "CK_MovimientoUnidad_Tipo",
+        "definition": "([tipo_movimiento]='REACTIVACION_CANTIDAD' OR [tipo_movimiento]='ANULACION_CANTIDAD' OR [tipo_movimiento]='DESTINO' OR [tipo_movimiento]='REINGRESO' OR [tipo_movimiento]='CANCELACION' OR [tipo_movimiento]='DEVOLUCION' OR [tipo_movimiento]='TRANSFUSION' OR [tipo_movimiento]='ENTREGA' OR [tipo_movimiento]='RESERVA' OR [tipo_movimiento]='UBICACION' OR [tipo_movimiento]='RESTAURACION' OR [tipo_movimiento]='DESCARTE' OR [tipo_movimiento]='BLOQUEO' OR [tipo_movimiento]='LIBERACION' OR [tipo_movimiento]='TIPIFICACION_DONANTE' OR [tipo_movimiento]='CLASIFICACION' OR [tipo_movimiento]='REGISTRO')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Permiso",
+        "name": "CK_Permiso_Estado",
+        "definition": "([estado_permiso]='INACTIVO' OR [estado_permiso]='ACTIVO')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "name": "CK_Reserva_Estado",
+        "definition": "([estado_reserva]='CANCELADA' OR [estado_reserva]='ENTREGADA' OR [estado_reserva]='ACTIVA')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Rol",
+        "name": "CK_Rol_Estado",
+        "definition": "([estado_rol]='INACTIVO' OR [estado_rol]='ACTIVO')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "name": "CK_SolicitudTransfusional_Cantidad",
+        "definition": "([cantidad_requerida]>(0))",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "name": "CK_SolicitudTransfusional_Estado",
+        "definition": "([estado_solicitud]='ENTREGADA' OR [estado_solicitud]='RESERVADA' OR [estado_solicitud]='PARCIAL' OR [estado_solicitud]='PENDIENTE')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "name": "CK_Usuario_Estado",
+        "definition": "([estado_usuario]='BLOQUEADO' OR [estado_usuario]='INACTIVO' OR [estado_usuario]='ACTIVO')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "name": "CK_Usuario_Intentos",
+        "definition": "([intentos_login_fallidos]>=(0))",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioComponentePermiso",
+        "name": "CK_UsuarioComponentePermiso_Estado",
+        "definition": "([estado_usuario_componente]='INACTIVO' OR [estado_usuario_componente]='ACTIVO')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioRol",
+        "name": "CK_UsuarioRol_Estado",
+        "definition": "([estado_usuario_rol]='INACTIVO' OR [estado_usuario_rol]='ACTIVO')",
+        "isDisabled": false,
+        "isNotTrusted": false
+      }
+    ],
+    "defaults": [
+      {
+        "schemaName": "dbo",
+        "tableName": "Auditoria",
+        "columnName": "fecha_evento",
+        "name": "DF_Auditoria_Fecha",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Bitacora",
+        "columnName": "fecha_evento",
+        "name": "DF_Bitacora_Fecha",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "CompatibilidadTransfusional",
+        "columnName": "activo",
+        "name": "DF_Compatibilidad_Activo",
+        "definition": "((1))"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponentePermiso",
+        "columnName": "estado_componente",
+        "name": "DF_ComponentePermiso_Estado",
+        "definition": "('ACTIVO')"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComponenteTransfusional",
+        "columnName": "activo",
+        "name": "DF__Component__activ__08B54D69",
+        "definition": "((1))"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "columnName": "identificador",
+        "name": "DF_ComprobantePendiente_Identificador",
+        "definition": "(newid())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "ComprobantePendiente",
+        "columnName": "fecha_evento",
+        "name": "DF_ComprobantePendiente_Fecha",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DestinoEntrega",
+        "columnName": "activo",
+        "name": "DF__DestinoEn__activ__160F4887",
+        "definition": "((1))"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "DigitoVerificadorVertical",
+        "columnName": "fecha_calculo",
+        "name": "DF_DVV_Fecha",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donacion",
+        "columnName": "fecha_alta",
+        "name": "DF_Donacion_FechaAlta",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "estado_donante",
+        "name": "DF_Donante_Estado",
+        "definition": "('ACTIVO')"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Donante",
+        "columnName": "fecha_alta",
+        "name": "DF_Donante_FechaAlta",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Entrega",
+        "columnName": "fecha_entrega",
+        "name": "DF_Entrega_Fecha",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "FactorRh",
+        "columnName": "activo",
+        "name": "DF__FactorRh__activo__10566F31",
+        "definition": "((1))"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "GrupoSanguineo",
+        "columnName": "activo",
+        "name": "DF__GrupoSang__activ__0C85DE4D",
+        "definition": "((1))"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Idioma",
+        "columnName": "estado_idioma",
+        "name": "DF_Idioma_Estado",
+        "definition": "('ACTIVO')"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IdiomaEstadoHistorial",
+        "columnName": "fecha_cambio",
+        "name": "DF_IdiomaEstadoHistorial_Fecha",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "IntegridadIncidente",
+        "columnName": "fecha_deteccion",
+        "name": "DF__Integrida__fecha__44CA3770",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "MovimientoUnidad",
+        "columnName": "fecha_movimiento",
+        "name": "DF_MovimientoUnidad_Fecha",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Permiso",
+        "columnName": "estado_permiso",
+        "name": "DF_Permiso_Estado",
+        "definition": "('ACTIVO')"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "columnName": "estado_reserva",
+        "name": "DF_Reserva_Estado",
+        "definition": "('ACTIVA')"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Reserva",
+        "columnName": "fecha_reserva",
+        "name": "DF_Reserva_Fecha",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Rol",
+        "columnName": "estado_rol",
+        "name": "DF_Rol_Estado",
+        "definition": "('ACTIVO')"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "fecha_solicitud",
+        "name": "DF_SolicitudTransfusional_Fecha",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "SolicitudTransfusional",
+        "columnName": "estado_solicitud",
+        "name": "DF_SolicitudTransfusional_Estado",
+        "definition": "('PENDIENTE')"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "estado_operativo",
+        "name": "DF_Unidad_Estado",
+        "definition": "('EN_REVISION')"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "fecha_alta",
+        "name": "DF_Unidad_FechaAlta",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Unidad",
+        "columnName": "fecha_ultima_modificacion",
+        "name": "DF_Unidad_FechaModificacion",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "estado_usuario",
+        "name": "DF_Usuario_Estado",
+        "definition": "('ACTIVO')"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "intentos_login_fallidos",
+        "name": "DF_Usuario_Intentos",
+        "definition": "((0))"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "fecha_alta",
+        "name": "DF_Usuario_FechaAlta",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "Usuario",
+        "columnName": "bloqueo_digitoverificador",
+        "name": "DF_Usuario_BloqueoDV",
+        "definition": "((0))"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioComponentePermiso",
+        "columnName": "fecha_asignacion",
+        "name": "DF_UsuarioComponentePermiso_Fecha",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioComponentePermiso",
+        "columnName": "estado_usuario_componente",
+        "name": "DF_UsuarioComponentePermiso_Estado",
+        "definition": "('ACTIVO')"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioRol",
+        "columnName": "fecha_asignacion",
+        "name": "DF_UsuarioRol_Fecha",
+        "definition": "(getdate())"
+      },
+      {
+        "schemaName": "dbo",
+        "tableName": "UsuarioRol",
+        "columnName": "estado_usuario_rol",
+        "name": "DF_UsuarioRol_Estado",
+        "definition": "('ACTIVO')"
+      }
+    ]
+  }
+}

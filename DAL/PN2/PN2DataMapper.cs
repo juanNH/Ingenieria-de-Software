@@ -172,6 +172,33 @@ namespace DAL
             });
         }
 
+        public List<FilaAbastecimiento_380_jh> ListarAbastecimiento_380_jh(AbastecimientoFiltro_380_jh filtro, int idUsuario)
+        {
+            if (filtro == null) throw new ArgumentNullException("filtro");
+            return Leer_380_jh("sp_PN2_Abastecimiento_Listar", ParametrosUsuario_380_jh(idUsuario,
+                new SqlParameter("@desde", SqlDbType.Date) { Value = filtro.Desde_380_jh.Date },
+                new SqlParameter("@hasta", SqlDbType.Date) { Value = filtro.Hasta_380_jh.Date },
+                Entero_380_jh("@horizonte_dias", filtro.HorizonteVencimientoDias_380_jh),
+                Texto_380_jh("@tipo_componente", filtro.TipoComponente_380_jh, 100),
+                Texto_380_jh("@grupo_sanguineo", filtro.GrupoSanguineo_380_jh, 5, false),
+                Texto_380_jh("@factor_rh", filtro.FactorRh_380_jh, 5, false)), fila => new FilaAbastecimiento_380_jh
+            {
+                TipoComponente_380_jh = Cadena_380_jh(fila, "tipo_componente"),
+                GrupoSanguineo_380_jh = Cadena_380_jh(fila, "grupo_sanguineo"),
+                FactorRh_380_jh = Cadena_380_jh(fila, "factor_rh"),
+                CohorteValidada_380_jh = Convert.ToBoolean(fila["cohorte_validada"]),
+                StockLiberadoVigente_380_jh = fila["stock_liberado_vigente"] == DBNull.Value ? (long?)null : Convert.ToInt64(fila["stock_liberado_vigente"]),
+                StockPorVencer_380_jh = fila["stock_por_vencer"] == DBNull.Value ? (long?)null : Convert.ToInt64(fila["stock_por_vencer"]),
+                DemandaPeriodo_380_jh = Convert.ToInt64(fila["demanda_periodo"]),
+                PendienteVigente_380_jh = Convert.ToInt64(fila["pendiente_vigente"]),
+                DemandaDiariaPromedio_380_jh = Convert.ToDecimal(fila["demanda_diaria_promedio"]),
+                CoberturaDias_380_jh = fila["cobertura_dias"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(fila["cobertura_dias"]),
+                DeficitUnidades_380_jh = fila["deficit_unidades"] == DBNull.Value ? (long?)null : Convert.ToInt64(fila["deficit_unidades"]),
+                Prioridad_380_jh = Cadena_380_jh(fila, "prioridad"),
+                FechaCorte_380_jh = Convert.ToDateTime(fila["fecha_corte"])
+            });
+        }
+
         private List<T> Leer_380_jh<T>(string procedimiento, List<SqlParameter> parametros, Func<DataRow, T> mapear)
         {
             try

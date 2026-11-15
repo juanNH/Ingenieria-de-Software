@@ -99,5 +99,10 @@ namespace Repository
         {
             return _mapper_380_jh.ListarReporte_380_jh(filtro, idUsuario);
         }
+
+        public List<FilaAbastecimiento_380_jh> ListarAbastecimiento_380_jh(AbastecimientoFiltro_380_jh filtro, int idUsuario)
+        {
+            return _mapper_380_jh.ListarAbastecimiento_380_jh(filtro, idUsuario);
+        }
     }
 }
