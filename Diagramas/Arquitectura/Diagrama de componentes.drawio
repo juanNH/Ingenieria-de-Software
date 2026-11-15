@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="29.0.3" type="device">
+  <diagram id="t01-componentes" name="Componentes">
+    <mxGraphModel dx="1000" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="0" page="0" pageScale="1" pageWidth="1000" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Diagrama de componentes" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=38;fontStyle=1;fontColor=#17324D;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="0" y="8" width="1000" height="64" as="geometry"/>
+        </mxCell>
+        <mxCell id="UI" value="&lt;b&gt;UI&lt;/b&gt;&lt;br/&gt;Windows Forms" style="shape=component;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=26;fontColor=#17324D;strokeColor=#557B9C;strokeWidth=2;fillColor=#E8F1FA;align=center;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="70" y="110" width="300" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="Application" value="&lt;b&gt;Application&lt;/b&gt;&lt;br/&gt;Casos de uso&lt;br/&gt;y coordinación" style="shape=component;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=26;fontColor=#17324D;strokeColor=#557B9C;strokeWidth=2;fillColor=#E8F1FA;align=center;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="70" y="350" width="300" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="Repository" value="&lt;b&gt;Repository&lt;/b&gt;&lt;br/&gt;Repositorios" style="shape=component;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=26;fontColor=#17324D;strokeColor=#557B9C;strokeWidth=2;fillColor=#E8F1FA;align=center;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="70" y="640" width="300" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="DAL" value="&lt;b&gt;DAL&lt;/b&gt;&lt;br/&gt;DataMappers&lt;br/&gt;y ADO.NET" style="shape=component;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=26;fontColor=#17324D;strokeColor=#557B9C;strokeWidth=2;fillColor=#E8F1FA;align=center;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="70" y="910" width="300" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="Services" value="&lt;b&gt;Services&lt;/b&gt;&lt;br/&gt;Idiomas · seguridad&lt;br/&gt;XML · PDF" style="shape=component;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=26;fontColor=#17324D;strokeColor=#557B9C;strokeWidth=2;fillColor=#F0ECF9;align=center;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="570" y="350" width="330" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="Domain" value="&lt;b&gt;Domain&lt;/b&gt;&lt;br/&gt;Entidades&lt;br/&gt;y resultados" style="shape=component;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=26;fontColor=#17324D;strokeColor=#557B9C;strokeWidth=2;fillColor=#EAF4EF;align=center;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="570" y="750" width="330" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="Abstractions" value="&lt;b&gt;Abstractions&lt;/b&gt;&lt;br/&gt;Interfaces y&lt;br/&gt;tipos comunes" style="shape=component;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=26;fontColor=#17324D;strokeColor=#557B9C;strokeWidth=2;fillColor=#EAF4EF;align=center;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="570" y="1150" width="330" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="SQLServer" value="&lt;b&gt;SQL Server&lt;/b&gt;&lt;br/&gt;HemovidaGest" style="shape=cylinder3;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=26;fontColor=#17324D;strokeColor=#557B9C;strokeWidth=2;fillColor=#EDF4FB;align=center;verticalAlign=middle;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="70" y="1190" width="300" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="UI-Application" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="UI" target="Application">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="Application-Repository" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Application" target="Repository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="Repository-DAL" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Repository" target="DAL">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="DAL-SQLServer" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="DAL" target="SQLServer">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="UI-Services" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=1;exitY=0.5;entryX=0.3;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="UI" target="Services">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="175"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UI-Domain" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=1;exitY=0.77;entryX=1;entryY=0.3;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="UI" target="Domain">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="210"/>
+              <mxPoint x="950" y="795"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Application-Services" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=1;exitY=0.4;entryX=0;entryY=0.4;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Application" target="Services">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="Application-Domain" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=1;exitY=0.77;entryX=0;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Application" target="Domain">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="465"/>
+              <mxPoint x="430" y="825"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Application-Abstractions" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=0;exitY=0.77;entryX=0.16666666666666666;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Application" target="Abstractions">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="25" y="465"/>
+              <mxPoint x="25" y="1110"/>
+              <mxPoint x="625" y="1110"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Services-Repository" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=0;exitY=0.7;entryX=1;entryY=0.3;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Services" target="Repository">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="455"/>
+              <mxPoint x="490" y="680"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Services-Domain" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Services" target="Domain">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="Services-Abstractions" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=1;exitY=0.8;entryX=1;entryY=0.56;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Services" target="Abstractions">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="985" y="470"/>
+              <mxPoint x="985" y="1245"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Repository-Domain" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=1;exitY=0.69;entryX=0;entryY=0.2;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Repository" target="Domain">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="730"/>
+              <mxPoint x="530" y="780"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DAL-Domain" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=1;exitY=0.3;entryX=0;entryY=0.8;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="DAL" target="Domain">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="510" y="955"/>
+              <mxPoint x="510" y="870"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Domain-Abstractions" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;dashPattern=7 5;endArrow=open;endFill=0;strokeColor=#4E6F8C;strokeWidth=2.3;jumpStyle=arc;jumpSize=8;fontFamily=Arial;fontSize=26;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Domain" target="Abstractions">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
