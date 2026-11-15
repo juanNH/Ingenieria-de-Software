@@ -1,0 +1,25 @@
+<mxfile host="Electron">
+  <diagram name="Hash" id="seguridad-hash">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1240" pageHeight="240">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dato" value="&lt;b&gt;Dato original&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Entrada&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#eaf1f9;strokeColor=#637380;strokeWidth=2;fontFamily=Arial;fontSize=26;fontColor=#243447;" vertex="1" parent="1">
+          <mxGeometry x="20" y="30" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="hash" value="Función hash" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#dce8f5;strokeColor=#637380;strokeWidth=2;fontFamily=Arial;fontSize=26;fontStyle=1;fontColor=#243447;" vertex="1" parent="1">
+          <mxGeometry x="460" y="30" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="valor" value="Valor hash" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#eaf1f9;strokeColor=#637380;strokeWidth=2;fontFamily=Arial;fontSize=26;fontStyle=1;fontColor=#243447;" vertex="1" parent="1">
+          <mxGeometry x="900" y="30" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="entrada-hash" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4f6d84;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1" source="dato" target="hash">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hash-valor" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4f6d84;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1" source="hash" target="valor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

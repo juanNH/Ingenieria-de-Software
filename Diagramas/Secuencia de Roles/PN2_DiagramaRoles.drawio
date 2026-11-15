@@ -7,9 +7,6 @@
         <mxCell id="titulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=22;align=center;verticalAlign=middle;fontFamily=Arial;" value="PN2 — Roles del proceso" vertex="1">
           <mxGeometry height="44" width="1360" x="120" y="22" as="geometry" />
         </mxCell>
-        <mxCell id="subtitulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;align=center;verticalAlign=middle;fontColor=#666666;fontFamily=Arial;" value="Tres actores funcionales del recorte: registro, atención de la solicitud y destino." vertex="1">
-          <mxGeometry height="30" width="1240" x="180" y="68" as="geometry" />
-        </mxCell>
         <mxCell id="actor-autorizado" parent="1" style="shape=umlActor;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;" value="" vertex="1">
           <mxGeometry height="80" width="40" x="280" y="130" as="geometry" />
         </mxCell>

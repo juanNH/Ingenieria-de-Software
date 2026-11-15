@@ -79,12 +79,6 @@
         <mxCell id="sql" value="SQL Server" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Arial;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="1775" y="80" width="210" height="70" />
         </mxCell>
-        <mxCell id="section1" value="Consulta — entrada autorizada, usuario o historial general" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontStyle=1;align=left;fillColor=#f5f5f5;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="30" y="180" width="2030" height="36" />
-        </mxCell>
-        <mxCell id="note2" value="MainForm comprueba AUDITORIA_CAMBIOS_VER antes de crear AuditoriaCambiosView. La pantalla permite consultar sin exigir eventos previos. La captura/registro de una modificación corresponde al CDU que la produce; esta secuencia se centra en consultar y restaurar." style="shape=note;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Arial;fontSize=15;align=left;verticalAlign=top;spacing=12;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="40" y="290" width="2010" height="94" />
-        </mxCell>
         <mxCell id="msg3" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
           <mxGeometry as="geometry" relative="1">
             <mxPoint as="sourcePoint" x="165" y="460" />
@@ -250,9 +244,6 @@
         <mxCell id="label19" value="4. Muestra fecha, responsable, campo y valores." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="173.0" y="1745" width="229" height="50" />
         </mxCell>
-        <mxCell id="section20" value="Alternativas de consulta" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontStyle=1;align=left;fillColor=#f5f5f5;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="30" y="1880" width="2030" height="36" />
-        </mxCell>
         <mxCell id="msg21" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
           <mxGeometry as="geometry" relative="1">
             <mxPoint as="sourcePoint" x="165" y="1990" />
@@ -280,16 +271,7 @@
         <mxCell id="label23" value="ListarPorEntidad_380_jh(entidad, idEntidad)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="908.0" y="2095" width="229" height="50" />
         </mxCell>
-        <mxCell id="note24" value="ListarPorEntidad continúa por AuditoriaDataMapper y DatabaseContext con parámetros. La vista muestra estados anterior/nuevo del registro seleccionado. Sin cambios, informa el listado vacío. La restauración opcional se detalla en la segunda página." style="shape=note;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Arial;fontSize=15;align=left;verticalAlign=top;spacing=12;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="40" y="2230" width="2010" height="94" />
-        </mxCell>
-        <mxCell id="section25" value="Consulta de negocio con permiso adicional" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontStyle=1;align=left;fillColor=#f5f5f5;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="30" y="2400" width="2030" height="36" />
-        </mxCell>
-        <mxCell id="note26" value="Con IntegridadVer, el selector ofrece Donante, Donacion, Unidad, MovimientoUnidad y maestros/compatibilidad admitidos. La vista llama a IntegridadApplicationService.Verificar y a ListarNegocio(entidad). Este servicio comprueba permiso y entidad, recupera Auditoria y filtra. La consulta de negocio no habilita restauración de campos." style="shape=note;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Arial;fontSize=15;align=left;verticalAlign=top;spacing=12;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="40" y="2510" width="2010" height="94" />
-        </mxCell>
-      </root>
+        </root>
     </mxGraphModel>
   </diagram>
   <diagram name="CDU-07 — Secuencia: Restaurar un campo de Usuario" id="cdu07-restauracion">
@@ -381,9 +363,6 @@
         <mxCell id="audit" value="Application&lt;br&gt;AuditoriaApplication&lt;br&gt;Service_380_jh" style="rounded=0;html=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontFamily=Arial;fontSize=15;align=center;verticalAlign=middle;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="2020" y="80" width="210" height="70" />
         </mxCell>
-        <mxCell id="section1" value="Restauración — selección válida y confirmación" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontStyle=1;align=left;fillColor=#f5f5f5;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="30" y="180" width="2275" height="36" />
-        </mxCell>
         <mxCell id="msg2" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
           <mxGeometry as="geometry" relative="1">
             <mxPoint as="sourcePoint" x="165" y="290" />
@@ -405,9 +384,6 @@
         </mxCell>
         <mxCell id="label3" value="EsCampoRestaurable_380_jh(campo)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;align=left;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="458" y="352" width="187" height="54" />
-        </mxCell>
-        <mxCell id="note4" value="Solo se habilita Restaurar campo para Usuario y un campo permitido. Si el usuario solo consulta, termina sin modificar. Si cancela la confirmación del siguiente paso, no se llama al servicio." style="shape=note;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Arial;fontSize=15;align=left;verticalAlign=top;spacing=12;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="40" y="470" width="2255" height="94" />
         </mxCell>
         <mxCell id="msg5" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
           <mxGeometry as="geometry" relative="1">
@@ -597,12 +573,6 @@
         <mxCell id="label24" value="true si la actualización afectó filas" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="663.0" y="2145" width="229" height="50" />
         </mxCell>
-        <mxCell id="note25" value="Si los datos no son válidos, el usuario no existe o la actualización devuelve fallo, el servicio devuelve false y la pantalla informa que no pudo restaurar. Las excepciones técnicas de persistencia no tienen un manejo específico en esta pantalla." style="shape=note;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Arial;fontSize=15;align=left;verticalAlign=top;spacing=12;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="40" y="2280" width="2255" height="94" />
-        </mxCell>
-        <mxCell id="section26" value="Después de actualizar — integridad e historial" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=17;fontStyle=1;align=left;fillColor=#f5f5f5;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="30" y="2450" width="2275" height="36" />
-        </mxCell>
         <mxCell id="msg27" edge="1" parent="1" style="html=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=1.3;">
           <mxGeometry as="geometry" relative="1">
             <mxPoint as="sourcePoint" x="655" y="2560" />
@@ -675,10 +645,7 @@
         <mxCell id="label34" value="8. Informa resultado y recarga usuarios/historial." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Arial;fontSize=14;" vertex="1" parent="1">
           <mxGeometry as="geometry" x="173.0" y="3065" width="229" height="50" />
         </mxCell>
-        <mxCell id="note35" value="El recálculo de usuarios y el registro de auditoría son llamadas posteriores separadas. No hay transacción ni rollback conjunto entre estas operaciones y el UPDATE. El registro de auditoría usa Repository/AuditoriaDataMapper/DatabaseContext y la tabla Auditoria, como en la vista de consulta." style="shape=note;html=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Arial;fontSize=15;align=left;verticalAlign=top;spacing=12;" vertex="1" parent="1">
-          <mxGeometry as="geometry" x="40" y="3200" width="2255" height="94" />
-        </mxCell>
-      </root>
+        </root>
     </mxGraphModel>
   </diagram>
 </mxfile>

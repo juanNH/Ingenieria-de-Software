@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="Electron" agent="Codex">
   <diagram id="pn2-modelo-conceptual" name="PN2 - Modelo conceptual">
     <mxGraphModel dx="2900" dy="1370" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2900" pageHeight="1370" math="0" shadow="0">
@@ -46,9 +46,6 @@
         </mxCell>
         <mxCell id="movimiento-atributos" value="&lt;div style=&quot;line-height:1.35&quot;&gt;- Tipo de movimiento&lt;br&gt;- Estado anterior&lt;br&gt;- Estado nuevo&lt;br&gt;- Observación&lt;br&gt;- Fecha del movimiento&lt;br&gt;- Responsable&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=16;align=left;verticalAlign=top;spacingLeft=14;spacingRight=12;spacingTop=10;" vertex="1" parent="movimiento">
           <mxGeometry x="0" y="42" width="500" height="212" as="geometry" />
-        </mxCell>
-        <mxCell id="nota-pn2" value="Relaciones del negocio: cada reserva corresponde a una solicitud y una unidad. Una reserva produce como máximo una entrega; al registrar su destino se genera el comprobante. Las líneas discontinuas hacia componente, grupo, Rh, estado y destino indican los valores de clasificación utilizados. Los datos del receptor y del estudio pertenecen a la solicitud." style="shape=note;whiteSpace=wrap;html=1;size=18;fillColor=#F5F5F5;strokeColor=#666666;fontSize=15;fontFamily=Arial;align=left;verticalAlign=middle;spacing=12;" vertex="1" parent="1">
-          <mxGeometry x="60" y="1250" width="2800" height="110" as="geometry" />
         </mxCell>
         <mxCell id="usuario-solicitud" value="registra" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=1;exitY=0.5;entryX=0;entryY=0.25;exitPerimeter=1;entryPerimeter=1;" edge="1" parent="1" source="usuario" target="solicitud">
           <mxGeometry relative="1" as="geometry" />

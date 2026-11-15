@@ -128,9 +128,7 @@
         <mxCell style="text;strokeColor=#343a40;fillColor=none;align=left;verticalAlign=top;spacingLeft=7;spacingTop=5;whiteSpace=wrap;html=1;fontFamily=Arial;fontSize=13;" parent="DonanteDomain03" id="DonanteDomain03-attr" value="+ Id_380_jh: int&lt;br/&gt;+ GrupoSanguineo_380_jh: string&lt;br/&gt;+ FactorRh_380_jh: string" vertex="1">
           <mxGeometry height="79" as="geometry" width="661" x="0" y="46" />
         </mxCell>
-        <mxCell style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Arial;fontSize=13;align=left;verticalAlign=top;spacing=12;" parent="1" id="nota-persistencia-cu03" value="&lt;b&gt;Efectos de sp_Unidad_CambiarEstado&lt;/b&gt;&lt;br/&gt;La primera liberación confirma grupo y Rh del donante y deja pendiente la clasificación de las unidades que reciban esos datos.&lt;br/&gt;Una unidad En revisión vencida puede descartarse sin clasificación, con motivo. El movimiento, la auditoría y el comprobante conservan el flujo existente." vertex="1">
-          <mxGeometry height="176" as="geometry" width="661" x="2172" y="920" />
-        </mxCell>
+
       </root>
     </mxGraphModel>
   </diagram>

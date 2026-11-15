@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <mxfile host="Electron">
   <diagram name="CDU-06 · Gestionar idiomas y traducciones · Casos de uso" id="t05-casos-de-uso">
     <mxGraphModel dx="1280" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1280" pageHeight="600" math="0" shadow="0">
@@ -11,9 +11,7 @@
         <mxCell id="titulo" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;fontStyle=1;align=center;verticalAlign=middle;" value="CDU-06 — Diagrama de casos de uso: Gestionar idiomas y traducciones" vertex="1">
           <mxGeometry height="50" width="1200" x="40" y="24" as="geometry" />
         </mxCell>
-        <mxCell id="subtitulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;align=center;verticalAlign=middle;fontColor=#666666;fontFamily=Arial;" value="Administración de idiomas y traducciones; cambio de idioma como soporte" vertex="1">
-          <mxGeometry height="32" width="1120" x="80" y="84" as="geometry" />
-        </mxCell>
+
         <mxCell id="uc06" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;fontSize=16;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDU-06&lt;/b&gt;&lt;br&gt;Gestionar idiomas y traducciones" vertex="1">
           <mxGeometry height="130" width="380" x="620" y="255" as="geometry" />
         </mxCell>

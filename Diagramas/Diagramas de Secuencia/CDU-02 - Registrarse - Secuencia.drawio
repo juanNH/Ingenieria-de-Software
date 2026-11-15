@@ -7,9 +7,6 @@
         <mxCell id="titulo" value="&lt;b&gt;CDU-02 · Registrarse · Secuencia de clases&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=22;" vertex="1" parent="1">
           <mxGeometry x="20" y="18" width="1900" height="44" as="geometry" />
         </mxCell>
-        <mxCell id="alcance" value="Camino principal y alternativas documentadas; colaboradores transversales identificados en notas." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=13;fontColor=#666666;" vertex="1" parent="1">
-          <mxGeometry x="20" y="64" width="1900" height="28" as="geometry" />
-        </mxCell>
         <mxCell id="actor" value="&lt;b&gt;Usuario no registrado&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;fillColor=#fff2cc;strokeColor=#666666;" vertex="1" parent="1">
           <mxGeometry x="70" y="110" width="210" height="76" as="geometry" />
         </mxCell>
@@ -190,13 +187,7 @@
         <mxCell id="m-label-12" value="Inicio de sesión con usuario completado y contraseña vacía" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="181.0" y="842" width="248" height="36" as="geometry" />
         </mxCell>
-        <mxCell id="nota-0" value="&lt;b&gt;Validaciones y colaboradores reales&lt;/b&gt;&lt;br&gt;Registro_380_jh exige nombre, apellido, usuario, correo y contraseña. Application valida usuario/correo/contraseña y formato de correo; PlainTextPasswordService.Hash_380_jh protege la contraseña.&lt;br&gt;sp_Usuario_Registrar comprueba duplicados e idioma es-AR, e inserta Usuario ACTIVO en transacción. No asigna perfiles.&lt;br&gt;Tras Creado: DigitoVerificadorApplicationService.RecalcularUsuarios_380_jh() y AuditoriaApplicationService.RegistrarAlta_380_jh(memento)." style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacing=12;fontSize=14;fontFamily=Arial;" vertex="1" parent="1">
-          <mxGeometry x="70.0" y="954" width="880.0" height="291" as="geometry" />
-        </mxCell>
-        <mxCell id="nota-1" value="&lt;b&gt;Alternativas de la ficha&lt;/b&gt;&lt;br&gt;Cancelar desde Registro devuelve DialogResult.Cancel sin crear cuenta.&lt;br&gt;Datos incompletos o correo inválido: mantiene formulario y permite corregir.&lt;br&gt;Usuario/correo duplicados: informa el motivo y registra RegistroFallido mediante BitacoraRepository_380_jh.&lt;br&gt;Idioma predeterminado ausente o ErrorBaseDatos_380_jh: informa el error y no confirma el alta. No se agrega un inicio de sesión automático." style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacing=12;fontSize=14;fontFamily=Arial;" vertex="1" parent="1">
-          <mxGeometry x="970.0" y="954" width="880.0" height="291" as="geometry" />
-        </mxCell>
-      </root>
+        </root>
     </mxGraphModel>
   </diagram>
 </mxfile>

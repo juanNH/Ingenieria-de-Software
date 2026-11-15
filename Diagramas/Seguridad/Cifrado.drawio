@@ -1,0 +1,33 @@
+<mxfile host="Electron">
+  <diagram name="Cifrado" id="seguridad-cifrado">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageWidth="1240" pageHeight="280">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dato" value="Dato original" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#eaf1f9;strokeColor=#637380;strokeWidth=2;fontFamily=Arial;fontSize=26;fontStyle=1;fontColor=#243447;" vertex="1" parent="1">
+          <mxGeometry x="20" y="30" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="cifrado" value="Cifrado" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#dce8f5;strokeColor=#637380;strokeWidth=2;fontFamily=Arial;fontSize=26;fontStyle=1;fontColor=#243447;" vertex="1" parent="1">
+          <mxGeometry x="460" y="30" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="protegido" value="Dato cifrado" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#eaf1f9;strokeColor=#637380;strokeWidth=2;fontFamily=Arial;fontSize=26;fontStyle=1;fontColor=#243447;" vertex="1" parent="1">
+          <mxGeometry x="900" y="30" width="300" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="entrada-cifrado" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4f6d84;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1" source="dato" target="cifrado">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cifrado-protegido" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4f6d84;strokeWidth=3;endArrow=block;endFill=1;" edge="1" parent="1" source="cifrado" target="protegido">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="descifrado" value="Descifrado" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4f6d84;strokeWidth=3;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=1;fontFamily=Arial;fontSize=21;fontColor=#435c73;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="protegido" target="dato">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1050" y="210" />
+              <mxPoint x="170" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

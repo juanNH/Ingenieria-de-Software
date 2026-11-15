@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="Electron" agent="Codex" version="24.7.17">
   <diagram id="883b97498c284d739d323a9f14a9905d" name="CDUN-03 Clasificar estado de unidad">
     <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="5020" pageHeight="4053" math="0" shadow="0">
@@ -546,13 +546,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Arial;fontSize=15;align=left;verticalAlign=top;spacing=14;" parent="1" id="nota-sql-donante-cu03" value="&lt;b&gt;Dentro de sp_Unidad_CambiarEstado&lt;/b&gt;&lt;br/&gt;Al liberar por primera vez, se confirman grupo y Rh del Donante. Las unidades pendientes que reciben esa tipificación requieren guardar su propia clasificación.&lt;br/&gt;Los cambios de Donante, Unidad, MovimientoUnidad y auditoría se confirman en la misma transacción." vertex="1">
-          <mxGeometry height="240" as="geometry" width="680" x="4270" y="2430" />
-        </mxCell>
-        <mxCell style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontFamily=Arial;fontSize=15;align=left;verticalAlign=top;spacing=14;" parent="1" id="nota-descarte-vencido-cu03" value="&lt;b&gt;Alternativa: descarte por vencimiento&lt;/b&gt;&lt;br/&gt;Solo DESCARTADA desde En revisión y con fecha de vencimiento pasada permite omitir la clasificación.&lt;br/&gt;El motivo es obligatorio. No habilita liberar ni bloquear sin clasificación.&lt;br/&gt;Se registra el mismo movimiento y se continúa con CDUN-04 al completar las decisiones de la donación." vertex="1">
-          <mxGeometry height="240" as="geometry" width="680" x="4270" y="2730" />
-        </mxCell>
-      </root>
+        </root>
     </mxGraphModel>
   </diagram>
 </mxfile>

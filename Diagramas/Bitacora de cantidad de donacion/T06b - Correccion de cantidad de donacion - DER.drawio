@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="app.diagrams.net" type="device" compressed="false">
   <diagram id="pn1-cantidad-der" name="Corregir cantidad declarada">
     <mxGraphModel dx="1190" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1190" pageHeight="844" background="#FFFFFF" math="0" shadow="0">
@@ -7,9 +7,6 @@
         <mxCell id="1" parent="0" />
         <mxCell id="titulo" value="DER · Corregir cantidad declarada" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontStyle=1;fontSize=26;align=center;" vertex="1" parent="1" connectable="0">
           <mxGeometry x="52" y="24" width="1083" height="37" as="geometry" />
-        </mxCell>
-        <mxCell id="subtitulo" value="PN1 · Diseño propuesto" style="text;html=1;whiteSpace=wrap;spacing=0;verticalAlign=middle;fontFamily=Arial;fontColor=#172232;fontSize=13;fontColor=#526070;align=center;" vertex="1" parent="1" connectable="0">
-          <mxGeometry x="52" y="66" width="1083" height="22" as="geometry" />
         </mxCell>
         <mxCell id="donacion" value="" style="rounded=0;fillColor=#FFFFFF;strokeColor=#566273;strokeWidth=1;" vertex="1" parent="1">
           <mxGeometry x="52" y="124" width="280" height="88" as="geometry" />
@@ -168,10 +165,10 @@
           <mxGeometry x="57" y="84" width="214" height="20" as="geometry" />
         </mxCell>
         <mxCell id="donacion-unidad" value="" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERone;endArrow=ERoneToMany;startFill=0;endFill=0;startSize=10;endSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="donacion" target="unidad">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="donacion-version" value="" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERone;endArrow=ERoneToMany;startFill=0;endFill=0;startSize=10;endSize=10;exitX=1;exitY=0.49;exitDx=0;exitDy=0;entryX=0;entryY=0.239;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="donacion" target="version">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="donacion-correccion" value="" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;startSize=10;endSize=10;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0;entryY=0.227;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="donacion" target="correccion">
           <mxGeometry relative="1" as="geometry">
@@ -182,7 +179,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="unidad-movimiento" value="" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERone;endArrow=ERoneToMany;startFill=0;endFill=0;startSize=10;endSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="unidad" target="movimiento">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="unidad-detalle" value="" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERone;endArrow=ERzeroToMany;startFill=0;endFill=0;startSize=10;endSize=10;exitX=1;exitY=0.64;exitDx=0;exitDy=0;entryX=0;entryY=0.645;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="unidad" target="detalle">
           <mxGeometry relative="1" as="geometry">
@@ -201,13 +198,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="correccion-version-esperada" value="Esperada" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERzeroToMany;endArrow=ERone;startFill=0;endFill=0;startSize=10;endSize=10;exitX=0.16;exitY=0;exitDx=0;exitDy=0;entryX=0.16;entryY=1;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="correccion" target="version">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="correccion-version-origen" value="Origen" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERzeroToMany;endArrow=ERzeroToOne;startFill=0;endFill=0;startSize=10;endSize=10;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="correccion" target="version">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="correccion-version-resultante" value="Resultante" style="edgeStyle=segmentEdgeStyle;rounded=0;html=1;strokeColor=#566273;strokeWidth=1.1;startArrow=ERzeroToOne;endArrow=ERone;startFill=0;endFill=0;startSize=10;endSize=10;exitX=0.84;exitY=0;exitDx=0;exitDy=0;entryX=0.84;entryY=1;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#FFFFFF;fontFamily=Arial;fontColor=#172232;" edge="1" parent="1" source="correccion" target="version">
-          <mxGeometry relative="1" as="geometry"></mxGeometry>
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

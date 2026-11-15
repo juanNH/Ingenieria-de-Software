@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <mxfile host="Electron">
   <diagram name="CDU-01 a CDU-03 · Gestión de acceso · Casos de uso" id="t02-casos-de-uso">
     <mxGraphModel dx="2262" dy="1364" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1850" pageHeight="1360" math="0" shadow="0">
@@ -11,9 +11,7 @@
         <mxCell id="titulo" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=26;fontStyle=1;align=center;verticalAlign=middle;" value="CDU-01 a CDU-03 — Diagrama de casos de uso: Gestión de acceso" vertex="1">
           <mxGeometry height="50" width="1770.0" x="40" y="24" as="geometry" />
         </mxCell>
-        <mxCell id="subtitulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;align=center;verticalAlign=middle;fontColor=#666666;fontFamily=Arial;" value="Casos CDU-01 a CDU-03 y roles del sistema definidos en G04" vertex="1">
-          <mxGeometry height="28" width="900" x="470" y="70" as="geometry" />
-        </mxCell>
+
         <mxCell id="uc01" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;fontSize=16;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;CDU-01&lt;/b&gt;&lt;br&gt;Iniciar sesión" vertex="1">
           <mxGeometry height="130" width="330" x="1020" y="430" as="geometry" />
         </mxCell>

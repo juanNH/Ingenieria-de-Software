@@ -227,10 +227,7 @@
             <mxPoint x="730" y="1565" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="nota" value="Precondición: sesión activa y permiso de editar traducciones. Clave, idioma y texto son obligatorios. La etiqueta se crea solo si la clave detectada aún no existe. Se invoca el servicio de auditoría, pero este retorna sin persistir para Etiqueta y Traduccion porque solo registra Usuario." parent="1" vertex="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontFamily=Arial;align=left;spacing=10;">
-          <mxGeometry x="60" y="1720" width="2260" height="75" as="geometry" />
-        </mxCell>
-      </root>
+        </root>
     </mxGraphModel>
   </diagram>
   <diagram name="CDU-06 · Gestionar idiomas y traducciones · Administrar idioma" id="cdu06-administrar-idioma">
@@ -403,10 +400,7 @@
             <mxPoint x="190" y="1180" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="nota" value="Crear o editar requiere el permiso específico; código y nombre son obligatorios. La creación y los cambios de activación conservan el historial propio de IdiomaEstadoHistorial. Las llamadas al servicio de auditoría no persisten la entidad Idioma. El selector principal solo ofrece idiomas activos." parent="1" vertex="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontFamily=Arial;align=left;spacing=10;">
-          <mxGeometry x="60" y="1335" width="1990" height="75" as="geometry" />
-        </mxCell>
-      </root>
+        </root>
     </mxGraphModel>
   </diagram>
   <diagram name="CDU-06 · Cambiar idioma preferido · Soporte" id="tO-YfC1dVPqZIbcCyCzK">

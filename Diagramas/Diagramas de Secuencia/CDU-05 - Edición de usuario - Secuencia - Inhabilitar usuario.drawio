@@ -182,10 +182,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="nota" value="Alternativa 6.1 de CDU-05. La UI ofrece Inhabilitar solo con permiso específico y una cuenta seleccionada que no esté Inactiva. La cancelación conserva los datos. Borrar_380_jh es el nombre del método técnico; SQL realiza una baja lógica mediante UPDATE. El usuario inactivo no puede iniciar una nueva sesión." parent="1" vertex="1" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontFamily=Arial;align=left;spacing=10;">
-          <mxGeometry x="60" y="1390" width="1990" height="75" as="geometry" />
-        </mxCell>
-      </root>
+        </root>
     </mxGraphModel>
   </diagram>
   <diagram name="CDU-05 · Inhabilitar usuario · Detalle de soporte" id="u8aPTgO_lLOnAPxTEb01">

@@ -7,9 +7,6 @@
         <mxCell id="titulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=22;align=center;verticalAlign=middle;fontFamily=Arial;" value="PN2 — Entrada, comportamiento y salida" vertex="1">
           <mxGeometry height="42" width="1140" x="230" y="20" as="geometry" />
         </mxCell>
-        <mxCell id="subtitulo" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=14;align=center;verticalAlign=middle;fontColor=#666666;fontFamily=Arial;" value="Mismo flujo principal que la secuencia de roles" vertex="1">
-          <mxGeometry height="28" width="1260" x="170" y="64" as="geometry" />
-        </mxCell>
         <mxCell id="entrada" parent="1" style="swimlane;horizontal=1;startSize=52;whiteSpace=wrap;html=1;rounded=0;fillColor=#bfe3f2;swimlaneFillColor=#d9eef8;strokeColor=#6c8ebf;strokeWidth=2;fontSize=17;fontFamily=Arial;align=center;verticalAlign=middle;" value="&lt;b&gt;&lt;u&gt;Entrada&lt;/u&gt;&lt;/b&gt;" vertex="1">
           <mxGeometry height="360" width="480" x="40" y="140" as="geometry" />
         </mxCell>

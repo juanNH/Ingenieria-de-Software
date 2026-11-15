@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <mxfile host="Electron" agent="Codex" version="24.7.17">
   <diagram id="cdu-01-clases" name="CDU-01 · Iniciar sesión · Clases">
     <mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3026" pageHeight="3601" math="0" shadow="0">
@@ -32,21 +32,19 @@
         <mxCell id="pkg-Domain" value="" style="shape=folder;fontStyle=1;tabWidth=160;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="40.0" y="1896" width="1446.0" height="1460" as="geometry" />
         </mxCell>
-        <mxCell id="pkg-Domain-title" value="Domain · Entidades y contratos" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="pkg-Domain-title" value="Domain" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="52.0" y="1899" width="1422.0" height="28" as="geometry" />
         </mxCell>
         <mxCell id="pkg-Services" value="" style="shape=folder;fontStyle=1;tabWidth=160;tabHeight=30;tabPosition=left;html=1;whiteSpace=wrap;fillColor=#f8f9fa;strokeColor=#6c757d;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1540.0" y="1896" width="1446.0" height="1460" as="geometry" />
         </mxCell>
-        <mxCell id="pkg-Services-title" value="Services · Colaboradores transversales" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+        <mxCell id="pkg-Services-title" value="Services" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="1552.0" y="1899" width="1422.0" height="28" as="geometry" />
         </mxCell>
         <mxCell id="diagram-title" value="CDU-01 — Diagrama de clases: Iniciar sesión" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=26;fontStyle=1;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="40" y="24" width="2946" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="diagram-scope" value="Clases y operaciones que intervienen en el caso · UI → Application → Repository → DAL" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=14;fontColor=#6c757d;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="40" y="78" width="2946" height="28" as="geometry" />
-        </mxCell>
+
         <mxCell id="Program_380_jh" value="Program_380_jh" style="swimlane;fontStyle=1;align=center;verticalAlign=top;horizontal=1;startSize=46;horizontalStack=0;collapsible=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#343a40;fontFamily=Arial;fontSize=15;" vertex="1" parent="1">
           <mxGeometry x="68" y="189" width="640" height="112" as="geometry" />
         </mxCell>
@@ -1000,12 +998,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="uml-legend" value="Dependencia: flecha discontinua · Asociación: flecha continua · Herencia: triángulo vacío · Realización: triángulo vacío y línea discontinua · Composición: rombo lleno" style="text;html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=13;fontColor=#495057;align=center;verticalAlign=middle;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="40" y="3393" width="2946" height="32" as="geometry" />
-        </mxCell>
-        <mxCell id="scope-notes" value="Solo el Administrador puede continuar con credenciales válidas ante integridad inválida. Con integridad de usuarios válida, el tercer intento fallido de una cuenta activa la inhabilita.&lt;br/&gt;El diagrama incluye la entrega al menú y su idioma; no expande las operaciones de negocio que el menú puede abrir." style="text;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#adb5bd;fontFamily=Arial;fontSize=13;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
-          <mxGeometry x="50" y="3451" width="2926" height="60" as="geometry" />
-        </mxCell>
+
+
       </root>
     </mxGraphModel>
   </diagram>
