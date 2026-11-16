@@ -2,6 +2,8 @@
 
 Estos archivos se conservan como antecedentes y no representan el modelo vigente de HemovidaGest.
 
+- [G06 - Modelo sin secciones](G06%20-%20Modelo%20sin%20secciones/README.md) conserva los 33 archivos versionados del modelo anterior: fuente, manifiesto, guía, 29 PNG y su SVG. Fue reemplazado por el [G06 organizado por secciones de capas y colaboraciones](../Diagramas%20de%20clases/G06%20-%20Modelo%20completo/README.md); sus bytes originales se preservaron.
+
 - `DiagramasFinalIS.drawio` contiene un modelo anterior de entrenamiento, ajeno al banco de sangre actual.
 - `Propuestas de persistencia/` conserva dos DER de bitácoras con tablas propuestas que no existen en el esquema actual. No son diagramas nativos de SSMS ni deben usarse para crear la base.
 - `Secuencias propuestas/` conserva la secuencia anterior de maestros, que incluye operaciones de historial y restauración ausentes de la implementación actual.

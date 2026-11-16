@@ -1,6 +1,8 @@
 # Preserve the bytes referenced by the current and historical G06 manifests.
 "Diagramas/Diagramas de clases/G06 - Modelo completo/G06 - Modelo completo de clases.drawio" text eol=lf
 "Diagramas/Diagramas de clases/G06 - Modelo completo/G06 - Modelo completo de clases.manifest.json" text eol=lf
+"Diagramas/Historicos/G06 - Modelo sin secciones/G06 - Modelo completo de clases.drawio" text eol=lf
+"Diagramas/Historicos/G06 - Modelo sin secciones/G06 - Modelo completo de clases.manifest.json" text eol=lf
 "Diagramas/Historicos/G06 - Modelo anterior por capas/G06 - Clases completas por capa.drawio" text eol=lf
 "Diagramas/Historicos/G06 - Modelo anterior por capas/G06 - Clases completas por capa.manifest.json" text eol=lf
 # Preserve CDU-03 source hashes shared by its catalog and Drive editables.

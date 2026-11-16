@@ -40,7 +40,7 @@ El acceso a SQL Server, los grupos de datos persistidos y la relación con los a
 
 ## Modelos finales
 
-El [modelo de clases integrado G06](Modelo-clases-final.md) reúne los 155 tipos de la implementación, sus miembros seleccionados y relaciones, con trazabilidad al código y balance con los diagramas parciales. Su vista global y sus detalles muestran clases, interfaces y enumeraciones sin agrupaciones por capa. El [modelo de datos físico G07](Modelo-datos-final.md) presenta las tablas, columnas y claves foráneas reales de SQL Server mediante diagramas nativos de SSMS.
+El [modelo de clases integrado G06](Modelo-clases-final.md) reúne los 155 tipos de la implementación, sus miembros seleccionados y relaciones, con trazabilidad al código y balance con los diagramas parciales. Su mapa general agrupa las definiciones UML por capa; las 28 vistas de colaboración desarrollan las 419 relaciones con referencias locales. El [modelo de datos físico G07](Modelo-datos-final.md) presenta las tablas, columnas y claves foráneas reales de SQL Server mediante diagramas nativos de SSMS.
 
 ## Referencias de implementación
 

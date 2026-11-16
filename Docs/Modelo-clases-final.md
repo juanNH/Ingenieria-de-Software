@@ -1,18 +1,18 @@
 # Modelo de clases final — G06
 
-El modelo integrado reúne los **155 tipos** definidos por los siete proyectos de HemovidaGest: UI, Application, Repository, DAL, Domain, Services y Abstractions. Comprende 141 clases, 6 interfaces y 8 enumeraciones, incluidos los tipos anidados. La primera vista presenta las 155 definiciones UML completas y sus 419 relaciones; las siguientes permiten leer los atributos de dominio, constructores y contratos declarados seleccionados con mayor detalle. Incluye las clases y operaciones del reporte de abastecimiento y riesgo de vencimiento.
+El modelo integrado reúne los **155 tipos** definidos por los siete proyectos de HemovidaGest: UI, Application, Repository, DAL, Domain, Services y Abstractions. Comprende 141 clases, 6 interfaces y 8 enumeraciones, incluidos los tipos anidados. El mapa general presenta las 155 definiciones UML completas en siete secciones por capa, con sus **121 relaciones internas**. Las **419 relaciones únicas del modelo completo** se muestran explícitamente en las vistas de colaboración, sin tender cables entre todas las secciones del mapa. Incluye las clases y operaciones del reporte de abastecimiento y riesgo de vencimiento.
 
-La fuente contiene **29 páginas: «Modelo completo» y «Clases 01» a «Clases 28»**, con **1009 miembros seleccionados y 419 relaciones reconciliadas**. Las cajas representan clases, interfaces o enumeraciones; no hay paquetes, contenedores, colores ni encabezados por capa. Cada imagen corresponde a una página completa del editable.
+La fuente contiene **29 páginas: «Clases por capa» y 28 vistas de colaboración**, con **1009 miembros seleccionados y 419 relaciones reconciliadas**. Las cajas UML representan clases, interfaces o enumeraciones. Las secciones de UI, Application, Repository, DAL, Domain, Services y Abstractions son contenedores reales del editable: al mover una sección se mueven sus clases y compartimentos. Cada imagen corresponde a una página completa del editable.
 
 | Proyecto de origen | Tipos | Vistas de detalle |
 | --- | ---: | --- |
-| UI | 34 | Clases 01–05 |
-| Application | 23 | Clases 06–11 |
-| Repository | 14 | Clases 12–15 |
-| DAL | 16 | Clases 16–19 |
-| Domain | 51 | Clases 20–26 |
-| Services | 11 | Clases 27–28 |
-| Abstractions | 6 | Clases 28 |
+| UI | 34 | Páginas 2–7: inicio, identidad, auditoría, donaciones, unidades y PN2 |
+| Application | 23 | Páginas 8–12: PN2, identidad, auditoría, PN1 y XML |
+| Repository | 14 | Páginas 13–16 |
+| DAL | 16 | Páginas 17–20 |
+| Domain | 51 | Páginas 21–27 |
+| Services | 11 | Páginas 28–29 |
+| Abstractions | 6 | Página 29 |
 | **Total** | **155** | **28 vistas de detalle** |
 
 ## Fuente editable y trazabilidad
@@ -21,7 +21,7 @@ El [editable G06](../Diagramas/Diagramas%20de%20clases/G06%20-%20Modelo%20comple
 
 La [guía de G06](../Diagramas/Diagramas%20de%20clases/G06%20-%20Modelo%20completo/README.md) permite recorrer las páginas del modelo. Las [29 vistas PNG](../Diagramas/Diagramas%20de%20clases/G06%20-%20Modelo%20completo/Vistas/) se conservan junto al editable y el manifiesto, una imagen completa por página.
 
-El [modelo global en SVG](../Diagramas/Diagramas%20de%20clases/G06%20-%20Modelo%20completo/Vistas/01%20-%20Modelo%20completo.svg) permite ampliar las clases sin perder definición. El [modelo anterior por capas](../Diagramas/Historicos/G06%20-%20Modelo%20anterior%20por%20capas/README.md) se conserva como antecedente y no es la fuente vigente.
+El [mapa general en alta resolución](../Diagramas/Diagramas%20de%20clases/G06%20-%20Modelo%20completo/Vistas/01%20-%20Clases%20por%20capa.png) y el editable permiten ampliar las clases. Las versiones sustituidas se conservan como antecedentes en el [índice de históricos](../Diagramas/Historicos/README.md).
 
 Para cada tipo, el manifiesto conserva su identificador real, alias gráfico, capa, espacio de nombres, clase de declaración, ruta relativa y línea de origen, bases, firmas seleccionadas y páginas de definición completa. Para cada relación registra sus extremos reales, clase de relación, roles, multiplicidad cuando corresponde y páginas donde aparece. También identifica los archivos de código auditados por su hash.
 
@@ -29,9 +29,11 @@ Para cada tipo, el manifiesto conserva su identificador real, alias gráfico, ca
 
 Los nombres gráficos omiten únicamente el sufijo `_380_jh` para facilitar la lectura. Los identificadores y las firmas del manifiesto conservan el nombre real. Los alias son únicos en el alcance representado.
 
-Las relaciones entre vistas repiten los tipos de frontera como extremos de referencia. Una caja que contiene solamente el nombre remite a la definición completa del tipo registrada en el manifiesto. Estas repeticiones conservan los extremos de las relaciones y no agregan tipos al total de 155.
+Cada vista de colaboración asigna las relaciones a su clase de origen y coloca sus destinos de referencia próximos, en columnas identificadas por capa. Las conexiones se mantienen dentro de esa fila de colaboración; las cabeceras tienen una banda reservada. Una caja que contiene solamente el nombre remite a la definición completa registrada en el manifiesto. Puede repetirse incluso si la definición aparece en otra fila de la misma página: esa repetición mantiene la conexión local y no agrega tipos al total de 155.
 
-Se representan **153 asociaciones, 216 dependencias, 30 generalizaciones, 13 realizaciones de interfaces y 7 relaciones de anidamiento**. Las relaciones de anidamiento emplean un conector continuo con un círculo y signo `+` en el tipo contenedor. Las cuatro referencias externas del CLR —`Form`, `UserControl`, `IDisposable` y `StringWriter`— aparecen como extremos UML de las relaciones reales y no se suman a los 155 tipos de la aplicación. La vista global incluye las 155 definiciones y las 419 relaciones; las vistas de detalle conservan sus extremos de referencia.
+Se representan **153 asociaciones, 216 dependencias, 30 generalizaciones, 13 realizaciones de interfaces y 7 relaciones de anidamiento**. Las relaciones de anidamiento emplean un conector continuo con un círculo y signo `+` en el tipo contenedor. Las cuatro referencias externas del CLR —`Form`, `UserControl`, `IDisposable` y `StringWriter`— aparecen como extremos UML de las relaciones reales y no se suman a los 155 tipos de la aplicación.
+
+Los 28 detalles muestran cada una de las **419 relaciones exactamente una vez**, según su clase de origen. El mapa general repite las 121 relaciones internas de las capas para orientar la lectura; esas ocurrencias no se suman como relaciones nuevas. Las otras 298 relaciones entre capas o con el CLR se desarrollan en los detalles.
 
 Los miembros emplean las visibilidades UML `+` pública, `#` protegida, `~` interna y `-` privada. Los miembros implícitamente públicos de las interfaces se muestran con `+`. La marca `{static}` identifica miembros estáticos y `*` indica multiplicidad múltiple en las asociaciones correspondientes.
 
@@ -55,6 +57,6 @@ Después del balance no quedaron nombres de tipo inexistentes ni relaciones parc
 
 Se verificaron la cobertura de los 155 tipos, los 1009 miembros seleccionados y las 419 relaciones; la unicidad de los alias; la correspondencia de los 139 archivos de código identificados por SHA-256; y la validez del XML, de sus padres y de los extremos de las aristas en las 29 páginas. El modelo global no tiene cajas superpuestas ni rutas que atraviesen el interior de una clase ajena.
 
-El PNG global mide **10000 × 5535 píxeles** y los 28 detalles tienen un lado largo de **4000 píxeles**, con proporciones conservadas. La copia de inserción del documento mide 4000 × 2214 píxeles y deriva del mismo render vectorial del modelo global. La fuente utiliza texto de al menos 24 píxeles; el tamaño impreso depende de la escala de inserción. La vista global sirve para recorrer el conjunto con zoom; las vistas «Clases 01» a «Clases 28» permiten leer sus miembros en detalle.
+El PNG global mide **10000 × 5717 píxeles** y los 28 detalles tienen un lado largo de **4000 píxeles**, con proporciones conservadas. La copia de inserción del documento mide 4000 × 2287 píxeles y deriva del mismo render vectorial del mapa general. La fuente utiliza texto de al menos 24 píxeles. El tamaño impreso varía según la escala de cada vista; cada figura ocupa una página y su enlace permite ampliar el editable o la imagen. El mapa orienta sobre el conjunto y las vistas de colaboración permiten seguir las conexiones de cada clase.
 
 Al cambiar un contrato o una relación de la implementación, corresponde actualizar las vistas afectadas, sus modelos parciales y el manifiesto. La vista de componentes y el recorrido arquitectónico se describen en [Arquitectura.md](Arquitectura.md). El [modelo de datos G07](Modelo-datos-final.md) documenta por separado las tablas, columnas y claves foráneas reales de SQL Server.
