@@ -26,12 +26,12 @@ stock vigente, demanda registrada, saldos y vencimientos por componente, grupo y
 
 Los [CDU del sistema](Docs/CDU.md) tienen sus diagramas de clases y secuencia
 normalizados y contrastados con la implementación. El [modelo final G06](Docs/Modelo-clases-final.md)
-integra las clases de las siete capas y el [modelo final G07](Docs/Modelo-datos-final.md)
+reúne las 155 clases, interfaces y enumeraciones, con una vista global y 28 detalles sin agrupaciones por capa. El [modelo final G07](Docs/Modelo-datos-final.md)
 reúne el esquema físico completo en diagramas nativos de SSMS. La
 [arquitectura y persistencia T01](Docs/Arquitectura.md) documenta los componentes,
 la navegación y el almacenamiento actuales.
 
-El [índice de diagramas](Diagramas/README.md) organiza las fuentes por tipo y permite acceder al modelo completo G06 y sus 29 vistas PNG.
+El [índice de diagramas](Diagramas/README.md) organiza las fuentes por tipo y permite acceder al [editable G06 y sus 29 vistas PNG](Diagramas/Diagramas%20de%20clases/G06%20-%20Modelo%20completo/README.md), incluido el modelo global en PNG de alta resolución y SVG.
 
 El menú **Maestros** permite administrar componentes, grupos sanguíneos, factor Rh y destinos de entrega.
 Para actualizar una base existente, ejecutar [InstalarMaestrosPN1.ps1](Database/InstalarMaestrosPN1.ps1); la migración conserva los códigos históricos y crea un respaldo verificado.

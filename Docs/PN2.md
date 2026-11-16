@@ -22,7 +22,7 @@ Las pruebas de reutilización están incluidas en `Tests/PN2.Compatibilidad.Test
 
 El circuito operativo admite entregas parciales, cancelación de reservas con motivo y reapertura del saldo cuando una entrega se devuelve o descarta. La lógica de reingreso se conserva en el servicio, pero no es una acción disponible en la interfaz actual.
 
-La secuencia de roles describe el flujo de negocio. Las secuencias de clases muestran los pasos y alternativas de cada CDUN desde la UI hasta SQL Server. Los DER muestran las tablas y claves foráneas que intervienen en cada caso. Los [CDU del sistema](CDU.md) también cuentan con clases y secuencias normalizadas. El [modelo final G06](Modelo-clases-final.md) integra los tipos y relaciones de las siete capas, y el [modelo final G07](Modelo-datos-final.md) reúne las 32 tablas y 53 claves foráneas del esquema físico completo.
+La secuencia de roles describe el flujo de negocio. Las secuencias de clases muestran los pasos y alternativas de cada CDUN desde la UI hasta SQL Server. Los DER muestran las tablas y claves foráneas que intervienen en cada caso. Los [CDU del sistema](CDU.md) también cuentan con clases y secuencias normalizadas. El [modelo final G06](Modelo-clases-final.md) integra los 155 tipos, sus miembros seleccionados y relaciones en una vista global y 28 detalles sin agrupaciones por capa, y el [modelo final G07](Modelo-datos-final.md) reúne las 32 tablas y 53 claves foráneas del esquema físico completo.
 
 ## Diagramas de negocio
 

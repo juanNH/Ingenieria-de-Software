@@ -4,7 +4,7 @@ Los diagramas están agrupados por su tipo. Los archivos conservan los códigos 
 
 ## Modelos completos
 
-- **[G06 · Todas las clases del sistema](Diagramas%20de%20clases/G06%20-%20Modelo%20completo/README.md):** editable draw.io, manifiesto y 29 vistas PNG por capa. Incluye los 155 tipos actuales de la solución.
+- **[G06 · Modelo completo de clases](Diagramas%20de%20clases/G06%20-%20Modelo%20completo/README.md):** editable draw.io, manifiesto y 29 vistas PNG. La primera reúne los 155 tipos, sus 1009 miembros seleccionados y 419 relaciones; las otras 28 desarrollan los detalles. Los diagramas muestran clases, interfaces y enumeraciones sin paquetes ni agrupaciones por capa. La vista global también está disponible como SVG.
 - **[G07 · Modelo de datos completo](Diagramas%20Entidad%20Relacion/G07%20-%20Modelo%20de%20datos%20completo.png):** imagen general de las 32 tablas. Sus tres vistas de detalle, exportaciones EMF y definiciones nativas `.ssms.bin` están en la misma carpeta. [Cómo abrir y editar en SSMS](../Docs/Modelo-datos-final.md).
 
 ## Carpetas por tipo
