@@ -57,7 +57,7 @@ namespace UI
         protected override void ApplyTranslations_380_jh()
         {
             base.ApplyTranslations_380_jh();
-            PintarGrilla_380_jh();
+            ActualizarTextosGrilla_380_jh();
         }
 
         private void ConstruirInterfaz_380_jh()
@@ -317,10 +317,28 @@ namespace UI
             _split_380_jh.Panel2.Enabled = !_modoXml_380_jh;
             _btnExportarXml_380_jh.Enabled = _grid_380_jh.Rows.Count > 0;
             _btnLimpiarXml_380_jh.Enabled = _grid_380_jh.Rows.Count > 0;
+            ActualizarPieGrilla_380_jh();
+            Grid_SelectionChanged_380_jh(this, EventArgs.Empty);
+        }
+
+        private void ActualizarTextosGrilla_380_jh()
+        {
+            if (_grid_380_jh == null) return;
+            foreach (DataGridViewRow fila in _grid_380_jh.Rows)
+            {
+                Unidad_380_jh unidad = fila.Tag as Unidad_380_jh;
+                FilaUnidadXml_380_jh filaXml = fila.Tag as FilaUnidadXml_380_jh;
+                if (unidad != null) fila.Cells["estado"].Value = MostrarEstado_380_jh(unidad);
+                else if (filaXml != null) fila.Cells["estado"].Value = TraducirEstado_380_jh(filaXml.EstadoOperativo_380_jh);
+            }
+            ActualizarPieGrilla_380_jh();
+        }
+
+        private void ActualizarPieGrilla_380_jh()
+        {
             _lblEstado_380_jh.Text = _modoXml_380_jh
                 ? string.Format(LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("UNIT_TABLE_PREVIEW"), _filasXml_380_jh.Count)
                 : _unidades_380_jh.Count + " " + LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("MENU_UNITS");
-            Grid_SelectionChanged_380_jh(this, EventArgs.Empty);
         }
 
         private void Grid_SelectionChanged_380_jh(object sender, EventArgs e)

@@ -23,6 +23,7 @@ internal static class PN1XmlTests
     {
         try
         {
+            if (args.Length == 5 && args[0] == "--sql") return VerificarTraduccionesBaseAislada(args);
             if (args.Length == 1 && args[0] == "--lectura-base") return VerificarDatosBase();
             var serializer = new XmlSerializerService_380_jh();
             var importer = new ProcesoPN1XmlImportService_380_jh(serializer);
@@ -210,6 +211,8 @@ internal static class PN1XmlTests
             tipo.GetMethod("PintarGrilla_380_jh", flags).Invoke(vista, null);
             Check(Convert.ToString(grid.Rows[1].Cells["estado"].Value) == LanguageManager_380_jh.Instance_380_jh.Translate_380_jh("PN2_STATE_TRANSFUNDIDA"),
                 "La grilla identifica correctamente una unidad transfundida");
+            VerificarIdentidadAlTraducir(vista, grid, () => InvocarCarga(vista), "Load de Unidades");
+            VerificarIdentidadAlTraducir(vista, grid, () => vista.OnLanguageChanged_380_jh(null), "Notificación de idioma de Unidades");
             CultureInfo culturaAnterior = Thread.CurrentThread.CurrentCulture;
             try
             {
@@ -285,6 +288,7 @@ internal static class PN1XmlTests
                 Convert.ToString(grid.Rows[0].Cells["componente"].Value) == "Visible & correcto", "Deserializa filas originales y fila agregada en la misma grilla");
             Check(!split.Panel2.Enabled && tipo.GetMethod("ObtenerSeleccionada_380_jh", flags).Invoke(vista, null) == null,
                 "Las filas importadas no habilitan operaciones de negocio");
+            VerificarIdentidadAlTraducir(vista, grid, () => vista.OnLanguageChanged_380_jh(null), "Notificación de idioma de vista XML");
             var filasImportadas = (List<FilaUnidadXml_380_jh>)tipo.GetMethod("ObtenerFilasVisibles_380_jh", flags).Invoke(vista, null);
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(servicio.SerializarTablaXml_380_jh(filasImportadas))))
                 Check(servicio.DeserializarTablaXml_380_jh(stream).Unidades_380_jh.Count == 3, "La tabla importada también se puede volver a serializar");
@@ -307,6 +311,105 @@ internal static class PN1XmlTests
             tipo.GetMethod("CargarUnidades_380_jh", flags).Invoke(vista, null);
             Check(split.Panel2.Enabled, "Actualizar sale del modo temporal y recupera el panel operativo");
         }
+    }
+
+    private static void InvocarCarga(UnidadesView_380_jh vista)
+    {
+        typeof(UserControl).GetMethod("OnLoad", BindingFlags.Instance | BindingFlags.NonPublic)
+            .Invoke(vista, new object[] { EventArgs.Empty });
+    }
+
+    private static void VerificarIdentidadAlTraducir(UnidadesView_380_jh vista, DataGridView grid, Action traducir, string etapa)
+    {
+        var filas = grid.Rows.Cast<DataGridViewRow>().ToArray();
+        Check(filas.Length > 1, etapa + ": hay varias filas para comprobar la selección");
+        var celdas = filas.Select(fila => fila.Cells.Cast<DataGridViewCell>().ToArray()).ToArray();
+        var tags = filas.Select(fila => fila.Tag).ToArray();
+        grid.ClearSelection();
+        grid.CurrentCell = filas[1].Cells["rh"];
+        filas[1].Selected = true;
+        DataGridViewCell actual = grid.CurrentCell;
+        AccessibleObject proveedor = actual.AccessibilityObject;
+        traducir();
+        PropertyInfo fragmentRoot = null;
+        for (Type tipo = proveedor.GetType(); tipo != null && fragmentRoot == null; tipo = tipo.BaseType)
+            fragmentRoot = tipo.GetProperty("FragmentRoot", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+        Check(fragmentRoot != null, etapa + ": el proveedor expone FragmentRoot en el runtime probado");
+        object raiz;
+        try { raiz = fragmentRoot.GetValue(proveedor, null); }
+        catch (TargetInvocationException ex)
+        {
+            Console.Error.WriteLine(etapa + ": FragmentRoot del proveedor retenido: " + ex.InnerException);
+            throw;
+        }
+        Check(ReferenceEquals(raiz, grid.AccessibilityObject), etapa + ": el proveedor retenido conserva la raíz accesible de la grilla");
+        Check(grid.Rows.Count == filas.Length && filas.Select((fila, i) => ReferenceEquals(fila, grid.Rows[i])).All(igual => igual),
+            etapa + ": conserva todas las instancias de fila");
+        Check(celdas.Select((fila, i) => fila.Select((celda, j) => ReferenceEquals(celda, grid.Rows[i].Cells[j])).All(igual => igual)).All(igual => igual),
+            etapa + ": conserva todas las instancias de celda");
+        Check(ReferenceEquals(grid.CurrentCell, actual) && ReferenceEquals(actual.DataGridView, grid) && filas[1].Selected &&
+            grid.SelectedRows.Count == 1 && ReferenceEquals(actual.AccessibilityObject, proveedor),
+            etapa + ": conserva celda actual, selección y proveedor accesible conectado");
+        Check(filas.Select((fila, i) => ReferenceEquals(fila.Tag, tags[i])).All(igual => igual), etapa + ": conserva los datos Tag");
+    }
+
+    private static int VerificarTraduccionesBaseAislada(string[] args)
+    {
+        if (!System.Text.RegularExpressions.Regex.IsMatch(args[2], "^CodexAbast_[a-f0-9]{12}$"))
+            throw new Exception("La prueba de traducción solo admite la base descartable de Abastecimiento.Tests.ps1.");
+        string config = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App.local.config");
+        if (!File.Exists(config) || !XDocument.Load(config).Descendants("add").Any(add =>
+            (add.Attribute("connectionString")?.Value ?? "").Contains("Initial Catalog=" + args[2] + ";")))
+            throw new Exception("Falta la configuración explícita de la base aislada junto al runner.");
+        var usuario = new Usuario_380_jh { Id_380_jh = int.Parse(args[3]), Estado_380_jh = "ACTIVO" };
+        usuario.ComponentesPermiso_380_jh.Add(new Permiso_380_jh { Codigo_380_jh = PermisosSistema_380_jh.UnidadVer_380_jh });
+        Sesion_380_jh.ObtenerInstancia_380_jh().IniciarSesion_380_jh(usuario);
+        var idiomas = new LanguageRepository_380_jh().Listar_380_jh(true);
+        var es = idiomas.First(idioma => idioma.Codigo_380_jh == "es-AR");
+        var en = idiomas.First(idioma => idioma.Codigo_380_jh == "en-US");
+        var manager = LanguageManager_380_jh.Instance_380_jh;
+        manager.ChangeLanguage_380_jh(es, null);
+        using (var vista = new UnidadesView_380_jh())
+        {
+            vista.CreateControl();
+            var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var tipo = vista.GetType();
+            var grid = (DataGridView)tipo.GetField("_grid_380_jh", flags).GetValue(vista);
+            var pie = (Label)tipo.GetField("_lblEstado_380_jh", flags).GetValue(vista);
+            int originales = grid.Rows.Count;
+            Check(originales > 1, "La base aislada carga unidades reales en la grilla");
+            VerificarIdentidadAlTraducir(vista, grid, () => InvocarCarga(vista), "Load con datos SQL");
+            string estadoEs = Convert.ToString(grid.Rows[0].Cells["estado"].Value);
+            string pieEs = pie.Text;
+            VerificarIdentidadAlTraducir(vista, grid, () => manager.ChangeLanguage_380_jh(en, null), "Cambio es/en con datos SQL");
+            Check(Convert.ToString(grid.Rows[0].Cells["estado"].Value) != estadoEs && pie.Text != pieEs &&
+                pie.Text == originales + " " + manager.Translate_380_jh("MENU_UNITS") &&
+                grid.Columns["codigo"].HeaderText == manager.Translate_380_jh("UNIT_CODE"),
+                "Traduce estado, pie y encabezado sin recrear filas SQL");
+            DataGridViewRow anterior = grid.Rows[0];
+            tipo.GetMethod("CargarUnidades_380_jh", flags).Invoke(vista, null);
+            Check(grid.Rows.Count == originales && !ReferenceEquals(grid.Rows[0], anterior), "Actualizar conserva la consulta SQL y reconstruye los datos");
+            var tabla = new TablaUnidadesXml_380_jh { Unidades_380_jh = new List<FilaUnidadXml_380_jh> {
+                new FilaUnidadXml_380_jh { CodigoIdentificacion_380_jh = "UIA-XML-1", Donante_380_jh = "Prueba", TipoComponente_380_jh = "Sangre", FechaVencimiento_380_jh = DateTime.Today.AddDays(10), EstadoOperativo_380_jh = "EN_REVISION" },
+                new FilaUnidadXml_380_jh { CodigoIdentificacion_380_jh = "UIA-XML-2", Donante_380_jh = "Prueba", TipoComponente_380_jh = "Sangre", FechaVencimiento_380_jh = DateTime.Today.AddDays(10), EstadoOperativo_380_jh = "EN_REVISION" }
+            } };
+            tipo.GetMethod("MostrarTablaXml_380_jh", flags).Invoke(vista, new object[] { tabla });
+            string pieXmlEn = pie.Text;
+            VerificarIdentidadAlTraducir(vista, grid, () => manager.ChangeLanguage_380_jh(es, null), "Cambio en/es con vista XML");
+            Check(Convert.ToString(grid.Rows[0].Cells["estado"].Value) == manager.Translate_380_jh("UNIT_STATE_EN_REVISION") &&
+                pie.Text != pieXmlEn && pie.Text == string.Format(manager.Translate_380_jh("UNIT_TABLE_PREVIEW"), 2),
+                "Traduce estado y pie de la vista XML sin sustituir sus filas");
+            var split = (SplitContainer)tipo.GetField("_split_380_jh", flags).GetValue(vista);
+            Check(!split.Panel2.Enabled && tipo.GetMethod("ObtenerSeleccionada_380_jh", flags).Invoke(vista, null) == null,
+                "La traducción XML conserva el bloqueo de operaciones de negocio");
+            tipo.GetMethod("LimpiarXml_Click_380_jh", flags).Invoke(vista, new object[] { null, EventArgs.Empty });
+            Check(grid.Rows.Count == 0, "Limpiar XML sigue vaciando la vista temporal");
+            tipo.GetMethod("CargarUnidades_380_jh", flags).Invoke(vista, null);
+            Check(grid.Rows.Count == originales && split.Panel2.Enabled, "Actualizar desde XML recupera las unidades SQL y el panel operativo");
+        }
+        Sesion_380_jh.ObtenerInstancia_380_jh().Logout_380_jh();
+        Console.WriteLine("Pruebas de traducción de Unidades sobre base aislada completadas.");
+        return 0;
     }
 
     private static void RechazadoTabla(UnidadApplicationService_380_jh servicio, string xml, string mensaje)

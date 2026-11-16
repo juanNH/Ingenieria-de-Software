@@ -57,3 +57,19 @@ Binario Release probado: SHA-256 `2a1a9149e382f1a48a401e3f76fd5a55dc335af6db5bcb
 5. Comprobar salida `0`. Si aparece una excepción, conservar la primera pila con código externo visible y sus detalles antes de continuar.
 
 Las pruebas de `Tests/CicloSesion.UI.Tests.ps1` cubren el bucle Run/Dispose/Retry y los observadores, pero no ejecutan `Program.Main` ni retienen proveedores desde un cliente UIA externo. Por eso no sustituyen esta regresión real.
+
+## Apertura y traducción de Unidades — 16/11/2026
+
+Se identificó otro recorrido: el constructor de `UnidadesView` cargaba las filas y el evento `Load` volvía a crearlas al aplicar las traducciones. La misma reconstrucción ocurría al cambiar el idioma. Los objetos de accesibilidad retenidos por un cliente podían referirse a filas o celdas que ya habían sido retiradas de la grilla.
+
+La prueba de regresión conserva el objeto accesible de una celda antes de `Load` y consulta su getter `FragmentRoot` después del evento. El binario anterior produce exactamente `System.NullReferenceException` en `DataGridViewCellAccessibleObject.get_FragmentRoot()`. En Visual Studio también se reprodujo la variante `DataGridViewRowAccessibleObject.FragmentRoot.get()` al abrir Unidades, inspeccionar su accesibilidad y cambiar el idioma. La pila atendía mensajes de `Application.Run`, sin una operación de guardado del negocio.
+
+[UnidadesView.cs](../UI/Views/PN1/UnidadesView.cs) ahora traduce los encabezados, los estados y el pie sobre las filas existentes. Conserva las instancias de fila y celda, sus datos `Tag`, la celda actual, la selección y la raíz del proveedor accesible. La consulta de datos y la vista temporal XML conservan sus operaciones de recarga. No se agregó un manejador que oculte la excepción ni se modificaron los switches de accesibilidad.
+
+Validación del cambio:
+
+- [PN1.Xml.Tests.cs](../Tests/PN1.Xml.Tests.cs): 66 comprobaciones sin base de datos y 28 de interfaz sobre una base temporal; incluye `Load`, traducción real español/inglés, consultas al proveedor retenido, selección, actualización y XML. Las 22 comprobaciones SQL del fixture también pasaron.
+- Navegación de las pantallas reales mediante sus menús: reporte → Unidades → reporte → Unidades, con 5/17/5/17 filas. Un cliente externo inspeccionó Unidades en ambos recorridos y el segundo reporte. El proceso se adjuntó a Visual Studio en el tramo final. Terminó con código `0`, sin NRE, `ObjectDisposedException` ni errores fatales. El ensayo usa una sesión de prueba sobre una base descartable; no sustituye una prueba del login o de `Program.Main`.
+- Compilación Release de la solución completa correcta. Binario nuevo: SHA-256 `89c56987d31d4c07b3e2c4dab4087aff4ef6f57696ecd2d85170ea9ea8a42f5f`.
+
+Las dos bases temporales se eliminaron y se verificó su ausencia. La preferencia de idioma usada durante la reproducción en la cuenta inicial se restauró a español mediante `LanguageManager`, con lectura posterior de confirmación. El manifiesto G06 conserva la trazabilidad del archivo modificado; sus clases y vistas gráficas no cambian.
