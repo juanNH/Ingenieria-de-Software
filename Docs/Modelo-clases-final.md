@@ -17,7 +17,9 @@ La fuente contiene **29 páginas: una vista de integración y 28 vistas de detal
 
 ## Fuente editable y trazabilidad
 
-El [editable G06](../Diagramas/Arquitectura/G06%20-%20Clases%20completas%20por%20capa.drawio) conserva todas las vistas en un archivo de draw.io. El [manifiesto versionado](../Diagramas/Arquitectura/G06%20-%20Clases%20completas%20por%20capa.manifest.json) registra el SHA-256 de esa fuente y permite relacionar cada elemento gráfico con la implementación.
+El [editable G06](../Diagramas/Diagramas%20de%20clases/G06%20-%20Modelo%20completo/G06%20-%20Clases%20completas%20por%20capa.drawio) conserva todas las vistas en un archivo de draw.io. El [manifiesto versionado](../Diagramas/Diagramas%20de%20clases/G06%20-%20Modelo%20completo/G06%20-%20Clases%20completas%20por%20capa.manifest.json) registra el SHA-256 de esa fuente y permite relacionar cada elemento gráfico con la implementación.
+
+La [guía de G06](../Diagramas/Diagramas%20de%20clases/G06%20-%20Modelo%20completo/README.md) permite recorrer las páginas del modelo. Las [29 vistas PNG](../Diagramas/Diagramas%20de%20clases/G06%20-%20Modelo%20completo/Vistas/) se conservan junto al editable y el manifiesto, una imagen completa por página.
 
 Para cada tipo, el manifiesto conserva su identificador real, alias gráfico, capa, espacio de nombres, clase de declaración, ruta relativa y línea de origen, bases, firmas seleccionadas y páginas de definición completa. Para cada relación registra sus extremos reales, clase de relación, roles, multiplicidad cuando corresponde y páginas donde aparece. También identifica los archivos de código auditados por su hash.
 
@@ -41,8 +43,8 @@ Se corrigieron tres fuentes parciales para mantener esa correspondencia:
 
 | Fuente parcial | Balance realizado |
 | --- | --- |
-| [Maestro de componentes](../Diagramas/Bitacora%20de%20cambios/T06b%20-%20Maestro%20de%20componentes%20-%20Clases.drawio) | Conserva el recorrido real de UI, Application, Repository y DAL con `MaestroPN1_380_jh`. Retira la propuesta `VersionComponente_380_jh` y sus relaciones de historial/restauración, ausentes de la implementación actual. Las operaciones corresponden a listar y guardar maestros. |
-| [Cantidad e historial de donación](../Diagramas/Bitacora%20de%20cantidad%20de%20donacion/T06b%20-%20Correccion%20de%20cantidad%20de%20donacion%20-%20Clases.drawio) | Representa `CantidadDonacion_380_jh` y `CambioCantidadDonacion_380_jh`, declarados en [Donacion.cs](../Domain/PN1/Donacion.cs), con las operaciones reales de consulta y ajuste. Retira `CorreccionCantidadDonacion_380_jh` y reemplaza los nombres propuestos `HistorialCantidadDonacion_380_jh` y `DonacionCantidadVersion_380_jh`. |
+| [Maestro de componentes](../Diagramas/Diagramas%20de%20clases/T06b%20-%20Maestro%20de%20componentes%20-%20Clases.drawio) | Conserva el recorrido real de UI, Application, Repository y DAL con `MaestroPN1_380_jh`. Retira la propuesta `VersionComponente_380_jh` y sus relaciones de historial/restauración, ausentes de la implementación actual. Las operaciones corresponden a listar y guardar maestros. |
+| [Cantidad e historial de donación](../Diagramas/Diagramas%20de%20clases/T06b%20-%20Correccion%20de%20cantidad%20de%20donacion%20-%20Clases.drawio) | Representa `CantidadDonacion_380_jh` y `CambioCantidadDonacion_380_jh`, declarados en [Donacion.cs](../Domain/PN1/Donacion.cs), con las operaciones reales de consulta y ajuste. Retira `CorreccionCantidadDonacion_380_jh` y reemplaza los nombres propuestos `HistorialCantidadDonacion_380_jh` y `DonacionCantidadVersion_380_jh`. |
 | [XML auxiliar de PN1](../Diagramas/Diagramas%20de%20clases/PN1%20-%20XML%20auxiliar%20-%20Clases.drawio) | Identifica la vista como `UnidadesView_380_jh` y retira `PuedeConsultarUnidades_380_jh`, método ausente de `UnidadApplicationService_380_jh`. Conserva las operaciones reales de serialización y deserialización. |
 
 Después del balance no quedaron nombres de tipo inexistentes ni relaciones parciales sin respaldo dentro del alcance reconciliado. Los controles `MainForm.cmbIdiomas_380_jh` y `BitacoraView.listViewBitacora_380_jh` existen en sus archivos Designer; su exclusión del detalle G06 responde a la convención de presentación, no a una ausencia en el código.

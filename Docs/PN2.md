@@ -28,11 +28,11 @@ La secuencia de roles describe el flujo de negocio. Las secuencias de clases mue
 
 | Artefacto | Archivo editable | Contenido |
 | --- | --- | --- |
-| Roles | [Diagrama de roles](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaRoles.drawio) | Responsabilidades e intercambios de los tres actores del recorte operativo. |
-| Actividad | [Actividad de negocio](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaActividadNegocio.drawio) | Flujo principal, decisiones, destinos y alternativas. |
-| Modelo conceptual | [Modelo conceptual](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaModeloConceptual.drawio) | Conceptos, datos y multiplicidades del negocio. |
+| Roles | [Diagrama de roles](../Diagramas/Roles/PN2_DiagramaRoles.drawio) | Responsabilidades e intercambios de los tres actores del recorte operativo. |
+| Actividad | [Actividad de negocio](../Diagramas/Diagramas%20de%20actividad/PN2_DiagramaActividadNegocio.drawio) | Flujo principal, decisiones, destinos y alternativas. |
+| Modelo conceptual | [Modelo conceptual](../Diagramas/Modelos%20conceptuales/PN2_DiagramaModeloConceptual.drawio) | Conceptos, datos y multiplicidades del negocio. |
 | Secuencia de roles | [Secuencia de roles](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaSecuenciaRoles.drawio) | Interacciones entre las personas y el sistema durante la atención. |
-| Entrada, Comportamiento y Salida | [E/C/S](../Diagramas/Secuencia%20de%20Roles/PN2_DiagramaEntradaComportamientoSalida.drawio) | Flujo operativo y C12/S7 del comprobante automático al registrar destino. |
+| Entrada, Comportamiento y Salida | [E/C/S](../Diagramas/Entrada%20Comportamiento%20Salida/PN2_DiagramaEntradaComportamientoSalida.drawio) | Flujo operativo y C12/S7 del comprobante automático al registrar destino. |
 | Casos de uso | [CDUN-05 a CDUN-08](../Diagramas/Casos%20de%20Uso/PN2%20-%20CDUN-05%20a%20CDUN-08%20-%20Casos%20de%20uso.drawio) | Registro, validación, reserva, entrega, destino y comprobante. |
 | Clases | [CDUN-05 a CDUN-08](../Diagramas/Diagramas%20de%20clases/PN2%20-%20CDUN-05%20a%20CDUN-08%20-%20Clases.drawio) | Una página por caso. |
 | Secuencia de clases | [CDUN-05 a CDUN-08](../Diagramas/Diagramas%20de%20Secuencia/PN2%20-%20CDUN-05%20a%20CDUN-08%20-%20Secuencia.drawio) | Una página por caso con el flujo principal y las alternativas. |

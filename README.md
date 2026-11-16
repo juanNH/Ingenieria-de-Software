@@ -31,6 +31,8 @@ reúne el esquema físico completo en diagramas nativos de SSMS. La
 [arquitectura y persistencia T01](Docs/Arquitectura.md) documenta los componentes,
 la navegación y el almacenamiento actuales.
 
+El [índice de diagramas](Diagramas/README.md) organiza las fuentes por tipo y permite acceder al modelo completo G06 y sus 29 vistas PNG.
+
 El menú **Maestros** permite administrar componentes, grupos sanguíneos, factor Rh y destinos de entrega.
 Para actualizar una base existente, ejecutar [InstalarMaestrosPN1.ps1](Database/InstalarMaestrosPN1.ps1); la migración conserva los códigos históricos y crea un respaldo verificado.
 El [orden de ejecución de los scripts SQL](Database/README.md) distingue instalaciones nuevas y actualizaciones PN1/PN2.

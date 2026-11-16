@@ -13,7 +13,7 @@
         <mxCell id="uc02" value="&lt;b&gt;CDUN-02&lt;/b&gt;&lt;br&gt;Registrar donación" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;rounded=1;arcSize=14;strokeWidth=1.5;align=center;verticalAlign=middle;fillColor=#fff2cc;strokeColor=#c39a36;ellipse;perimeter=ellipsePerimeter;" vertex="1" parent="1">
           <mxGeometry x="360" y="165" width="350" height="88" as="geometry" />
         </mxCell>
-        <mxCell id="cantidad" value="&lt;b&gt;Cantidad e historial&lt;/b&gt;&lt;br&gt;Consultar, ajustar o restaurar&lt;br&gt;la cantidad declarada" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;rounded=1;arcSize=14;strokeWidth=1.5;align=center;verticalAlign=middle;fillColor=#f5f6f8;strokeColor=#8b95a4;" vertex="1" parent="1">
+        <mxCell id="cantidad" value="&lt;b&gt;Cantidad e historial&lt;/b&gt;&lt;br&gt;Consultar y ajustar&lt;br&gt;la cantidad declarada" style="html=1;whiteSpace=wrap;fontFamily=Arial;fontSize=16;fontColor=#202734;rounded=1;arcSize=14;strokeWidth=1.5;align=center;verticalAlign=middle;fillColor=#f5f6f8;strokeColor=#8b95a4;" vertex="1" parent="1">
           <mxGeometry x="360" y="307" width="350" height="103" as="geometry" />
         </mxCell>
         <mxCell id="extraccion" value="" style="shape=umlActor;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#c39a36;" vertex="1" parent="1">
