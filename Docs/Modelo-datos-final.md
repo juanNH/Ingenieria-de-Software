@@ -4,6 +4,8 @@ El modelo físico completo de `HemovidaGest` contiene **32 tablas de aplicación
 
 Los cuatro diagramas se abrieron, distribuyeron y guardaron con **SQL Server Management Studio**, con todas las tablas en vista **Standard**. Cada tabla muestra el nombre de sus columnas, el tipo de datos, la admisión de nulos y la marca de clave primaria; las líneas corresponden a las claves foráneas reales. Las imágenes provienen de **Copy Diagram to Clipboard** de SSMS y se conservan también como EMF vectorial, sin recortar el diagrama.
 
+Se ajustó el tamaño de las tablas y se ampliaron sus columnas internas **Column Name**, **Data Type** y **Allow Nulls**. Los nombres largos y los tipos se muestran completos, sin puntos suspensivos ni filas ocultas. Ampliar solamente el rectángulo de una tabla no garantiza ese resultado: también debe verificarse el ancho de cada columna interna al volver a abrir el diagrama en SSMS.
+
 | Diagrama nativo | Tablas | Columnas | FK | Imagen completa | Vector |
 | --- | ---: | ---: | ---: | --- | --- |
 | G07 - Modelo de datos completo | 32 | 221 | 53 | [PNG](../Diagramas/Diagramas%20Entidad%20Relacion/G07%20-%20Modelo%20de%20datos%20completo.png) | [EMF](../Diagramas/Diagramas%20Entidad%20Relacion/G07%20-%20Modelo%20de%20datos%20completo.emf) |
@@ -38,6 +40,10 @@ La herramienta [Exportar-DiagramasFinalesSSMS.ps1](../Database/Tools/Exportar-Di
 
 ## Verificación de la entrega
 
-Se comprobó la cobertura exacta de tablas y FK del general y de cada detalle, la presencia de todos los nombres de columna en los EMF y la ausencia de solapamientos entre rectángulos de tablas. Los 17 diagramas anteriores conservaron nombre, versión y hash. La copia temporal utilizada para preparar el general se retiró después de verificar el canónico y exportar su definición recuperable.
+Se comprobó la cobertura exacta de tablas y FK del general y de cada detalle, la presencia de todos los nombres de columna y sus tipos completos en los EMF y la ausencia de solapamientos entre rectángulos de tablas. La comprobación de texto relaciona cada columna con su tabla y su fila; un nombre repetido en otra tabla no satisface la cobertura. El general muestra **221 de 221 columnas**, y los detalles muestran **93 de 93**, **129 de 129** y **30 de 30**, con sus tipos exactos y sin textos `Loading` ni elipsis.
+
+Después de guardar los cuatro diagramas en SSMS se compararon sus definiciones recuperables con los diseños aprobados: se conservaron los identificadores, las relaciones, las cardinalidades, las posiciones, los tamaños y los anchos internos. Los PNG mantienen la proporción del EMF y quedan por debajo de 25 megapíxeles. Se revisaron también las imágenes completas y ampliaciones de los campos largos.
+
+Los 17 diagramas anteriores conservaron nombre, versión y hash. La copia temporal utilizada para preparar el general se retiró después de verificar el canónico y exportar su definición recuperable.
 
 El orden de instalación y las opciones para una base existente se describen en [Database/README.md](../Database/README.md). La distinción entre persistencia SQL, intercambio XML temporal y archivos PDF se explica en [Persistencia.md](Persistencia.md).

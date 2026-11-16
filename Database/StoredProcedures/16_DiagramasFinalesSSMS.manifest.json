@@ -21,8 +21,8 @@
       "Owner": 1,
       "OwnerName": "dbo",
       "Version": 1,
-      "Bytes": 203268,
-      "SHA256": "713F1C9BFADBF01135E2B9DB43FFAFB0FC33133056BA0EDEB30F44F3C2A94E36",
+      "Bytes": 208900,
+      "SHA256": "3251BD1935AE4541A5FFB5A19D08724C0A75039BF90E15E94327E1D75B9D6ADF",
       "Tables": [
         "Auditoria",
         "Bitacora",
@@ -125,8 +125,8 @@
       "Owner": 1,
       "OwnerName": "dbo",
       "Version": 1,
-      "Bytes": 77828,
-      "SHA256": "414A669BE97CF6E38BF695FC845B8B0FD0DCAA7E566141A6F67F01414D4133E7",
+      "Bytes": 79364,
+      "SHA256": "C87E4918DDB7B1B1CF758B44C9785E04DE45D5C6F6FB7032A66382C174915B4A",
       "Tables": [
         "Auditoria",
         "Bitacora",
@@ -175,8 +175,8 @@
       "Owner": 1,
       "OwnerName": "dbo",
       "Version": 1,
-      "Bytes": 112132,
-      "SHA256": "9AD539A6092699F6973F632C5F95F508AE94906C477725386BB0F2E5DD711117",
+      "Bytes": 114692,
+      "SHA256": "289ACD6DB0BB8999A9E0B86A3B4EF13E32548A52D0433411D30E6D5624C51719",
       "Tables": [
         "ComponenteTransfusional",
         "ComprobantePendiente",
@@ -241,8 +241,8 @@
       "Owner": 1,
       "OwnerName": "dbo",
       "Version": 1,
-      "Bytes": 38404,
-      "SHA256": "E7F60058EC72A8BA7162F4B3040E707CAE2F94E9FA45AF8D7EE80CD98372573C",
+      "Bytes": 38916,
+      "SHA256": "0FE5BC738296A58A00DB4B020A2EB95B2C5BEC1EE55AE056BC70E337F45EFC9A",
       "Tables": [
         "CompatibilidadTransfusional",
         "CompatibilidadTransfusionalControl",
