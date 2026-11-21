@@ -5,6 +5,9 @@ SET XACT_ABORT ON;
 BEGIN TRANSACTION;
 EXEC dbo.sp_IntegridadPN1_Exigir;
 EXEC dbo.sp_MaestroPN1_Exigir;
+IF EXISTS (SELECT 1 FROM sys.extended_properties WHERE class=0 AND name=N'HemovidaGest.AjusteCantidadDonacion'
+           AND ISNULL(TRY_CONVERT(INT,value),-1) NOT IN (1,2))
+    THROW 51002,'VERSION_AJUSTE_CANTIDAD_INCOMPATIBLE',1;
 IF NOT EXISTS (SELECT 1 FROM dbo.EstadoUnidad WHERE codigo='ANULADA')
     THROW 51002,'ACTUALIZAR_MAESTROS_ANTES_DE_AJUSTE',1;
 
@@ -14,14 +17,17 @@ IF NOT EXISTS (SELECT 1 FROM dbo.Permiso WHERE codigo='DONACION_AJUSTAR_CANTIDAD
 IF NOT EXISTS (SELECT 1 FROM dbo.ComponentePermiso WHERE codigo='DONACION_AJUSTAR_CANTIDAD')
     INSERT dbo.ComponentePermiso(codigo,nombre,descripcion,tipo)
     VALUES('DONACION_AJUSTAR_CANTIDAD','Corregir cantidad de donación','Corrige la cantidad declarada en donaciones abiertas.','PERMISO');
-INSERT dbo.ComponentePermisoRelacion(id_padre,id_hijo)
-SELECT p.id_componente,h.id_componente FROM dbo.ComponentePermiso p CROSS JOIN dbo.ComponentePermiso h
-WHERE p.codigo='PN1_RESPONSABLE_AUTORIZADO' AND h.codigo='DONACION_AJUSTAR_CANTIDAD'
-  AND NOT EXISTS (SELECT 1 FROM dbo.ComponentePermisoRelacion r WHERE r.id_padre=p.id_componente AND r.id_hijo=h.id_componente);
-INSERT dbo.RolPermiso(id_rol,id_permiso)
-SELECT r.id_rol,p.id_permiso FROM dbo.Rol r CROSS JOIN dbo.Permiso p
-WHERE r.nombre IN ('Administrador','Responsable autorizado') AND p.codigo='DONACION_AJUSTAR_CANTIDAD'
-  AND NOT EXISTS (SELECT 1 FROM dbo.RolPermiso rp WHERE rp.id_rol=r.id_rol AND rp.id_permiso=p.id_permiso);
+IF OBJECT_ID(N'dbo.sp_Donacion_AjustarCantidad',N'P') IS NULL
+BEGIN
+    INSERT dbo.ComponentePermisoRelacion(id_padre,id_hijo)
+    SELECT p.id_componente,h.id_componente FROM dbo.ComponentePermiso p CROSS JOIN dbo.ComponentePermiso h
+    WHERE p.codigo='PN1_RESPONSABLE_AUTORIZADO' AND h.codigo='DONACION_AJUSTAR_CANTIDAD'
+      AND NOT EXISTS (SELECT 1 FROM dbo.ComponentePermisoRelacion r WHERE r.id_padre=p.id_componente AND r.id_hijo=h.id_componente);
+    INSERT dbo.RolPermiso(id_rol,id_permiso)
+    SELECT r.id_rol,p.id_permiso FROM dbo.Rol r CROSS JOIN dbo.Permiso p
+    WHERE r.nombre IN ('Administrador','Responsable autorizado') AND p.codigo='DONACION_AJUSTAR_CANTIDAD'
+      AND NOT EXISTS (SELECT 1 FROM dbo.RolPermiso rp WHERE rp.id_rol=r.id_rol AND rp.id_permiso=p.id_permiso);
+END;
 GO
 
 CREATE OR ALTER VIEW dbo.v_Donacion_CantidadCerrada AS
@@ -67,7 +73,7 @@ CREATE OR ALTER VIEW dbo.v_Donacion_AjusteCantidad AS
 SELECT CAST(NULL AS INT) AS id_donacion,CAST(NULL AS INT) AS version_esperada,
        CAST(NULL AS INT) AS cantidad,CAST(NULL AS NVARCHAR(500)) AS motivo,
        CAST(NULL AS NVARCHAR(MAX)) AS unidades_json,CAST(NULL AS INT) AS id_usuario,
-       CAST(NULL AS INT) AS version_a_restaurar
+       CAST(NULL AS INT) AS version_a_restaurar,CAST(NULL AS INT) AS cantidad_nuevas
 WHERE 1=0;
 GO
 
@@ -78,9 +84,9 @@ BEGIN
     SET XACT_ABORT ON;
     IF (SELECT COUNT(*) FROM inserted)<>1 THROW 51120,'AJUSTE_INVALIDO',1;
 
-    DECLARE @id INT,@version INT,@cantidad INT,@motivo NVARCHAR(500),@json NVARCHAR(MAX),@actor INT,@restaurar INT;
+    DECLARE @id INT,@version INT,@cantidad INT,@motivo NVARCHAR(500),@json NVARCHAR(MAX),@actor INT,@restaurar INT,@nuevas INT;
     SELECT @id=id_donacion,@version=version_esperada,@cantidad=cantidad,@motivo=NULLIF(LTRIM(RTRIM(motivo)),''),
-           @json=unidades_json,@actor=id_usuario,@restaurar=version_a_restaurar FROM inserted;
+           @json=unidades_json,@actor=id_usuario,@restaurar=version_a_restaurar,@nuevas=ISNULL(cantidad_nuevas,0) FROM inserted;
 
     EXEC dbo.sp_IntegridadPN1_Exigir;
     EXEC dbo.sp_MaestroPN1_Exigir;
@@ -101,6 +107,7 @@ BEGIN
         IF @restaurada IS NULL OR @restaurada<>@cantidad THROW 51120,'AJUSTE_INVALIDO',1;
     END;
     IF @cantidad IS NULL OR @cantidad NOT BETWEEN 1 AND 1000 OR @motivo IS NULL
+       OR @nuevas NOT BETWEEN 0 AND 1000 OR (@restaurar IS NOT NULL AND @nuevas<>0)
        OR @json IS NULL OR LEFT(LTRIM(@json),1)<>'[' OR ISJSON(@json)<>1
        THROW 51120,'AJUSTE_INVALIDO',1;
     IF @anterior<>(SELECT COUNT(*) FROM dbo.Unidad WHERE id_donacion=@id AND estado_operativo<>'ANULADA')
@@ -114,8 +121,9 @@ BEGIN
     WHERE j.type=2 AND u.id_donacion=@id;
 
     DECLARE @seleccionadas INT,@delta INT;
-    SELECT @seleccionadas=COUNT(*),@delta=SUM(CASE WHEN estado_nuevo='EN_REVISION' THEN 1 ELSE -1 END) FROM @afectadas;
-    IF @seleccionadas=0 OR @seleccionadas<>(SELECT COUNT(*) FROM OPENJSON(@json)) OR @anterior+@delta<>@cantidad
+    SELECT @seleccionadas=COUNT(*),@delta=COALESCE(SUM(CASE WHEN estado_nuevo='EN_REVISION' THEN 1 ELSE -1 END),0) FROM @afectadas;
+    IF (@seleccionadas=0 AND @nuevas=0) OR @seleccionadas<>(SELECT COUNT(*) FROM OPENJSON(@json))
+       OR @anterior+@delta+@nuevas<>@cantidad
         THROW 51124,'UNIDADES_NO_AJUSTABLES',1;
 
     UPDATE u SET estado_operativo=a.estado_nuevo,fecha_ultima_modificacion=GETDATE(),id_usuario_ultima_modificacion=@actor,
@@ -124,9 +132,27 @@ BEGIN
     FROM dbo.Unidad u JOIN @afectadas a ON a.id_unidad=u.id_unidad
     JOIN dbo.Donacion d ON d.id_donacion=u.id_donacion JOIN dbo.Donante donante ON donante.id_donante=d.id_donante;
 
+    IF @nuevas>0
+    BEGIN
+        ;WITH numeros AS (
+            SELECT 1 AS n
+            UNION ALL SELECT n+1 FROM numeros WHERE n<@nuevas
+        )
+        INSERT dbo.Unidad(codigo_identificacion,id_donacion,tipo_componente,fecha_vencimiento,
+                          grupo_sanguineo,factor_rh,estado_operativo,id_usuario_ultima_modificacion)
+        OUTPUT inserted.id_unidad,inserted.codigo_identificacion,NULL,inserted.estado_operativo
+            INTO @afectadas(id_unidad,codigo,estado_anterior,estado_nuevo)
+        SELECT 'UN-'+REPLACE(CONVERT(VARCHAR(36),NEWID()),'-',''),d.id_donacion,d.tipo_componente,d.fecha_vencimiento,
+               donante.grupo_sanguineo,donante.factor_rh,'EN_REVISION',@actor
+        FROM dbo.Donacion d JOIN dbo.Donante donante ON donante.id_donante=d.id_donante
+        CROSS JOIN numeros WHERE d.id_donacion=@id
+        OPTION (MAXRECURSION 1000);
+    END;
+
     UPDATE dbo.Donacion SET cantidad_unidades=@cantidad WHERE id_donacion=@id;
     INSERT dbo.MovimientoUnidad(id_unidad,tipo_movimiento,estado_anterior,estado_nuevo,observacion,id_usuario)
-    SELECT id_unidad,CASE WHEN estado_nuevo='ANULADA' THEN 'ANULACION_CANTIDAD' ELSE 'REACTIVACION_CANTIDAD' END,
+    SELECT id_unidad,CASE WHEN estado_anterior IS NULL THEN 'REGISTRO'
+                         WHEN estado_nuevo='ANULADA' THEN 'ANULACION_CANTIDAD' ELSE 'REACTIVACION_CANTIDAD' END,
            estado_anterior,estado_nuevo,@motivo,@actor FROM @afectadas;
 
     SELECT @estado_nuevo=datos_json FROM dbo.v_IntegridadPN1_Datos WHERE entidad='Donacion' AND id_entidad=@id;
@@ -151,12 +177,13 @@ END;
 GO
 
 CREATE OR ALTER PROCEDURE dbo.sp_Donacion_AjustarCantidad
-    @id_donacion INT,@version_esperada INT,@cantidad INT,@motivo NVARCHAR(500),@unidades_json NVARCHAR(MAX),@id_usuario INT,@version_a_restaurar INT=NULL
+    @id_donacion INT,@version_esperada INT,@cantidad INT,@motivo NVARCHAR(500),@unidades_json NVARCHAR(MAX),@id_usuario INT,
+    @version_a_restaurar INT=NULL,@cantidad_nuevas INT=0
 AS
 BEGIN
     SET NOCOUNT ON;
-    INSERT dbo.v_Donacion_AjusteCantidad(id_donacion,version_esperada,cantidad,motivo,unidades_json,id_usuario,version_a_restaurar)
-    VALUES(@id_donacion,@version_esperada,@cantidad,@motivo,@unidades_json,@id_usuario,@version_a_restaurar);
+    INSERT dbo.v_Donacion_AjusteCantidad(id_donacion,version_esperada,cantidad,motivo,unidades_json,id_usuario,version_a_restaurar,cantidad_nuevas)
+    VALUES(@id_donacion,@version_esperada,@cantidad,@motivo,@unidades_json,@id_usuario,@version_a_restaurar,@cantidad_nuevas);
 END;
 GO
 
@@ -200,5 +227,9 @@ BEGIN
 END;
 GO
 
+IF NOT EXISTS (SELECT 1 FROM sys.extended_properties WHERE class=0 AND name=N'HemovidaGest.AjusteCantidadDonacion')
+    EXEC sys.sp_addextendedproperty @name=N'HemovidaGest.AjusteCantidadDonacion',@value=2;
+ELSE IF EXISTS (SELECT 1 FROM sys.extended_properties WHERE class=0 AND name=N'HemovidaGest.AjusteCantidadDonacion' AND TRY_CONVERT(INT,value)=1)
+    EXEC sys.sp_updateextendedproperty @name=N'HemovidaGest.AjusteCantidadDonacion',@value=2;
 COMMIT;
 GO

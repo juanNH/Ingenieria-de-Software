@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="Electron" agent="Codex">
   <diagram id="pn1-modelo-conceptual" name="PN1 - Modelo conceptual">
     <mxGraphModel dx="2514" dy="1228" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1850" pageHeight="1700" math="0" shadow="0">
@@ -105,7 +106,7 @@
             <mxPoint y="-14" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="donacion-comprobante" edge="1" parent="1" source="donacion" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=1;entryPerimeter=1;dashed=1;dashPattern=6 4;" target="comprobante" value="">
+        <mxCell id="donacion-comprobante" edge="1" parent="1" source="donacion" style="edgeStyle=orthogonalEdgeStyle;html=1;rounded=0;startArrow=none;endArrow=none;strokeColor=#555555;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=1;entryPerimeter=1;" target="comprobante" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="donacion-comprobante-origen" connectable="0" parent="donacion-comprobante" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=15;labelBackgroundColor=#ffffff;resizable=0;" value="1" vertex="1">

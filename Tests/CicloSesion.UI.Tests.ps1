@@ -1,9 +1,10 @@
 param([string]$Servidor='.', [string]$SalidaDir, [string]$RutaBinarios)
 $ErrorActionPreference='Stop'
 $taskRoot=Split-Path $PSScriptRoot -Parent
-if (!$SalidaDir) { $SalidaDir=Join-Path $taskRoot 'output/cierre-ui-2026-11-15/regresion' }
+if (!$SalidaDir) { $SalidaDir=Join-Path ([IO.Path]::GetTempPath()) 'HemovidaGest/Pruebas/CicloSesion' }
 $taskOutput=[IO.Path]::GetFullPath($SalidaDir)
 [void][IO.Directory]::CreateDirectory($taskOutput)
+Write-Host "Resultados de las pruebas en $taskOutput"
 $taskMsBuild='C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/MSBuild.exe'
 if (!$RutaBinarios) {
     $RutaBinarios=Join-Path $taskOutput 'build'

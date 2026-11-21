@@ -31,9 +31,9 @@ namespace Repository
         }
 
         public CodigoOperacionPN1_380_jh AjustarCantidad_380_jh(int idDonacion, int version, int cantidad, string motivo,
-            IEnumerable<int> unidades, int? restaurar, int idUsuario)
+            IEnumerable<int> unidades, int? restaurar, int idUsuario, int unidadesNuevas = 0)
         {
-            return _donacionDataMapper_380_jh.AjustarCantidad_380_jh(idDonacion, version, cantidad, motivo, unidades, restaurar, idUsuario);
+            return _donacionDataMapper_380_jh.AjustarCantidad_380_jh(idDonacion, version, cantidad, motivo, unidades, restaurar, idUsuario, unidadesNuevas);
         }
     }
 }

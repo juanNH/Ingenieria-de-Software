@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using Application;
@@ -26,6 +28,7 @@ namespace UI
         private ToolStripMenuItem _abastecimientoToolStripMenuItem_380_jh;
         private ToolStripMenuItem _cambiarContrasenaToolStripMenuItem_380_jh;
         private bool _cargandoIdiomas_380_jh;
+        private int? _ultimaDonacionSeleccionada_380_jh;
 
         public MainForm_380_jh()
             : this(new AutorizacionApplicationService_380_jh(), new UsuarioApplicationService_380_jh())
@@ -193,6 +196,29 @@ namespace UI
             };
             _cambiarContrasenaToolStripMenuItem_380_jh.Click += cambiarContrasenaToolStripMenuItem_Click_380_jh;
 
+            const string urlGuia = "https://docs.google.com/document/d/1PXIdodroN3LqwicTZGFYAqWhD_o5m28N/edit";
+            var ayudaToolStripMenuItem = new ToolStripMenuItem
+            {
+                Name = "ayudaToolStripMenuItem",
+                Font = new Font("Segoe UI", 10F),
+                ForeColor = Color.White,
+                Tag = "MENU_HELP",
+                Text = "Ayuda"
+            };
+            ayudaToolStripMenuItem.Click += delegate
+            {
+                try
+                {
+                    Process.Start(new ProcessStartInfo(urlGuia) { UseShellExecute = true })?.Dispose();
+                }
+                catch (Win32Exception)
+                {
+                    var idioma = LanguageManager_380_jh.Instance_380_jh;
+                    MessageBox.Show(this, idioma.Translate_380_jh("HELP_OPEN_ERROR") + Environment.NewLine + urlGuia,
+                        ayudaToolStripMenuItem.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            };
+
             int posicionSalida = menuStrip1_380_jh.Items.IndexOf(salirToolStripMenuItem_380_jh);
             int posicionProcesos = posicionSalida < 0 ? menuStrip1_380_jh.Items.Count : posicionSalida;
             menuStrip1_380_jh.Items.Insert(posicionProcesos, _pn1ToolStripMenuItem_380_jh);
@@ -201,6 +227,7 @@ namespace UI
             menuStrip1_380_jh.Items.Insert(posicionProcesos + 3, _consultasToolStripMenuItem_380_jh);
             int posicionSalidaActualizada = menuStrip1_380_jh.Items.IndexOf(salirToolStripMenuItem_380_jh);
             menuStrip1_380_jh.Items.Insert(posicionSalidaActualizada, _cambiarContrasenaToolStripMenuItem_380_jh);
+            menuStrip1_380_jh.Items.Insert(posicionSalidaActualizada + 1, ayudaToolStripMenuItem);
         }
 
         private void MostrarDesplegableAlPasarMouse_380_jh(object sender, EventArgs e)
@@ -306,7 +333,7 @@ namespace UI
                 return;
             }
 
-            ShowScreen_380_jh(new DonacionesView_380_jh());
+            MostrarDonaciones_380_jh();
         }
 
         private void unidadesToolStripMenuItem_Click_380_jh(object sender, EventArgs e)
@@ -322,9 +349,21 @@ namespace UI
 
         private void ShowScreen_380_jh(UserControl screen)
         {
+            _ultimaDonacionSeleccionada_380_jh = ObtenerDonacionSeleccionada_380_jh() ?? _ultimaDonacionSeleccionada_380_jh;
             while (contentPanel_380_jh.Controls.Count > 0) contentPanel_380_jh.Controls[0].Dispose();
             screen.Dock = DockStyle.Fill;
             contentPanel_380_jh.Controls.Add(screen);
+        }
+
+        private void MostrarDonaciones_380_jh()
+        {
+            ShowScreen_380_jh(new DonacionesView_380_jh(ObtenerDonacionSeleccionada_380_jh() ?? _ultimaDonacionSeleccionada_380_jh));
+        }
+
+        private int? ObtenerDonacionSeleccionada_380_jh()
+        {
+            if (contentPanel_380_jh.Controls.Count == 0) return null;
+            return (contentPanel_380_jh.Controls[0] as DonacionesView_380_jh)?.IdDonacionSeleccionada_380_jh;
         }
 
         public void RefrescarIdiomasDisponibles_380_jh()
@@ -474,7 +513,7 @@ namespace UI
 
             if (_donacionesToolStripMenuItem_380_jh.Available)
             {
-                ShowScreen_380_jh(new DonacionesView_380_jh());
+                MostrarDonaciones_380_jh();
                 return;
             }
 

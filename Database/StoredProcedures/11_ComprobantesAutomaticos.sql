@@ -75,7 +75,8 @@ BEGIN
                                   FROM dbo.MovimientoUnidad m WHERE m.id_unidad=u.id_unidad
                                   AND m.estado_anterior='EN_REVISION' AND m.tipo_movimiento IN ('LIBERACION','BLOQUEO','DESCARTE') AND m.estado_nuevo IN ('LIBERADA','BLOQUEADA','DESCARTADA')
                                   ORDER BY m.id_movimiento_unidad DESC) decision
-                     WHERE u.id_donacion=@donacion AND u.estado_operativo<>'ANULADA' ORDER BY u.id_unidad
+                     -- En Entrega 2 ANULADA podía ser un destino personalizado de una unidad liberada.
+                     WHERE u.id_donacion=@donacion AND (u.estado_operativo<>'ANULADA' OR decision.estado_nuevo='LIBERADA') ORDER BY u.id_unidad
                      FOR XML PATH('Unidad'),ROOT('Unidades'),TYPE)
                     FROM dbo.Usuario us WHERE us.id_usuario=@usuario FOR XML PATH('Comprobante'),TYPE);
                 INSERT dbo.ComprobantePendiente(proceso,id_referencia,id_usuario,datos)

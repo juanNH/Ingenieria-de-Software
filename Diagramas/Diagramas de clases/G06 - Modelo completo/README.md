@@ -6,6 +6,8 @@ La primera página, **Clases por capa**, reúne las 155 definiciones UML en cont
 
 Las **28 vistas de colaboración** muestran las **419 relaciones explícitas, cada una una vez**, según su clase de origen. Cada fila mantiene sus conexiones locales y repite los destinos como referencias nominales en columnas por capa. Una referencia puede repetirse aunque el tipo esté definido en otra fila de la misma página; no agrega un tipo nuevo. Las 121 relaciones repetidas en el mapa no se suman a las 419 únicas.
 
+El rombo vacío indica agregación compartida y el rombo relleno, composición. Ambos se ubican en el extremo del todo. El círculo con `+` identifica al tipo que declara una clase anidada. Las páginas donde aparecen estos símbolos incluyen una leyenda.
+
 Los **1009 miembros son seleccionados de 1831 declarados auditados**; no se muestran todos los auxiliares privados ni los controles del diseñador. Las cuatro referencias externas del CLR (`Form`, `UserControl`, `IDisposable` y `StringWriter`) no se suman a los 155 tipos de la aplicación.
 
 - [Manifiesto y trazabilidad](G06%20-%20Modelo%20completo%20de%20clases.manifest.json).
@@ -13,7 +15,7 @@ Los **1009 miembros son seleccionados de 1831 declarados auditados**; no se mues
 - [Índice de todos los diagramas](../../README.md).
 - [Modelo anterior sin secciones](../../Historicos/G06%20-%20Modelo%20sin%20secciones/README.md).
 
-El mapa PNG mide **10000 × 5717 píxeles**; los detalles tienen un lado largo de **4000 píxeles**. El tamaño impreso depende de la escala de cada figura: usá zoom en el editable o las imágenes para leer los miembros. Cada imagen conserva una página completa del archivo fuente.
+El mapa PNG mide **10000 × 5720 píxeles**; los detalles tienen un lado largo de **4000 píxeles**. El tamaño impreso depende de la escala de cada figura: usá zoom en el editable o las imágenes para leer los miembros. Cada imagen conserva una página completa del archivo fuente.
 
 | Página | Vista | Imagen completa |
 | --- | --- | --- |

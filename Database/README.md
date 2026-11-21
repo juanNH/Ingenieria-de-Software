@@ -91,7 +91,11 @@ mano esos mismos archivos además del instalador.
 
 En **PN1 → Donaciones**, elegí una donación registrada y abrí **Cantidad e historial**. Al registrar una donación, la pantalla la selecciona automáticamente. `UNIDAD_VER` habilita la consulta y `DONACION_AJUSTAR_CANTIDAD` habilita los cambios. El responsable autorizado y el administrador reciben ambos permisos. El historial queda en solo lectura desde la primera liberación o al registrarse el comprobante de PN1.
 
-Marcá las unidades existentes que deben quedar vigentes. La cantidad se calcula a partir de la selección y de las unidades que quedan fijas. Desmarcar una unidad en revisión sin clasificar la anula. Marcar una que se había anulado por un ajuste la devuelve a revisión con el mismo código. Las unidades nuevas se generan al registrar la donación.
+La tabla de **Donaciones** muestra las unidades de la donación seleccionada. Al cambiar de pantalla y volver, Entrega 3 conserva la selección y consulta las unidades guardadas en la base. En **Bitácora**, el módulo **Banco de sangre** y la acción **Cantidad de donación ajustada** muestran las correcciones y restauraciones con el número de donación y las cantidades anterior y nueva.
+
+Marcá las unidades existentes que deben quedar vigentes. Desmarcar una unidad en revisión sin clasificar la anula. Marcar una anulada por un ajuste la devuelve a revisión con el mismo código. **Unidades nuevas** permite sumar unidades en revisión a la misma donación abierta. El total resultante incluye las unidades fijas, las marcadas y las nuevas.
+
+Para probar la actualización, registrá una donación de una unidad en Entrega 2 y dejala en revisión sin clasificar. En **Cantidad e historial** de Entrega 3, ingresá **2** en **Unidades nuevas**, completá el motivo y guardá. Volvé a abrir el historial para ver el cambio de **1 a 3**. Seleccioná **Registro inicial**, elegí **Restaurar cantidad seleccionada**, revisá las unidades marcadas, ingresá el motivo y guardá. La donación vuelve a una unidad vigente y el historial conserva tanto la corrección como la restauración.
 
 `tr_Donacion_AjusteCantidad` valida la versión, el motivo, los identificadores modificados y la cantidad resultante. El ajuste, los movimientos y el historial protegido se confirman juntos.
 

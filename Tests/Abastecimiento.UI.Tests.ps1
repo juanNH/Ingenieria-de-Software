@@ -2,10 +2,10 @@ param([string]$Servidor = '.', [string]$SalidaDir, [switch]$SoloUI, [switch]$Sin
 $ErrorActionPreference='Stop'
 if ($SinCapturas -and !$SoloUI) { throw 'SinCapturas se usa con SoloUI; la integracion SQL genera la evidencia de la pantalla final.' }
 if ($CapturaFinal -and $SoloUI) { throw 'CapturaFinal requiere la integracion SQL para obtener evidencia de datos reales de prueba.' }
-$taskRoot=Split-Path $PSScriptRoot -Parent
-if (!$SalidaDir) { $SalidaDir=Join-Path $taskRoot 'output/abastecimiento-2026-11-15/ui' }
+if (!$SalidaDir) { $SalidaDir=Join-Path ([IO.Path]::GetTempPath()) 'HemovidaGest/Pruebas/Abastecimiento' }
 $taskOutput=[IO.Path]::GetFullPath($SalidaDir)
 [void][IO.Directory]::CreateDirectory($taskOutput)
+Write-Host "Resultados de las pruebas en $taskOutput"
 $taskBuild=Join-Path $taskOutput 'build'
 $taskMsBuild='C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/MSBuild.exe'
 & $taskMsBuild (Join-Path $PSScriptRoot 'Abastecimiento.UI.Tests.csproj') /t:Build /p:Configuration=Release ('/p:OutDir='+$taskBuild+'/') /verbosity:minimal /nologo

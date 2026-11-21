@@ -30,4 +30,4 @@ Los códigos `CDUN-01` a `CDUN-04` corresponden a PN1; `CDUN-05` a `CDUN-08`, a 
 
 Los `.drawio` son las fuentes editables. G06 reúne sus 29 páginas en un solo editable y ofrece las imágenes completas en su subcarpeta `Vistas/`. Los DER se editan desde **Database Diagrams** en SSMS; sus copias y respaldos están en `Diagramas Entidad Relacion/`.
 
-Los scripts que instalan los diagramas nativos con la base permanecen en `Database/StoredProcedures/`, junto con el resto de las migraciones. Las capturas de pantallas de la aplicación permanecen en `Docs/Pantallas/`. `output/` contiene evidencias y exportaciones de trabajo; el modelo completo de clases ya tiene aquí sus copias canónicas.
+Los scripts que instalan los diagramas nativos con la base están en `Database/StoredProcedures/`, junto con el resto de las migraciones. Las capturas versionadas de la aplicación están en `Docs/Pantallas/`. Las copias de entrega y sus evidencias están en `output/documentacion/`.

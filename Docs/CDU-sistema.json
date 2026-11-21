@@ -70,7 +70,7 @@
             "views": [
               "CDU-01 · Iniciar sesión · Secuencia"
             ],
-            "sha256": "455941f5bd7c43c49bb2be42dc323f73bd3fd24395ae1820f481d72335bf88d1"
+            "sha256": "2931fe24d42adc5e4a754f34fe2c847cc8755d8de69a0df2e5a55d3070bece8d"
           }
         ],
         "screen": {
@@ -196,7 +196,7 @@
             "views": [
               "CDU-02 · Registrarse · Secuencia"
             ],
-            "sha256": "06e61202a9fc105a5c1b8eda9b9013f50d75bb7d2d95f2a1a4cb491572182eb5"
+            "sha256": "fcf818dac4d39301696cfc31bbe993859e530063ba475cbb7379ef0f194c594e"
           }
         ],
         "screen": {
@@ -314,7 +314,7 @@
             "views": [
               "CDU-03 · Cerrar sesión · Secuencia"
             ],
-            "sha256": "69c488be359e8639488633be540bd888cac22fd07b22a57e4b83341248ac7965"
+            "sha256": "2bd60163197cd406240bb73239df0d5ad344de7e6a76b2adda171c7303237a7d"
           }
         ],
         "screen": {
@@ -405,7 +405,7 @@
             "views": [
               "CDU-04 — Secuencia: Consultar bitácora"
             ],
-            "sha256": "81915e3ccb125f31d21d7c2fde2505144c7dc8f6c14b8d40a2c7682b38f1578e"
+            "sha256": "cfd57746915718f7962ab2f4b18d1521d5a402450df1b0075998c1ba539d7318"
           }
         ],
         "screen": {
@@ -490,7 +490,7 @@
         "classes": {
           "source": "Diagramas/Diagramas de clases/CDU-05 - Edición de usuario - Clases.drawio",
           "driveUrl": "https://drive.google.com/file/d/10meA45vVAGUtPruslfDj17nsD4F2gdN2/view?usp=drivesdk",
-          "sha256": "5c61004433ebfcf8e48bc4857feaa52d4575a4fc5beb09a83825ae9293d0e196",
+          "sha256": "3dea240916e07994d57f4f77927fb8109dbb68556dab7866fc263785711f7c25",
           "classCount": 27,
           "relationCount": 42,
           "layout": "UI, Application, Repository y DAL; Domain y Services debajo.",
@@ -502,7 +502,7 @@
               "scope": "RolesView: crear familias y administrar relaciones de componentes.",
               "classCount": 17,
               "relationCount": 24,
-              "sha256": "afb10bcf437adaaf486e1e7bab9dc6681a9ddc893a33d515a35c4f763dfb7751"
+              "sha256": "6b66b97c421234820d12c078f9a740c69edd5305c7b3968cb45ef6ac214673f2"
             }
           ]
         },
@@ -625,7 +625,7 @@
         "classes": {
           "source": "Diagramas/Diagramas de clases/CDU-06 - Gestión de idiomas y traducciones - Clases.drawio",
           "driveUrl": "https://drive.google.com/file/d/1Ujg4_qGEXnSSpOM2pmMHmPhP7fuEi7dh/view?usp=drivesdk",
-          "sha256": "4470e74a46a75173064c431e3bd5ed0b5682995dab19ac469a155ca55bd00645",
+          "sha256": "aaa8db764553b709f1f808c44a609e3d382ac40a6702877723b8fcf93a154cc1",
           "classCount": 29,
           "relationCount": 55,
           "layout": "UI, Application, Repository y DAL; Domain y Services debajo.",
@@ -728,7 +728,7 @@
         "classes": {
           "source": "Diagramas/Diagramas de clases/CDU-07 - Control de cambios - Clases.drawio",
           "driveUrl": "https://drive.google.com/file/d/1zYf_1ENNtonNm2v0Vm0oNq1Eei82AkUu/view?usp=drivesdk",
-          "sha256": "5ae38535c8b5a7712f0859d9b053ac34f1c4406a4944571ed5bb785281340b48",
+          "sha256": "1e309cd8ec6608bf28abc00aba74417c287a4b0ad6c0381b64386fef5e47abc8",
           "classCount": 27,
           "relationCount": 53,
           "layout": "UI, Application, Repository y DAL; Domain y Services debajo.",
@@ -742,7 +742,7 @@
               "CDU-07 — Secuencia: Consultar el historial",
               "CDU-07 — Secuencia: Restaurar un campo de Usuario"
             ],
-            "sha256": "5fcbc1ec225b2295be9df30057beebfe6984ddaedd4f6a3d78c6c38677855dc0"
+            "sha256": "1da16278460d7bed420cd6aab516c20696342989e9012692d4380f783cdf6c59"
           }
         ],
         "screen": {
@@ -808,7 +808,7 @@
     "freshNativeDesignerCase": "CDU-06",
     "freshNativeDesignerTableView": "Standard",
     "targetFunctionalTableObjectIdsDiffer": 32,
-    "nativeOpenEvidence": "output/normalizacion-cdu-2026-11-14/ssms-base-nueva-ids-distintos-standard.png",
+    "nativeOpenEvidence": "output/documentacion/evidencias/ssms-base-nueva-ids-distintos-standard.png",
     "observedBy": "Agente principal mediante SSMS nativo"
   },
   "designReview": {

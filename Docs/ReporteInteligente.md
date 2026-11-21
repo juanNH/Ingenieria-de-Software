@@ -46,6 +46,8 @@ La pantalla presenta una única grilla con todas las métricas por cohorte y cua
 
 ## Casos de demostración
 
+En una instalación nueva, marcá **Cargar datos ficticios de demostración** en el asistente. Abrí **Consultas → Abastecimiento y riesgo de vencimiento** y dejá los filtros iniciales de 30 días y 7 días a vencer. En la fila de eritrocitos **A+** vas a ver 3 unidades disponibles, 2 por vencer, 10 solicitadas, 8 pendientes, 9 días de cobertura y un déficit de 5. La prioridad es **Reposición y vencimiento**. La solicitud A+ tiene una reserva activa y una unidad entregada. Las otras dos filas muestran stock **O+** sin alerta y una solicitud de una unidad con estudio pendiente de validación. Las fechas se calculan al instalar para que el ejemplo se vea al abrir el reporte.
+
 La captura de la pantalla usa datos ficticios y lo indica en una franja visible. La evidencia de integración utiliza el servicio, repositorio, DAL y procedimiento reales contra una base temporal creada desde cero.
 
 - **Déficit junto a vencimientos:** en la cohorte de eritrocitos A+, hay 3 unidades vigentes, 2 próximas a vencer y 8 pendientes actuales. El déficit exacto es 5. Con 10 unidades solicitadas en treinta días, la cobertura histórica es 9 días. Corresponde revisar conjuntamente abastecimiento y vencimientos.

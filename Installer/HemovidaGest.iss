@@ -22,12 +22,12 @@
 [Setup]
 AppId=HemovidaGest
 AppName=HemovidaGest
-AppVersion=1.0
+AppVersion=3.0.2
 DefaultDirName={localappdata}\Programs\HemovidaGest
 DisableProgramGroupPage=yes
 PrivilegesRequired=lowest
 OutputDir=..\output\installer
-OutputBaseFilename=HemovidaGest-Setup
+OutputBaseFilename=HemovidaGest-Entrega-3
 WizardStyle=modern
 
 [Languages]
@@ -61,6 +61,8 @@ const
 var
   InstanciaSQL: TNewComboBox;
   IncluirDatosPrueba: TNewCheckBox;
+  PaginaInstanciaSQL: Integer;
+  DirectorioAnterior: String;
   BasePreparada: String;
 
 function EjecutarScriptSQL(const Argumentos: String; var Codigo: Integer; var Salida: TExecOutput): Boolean;
@@ -75,6 +77,26 @@ begin
     ExpandConstant('{tmp}'), SW_HIDE, ewWaitUntilTerminated, Codigo, Salida);
 end;
 
+function LeerConfiguracionAnterior: String;
+var
+  Ruta: String;
+  Codigo: Integer;
+  Salida: TExecOutput;
+begin
+  Result := '';
+  Ruta := AddBackslash(WizardDirValue) + 'App.local.config';
+  InstanciaSQL.Enabled := not FileExists(Ruta);
+  IncluirDatosPrueba.Enabled := InstanciaSQL.Enabled;
+  if not FileExists(Ruta) then Exit;
+
+  IncluirDatosPrueba.Checked := False;
+  if EjecutarScriptSQL('-LeerServidorConfigurado -ConfiguracionExistente ' + AddQuotes(Ruta),
+    Codigo, Salida) and (Codigo = 0) and (GetArrayLength(Salida.StdOut) > 0) then
+    InstanciaSQL.Text := Trim(Salida.StdOut[0])
+  else
+    Result := 'No se pudo leer la instancia SQL de la instalación anterior en App.local.config.';
+end;
+
 procedure InitializeWizard;
 var
   PaginaSQL: TWizardPage;
@@ -84,7 +106,8 @@ var
   Instancia: String;
 begin
   PaginaSQL := CreateCustomPage(wpSelectDir, 'SQL Server',
-    'Elegí dónde se creará la base HemovidaGest.');
+    'Elegí la instancia SQL para instalar o actualizar HemovidaGest.');
+  PaginaInstanciaSQL := PaginaSQL.ID;
 
   AyudaSQL := TNewStaticText.Create(PaginaSQL);
   AyudaSQL.Parent := PaginaSQL.Surface;
@@ -133,6 +156,24 @@ begin
   IncluirDatosPrueba.Height := ScaleY(20);
   IncluirDatosPrueba.Caption := 'Cargar datos ficticios de demostración';
   IncluirDatosPrueba.Checked := False;
+
+  if FileExists(AddBackslash(WizardDirValue) + 'App.local.config') then
+  begin
+    DirectorioAnterior := WizardDirValue;
+    WizardForm.DirEdit.ReadOnly := True;
+    WizardForm.DirBrowseButton.Enabled := False;
+  end;
+end;
+
+procedure CurPageChanged(CurPageID: Integer);
+var
+  Mensaje: String;
+begin
+  if CurPageID = PaginaInstanciaSQL then
+  begin
+    Mensaje := LeerConfiguracionAnterior;
+    if Mensaje <> '' then Log(Mensaje);
+  end;
 end;
 
 function RuntimeVisualCppDisponible(const Directorio, Arquitectura: String): Boolean;
@@ -251,6 +292,14 @@ begin
     Exit;
   end;
 
+  if (DirectorioAnterior <> '') and (CompareText(DirectorioAnterior, WizardDirValue) <> 0) then
+  begin
+    Result := 'Usá el directorio de la instalación anterior de HemovidaGest.';
+    Exit;
+  end;
+  Result := LeerConfiguracionAnterior;
+  if Result <> '' then Exit;
+
   Servidor := Trim(InstanciaSQL.Text);
   if Servidor = '' then
   begin
@@ -272,7 +321,8 @@ begin
 
   ExtractTemporaryFiles('*.sql');
   Parametros := '-Servidor ' + AddQuotes(Servidor) + ' -Configuracion ' +
-    AddQuotes(ExpandConstant('{tmp}\App.local.config'));
+    AddQuotes(ExpandConstant('{tmp}\App.local.config')) + ' -ConfiguracionExistente ' +
+    AddQuotes(AddBackslash(WizardDirValue) + 'App.local.config');
   if CompareText(Servidor, InstanciaLocalDB) = 0 then
     Parametros := Parametros + ' -PrepararLocalDB';
   if IncluirDatosPrueba.Checked then

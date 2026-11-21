@@ -144,7 +144,7 @@
         <mxCell id="edge-10" value="1 donante" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=0;exitY=0.2963;entryX=1;entryY=0.53333;" edge="1" parent="1" source="DonacionDomain" target="DonanteDomain09">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="unidades-de-la-donacion" value="1..* unidades generadas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;endArrow=open;exitX=1;exitY=0.2963;entryX=0;entryY=0.24242;" edge="1" parent="1" source="DonacionDomain" target="UnidadDomain09">
+        <mxCell id="unidades-de-la-donacion" value="1..* unidades generadas" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.2963;entryX=0;entryY=0.24242;startArrow=diamond;startFill=1;startSize=13;endArrow=none;" edge="1" parent="1" source="DonacionDomain" target="UnidadDomain09">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="relation-result" value="devuelve" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endFill=0;fontSize=12;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="DonacionRepo" target="Codigo09">

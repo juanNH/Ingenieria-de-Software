@@ -47,6 +47,19 @@ El [orden de ejecución de los scripts SQL](Database/README.md) distingue instal
 
 ## Configuración de la base de datos
 
+### Actualizar de Entrega 2 a Entrega 3
+
+Los dos instaladores están en `output/installer/`. Las copias de entrega del
+Trabajo de Diploma, los manuales y las capturas están en `output/documentacion/`.
+
+Instalá `HemovidaGest-Entrega-2.exe` y cargá los datos. Cerrá HemovidaGest y
+ejecutá `HemovidaGest-Entrega-3.exe` desde la misma cuenta de Windows. El
+asistente usa el directorio y la instancia SQL de la instalación anterior,
+crea un respaldo verificado de `HemovidaGest` y actualiza la base. Al abrir
+Entrega 3 podés seguir trabajando con los registros y el historial existentes.
+
+### Ejecutar desde el código fuente
+
 La cadena de conexión se configura para la DAL. Copiá `DAL/App.local.example.config` como `DAL/App.local.config` y ajustá el servidor si hace falta. El archivo local está excluido de Git. `DatabaseContext` de la DAL carga esa configuración al abrir la conexión; la UI no contiene la cadena.
 
 ---

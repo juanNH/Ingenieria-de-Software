@@ -154,6 +154,30 @@ try {
     Assert-RechazoAjuste "EXEC dbo.sp_Donacion_AjustarCantidad 1,$versionLiberada,4,N'Cerrada',N'[]',1" 51123 'Se rechaza el ajuste de una donación liberada'
     Assert ((Sql 'SELECT COUNT(*) n FROM dbo.v_IntegridadPN1_Errores').Tables[0].Rows[0].n -eq 0) 'El ajuste conserva la integridad de PN1'
 
+    $donacion = Sql "EXEC dbo.sp_Donacion_Registrar @id_donante=1,@fecha_donacion='20260101',@cantidad_unidades=1,@tipo_componente='Concentrado de eritrocitos',@fecha_vencimiento='20991231',@id_usuario=1"
+    $idAmpliada = [int]$donacion.Tables[0].Rows[0].id_donacion
+    $idOriginal = [int]$donacion.Tables[1].Rows[0].id_unidad
+    $codigoOriginal = [string]$donacion.Tables[1].Rows[0].codigo_identificacion
+    $versionOriginal = [int](Sql "EXEC dbo.sp_Donacion_ConsultarCantidad $idAmpliada,1").Tables[0].Rows[0].version_actual
+    Assert-RechazoAjuste "EXEC dbo.sp_Donacion_AjustarCantidad $idAmpliada,$versionOriginal,3,N'Total que no coincide',N'[]',1,NULL,1" 51124 'La generación explícita debe coincidir con la diferencia de cantidad'
+    [void](Sql "EXEC dbo.sp_Donacion_AjustarCantidad $idAmpliada,$versionOriginal,3,N'Agregar dos unidades',N'[]',1,NULL,2")
+    $ampliada = Sql "EXEC dbo.sp_Donacion_ConsultarCantidad $idAmpliada,1"
+    $versionAmpliada = [int]$ampliada.Tables[0].Rows[0].version_actual
+    $nuevas = @($ampliada.Tables[3].Rows | Where-Object { $_.id_unidad -ne $idOriginal })
+    $listaNuevas = '[' + (($nuevas | ForEach-Object id_unidad) -join ',') + ']'
+    Assert ($ampliada.Tables[0].Rows[0].cantidad_unidades -eq 3 -and $nuevas.Count -eq 2 -and
+            $ampliada.Tables[1].Rows[0].cantidad_anterior -eq 1 -and $ampliada.Tables[1].Rows[0].cantidad_nueva -eq 3 -and
+            $ampliada.Tables[1].Rows[0].unidades_afectadas -eq (($nuevas | ForEach-Object codigo_identificacion) -join ', ')) 'El aumento asigna dos códigos nuevos a la misma donación y los audita'
+    Assert ((Sql "SELECT COUNT(*) n FROM dbo.Unidad u JOIN dbo.Donacion d ON d.id_donacion=u.id_donacion JOIN dbo.Donante donante ON donante.id_donante=d.id_donante JOIN dbo.MovimientoUnidad m ON m.id_unidad=u.id_unidad WHERE u.id_donacion=$idAmpliada AND u.id_unidad<>$idOriginal AND u.estado_operativo='EN_REVISION' AND u.tipo_componente=d.tipo_componente AND u.fecha_vencimiento=d.fecha_vencimiento AND u.grupo_sanguineo=donante.grupo_sanguineo AND u.factor_rh=donante.factor_rh AND m.tipo_movimiento='REGISTRO'").Tables[0].Rows[0].n -eq 2) 'Las unidades agregadas heredan los datos y quedan en revisión con su movimiento inicial'
+    Assert-RechazoAjuste "EXEC dbo.sp_Donacion_AjustarCantidad $idAmpliada,$versionAmpliada,1,N'Restaurar con alta',N'$listaNuevas',1,$versionOriginal,1" 51120 'La restauración no genera unidades nuevas'
+    [void](Sql "EXEC dbo.sp_Donacion_AjustarCantidad $idAmpliada,$versionAmpliada,1,N'Restaurar cantidad inicial',N'$listaNuevas',1,$versionOriginal")
+    $restaurada = Sql "EXEC dbo.sp_Donacion_ConsultarCantidad $idAmpliada,1"
+    $vigentes = @($restaurada.Tables[3].Rows | Where-Object { $_.estado_operativo -ne 'ANULADA' })
+    Assert ($restaurada.Tables[0].Rows[0].cantidad_unidades -eq 1 -and $restaurada.Tables[1].Rows.Count -eq 3 -and
+            $restaurada.Tables[1].Rows[0].accion -eq 'RESTAURA_CANTIDAD' -and $restaurada.Tables[3].Rows.Count -eq 3 -and
+            $vigentes.Count -eq 1 -and $vigentes[0].id_unidad -eq $idOriginal -and $vigentes[0].codigo_identificacion -eq $codigoOriginal) 'Restaurar 3 a 1 conserva la unidad original y la trazabilidad de las dos anuladas'
+    Assert ((Sql 'SELECT COUNT(*) n FROM dbo.v_IntegridadPN1_Errores').Tables[0].Rows[0].n -eq 0) 'El alta y la restauración conservan la integridad de PN1'
+
     # Excepción de CU03: descartar una unidad vencida antes de clasificarla.
     [void](Sql "EXEC dbo.sp_Donante_Registrar @documento='VENCIDA',@nombre='Eva',@apellido='Prueba',@id_usuario=1")
     $donanteVencido = [int](Sql "SELECT id_donante FROM dbo.Donante WHERE documento='VENCIDA'").Tables[0].Rows[0].id_donante

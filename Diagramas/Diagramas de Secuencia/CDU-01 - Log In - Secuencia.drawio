@@ -88,7 +88,7 @@
         <mxCell id="m-label-0" value="Ingresar identificador y contraseña; Iniciar sesión" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="181.0" y="218" width="248" height="36" as="geometry" />
         </mxCell>
-        <mxCell id="m1" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="m1" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="435" y="312" as="sourcePoint" />
             <mxPoint x="695" y="312" as="targetPoint" />
@@ -97,7 +97,7 @@
         <mxCell id="m-label-1" value="Login_380_jh(identificador, password)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="441.0" y="270" width="248" height="36" as="geometry" />
         </mxCell>
-        <mxCell id="m2" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="m2" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="695" y="364" as="sourcePoint" />
             <mxPoint x="955" y="364" as="targetPoint" />
@@ -106,7 +106,7 @@
         <mxCell id="m-label-2" value="ObtenerPorCredenciales_380_jh(id, hash)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="701.0" y="322" width="248" height="36" as="geometry" />
         </mxCell>
-        <mxCell id="m3" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="m3" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="955" y="416" as="sourcePoint" />
             <mxPoint x="1215" y="416" as="targetPoint" />
@@ -115,7 +115,7 @@
         <mxCell id="m-label-3" value="ObtenerPorCredenciales_380_jh(id, hash)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="961.0" y="374" width="248" height="36" as="geometry" />
         </mxCell>
-        <mxCell id="m4" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="m4" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1215" y="468" as="sourcePoint" />
             <mxPoint x="1475" y="468" as="targetPoint" />
@@ -151,7 +151,7 @@
         <mxCell id="m-label-7" value="Usuario_380_jh / null" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="701.0" y="582" width="248" height="36" as="geometry" />
         </mxCell>
-        <mxCell id="m8" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="m8" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="695" y="676" as="sourcePoint" />
             <mxPoint x="955" y="676" as="targetPoint" />
@@ -160,7 +160,7 @@
         <mxCell id="m-label-8" value="ReiniciarIntentosLoginFallidos_380_jh(idUsuario)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="701.0" y="634" width="248" height="36" as="geometry" />
         </mxCell>
-        <mxCell id="m9" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="m9" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="955" y="728" as="sourcePoint" />
             <mxPoint x="1215" y="728" as="targetPoint" />
@@ -169,7 +169,7 @@
         <mxCell id="m-label-9" value="ReiniciarIntentosLoginFallidos_380_jh(idUsuario)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="961.0" y="686" width="248" height="36" as="geometry" />
         </mxCell>
-        <mxCell id="m10" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="m10" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1215" y="780" as="sourcePoint" />
             <mxPoint x="1475" y="780" as="targetPoint" />
@@ -214,7 +214,7 @@
         <mxCell id="m-label-14" value="usuarioValidado (camino permitido)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="441.0" y="946" width="248" height="36" as="geometry" />
         </mxCell>
-        <mxCell id="m15" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="m15" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="435" y="1040" as="sourcePoint" />
             <mxPoint x="1735" y="1040" as="targetPoint" />
@@ -223,7 +223,7 @@
         <mxCell id="m-label-15" value="IniciarSesion_380_jh(usuarioValidado)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="745.0" y="998" width="680" height="36" as="geometry" />
         </mxCell>
-        <mxCell id="m16" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="m16" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="435" y="1092" as="sourcePoint" />
             <mxPoint x="1995" y="1092" as="targetPoint" />

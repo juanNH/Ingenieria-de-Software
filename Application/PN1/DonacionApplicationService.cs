@@ -89,14 +89,15 @@ namespace Application
         }
 
         public CodigoOperacionPN1_380_jh AjustarCantidad_380_jh(int idDonacion, int version, int cantidad, string motivo,
-            IEnumerable<int> unidades, int? restaurar)
+            IEnumerable<int> unidades, int? restaurar, int unidadesNuevas = 0)
         {
             Usuario_380_jh usuario = Sesion_380_jh.ObtenerInstancia_380_jh().ObtenerUsuario_380_jh();
             if (usuario == null)
                 return CodigoOperacionPN1_380_jh.NoAutorizado_380_jh;
-            if (idDonacion <= 0 || version <= 0 || cantidad < 1 || cantidad > 1000 || string.IsNullOrWhiteSpace(motivo) || motivo.Trim().Length > 500 || unidades == null)
+            if (idDonacion <= 0 || version <= 0 || cantidad < 1 || cantidad > 1000 || unidadesNuevas < 0 || unidadesNuevas > 1000 ||
+                (restaurar.HasValue && unidadesNuevas != 0) || string.IsNullOrWhiteSpace(motivo) || motivo.Trim().Length > 500 || unidades == null)
                 return CodigoOperacionPN1_380_jh.DatosInvalidos_380_jh;
-            return _donacionRepository_380_jh.AjustarCantidad_380_jh(idDonacion, version, cantidad, motivo.Trim(), unidades, restaurar, usuario.Id_380_jh);
+            return _donacionRepository_380_jh.AjustarCantidad_380_jh(idDonacion, version, cantidad, motivo.Trim(), unidades, restaurar, usuario.Id_380_jh, unidadesNuevas);
         }
 
         private void RegistrarFalla_380_jh(Usuario_380_jh usuario, string descripcion)

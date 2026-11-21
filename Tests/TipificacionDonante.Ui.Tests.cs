@@ -98,7 +98,10 @@ internal static class TipificacionDonanteUiTests
             Check(units.CambiarEstado_380_jh(next, EstadoUnidadPN1_380_jh.Liberada_380_jh, null) == CodigoOperacionPN1_380_jh.Ok_380_jh,
                 "La clasificacion guardada permite liberar con el grupo desactivado");
             if (user.ComponentesPermiso_380_jh != null && new AutorizacionApplicationService_380_jh().TienePermiso_380_jh(PermisosSistema_380_jh.DonacionAjustarCantidad_380_jh))
+            {
                 ComprobarAjusteCantidad(donations, donor.Id_380_jh, first.IdDonacion_380_jh);
+                ComprobarNavegacionDonaciones(donations, donor.Id_380_jh);
+            }
             Check(new IntegridadApplicationService_380_jh().Verificar_380_jh().EsValida_380_jh, "Circuito completo conserva integridad");
             Console.WriteLine("Pruebas UI/Application/DAL de tipificacion completadas.");
             return 0;
@@ -110,6 +113,57 @@ internal static class TipificacionDonanteUiTests
     {
         int idDonacion;
         var dialogType = typeof(DonacionesView_380_jh).Assembly.GetType("UI.CantidadDonacionDialog_380_jh", true);
+        var unica = Donate(service, idDonante);
+        var datosUnica = service.ConsultarCantidad_380_jh(unica.IdDonacion_380_jh);
+        Check(datosUnica.Editable_380_jh && datosUnica.Ajustables_380_jh.Single().Id_380_jh == unica.Id_380_jh,
+            "La donacion de una unidad sigue abierta y la unidad esta en revision");
+        using (var dialog = (Form)Activator.CreateInstance(dialogType, service, unica.IdDonacion_380_jh, datosUnica))
+        {
+            var historial = Field<DataGridView>(dialog, "_historial");
+            Check(historial.ReadOnly && historial.Rows.Count == 1 &&
+                  historial.Rows[0].Tag is CambioCantidadDonacion_380_jh cambio && cambio.Anterior_380_jh == null && cambio.Nueva_380_jh == 1,
+                "El historial de una sola unidad conserva el registro inicial");
+            var nuevas = Field<NumericUpDown>(dialog, "_unidadesNuevas");
+            Check(nuevas.Parent != null && nuevas.Value == 0 && Field<CheckedListBox>(dialog, "_unidades").CheckedItems.Count == 1,
+                "La donacion abierta permite agregar unidades de manera explicita");
+            nuevas.Value = 2;
+            Field<TextBox>(dialog, "_motivo").Text = "Agregar dos unidades omitidas";
+            dialogType.GetMethod("Guardar_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(dialog, new object[] { dialog, EventArgs.Empty });
+            Check(dialog.DialogResult == DialogResult.OK, "La pantalla guarda una correccion de una a tres unidades");
+        }
+        var ampliada = service.ConsultarCantidad_380_jh(unica.IdDonacion_380_jh);
+        Check(ampliada.Cantidad_380_jh == 3 && ampliada.Unidades_380_jh.Count == 3 &&
+              ampliada.Unidades_380_jh[0].CodigoIdentificacion_380_jh == unica.CodigoIdentificacion_380_jh &&
+              ampliada.Unidades_380_jh.All(u => u.EstadoOperativo_380_jh == EstadoUnidadPN1_380_jh.EnRevision_380_jh) &&
+              ampliada.Historial_380_jh.Count == 2 && ampliada.Historial_380_jh[0].Anterior_380_jh == 1 &&
+              ampliada.Historial_380_jh[0].Nueva_380_jh == 3,
+            "La correccion conserva el codigo original, agrega dos unidades en revision y registra el cambio de una a tres");
+        using (var dialog = (Form)Activator.CreateInstance(dialogType, service, unica.IdDonacion_380_jh, ampliada))
+        {
+            var historial = Field<DataGridView>(dialog, "_historial");
+            var filaInicial = historial.Rows.Cast<DataGridViewRow>()
+                .Single(fila => ((CambioCantidadDonacion_380_jh)fila.Tag).Version_380_jh == datosUnica.Version_380_jh);
+            historial.CurrentCell = filaInicial.Cells[0];
+            var restaurar = Field<Button>(dialog, "_restaurar");
+            Check(restaurar.Enabled, "Seleccionar el registro inicial habilita restaurar la cantidad");
+            dialogType.GetMethod("RestaurarSeleccion_380_jh", BindingFlags.Instance | BindingFlags.NonPublic)
+                .Invoke(dialog, new object[] { restaurar, EventArgs.Empty });
+            var nuevas = Field<NumericUpDown>(dialog, "_unidadesNuevas");
+            var unidades = Field<CheckedListBox>(dialog, "_unidades");
+            Check(!nuevas.Enabled && nuevas.Value == 0 &&
+                  unidades.CheckedItems.Cast<Unidad_380_jh>().Single().Id_380_jh == unica.Id_380_jh,
+                "La restauracion propone dejar vigente la unidad original y anular las unidades agregadas");
+            Field<TextBox>(dialog, "_motivo").Text = "Restaurar la cantidad del registro inicial";
+            dialogType.GetMethod("Guardar_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(dialog, new object[] { dialog, EventArgs.Empty });
+            Check(dialog.DialogResult == DialogResult.OK, "La pantalla restaura la cantidad seleccionada en el historial");
+        }
+        var restaurada = service.ConsultarCantidad_380_jh(unica.IdDonacion_380_jh);
+        Check(restaurada.Cantidad_380_jh == 1 && restaurada.Historial_380_jh.Count == 3 &&
+              restaurada.Historial_380_jh[0].Accion_380_jh == "RESTAURA_CANTIDAD" && restaurada.Historial_380_jh[0].Anterior_380_jh == 3 &&
+              restaurada.Historial_380_jh[0].Nueva_380_jh == 1 &&
+              restaurada.Unidades_380_jh.Select(u => u.Id_380_jh).SequenceEqual(ampliada.Unidades_380_jh.Select(u => u.Id_380_jh)) &&
+              restaurada.Unidades_380_jh.Single(u => u.EstadoOperativo_380_jh != EstadoUnidadPN1_380_jh.Anulada_380_jh).Id_380_jh == unica.Id_380_jh,
+            "La restauracion registra el cambio de tres a una y conserva las tres unidades y sus identificadores");
         using (var vista = new DonacionesView_380_jh())
         {
             var nueva = new Donacion_380_jh { IdDonante_380_jh = idDonante, FechaDonacion_380_jh = DateTime.Now, CantidadUnidades_380_jh = 2,
@@ -165,6 +219,18 @@ internal static class TipificacionDonanteUiTests
         var donacionXml = procesoXml.Root.Element("Donacion");
         Check((int)donacionXml.Attribute("cantidadUnidades") == 1 && donacionXml.Element("Unidades").Elements("Unidad").Count() == 2,
             "El XML de la donacion declara solo la cantidad vigente y conserva las dos unidades");
+        using (var dialog = (Form)Activator.CreateInstance(dialogType, service, idDonacion, intercambiadas))
+        {
+            var unidades = Field<CheckedListBox>(dialog, "_unidades");
+            unidades.SetItemChecked(1, true);
+            Field<TextBox>(dialog, "_motivo").Text = "Reactivar la segunda unidad";
+            dialogType.GetMethod("Guardar_380_jh", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(dialog, new object[] { dialog, EventArgs.Empty });
+            Check(dialog.DialogResult == DialogResult.OK, "Se puede pasar de una a dos unidades reactivando la anulada");
+        }
+        var reactivadas = service.ConsultarCantidad_380_jh(idDonacion);
+        Check(reactivadas.Cantidad_380_jh == 2 && reactivadas.Unidades_380_jh.Select(u => u.Id_380_jh).SequenceEqual(guardados.Unidades_380_jh.Select(u => u.Id_380_jh)) &&
+              reactivadas.Historial_380_jh[0].Anterior_380_jh == 1 && reactivadas.Historial_380_jh[0].Nueva_380_jh == 2,
+            "El historial registra la reactivacion conservando los identificadores originales");
         using (var vista = new DonacionesView_380_jh())
         {
             var selector = Field<ComboBox>(vista, "_cmbDonacionRegistrada_380_jh");
@@ -174,6 +240,49 @@ internal static class TipificacionDonanteUiTests
         var datosCerrados = service.ConsultarCantidad_380_jh(cerrada);
         using (var dialog = (Form)Activator.CreateInstance(dialogType, service, cerrada, datosCerrados))
             Check(!datosCerrados.Editable_380_jh && Field<TextBox>(dialog, "_motivo").Parent == null, "Una donacion liberada solo permite consultar el historial");
+    }
+
+    private static void ComprobarNavegacionDonaciones(DonacionApplicationService_380_jh service, int idDonante)
+    {
+        using (var formulario = new MainForm_380_jh())
+        {
+            var menuDonaciones = Field<ToolStripMenuItem>(formulario, "_donacionesToolStripMenuItem_380_jh");
+            var menuDonantes = Field<ToolStripMenuItem>(formulario, "_donantesToolStripMenuItem_380_jh");
+            var panel = Field<Panel>(formulario, "contentPanel_380_jh");
+            menuDonaciones.PerformClick();
+            var vistaInicial = panel.Controls.OfType<DonacionesView_380_jh>().Single();
+
+            var donacion = new Donacion_380_jh
+            {
+                IdDonante_380_jh = idDonante,
+                FechaDonacion_380_jh = DateTime.Now,
+                CantidadUnidades_380_jh = 1,
+                TipoComponente_380_jh = "Concentrado de eritrocitos",
+                FechaVencimiento_380_jh = DateTime.Today.AddDays(30)
+            };
+            Check(service.Registrar_380_jh(donacion) == CodigoOperacionPN1_380_jh.Ok_380_jh,
+                "El administrador registra una donacion antes de cambiar de pantalla");
+            typeof(DonacionesView_380_jh).GetMethod("MostrarDonacionRegistrada_380_jh", BindingFlags.Instance | BindingFlags.NonPublic)
+                .Invoke(vistaInicial, new object[] { donacion });
+            var selectorInicial = Field<ComboBox>(vistaInicial, "_cmbDonacionRegistrada_380_jh");
+            Check(((Donacion_380_jh)selectorInicial.SelectedItem).Id_380_jh == donacion.Id_380_jh,
+                "El registro confirmado deja seleccionada la donacion persistida");
+
+            menuDonantes.PerformClick();
+            Check(vistaInicial.IsDisposed && panel.Controls.OfType<DonantesView_380_jh>().Count() == 1,
+                "El menu Donantes reemplaza y dispone la vista de donaciones");
+            var posterior = Donate(service, idDonante);
+            menuDonaciones.PerformClick();
+            var vistaRecargada = panel.Controls.OfType<DonacionesView_380_jh>().Single();
+            var selector = Field<ComboBox>(vistaRecargada, "_cmbDonacionRegistrada_380_jh");
+            var grilla = Field<DataGridView>(vistaRecargada, "_gridUnidades_380_jh");
+            Check(((Donacion_380_jh)selector.SelectedItem).Id_380_jh == donacion.Id_380_jh &&
+                  selector.Items.OfType<Donacion_380_jh>().Any(item => item.Id_380_jh == posterior.IdDonacion_380_jh),
+                "Al volver se recarga la lista desde SQL y se conserva la seleccion aunque haya una donacion posterior");
+            Check(grilla.Rows.Count == 1 && Convert.ToString(grilla.Rows[0].Cells["codigo_identificacion"].Value) ==
+                  donacion.Unidades_380_jh.Single().CodigoIdentificacion_380_jh,
+                "La grilla vuelve a mostrar la unidad persistida de la donacion seleccionada");
+        }
     }
 
     private static Unidad_380_jh Donate(DonacionApplicationService_380_jh service, int donor)

@@ -1,6 +1,8 @@
 -- PN2: permisos y traducciones incrementales. Conserva personalizaciones existentes.
 USE [HemovidaGest];
 GO
+-- La migración desde Entrega 2 solo necesita la actualización de las traducciones.
+IF SESSION_CONTEXT(N'HemovidaGest.ActualizandoEntrega3') IS NOT NULL RETURN;
 SET XACT_ABORT ON;
 BEGIN TRANSACTION;
 DECLARE @permisos TABLE(codigo VARCHAR(100),nombre VARCHAR(100),descripcion VARCHAR(255),accion VARCHAR(100));

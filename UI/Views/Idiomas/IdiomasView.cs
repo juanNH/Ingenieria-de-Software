@@ -456,6 +456,8 @@ namespace UI
                 new UiCatalogItem_380_jh("MENU_ROLES", "Menu roles"),
                 new UiCatalogItem_380_jh("MENU_LANGUAGES", "Menu idiomas"),
                 new UiCatalogItem_380_jh("MENU_CHANGE_PASSWORD", "Menu cambiar contrasena"),
+                new UiCatalogItem_380_jh("MENU_HELP", "Menú de ayuda"),
+                new UiCatalogItem_380_jh("HELP_OPEN_ERROR", "Error al abrir la guía de ayuda"),
                 new UiCatalogItem_380_jh("MENU_BLOOD_BANK", "Menu banco de sangre"),
                 new UiCatalogItem_380_jh("MENU_DONORS", "Menu donantes"),
                 new UiCatalogItem_380_jh("MENU_DONATIONS", "Menu donaciones"),

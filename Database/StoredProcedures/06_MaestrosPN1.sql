@@ -186,18 +186,22 @@ BEGIN TRY
  IF OBJECT_ID('dbo.FK_Unidad_Grupo','F') IS NULL ALTER TABLE dbo.Unidad WITH CHECK ADD CONSTRAINT FK_Unidad_Grupo FOREIGN KEY(grupo_sanguineo) REFERENCES dbo.GrupoSanguineo(codigo);
  IF OBJECT_ID('dbo.FK_Unidad_Rh','F') IS NULL ALTER TABLE dbo.Unidad WITH CHECK ADD CONSTRAINT FK_Unidad_Rh FOREIGN KEY(factor_rh) REFERENCES dbo.FactorRh(codigo);
 
- IF NOT EXISTS(SELECT 1 FROM dbo.Permiso WHERE codigo='MAESTROS_PN1_ADMINISTRAR')
-  INSERT dbo.Permiso(codigo,nombre,descripcion,modulo,accion,estado_permiso) VALUES('MAESTROS_PN1_ADMINISTRAR','Administrar maestros PN1','Administrar catalogos del banco de sangre','PN1','ADMINISTRAR','ACTIVO');
- IF NOT EXISTS(SELECT 1 FROM dbo.ComponentePermiso WHERE codigo='MAESTROS_PN1_ADMINISTRAR')
-  INSERT dbo.ComponentePermiso(codigo,nombre,descripcion,tipo,estado_componente) VALUES('MAESTROS_PN1_ADMINISTRAR','Administrar maestros PN1','Administrar catalogos del banco de sangre','PERMISO','ACTIVO');
- INSERT dbo.ComponentePermisoRelacion(id_padre,id_hijo)
- SELECT a.id_componente,p.id_componente FROM dbo.ComponentePermiso a CROSS JOIN dbo.ComponentePermiso p
- WHERE a.codigo='ADMINISTRADOR' AND p.codigo='MAESTROS_PN1_ADMINISTRAR'
- AND NOT EXISTS(SELECT 1 FROM dbo.ComponentePermisoRelacion r WHERE r.id_padre=a.id_componente AND r.id_hijo=p.id_componente);
- INSERT dbo.RolPermiso(id_rol,id_permiso)
- SELECT r.id_rol,p.id_permiso FROM dbo.Rol r CROSS JOIN dbo.Permiso p
- WHERE r.nombre='Administrador' AND p.codigo='MAESTROS_PN1_ADMINISTRAR'
- AND NOT EXISTS(SELECT 1 FROM dbo.RolPermiso x WHERE x.id_rol=r.id_rol AND x.id_permiso=p.id_permiso);
+ -- Entrega 2 ya tenía estos permisos. Sus asignaciones pueden estar personalizadas.
+ IF SESSION_CONTEXT(N'HemovidaGest.ActualizandoEntrega3') IS NULL
+ BEGIN
+  IF NOT EXISTS(SELECT 1 FROM dbo.Permiso WHERE codigo='MAESTROS_PN1_ADMINISTRAR')
+   INSERT dbo.Permiso(codigo,nombre,descripcion,modulo,accion,estado_permiso) VALUES('MAESTROS_PN1_ADMINISTRAR','Administrar maestros PN1','Administrar catalogos del banco de sangre','PN1','ADMINISTRAR','ACTIVO');
+  IF NOT EXISTS(SELECT 1 FROM dbo.ComponentePermiso WHERE codigo='MAESTROS_PN1_ADMINISTRAR')
+   INSERT dbo.ComponentePermiso(codigo,nombre,descripcion,tipo,estado_componente) VALUES('MAESTROS_PN1_ADMINISTRAR','Administrar maestros PN1','Administrar catalogos del banco de sangre','PERMISO','ACTIVO');
+  INSERT dbo.ComponentePermisoRelacion(id_padre,id_hijo)
+  SELECT a.id_componente,p.id_componente FROM dbo.ComponentePermiso a CROSS JOIN dbo.ComponentePermiso p
+  WHERE a.codigo='ADMINISTRADOR' AND p.codigo='MAESTROS_PN1_ADMINISTRAR'
+  AND NOT EXISTS(SELECT 1 FROM dbo.ComponentePermisoRelacion r WHERE r.id_padre=a.id_componente AND r.id_hijo=p.id_componente);
+  INSERT dbo.RolPermiso(id_rol,id_permiso)
+  SELECT r.id_rol,p.id_permiso FROM dbo.Rol r CROSS JOIN dbo.Permiso p
+  WHERE r.nombre='Administrador' AND p.codigo='MAESTROS_PN1_ADMINISTRAR'
+  AND NOT EXISTS(SELECT 1 FROM dbo.RolPermiso x WHERE x.id_rol=r.id_rol AND x.id_permiso=p.id_permiso);
+ END;
  DECLARE @textos TABLE(clave VARCHAR(150),es NVARCHAR(500),en NVARCHAR(500));
  INSERT @textos VALUES
  ('MASTERS_TITLE',N'Maestros',N'Master data'),

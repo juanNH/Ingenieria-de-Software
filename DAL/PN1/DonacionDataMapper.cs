@@ -148,12 +148,12 @@ namespace DAL
         }
 
         public CodigoOperacionPN1_380_jh AjustarCantidad_380_jh(int idDonacion, int version, int cantidad, string motivo,
-            IEnumerable<int> unidades, int? restaurar, int idUsuario)
+            IEnumerable<int> unidades, int? restaurar, int idUsuario, int unidadesNuevas = 0)
         {
             try
             {
                 _databaseContext_380_jh.Abrir_380_jh();
-                _databaseContext_380_jh.LeerConjunto_380_jh("sp_Donacion_AjustarCantidad", new List<SqlParameter>
+                var parametros = new List<SqlParameter>
                 {
                     _databaseContext_380_jh.CrearParametro_380_jh("@id_donacion", idDonacion),
                     _databaseContext_380_jh.CrearParametro_380_jh("@version_esperada", version),
@@ -162,7 +162,10 @@ namespace DAL
                     new SqlParameter("@unidades_json", SqlDbType.NVarChar, -1) { Value = "[" + string.Join(",", unidades) + "]" },
                     _databaseContext_380_jh.CrearParametro_380_jh("@id_usuario", idUsuario),
                     new SqlParameter("@version_a_restaurar", SqlDbType.Int) { Value = (object)restaurar ?? DBNull.Value }
-                });
+                };
+                if (unidadesNuevas != 0)
+                    parametros.Add(_databaseContext_380_jh.CrearParametro_380_jh("@cantidad_nuevas", unidadesNuevas));
+                _databaseContext_380_jh.LeerConjunto_380_jh("sp_Donacion_AjustarCantidad", parametros);
                 return CodigoOperacionPN1_380_jh.Ok_380_jh;
             }
             catch (SqlException ex)

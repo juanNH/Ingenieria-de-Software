@@ -89,7 +89,7 @@
         <mxCell id="m-label-0" value="Seleccionar Cerrar sesión" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="181.0" y="218" width="248" height="36" as="geometry"/>
         </mxCell>
-        <mxCell id="m1" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="m1" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="435" y="312" as="sourcePoint"/>
             <mxPoint x="695" y="312" as="targetPoint"/>
@@ -98,7 +98,7 @@
         <mxCell id="m-label-1" value="RecalcularDigitosVerificadoresUsuarios_380_jh()" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="441.0" y="270" width="248" height="36" as="geometry"/>
         </mxCell>
-        <mxCell id="m2" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="m2" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="695" y="364" as="sourcePoint"/>
             <mxPoint x="955" y="364" as="targetPoint"/>
@@ -125,7 +125,7 @@
         <mxCell id="m-label-4" value="true / false" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="441.0" y="426" width="248" height="36" as="geometry"/>
         </mxCell>
-        <mxCell id="m5" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="m5" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="435" y="520" as="sourcePoint"/>
             <mxPoint x="1215" y="520" as="targetPoint"/>
@@ -146,7 +146,7 @@
         <mxCell id="self-7" value="DialogResult = Retry; Close()" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;align=left;" vertex="1" parent="1">
           <mxGeometry x="443" y="602" width="230" height="42" as="geometry"/>
         </mxCell>
-        <mxCell id="m8" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="m8" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="435" y="676" as="sourcePoint"/>
             <mxPoint x="1475" y="676" as="targetPoint"/>
@@ -164,7 +164,7 @@
         <mxCell id="m-label-9" value="MainForm cerrado; DialogResult.Retry" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1">
           <mxGeometry x="745.0" y="686" width="680" height="36" as="geometry"/>
         </mxCell>
-        <mxCell id="self-uia-cleanup" edge="1" parent="1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Arial;fontSize=13;endArrow=open;endFill=0;strokeWidth=1.2;"><mxGeometry relative="1" as="geometry"><mxPoint x="1735" y="786" as="sourcePoint"/><mxPoint x="1735" y="816" as="targetPoint"/><Array as="points"><mxPoint x="1830" y="786"/><mxPoint x="1830" y="816"/></Array></mxGeometry></mxCell><mxCell id="self-uia-cleanup-label" value="DesconectarProveedoresAccesibilidad_380_jh()" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1430" y="742" width="500" height="36" as="geometry"/></mxCell><mxCell id="m10" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=open;endFill=0;strokeWidth=1.2;">
+        <mxCell id="self-uia-cleanup" edge="1" parent="1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Arial;fontSize=13;endArrow=block;endFill=1;strokeWidth=1.2;"><mxGeometry relative="1" as="geometry"><mxPoint x="1735" y="786" as="sourcePoint"/><mxPoint x="1735" y="816" as="targetPoint"/><Array as="points"><mxPoint x="1830" y="786"/><mxPoint x="1830" y="816"/></Array></mxGeometry></mxCell><mxCell id="self-uia-cleanup-label" value="DesconectarProveedoresAccesibilidad_380_jh()" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=12;" vertex="1" parent="1"><mxGeometry x="1430" y="742" width="500" height="36" as="geometry"/></mxCell><mxCell id="m10" edge="1" parent="1" value="" style="html=1;fontFamily=Arial;fontSize=13;labelBackgroundColor=#ffffff;endArrow=block;endFill=1;strokeWidth=1.2;">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1735" y="884" as="sourcePoint"/>
             <mxPoint x="1995" y="884" as="targetPoint"/>
