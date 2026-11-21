@@ -196,7 +196,7 @@ namespace UI
             };
             _cambiarContrasenaToolStripMenuItem_380_jh.Click += cambiarContrasenaToolStripMenuItem_Click_380_jh;
 
-            const string urlGuia = "https://docs.google.com/document/d/1PXIdodroN3LqwicTZGFYAqWhD_o5m28N/edit";
+            const string urlGuia = "https://docs.google.com/document/d/10SOdb9CbF-yLDKfDXuLZ3HjGPDtNWPGV1_rYIE4rS0s/edit";
             var ayudaToolStripMenuItem = new ToolStripMenuItem
             {
                 Name = "ayudaToolStripMenuItem",
